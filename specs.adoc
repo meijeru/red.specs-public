@@ -3,6 +3,14 @@
 :toc:
 :numbered:
 
+
+== Codification
+
+Rules have a code in the form: `Letter + 3 digits`. The number is an incremental counter. The prefix letter can be:
+
+* **`S`**: for syntactic rules.
+* **`E`**: for evaluation rules.
+
 == Syntactic rules
 
 === Integer!
@@ -35,15 +43,15 @@
 
 `a -> b` will be used to signify evaluation relation, from value or type `a` to value or type `b`.
 
-=== Immediate types
+=== Passive types
 
-**R100**: For all values of type in `immediate!` typeset: `value -> value`
+**R100**: For all values of type in `passive!` typeset: `value -> value`. This is called the *identity rule*.
 
 === Decaying types
 
-**R101**: For a value `'word` of type `lit-word!`: `'word -> word`
+**R101**: `lit-word! -> word!`. Evaluating a `'word` value results in its `word` counterpart.
 
-**R102**: For a value `'v0/v1/.../vn` of type `lit-path!`: `'v0/v1/.../vn -> v0/v1/.../vn`
+**R102**: `lit-path! -> path!`. Evaluating a `'v0/v1/.../vn` value results in its `v0/v1/.../vn` counterpart.
 
 
 === Functions type
