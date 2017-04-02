@@ -39,6 +39,22 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 === Binding process
 
 
+== Comparison
+
+=== Equality
+
+=== Strictly equality
+
+=== Sameness
+
+=== Types ordering
+
+=== Types comparisons
+
+
+== Conversion
+
+
 == Evaluation rules
 
 `a -> b` will be used to signify evaluation relation, from value or type `a` to value or type `b`.
