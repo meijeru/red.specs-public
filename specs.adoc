@@ -1,0 +1,105 @@
+= Red Language Specification - draft
+:imagesdir: /images
+:toc:
+:numbered:
+
+== Syntactic rules
+
+=== Integer!
+
+=== Float!
+
+=== Char!
+
+=== ...
+
+== Types
+
+=== Types list
+
+*TBD: Provide a table with all the datatypes and a brief description of their purpose.*
+
+=== Types groups
+
+=== Types hierarchy
+
+
+== Binding
+
+=== Contexts
+
+=== Binding process
+
+
+== Evaluation rules
+
+`a -> b` will be used to signify evaluation relation, from value or type `a` to value or type `b`.
+
+=== Immediate types
+
+**R100**: For all values of type in `immediate!` typeset: `value -> value`
+
+=== Decaying types
+
+**R101**: For a value `'word` of type `lit-word!`: `'word -> word`
+
+**R102**: For a value `'v0/v1/.../vn` of type `lit-path!`: `'v0/v1/.../vn -> v0/v1/.../vn`
+
+
+=== Functions type
+
+==== Action! type
+
+==== Native! type
+
+==== Op! type
+
+==== Function! type
+
+==== Routine! type
+
+==== Options and optional arguments
+
+
+=== Word! type
+
+=== Get-word! type
+
+=== Paren! type
+
+=== Path! type
+
+=== Reduction
+
+=== Selective reduction
+
+
+== Evaluation process
+
+=== Loading stage
+
+=== Evaluation loop
+
+
+== Exceptions
+
+=== Error exceptions
+
+==== Creation
+
+==== Propagation
+
+==== Interception
+
+=== User exceptions
+
+==== Creation
+
+==== Propagation
+
+==== Interception
+
+== Preprocessor
+
+
+== Errors list
