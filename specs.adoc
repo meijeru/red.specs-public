@@ -23,13 +23,13 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 
 == Types
 
-=== Types list
+=== Type list
 
 *TBD: Provide a table with all the datatypes and a brief description of their purpose.*
 
-=== Types groups
+=== Type groups
 
-=== Types hierarchy
+=== Type hierarchy
 
 
 == Binding
@@ -47,9 +47,9 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 
 === Sameness
 
-=== Types ordering
+=== Type ordering
 
-=== Types comparisons
+=== Type comparisons
 
 
 == Conversion
@@ -70,7 +70,7 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 **`E102`**:: `lit-path! -> path!`. Evaluating a `'v0/v1/.../vn` value results in its `v0/v1/.../vn` counterpart.
 
 
-=== Functions type
+=== Function types
 
 ==== Action! type
 
