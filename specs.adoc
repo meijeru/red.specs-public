@@ -45,13 +45,13 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 
 === Passive types
 
-**`R100`**:: For all values of type in `passive!` typeset: `value -> value`. This is called the *identity rule*.
+**`E100`**:: For all values of type in `passive!` typeset: `value -> value`. This is called the **identity rule**.
 
 === Decaying types
 
-**`R101`**:: `lit-word! -> word!`. Evaluating a `'word` value results in its `word` counterpart.
+**`E101`**:: `lit-word! -> word!`. Evaluating a `'word` value results in its `word` counterpart.
 
-**`R102`**:: `lit-path! -> path!`. Evaluating a `'v0/v1/.../vn` value results in its `v0/v1/.../vn` counterpart.
+**`E102`**:: `lit-path! -> path!`. Evaluating a `'v0/v1/.../vn` value results in its `v0/v1/.../vn` counterpart.
 
 
 === Functions type
