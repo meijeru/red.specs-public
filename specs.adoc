@@ -43,7 +43,7 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 
 === Equality
 
-=== Strictly equality
+=== Strict equality
 
 === Sameness
 
