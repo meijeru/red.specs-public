@@ -15,10 +15,10 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 
 Source input to Red must be UTF-8 encoded.
 
-Values in Red are, in the vast majority of cases, separated by White Space.
+Values in Red are, in the vast majority of cases, separated by one or more whitespace characters.
 
-In the context of Red source, White Space is one or more of space(U+20), tab(U+09), newline(U+0A) or non-breaking space(U+A0).
-^^^^^^^ This is most certainly short of some whitespace values, please correct See issue #2492 ^^^^^^^^^^^^^^ 
+In the context of Red source, whitespace characters are space (U+0020), tab (U+0009), line feed (U+000A), next line (U+0085) and non-breaking space (U+00A0).
+^^^^^^^ This is most certainly short of some whitespace values, please correct See issue also #2492 ^^^^^^^^^^^^^^ 
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values can be relaxed. For example, it is possible to omit whitespace between two consecutive block! values and between word! values and block! values. These two examples are both syntatically valid:
 
