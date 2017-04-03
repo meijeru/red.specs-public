@@ -31,17 +31,17 @@ In certain cases, where there can be no ambiguity, the requirement for whitespac
 
 === Char!
 
-<char> :: = <viewable-character> | <escaped-character> | <hexadecimal-codepoint> 
+ <char> :: = <viewable-character> | <escaped-character> | <hexadecimal-codepoint> 
 
 A char! value must be a valid single Unicode code point, i.e. an integer in the range 0 to 0x10FFFFF. 
 
-<viewable-character> :: = #"????"
+ <viewable-character> :: = #"????"
 
 A <viewable character> is, in most cases, is simply a displayable character. For example, #"e", #é", #"€" or #"😀". When a displayable character requires two or more graphemes to display a character, each grapheme requires a separate Red character. For example, when é is encoded in its two character decomposed form e (U+0065) followed by the combining ´ (U+0301) they cannot be combined into a single char! value.
 
-`<escaped-character> :: =  #"^(null)| #"^@" | #"^(back)" | #"^(tab)" | #"^-" | #"^(line)" | #"^/" | #"^(page)" |
+ <escaped-character> :: =  #"^(null)| #"^@" | #"^(back)" | #"^(tab)" | #"^-" | #"^(line)" | #"^/" | #"^(page)" |
                           #"^(esc)" | #"^"" | #"^^" |  #"^(del)" | #"^~" | #"^A" | #"^B" | ... | #"^Z" |
-                          #"^[" | #"^\" | #"^]" | #"^_"`
+                          #"^[" | #"^\" | #"^]" | #"^_"
 
      Named Form   Short Form    Character           Codepoint
      #"^(null)    #"^@"         null                U+0000
