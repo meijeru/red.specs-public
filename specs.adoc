@@ -11,7 +11,7 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 * **`S`**: for syntactic rules.
 * **`E`**: for evaluation rules.
 
-== Syntactic rules
+== Syntax
 
 === Integer!
 
@@ -19,17 +19,33 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 
 === Char!
 
-A char! value is of the form #"<valid Unicode codepoint>". The codepoint can be supplied as either a displayable character or hexidecimal digit(s). Hexidecimal digits should be supplied in the form ^(hh), ^(hhhh) or ^(hhhhhh) or ^(hhhhhhhh). 
+A char! value is of the form #"<valid Unicode codepoint>". 
 
-For example:
+A <valid Unicode codepoint> can be supplied as either a <single grapheme>, an <escaped character> or <hexidecimal digits>.
 
-#"a" equivalent to #"^(61)"
+A <single grapheme> is, in most cases, is simply a displayable character. For example, #"e", #é", #"€" or #"😀". When a displayable character requires two or more graphemes to display a character, each grapheme requires a separate character. For example, when é is encoded in its two character decomposed form e (U+0065) followed by the combining ´ (U+0301) they cannot be combined into a single char! value.
 
-#"é" equivalent to #"^(E9)"
+An <escaped character> is of the form ^ followed by a character with the following meanings:
 
-#"€" equivalent to #"^(20AC)"
+     Named Form   Short Form    Character           Codepoint
+     #"^(null)    #"^@"         null                U+00
+     #"^(back)"   #"^H"         backspace           U+08
+     #"^(tab)"    #"^-"         horizontal tab      U+09
+     #"^(line)"   #"^/"         new line            U+0A
+     #"^(page)"   #"^L"         form feed           U+0C 
+                  #"^M"         carriage return     U+0D
+     #"^(esc)"    #"^["         escape              U+1B
+                  #"^""         " - quote           U+22
+                  #"^^"         ^ - caret           U+5E                
+     #"^(del)"    #"^~"         delete              U+7F
+  
+  
+<hexidecimal digits> must be in one of the forms ^(hh), ^(hhhh) or ^(hhhhhh) or ^(hhhhhhhh). For example:
 
-#"😀" equivalent to #"^(01F600)"
+  #"^(65)" equivalent to #"e"
+  #"^(E9)" equivalent to #"é"
+  #"^(20AC)" equivalent to #"€"
+  #"^(01F600)" equivalent to #"😀"
 
 === ...
 
