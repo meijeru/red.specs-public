@@ -31,13 +31,16 @@ In certain cases, where there can be no ambiguity, the requirement for whitespac
 
 === Char!
 
-A char! value is of the form #"<valid Unicode codepoint>". 
+<char> :: = <viewable character> | <escaped-character> | <hexadecimal-codepoint> 
 
-A <valid Unicode codepoint> can be supplied as either a <single grapheme>, an <escaped character> or <hexidecimal digits>.
+A char! value must be a valid single Unicode codpoint, i.e. an integer in the range 0 to 0x10FFFFF. 
 
-A <single grapheme> is, in most cases, is simply a displayable character. For example, #"e", #é", #"€" or #"😀". When a displayable character requires two or more graphemes to display a character, each grapheme requires a separate character. For example, when é is encoded in its two character decomposed form e (U+0065) followed by the combining ´ (U+0301) they cannot be combined into a single char! value.
+<viewable-character> :: = #"????"
 
-An <escaped character> is of the form ^ followed by a character with the following meanings:
+A <viewable character> is, in most cases, is simply a displayable character. For example, #"e", #é", #"€" or #"😀". When a displayable character requires two or more graphemes to display a character, each grapheme requires a separate Red character. For example, when é is encoded in its two character decomposed form e (U+0065) followed by the combining ´ (U+0301) they cannot be combined into a single char! value.
+
+<escaped character> :: =  #"^(null)| #"^@" | null | #"^(back)" | #"^H" | #"^(tab)" | #"^-" | #"^(line)" | #"^/" |
+                          #"^(page)" | #"^L" | #"^M" | #"^(esc)" | #"^[" | #"^"" | #"^^" |  #"^(del)" | #"^~"
 
      Named Form   Short Form    Character           Codepoint
      #"^(null)    #"^@"         null                U+00
@@ -52,12 +55,11 @@ An <escaped character> is of the form ^ followed by a character with the followi
      #"^(del)"    #"^~"         delete              U+7F
   
   
-<hexidecimal digits> must be in one of the forms ^(hh), ^(hhhh) or ^(hhhhhh) or ^(hhhhhhhh). For example:
+<hexidecimal-codepoint> :: = "^(<hexidecimal-byte> | <hexidecimal-byte><hexidecimal-byte>)| 
+                            <hexidecimal-byte><hexidecimal-byte><hexidecimal-byte> | 
+                            <hexidecimal-byte><hexidecimal-byte><hexidecimal-byte><hexidecimal-byte>"
 
-  #"^(65)" equivalent to #"e"
-  #"^(E9)" equivalent to #"é"
-  #"^(20AC)" equivalent to #"€"
-  #"^(01F600)" equivalent to #"😀"
+<hexidecimal-byte> :: = 0-F0-F
 
 === ...
 
