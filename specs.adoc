@@ -19,6 +19,18 @@ Rules have a code in the form: `Letter + 3 digits`. The number is an incremental
 
 === Char!
 
+A char! value is of the form #"<valid Unicode codepoint>". The \codepoint can be supplied as either a displayable character or hexidecimal digit(s). Hexidecimal digits should be supplied in the form ^(hh), ^(hhhh) or ^(hhhhhh) or ^(hhhhhhhh). 
+
+For example:
+
+#"a" equivalent to #"^(61)"
+
+#"é" equivalent to #"^(E9)"
+
+#"€" equivalent to #"^(20AC)"
+
+#"😀" equivalent to #"^(01F600)"
+
 === ...
 
 == Types
