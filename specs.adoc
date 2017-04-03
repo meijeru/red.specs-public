@@ -55,11 +55,9 @@ A <viewable character> is, in most cases, is simply a displayable character. For
      #"^(del)"    #"^~"         delete              U+7F
   
   
-<hexidecimal-codepoint> :: = "^(<hexidecimal-byte> | <hexidecimal-byte><hexidecimal-byte>)| 
-                            <hexidecimal-byte><hexidecimal-byte><hexidecimal-byte> | 
-                            <hexidecimal-byte><hexidecimal-byte><hexidecimal-byte><hexidecimal-byte>"
+<hexidecimal-codepoint> :: = "^(<hex> | <hex>>hex> | <hex><hex><hex> | <hex><hex><hex><hex>)"  
 
-<hexidecimal-byte> :: = 0-F0-F
+<hex> :: = 0-F0-F
 
 === ...
 
