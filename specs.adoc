@@ -156,6 +156,9 @@ E.g.: `192.168.1.2`, `255.255.128`
 
 === <word>
 
+A `word!` value is written as one or more characters from the range starting at `U+0021`, excluding whitespace characters
+and the following set: `/ \ ^ , [ ] ( ) { } " # % $ @ : ;` and not beginning with `0-9` or `'`.
+
 === <char>
 
 ....
