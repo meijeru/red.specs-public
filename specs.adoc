@@ -164,7 +164,8 @@ A `word!` value does not begin with `0-9` or `'`.
 === <char>
 
 ....
-    <char> :: = #"<viewable-character>" | #"<escaped-character>" | #"<hexadecimal-codepoint>" 
+    <char> :: = #"<single-character>"
+    <single-character> ::= <viewable-character> | <escaped-character> | <hexadecimal-codepoint>
 ....
 
 A `char!` value must be a valid single Unicode code point, i.e. an integer in the range 0 to 10FFFFF (hexadecimal notation). 
@@ -193,15 +194,27 @@ The correspondence between the escaped characters and Unicode code points is giv
      #"^[" #"^\" #"^]"          control characters  U+001B - U+001D
      #"^_"                      control character   U+001F
     
-Note that code point `U+001E` cannot be represented by `#"^^"` as expected, since that is already taken for caret. 
+Note that code point `U+001E` cannot be represented by `#"^^"` as expected, since that is already taken for caret.
+Note also that `^` will be ignored in front of any single character with which it does not form an escaped character
+as defined above. Thus e.g. `^3` yields the same as `3`
      
 ....
     <hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
 ....
 
-where <hex> is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
+where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
 === <string>
+
+....
+     <string> ::= "<single-character>*" | {<single-character>*}
+....
+
+When the `<string>` is delimited by `" "` it must not contain unescaped _new-line characters_
+`U+000A`, `U+0085`, `U+2028` and `U+2029`. When the `<string>` is delimited by `{ }` it may contain
+unescaped new-line characters and any `"` as well as nested `{ }` pairs, but any unpaired `}`
+character that is part of the `<string`> must be escaped by preceding it with `^`. Within a `<string>`,
+the same remark holds for `^` as noted above for a `<char>`. 
 
 === <file>
 
