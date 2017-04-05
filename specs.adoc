@@ -155,8 +155,8 @@ The correspondence between the escaped characters and Unicode code points is giv
      Named Form   Short Form    Character           Codepoint
      #"^(null)    #"^@"         null                U+0000
      #"^(back)"   #"^H"         backspace           U+0008
-     #"^(tab)"    #"^-"         horizontal tab      U+0009
-     #"^(line)"   #"^/"         line feed           U+000A
+     #"^(tab)"    #"^I" #"^-"   horizontal tab      U+0009
+     #"^(line)"   #"^J" #"^/"   line feed           U+000A
      #"^(page)"   #"^L"         form feed           U+000C 
      #"^(esc)"    #"^["         escape              U+001B
      #"^(del)"    #"^~"         delete              U+007F
@@ -172,7 +172,7 @@ Note that code point `U+001E` cannot be represented by `#"^^"` as expected, sinc
     <hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
 ....
 
-where <hex> is two hexadecimal digits `0-9 A-F a-f`
+where <hex> is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
 === <string>
 
