@@ -19,7 +19,7 @@ the effect of the program is the same whether it is executed through
 interpretation or compilation. A further facility of the toolchain is
 that it provides one or more _interactive consoles_, i.e. visual interfaces
 which accept program fragments and display the result of evaluating them
-(REPL or Read Execute Print Loop).
+(REPL or Read Evaluate Print Loop).
 
 An important property of Red is that any Red program is an _ordered sequence
 of Red values_, i.e. code and data are a priori indistinguishable.
@@ -35,8 +35,8 @@ detail below: any _word_ may be _bound_ to a value in some _context_.
 
 Initially, some words are bound to certain values in the _global context_,
 notably to _built-in functions_, _types_ (type names conventionally end in !)
-and _constants_ such as the truth values: `true` and `false`, as well as the
-"nil" value: `none`. Upon evaluation, a bound word is replaced by the value
+and _constants_ such as the truth values: `true` and `false`, as well as `none`
+("nil" or "null"in other languages). Evaluation of a bound word yields the value
 it is bound to. Evaluation of an unbound word raises an error, or may yield
 a special value "unset".
 The evaluation rules given below will state, amongst others, how words can come
