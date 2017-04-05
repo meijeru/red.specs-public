@@ -127,13 +127,14 @@ further defined in the grammar is explained in the individual sections thereafte
 === <integer>
 
 An `integer!` value is written as a signed integer number from `-2^31^` to `2^31^-1`
-in decimal notation (leading zeroes allowed).
+in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation, e.g. `1'000`.
 
 === <float>
 
 A `float!` value is written as a signed floating point number in the range of the IEEE 754 binary64 format,
-in decimal notation (leading zeroes allowed, no zero needed before the decimal point when the absolute value
-is smaller than `1.0`). The number may be followed by a signed decimal exponent, after `E` or `e`.
+in decimal notation, possibly without decimal point. Leading zeroes are allowed, as well as `'` signs for separation.
+No zero is needed before the decimal point when the absolute value is smaller than `1.0`).
+The number may be followed by a signed integer exponent on base 10, after `E` or `e`, e.g. `1E9` for `1'000'000'000.0`.
  
 === <time>
 
