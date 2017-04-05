@@ -3,6 +3,47 @@
 :toc:
 :numbered:
 
+== Introduction
+
+The purpose of Red is to formulate _computer programs_.
+A program written in Red is intended to be executed on a _target computer_.
+To that end, it will be submitted to the _Red toolchain_ which is a program
+executing on a _host computer_; this computer may be, but need not be
+identical to the target computer. In case the two are identical,
+the program execution may take the form of _interpretation_, i.e. the effect
+of the program is the result of the toolchain's operation itself.
+In either case, the execution may occur through _compilation_, i.e. the toolchain
+produces a program in a lower-level language (e.g. machine code) suitable
+for execution on the target computer. The toolchain is constructed such that
+the effect of the program is the same whether it is executed through
+interpretation or compilation. A further facility of the toolchain is
+that it provides one or more _interactive consoles_, i.e. visual interfaces
+which accept program fragments and display the result of evaluating them
+(REPL or Read Execute Print Loop).
+
+An important property of Red is that any Red program is an _ordered sequence
+of Red values_, i.e. code and data are a priori indistinguishable.
+In other words, Red is _homoiconic_. Thus, interpretation of a Red program
+is tantamount to evaluating each of its constituent values in turn,
+according to the evaluation rules. Each Red _value_ has a _type_ and the types
+themselves are also values of the language. The type of each value can be
+determined either _lexically_ (_simple values_), or _syntactically_ (_grouped
+values_). A special category of values is formed by _words_, that play
+a similar role to ``identifiers'' and ``keywords'' of other languages.
+Red does *not* have identifiers nor keywords: as will be explained in more
+detail below: any _word_ may be _bound_ to a value in some _context_.
+
+Initially, some words are bound to certain values in the _global context_,
+notably to _built-in functions_, _types_ (type names conventionally end in +!+)
+and _constants_ such as the truth values: +true+ and +false+, as well as the
+``nil'' value: +none+.
+
+Upon evaluation, a bound word is replaced by the value it is bound to.
+An unbound word evaluates to the special value _unset_.
+
+How words can come to be bound to values in the course of program execution
+will be explained later.
+
 
 == Codification
 
