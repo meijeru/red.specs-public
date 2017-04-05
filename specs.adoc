@@ -137,6 +137,16 @@ is smaller than `1.0`). The number may be followed by a signed decimal exponent,
  
 === <time>
 
+....
+    <time> ::= <hmsd> | +<hmsd> | -<hmsd>
+    <hmsd> ::= <hours>:<minutes> | <hours>:<minutes>:<seconds> | <hours>:<minutes>:<seconds>.<decimals> |
+               <minutes>:<seconds>.<decimals>
+....
+
+Where `<hours> <minutes> <seconds>` and `<decimals>` may each be any positive `<integer>`
+(leading zeroes are allowed, carry is performed as appropriate when the numbers are outside
+the normal range `0..23` for hours, `0..59` for minutes and seconds)
+
 === <tuple>
 
 === <word>
