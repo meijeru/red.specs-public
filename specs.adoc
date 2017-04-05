@@ -126,8 +126,15 @@ further defined in the grammar is explained in the individual sections thereafte
 
 === <integer>
 
+An `integer!` value is written as a signed integer number from `-2^31^` to `2^31^-1`
+in decimal notation (leading zeroes allowed).
+
 === <float>
 
+A `float!` value is written as a signed floating point number in the range of the IEEE 754 binary64 format,
+in decimal notation (leading zeroes allowed, no zero needed before the decimal point when the absolute value
+is smaller than `1.0`). The number may be followed by a signed decimal exponent, after `E` or `e`.
+ 
 === <time>
 
 === <tuple>
