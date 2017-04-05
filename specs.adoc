@@ -143,11 +143,15 @@ is smaller than `1.0`). The number may be followed by a signed decimal exponent,
                <minutes>:<seconds>.<decimals>
 ....
 
-Where `<hours> <minutes> <seconds>` and `<decimals>` may each be any positive `<integer>`
+where `<hours> <minutes> <seconds>` and `<decimals>` may each be any positive `<integer>`
 (leading zeroes are allowed, carry is performed as appropriate when the numbers are outside
-the normal range `0..23` for hours, `0..59` for minutes and seconds)
+the normal range `0..23` for hours, `0..59` for minutes and seconds).
 
 === <tuple>
+
+A `tuple!` value is written as 3 to 12 `<integer>` values in the range `0..255` separated by dots `.`
+
+E.g.: `192.168.1.2`, `255.255.128` 
 
 === <word>
 
