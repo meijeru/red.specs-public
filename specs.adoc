@@ -136,17 +136,18 @@ further defined in the grammar is explained in the individual sections thereafte
 
 === <char>
 
-
+....
     <char> :: = #"<viewable-character>" | #"<escaped-character>" | #"<hexadecimal-codepoint>" 
-    
+....
 
 A `char!` value must be a valid single Unicode code point, i.e. an integer in the range 0 to 10FFFFF (hexadecimal notation). 
 
 A `<viewable character>` is, in most cases, is simply a displayable character. For example, `e`, `é`, `€` or `😀`. When a displayable character requires two or more graphemes to display a character, each grapheme requires a separate Red character. For example, when `é` is encoded in its two character decomposed form `e` (`U+0065`) followed by the combining `´` (`U+0301`) they cannot be combined into a single `char!` value.
 
-
+....
     <escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) |
                           ^(esc) | ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
+....
 
 The correspondence between the escaped characters and Unicode code points is given in the table below.
 
@@ -167,7 +168,9 @@ The correspondence between the escaped characters and Unicode code points is giv
     
 Note that code point `U+001E` cannot be represented by `#"^^"` as expected, since that is already taken for caret. 
      
+....
     <hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
+....
 
 where <hex> is two hexadecimal digits `0-9 A-F a-f`
 
