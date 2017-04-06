@@ -231,7 +231,8 @@ the same remark holds for `^` as noted above for a `<char>`.
 ....
 
 where `<base2-byte>` is a group of 8 digits `0` or `1`, and `<base64-char>` is a single
-character `A-Z a-z 0-9 + /`; the elements within the `#{ }` brackets may be separated by whitespace
+character `A-Z a-z 0-9 + /`; the individual elements within the `#{ }` brackets (`<base2-byte>`,
+`<hex>` or `<base64-char>`) may be separated from the brackets and from each other by whitespace.
 
 === <path>
 
