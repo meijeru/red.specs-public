@@ -195,8 +195,8 @@ The correspondence between the escaped characters and Unicode code points is giv
      #"^_"                      control character   U+001F
     
 Note that code point `U+001E` cannot be represented by `#"^^"` as expected, since that is already taken for caret.
-Note also that `^` will be ignored in front of any single character with which it does not form an escaped character
-as defined above. Thus e.g. `^3` yields the same as `3`
+Note also that `^` will be ignored in front of any single character with which it does not form (the beginning of)
+an escaped character as defined above. Thus e.g. `^3` yields the same as `3`.
      
 ....
     <hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
