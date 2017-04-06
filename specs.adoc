@@ -61,7 +61,7 @@ This may contain any _Unicode Code Points_, encoded using the _UTF-8 scheme_.
 As a first operation of the toolchain, the text file will be subjected to lexical analysis
 which will break the text up in a series of _lexemes_, i.e. textual representations of Red
 _single values_, interspersed with _grouping tokens_. The grouping tokens should occur in
-properly nested pairs, and are the following: \`( ), [ ], #( ), #[ ]`. A sequence of lexemes
+properly nested pairs, and are the following: `( ), [ ], #( ), #[ ]`. A sequence of lexemes
 enclosed in matching grouping tokens represents a Red _grouped value_ of a certain type,
 and this construct may again be enclosed in grouping tokens etc. 
 
@@ -225,6 +225,13 @@ the same remark holds for `^` as noted above for a `<char>`.
 === <tag>
 
 === <binary>
+
+....
+    <binary> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
+....
+
+where `<base2-byte>` is a group of 8 digits `0` or `1`, and `<base64-char>` is a single
+character `A-Z a-z 0-9 + /`; the elements within the `#{ }` brackets may be separated by whitespace
 
 === <path>
 
