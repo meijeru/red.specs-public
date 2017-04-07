@@ -267,11 +267,11 @@ datatype!
 typeset!    
 none!       
 logic!      
+char!       
+integer!    
 float!      
 percent!    
 time!       
-integer!    
-char!       
 pair!       
 tuple!      
 word!       
@@ -280,14 +280,6 @@ set-word!
 get-word!   
 refinement! 
 issue!      
-string!     
-tag!        
-url!        
-file!       
-email!      
-vector!     
-binary!     
-image!      
 block!      
 hash!       
 paren!      
@@ -295,15 +287,23 @@ path!
 lit-path!   
 set-path!   
 get-path!   
+vector!     
+string!     
+file!       
+url!        
+tag!        
+email!      
+binary!     
+image!      
 bitset!     
+object!     
+error!      
 map!        
 native!     
 action!     
 op!         
 function!   
 routine!    
-object!     
-error!      
 unset!      
 event!      
 handle!     
@@ -339,6 +339,8 @@ the allowed types of arguments to polymorphic functions.
 any-type!              
 |-default              
 | |-immediate!         
+| | |-datatype!        
+| | |-typeset!         
 | | |-none!            
 | | |-logic!           
 | | |-scalar!          
@@ -346,8 +348,8 @@ any-type!
 | | | |-number!        
 | | | | |-integer!     
 | | | | |-any-float!   
-| | | | | |-float!     
-| | | | | |-percent!   
+| | | |   |-float!     
+| | | |   |-percent!   
 | | | |-time!          
 | | | |-pair!          
 | | | |-tuple!         
@@ -358,19 +360,17 @@ any-type!
 | | | |-get-word!      
 | | | |-refinement!    
 | | | |-issue!         
-| | |-datatype!        
-| | |-typeset!         
-| | series!            
+| |-series!            
 | | |-any-block!       
 | | | |-any-list!      
 | | | | |-block!       
 | | | | |-hash!        
 | | | | |-paren!       
 | | | |-any-path!      
-| | | | |-path!        
-| | | | |-lit-path!    
-| | | | |-set-path!    
-| | | | |-get-path!    
+| | |   |-path!        
+| | |   |-lit-path!    
+| | |   |-set-path!    
+| | |   |-get-path!    
 | | |-vector!          
 | | |-any-string!      
 | | | |-string!        
@@ -381,20 +381,20 @@ any-type!
 | | |-binary!          
 | | |-image!           
 | |-bitset!            
-| |-any-object!        
-| | |-object!          
-| | |-error!           
 | |-map!               
+| |-any-object!        
+|   |-object!          
+|   |-error!           
 | |-any-function!      
-| | |-native!          
-| | |-action!          
-| | |-op!              
-| | |-function!        
-| | |-routine!         
+|   |-native!          
+|   |-action!          
+|   |-op!              
+|   |-function!        
+|   |-routine!         
 |-internal!            
-| |-unset!             
-| |-event!             
-| |-handle!            
+  |-unset!             
+  |-event!             
+  |-handle!            
 ....
 
 == Binding
