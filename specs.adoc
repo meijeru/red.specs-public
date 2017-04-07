@@ -142,9 +142,10 @@ in decimal notation. Leading zeroes are allowed, as well as `'` signs for separa
 === <float>
 
 A `float!` value is written as a signed floating point number in the range of the IEEE 754 binary64 format,
-in decimal notation, possibly without decimal point. Leading zeroes are allowed, as well as `'` signs for separation.
-No zero is needed before the decimal point when the absolute value is smaller than `1.0`).
-The number may be followed by a signed integer exponent on base 10, after `E` or `e`, e.g. `1E9` for `1'000'000'000.0`.
+in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation.
+No zero is needed before the decimal point when the absolute value is smaller than `1.0`.
+The number may be followed by `E` or `e` with a signed integer exponent on base 10,
+e.g. `1E9` for `1'000'000'000.0`. Note that in this case, no decimal point is required.
  
 === <time>
 
