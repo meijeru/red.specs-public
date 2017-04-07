@@ -258,6 +258,8 @@ Values that are not lexically or syntactically determined may be represented in 
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
 
+^^^^^^Mention general typed value constructor #[ <type> <value>* ] ^^^^^^^^^^^^
+
 === Type list
 
 ....
@@ -307,10 +309,93 @@ event!
 handle!     
 ....
 
-=== Type groups
+=== Type categories
+
+Red has a rather large number of different types. For a better understanding of their nature and that
+of their values, it is useful to make a number of disctinctions into different categories.
+
+* textual representation: types having lexically/syntactically representable values or not
+  - among the first category: types with single values or grouped values
+* internal representation: _direct types_ vs _indirect types_
+* internal structure of values: _atomic types_ vs _composite types_
+* evaluation: _passive types_, _decaying types_, _??? types_, _function types_
+
+The first distinction has been treated in section 4. The other ones are treated
+in the following sub-sections.
+
+==== Direct/indirect types
+
+==== Atomic/composite types
+
+==== Types according to the evaluation of their values
 
 === Type hierarchy
 
+For the convenience of the user, certain typesets have been predefined
+which group related types. These will notably be used for indicating
+the allowed types of arguments to polymorphic functions.
+
+....
+any-type!              
+|-default              
+| |-immediate!         
+| | |-none!            
+| | |-logic!           
+| | |-scalar!          
+| | | |-char!          
+| | | |-number!        
+| | | | |-integer!     
+| | | | |-any-float!   
+| | | | | |-float!     
+| | | | | |-percent!   
+| | | |-time!          
+| | | |-pair!          
+| | | |-tuple!         
+| | |-any-word!        
+| | | |-word!          
+| | | |-lit-word!      
+| | | |-set-word!      
+| | | |-get-word!      
+| | | |-refinement!    
+| | | |-issue!         
+| | |-datatype!        
+| | |-typeset!         
+| | series!            
+| | |-any-block!       
+| | | |-any-list!      
+| | | | |-block!       
+| | | | |-hash!        
+| | | | |-paren!       
+| | | |-any-path!      
+| | | | |-path!        
+| | | | |-lit-path!    
+| | | | |-set-path!    
+| | | | |-get-path!    
+| | |-vector!          
+| | |-any-string!      
+| | | |-string!        
+| | | |-file!          
+| | | |-url!           
+| | | |-tag!           
+| | | |-email!         
+| | |-binary!          
+| | |-image!           
+| |-bitset!            
+| |-any-object!        
+| | |-object!          
+| | |-error!           
+| |-map!               
+| |-any-function!      
+| | |-native!          
+| | |-action!          
+| | |-op!              
+| | |-function!        
+| | |-routine!         
+|-internal!            
+| |-unset!             
+| |-event!             
+| |-handle!            
+....
 
 == Binding
 
