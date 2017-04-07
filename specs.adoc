@@ -76,7 +76,7 @@ As a rule, lexemes must be separated from each other and from grouping tokens by
 one or more whitespace characters. In the context of Red source, whitespace characters are
 space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`) and non-breaking space (`U+00A0`).
 
-[yellow-background]#This is most certainly short of some whitespace values, please correct See also issue 2492#
+_**This is most certainly short of some whitespace values, please correct See also issue #2492**_
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
 can be relaxed. For example, it is possible to omit whitespace between two consecutive block!
@@ -137,7 +137,7 @@ further defined in the grammar is explained in the individual sections thereafte
 
 An `integer!` value is written as a signed integer number from `-2^31^` to `2^31^-1`
 in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation, e.g. `1'000`.
-^^^^^^^Hexadecimal notation, eg FFh, is omitted as this is under discussion^^^^^^
+_**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
 
 === <float>
 
@@ -258,7 +258,7 @@ Values that are not lexically or syntactically determined may be represented in 
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
 
-^^^^^^Mention general typed value constructor #[ <type> <value>* ] ^^^^^^^^^^^^
+_**Mention general typed value constructor #[ <type> <value>* ]**_
 
 === Type list
 
@@ -296,9 +296,9 @@ email!
 binary!     
 image!      
 bitset!     
+map!        
 object!     
 error!      
-map!        
 native!     
 action!     
 op!         
@@ -312,13 +312,15 @@ handle!
 === Type categories
 
 Red has a rather large number of different types. For a better understanding of their nature and that
-of their values, it is useful to make a number of disctinctions into different categories.
+of their values, it is useful to make a number of distinctions into different categories.
 
 * textual representation: types having lexically/syntactically representable values or not
   - among the first category: types with single values or grouped values
 * internal representation: _direct types_ vs _indirect types_
 * internal structure of values: _atomic types_ vs _composite types_
-* evaluation: _passive types_, _decaying types_, _??? types_, _function types_
+* evaluation: _passive types_, _decaying types_, _active types_, _function types_
+* implementation of built-in functions: _parent types_
+
 
 The first distinction has been treated in section 4. The other ones are treated
 in the following sub-sections.
@@ -329,6 +331,16 @@ in the following sub-sections.
 
 ==== Types according to the evaluation of their values
 
+===== Passive types
+
+===== Decaying types
+
+===== Active types
+
+===== Function types
+
+==== Parent types
+
 === Type hierarchy
 
 For the convenience of the user, certain typesets have been predefined
@@ -337,64 +349,64 @@ the allowed types of arguments to polymorphic functions.
 
 ....
 any-type!              
-|-default              
-| |-immediate!         
-| | |-datatype!        
-| | |-typeset!         
-| | |-none!            
-| | |-logic!           
-| | |-scalar!          
-| | | |-char!          
-| | | |-number!        
-| | | | |-integer!     
-| | | | |-any-float!   
-| | | |   |-float!     
-| | | |   |-percent!   
-| | | |-time!          
-| | | |-pair!          
-| | | |-tuple!         
-| | |-any-word!        
-| | | |-word!          
-| | | |-lit-word!      
-| | | |-set-word!      
-| | | |-get-word!      
-| | | |-refinement!    
-| | | |-issue!         
-| |-series!            
-| | |-any-block!       
-| | | |-any-list!      
-| | | | |-block!       
-| | | | |-hash!        
-| | | | |-paren!       
-| | | |-any-path!      
-| | |   |-path!        
-| | |   |-lit-path!    
-| | |   |-set-path!    
-| | |   |-get-path!    
-| | |-vector!          
-| | |-any-string!      
-| | | |-string!        
-| | | |-file!          
-| | | |-url!           
-| | | |-tag!           
-| | | |-email!         
-| | |-binary!          
-| | |-image!           
-| |-bitset!            
-| |-map!               
-| |-any-object!        
-|   |-object!          
-|   |-error!           
-| |-any-function!      
-|   |-native!          
-|   |-action!          
-|   |-op!              
-|   |-function!        
-|   |-routine!         
-|-internal!            
-  |-unset!             
-  |-event!             
-  |-handle!            
+|--default!              
+|  |--immediate!         
+|  |  |--datatype!        
+|  |  |--typeset!         
+|  |  |--none!            
+|  |  |--logic!           
+|  |  |--scalar!          
+|  |  |  |--char!          
+|  |  |  |--number!        
+|  |  |  |  |--integer!     
+|  |  |  |  |--any-float!   
+|  |  |  |     |--float!     
+|  |  |  |     |--percent!   
+|  |  |  |--time!          
+|  |  |  |--pair!          
+|  |  |  |--tuple!         
+|  |  |--any-word!        
+|  |  |  |--word!          
+|  |  |  |--lit-word!      
+|  |  |  |--set-word!      
+|  |  |  |--get-word!      
+|  |  |  |--refinement!    
+|  |  |  |--issue!         
+|  |--series!            
+|  |  |--any-block!       
+|  |  |  |--any-list!      
+|  |  |  |  |--block!       
+|  |  |  |  |--hash!        
+|  |  |  |  |--paren!       
+|  |  |  |--any-path!      
+|  |  |     |--path!        
+|  |  |     |--lit-path!    
+|  |  |     |--set-path!    
+|  |  |     |--get-path!    
+|  |  |--vector!          
+|  |  |--any-string!      
+|  |  |  |--string!        
+|  |  |  |--file!          
+|  |  |  |--url!           
+|  |  |  |--tag!           
+|  |  |  |--email!         
+|  |  |--binary!          
+|  |  |--image!           
+|  |--bitset!            
+|  |--map!               
+|  |--any-object!        
+|  |  |--object!          
+|  |  |--error!           
+|  |--any-function!      
+|     |--native!          
+|     |--action!          
+|     |--op!              
+|     |--function!        
+|     |--routine!         
+|--internal!            
+   |--unset!             
+   |--event!             
+   |--handle!            
 ....
 
 == Binding
