@@ -155,7 +155,7 @@ e.g. `1E9` for `1'000'000'000.0`. Note that in this case, no decimal point is re
                <minutes>:<seconds>.<decimals>
 ....
 
-where `<hours> <minutes> <seconds>` and `<decimals>` may each be any positive `<integer>`
+where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<integer>`
 (leading zeroes are allowed, carry is performed as appropriate when the numbers are outside
 the normal range `0..23` for hours, `0..59` for minutes and seconds).
 
