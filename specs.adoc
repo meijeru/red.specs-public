@@ -68,7 +68,7 @@ This may contain any _Unicode Code Points_, encoded using the _UTF-8 scheme_.
 As a first operation of the toolchain, the text file will be subjected to lexical analysis
 which will break the text up in a series of _lexemes_, i.e. textual representations of Red
 _single values_, interspersed with _grouping tokens_. The grouping tokens should occur in
-properly nested pairs, and are the following: `( ), [ ], \#( ), #[ ]`. A sequence of lexemes
+properly nested pairs, and are the following: `( ), [ ], #( ), #[ ]`. A sequence of lexemes
 enclosed in matching grouping tokens represents a Red _grouped value_ of a certain type,
 and this construct may again be enclosed in grouping tokens etc. 
 
@@ -248,6 +248,8 @@ character `A-Z a-z 0-9 + /`; the individual elements within the `#{ }` brackets 
 
 == Types
 
+=== Introduction
+
 The types listed in rule `S100`, and whose values are specified in sections 4.1 to 4.13 are the only ones
 that have lexically or syntactically determined values. The full list of types of the languages
 is given in the next sub-section, with an explanation of the usage of their values.
@@ -256,14 +258,54 @@ Values that are not lexically or syntactically determined may be represented in 
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
 
-As already suggested, further facilities may become available through the the general typed
-value constructor, `\#[ <type> <value>* ]`.
-Furthermore, it needs to be remarked that the grouped value `\#( <value>* )`
-is in fact the syntactic equivalent of the expression `make map! [ <value>* ]`.
-
 === Type list
 
-*TBD: Provide a table with all the datatypes and a brief description of their purpose.*
+....
+datatype!   
+typeset!    
+none!       
+logic!      
+float!      
+percent!    
+time!       
+integer!    
+char!       
+pair!       
+tuple!      
+word!       
+lit-word!   
+set-word!   
+get-word!   
+refinement! 
+issue!      
+string!     
+tag!        
+url!        
+file!       
+email!      
+vector!     
+binary!     
+image!      
+block!      
+hash!       
+paren!      
+path!       
+lit-path!   
+set-path!   
+get-path!   
+bitset!     
+map!        
+native!     
+action!     
+op!         
+function!   
+routine!    
+object!     
+error!      
+unset!      
+event!      
+handle!     
+....
 
 === Type groups
 
