@@ -5,6 +5,15 @@
 
 == Introduction
 
+The purpose of this document is to codify the lexical/syntactic and semantic rules
+of the Red programming language, and thus to be the authoritative document for: 
+
+* verifying implementation conformity
+* tracking changes in the language design, including why changes were made
+* acting as a reference for tests
+
+== Overview
+
 The purpose of Red is to formulate _computer programs_.
 A program written in Red is intended to be executed on a _target computer_.
 To that end, it will be submitted to the _Red toolchain_ which is a program
@@ -42,11 +51,7 @@ a special value "unset".
 The evaluation rules given below will state, amongst others, how words can come
 to be bound to values in the course of program execution.
 
-== Purpose
-
-The purpose of this document is to specify, in as formal a manner as possible,
-the lexical and syntactic make-up of Red programs, and the rules that govern their
-evaluation.
+== Conventions
 
 Rules have a code in the form: `Letter + 3 digits`. The number is an incremental counter. The prefix letter can be:
 
