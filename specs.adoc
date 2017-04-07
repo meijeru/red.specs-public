@@ -292,8 +292,8 @@ lit-path!       quoted (unevaluated) path
 set-path!       setting a component of a composite value
 get-path!       path to be evaluated
 vector!         ordered sequences of values of identical type, which can be
-			 char! or integer! (8/16/32 bits), percent! or float! (32/64 bits);
-			 default: 32 bits for char! or integer! and 64 bits otherwise
+                char! or integer! (8/16/32 bits), percent! or float! (32/64 bits);
+                default: 32 bits for char! or integer! and 64 bits otherwise
 string!         ordered sequence of characters (Unicode Code Points)
 file!           file or directory (folder)
 url!            URL
@@ -360,6 +360,7 @@ The following parent type relations are used in the current version of the toolc
 
 ....
 type         parent type
+
 char!        integer!
 handle!      integer!
 percent!     float!
@@ -386,6 +387,9 @@ op!          native!
 routine!     function!
 error!       object!
 ....
+
+_**Mention pseudo types `symbol`, `series!` and `context!`?**_ 
+
 
 === Type hierarchy
 
