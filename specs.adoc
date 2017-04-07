@@ -261,57 +261,64 @@ is a value that is interpreted by the `make` function as appropriate for the giv
 _**Mention general typed value constructor #[ <type> <value>* ]**_
 
 === Type list
-
+ 
 ....
-datatype!   
-typeset!    
-none!       
-logic!      
-char!       
-integer!    
-float!      
-percent!    
-time!       
-pair!       
-tuple!      
-word!       
-lit-word!   
-set-word!   
-get-word!   
-refinement! 
-issue!      
-block!      
-hash!       
-paren!      
-path!       
-lit-path!   
-set-path!   
-get-path!   
-vector!     
-string!     
-file!       
-url!        
-tag!        
-email!      
-binary!     
-image!      
-bitset!     
-map!        
-object!     
-error!      
-native!     
-action!     
-op!         
-function!   
-routine!    
-unset!      
-event!      
-handle!     
+type            usage of values
+
+datatype!       types
+typeset!        sets of types
+none!           single value: none, i.e. a value belonging to none of the other types
+logic!          true or false
+char!           character (Unicode Code Point)
+integer!        integer numbers 
+float!          floating point numbers
+percent!        id. expressed as a percentage
+time!           time interval or point in time
+pair!           2-dimensional coordinates or size 
+tuple!          color in RGB or other scheme, IPv4 adres
+word!           identifier that can be bound
+lit-word!       quoted (unevaluated) word
+set-word!       word to be bound
+get-word!       word to be evaluated
+refinement!     optional argument of function
+issue!          identifier that cannot be bound
+block!          ordered collection of values of any type (polymorphic array),
+                may also be used as unordered collection (set)
+hash!           block with quick access
+paren!          differs from block in behaviour under evaluation  
+path!           specifying optional arguments in function calls,
+                selection of components of composite values
+lit-path!       quoted (unevaluated) path
+set-path!       setting a component of a composite value
+get-path!       path to be evaluated
+vector!         ordered sequences of values of identical type, which can be
+			 char! or integer! (8/16/32 bits), percent! or float! (32/64 bits);
+			 default: 32 bits for char! or integer! and 64 bits otherwise
+string!         ordered sequence of characters (Unicode Code Points)
+file!           file or directory (folder)
+url!            URL
+tag!            tag in the sense of HTML, XML etc.
+email!          email-address
+binary!         ordered sequence of bytes
+image!          2-dimensional array of pixels (RGBA values encoded in 4 bytes each)) 
+bitset!         ordered sequence of values true or false
+map!            collection of pairs of values
+object!         collection of word-value pairs where the words are bound to the values 
+error!          specialized objects representing error conditions
+native!         pre-defined functions with built-in evaluation according to special rules
+action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
+op!             pre-defined infix functions derived from actions
+function!       user-defined functions
+routine!        user-defined functions with body in Red/System code
+unset!          single value indicating the absence of a usable value
+event!          representation of external activity   
+handle!         opaque integer for communication with operating system
 ....
 
 === Type categories
 
-Red has a rather large number of different types. For a better understanding of their nature and that
+As seen in the previous section, Red has a rather large number of different types.
+For a better understanding of their nature and that
 of their values, it is useful to make a number of distinctions into different categories.
 
 * textual representation: types having lexically/syntactically representable values or not
@@ -322,7 +329,7 @@ of their values, it is useful to make a number of distinctions into different ca
 * implementation of built-in functions: _parent types_
 
 
-The first distinction has been treated in section 4. The other ones are treated
+The first distinction has been treated in section 4.  The other ones are treated
 in the following sub-sections.
 
 ==== Direct/indirect types
@@ -340,6 +347,45 @@ in the following sub-sections.
 ===== Function types
 
 ==== Parent types
+
+The notion of _parent type_ arises in the implementation of _actions_, i.e. predefined polymorphic
+functions of up to two arguments with built-in evaluation, e.g. `add`, `subtract`, `copy`, `find`, etc.
+This evaluation uses a _dispatch table_ which contains a pointer to an implementation (run-time)
+function for each allowed combination of action and type of first argument. These functions
+are grouped by the type to which they apply. Now for any action/type combination,
+such function may be designated as _inherited_ from the parent type,
+in which case two or more types may share the same implementation for that action.
+
+The following parent type relations are used in the current version of the toolchain:
+
+....
+type         parent type
+char!        integer!
+handle!      integer!
+percent!     float!
+time!        float!
+lit-word!    word!
+set-word!    word!
+get-word!    word!
+refinement!  word!
+issue!       word!
+file!        url!
+url!         string!
+tag!         string!
+email!       string!
+binary!      string!
+vector!      string!
+hash!        block!
+paren!       block!
+path!        block!
+lit-path!    path!
+set-path!    path!
+get-path!    path!
+action!      native!
+op!          native!
+routine!     function!
+error!       object!
+....
 
 === Type hierarchy
 
