@@ -135,9 +135,7 @@ further defined in the grammar is explained in the individual sections thereafte
     <block> ::=    [ <value>* ]         ; block!
     <map> ::=      #( <value>* )        ; map! even number of values only
     <constructor> ::= #[ <value>* ]     ; reserved for general typed value constructor
-                   			
-
-
+ 
 
 === <integer>
 
@@ -157,7 +155,7 @@ No zero is needed before the decimal point when the absolute value is smaller th
 The number may be followed by `E` or `e` with a signed integer exponent on base 10.
 Note that in this case, no decimal point is required.
 
-Examples: `1.23`, `-0.5`, `.5`, +010.20`, `1E9`
+Examples: `1.23`, `-0.5`, `.5`, `+010.20`, `1E9`
 
 === <time>
 
@@ -172,14 +170,14 @@ where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<
 (leading zeroes are allowed, carry is performed as appropriate when the numbers are outside
 the normal range `0..23` for hours, `0..59` for minutes and seconds).
 
-Examples: 
+Examples: `10:20`, `10:20:30.456`, `20:30.5`, -1:00:00`
 
 === <tuple>
 
 **`S104`**::
 A `tuple!` value is written as 3 to 12 `<integer>` values in the range `0..255` separated by dots `.`
 
-E.g.: `192.168.1.2`, `255.255.128` 
+Examples: `192.168.1.2`, `255.255.128` 
 
 === <word>
 
@@ -224,7 +222,8 @@ The correspondence between the escaped characters and Unicode code points is giv
 Note that code point `U+001E` cannot be represented by `#"^^"` as expected, since that is already taken for caret.
 Note also that `^` will be ignored in front of any single character with which it does not form (the beginning of)
 an `<escaped-character>` or `<hexadecimal-codepoint>`. Thus e.g. `^3` yields the same as `3`.
-     
+
+Examples: `#"A", #"^/", #"^(0A)"`
 
 === <string>
 
@@ -233,11 +232,17 @@ an `<escaped-character>` or `<hexadecimal-codepoint>`. Thus e.g. `^3` yields the
      <string> ::= "<single-character>*" | {<single-character>*}
 ....
 
+where `<single-character>` is defined in rule `S107`
+
 When the `<string>` is delimited by `" "` it must not contain unescaped _new-line characters_
 `U+000A`, `U+0085`, `U+2028` and `U+2029`. When the `<string>` is delimited by `{ }` it may contain
 unescaped new-line characters and any `"` as well as nested `{ }` pairs, but any unpaired `}`
 character that is part of the `<string`> must be escaped by preceding it with `^`. Within a `<string>`,
 the same remark holds for `^` as noted above for a `<char>`. 
+
+Examples: `"abc^/def", {abc`
+
+`def}`
 
 === <file>
 
@@ -269,9 +274,12 @@ the same remark holds for `^` as noted above for a `<char>`.
     <binary> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
 
-where `<base2-byte>` is a group of 8 digits `0` or `1`, and `<base64-char>` is a single
-character `A-Z a-z 0-9 + /`; the individual elements within the `#{ }` brackets (`<base2-byte>`,
-`<hex>` or `<base64-char>`) may be separated from the brackets and from each other by whitespace.
+where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S107`
+and `<base64-char>` is a single character `A-Z a-z 0-9 + /`; the individual elements within
+the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
+brackets and from each other by whitespace.
+
+Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{UnVk b2xm}`
 
 === <path>
 
