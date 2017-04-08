@@ -186,6 +186,8 @@ A `word!` value is written as one or more characters from the entire Unicode ran
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # % $ @ : ;`.
 A `word!` value does not begin with `0-9` or `'`.
 
+Examples: `abc`, `+`, `<>`,`integer!`, `last-item`
+
 === <char>
 
 **`S106`**::
@@ -232,7 +234,7 @@ Examples: `#"A", #"^/", #"^(0A)"`
      <string> ::= "<single-character>*" | {<single-character>*}
 ....
 
-where `<single-character>` is defined in rule `S107`
+where `<single-character>` is defined in rule `S106`
 
 When the `<string>` is delimited by `" "` it must not contain unescaped _new-line characters_
 `U+000A`, `U+0085`, `U+2028` and `U+2029`. When the `<string>` is delimited by `{ }` it may contain
@@ -274,7 +276,7 @@ Examples: `"abc^/def", {abc`
     <binary> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
 
-where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S107`
+where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S106`
 and `<base64-char>` is a single character `A-Z a-z 0-9 + /`; the individual elements within
 the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
 brackets and from each other by whitespace.
