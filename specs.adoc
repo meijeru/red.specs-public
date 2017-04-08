@@ -14,7 +14,13 @@ of the Red programming language, and thus to be the authoritative document for:
 
 == Overview
 
-The purpose of Red is to formulate _computer programs_.
+Red is a next-generation programming language strongly inspired by Rebol,
+but with a broader field of usage thanks to its native-code compiler,
+from system programming to high-level scripting and cross-platform reactive GUI,
+while providing modern support for concurrency.
+
+_*The concurrency part is far from being implemented, mention it here?*_
+
 A program written in Red is intended to be executed on a _target computer_.
 To that end, it will be submitted to the _Red toolchain_ which is a program
 executing on a _host computer_; this computer may be, but need not be
@@ -135,12 +141,14 @@ further defined in the grammar is explained in the individual sections thereafte
 
 === <integer>
 
+**`S101`**::
 An `integer!` value is written as a signed integer number from `-2^31^` to `2^31^-1`
 in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation, e.g. `1'000`.
 _**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
 
 === <float>
 
+**`S102`**::
 A `float!` value is written as a signed floating point number in the range of the IEEE 754 binary64 format,
 in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation.
 No zero is needed before the decimal point when the absolute value is smaller than `1.0`.
@@ -149,6 +157,7 @@ e.g. `1E9` for `1'000'000'000.0`. Note that in this case, no decimal point is re
  
 === <time>
 
+**`S103`**::
 ....
     <time> ::= <hmsd> | +<hmsd> | -<hmsd>
     <hmsd> ::= <hours>:<minutes> | <hours>:<minutes>:<seconds> | <hours>:<minutes>:<seconds>.<decimals> |
@@ -161,31 +170,33 @@ the normal range `0..23` for hours, `0..59` for minutes and seconds).
 
 === <tuple>
 
+**`S104`**::
 A `tuple!` value is written as 3 to 12 `<integer>` values in the range `0..255` separated by dots `.`
 
 E.g.: `192.168.1.2`, `255.255.128` 
 
 === <word>
 
+**`S105`**::
 A `word!` value is written as one or more characters from the entire Unicode range excluding control characters
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # % $ @ : ;`.
 A `word!` value does not begin with `0-9` or `'`.
 
 === <char>
 
+**`S106`**::
 ....
     <char> :: = #"<single-character>"
     <single-character> ::= <viewable-character> | <escaped-character> | <hexadecimal-codepoint>
+    <escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) |
+                          ^(esc) | ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
+    <hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
 ....
+where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
 A `char!` value must be a valid single Unicode code point, i.e. an integer in the range 0 to 10FFFFF (hexadecimal notation). 
 
 A `<viewable character>` is, in most cases, is simply a displayable character. For example, `e`, `é`, `€` or `😀`. When a displayable character requires two or more graphemes to display a character, each grapheme requires a separate Red character. For example, when `é` is encoded in its two character decomposed form `e` (`U+0065`) followed by the combining `´` (`U+0301`) they cannot be combined into a single `char!` value.
-
-....
-    <escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) |
-                          ^(esc) | ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
-....
 
 The correspondence between the escaped characters and Unicode code points is given in the table below.
 
@@ -208,14 +219,10 @@ Note that code point `U+001E` cannot be represented by `#"^^"` as expected, sinc
 Note also that `^` will be ignored in front of any single character with which it does not form (the beginning of)
 an `<escaped-character>` or `<hexadecimal-codepoint>`. Thus e.g. `^3` yields the same as `3`.
      
-....
-    <hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
-....
-
-where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
 === <string>
 
+**`S107`**::
 ....
      <string> ::= "<single-character>*" | {<single-character>*}
 ....
@@ -228,14 +235,30 @@ the same remark holds for `^` as noted above for a `<char>`.
 
 === <file>
 
+**`S108`**::
+....
+....
 === <url>
+
+**`S109`**::
+....
+....
 
 === <email>
 
+**`S110`**::
+....
+....
+
 === <tag>
+
+**`S111`**::
+....
+....
 
 === <binary>
 
+**`S112`**::
 ....
     <binary> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
@@ -246,11 +269,15 @@ character `A-Z a-z 0-9 + /`; the individual elements within the `#{ }` brackets 
 
 === <path>
 
+**`S113`**::
+....
+....
+
 == Types
 
 === Introduction
 
-The types listed in rule `S100`, and whose values are specified in sections 4.1 to 4.13 are the only ones
+The types listed in rule `S100`, and whose values are specified in sections 4.1 to 4.13, are the only ones
 that have lexically or syntactically determined values. The full list of types of the languages
 is given in the next sub-section, with an explanation of the usage of their values.
 
