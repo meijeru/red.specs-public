@@ -250,25 +250,32 @@ Examples: `"abc^/def", {abc` +
 === <file>
 
 **`S108`**::
-....
-....
+
+A `file!` value is written as `%` followed by one or more non whitespace characters, or by zero or more
+characters enclosed in `"  "` in which case whitespace characters except line feed and next line may be
+included. The interpretation of this value is operating system dependent, but escaped characters of the
+form `%<hex>` are accepted and converted.
+
 === <url>
 
 **`S109`**::
-....
-....
+
+A `url!` value is written as three or more non whitespace characters, of which at least one `:` which must not
+be the first or last character. Escaped characters of the form `%<hex>` are accepted and converted.
 
 === <email>
 
 **`S110`**::
-....
-....
+
+An `email!` value is written as two or more characters containing one `@` but not beginning with it.
+Escaped characters of the form `%<hex>` are accepted and converted.
 
 === <tag>
 
 **`S111`**::
-....
-....
+
+A `tag!` value is written as zero or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
+Characters `"` and `'` are allowed but must each be properly paired and nested.
 
 === <binary>
 
