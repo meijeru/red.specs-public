@@ -19,7 +19,7 @@ but with a broader field of usage thanks to its native-code compiler,
 from system programming to high-level scripting and cross-platform reactive GUI,
 while providing modern support for concurrency.
 
-_*The concurrency part is far from being implemented, mention it here?*_
+_**The concurrency part is far from being implemented, mention it here?**_
 
 A program written in Red is intended to be executed on a _target computer_.
 To that end, it will be submitted to the _Red toolchain_ which is a program
@@ -92,7 +92,7 @@ values and between word! values and block! values. These two examples are both s
      equal?           [1234]         [1234]
 
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
-and/or the reader. The relevant data will be described ^^^^at the appropriate point^^^^.
+and/or the reader. The relevant data will be described _**at the appropriate point**_.
 
 A formal grammar corresponding to the above presentation is given below. As usual,
 `*` means zero or more instances. The comment to any production rule, which starts after the `;` on the line,
@@ -374,7 +374,7 @@ of their values, it is useful to make a number of distinctions into different ca
 
 * textual representation: types having lexically/syntactically representable values or not
   - among the first category: types with single values or grouped values
-* internal storage: _direct types_ vs _indirect types_
+* internal storage: _direct types_ vs _indirect types_ and _functional types_
 * internal structure of values: _atomic types_ vs _composite types_
 * evaluation: _passive types_, _decaying types_, _active types_, _function types_
 * implementation of built-in functions: _parent types_
