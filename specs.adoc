@@ -350,7 +350,7 @@ of their values, it is useful to make a number of distinctions into different ca
 
 * textual representation: types having lexically/syntactically representable values or not
   - among the first category: types with single values or grouped values
-* internal representation: _direct types_ vs _indirect types_
+* internal storage: _direct types_ vs _indirect types_
 * internal structure of values: _atomic types_ vs _composite types_
 * evaluation: _passive types_, _decaying types_, _active types_, _function types_
 * implementation of built-in functions: _parent types_
@@ -417,6 +417,60 @@ error!       object!
 
 _**Mention pseudo types `symbol`, `series!` and `context!`?**_ 
 
+==== Overview table
+
+....
+type                lexical (L)/       direct (D)/      atomic (A)/      passive (P/        parent type
+                    syntactic (S)      indirect (I)     composite (C)    decaying (D)/
+                    repr.              storage          values           active (A)/
+                                                                         function (F)
+                                                                         evaluation
+                                                                         
+datatype!                -                 D                 A                P   
+typeset!                 -                 D                 A                P   
+none!                    -                 D                 A                P
+logic!                   -                 D                 A                P
+char!                    L                 D                 A                P              integer!
+integer!                 L                 D                 A                P
+float!                   L                 D                 A                P
+percent!                 L                 D                 A                P              float!
+time!                    L                 D                 C                P              float!
+pair!                    L                 D                 C                P
+tuple!                   L                 D                 C                P
+word!                    L                 D                 A                A
+lit-word!                L                 D                 A                D               word!
+set-word!                L                 D                 A                A               word!
+get-word!                L                 D                 A                A               word!
+refinement!              L                 D                 A                P               word!
+issue!                   L                 D                 A                P               word!
+block!                   S                 I                 C                P
+hash!           
+paren!          
+path!           
+lit-path!       
+set-path!       
+get-path!       
+vector!         
+string!         
+file!           
+url!            
+tag!            
+email!          
+binary!         
+image!          
+bitset!         
+map!            
+object!         
+error!          
+native!         
+action!         
+op!             
+function!       
+routine!        
+unset!          
+event!          
+handle!         
+....
 
 === Type hierarchy
 
