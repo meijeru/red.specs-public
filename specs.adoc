@@ -388,16 +388,16 @@ _**Mention pseudo types `symbol`, `series!` and `context!`?**_
 ==== Overview table
 
 ....
-type                lexical (L)/       direct (D)/      atomic (A)/      passive (P/        parent type
-                    syntactic (S)      indirect (I)     composite (C)    decaying (D)/
-                    representation       storage          values         active (A)/
-                                                                         function (F)
+type            value representation   direct (D)/      atomic (A)/      passive (P/        parent type
+                    lexical (L)/       indirect (I)     composite (C)    decaying (D)/
+                    syntactic (S)/       storage          values         active (A)/
+                    make (M)                                             function (F)
                                                                          evaluation
                                                                          
-datatype!                -                 D                 A                P   
-typeset!                 -                 D                 A                P   
-none!                    -                 D                 A                P
-logic!                   -                 D                 A                P
+datatype!                M                 D                 A                P   
+typeset!                 M                 D                 A                P   
+none!                    M                 D                 A                P
+logic!                   M                 D                 A                P
 char!                    L                 D                 A                P              integer!
 integer!                 L                 D                 A                P
 float!                   L                 D                 A                P
@@ -412,30 +412,30 @@ get-word!                L                 D                 A                A 
 refinement!              L                 D                 A                P               word!
 issue!                   L                 D                 A                P               word!
 block!                   S                 I                 C                P
-hash!                    -                 I                 C                P               block!
+hash!                    M                 I                 C                P               block!
 paren!                   S                 I                 C                A               block!
 path!                    L                 I                 C                A               block!
 lit-path!                L                 I                 C                D               path!
 set-path!                L                 I                 C                A               path!
 get-path!                L                 I                 C                A               path!
-vector!                  -                 I                 C                P               string!
+vector!                  M                 I                 C                P               string!
 string!                  L                 I                 C                P
 file!                    L                 I                 C                P               url!
 url!                     L                 I                 C                P               string!
 tag!                     L                 I                 C                P               string!
 email!                   L                 I                 C                P               string!
 binary!                  L                 I                 C                P               string!
-image!                   -                 I                 C                P
-bitset!                  -                 I                 C                P
+image!                   M                 I                 C                P
+bitset!                  M                 I                 C                P
 map!                     S                 I                 C                P
-object!                  -                 I                 C                P
-error!                   -                 I                 C                P               object!
+object!                  M                 I                 C                P
+error!                   M                 I                 C                P               object!
 native!                  -                 I                 C                F
 action!                  -                 I                 C                F               native!
-op!                      -                 I                 C                F               native!
-function!                -                 I                 C                F
-routine!                 -                 I                 C                F               routine!
-unset!                   -                 D                 A                P
+op!                      M                 I                 C                F               native!
+function!                M                 I                 C                F
+routine!                 M                 I                 C                F               routine!
+unset!                   M                 D                 A                P
 event!                   -                 D                 C                P
 handle!                  -                 D                 A                P               integer!
 ....
