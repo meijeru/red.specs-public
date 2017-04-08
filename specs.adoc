@@ -297,9 +297,13 @@ The types listed in rule `S100`, and whose values are specified in sections 4.1 
 that have lexically or syntactically determined values. The full list of types of the languages
 is given in the next sub-section, with an explanation of the usage of their values.
 
-Values that are not lexically or syntactically determined may be represented in programs by
+Values that are not lexically or syntactically determined may generally be represented in programs by
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
+For several types, the available values are bound to words at program start: `none!` has `none`,
+`logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
+type names pre-defined; likewise `native!`, `action!` and `op!` have all the built-in functions
+and operators pre-defined.
 
 _**Mention general typed value constructor #[ <type> <value>* ]**_
 
@@ -350,7 +354,7 @@ object!         collection of word-value pairs where the words are bound to the 
 error!          specialized objects representing error conditions
 native!         pre-defined functions with built-in evaluation according to special rules
 action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
-op!             pre-defined infix functions derived from actions
+op!             operators, i.e. pre-defined infix functions of two arguments
 function!       user-defined functions
 routine!        user-defined functions with body in Red/System code
 unset!          single value indicating the absence of a usable value
@@ -424,13 +428,13 @@ _**Mention pseudo types `symbol`, `series!` and `context!`?**_
 type            value representation   direct (D)/      atomic (A)/      passive (P/        parent type
                     lexical (L)/       indirect (I)/    composite (C)    decaying (D)/
                     syntactic (S)/     functional (F)     values         active (A)/
-                    using make (M)       storage                         function (F)
-                                                                         evaluation
+                    using make (M)/      storage                         function (F)
+                    bound words (W)                                      evaluation
                                                                          
-datatype!                M                 D                 A                P   
+datatype!                W                 D                 A                P   
 typeset!                 M                 D                 A                P   
-none!                    M                 D                 A                P
-logic!                   M                 D                 A                P
+none!                    W                 D                 A                P
+logic!                   W                 D                 A                P
 char!                    L                 D                 A                P              integer!
 integer!                 L                 D                 A                P
 float!                   L                 D                 A                P
@@ -463,9 +467,9 @@ bitset!                  M                 I                 C                P
 map!                     S                 I                 C                P
 object!                  M                 I                 C                P
 error!                   M                 I                 C                P               object!
-native!                  -                 F                 C                F
-action!                  -                 F                 C                F               native!
-op!                      M                 F                 C                F               native!
+native!                  W                 F                 C                F
+action!                  W                 F                 C                F               native!
+op!                      W                 F                 C                F               native!
 function!                M                 F                 C                F
 routine!                 M                 F                 C                F               function!
 unset!                   M                 D                 A                P
