@@ -316,7 +316,7 @@ _**Mention general typed value constructor #[ <type> <value>* ]**_
 ....
 type            usage of values
 
-datatype!       types
+datatype!       types of the language (first class values)
 typeset!        sets of types
 none!           single value: none, i.e. a value belonging to none of the other types
 logic!          true or false
