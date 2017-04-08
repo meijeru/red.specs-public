@@ -278,7 +278,7 @@ Examples: `"abc^/def", {abc` +
 ....
 
 where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S106`
-and `<base64-char>` is a single character `A-Z a-z 0-9 + /`; the individual elements within
+and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`; the individual elements within
 the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
 brackets and from each other by whitespace.
 
