@@ -380,13 +380,12 @@ results in a new instance of the direct value being created, having the changed 
 
 ==== Types according to the evaluation of their values
 
-===== Passive types
+* Values of _passive types_ evaluate to themselves. The great majority of types belong to this category.
+* Values of _decaying types_ are quoted instances of other values. They evaluate to the unquoted value.
+* Values of _active types_ can be bound to other values and their binding can be retrieved.
+* Values of _function types_, when evaluated, result in the application of the function to its arguments.
 
-===== Decaying types
-
-===== Active types
-
-===== Function types
+Detailed rules for the evaluation in these various cases are given in section. 
 
 ==== Parent types
 
@@ -429,7 +428,7 @@ issue!                   L                 D                 A                P 
 block!                   S                 I                 C                P
 hash!                    M                 I                 C                P               block!
 paren!                   S                 I                 C                A               block!
-path!                    L                 I                 C                A               block!
+path!                    L                 I                 C               A+F              block!
 lit-path!                L                 I                 C                D               path!
 set-path!                L                 I                 C                A               path!
 get-path!                L                 I                 C                A               path!
@@ -481,12 +480,12 @@ any-type!
 |  |  |  |--pair!          
 |  |  |  |--tuple!         
 |  |  |--any-word!        
-|  |  |  |--word!          
-|  |  |  |--lit-word!      
-|  |  |  |--set-word!      
-|  |  |  |--get-word!      
-|  |  |  |--refinement!    
-|  |  |  |--issue!         
+|  |     |--word!          
+|  |     |--lit-word!      
+|  |     |--set-word!      
+|  |     |--get-word!      
+|  |     |--refinement!    
+|  |     |--issue!         
 |  |--series!            
 |  |  |--any-block!       
 |  |  |  |--any-list!      
