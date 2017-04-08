@@ -52,7 +52,7 @@ detail below, any _word_ may be _bound_ to a value in some _context_.
 Initially, some words are bound to certain values in the _global context_,
 notably to _built-in functions_, _types_ (type names conventionally end in `!`)
 and _constants_ such as the truth values: `true` and `false`, as well as `none`
-("nil" or "null"in other languages). Evaluation of a bound word yields the value
+("nil" or "null" in other languages). Evaluation of a bound word yields the value
 it is bound to. Evaluation of an unbound word raises an error, or may yield
 a special value "unset". The evaluation rules given below will state,
 amongst others, how words can come to be bound to values in the course of
@@ -298,7 +298,7 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 === Introduction
 
 The types listed in rule `S100`, and whose values are specified in sections 4.1 to 4.13, are the only ones
-that have lexically or syntactically determined values. The full list of types of the languages
+that have lexically determined values. The full list of types of the languages
 is given in the next sub-section, with an explanation of the usage of their values.
 
 Values that are not lexically or syntactically determined may generally be represented in programs by
@@ -416,7 +416,7 @@ Detailed rules for the evaluation in these various cases are given in section.
 
 ==== Parent types
 
-The notion of _parent type_ arises in the implementation of _actions_, i.e. predefined polymorphic
+The notion of _parent type_ arises in the implementation of _actions_, i.e. pre-defined polymorphic
 functions of up to two arguments with built-in evaluation, e.g. `add`, `subtract`, `copy`, `find`, etc.
 The implementation uses a _dispatch table_ which contains a pointer to a specific run-time
 function for each allowed combination of action and type of first argument. These functions
@@ -483,7 +483,7 @@ handle!                  -                 D                 A                P 
 
 === Type hierarchy
 
-For the convenience of the user, certain typesets have been predefined
+For the convenience of the user, certain typesets have been pre-defined
 which group related types. These will notably be used for indicating
 the allowed types of arguments to polymorphic functions. E.g. `add` takes
 two arguments whose types are in the typeset `number!`.
