@@ -143,8 +143,10 @@ further defined in the grammar is explained in the individual sections thereafte
 
 **`S101`**::
 An `integer!` value is written as a signed integer number from `-2^31^` to `2^31^-1`
-in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation, e.g. `1'000`.
+in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation.
 _**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
+
+Examples: `123`, `-123`, `+0001`, `1'000`
 
 === <float>
 
@@ -152,9 +154,11 @@ _**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
 A `float!` value is written as a signed floating point number in the range of the IEEE 754 binary64 format,
 in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation.
 No zero is needed before the decimal point when the absolute value is smaller than `1.0`.
-The number may be followed by `E` or `e` with a signed integer exponent on base 10,
-e.g. `1E9` for `1'000'000'000.0`. Note that in this case, no decimal point is required.
- 
+The number may be followed by `E` or `e` with a signed integer exponent on base 10.
+Note that in this case, no decimal point is required.
+
+Examples: `1.23`, `-0.5`, `.5`, +010.20`, `1E9`
+
 === <time>
 
 **`S103`**::
@@ -167,6 +171,8 @@ e.g. `1E9` for `1'000'000'000.0`. Note that in this case, no decimal point is re
 where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<integer>`
 (leading zeroes are allowed, carry is performed as appropriate when the numbers are outside
 the normal range `0..23` for hours, `0..59` for minutes and seconds).
+
+Examples: 
 
 === <tuple>
 
@@ -359,24 +365,27 @@ of their values, it is useful to make a number of distinctions into different ca
 The first distinction has been treated in section 4.  The other ones are treated
 in the following sub-sections.
 
-==== Direct/indirect types
+==== Direct/indirect/functional types
 
 Red values are internally stored using _value slots_ of uniform size. Values of _direct types_
-fit completely into one such slot; for values of _indirect types_ the slot stores a _reference_
-to a further storage area that holds the (components of the) value. As a consequence, when
-values of indirect type are bound to words or supplied as arguments to functions, only the
-reference is bound or transmitted, and such values may therefore be changed through
-operations on the bound word or the actual argument. In order to prevent this, such values
-must be explicitly copied before being bound or transmitted as argument.
+fit completely into one such slot; for values of _indirect types_, which have a variable number
+of components, the slot stores a _reference_ to a further storage area that holds the components
+of the value. As a consequence, when values of indirect type are bound to words or supplied
+as arguments to functions, only the reference is bound or transmitted, and such values may
+therefore be changed through operations on the bound word or the actual argument.
+In order to prevent this, such values must be explicitly copied before being bound
+or transmitted as argument. A third category to be distinguished is that of _function types_,
+where references to the argument list and the body are stored in the slot.
 
 ==== Atomic/composite types
 
 Values of certain types have _components_ which may be extracted and/or changed using a variety of
 facilities which will be specified below under evaluation. Such types are called _composite_ 
 and the others are _atomic_. All indirect types are composite, but the converse is not true:
-some direct types are also composite. Note that component selection in values of direct types
-cannot be used to change the component, only to extract it. Binding such a component to a value
-results in a new instance of the direct value being created, having the changed component.
+function types are composite. as well as some direct types. Note that component selection
+in values of direct types cannot be used to change the component, only to extract it.
+Binding such a component to a value results in a new instance of the direct value being created,
+having the changed component.
 
 ==== Types according to the evaluation of their values
 
@@ -403,9 +412,9 @@ _**Mention pseudo types `symbol`, `series!` and `context!`?**_
 
 ....
 type            value representation   direct (D)/      atomic (A)/      passive (P/        parent type
-                    lexical (L)/       indirect (I)     composite (C)    decaying (D)/
-                    syntactic (S)/       storage          values         active (A)/
-                    using make (M)                                       function (F)
+                    lexical (L)/       indirect (I)/    composite (C)    decaying (D)/
+                    syntactic (S)/     functional (F)     values         active (A)/
+                    using make (M)       storage                         function (F)
                                                                          evaluation
                                                                          
 datatype!                M                 D                 A                P   
@@ -444,11 +453,11 @@ bitset!                  M                 I                 C                P
 map!                     S                 I                 C                P
 object!                  M                 I                 C                P
 error!                   M                 I                 C                P               object!
-native!                  -                 I                 C                F
-action!                  -                 I                 C                F               native!
-op!                      M                 I                 C                F               native!
-function!                M                 I                 C                F
-routine!                 M                 I                 C                F               routine!
+native!                  -                 F                 C                F
+action!                  -                 F                 C                F               native!
+op!                      M                 F                 C                F               native!
+function!                M                 F                 C                F
+routine!                 M                 F                 C                F               function!
 unset!                   M                 D                 A                P
 event!                   -                 D                 C                P
 handle!                  -                 D                 A                P               integer!
