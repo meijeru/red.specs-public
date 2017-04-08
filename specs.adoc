@@ -383,38 +383,6 @@ are grouped by the type to which they apply. Now for any action/type combination
 such function may be designated as _inherited_ from the parent type, and in this way
 two or more types may share the same implementation for that action.
 
-The following parent type relations are used in the current version of the toolchain:
-
-....
-type         parent type
-
-char!        integer!
-handle!      integer!
-percent!     float!
-time!        float!
-lit-word!    word!
-set-word!    word!
-get-word!    word!
-refinement!  word!
-issue!       word!
-file!        url!
-url!         string!
-tag!         string!
-email!       string!
-binary!      string!
-vector!      string!
-hash!        block!
-paren!       block!
-path!        block!
-lit-path!    path!
-set-path!    path!
-get-path!    path!
-action!      native!
-op!          native!
-routine!     function!
-error!       object!
-....
-
 _**Mention pseudo types `symbol`, `series!` and `context!`?**_ 
 
 ==== Overview table
@@ -422,7 +390,7 @@ _**Mention pseudo types `symbol`, `series!` and `context!`?**_
 ....
 type                lexical (L)/       direct (D)/      atomic (A)/      passive (P/        parent type
                     syntactic (S)      indirect (I)     composite (C)    decaying (D)/
-                    repr.              storage          values           active (A)/
+                    representation       storage          values         active (A)/
                                                                          function (F)
                                                                          evaluation
                                                                          
@@ -444,32 +412,32 @@ get-word!                L                 D                 A                A 
 refinement!              L                 D                 A                P               word!
 issue!                   L                 D                 A                P               word!
 block!                   S                 I                 C                P
-hash!           
-paren!          
-path!           
-lit-path!       
-set-path!       
-get-path!       
-vector!         
-string!         
-file!           
-url!            
-tag!            
-email!          
-binary!         
-image!          
-bitset!         
-map!            
-object!         
-error!          
-native!         
-action!         
-op!             
-function!       
-routine!        
-unset!          
-event!          
-handle!         
+hash!                    -                 I                 C                P               block!
+paren!                   S                 I                 C                A               block!
+path!                    L                 I                 C                A               block!
+lit-path!                L                 I                 C                D               path!
+set-path!                L                 I                 C                A               path!
+get-path!                L                 I                 C                A               path!
+vector!                  -                 I                 C                P               string!
+string!                  L                 I                 C                P
+file!                    L                 I                 C                P               url!
+url!                     L                 I                 C                P               string!
+tag!                     L                 I                 C                P               string!
+email!                   L                 I                 C                P               string!
+binary!                  L                 I                 C                P               string!
+image!                   -                 I                 C                P
+bitset!                  -                 I                 C                P
+map!                     S                 I                 C                P
+object!                  -                 I                 C                P
+error!                   -                 I                 C                P               object!
+native!                  -                 I                 C                F
+action!                  -                 I                 C                F               native!
+op!                      -                 I                 C                F               native!
+function!                -                 I                 C                F
+routine!                 -                 I                 C                F               routine!
+unset!                   -                 D                 A                P
+event!                   -                 D                 C                P
+handle!                  -                 D                 A                P               integer!
 ....
 
 === Type hierarchy
