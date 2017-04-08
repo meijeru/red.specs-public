@@ -287,7 +287,11 @@ Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{UnVk b2xm}`
 
 **`S113`**::
 ....
+    <path> ::= <word>/<selector> | <path>/<selector>
+    <selector>::= <integer> | <word> | <get-word> | <paren>
 ....
+
+Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part`
 
 == Types
 
