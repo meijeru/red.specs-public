@@ -561,9 +561,35 @@ any-type!
 
 == Binding
 
-=== Contexts
+Red uses _words_ (values of type `word!`) to refer to values in much the same
+way that other languages use "variables". However, in Red words *do not*
+somehow "store" any values. We say that a word is _bound to a value_ in some
+_context_, i.e. evaluating the word in that context yields the value.
 
-=== Binding process
+All word values have two important properties in this regard: their identity,
+i.e their spelling (disregarding upper- or lowercase), and the context they
+are bound to.
+
+A _context_ in Red is a collection of word/value pairs. The words in
+this collection are all different, and the values are the values the words
+are bound to. There is one _global context_ containing all words that have
+passed lexical analysis as well as those that have been pre-defined by the
+toolchain, and which are bound to values such as built-in functions and constants.
+The words in the global context that are not pre-defined,
+are bound at program start to the value "unset".
+
+In addition to the global context, any number of contexts may exist during
+program execution. Every _object_ (value of type `object!`) gives rise to a
+context, containing the field-name/value pairs of the object.
+Every function (value of type `function!`) also gives rise to a context,
+which will contain the pairs of formal argument name and actual argument value
+to be used by the body of the function when it is executed.
+
+The user may access the contexts through the built-in function `context-of`
+_**this is still called `context?` but there is interest in changing its name**_
+which can be applied to any word and will yield the object or function that
+is associated with the context of the word. Asking for the global context
+results in the object `system/words`.
 
 
 == Comparison
