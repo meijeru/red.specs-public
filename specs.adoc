@@ -561,17 +561,16 @@ any-type!
 
 == Binding and contexts
 
-Red uses _words_ (values of type `word!`) to refer to values in much the same
-way that other languages use "variables". However, in Red words *do not*
-somehow "store" any values. Rather, we say that a word is _bound to a value_
-in some _context_, i.e. evaluating the word in that context yields the value.
-Since functions, including built-in functions and operators, are also values
-in Red, the words bound to these values are similar to the "keywords" of
-other languages
+Red uses _words_ (values of type `word!`) to access values in much the same
+way that other languages use variables. However, in Red, words *do not*
+"store" values. Rather, a word _*refers* to a value_ in some _context_. i.e.
+evaluating the word in that context yields the value. Since functions, 
+including built-in functions and operators, are also values in Red, the words
+that refer to these values appear to work like keywords in other languages.
 
-Thus all word values have two important properties in this regard:
-their identity, i.e their spelling (disregarding upper- or lowercase),
-and the context they are bound to.
+Thus all word values have two important properties in this regard: their
+symbol, that is their spelling (disregarding case), and the context they are
+bound to.
 
 === Contexts
 
