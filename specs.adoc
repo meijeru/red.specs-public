@@ -184,9 +184,10 @@ Examples: `192.168.1.2`, `255.255.128`
 **`S105`**::
 A `word!` value is written as one or more characters from the entire Unicode range excluding control characters
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # % $ @ : ;`.
-A `word!` value does not begin with `0-9` or `'`.
+A `word!` value does not begin with `0-9` or `'`. Words are _case-insensitive_, i.e. changing any letter in the word
+into the corresponding upper- or lower-case variant does not create a different word.
 
-Examples: `abc`, `+`, `<>`,`integer!`, `last-item`
+Examples: `abc`, `Abc`, `ABC`, +`, `<>`,`integer!`, `last-item` ; the first three are the same `word!` value.
 
 === <char>
 
