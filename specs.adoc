@@ -570,34 +570,39 @@ that refer to these values appear to work like keywords in other languages.
 
 Thus all word values have two important properties in this regard: their
 symbol, that is their spelling (disregarding case), and the context they are
-bound to.
+bound to. Something words _don't_ have is a restriction on what values they
+can refer to. In Red, values are strongly typed, but words, when used like
+variables, are not.
 
 === Contexts
 
 A _context_ in Red is a collection of word/value pairs. The words in
 this collection are all different, and the values are the values the words
-are bound to. There is one _global context_ containing all words that have
-passed lexical analysis as well as those that have been pre-defined by the
-toolchain, and which are bound to values such as built-in functions and constants.
-The words in the global context that are not pre-defined,
-are bound at program start to the value "unset".
+refer to. You can think of it like two columns, where the first is a list
+of unique symbols and the second contains a matching value for each.
+
+There is one _global context_ containing all words that have passed lexical
+analysis as well as those that have been pre-defined in the toolchain, and
+which refer to values such as built-in functions and constants. Words in the
+global context that are not pre-defined, are considered "unset", which is a
+special kind of value, distinct from `none!`.
 
 In addition to the global context, any number of contexts may exist during
 program execution. Every _object_ (value of type `object!`) gives rise to a
-context, containing the field-name/value pairs of the object.
-Every function (value of type `function!`) also gives rise to a context,
-which will contain the pairs of formal argument name and actual argument value
-to be used by the body of the function when it is executed.
+context, containing the field-name/value pairs of the object. Every function 
+(value of type `function!`) also gives rise to a context, which contains
+the pairs of formal parameter name and actual argument value to be used by 
+the body of the function when it is executed.
 
-The user may access the contexts through the built-in function `context-of`
-_**this is still called `context?` but there is interest in changing its name**_
-which can be applied to any word and will yield the object or function that
-is associated with the context of the word. Asking for the global context
-results in the object `system/words`.
+The user may access the context of a word reflectively through the built-in
+function `context-of` _**(this is still called `context?` but there is interest
+in changing its name)**_ which can be applied to any word and will yield the
+associated context of the word. Asking for the global context yields the object
+`system/words`.
 
 === Binding
 
-Words may become bound to values as a result of:
+Words are bound to contexts as a result of:
 
 * lexical analysis
 - notably when the program containing the words is submitted to the toolchain
@@ -607,6 +612,8 @@ Words may become bound to values as a result of:
 * evaluating a `set-word!` value
 * evaluating a `make object! <spec>` construct
 * applying a function to its arguments
+* calling the `bind` function
+
 
 
 
