@@ -559,16 +559,21 @@ any-type!
    |--handle!            
 ....
 
-== Binding
+== Binding and contexts
 
 Red uses _words_ (values of type `word!`) to refer to values in much the same
 way that other languages use "variables". However, in Red words *do not*
-somehow "store" any values. We say that a word is _bound to a value_ in some
-_context_, i.e. evaluating the word in that context yields the value.
+somehow "store" any values. Rather, we say that a word is _bound to a value_
+in some _context_, i.e. evaluating the word in that context yields the value.
+Since functions, including built-in functions and operators, are also values
+in Red, the words bound to these values are similar to the "keywords" of
+other languages
 
-All word values have two important properties in this regard: their identity,
-i.e their spelling (disregarding upper- or lowercase), and the context they
-are bound to.
+Thus all word values have two important properties in this regard:
+their identity, i.e their spelling (disregarding upper- or lowercase),
+and the context they are bound to.
+
+=== Contexts
 
 A _context_ in Red is a collection of word/value pairs. The words in
 this collection are all different, and the values are the values the words
@@ -590,6 +595,20 @@ _**this is still called `context?` but there is interest in changing its name**_
 which can be applied to any word and will yield the object or function that
 is associated with the context of the word. Asking for the global context
 results in the object `system/words`.
+
+=== Binding
+
+Words may become bound to values as a result of:
+
+* lexical analysis
+- notably when the program containing the words is submitted to the toolchain
+- or when a string representing some values is submitted to the REPL
+- or through application of the built-in `load` function
+* applying the built-in `set` function
+* evaluating a `set-word!` value
+* evaluating a `make object! <spec>` construct
+* applying a function to its arguments
+
 
 
 == Comparison
