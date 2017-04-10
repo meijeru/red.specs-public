@@ -559,11 +559,11 @@ any-type!
    |--handle!            
 ....
 
-== Binding and contexts
+== Words
 
 Red uses _words_ (values of type `word!`) to access values in much the same
 way that other languages use variables. However, in Red, words *do not*
-"store" values. Rather, a word _*refers* to a value_ in some _context_. i.e.
+"store" values. Rather, a word _refers to a value_ in some _context_. i.e.
 evaluating the word in that context yields the value. Since functions, 
 including built-in functions and operators, are also values in Red, the words
 that refer to these values appear to work like keywords in other languages.
@@ -573,6 +573,12 @@ symbol, that is their spelling (disregarding case), and the context they are
 bound to. Something words _don't_ have is a restriction on what values they
 can refer to. In Red, values are strongly typed, but words, when used like
 variables, are not.
+
+**TBD: CLEAN UP
+In the case of non-immdiate values, more than one word can refer to the same
+value. For `immediate!` or `internal!` values, evaluating a word may yield
+an equal result, for `series!`, `object!`, and some other types, they are
+shared reference to the underlying data.**
 
 === Contexts
 
