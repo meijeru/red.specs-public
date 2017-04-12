@@ -980,6 +980,237 @@ typeset!
     number!
     scalar!
     series!
+
+function!
+  help
+    ?
+    ??
+    about
+    help
+    source
+    what
+
+  enquiry
+    type?
+    action?
+    binary?
+    bitset?
+    block?
+    char?
+    datatype?
+    email?
+    error?
+    file?
+    float?
+    function?
+    get-path?
+    get-word?
+    handle?
+    hash?
+    image?
+    integer?
+    issue?
+    lit-path?
+    lit-word?
+    logic?
+    map?
+    native?
+    none?
+    object?
+    op?
+    pair?
+    paren?
+    path?
+    percent?
+    refinement?
+    routine?
+    set-path?
+    set-word?
+    string?
+    tag?
+    time?
+    tuple?
+    typeset?
+    unset?
+    url?
+    vector?
+    word?
+
+    any-block?
+    any-function?
+    any-list?
+    any-object?
+    any-path?
+    any-string?
+    any-word?
+    immediate?
+    number?
+    scalar?
+    series?
+
+    body-of
+    class-of
+    keys-of
+    spec-of
+    values-of
+    words-of
+
+    dir?
+    empty?
+    face?
+
+  making
+    charset
+    context
+    object
+    routine
+
+
+  conversion
+    hex-to-rgb
+    to-binary
+    to-bitset
+    to-block
+    to-char
+    to-email
+    to-file
+    to-float
+    to-get-path
+    to-get-word
+    to-hash
+    to-image
+    to-integer
+    to-issue
+    to-lit-path
+    to-lit-word
+    to-logic
+    to-map
+    to-native
+    to-none
+    to-pair
+    to-paren
+    to-path
+    to-percent
+    to-red-file
+    to-refinement
+    to-set-path
+    to-set-word
+    to-string
+    to-tag
+    to-time
+    to-tuple
+    to-typeset
+    to-unset
+    to-url
+    to-word
+
+  series
+    alter
+    extract
+    fifth
+    first
+    fourth
+    last
+    offset?
+    pad
+    rejoin
+    repend
+    replace
+    second
+    split
+    third
+
+
+  math
+    acos
+    asin
+    atan
+    atan2
+    cos
+    math
+    mod
+    modulo
+    sin
+    sqrt
+    tan
+
+  GUI
+    center-face
+    clear-reactions
+    distance?
+    do-actor
+    do-events
+    do-file
+    draw
+    get-scroller
+    insert-event-func
+    layout
+    overlap?
+    remove-event-func
+    request-dir
+    request-file
+    request-font
+    set-focus
+    show
+    size-text
+    unview
+    view
+    within?
+
+  I/O
+    cd
+    change-dir
+    clean-path
+    dir
+    dirize
+    input
+    list-dir
+    ll
+    load
+    ls
+    make-dir
+    normalize-dir
+    prin-out
+    print-out
+    probe
+    pwd
+    red-complete-file
+    red-complete-input
+    red-complete-path
+    save
+    split-path
+    suffix?
+    what-dir
+
+  control
+    also
+    comment
+    halt
+    q
+    quit
+
+  miscellaneous
+    collect
+    quote
+
+  reactivity
+    react
+    react?
+
+  pre-processing
+    expand
+    expand-directives
+
+  error handling
+    attempt
+    cause-error
+
+  debugging
+    do-safe
+    dump-face
+    dump-reactions
+    on-parse-event
+    parse-trace
 ....
 
 == Errors list
