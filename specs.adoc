@@ -1085,7 +1085,6 @@ function!
     to-lit-word
     to-logic
     to-map
-    to-native
     to-none
     to-pair
     to-paren
