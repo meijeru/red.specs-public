@@ -745,106 +745,120 @@ Words are bound to contexts as a result of:
 
 == Pre-defined words list
 
+=== natives
 ....
-native!
+  enquiry
+    complement?
+    context?
+    new-line?
+    type?
+    value?
+  making
+    compose
+    construct
+    reduce
+  conversion
+    debase
+    dehex
+    enbase
+    lowercase
+    uppercase
+    to-hex
+    to-local-file
+  control
+    break
+    case
+    continue
+    either
+    exit
+    forall
+    foreach
+    forever
+    if
+    loop
+    remove-each
+    repeat
+    return
+    switch
+    unless
+    until
+    while
+  short-cut evaluation
     all
     any
+  function definition
+    does
+    func
+    function
+    has
+  math
     arccosine
     arcsine
     arctangent
     arctangent2
-    as
-    as-pair
-    bind
-    break
-    call
-    case
-    catch
     checksum
-    complement?
-    compose
-    construct
-    context?
-    continue
     cosine
-    debase
-    dehex
-    difference
-    do
-    does
-    either
-    enbase
-    equal?
-    exclude
-    exit
     exp
-    extend
-    forall
-    foreach
-    forever
-    func
-    function
-    get
-    get-env
-    greater-or-equal?
-    greater?
-    has
-    if
-    in
-    intersect
-    lesser-or-equal?
-    lesser?
-    list-env
     log-10
     log-2
     log-e
-    loop
-    lowercase
     max
     min
     NaN?
     negative?
-    new-line
-    new-line?
-    not
-    not-equal?
-    now
-    parse
     positive?
-    prin
-    print
-    reduce
-    remove-each
-    repeat
-    return
-    same?
-    set
-    set-env
     shift
     sign?
     sine
     square-root
-    stats
-    strict-equal?
-    switch
     tangent
-    throw
-    to-hex
-    to-local-file
-    try
-    type?
+    zero?
+  comparison
+    equal?
+    greater-or-equal?
+    greater?
+    lesser-or-equal?
+    lesser?
+    not-equal?
+    same?
+    strict-equal?
+  set-operations
+    difference
+    exclude
+    intersect
     union
     unique
-    unless
+  evaluation and binding
+    as
+    as-pair
+    bind
+    do
+    get
+    in
+    set
     unset
-    until
-    uppercase
-    value?
+  error handling
+    catch
+    throw
+    try
+  environment and OS related
+    call
+    get-env
+    list-env
+    now
+    prin
+    print
+    set-env
+    stats
     wait
-    while
-    zero?
-
-action!
+  miscellaneous
+    extend
+    new-line
+    not
+    parse
+....
+=== actions
+....
   general
     make
     random
@@ -911,9 +925,10 @@ action!
     rename
     update
     write
+....
+=== operators
 
-
-op!          related action! (A)/native! (N)/
+             related action! (A)/native! (N)/
                 routine! (R)/function (F)
     %        A remainder 
     *        A multiply
@@ -937,8 +952,9 @@ op!          related action! (A)/native! (N)/
     is       F is~ (hidden)
     or       N or~
     xor      N xor~
-
-datatype!
+....
+=== datatypes
+....
     action!
     binary!
     bitset!
@@ -984,8 +1000,9 @@ datatype!
     url!
     vector!
     word!
-
-typeset!
+....
+=== typeset
+....
     any-block!
     any-function!
     any-list!
@@ -1000,8 +1017,9 @@ typeset!
     number!
     scalar!
     series!
-
-function!
+....
+=== functions
+....
   help
     ?
     ??
@@ -1010,7 +1028,6 @@ function!
     source
     what
   enquiry
-    type?
     action?
     binary?
     bitset?
