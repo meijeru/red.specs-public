@@ -67,6 +67,23 @@ program execution.
 
 === Dialects
 
+Red makes available a large number of different value types. The evaluation
+rules stated below describe the interpretation of these values when they
+occur in a Red _program_ which, as stated before, is a sequence of values.
+THe user may furthermore use and interpret these values, when considered as _data_,
+in ways of their own, and thus create _dialects_ or _Domain Specifi Languages
+(DSLs_)..
+
+In fact, Red itself contains
+a number of dialects where blocks of data are interpreted in a specific way:
+the _function spec dialect_ , the _object spec dialect_ , the _parse dialect_,
+the _view dialect_, the _draw dialect_ which includes a _shape dialect_ and more.
+
+In fact, the standard interpretation of Red values might be called the _do dialect_,
+since the built-in function `do`, when supplied with an argument which is a
+sequence of Red values, will evaluate them according to the evaluation rules
+given here (cf. the Lisp function `eval`).
+
 == Conventions
 
 Rules have a code in the form: `Letter + 3 digits`. The number is an incremental counter.
