@@ -845,57 +845,73 @@ native!
     zero?
 
 action!
+  general
+    make
+    random
+    reflect
+    to
+    form
+    mold
+    eval-path
+    compare
+  scalar
     absolute
     add
+    divide
+    multiply
+    negate
+    power
+    remainder
+    round
+    subtract
+    even?
+    odd?
+  bitwise
     and~
+    complement
+    or~
+    xor~
+  series
     append
     at
     back
     change
     clear
-    complement
     copy
-    divide
-    even?
     find
-    form
     head
     head?
     index?
     insert
     length?
-    make
-    modify
-    mold
     move
-    multiply
-    negate
     next
-    odd?
-    or~
     pick
     poke
-    power
     put
-    random
-    read
-    reflect
-    remainder
     remove
     reverse
-    round
     select
-    skip
     sort
-    subtract
+    skip
     swap
     tail
     tail?
     take
-    to
     trim
+  I/O
+    create
+    close
+    delete
+    modify
+    open
+    open?
+    query
+    read
+    rename
+    update
     write
-    xor~
+
 
 op!
     %
@@ -992,7 +1008,6 @@ function!
     help
     source
     what
-
   enquiry
     type?
     action?
@@ -1038,7 +1053,6 @@ function!
     url?
     vector?
     word?
-
     any-block?
     any-function?
     any-list?
@@ -1050,25 +1064,20 @@ function!
     number?
     scalar?
     series?
-
     body-of
     class-of
     keys-of
     spec-of
     values-of
     words-of
-
     dir?
     empty?
     face?
-
   making
     charset
     context
     object
     routine
-
-
   conversion
     hex-to-rgb
     to-binary
@@ -1105,7 +1114,6 @@ function!
     to-unset
     to-url
     to-word
-
   series
     alter
     extract
@@ -1121,8 +1129,6 @@ function!
     second
     split
     third
-
-
   math
     acos
     asin
@@ -1135,7 +1141,6 @@ function!
     sin
     sqrt
     tan
-
   GUI
     center-face
     clear-reactions
@@ -1158,7 +1163,6 @@ function!
     unview
     view
     within?
-
   I/O
     cd
     change-dir
@@ -1183,30 +1187,24 @@ function!
     split-path
     suffix?
     what-dir
-
   control
     also
     comment
     halt
     q
     quit
-
   miscellaneous
     collect
     quote
-
   reactivity
     react
     react?
-
   pre-processing
     expand
     expand-directives
-
   error handling
     attempt
     cause-error
-
   debugging
     do-safe
     dump-face
