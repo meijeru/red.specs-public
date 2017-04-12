@@ -16,8 +16,8 @@ of the Red programming language, and thus to be the authoritative document for:
 
 In this document, technical terms -- whether in general use or specific to the Red
 language -- will be written in _italics_ when first used and sometimes also on
-some subsequent occasions. Values from the Red language and from the Unicode standard
-will be written in `monospace font`.
+some subsequent occasions. Values from the Red language, grammatical categories,
+rule numbers and Unicode Code Point numbers will be written in `monospace font`.
 
 Rules have a code in the form: `Letter + 3 digits`. The number is an incremental counter.
 The prefix letter can be:
