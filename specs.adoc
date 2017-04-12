@@ -89,7 +89,7 @@ in ways of their own, and thus create _dialects_ or _Domain Specific Languages
 
 In fact, Red itself contains
 a number of dialects where blocks of data are interpreted in a specific way:
-the _function spec dialect_ , the _object spec dialect_, the _parse dialect_,
+the _function spec dialect_, the _object spec dialect_, the _parse dialect_,
 the _view dialect_, the _draw dialect_ which includes a _shape dialect_ and more.
 
 In fact, the standard interpretation of Red values might be called the _do dialect_,
