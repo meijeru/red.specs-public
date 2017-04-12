@@ -913,29 +913,30 @@ action!
     write
 
 
-op!
-    %
-    *
-    **
-    +
-    -
-    /
-    //
-    <
-    <<
-    <=
-    <>
-    =
-    ==
-    =?
-    >
-    >=
-    >>
-    >>>
-    and
-    is
-    or
-    xor
+op!          related action! (A)/native! (N)/
+                routine! (R)/function (F)
+    %        A remainder 
+    *        A multiply
+    **       A power
+    +        A add
+    -        A subtract
+    /        A divide
+    //       F modulo
+    <        N lesser?
+    <<       R shift-left <- N shift/left
+    <=       N lesser-or-equal?
+    <>       N not-equal?
+    =        N equal?
+    ==       N strict-equal?
+    =?       N same?
+    >        N greater?
+    >=       N greater-or-equal?
+    >>       R shift-right <- N shift
+    >>>      R shift-logical <- N shift/logical
+    and      A and~
+    is       F is~ (hidden)
+    or       N or~
+    xor      N xor~
 
 datatype!
     action!
