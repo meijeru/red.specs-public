@@ -397,7 +397,8 @@ email!          email-address
 binary!         ordered sequence of bytes
 image!          2-dimensional array of pixels (RGBA values encoded in 4 bytes each)) 
 bitset!         ordered sequence of values true or false
-map!            collection of pairs of values
+map!            collection of pairs of values where the first value in each pair functions
+                as key for retrieval of the second (restriction on type of key apply)
 object!         collection of word-value pairs, i.e. a context in which the words
                 are bound, and refer to the corresponding values 
 error!          specialized objects representing error conditions
