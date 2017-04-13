@@ -420,7 +420,7 @@ of their values, it is useful to make a number of distinctions into different ca
 
 * textual representation: types having lexically/syntactically representable values or not
   - among the first category: types with single values or grouped values
-* internal storage: _direct types_ vs _indirect types_ and _functional types_
+* internal storage: _direct types_ vs _indirect types_ and _function types_
 * internal structure of values: _atomic types_ vs _composite types_
 * evaluation: _passive types_, _decaying types_, _active types_, _function types_
 * implementation of built-in functions: _parent types_
