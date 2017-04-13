@@ -69,7 +69,8 @@ values_).
 A special category of values is formed by _words_, that play
 a similar role to identifiers and keywords of other languages.
 Red does *not* have identifiers nor keywords: as will be explained in more
-detail below, any _word_ may be _refer_ to a value in some _context_.
+detail below, any _word_ may _refer_ to a value in some _context_.
+We say that the word is _bound to_, or _in_ the context.
 Initially, some words refer to certain values in the _global context_,
 notably to _built-in functions_, _types_ (type names conventionally end in `!`)
 and _constants_ such as the truth values: `true` and `false`, as well as `none`
@@ -113,7 +114,7 @@ enclosed in matching grouping tokens represents a Red _grouped value_ of a certa
 and this construct may again be enclosed in grouping tokens etc. 
 
 As a rule, lexemes must be separated from each other and from grouping tokens by
-one or more whitespace characters. In the context of Red source, whitespace characters are
+one or more whitespace characters. In the Red source text, whitespace characters are
 space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`) and non-breaking space (`U+00A0`).
 
 _**This is most certainly short of some whitespace values, please correct See also issue #2492**_
@@ -347,7 +348,7 @@ is given in the next sub-section, with an explanation of the usage of their valu
 Values that are not lexically or syntactically determined may generally be represented in programs by
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
-For several types, the available values are bound to words at program start: `none!` has `none`,
+For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
 type names pre-defined; likewise `native!`, `action!` and `op!` have all the built-in functions
 and operators pre-defined.
@@ -397,7 +398,8 @@ binary!         ordered sequence of bytes
 image!          2-dimensional array of pixels (RGBA values encoded in 4 bytes each)) 
 bitset!         ordered sequence of values true or false
 map!            collection of pairs of values
-object!         collection of word-value pairs where the words are bound to the values 
+object!         collection of word-value pairs, i.e. a context in which the words
+                are bound, and refer to the corresponding values 
 error!          specialized objects representing error conditions
 native!         pre-defined functions with built-in evaluation according to special rules
 action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
@@ -452,7 +454,7 @@ having the changed component.
 
 * Values of _passive types_ evaluate to themselves. The great majority of types belong to this category.
 * Values of _decaying types_ are quoted instances of other values. They evaluate to the unquoted value.
-* Values of _active types_ can be bound to other values and their binding can be retrieved.
+* Values of _active types_ are bound to a context, their binding can be retrieved to yield the value referred to.
 * Values of _function types_, when evaluated, result in the application of the function to its arguments.
 
 Detailed rules for the evaluation in these various cases are given in section. 
@@ -598,7 +600,8 @@ any-type!
 Red uses _words_ (values of type `word!`) to access values in much the same
 way that other languages use variables. However, in Red, words *do not*
 "store" values. Rather, a word _refers to a value_ in some _context_. i.e.
-evaluating the word in that context yields the value. Since functions, 
+evaluating the word in that context yields the value. We sy that the word
+is _bound to_, or _in_ the context. Since functions, 
 including built-in functions and operators, are also values in Red, the words
 that refer to these values appear to work like keywords in other languages.
 
