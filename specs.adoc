@@ -477,7 +477,7 @@ _**Mention pseudo types `symbol`, `series!` and `context!`?**_
 ....
 type            value representation   direct (D)/      atomic (A)/      passive (P/        parent type
                     lexical (L)/       indirect (I)/    composite (C)    decaying (D)/
-                    syntactic (S)/     functional (F)     values         active (A)/
+                    syntactic (S)/     function (F)     values         active (A)/
                     using make (M)/      storage                         function (F)
                     bound words (W)                                      evaluation
                                                                          
