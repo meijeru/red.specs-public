@@ -426,19 +426,19 @@ of their values, it is useful to make a number of distinctions into different ca
 The first distinction has been treated in section 4.  The other ones are treated
 in the following sub-sections.
 
-==== Direct/indirect/functional types
+==== Direct/Indirect/Function types
 
 Red values are internally stored using _value slots_ of uniform size. Values of _direct types_
 fit completely into one such slot; for values of _indirect types_, which have a variable number
-of components, the slot stores a _reference_ to a further storage area that holds the components
-of the value. As a consequence, when values of indirect type are bound to words or supplied
-as arguments to functions, only the reference is bound or transmitted, and such values may
-therefore be changed through operations on the bound word or the actual argument.
-In order to prevent this, such values must be explicitly copied before being bound
-or transmitted as argument. A third category to be distinguished is that of _function types_,
-where references to the argument list and the body are stored in the slot.
+of components, the slot stores a _pointer_ to a further storage area that holds the components
+of the value. As a consequence, when a word ("variable") is made to refer to a value of indirect
+type or such a value is supplied as argument to a function, this value may
+be changed through operations on the variable or the function argument.
+In order to prevent this, values of indirect types must be explicitly copied before being
+transmitted as argument or having a word refer to them. A third category to be distinguished
+is that of _function types_, where pointers to the argument list and the body are stored in the slot.
 
-==== Atomic/composite types
+==== Atomic/Composite types
 
 Values of certain types have _components_ which may be extracted and/or changed using a variety of
 facilities which will be specified below under evaluation. Such types are called _composite_ 
@@ -679,7 +679,7 @@ Words are bound to contexts as a result of:
 
 === Passive types
 
-**`E100`**:: For all values of type in `passive!` typeset: `value -> value`. This is called the **identity rule**.
+**`E100`**:: For all values of `passive!` types: `value -> value`. This is called the **identity rule**.
 
 === Decaying types
 
@@ -687,29 +687,35 @@ Words are bound to contexts as a result of:
 
 **`E102`**:: `lit-path! -> path!`. Evaluating a `'v0/v1/.../vn` value results in its `v0/v1/.../vn` counterpart.
 
+=== Active types
+
+==== word! type
+
+==== get-word! type
+
+==== set-word! type
+
+==== paren! type
+
+==== path! type
+
+==== get-path! type
+
+==== set-path! type
 
 === Function types
 
-==== Action! type
+==== action! type
 
-==== Native! type
+==== native! type
 
-==== Op! type
+==== op! type
 
-==== Function! type
+==== function! type
 
-==== Routine! type
+==== routine! type
 
 ==== Options and optional arguments
-
-
-=== Word! type
-
-=== Get-word! type
-
-=== Paren! type
-
-=== Path! type
 
 === Reduction
 
