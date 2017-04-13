@@ -751,6 +751,152 @@ Words are bound to contexts as a result of:
 
 == Pre-defined words list
 
+=== constants
+....
+  characters
+    comma
+    CR
+    dbl-quote
+    dot
+    escape
+    lf
+    newline
+    null
+    slash
+    sp
+    space
+    tab
+  floating point numbers
+    pi
+  logic! values
+    false
+    no
+    off
+    on
+    true
+    yes
+  none! value
+    none
+  strings
+    crlf
+    font-fixed
+    font-sans-serif
+    font-serif
+    p-indent
+    value
+  tuples (RGB color values)
+    aqua
+    beige
+    black
+    blue
+    brick
+    brown
+    coal
+    coffee
+    crimson
+    cyan
+    forest
+    glass
+    gold
+    gray
+    green
+    ivory
+    khaki
+    leaf
+    linen
+    magenta
+    maroon
+    mint
+    navy
+    oldrab
+    olive
+    orange
+    papaya
+    pewter
+    pink
+    purple
+    reblue
+    rebolor
+    Red
+    sienna
+    silver
+    sky
+    snow
+    tanned
+    teal
+    transparent
+    violet
+    water
+    wheat
+    white
+    yello
+    yellow
+....
+=== datatypes
+....
+    action!
+    binary!
+    bitset!
+    block!
+    char!
+    datatype!
+    email!
+    error!
+    event!
+    file!
+    float!
+    function!
+    get-path!
+    get-word!
+    handle!
+    hash!
+    image!
+    integer!
+    issue!
+    lit-path!
+    lit-word!
+    logic!
+    map!
+    native!
+    none!
+    object!
+    op!
+    pair!
+    paren!
+    path!
+    percent!
+    point!
+    refinement!
+    routine!
+    set-path!
+    set-word!
+    string!
+    tag!
+    time!
+    tuple!
+    typeset!
+    unset!
+    url!
+    vector!
+    word!
+....
+=== typesets
+....
+    any-block!
+    any-function!
+    any-list!
+    any-object!
+    any-path!
+    any-string!
+    any-type!
+    any-word!
+    default!
+    immediate!
+    internal!
+    number!
+    scalar!
+    series!
+....
 === natives
 ....
   enquiry
@@ -958,71 +1104,6 @@ Words are bound to contexts as a result of:
     is       F is~ (hidden)
     or       N or~
     xor      N xor~
-....
-=== datatypes
-....
-    action!
-    binary!
-    bitset!
-    block!
-    char!
-    datatype!
-    email!
-    error!
-    event!
-    file!
-    float!
-    function!
-    get-path!
-    get-word!
-    handle!
-    hash!
-    image!
-    integer!
-    issue!
-    lit-path!
-    lit-word!
-    logic!
-    map!
-    native!
-    none!
-    object!
-    op!
-    pair!
-    paren!
-    path!
-    percent!
-    point!
-    refinement!
-    routine!
-    set-path!
-    set-word!
-    string!
-    tag!
-    time!
-    tuple!
-    typeset!
-    unset!
-    url!
-    vector!
-    word!
-....
-=== typeset
-....
-    any-block!
-    any-function!
-    any-list!
-    any-object!
-    any-path!
-    any-string!
-    any-type!
-    any-word!
-    default!
-    immediate!
-    internal!
-    number!
-    scalar!
-    series!
 ....
 === functions
 ....
@@ -1236,9 +1317,36 @@ Words are bound to contexts as a result of:
     on-parse-event
     parse-trace
 ....
-
+=== routines
+....
+  enquiry
+    event?
+  conversion
+    as-color
+    as-ipv4
+    as-rgba
+  bitwise operations
+    shift-left
+    shift-logical
+    shift-right
+  control
+    quit-return
+    set-quiet
+  GUI
+    find-flag?
+  I/O
+    ask
+    browse
+    create-dir
+    exists?
+    get-current-dir
+    last-lf?
+    read-clipboard
+    set-current-dir
+    write-clipboard
+    write-stdout
+....
 == Errors list
-
 ....
 throw ( 0 )
     break -> "no loop to break"
