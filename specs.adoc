@@ -430,7 +430,7 @@ of their values, it is useful to make a number of distinctions into different ca
 
 ==== Types according to their textual representation
 
-This distinction has been treated in section 4.1.
+This distinction has been treated in section 5.1.
 
 ==== Direct/Indirect/Function types
 
@@ -537,7 +537,7 @@ unset!            M                 D                A                          
 event!            W                 D                C                            P
 handle!           W                 D                A                            P               integer!
 ....
-==== Type hierarchy
+=== Type hierarchy
 
 For the convenience of the user, certain typesets have been pre-defined
 which group related types. These will notably be used for indicating
