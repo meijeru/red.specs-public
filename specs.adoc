@@ -421,7 +421,9 @@ map!            collection of pairs of values where the first value in each pair
                 as key for retrieval of the second; keys are restricted to types
                 any-word!, any-string!, number!, char!, pair!, tuple!
 object!         collection of word-value pairs, i.e. a context in which the words
-                are bound, and refer to the corresponding values 
+                are bound, and refer to the corresponding values; objects are
+                capable of triggering asynchronous events in response to changes
+                in their components, thus enabling reactive programming
 error!          specialized objects representing error conditions
 native!         pre-defined functions with built-in evaluation according to special rules
 action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
