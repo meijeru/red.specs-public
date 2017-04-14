@@ -234,7 +234,7 @@ Punctuation characters from the ASCII subset that *are* allowed in words are: `!
 Words are _case-insensitive_, i.e. changing any letter in the word into the corresponding upper- or lower-case
 variant does not create a different word.
 
-Examples: `abc`, `Abc`, `ABC`, +`, `<>`,`integer!`, `last-item` ; the first three are the same `word!` value.
+Examples: `abc`, `Abc`, `ABC`, `+`, `<>`, `integer!`, `last-item?` ; the first three are the same `word!` value.
 
 === <char>
 
