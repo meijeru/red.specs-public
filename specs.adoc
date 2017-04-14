@@ -13,8 +13,8 @@ of the Red programming language, and thus to be the authoritative document for:
 * acting as a reference for tests
 
 In as much as feasible, and in order to avoid duplication, existing pieces
-of documentation will be referred to (e.g.: the GUI documentation that can be
-found https://doc.red-lang.org/en/gui.html[here]).
+of official documentation will be referred to. A list of those can be found in
+section 15.
 
 == Conventions
 
@@ -58,9 +58,9 @@ which accept program fragments and display the result of evaluating them
 (REPL or Read Evaluate Print Loop).
 
 Information about the installation and usage of the toolchain can be found
-in the https://github.com/red/red/blob/master/README.md[README] file of the
-https://github.com/red/red[Red repository on Github],
-which contains the full source code of the toolchain.
+in the README file of the https://github.com/red/red[Red repository on Github].
+This repository contains the full source code of the toolchain, which may be
+said to be the final authority on what the Red language is.
 
 === Values
 
@@ -100,12 +100,18 @@ in ways of their own, and thus create _dialects_ or _Domain Specific Languages
 
 In fact, Red itself contains
 a number of dialects where blocks of data are interpreted in a specific way:
-the _function spec dialect_, the _object spec dialect_, the _bitset spec dialect_,
-the _vector spec dialect_,
-the _parse dialect_, the _view dialect_, the _draw dialect_ which includes
-a _shape dialect_ and more.
+the _system dialect_ (Red/System, see next paragraph), the _parse dialect_,
+the _visual interface dialect (VID)_, which also uses the _draw dialect_,
+the various _spec dialects_ involved in defining functions, objects, bitsets,
+vectors and more.
 
-In fact, the standard interpretation of Red values might be called the _do dialect_,
+Red/System is on the one hand a language of its own: programs written in Red/System
+can be compiled and executed using the toolchain. As a dialect of Red its purpose
+is to provide low-level system programming capabilities, and it serves both as
+a tool to build Red's runtime library and as intermediate language for the
+compiler to generate machine code from.
+
+The standard interpretation of Red values might be called the _do dialect_,
 since the built-in function `do`, when supplied with an argument which is a
 sequence of Red values, will evaluate them according to the evaluation rules
 given here (cf. the Lisp function `eval`).
@@ -1492,3 +1498,15 @@ internal ( 900 )
     routines -> {routines require compilation, from OS shell: `red -c <script.red>`}
     red-system -> {contains Red/System code which requires compilation}
 ....
+== Additional documentation
+
+The following is a list of official documents that complement the information given in this one.
+
+. https://github.com/red/red/blob/master/README.md[README file for the toolchain]
+. http://static.red-lang.org/red-system-specs-light.html[Red/System Language Specification]
+. https://doc.red-lang.org/en/[Red Programming Language Documentation] notably:
+  .. https://doc.red-lang.org/en/map.html[map! datatype]
+  .. https://doc.red-lang.org/en/gui.html[GUI System]
+  .. https://doc.red-lang.org/en/reactivity.html[Reactive Programming]
+  .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
+. http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse] (blog article from 2013)
