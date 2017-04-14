@@ -14,7 +14,7 @@ of the Red programming language, and thus to be the authoritative document for:
 
 In as much as feasible, and in order to avoid duplication, existing pieces
 of documentation will be referred to (e.g.: the GUI documentation that can be
-found https://doc.red-lang.org/en/gui.html[here])
+found https://doc.red-lang.org/en/gui.html[here]).
 
 == Conventions
 
@@ -229,9 +229,10 @@ Examples: `192.168.1.2`, `255.255.128`
 **`S105`**::
 A `word!` value is written as one or more characters from the entire Unicode range excluding control characters
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
-A `word!` value does not begin with `0-9` or `'`. Punctuation characters from the ASCII subset that *are* allowed
-in words are: `! & ' * + - . < = > ? _ `` | ~`. Words are _case-insensitive_, i.e. changing any letter in the word
-into the corresponding upper- or lower-case variant does not create a different word.
+A `word!` value does not begin with `0-9` or `'`.
+Punctuation characters from the ASCII subset that *are* allowed in words are: `! & ' * + - . < = > ? _ `` `| ~`.
+Words are _case-insensitive_, i.e. changing any letter in the word into the corresponding upper- or lower-case
+variant does not create a different word.
 
 Examples: `abc`, `Abc`, `ABC`, +`, `<>`,`integer!`, `last-item` ; the first three are the same `word!` value.
 
