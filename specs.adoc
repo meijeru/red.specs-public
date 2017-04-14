@@ -12,6 +12,10 @@ of the Red programming language, and thus to be the authoritative document for:
 * tracking changes in the language design, including why changes were made
 * acting as a reference for tests
 
+In as much as feasible, and in order to avoid duplication, existing pieces
+of documentation will be referred to (e.g.: the GUI documentation that can be
+found https://doc.red-lang.org/en/gui.html[here])
+
 == Conventions
 
 In this document, technical terms -- whether in general use or specific to the Red
@@ -52,6 +56,11 @@ interpretation or compilation. A further facility of the toolchain is
 that it provides one or more _interactive consoles_, i.e. visual interfaces
 which accept program fragments and display the result of evaluating them
 (REPL or Read Evaluate Print Loop).
+
+Information about the installation and usage of the toolchain can be found
+in the https://github.com/red/red/blob/master/README.md[README] file of the
+https://github.com/red/red[Red repository on Github],
+which contains the full source code of the toolchain.
 
 === Values
 
@@ -219,8 +228,9 @@ Examples: `192.168.1.2`, `255.255.128`
 
 **`S105`**::
 A `word!` value is written as one or more characters from the entire Unicode range excluding control characters
-(notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # % $ @ : ;`.
-A `word!` value does not begin with `0-9` or `'`. Words are _case-insensitive_, i.e. changing any letter in the word
+(notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
+A `word!` value does not begin with `0-9` or `'`. Punctuation characters from the ASCII subset that *are* allowed
+in words are: `! & ' * + - . < = > ? _ `` | ~`. Words are _case-insensitive_, i.e. changing any letter in the word
 into the corresponding upper- or lower-case variant does not create a different word.
 
 Examples: `abc`, `Abc`, `ABC`, +`, `<>`,`integer!`, `last-item` ; the first three are the same `word!` value.
@@ -326,7 +336,7 @@ and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`; the in
 the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
 brackets and from each other by whitespace.
 
-Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{UnVk b2xm}`
+Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{AQID}`
 
 === <path>
 
