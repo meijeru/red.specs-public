@@ -114,8 +114,9 @@ enclosed in matching grouping tokens represents a Red _grouped value_ of a certa
 and this construct may again be enclosed in grouping tokens etc. 
 
 As a rule, lexemes must be separated from each other and from grouping tokens by
-one or more whitespace characters. In the Red source text, whitespace characters are
-space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`) and non-breaking space (`U+00A0`).
+one or more _whitespace characters_. In the Red source text, whitespace characters are
+space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`)
+and non-breaking space (`U+00A0`).
 
 _**This is most certainly short of some whitespace values, please correct See also issue #2492**_
 
@@ -351,7 +352,9 @@ is a value that is interpreted by the `make` function as appropriate for the giv
 For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
 type names pre-defined; likewise `native!`, `action!` and `op!` have all the built-in functions
-and operators pre-defined.
+and operators pre-defined. Values of types `event!` and `handle!`, that are used to
+communicate with operating system, can only be represented by words that are arguments to functions
+handling this communication.
 
 _**Mention general typed value constructor #[ <type> <value>* ]**_
 
@@ -419,15 +422,15 @@ For a better understanding of their nature and that
 of their values, it is useful to make a number of distinctions into different categories.
 
 * textual representation: types having lexically/syntactically representable values or not
-  - among the first category: types with single values or grouped values
 * internal storage: _direct types_ vs _indirect types_ and _function types_
 * internal structure of values: _atomic types_ vs _composite types_
+* reflectivity: types with values that admit _reflection_  or not
 * evaluation: _passive types_, _decaying types_, _active types_, _function types_
 * implementation of built-in functions: _parent types_
 
+==== Types according to their textual representation
 
-The first distinction has been treated in section 4.  The other ones are treated
-in the following sub-sections.
+This distinction has been treated in section 4.1.
 
 ==== Direct/Indirect/Function types
 
@@ -435,7 +438,7 @@ Red values are internally stored using _value slots_ of uniform size. Values of 
 fit completely into one such slot; for values of _indirect types_, which have a variable number
 of components, the slot stores a _pointer_ to a further storage area that holds the components
 of the value. As a consequence, when a word ("variable") is made to refer to a value of indirect
-type or such a value is supplied as argument to a function, this value may
+type or such a value is supplied as argument to a function, the components of this value may
 be changed through operations on the variable or the function argument.
 In order to prevent this, values of indirect types must be explicitly copied before being
 transmitted as argument or having a word refer to them. A third category to be distinguished
@@ -450,6 +453,14 @@ function types are composite. as well as some direct types. Note that component 
 in values of direct types cannot be used to change the component, only to extract it.
 Binding such a component to a value results in a new instance of the direct value being created,
 having the changed component.
+
+==== Types that admit reflection
+
+Values of some types have (internal) properties of interest to the user which may usefully be exposed.
+E.g. the set of words from the word/value pairs making up an object may be retrieved by the built-in
+function `words-of`. Likewise, the argument spec of a function may be retrieved by `spec-of`.
+
+_** We should perhaps consider `context?` or rather `context-of` as a reflector also**_
 
 ==== Types according to the evaluation of their values
 
@@ -475,59 +486,58 @@ _**Mention pseudo types `symbol`, `series!` and `context!`?**_
 ==== Overview table
 
 ....
-type            value representation   direct (D)/      atomic (A)/      passive (P/        parent type
-                    lexical (L)/       indirect (I)/    composite (C)    decaying (D)/
-                    syntactic (S)/     function (F)     values         active (A)/
-                    using make (M)/      storage                         function (F)
-                    bound words (W)                                      evaluation
-                                                                         
-datatype!                W                 D                 A                P   
-typeset!                 M                 D                 A                P   
-none!                    W                 D                 A                P
-logic!                   W                 D                 A                P
-char!                    L                 D                 A                P              integer!
-integer!                 L                 D                 A                P
-float!                   L                 D                 A                P
-percent!                 L                 D                 A                P              float!
-time!                    L                 D                 C                P              float!
-pair!                    L                 D                 C                P
-tuple!                   L                 D                 C                P
-word!                    L                 D                 A                A
-lit-word!                L                 D                 A                D               word!
-set-word!                L                 D                 A                A               word!
-get-word!                L                 D                 A                A               word!
-refinement!              L                 D                 A                P               word!
-issue!                   L                 D                 A                P               word!
-block!                   S                 I                 C                P
-hash!                    M                 I                 C                P               block!
-paren!                   S                 I                 C                A               block!
-path!                    L                 I                 C               A+F              block!
-lit-path!                L                 I                 C                D               path!
-set-path!                L                 I                 C                A               path!
-get-path!                L                 I                 C                A               path!
-vector!                  M                 I                 C                P               string!
-string!                  L                 I                 C                P
-file!                    L                 I                 C                P               url!
-url!                     L                 I                 C                P               string!
-tag!                     L                 I                 C                P               string!
-email!                   L                 I                 C                P               string!
-binary!                  L                 I                 C                P               string!
-image!                   M                 I                 C                P
-bitset!                  M                 I                 C                P
-map!                     S                 I                 C                P
-object!                  M                 I                 C                P
-error!                   M                 I                 C                P               object!
-native!                  W                 F                 C                F
-action!                  W                 F                 C                F               native!
-op!                      W                 F                 C                F               native!
-function!                M                 F                 C                F
-routine!                 M                 F                 C                F               function!
-unset!                   M                 D                 A                P
-event!                   -                 D                 C                P
-handle!                  -                 D                 A                P               integer!
+type     value representation  direct (D)/      atomic (A)/   reflection     passive (P/        parent type
+            lexical (L)/       indirect (I)/    composite (C)    (R)         decaying (D)/
+            syntactic (S)/     function (F)     values                       active (A)/
+            using make (M)/      storage                                     function (F)
+            using words (W)                                                  evaluation
+                                                                   
+datatype!         W                 D                A                            P   
+typeset!          M                 D                A                            P   
+none!             W                 D                A                            P
+logic!            W                 D                A                            P
+char!             L                 D                A                            P              integer!
+integer!          L                 D                A                            P
+float!            L                 D                A                            P
+percent!          L                 D                A                            P              float!
+time!             L                 D                C                            P              float!
+pair!             L                 D                C                            P
+tuple!            L                 D                C                            P
+word!             L                 D                A                            A
+lit-word!         L                 D                A                            D               word!
+set-word!         L                 D                A                            A               word!
+get-word!         L                 D                A                            A               word!
+refinement!       L                 D                A                            P               word!
+issue!            L                 D                A                            P               word!
+block!            S                 I                C                            P
+hash!             M                 I                C                            P               block!
+paren!            S                 I                C                            A               block!
+path!             L                 I                C                           A+F              block!
+lit-path!         L                 I                C                            D               path!
+set-path!         L                 I                C                            A               path!
+get-path!         L                 I                C                            A               path!
+vector!           M                 I                C                            P               string!
+string!           L                 I                C                            P
+file!             L                 I                C                            P               url!
+url!              L                 I                C                            P               string!
+tag!              L                 I                C                            P               string!
+email!            L                 I                C                            P               string!
+binary!           L                 I                C                            P               string!
+image!            M                 I                C                            P
+bitset!           M                 I                C                            P
+map!              S                 I                C             R              P
+object!           M                 I                C             R              P
+error!            M                 I                C             R              P               object!
+native!           W                 F                A             R              F
+action!           W                 F                A             R              F               native!
+op!               W                 F                A             R              F               native!
+function!         M                 F                A             R              F
+routine!          M                 F                A             R              F               function!
+unset!            M                 D                A                            P
+event!            W                 D                C                            P
+handle!           W                 D                A                            P               integer!
 ....
-
-=== Type hierarchy
+==== Type hierarchy
 
 For the convenience of the user, certain typesets have been pre-defined
 which group related types. These will notably be used for indicating
