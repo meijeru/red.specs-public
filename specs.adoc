@@ -637,32 +637,49 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 
 **`S114`**::
 
+TBD
+
 ==== `hash!`
 
-**`S121`**::
+**`S115`**::
+
+TBD
 
 ==== `vector!`
 
 **`S116`**::
 
+TBD
+
 ==== `image!`
 
 **`S117`**::
 
+TBD
+
 ==== `bitset!`
 
 **`S118`**::
+
+TBD
+
 ==== `object!`
 
 **`S119`**::
+
+TBD
 
 ==== `error!`
 
 **`S120`**::
 
+TBD
+
 ==== `function!`
 
-**`S121`**::**`S113`**::
+**`S121`**::
+
+TBD
 
 ==== `routine!`
 
@@ -671,6 +688,8 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 ==== `op!`
 
 **`S123`**::
+
+TBD
 
 == Words, contexts and binding
 
