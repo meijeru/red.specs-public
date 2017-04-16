@@ -699,10 +699,10 @@ contains the transparency (one byte per pixel, in the same ordering).
 <bit-position> ::= <single-bit> | <string> | <single-bit> - <single-bit> 
 ....
 The built-in function `charset` is defined as shorthand for `make bitset!`.
-The `<bitset-spec>` provides a list of bit-position numbers that are to be set`to `true`.
+The `<bitset-spec>` provides a list of bit-position numbers that are to be set to `true`.
 The `<integer>` should be non-negative. The `<char>` is interpreted as the Unicode Codepoint number.
 A `<string>` is interpreted as the collection of all its component characters. In the block
-of `<bit-position>`s two values separated by a `-` are interpreted as a range of numbers.
+of `<bit-position>` s two values separated by a `-` are interpreted as a range of numbers.
 
 ==== `object!`
 
