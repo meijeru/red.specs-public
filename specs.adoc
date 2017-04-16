@@ -637,7 +637,7 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 
 === Values to be constructed by the `make` function
 
-In the following rules, 
+In the following rules, the sign `°` signifies an optional element.
 
 ==== `typeset!`
 
@@ -706,7 +706,7 @@ The `<integer>` should be non-negative. The `<char>` is interpreted as the Unico
 A `<string>` is interpreted as the collection of all its component characters. In the block
 of `<bit-position>` s two values separated by a `-` are interpreted as a range of numbers.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
-bit number (0-origin).
+bit number (0-origin). An "empty" bitset is 8 bits (one byte) long.
 
 Examples: `charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 
@@ -715,20 +715,33 @@ Examples: `charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 object **`S119`**::
 ....
 <object> ::= make object! <object-spec> | object <object-spec> | context <object-spec>
+<object-spec> ::= <block>
 ....
 The built-in functions `object` and `context` are defined as shorthand for `make object!`.
+
 
 ==== `error!`
 
 **`S120`**::
-
+....
 TBD
-
+....
 ==== `function!`
 
 **`S121`**::
+....
+<function> ::= make function! [<function-spec> <function-body>] | func <function-spec> <function-body> |
+               function <function-spec> <function-body>
+<function-spec> ::= [<docstring>° <argument-spec>* <return-spec>°]
+<function-body> ::= <block>
+....
 
-TBD
+
+
+
+
+The built-in function `func` is defined as shorthand for `make function!`. The built-in function `function`
+is similar to `func` but it adds all set-words found in the body to the list of local arguments 
 
 ==== `routine!`
 
