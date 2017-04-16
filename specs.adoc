@@ -687,7 +687,9 @@ If `<image-spec>` is `<pair>`, the image is created with the given dimensions, a
 `255.255.255` and transparency `0`. If a `<tuple>` is specified, this determines the color of all pixels,
 transparency being `0`. If a single `<binary>` is specified, this should contain the array of colors of all pixels
 (three bytes per pixel, stored by horizontal line), the transparency being `0`. The second `<binary>`, if present,
-contains the transparency (one byte per pixel, in the same ordering).   
+contains the transparency (one byte per pixel, in the same ordering).
+
+Examples: `make image! 200x300, make image! [200x300 255.0.0], make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{00000000}]`
 
 ==== `bitset!`
 
@@ -703,12 +705,18 @@ The `<bitset-spec>` provides a list of bit-position numbers that are to be set t
 The `<integer>` should be non-negative. The `<char>` is interpreted as the Unicode Codepoint number.
 A `<string>` is interpreted as the collection of all its component characters. In the block
 of `<bit-position>` s two values separated by a `-` are interpreted as a range of numbers.
+The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
+bit number (0-origin).
+
+Examples: `charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 
 ==== `object!`
 
-**`S119`**::
-
-TBD
+object **`S119`**::
+....
+<object> ::= make object! <object-spec> | object <object-spec> | context <object-spec>
+....
+The built-in functions `object` and `context` are defined as shorthand for `make object!`.
 
 ==== `error!`
 
