@@ -679,14 +679,30 @@ Examples: `make vector! [], make vector! [integer! 16 [1 2 3]], make vector! [#"
 ==== `image!`
 
 **`S117`**::
-
-TBD
+....
+<image> ::= make image! <image-spec>
+<image-spec> ::= <pair> | [<pair> <tuple>] | [<pair> <binary>] | [<pair> <binary> <binary>] 
+....
+If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and all pixels having color
+`255.255.255` and transparency `0`. If a `<tuple>` is specified, this determines the color of all pixels,
+transparency being `0`. If a single `<binary>` is specified, this should contain the array of colors of all pixels
+(three bytes per pixel, stored by horizontal line), the transparency being `0`. The second `<binary>`, if present,
+contains the transparency (one byte per pixel, in the same ordering).   
 
 ==== `bitset!`
 
 **`S118`**::
-
-TBD
+....
+<bitset> ::= make bitset! <bitset-spec> | charset <bitset-spec>
+<bitset-spec> ::= <single-bit> | <string> | [<bit-position>*]
+<single-bit> ::= <integer> | <char>
+<bit-position> ::= <single-bit> | <string> | <single-bit> - <single-bit> 
+....
+The built-in function `charset` is defined as shorthand for `make bitset!`.
+The `<bitset-spec>` provides a list of bit-position numbers that are to be set`to `true`.
+The `<integer>` should be non-negative. The `<char>` is interpreted as the Unicode Codepoint number.
+A `<string>` is interpreted as the collection of all its component characters. In the block
+of `<bit-position>`s two values separated by a `-` are interpreted as a range of numbers.
 
 ==== `object!`
 
