@@ -637,7 +637,7 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 
 === Values to be constructed by the `make` function
 
-In the following rules, the sign `°` signifies an optional element.
+In the following rules, the sign `°` signifies an optional element,and `^+^` signifies one or more elements.
 
 ==== `typeset!`
 
@@ -669,9 +669,9 @@ The contents of the `<block>` are copied.
                     integer! 8 | integer! 16 | integer 32! |
                     float! 32 | float! 64 | percent! 32 | percent! 64
 ....
-The components of `<block>` should all have the same type `char! integer! float!` or `percent!`. 
+The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
-the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the default type
+the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the assumed type
 is `integer!`.
 
 Examples: `make vector! [], make vector! [integer! 16 [1 2 3]], make vector! [#"a" #"b" #"c"]`
@@ -683,7 +683,7 @@ Examples: `make vector! [], make vector! [integer! 16 [1 2 3]], make vector! [#"
 <image> ::= make image! <image-spec>
 <image-spec> ::= <pair> | [<pair> <tuple>] | [<pair> <binary>] | [<pair> <binary> <binary>] 
 ....
-If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and all pixels having color
+If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and with all pixels having color
 `255.255.255` and transparency `0`. If a `<tuple>` is specified, this determines the color of all pixels,
 transparency being `0`. If a single `<binary>` is specified, this should contain the array of colors of all pixels
 (three bytes per pixel, stored by horizontal line), the transparency being `0`. The second `<binary>`, if present,
@@ -706,7 +706,7 @@ The `<integer>` should be non-negative. The `<char>` is interpreted as the Unico
 A `<string>` is interpreted as the collection of all its component characters. In the block
 of `<bit-position>` s two values separated by a `-` are interpreted as a range of numbers.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
-bit number (0-origin). An "empty" bitset is 8 bits (one byte) long.
+bit number (0-origin). An "empty" bitset is 8 bits (one byte) long on creation.
 
 Examples: `charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 
@@ -732,12 +732,14 @@ TBD
 ....
 <function> ::= make function! [<function-spec> <function-body>] | func <function-spec> <function-body> |
                function <function-spec> <function-body>
-<function-spec> ::= [<docstring>° <argument-spec>* <return-spec>°]
+<function-spec> ::= [<docstring>° <argument-spec> <return-spec>°]
+<docstring> ::= <string>
+<argument-spec> ::= <argument>* <optional-argument>*
+<argument> ::= <word> <argument-doc>° | <word> [<typeset-element>^+^] <argument-doc>°
+<optional-argument> ::= <refinement> <argument-doc>° <argument>*
 <function-body> ::= <block>
 ....
-
-
-
+For <typeset-element> see rule `S114`.
 
 
 The built-in function `func` is defined as shorthand for `make function!`. The built-in function `function`
@@ -752,8 +754,13 @@ TBD
 ==== `op!`
 
 **`S123`**::
+....
+<operator> ::= make op! <function> 
+....
 
-TBD
+The `<function>` should have two arguments.
+
+Example: `f: func [a b][all [a b]] &&: make op! :f`.
 
 == Words, contexts and binding
 
