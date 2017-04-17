@@ -760,9 +760,9 @@ TBD
 <operator> ::= make op! <function> 
 ....
 
-The `<function>` should have two arguments.
+The `<function>` should have exactly two arguments and no optional arguments.
 
-Example: `f: func [a b][all [a b]] &&: make op! :f`.
+Example: `&&: make op! func [a b][all [a b]]`.
 
 == Words, contexts and binding
 
