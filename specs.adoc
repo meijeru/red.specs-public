@@ -741,7 +741,7 @@ TBD
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
-For <typeset-element> see rule `S114`.
+For `<typeset-element>` see rule `S114`.
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
