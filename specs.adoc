@@ -644,9 +644,8 @@ In the following rules, the sign `°` signifies an optional element,and `^+^` si
 **`S114`**::
 ....
 <typeset> ::= make typeset! [<typeset-element>*]
-<typeset-element> ::= <typeset-name> | <type-name>
+<typeset-element> ::= <typeset> | <datatype>
 ....
-where `<type-name>` is one of the pre-defined type names.
 
 Examples: `number!` is `make typeset! [integer! float! percent!]`,
 `scalar!` is `make typeset! [char! number! time! pair! tuple!]`.     
@@ -735,7 +734,9 @@ TBD
 <function-spec> ::= [<docstring>° <argument-spec> <return-spec>°]
 <docstring> ::= <string>
 <argument-spec> ::= <argument>* <optional-argument>*
-<argument> ::= <word> <argument-doc>° | <word> [<typeset-element>^+^] <argument-doc>°
+<argument> ::= <argument-name> <argument-doc>° | <argument-name> [<typeset-element>^+^] <argument-doc>°
+<argument-name> ::= <word> | '<word> | :<word>
+<argument-doc> ::= <string>
 <optional-argument> ::= <refinement> <argument-doc>° <argument>*
 <function-body> ::= <block>
 ....
