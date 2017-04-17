@@ -769,9 +769,8 @@ Example: `&&: make op! func [a b][all [a b]]`.
 Red uses _words_ (values of type `word!`) to access values in much the same
 way that other languages use variables. However, in Red, words *do not*
 "store" values. Rather, a word _refers to a value_ in some _context_. i.e.
-evaluating the word in that context yields the value. We sy that the word
-
-, or2_in_ the context. Since functions, 
+evaluating the word in that context yields the value. We say that the word
+is _bound to_, or _in_ the context. Since functions, 
 ncluding built-in functions and operators, are also values in Red, the words
 that refer to these values appear to work like keywords in other languages.
 
