@@ -637,7 +637,7 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 
 === Values to be constructed by the `make` function
 
-In the following rules, the sign `°` signifies an optional element,and `^+^` signifies one or more elements.
+In the following rules, the sign `°` signifies an optional element.
 
 ==== `typeset!`
 
@@ -734,10 +734,11 @@ TBD
 <function-spec> ::= [<docstring>° <argument-spec> <return-spec>°]
 <docstring> ::= <string>
 <argument-spec> ::= <argument>* <optional-argument>*
-<argument> ::= <argument-name> <argument-doc>° | <argument-name> [<typeset-element>^+^] <argument-doc>°
+<argument> ::= <argument-name> <argument-doc>° | <argument-name> [<typeset-element>*] <argument-doc>°
 <argument-name> ::= <word> | '<word> | :<word>
 <argument-doc> ::= <string>
 <optional-argument> ::= <refinement> <argument-doc>° <argument>*
+<return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
 For <typeset-element> see rule `S114`.
