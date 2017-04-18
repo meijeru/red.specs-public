@@ -647,8 +647,10 @@ In the following rules, the sign `°` signifies an optional element.
 <typeset-element> ::= <typeset> | <datatype>
 ....
 
-Examples: `number!` is `make typeset! [integer! float! percent!]`,
-`scalar!` is `make typeset! [char! number! time! pair! tuple!]`.     
+Examples: `number!` is defined as `make typeset! [integer! float! percent!]`,
+`scalar!` is defined as `make typeset! [char! number! time! pair! tuple!]`.
+
+Note that an empty typeset is allowed (`make typeset! []`).
 
 ==== `hash!`
 
@@ -663,15 +665,18 @@ The contents of the `<block>` are copied.
 **`S116`**::
 ....
 <vector> ::= make vector! <vector-spec>
-<vector-spec> ::= <block> | [ <type-and-size> <block>]
+<vector-spec> ::= <integer> | <block> | [ <type-and-size> <block>]
 <type-and-size> ::= char! 8 | char! 16 | char! 32 |
                     integer! 8 | integer! 16 | integer 32! |
                     float! 32 | float! 64 | percent! 32 | percent! 64
 ....
+An `<integer>` produces a `vector!` value of the prescribed length (>= 0)
+with components of type `integer!` and size 32
+_**and all set to 0**_.
 The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
 the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the assumed type
-is `integer!`.
+is `integer!` of size 32.
 
 Examples: `make vector! [], make vector! [integer! 16 [1 2 3]], make vector! [#"a" #"b" #"c"]`
 
@@ -706,7 +711,7 @@ that are integers `0..255`, with 1-origin index, while `bitset!` values have com
 that are `logic!` values (`true = 1, false = 0`), with 0-origin index.
 The built-in function `charset` is defined as shorthand for `make bitset!`,
 except that `<binary>` is not allowed as its argument. The `<bitset-spec>` that is
-an integer value produces an "empty" bitset (all bits set to false) of size the nearest
+an `<integer>` produces an "empty" bitset (all bits set to false) of size the nearest
 multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers
 that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
 A `<string>` is interpreted as the collection of all its component characters. In the block
