@@ -700,8 +700,7 @@ Examples: `make image! 200x300, make image! [200x300 255.0.0], make image! [2x2 
 ....
 <bitset> ::= make bitset! <binary> | make bitset! <bitset-spec> | charset <bitset-spec>
 <bitset-spec> ::= <integer> | <char> | <string> | [<bit-position>*]
-<bit-position> ::= <single-bit> | <string> | <single-bit> - <single-bit> 
-<single-bit> ::= <integer> | <char>
+<bit-position> ::= <integer> | <char> | <string> | <char> - <char> | <integer> - <integer>
 ....
 
 A `<binary>` produces a `bitset!` value that is bit-by-bit equal to the `binary!` value.
@@ -711,10 +710,9 @@ that are `logic!` values (`true = 1, false = 0`), with 0-origin index.
 The built-in function `charset` is defined as shorthand for `make bitset!`,
 except that `<binary>` is not allowed as its argument. The `<bitset-spec>` that is
 an `<integer>` produces an "empty" bitset (all bits set to false) of size the nearest
-multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers
-that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
-A `<string>` is interpreted as the collection of all its component characters. In the block
-of `<bit-position>` s two values separated by a `-` are interpreted as a range of numbers.
+multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers,
+or ranges of them, that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
+A `<string>` is interpreted as the collection of all its component characters.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
 
