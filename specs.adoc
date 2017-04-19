@@ -450,7 +450,7 @@ further defined in the grammar is explained in the individual sub-sections of se
     <map> ::=      #( <value>* )        ; map! even number of values only
     <constructor> ::= #[ <value>* ]     ; reserved for general typed value constructor
 
-In what follows, terms like `<integer>` will be used to refer to lexical elements, and
+In what follows, terms like `<integer>` will be used to refer to lexemes;
 to indicate the corresponding value, terms like "value of type `integer!` ",
 "`integer!` value" or plain "integer" will be used.
 
