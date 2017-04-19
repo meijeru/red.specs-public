@@ -16,6 +16,10 @@ In as much as feasible, and in order to avoid duplication, existing pieces
 of official documentation will be referred to. A list of those can be found in
 section 16.
 
+This document is *not* intended to be used in order to learn the language (tutorial);
+for that purpose sufficient materials can be found elsewhere
+_** need one comprehensive and sufficiently maintained collection of links **_
+
 == Conventions
 
 In this document, technical terms -- whether in general use or specific to the Red
@@ -103,7 +107,7 @@ a number of dialects where blocks of data are interpreted in a specific way:
 the _system dialect_ (Red/System, see next paragraph), the _parse dialect_,
 the _visual interface dialect (VID)_, which also uses the _draw dialect_,
 the various _spec dialects_ involved in defining functions, objects, bitsets,
-vectors and more.
+vectors, the _compose dialect_ and more.
 
 Red/System is on the one hand a language of its own: programs written in Red/System
 can be compiled and executed using the toolchain. As a dialect of Red its purpose
@@ -445,7 +449,11 @@ further defined in the grammar is explained in the individual sub-sections of se
     <block> ::=    [ <value>* ]         ; block!
     <map> ::=      #( <value>* )        ; map! even number of values only
     <constructor> ::= #[ <value>* ]     ; reserved for general typed value constructor
- 
+
+In what follows, terms like `<integer>` will be used to refer to lexical elements, and
+to indicate the corresponding value, terms like "value of type `integer!` ",
+"`integer!` value" or plain "integer" will be used.
+
 == Representation of values
 
 === Introduction
@@ -506,7 +514,7 @@ Examples: `10:20`, `10:20:30.456`, `20:30.5`, `-1:00:00`
 ==== `tuple!`
 
 **`S104`**::
-A `tuple!` value is written as 3 to 12 `<integer>` values in the range `0..255` separated by dots `.`
+A `tuple!` value is written as 3 to 12 `<integer>` s in the range `0..255` separated by dots `.`
 
 Examples: `192.168.1.2`, `255.255.128` 
 
