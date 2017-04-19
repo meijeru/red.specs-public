@@ -671,7 +671,7 @@ The contents of the `<block>` are copied.
                     float! 32 | float! 64 | percent! 32 | percent! 64
 ....
 The `<integer>` should be non-negative. It produces an empty `vector!` value with the prescribed
-number of components of type `integer!` and size 32 being allocated.
+number of components of type `integer!` and size 32 being allocated _** and set to zero **_.
 The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
 the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the assumed type
