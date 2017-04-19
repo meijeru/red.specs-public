@@ -115,11 +115,6 @@ is to provide low-level system programming capabilities, and it serves both as
 a tool to build Red's runtime library and as intermediate language for the
 compiler to generate machine code from.
 
-The standard interpretation of Red values might be called the _do dialect_,
-since the built-in function `do`, when supplied with an argument which is a
-sequence of Red values, will evaluate them according to the evaluation rules
-given here (cf. the Lisp function `eval`).
-
 == Types
 
 === Type list
