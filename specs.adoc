@@ -451,8 +451,8 @@ further defined in the grammar is explained in the individual sub-sections of se
     <constructor> ::= #[ <value>* ]     ; reserved for general typed value constructor
 
 In what follows, terms like `<integer>` will be used to refer to lexemes;
-to indicate the corresponding value, terms like "value of type `integer!` ",
-"`integer!` value" or plain "integer" will be used.
+to indicate the corresponding value, terms like "value of type `integer!`,
+`integer!` value" or plain "integer" will be used.
 
 == Representation of values
 
