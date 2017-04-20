@@ -324,7 +324,7 @@ any-type!
 |  |  |  |--char!          
 |  |  |  |--number!        
 |  |  |  |  |--integer!     
-|  |  |  |  |--any-float!   
+|  |  |  |  |--any-float!   <---- see issue #2565
 |  |  |  |     |--float!     
 |  |  |  |     |--percent!   
 |  |  |  |--time!          
