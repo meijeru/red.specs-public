@@ -198,7 +198,9 @@ Not all types listed have lexically or syntactically determined values. Those th
 may have their values generally be represented in programs by
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
-This is explained in detail in section 6.
+This is explained in detail in section 6. _**An alternative, indirect syntactical representation,
+will be offered for a number of types (or all??) in the form of construction syntax
+`#[<type> <spec>]`**_.
 
 ==== Direct/Indirect/Function types
 
@@ -751,6 +753,7 @@ TBD
 <argument-name> ::= <word> | '<word> | :<word>
 <argument-doc> ::= <string>
 <optional-argument> ::= <refinement> <argument-doc>° <argument>*
+<refinement> ::= /<word>
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
@@ -899,6 +902,8 @@ Recall the structure of `path!` values:
     <selector> ::= <integer> | <word> | :<word> | <paren>
 ....
 
+The evaluation of a `path!` value proceeds as follows:
+
 . Start from the first path component. This `<path-head>` is a `<word>`.
 . Evaluate the `<path-head>` value.
 .. If the result is a value of composite type (except `file!` and `url!`),
@@ -907,9 +912,11 @@ a component of the composite value as described in the next step.
 .. If the result is of `file!` or `url!` type and there are one or more
 next elements each of which is a `<selector>`, the result is currently
 a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
-.. If the result is a value of `any-function!` type,
-evaluate the result according to the rules for values of function types
-(see section xxx).
+.. If the result is a value of `any-function!` type, each following
+`<selector>`, if any, should be a refinement of the function, i.e a `word!` value,
+corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
+Evaluate the combination of the result and the function refinements according
+to the rules for values of function types (see section xxx).
 .. If the result is of any other type, the path is in error.
 . Determine the type of the `<selector>`.
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
@@ -933,17 +940,52 @@ and go to the previous step, otherwise the result of the evaluation is obtained.
 
 === Function types
 
-==== action! type
+Values of `any-function!` type must be evaluated together with any
+function refinements (`word!` values that are found as `<selector>` in a `path!`
+value whose `<path-head>` evaluates to the `any-function!` value). 
 
-==== native! type
+Recall the basic structure of the `<argument-spec>`, which is valid for all
+values of `any-function!` type:
+
+**`S121`**::
+....
+<argument-spec> ::= <argument>* <optional-argument>*
+<argument> ::= <argument-name> | <argument-name> [<typeset-element>*]
+<argument-name> ::= <word> | '<word> | :<word>
+<optional-argument> ::= <refinement> <argument>*
+<refinement> ::= /<word>
+....
+
+The evaluation of `function!`, `action!` and `native!` values proceeds as follows
+("function" refers to any of these values):
+
+. If the function does not have any arguments (optional or not), evaluate
+the body of the function to yield the result of the function.
+. If the function has any arguments (optional or not), create a context
+specific to this function.
+.. If no function refinements are present, evaluate as many subsequent values as correspond
+to the non-optional arguments, except that when the `<argument-name>`
+is a `'<word>`, do not evaluate the corresponding value, and if the
+`<argument-name>` is a `:<word>`, _**then do what??**_.
+Bind the `<word>` of each `<argument name>` to the context just created, and make it refer to
+the corresponding value.
+.. If function refinements are present, match each of them with the corresponding `<refinement>`
+in the `<argument-spec>`. Bind the `<word>` of the `<refinement>` to the context, and make it
+refer to `true`. Furthermore, process each `<argument>` following the `<refinement>`
+as in the previous sub-step, evaluating the necessary values and performing the binding.
+Finally, bind each `<word>` of a `<refinement>`
+not matched by a function refinement, as well as each `<word>` of an `<argument-name>`
+that follows that `<refinement>`, to the context and make it refer to `none`.
+.. Evaluate the body of the function to yield the result of the function.
+
+Note that the order of the values to be supplied for the optional arguments is dictated
+by the order of the function refinements present, *not* by the order of the `<refinement>` s
+in the `<argument-spec>`. Note also that for `action!` and `native!` values,
+the function body is part of the run-time system.
 
 ==== op! type
 
-==== function! type
-
 ==== routine! type
-
-==== Options and optional arguments
 
 === Reduction
 
