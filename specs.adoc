@@ -866,17 +866,17 @@ Words are bound to contexts as a result of:
 
 == Evaluation rules
 
-`a -> b` will be used to signify evaluation relation, from value or type `a` to value or type `b`.
+`a -> b` will be used to signify evaluation from value or type `a` to value or type `b`.
 
 === Passive types
 
-**`E100`**:: For all values of `passive!` types: `value -> value`. This is called the **identity rule**.
+**`E100`**:: For all values of passive types: `<value> -> <value>`. This is called the **identity rule**.
 
 === Decaying types
 
-**`E101`**:: `lit-word! -> word!`. Evaluating a `'word` value results in its `word` counterpart.
+**`E101`**:: `lit-word! -> word!`. Evaluating a `'<word>` results in its `<word>` counterpart.
 
-**`E102`**:: `lit-path! -> path!`. Evaluating a `'v0/v1/.../vn` value results in its `v0/v1/.../vn` counterpart.
+**`E102`**:: `lit-path! -> path!`. Evaluating a `'<path>` results in its `<path>` counterpart.
 
 === Active types
 
@@ -901,9 +901,12 @@ Recall the structure of `path!` values:
 
 . Start from the first path component. This `<path-head>` is a `<word>`.
 . Evaluate the `<path-head>` value.
-.. If the result is a value of composite type, the next element is a `<selector>`
-which will yield a component of the composite value as described
-in the next step.
+.. If the result is a value of composite type (except `file!` and `url!`),
+and there is a next element which is a `<selector>`, this will yield
+a component of the composite value as described in the next step.
+.. If the result is of `file!` or `url!` type and there are one or more
+next elements each of which is a `<selector>`, the result is currently
+a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
 .. If the result is a value of `any-function!` type,
 evaluate the result according to the rules for values of function types
 (see section xxx).
