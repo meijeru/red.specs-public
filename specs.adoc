@@ -956,13 +956,15 @@ values of `any-function!` type:
 <refinement> ::= /<word>
 ....
 
-The evaluation of `function!`, `action!` and `native!` values proceeds as follows
-("function" refers to any of these values):
+==== `function!` and `action!` types
+
+The evaluation of `function!` and `action!` values proceeds as follows
+("function" refers to either of these values):
 
 . If the function does not have any arguments (optional or not), evaluate
 the body of the function to yield the result of the function.
 . If the function has any arguments (optional or not), create a context
-specific to this function.
+specific to this function value.
 .. If no function refinements are present, evaluate as many subsequent values as correspond
 to the non-optional arguments, except that when the `<argument-name>`
 is a `'<word>`, do not evaluate the corresponding value, and if the
@@ -983,9 +985,11 @@ by the order of the function refinements present, *not* by the order of the `<re
 in the `<argument-spec>`. Note also that for `action!` and `native!` values,
 the function body is part of the run-time system.
 
-==== op! type
+==== `op!` type
 
-==== routine! type
+==== `native!` type
+
+==== `routine!` type
 
 === Reduction
 
