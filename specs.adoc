@@ -632,8 +632,9 @@ Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{AQID}`
 
 **`S113`**::
 ....
-    <path> ::= <word>/<selector> | <path>/<selector>
-    <selector>::= <integer> | <word> | :<word> | <paren>
+    <path> ::= <path-head>/<selector>
+    <path-head> ::= <word> | <path>
+    <selector> ::= <integer> | <word> | :<word> | <paren>
 ....
 
 Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part`
@@ -879,15 +880,49 @@ Words are bound to contexts as a result of:
 
 === Active types
 
-==== word! type
+==== `word!` type
 
-==== get-word! type
+==== `get-word!` type
 
-==== set-word! type
+==== `set-word!` type
 
-==== paren! type
+==== `paren!` type
 
-==== path! type
+==== `path!` type
+
+Recall the structure of `path!` values:
+
+**`S113`**::
+....
+    <path> ::= <path-head>/<selector>
+    <path-head> ::= <word> | <path>
+    <selector> ::= <integer> | <word> | :<word> | <paren>
+....
+
+. Start from the first path component. This `<path-head>` is a `<word>`.
+. Evaluate the `<path-head>` value.
+.. If the result is a value of composite type, the next element is a `<selector>`
+which will yield a component of the composite value as described
+in the next step.
+.. If the result is a value of `any-function!` type,
+evaluate the result according to the rules for values of function types
+(see section xxx).
+.. If the result is of any other type, the path is in error.
+. Determine the type of the `<selector>`.
+.. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
+or `any-object!`, the result is the component at the index given
+by the `integer!` value (0-origin for `bitset!` values,
+1-origin for values of all other composite types). The allowable values
+of the index are specified in section xxx.
+.. If the `<selector>` is an `<integer>` and the composite type is `map!`
+the result is obtained as in the next sub-step. If the `<selector>` is an
+`<integer>` and the composite type is `any-object!` the path is in error.
+.. If the `<selector>` is a `<word>`, the result is obtained by applying
+the built-in function `select` with arguments `<path-head>` and `<selector>`.
+.. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
+and then go to the beginning of this step.
+.. If a further `<selector>` is present, use the result as `<path-head>`
+and go to the previous step, otherwise the result of the evaluation is obtained.
 
 ==== get-path! type
 
