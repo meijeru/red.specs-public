@@ -892,22 +892,36 @@ Words are bound to contexts as a result of:
 
 ==== `word!` type
 
+**`E103`**::
+TBD
+
 ==== `get-word!` type
+
+**`E104`**::
+TBD
 
 ==== `set-word!` type
 
+**`E105`**::
+TBD
+
 ==== `paren!` type
+
+**`E106`**::
+TBD
 
 ==== `path!` type
 
 Recall the structure of `path!` values:
 
-**`S113`**::
+**`(S113)`**::
 ....
     <path> ::= <path-head>/<selector>
     <path-head> ::= <word> | <path>
     <selector> ::= <integer> | <word> | :<word> | <paren>
 ....
+
+**`E107`**::
 
 The evaluation of a `path!` value proceeds as follows:
 
@@ -944,7 +958,13 @@ the result of the evaluation is obtained.
 
 ==== get-path! type
 
+**`E108`**::
+TBD
+
 ==== set-path! type
+
+**`E109`**::
+TBD
 
 === Function types
 
@@ -955,7 +975,7 @@ value whose `<path-head>` evaluates to the `any-function!` value).
 Recall the basic structure of the `<argument-spec>`, which is valid for all
 values of `any-function!` type:
 
-**`S121`**::
+**`(S121)`**::
 ....
 <argument-spec> ::= <argument>* <optional-argument>*
 <argument> ::= <argument-name> | <argument-name> [<typeset-element>*]
@@ -965,6 +985,8 @@ values of `any-function!` type:
 ....
 
 ==== `function!` and `action!` types
+
+**`E110`**::
 
 The evaluation of `function!` and `action!` values proceeds as follows
 ("function" refers to either of these values):
@@ -995,9 +1017,18 @@ the function body is part of the run-time system.
 
 ==== `op!` type
 
+**`E111`**::
+TBD
+
 ==== `native!` type
 
+**`E112`**::
+TBD
+
 ==== `routine!` type
+
+**`E113`**::
+TBD
 
 === Reduction
 
