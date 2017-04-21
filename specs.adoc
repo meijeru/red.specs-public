@@ -712,7 +712,7 @@ Examples: `make image! 200x300, make image! [200x300 255.0.0], make image! [2x2 
 **`S118`**::
 ....
 <bitset> ::= make bitset! <binary> | make bitset! <bitset-spec> | charset <bitset-spec>
-<bitset-spec> ::= <integer> | <char> | <string> | [<bit-position>*]
+<bitset-spec> ::= <integer> | <char> | <string> | [<bit-position>*] | [not <bit-position>*]
 <bit-position> ::= <integer> | <char> | <string> | <char> - <char> | <integer> - <integer>
 ....
 
@@ -728,6 +728,8 @@ or ranges of them, that are to be set to `true`. The `<char>` is interpreted as 
 A `<string>` is interpreted as the collection of all its component characters.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
+A <bitset-spec> that is a block starting with `not` produces the bit-by-bit complement of the bitset
+produced by the following `<bit-position>` s.
 
 Examples: `make bitset! 16, charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 
