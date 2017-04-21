@@ -728,8 +728,8 @@ or ranges of them, that are to be set to `true`. The `<char>` is interpreted as 
 A `<string>` is interpreted as the collection of all its component characters.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
-A <bitset-spec> that is a block starting with `not` produces the bit-by-bit complement of the bitset
-produced by the following `<bit-position>` s.
+A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
+produced by the following bit-position numbers, while actually storing only these bit-positions.
 
 Examples: `make bitset! 16, charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 
