@@ -68,7 +68,7 @@ said to be the final authority on what the Red language is.
 
 === Values and types
 
-An important property of Red is that any Red program is an _ordered sequence
+An important property of Red is that any Red program is a _sequence
 of Red values_, i.e. code and data are a priori indistinguishable.
 In other words, Red is _homoiconic_. Thus, interpretation of a Red program
 is tantamount to evaluating each of its constituent values in turn,
@@ -102,18 +102,19 @@ The users may furthermore use and interpret Red values, when considered as _data
 in ways of their own, and thus create _dialects_ or _Domain Specific Languages
 (DSLs_).
 
-In fact, Red itself contains
-a number of dialects where blocks of data are interpreted in a specific way:
-the _system dialect_ (Red/System, see next paragraph), the _parse dialect_,
-the _visual interface dialect (VID)_, which also uses the _draw dialect_,
-the various _spec dialects_ involved in defining functions, objects, bitsets,
-vectors, the _compose dialect_ and more.
+In fact, Red itself contains a number of dialects where blocks of data are
+interpreted in a specific way; this includes
+the _parse dialect_, the _visual interface dialect (VID)_, which also uses
+the _draw dialect_, the various _spec dialects_ involved in defining functions,
+objects, bitsets, vectors, the _compose dialect_ and the _system dialect_
+(Red/System).
 
 Red/System is on the one hand a language of its own: programs written in Red/System
 can be compiled and executed using the toolchain. As a dialect of Red its purpose
 is to provide low-level system programming capabilities, and it serves both as
 a tool to build Red's runtime library and as intermediate language for the
-compiler to generate machine code from.
+compiler to generate machine code from. Red/System is specified in a separate
+document (see list at end of this document).
 
 == Types
 
@@ -219,10 +220,10 @@ is that of _function types_, where pointers to the argument list and the body ar
 Values of certain types have _components_ which may be extracted and/or changed using a variety of
 facilities which will be specified below under evaluation. Such types are called _composite_ 
 and the others are _atomic_. All indirect types are composite, but the converse is not true:
-function types are composite. as well as some direct types. Note that component selection
+some direct types are also composite. Hoever, component selection
 in values of direct types cannot be used to change the component, only to extract it.
-Binding such a component to a value results in a new instance of the direct value being created,
-having the changed component.
+Making such a component refer to a new value results in a new instance of the direct value
+being created, having the changed component.
 
 ==== Types that admit reflection
 
@@ -311,7 +312,7 @@ handle!           W                 D                A                          
 
 For the convenience of the user, certain typesets have been pre-defined
 which group related types. These will notably be used for indicating
-the allowed types of arguments to polymorphic functions. E.g. `add` takes
+the allowed types of arguments to polymorphic functions. E.g. `power` takes
 two arguments whose types are in the typeset `number!`.
 
 ....
@@ -388,20 +389,6 @@ properly nested pairs, and are the following: `( ), [ ], #( ), #[ ]`. A sequence
 enclosed in matching grouping tokens represents a Red _grouped value_ of a certain type,
 and this construct may again be enclosed in grouping tokens etc. 
 
-As a rule, lexemes must be separated from each other and from grouping tokens by
-one or more _whitespace characters_. In the Red source text, whitespace characters are
-space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`)
-and non-breaking space (`U+00A0`).
-
-_**This is most certainly short of some whitespace values, please correct See also issue #2492**_
-
-In certain cases, where there can be no ambiguity, the requirement for whitespace between values
-can be relaxed. For example, it is possible to omit whitespace between two consecutive block!
-values and between word! values and block! values. These two examples are both syntatically valid:
-
-     equal?[1234][1234]
-     equal?           [1234]         [1234]
-
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
 and/or the reader. The relevant data will be described _**at the appropriate point**_.
 
@@ -447,6 +434,20 @@ further defined in the grammar is explained in the individual sub-sections of se
     <map> ::=      #( <value>* )        ; map! even number of values only
     <constructor> ::= #[ <value>* ]     ; reserved for general typed value constructor
 
+As a rule, lexemes must be separated from each other and from grouping tokens by
+one or more _whitespace characters_. In the Red source text, whitespace characters are
+space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`)
+and non-breaking space (`U+00A0`).
+
+_**This is most certainly short of some whitespace values, please correct See also issue #2492**_
+
+In certain cases, where there can be no ambiguity, the requirement for whitespace between values
+can be relaxed. For example, it is possible to omit whitespace between two consecutive block!
+values and between word! values and block! values. These two examples are both syntatically valid:
+
+     equal?[1234][1234]
+     equal?           [1234]         [1234]
+
 In what follows, terms like `<integer>` will be used to refer to lexemes;
 to indicate the corresponding value, terms like "value of type `integer!`,
 `integer!` value" or plain "integer" will be used.
@@ -455,8 +456,9 @@ to indicate the corresponding value, terms like "value of type `integer!`,
 
 === Introduction
 
-The types listed in rule S100 are the only ones that have lexically or syntactically determined values.
-Values that are not lexically or syntactically determined may generally be represented in programs by
+The types whose names are mentioned in rule S100 (`integer!` to `map!`) are the only ones
+that have lexically or syntactically determined values. Values that are not lexically
+or syntactically determined may generally be represented in programs by
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
 For several types, the available values are referred to by words at program start: `none!` has `none`,
@@ -511,9 +513,9 @@ Examples: `10:20`, `10:20:30.456`, `20:30.5`, `-1:00:00`
 ==== `tuple!`
 
 **`S104`**::
-A `tuple!` value is written as 3 to 12 `<integer>` s in the range `0..255` separated by dots `.`
+A `tuple!` value is written as 3 to 12 `integer!` values in the range `0..255` separated by dots `.`
 
-Examples: `192.168.1.2`, `255.255.128` 
+Examples: `192.168.1.2` (an IPv4 address), `255.255.128` (an RGB value)
 
 ==== `word!`
 
@@ -521,11 +523,12 @@ Examples: `192.168.1.2`, `255.255.128`
 A `word!` value is written as one or more characters from the entire Unicode range excluding control characters
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
 A `word!` value does not begin with `0-9` or `'`.
-Punctuation characters from the ASCII subset that *are* allowed in words are: `! & ' * + - . < = > ? _ `` `| ~`.
 Words are _case-insensitive_, i.e. changing any letter in the word into the corresponding upper- or lower-case
 variant does not create a different word.
 
 Examples: `abc`, `Abc`, `ABC`, `+`, `<>`, `integer!`, `last-item?` ; the first three are the same `word!` value.
+
+Note: punctuation characters from the ASCII subset that *are* allowed in words are: `! & ' * + - . < = > ? _ `` `| ~`.
 
 ==== `char!`
 
@@ -539,7 +542,7 @@ Examples: `abc`, `Abc`, `ABC`, `+`, `<>`, `integer!`, `last-item?` ; the first t
 ....
 where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
-A `char!` value must be a valid single Unicode code point, i.e. an integer in the range 0 to 10FFFFF (hexadecimal notation). 
+A `char!` value must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFFF` (hexadecimal notation). 
 
 A `<viewable character>` is, in most cases, simply a displayable character. For example, `e`, `é`, `€` or `😀`.
 When a displayable character requires two or more graphemes to display it, each grapheme requires a separate Red character.
@@ -548,7 +551,7 @@ the combining `´` (`U+0301`) they cannot be considered a single `char!` value.
 
 The correspondence between the escaped characters and Unicode code points is given in the table below.
 
-     Named Form   Short Form    Character           Codepoint
+     Named Form   Short Form    Character           Code point
      #"^(null)    #"^@"         null                U+0000
      #"^(back)"   #"^H"         backspace           U+0008
      #"^(tab)"    #"^I" #"^-"   horizontal tab      U+0009
@@ -821,7 +824,7 @@ In addition to the global context, any number of contexts may exist during
 program execution. Every _object_ (value of type `object!`) gives rise to a
 context, containing the field-name/value pairs of the object. Every function 
 (value of type `function!`) also gives rise to a context, which contains
-the pairs of formal parameter name and actual argument value to be used by 
+the pairs of formal argument name and actual argument value to be used by 
 the body of the function when it is executed.
 
 The user may access the context of a word reflectively through the built-in
@@ -837,7 +840,7 @@ Words are bound to contexts as a result of:
 
 * lexical analysis
 - notably when the program containing the words is submitted to the toolchain
-- or when a string representing some values is submitted to the REPL
+- or when a string representing some values, including words, is submitted to the REPL
 - or through application of the built-in `load` function
 * applying the built-in `set` function
 * evaluating a `set-word!` value
@@ -913,9 +916,9 @@ a component of the composite value as described in the next step.
 next elements each of which is a `<selector>`, the result is currently
 a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
 .. If the result is a value of `any-function!` type, each following
-`<selector>`, if any, should be a refinement of the function, i.e a `word!` value,
+`<selector>`, if any, should be an actual refinement of the function, i.e a `word!` value,
 corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
-Evaluate the combination of the result and the function refinements according
+Evaluate the combination of the result and the actual refinements according
 to the rules for values of function types (see section xxx).
 .. If the result is of any other type, the path is in error.
 . Determine the type of the `<selector>`.
@@ -941,7 +944,7 @@ and go to the previous step, otherwise the result of the evaluation is obtained.
 === Function types
 
 Values of `any-function!` type must be evaluated together with any
-function refinements (`word!` values that are found as `<selector>` in a `path!`
+actual refinements (`word!` values that are found as `<selector>` in a `path!`
 value whose `<path-head>` evaluates to the `any-function!` value). 
 
 Recall the basic structure of the `<argument-spec>`, which is valid for all
@@ -965,24 +968,24 @@ The evaluation of `function!` and `action!` values proceeds as follows
 the body of the function to yield the result of the function.
 . If the function has any arguments (optional or not), create a context
 specific to this function value.
-.. If no function refinements are present, evaluate as many subsequent values as correspond
+.. If no actual refinements are present, evaluate as many subsequent values as correspond
 to the non-optional arguments, except that when the `<argument-name>`
 is a `'<word>`, do not evaluate the corresponding value, and if the
 `<argument-name>` is a `:<word>`, _**then do what??**_.
 Bind the `<word>` of each `<argument name>` to the context just created, and make it refer to
 the corresponding value.
-.. If function refinements are present, match each of them with the corresponding `<refinement>`
+.. If actual refinements are present, match each of them with the corresponding `<refinement>`
 in the `<argument-spec>`. Bind the `<word>` of the `<refinement>` to the context, and make it
 refer to `true`. Furthermore, process each `<argument>` following the `<refinement>`
 as in the previous sub-step, evaluating the necessary values and performing the binding.
 Finally, bind each `<word>` of a `<refinement>`
-not matched by a function refinement, as well as each `<word>` of an `<argument-name>`
+not matched by an acatual refinement, as well as each `<word>` of an `<argument-name>`
 that follows that `<refinement>`, to the context and make it refer to `none`.
 .. Evaluate the body of the function to yield the result of the function.
 
 Note that the order of the values to be supplied for the optional arguments is dictated
-by the order of the function refinements present, *not* by the order of the `<refinement>` s
-in the `<argument-spec>`. Note also that for `action!` and `native!` values,
+by the order of the actual refinements present, *not* by the order of the `<refinement>` s
+in the `<argument-spec>`. Note also that for `action!` values,
 the function body is part of the run-time system.
 
 ==== `op!` type
@@ -1740,6 +1743,11 @@ internal ( 900 )
     routines -> {routines require compilation, from OS shell: `red -c <script.red>`}
     red-system -> {contains Red/System code which requires compilation}
 ....
+
+== Metadata for the toolchain
+
+TBD
+
 == Additional documentation
 
 The following is a list of official documents that complement the information given in this one.
