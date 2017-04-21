@@ -109,7 +109,9 @@ the _draw dialect_, the various _spec dialects_ involved in defining functions,
 objects, bitsets, vectors, the _compose dialect_ and the _system dialect_
 (Red/System).
 
-Red/System is on the one hand a language of its own: programs written in Red/System
+Red/System is on the one hand a language of its own: it is a C-level language
+with memory pointer support and a very basic and limited set of datatypes.
+Programs written in Red/System
 can be compiled and executed using the toolchain. As a dialect of Red its purpose
 is to provide low-level system programming capabilities, and it serves both as
 a tool to build Red's runtime library and as intermediate language for the
