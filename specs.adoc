@@ -907,8 +907,9 @@ Recall the structure of `path!` values:
 
 The evaluation of a `path!` value proceeds as follows:
 
-. Start from the first path component. This `<path-head>` is a `<word>`.
-. Evaluate the `<path-head>` value.
+. Start from the first path component. This `<path-head>` is a `<word>`. Evaluate
+the `<path-head>`.
+. Determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in the next step.
@@ -934,8 +935,9 @@ the result is obtained as in the next sub-step. If the `<selector>` is an
 the built-in function `select` with arguments `<path-head>` and `<selector>`.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
 and then go to the beginning of this step.
-.. If a further `<selector>` is present, use the result as `<path-head>`
-and go to the previous step, otherwise the result of the evaluation is obtained.
+.. If a further `<selector>` is present, use the result just obtained as 
+evaluated `<path-head>` and go to the previous step, otherwise finish:
+the result of the evaluation is obtained.
 
 ==== get-path! type
 
@@ -979,7 +981,7 @@ in the `<argument-spec>`. Bind the `<word>` of the `<refinement>` to the context
 refer to `true`. Furthermore, process each `<argument>` following the `<refinement>`
 as in the previous sub-step, evaluating the necessary values and performing the binding.
 Finally, bind each `<word>` of a `<refinement>`
-not matched by an acatual refinement, as well as each `<word>` of an `<argument-name>`
+not matched by an actual refinement, as well as each `<word>` of an `<argument-name>`
 that follows that `<refinement>`, to the context and make it refer to `none`.
 .. Evaluate the body of the function to yield the result of the function.
 
