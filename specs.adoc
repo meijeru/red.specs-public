@@ -277,7 +277,7 @@ percent!          L                 D                A                          
 time!             L                 D                C                            P              float!
 pair!             L                 D                C                            P
 tuple!            L                 D                C                            P
-word!             L                 D                A                            A
+word!             L                 D                A             R              A
 lit-word!         L                 D                A                            D               word!
 set-word!         L                 D                A                            A               word!
 get-word!         L                 D                A                            A               word!
@@ -814,8 +814,8 @@ can refer to. In Red, values are strongly typed, but words, when used like
 variables or keywords, are not.
 
 For practical purposes, words are internally represented by three items:
-a pointer to a context (see next section), an index in a symbol table,
-and an index in the context, which facilitates retrieving the value the
+a pointer to a context, an index in a symbol table which contains the symbol, 
+and an index in the context which facilitates retrieving the value the
 word refers to. Each occurrence of a word carries these three items
 individually, and each occurence of a word with the same symbol can
 therefore be bound to a different context, and refer to a different value.
@@ -850,7 +850,8 @@ function `context-of` _**(this is still called `context?` but there is interest
 in changing its name)**_ which can be applied to any word and will yield the
 context the word is bound to, in the form of an object or function
 as the case may be. Asking for the global context yields the object
-`system/words`.
+`system/words`. The index of the word in its context may be obtained through
+the built-in function `index?`.
 
 === Binding
 
