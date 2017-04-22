@@ -140,10 +140,10 @@ pair!           2-dimensional coordinates or size
 tuple!          color in RGB or other scheme, IPv4 adres
 word!           identifier that can be bound
 lit-word!       quoted (unevaluated) word
-set-word!       word to be bound
+set-word!       word to be given a value to refer to
 get-word!       word to be evaluated
 refinement!     optional argument of function
-issue!          identifier that cannot be bound
+issue!          literal identifier (word that does not refer to a value)
 block!          ordered collection of values of any type (polymorphic array),
                 may also be used as unordered collection (set)
 hash!           block with quick access
@@ -151,19 +151,19 @@ paren!          differs from block in behaviour under evaluation
 path!           specifying optional arguments in function calls,
                 selection of components of composite values
 lit-path!       quoted (unevaluated) path
-set-path!       setting a component of a composite value
+set-path!       for setting a component of a composite value
 get-path!       path to be evaluated
 vector!         ordered sequences of values of identical type, which can be
                 char! or integer! (8/16/32 bits), percent! or float! (32/64 bits);
                 default: 32 bits for char! or integer! and 64 bits otherwise
-string!         ordered sequence of characters (Unicode Code Points)
+string!         sequence of characters (Unicode Code Points)
 file!           file or directory (folder)
 url!            URL
 tag!            tag in the sense of HTML, XML etc.
 email!          email-address
-binary!         ordered sequence of bytes
+binary!         sequence of bytes
 image!          2-dimensional array of pixels (RGBA values encoded in 4 bytes each)) 
-bitset!         ordered sequence of values true or false
+bitset!         sequence of values true or false
 map!            collection of pairs of values where the first value in each pair functions
                 as key for retrieval of the second; keys are restricted to types
                 any-word!, any-string!, number!, char!, pair!, tuple!
@@ -553,9 +553,9 @@ When a displayable character requires two or more graphemes to display it, each 
 For example, when `é` is encoded in its two character decomposed form `e` (`U+0065`) followed by
 the combining `´` (`U+0301`) they cannot be considered a single `char!` value.
 
-The correspondence between the escaped characters and Unicode code points is given in the table below.
+The correspondence between the escaped characters and Unicode Code Points is given in the table below.
 
-     Named Form   Short Form    Character           Code point
+     Named Form   Short Form    Character           Code Point
      #"^(null)    #"^@"         null                U+0000
      #"^(back)"   #"^H"         backspace           U+0008
      #"^(tab)"    #"^I" #"^-"   horizontal tab      U+0009
@@ -797,19 +797,30 @@ Example: `&&: make op! func [a b][all [a b]]`.
 
 == Words, contexts and binding
 
+=== Words
+
 Red uses _words_ (values of type `word!`) to access values in much the same
-way that other languages use variables. However, in Red, words *do not*
+way that other languages use variables. However, in Red, words do not
 "store" values. Rather, a word _refers to a value_ in some _context_. i.e.
 evaluating the word in that context yields the value. We say that the word
 is _bound to_, or _in_ the context. Since functions, 
-ncluding built-in functions and operators, are also values in Red, the words
+including built-in functions and operators, are also values in Red, the words
 that refer to these values appear to work like keywords in other languages.
 
-Thus all word values have two important properties in this regard: their
+Thus all `word!` values have two important properties in this regard: their
 symbol, that is their spelling (disregarding case), and the context they are
 bound to. Something words *do not* have is a restriction on what values they
 can refer to. In Red, values are strongly typed, but words, when used like
 variables or keywords, are not.
+
+For practical purposes, words are internally represented by three items:
+a pointer to a context (see next section), an index in a symbol table,
+and an index in the context, which facilitates retrieving the value the
+word refers to. Each occurrence of a word carries these three items
+individually, and each occurence of a word with the same symbol can
+therefore be bound to a different context, and refer to a different value.
+The above goes also for values of types `lit-word!`, `set-word!`, `get-word!`,
+`refinement!` and `issue!`.
 
 _**The removed paragraph duplicated what was said under direct/indirect types**_
 
@@ -817,8 +828,9 @@ _**The removed paragraph duplicated what was said under direct/indirect types**_
 
 A _context_ in Red is a collection of word/value pairs. The words in
 this collection are all different, and the values are the values the words
-refer to. You can think of it like two columns, where the first is a list
-of unique symbols and the second contains a matching value for each.
+refer to. One can think of it as being composed of two columns,
+where the first is a list of unique symbols and the second contains
+a corresponding value for each.
 
 There is one _global context_ containing all words that have passed lexical
 analysis as well as those that have been pre-defined in the toolchain, and
