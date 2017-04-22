@@ -866,8 +866,27 @@ Words are bound to contexts as a result of:
 * applying a function to its arguments
 * applying the built-in `bind` function
 
+Details of the binding process in these cases are given in the following sub-sections.
 
+==== Lexical analysis
 
+TBD
+
+==== Setting words to values
+
+TBD
+
+==== Object creation
+
+TBD
+
+==== Function application
+
+TBD
+
+==== Built-in `bind` function
+
+TBD
 
 == Comparison
 
@@ -882,25 +901,29 @@ Words are bound to contexts as a result of:
 === Type comparisons
 
 
-== Creation and conversion of values
+== Creation, conversion and casting of values
 
 === Creation (make)
 
+_**This section necessary for two reasons: make applies in more cases than
+described above, and make may take second seat if construction syntax is
+exposed first**_
+
 === Conversion (to)
+
+=== Casting (as)
 
 == Evaluation rules
 
-`a -> b` will be used to signify evaluation from value or type `a` to value or type `b`.
-
 === Passive types
 
-**`E100`**:: For all values of passive types: `<value> -> <value>`. This is called the **identity rule**.
+**`E100`**:: For all values of passive types evaluation yields the value itself. This is called the **identity rule**.
 
 === Decaying types
 
-**`E101`**:: `lit-word! -> word!`. Evaluating a `'<word>` results in its `<word>` counterpart.
+**`E101`**:: Evaluating a `'<word>` results in its `<word>` counterpart.
 
-**`E102`**:: `lit-path! -> path!`. Evaluating a `'<path>` results in its `<path>` counterpart.
+**`E102`**:: Evaluating a `'<path>` results in its `<path>` counterpart.
 
 === Active types
 
@@ -939,8 +962,7 @@ Recall the structure of `path!` values:
 
 The evaluation of a `path!` value proceeds as follows:
 
-. Start from the first path component. This `<path-head>` is a `<word>`. Evaluate
-the `<path-head>`.
+. Start with the first path component. Evaluate this `<path-head>` which is a `<word>`.
 . Determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, this will yield
@@ -1007,21 +1029,20 @@ The evaluation of `function!` and `action!` values proceeds as follows
 
 . If the function does not have any arguments (optional or not), evaluate
 the body of the function to yield the result of the function.
-. If the function has any arguments (optional or not), create a context
-specific to this function value.
-.. If no actual refinements are present, evaluate as many subsequent values as correspond
+. If the function has any arguments (optional or not), create a context specific
+to this function value, with all the words (including words of type
+`lit-word!`, `get-word!` and `refinement!`) occurring in the` <function-spec>`.
+Make all these words initially refer to `none`.
+.. Evaluate as many subsequent values as correspond
 to the non-optional arguments, except that when the `<argument-name>`
 is a `'<word>`, do not evaluate the corresponding value, and if the
 `<argument-name>` is a `:<word>`, _**then do what??**_.
-Bind the `<word>` of each `<argument name>` to the context just created, and make it refer to
-the corresponding value.
+Make the `<word>` of each `<argument name>` refer to the corresponding value.
 .. If actual refinements are present, match each of them with the corresponding `<refinement>`
-in the `<argument-spec>`. Bind the `<word>` of the `<refinement>` to the context, and make it
-refer to `true`. Furthermore, process each `<argument>` following the `<refinement>`
-as in the previous sub-step, evaluating the necessary values and performing the binding.
-Finally, bind each `<word>` of a `<refinement>`
-not matched by an actual refinement, as well as each `<word>` of an `<argument-name>`
-that follows that `<refinement>`, to the context and make it refer to `none`.
+in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
+Furthermore, process each `<argument>` following the `<refinement>`
+as in the previous sub-step, evaluating the necessary values and inserting them in the context.
+.. Bind the body of the function to the context (see sub-section _**Built-in bind function**_).
 .. Evaluate the body of the function to yield the result of the function.
 
 Note that the order of the values to be supplied for the optional arguments is dictated
