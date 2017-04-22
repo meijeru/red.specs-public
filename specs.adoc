@@ -1020,12 +1020,11 @@ values of `any-function!` type:
 <refinement> ::= /<word>
 ....
 
-==== `function!` and `action!` types
+==== `function!` type
 
 **`E110`**::
 
-The evaluation of `function!` and `action!` values proceeds as follows
-("function" refers to either of these values):
+The evaluation of `function!` values proceeds as follows:
 
 . If the function does not have any arguments (optional or not), evaluate
 the body of the function to yield the result of the function.
@@ -1050,19 +1049,24 @@ by the order of the actual refinements present, *not* by the order of the `<refi
 in the `<argument-spec>`. Note also that for `action!` values,
 the function body is part of the run-time system.
 
-==== `op!` type
+==== `action!` type
 
 **`E111`**::
 TBD
 
-==== `native!` type
+==== `op!` type
 
 **`E112`**::
 TBD
 
-==== `routine!` type
+==== `native!` type
 
 **`E113`**::
+TBD
+
+==== `routine!` type
+
+**`E114`**::
 TBD
 
 === Reduction
