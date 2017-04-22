@@ -467,7 +467,7 @@ expressions of the form `make <type> <spec>`, where `<type>` is a type name and 
 is a value that is interpreted by the `make` function as appropriate for the given type.
 For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
-type names pre-defined; likewise `native!`, `action!` and `op!` have all the built-in functions
+type names pre-defined; likewise `native! action!` and `op!` have all the built-in functions
 and operators pre-defined. Values of types `event!` and `handle!`, that are used to
 communicate with operating system, can only be represented by words that are arguments to functions
 handling this communication.
@@ -819,8 +819,8 @@ and an index in the context, which facilitates retrieving the value the
 word refers to. Each occurrence of a word carries these three items
 individually, and each occurence of a word with the same symbol can
 therefore be bound to a different context, and refer to a different value.
-The above goes also for values of types `lit-word!`, `set-word!`, `get-word!`,
-`refinement!` and `issue!`.
+The above goes also for values of types `lit-word! set-word! get-word!
+refinement!` and `issue!`.
 
 _**The removed paragraph duplicated what was said under direct/indirect types**_
 
@@ -886,7 +886,27 @@ TBD
 
 ==== Built-in `bind` function
 
-TBD
+....
+bind: make native! [[
+		word   	[block! any-word!]
+		context [any-word! any-object! function!]
+		/copy
+		return: [block! any-word!]
+....
+
+The built-in function `bind` will change the binding of a word or
+of all words in a block, and will return the modified word or block.
+It operates on values of type `word! lit-word! set-word! get-word!
+refinement!` and `issue!`, and will treat them at any depth within
+the block and its sub-blocks (including values of type `paren! path!
+lit-path! set-path! get-path!` and `hash!`). It will set the context
+of the word(s) to the given context, which is supplied in the
+form of a word (whose context will be used), or of an object or error value
+or a function.
+
+A major application of this function is the binding of the formal arguments
+of a function, as they occur within the function body, to the context which
+contains the actual argument values. See evaluation rule `E110`.
 
 == Comparison
 
@@ -1030,7 +1050,7 @@ The evaluation of `function!` values proceeds as follows:
 the body of the function to yield the result of the function.
 . If the function has any arguments (optional or not), create a context specific
 to this function value, with all the words (including values of type
-`lit-word!`, `get-word!` and `refinement!`) occurring in the `<function-spec>`.
+`lit-word! get-word!` and `refinement!`) occurring in the `<function-spec>`.
 Make all these words initially refer to `none`.
 .. Evaluate as many subsequent values as correspond
 to the non-optional arguments, except that when the `<argument-name>`
