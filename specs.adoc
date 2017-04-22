@@ -887,23 +887,34 @@ TBD
 
 ==== Built-in `bind` function
 
+The built-in function `bind` is a `native!` with the following `<function-spec>`:
 ....
-bind: make native! [[
-		word   	[block! any-word!]
-		context [any-word! any-object! function!]
-		/copy
-		return: [block! any-word!]
+[
+  word    [block! any-word!]
+  context [any-word! any-object! function!]
+  /copy
+  return: [block! any-word!]
+]
 ....
 
-The built-in function `bind` will change the binding of a word or
-of all words in a block, and will return the modified word or block.
+The function will try to change the binding of a word or
+of all words in a block, and will return the (modified) word or block.
 It operates on values of type `word! lit-word! set-word! get-word!
-refinement!` and `issue!`, and will treat them at any depth within
+refinement!` and `issue!` (for brevity, called "words" in the rest of this
+section), and will treat them at any depth within
 the block and its sub-blocks (including values of type `paren! path!
-lit-path! set-path! get-path!` and `hash!`). It will set the context
-of the word(s) to the given context, which is supplied in the
-form of a word (whose context will be used), or of an object or error value
-or a function.
+lit-path! set-path! get-path!` and `hash!`).
+
+For each word to be treated
+it will search for the presence of an equally spelled word in the given context,
+which is supplied in the form of a word (whose context will be used),
+or of an object or error value or a function. If an equally spelled 
+word is found, the function will change the context of the treated word
+to that given context and will adapt the index of the word;
+otherwise, the word is left untouched.
+
+With the `/copy` refinement the `block!` argument will be deep-copied before it
+is modified.
 
 A major application of this function is the binding of the formal arguments
 of a function, as they occur within the function body, to the context which
