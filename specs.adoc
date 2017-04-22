@@ -1030,8 +1030,8 @@ The evaluation of `function!` and `action!` values proceeds as follows
 . If the function does not have any arguments (optional or not), evaluate
 the body of the function to yield the result of the function.
 . If the function has any arguments (optional or not), create a context specific
-to this function value, with all the words (including words of type
-`lit-word!`, `get-word!` and `refinement!`) occurring in the` <function-spec>`.
+to this function value, with all the words (including values of type
+`lit-word!`, `get-word!` and `refinement!`) occurring in the `<function-spec>`.
 Make all these words initially refer to `none`.
 .. Evaluate as many subsequent values as correspond
 to the non-optional arguments, except that when the `<argument-name>`
