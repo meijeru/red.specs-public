@@ -456,7 +456,7 @@ In what follows, terms like `<integer>` will be used to refer to lexemes;
 to indicate the corresponding value, terms like "value of type `integer!`,
 `integer!` value" or plain "integer" will be used.
 
-== Representation of values
+== Values
 
 === Introduction
 
@@ -795,6 +795,9 @@ The `<function>` should have exactly two arguments and no optional arguments.
 
 Example: `&&: make op! func [a b][all [a b]]`.
 
+=== Components of values
+
+
 == Words, contexts and binding
 
 === Words
@@ -828,9 +831,12 @@ _**The removed paragraph duplicated what was said under direct/indirect types**_
 
 A _context_ in Red is a collection of word/value pairs. The words in
 this collection are all different, and the values are the values the words
-refer to. One can think of it as being composed of two columns,
+refer to. One can think of it as a table composed of two columns,
 where the first is a list of unique symbols and the second contains
-a corresponding value for each.
+a corresponding value for each. Each word that is bound in this context
+has its symbol and the value it refers to, positioned in a row of the
+table. The value can be retrieved by finding the symbol, or by using
+an index (row number) in the table.
 
 There is one _global context_ containing all words that have passed lexical
 analysis as well as those that have been pre-defined in the toolchain, and
