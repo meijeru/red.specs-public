@@ -967,8 +967,14 @@ execution is the result of the last evaluation, if any, and the unset value othe
 
 ==== `word!` type
 
-**`E103`**::
-TBD
+**`E103`**:: Evaluating a `<word>` proceeds as follows:
+. Determine the context to which the word is bound._**can it happen that there is no context?**_
+. Obtain the value that the word refers to in this context.
+. Determine the type of this value.
+.. If the type is `unset!` raise an error and yield the unset value as result.
+.. If the type is `error!` raise the error and yield the error value as result.
+.. If the type is in `any-function!` apply the function (see rules `E110-114`).
+.. Otherwise, the result is the value referred to.
 
 ==== `get-word!` type
 
