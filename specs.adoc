@@ -959,6 +959,8 @@ execution is the result of the last evaluation, if any, and the unset value othe
 
 === Decaying types
 
+These are `lit-word!` and `lit-path!`.
+
 **`E101`**:: Evaluating a `'<word>` results in its `<word>` counterpart.
 
 **`E102`**:: Evaluating a `'<path>` results in its `<path>` counterpart.
@@ -978,8 +980,16 @@ execution is the result of the last evaluation, if any, and the unset value othe
 
 ==== `get-word!` type
 
-**`E104`**::
-TBD
+**`E104`**:: Evaluating a `:<word>` proceeds as follows:
+. Determine the context to which the word is bound._**can it happen that there is no context?**_
+. Obtain the value that the word refers to in this context.
+. Determine the type of this value.
+.. If the type is `unset!` yield the unset value as result.
+.. If the type is `error!` (raise the error and) yield the error value as result._**see issue 2621**_
+.. Otherwise, the result is the value referred to.
+
+Note that the difference with evaluating a `<word>` is that no errors are raised
+and that a function value is not applied but is itself yielded as result.
 
 ==== `set-word!` type
 
