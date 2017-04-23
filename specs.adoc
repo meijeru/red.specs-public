@@ -819,8 +819,8 @@ and an index in the context which facilitates retrieving the value the
 word refers to. Each occurrence of a word carries these three items
 individually, and each occurence of a word with the same symbol can
 therefore be bound to a different context, and refer to a different value.
-The above goes also for values of types `lit-word! set-word! get-word!
-refinement!` and `issue!`.
+Values of types `lit-word! set-word! get-word! refinement!` and `issue!`
+have the same binding as the word with the same symbol.
 
 _**The removed paragraph duplicated what was said under direct/indirect types**_
 
