@@ -70,7 +70,7 @@ said to be the final authority on what the Red language is.
 
 An important property of Red is that any Red program is a _sequence
 of Red values_, i.e. code and data are a priori indistinguishable.
-In other words, Red is _homoiconic_. Thus, interpretation of a Red program
+In other words, Red is _homoiconic_. Thus, execution of a Red program
 is tantamount to evaluating each of its constituent values in turn,
 according to the evaluation rules. Each Red _value_ has a _type_ and the types
 themselves are also values of the language. The type of each value can be
@@ -949,7 +949,13 @@ exposed first**_
 
 === Passive types
 
-**`E100`**:: For all values of passive types evaluation yields the value itself. This is called the **identity rule**.
+**`E100`**:: For all values of passive types evaluation yields the value itself.
+This is called the **identity rule**.
+
+Note that `block!` is one of the passive types. Thus evaluation of a block
+leaves the block unchanged. The term _execution of a block_ will be used to
+indicate sequential evaluation of the components of the block; the result of this
+execution is the result of the last evaluation, if any, and the unset value otherwise.
 
 === Decaying types
 
@@ -1058,7 +1064,7 @@ values of `any-function!` type:
 
 The evaluation of `function!` values proceeds as follows:
 
-. If the function does not have any arguments (optional or not), evaluate
+. If the function does not have any arguments (optional or not), execute
 the body of the function to yield the result of the function.
 . If the function has any arguments (optional or not), create a context specific
 to this function value, with all the words (including values of type
@@ -1074,7 +1080,7 @@ in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true
 Furthermore, process each `<argument>` following the `<refinement>`
 as in the previous sub-step, evaluating the necessary values and inserting them in the context.
 .. Bind the body of the function to the context (see sub-section _**Built-in bind function**_).
-.. Evaluate the body of the function to yield the result of the function.
+.. Execute the body of the function to yield the result of the function.
 
 Note that the order of the values to be supplied for the optional arguments is dictated
 by the order of the actual refinements present, *not* by the order of the `<refinement>` s
