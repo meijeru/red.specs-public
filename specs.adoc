@@ -897,7 +897,7 @@ The built-in function `bind` is a `native!` with the following `<function-spec>`
 ]
 ....
 
-The function will try to change the binding of a word or
+The function will try to change the binding of a single word or
 of all words in a block, and will return the (modified) word or block.
 It operates on values of type `word! lit-word! set-word! get-word!
 refinement!` and `issue!` (for brevity, called "words" in the rest of this
@@ -997,13 +997,25 @@ and that a function value is not applied but is itself yielded as result.
 
 ==== `set-word!` type
 
-**`E105`**::
-TBD
+**`E105`**:: Evaluating a `<word>:` outside an `<object-spec>` or a `<map>` (including
+the `<spec>` in `make map! <spec>`) has the effect that the `<word>` in its context
+is made to refer to the value obtained by evaluating the next value(s). An error occurs
+if no value is following or if the value obtained is unset. The result of the evaluation
+is the value obtained. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
+is equivalent to `a: 1 b: 1 c: 1`.
 
 ==== `paren!` type
 
-**`E106`**::
-TBD
+**`E106`**:: The evaluation of a `<paren>` proceeds by the evaluation of its component
+values. The result is the value obtained from the last evaluation. This is similar to the
+execution of a block. The following table compares parens and blocks.
+....
+expression          result of evaluation    comment
+[1 + 2 3 + 4]         [1 + 2 3 + 4]         block! is passive type
+do [1 + 2 3 + 4]      7                     do forces execution
+(1 + 2 3 + 4)         7                     paren! is active type
+quote (1 + 2 3 + 4)   (1 + 2 3 + 4)         quote inhibits evaluation
+....
 
 ==== `path!` type
 
@@ -1090,7 +1102,7 @@ the body of the function to yield the result of the function.
 to this function value, with all the words (including values of type
 `lit-word! get-word!` and `refinement!`) occurring in the `<argument-spec>`.
 Make all these words initially refer to `none`.
-.. Evaluate as many subsequent values as correspond
+.. Evaluate as many subsequent values as needed to obtain values corresponding
 to the non-optional arguments, except that when the `<argument-name>`
 is a `'<word>`, do not evaluate the corresponding value, and if the
 `<argument-name>` is a `:<word>`, _**then do what??**_.
@@ -1098,7 +1110,7 @@ Make the `<word>` of each `<argument name>` refer to the corresponding value.
 .. If actual refinements are present, match each of them with the corresponding `<refinement>`
 in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
 Furthermore, process each `<argument>` following the `<refinement>`
-as in the previous sub-step, evaluating the necessary values and inserting them in the context.
+as in the previous sub-step, evaluating the necessary lexemes and inserting the values obtained in the context.
 .. Bind the body of the function to the context (see sub-section _**Built-in bind function**_).
 .. Execute the body of the function to yield the result of the function.
 
