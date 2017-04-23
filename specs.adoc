@@ -798,6 +798,34 @@ Example: `&&: make op! func [a b][all [a b]]`.
 === Components of values
 
 
+....
+type               components             selectable by
+
+time!             
+pair!             
+tuple!            
+block!            
+hash!             
+paren!            
+path!             
+lit-path!         
+set-path!         
+get-path!         
+vector!           
+string!           
+file!             
+url!              
+tag!              
+email!            
+binary!           
+image!            
+bitset!           
+map!              
+object!           
+error!            
+event!            
+....
+
 == Words, contexts and binding
 
 === Words
