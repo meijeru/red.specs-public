@@ -947,6 +947,10 @@ exposed first**_
 
 == Evaluation rules
 
+General remark: operator application has precedence over application of other functions
+and over set-word target evaluation. Note that in Red all operators (values of type `op!`)
+are binary infix functions. See further rule `E112`.
+
 === Passive types
 
 **`E100`**:: For all values of passive types evaluation yields the value itself.
