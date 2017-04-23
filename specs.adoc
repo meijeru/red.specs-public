@@ -1030,9 +1030,10 @@ Recall the structure of `path!` values:
 
 **`E107`**::
 
-The evaluation of a `path!` value proceeds as follows:
+The evaluation of a `<path>` proceeds as follows:
 
-. Start with the first path component. Evaluate this `<path-head>` which is a `<word>`.
+. Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
+as per rule `E103`.
 . Determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, this will yield
@@ -1047,6 +1048,8 @@ Evaluate the combination of the result and the actual refinements according
 to the rules for values of function types (see section _**Function types**_).
 .. If the result is of any other type, the path is in error.
 . Determine the type of the `<selector>`.
+.. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
+use the value obtained as `<selector>` and go to the beginning of this step .
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
 or `any-object!`, the result is the component at the index given
 by the `integer!` value (0-origin for `bitset!` values,
@@ -1054,18 +1057,56 @@ by the `integer!` value (0-origin for `bitset!` values,
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
 the result is obtained as in the next sub-step. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
-.. If the `<selector>` is a `<word>`, the result is obtained by applying
-the built-in function `select` with arguments `<path-head>` and `<selector>`.
-.. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
-and then go to the beginning of this step.
+.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+indirect type (except `image!`), an intermediate result is obtained by
+applying the built-in function `select`
+with as arguments the evaluated `<path-head>` and `<selector>`.
+.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+direct type or `image!`, an intermediate result is obtained as explained
+_**elsewhere**_.
 .. If a further `<selector>` is present, use the result just obtained as 
 evaluated `<path-head>` and go to the previous step, otherwise finish:
 the result of the evaluation is obtained.
 
 ==== get-path! type
 
+See also rule `E107`.
+
 **`E108`**::
-TBD
+The evaluation of a `:<path>` value proceeds as follows:
+
+. Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
+as per rule `E103`.
+. Determine the type of the evaluated `<path-head>`.
+.. If the result is a value of composite type (except `file!` and `url!`),
+and there is a next element which is a `<selector>`, this will yield
+a component of the composite value as described in the next step.
+.. If the result is of `file!` or `url!` type and there are one or more
+next elements each of which is a `<selector>`, the result is currently
+a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
+.. If the result is a value of `any-function!` type, no following
+`<selector>` is allowed and the result is the function value.
+.. If the result is of any other type, the path is in error.
+. Determine the type of the `<selector>`.
+.. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
+use the value obtained as `<selector>` and go to the beginning of this step .
+.. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
+or `any-object!`, the result is the component at the index given
+by the `integer!` value (0-origin for `bitset!` values,
+1-origin for values of all other composite types).
+.. If the `<selector>` is an `<integer>` and the composite type is `map!`
+the result is obtained as in the next sub-step. If the `<selector>` is an
+`<integer>` and the composite type is `any-object!` the path is in error.
+.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+indirect type (except `image!`), an intermediate result is obtained by
+applying the built-in function `select`
+with as arguments the evaluated `<path-head>` and `<selector>`.
+.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+direct type or `image!`, an intermediate result is obtained as explained
+_**elsewhere**_.
+.. If a further `<selector>` is present, use the result just obtained as 
+evaluated `<path-head>` and go to the previous step, otherwise finish and use
+the intermediate result of the evaluation.
 
 ==== set-path! type
 
