@@ -830,23 +830,39 @@ Composite values can have their components extracted and changed by various mean
 
 ==== Indexing
 
-Values that are sequences admit indexing by integers (and images also by pairs as coordinates).
+Values that are sequences (with types in `series!` and bitset!`)
+admit indexing by integers, and images also by pairs as coordinates.
 The lexical/syntactic form for this is `<path>` for extraction and `<path>: <value>` for changing.
 Built-in functions exist to perform the same operations. The correspondence is as follows:
 if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
 and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `pair!` value as index
 must be enclosed in parentheses, thus if `v` is an image, the pixel at 2x2 is addressed as `v/(2x2)`.
 
-As stated in section _**Atomic/Composite types**_, component selection
-in values of direct types cannot be used to change the component, only to extract it.
+Values of type `time! pair!` and `tuple!` also admit component selection
+by "indexing". In the case of `time!` values, which are stored as a `float!` number
+of seconds, this selection proceeds by calculation (1~hour, 2~minute, 3~second).
+For `pair!` , 1~x and 2~y. As stated in section _**Atomic/Composite types**_,
+component selectionin values of direct types cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
 
 ==== Selection by "key"
 
-TBD
+This is possible both for values that are sequences (with types in `series!`,
+but not `bitset!`) and for values of types `object! error!` and `map!`.
+The semantics are different in the two cases.
 
-Values of type `time! tuple! email!` and `image!` also admit component selection
+For sequences, a `find` action is performed on the components using the key,
+which should be a single value of the right type, or itself a sequence of them,
+and the first position where the key is found is marked. The result is then
+the component *after* the found key (single or sequence).
+
+For the other types, which contain key/value pairs, the result is the value
+corresponding to the given key.
+
+Values of type `time! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
+In case of `time! email! image!` and `event!`, the result is obtained by performing
+a certain calculation.
 Again, for the direct types among them, only the `<path>` form is valid.
 
 ==== Overview table
