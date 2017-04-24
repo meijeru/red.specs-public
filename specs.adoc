@@ -840,9 +840,9 @@ must be enclosed in parentheses, thus if `v` is an image, the pixel at 2x2 is ad
 
 Values of type `time! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `time!` values, which are stored as a `float!` number
-of seconds, this selection proceeds by calculation (1~hour, 2~minute, 3~second).
-For `pair!` , 1~x and 2~y. As stated in section _**Atomic/Composite types**_,
-component selectionin values of direct types cannot be used to change the component, only to extract it.
+of seconds, this selection proceeds by calculation (`1~hour`, `2~minute`, `3~second`).
+For `pair!` , `1~x` and `2~y`. As stated in section _**Atomic/Composite types**_,
+component selection in values of direct types cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
 
 ==== Selection by "key"
