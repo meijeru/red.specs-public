@@ -120,6 +120,8 @@ document (see list at end of this document).
 
 == Structure of Red programs
 
+=== Textual structure
+
 For submission to the Red toolchain, a Red program must be prepared as a text file.
 This may contain any _Unicode Code Points_, encoded using the _UTF-8 scheme_. 
 
@@ -130,8 +132,24 @@ properly nested pairs, and are the following: `( ), [ ], #( ), #[ ]`. A sequence
 enclosed in matching grouping tokens represents a Red _grouped value_ of a certain type,
 and this construct may again be enclosed in grouping tokens etc. 
 
+As a rule, lexemes must be separated from each other and from grouping tokens by
+one or more _whitespace characters_. In the Red source text, whitespace characters are
+space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`)
+and non-breaking space (`U+00A0`).
+
+_**This is most certainly short of some whitespace values, please correct See also issue #2492**_
+
+In certain cases, where there can be no ambiguity, the requirement for whitespace between values
+can be relaxed. For example, it is possible to omit whitespace between two consecutive block!
+values and between word! values and block! values. These two examples are both syntatically valid:
+
+     equal?[1234][1234]
+     equal?   [1234]   [1234]
+
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
 and/or the reader. The relevant data will be described in section _**Metadata for the toolchain**_.
+
+=== Formal grammar
 
 A formal grammar corresponding to the above presentation is given below. As usual,
 `*` means zero or more instances. The comment to any production rule, which starts after the `;` on the line,
@@ -176,23 +194,34 @@ _**Lexical structure of values**_ hereafter.
     <map> ::=      #( <value>* )        ; map! (even number of values only)
     <constructor> ::= #[ <value>* ]     ; reserved for general typed value constructor
 
-As a rule, lexemes must be separated from each other and from grouping tokens by
-one or more _whitespace characters_. In the Red source text, whitespace characters are
-space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`)
-and non-breaking space (`U+00A0`).
-
-_**This is most certainly short of some whitespace values, please correct See also issue #2492**_
-
-In certain cases, where there can be no ambiguity, the requirement for whitespace between values
-can be relaxed. For example, it is possible to omit whitespace between two consecutive block!
-values and between word! values and block! values. These two examples are both syntatically valid:
-
-     equal?[1234][1234]
-     equal?   [1234]   [1234]
 
 In what follows, terms like `<integer>` will be used to refer to lexemes;
 to indicate the corresponding value, terms like "value of type `integer!`,
 `integer!` value" or plain "integer" will be used.
+
+=== Evaluation order
+
+The constituents of a Red programs are in principle evaluated from left to right, according
+to the evaluation rules given in the section _**Evaluation rules**_, with the following
+peculiarities: certain function arguments are not evaluated before the function application
+(see section _**Function types (rule E110)**_), and evaluation of the arguments of
+_operators_ (values of type `op!` which represent binary infix functions) has precedence
+over function application; operators are strictly _left associative_, there is no precedence
+between any two operators. The arguments of a function simply follow the function itself,
+they are not enclosed in parentheses, thus for the reader to understand a program,
+knowledge of the _arity_ (number of arguments) of functions is necessary. Evaluation order
+can of course be prescribed by the use of parentheses.
+
+Some basic examples:
+....
+1 + 2 * 3                  <- result is 9, not 7
+1 + (2 * 3)                <- result is 7
+pick copy "abc" 1          <- 1 is argument to pick, since copy has 1 argument itself
+copy/part "abc" 2          <- with the "refinement" /part, copy now has 2 arguments
+mod x 2 + 1                <- mod has 2 arguments; this will be interpreted as mod x 3
+1 + mod x 2                <- this is what was probably meant
+(mod x 2) + 1              <- another way  of writing that
+....
 
 == Types
 
@@ -824,7 +853,7 @@ Again, for the direct types among them, only the `<path>` form is valid.
 
 ....
 type         indexed        built-in           components                           built-in
-             components     functions          selected otherwise                   functions
+             components     functions          selected by "key"                    functions
 
 time!        /1 /2 /3       pick (1..3)        /hour /minute /second                --
 pair!        /1 /2          pick (1..2)        /x /y                                --
@@ -841,7 +870,7 @@ map!                                           /<selector> (any-word! any-string
                                                      number! char! pair! tuple!)
 object!                                        /<word>                              select put
 error!                                         /code /type /id 	/arg1 /arg2 /arg3   select
-                                               /near /where /stack
+                                                     /near /where /stack
 event!                                         /type /face /window	/offset /key     --
                                                      /picked /flags /away?
                                                      /down? /mid-down? /alt-down?
