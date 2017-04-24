@@ -830,7 +830,7 @@ Composite values can have their components extracted and changed by various mean
 
 ==== Indexing
 
-Values that are sequences (with types in `series!` and bitset!`)
+Values that are sequences (with types in `series!` and `bitset!`)
 admit indexing by integers, and images also by pairs as coordinates.
 The lexical/syntactic form for this is `<path>` for extraction and `<path>: <value>` for changing.
 Built-in functions exist to perform the same operations. The correspondence is as follows:
@@ -844,6 +844,8 @@ of seconds, this selection proceeds by calculation (`1~hour`, `2~minute`, `3~sec
 For `pair!` , `1~x` and `2~y`. As stated in section _**Atomic/Composite types**_,
 component selection in values of direct types cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
+
+The built-in functions `first second third fourth` and `fifth` are defined as `pick <value> 1` etc.
 
 ==== Selection by "key"
 
@@ -868,29 +870,28 @@ Again, for the direct types among them, only the `<path>` form is valid.
 ==== Overview table
 
 ....
-type         indexed        built-in           components                           built-in
-             components     functions          selected by "key"                    functions
+type         indexed      built-in    key values or types                built-in
+             components   functions                                      functions
 
-time!        /1 /2 /3       pick (1..3)        /hour /minute /second                --
-pair!        /1 /2          pick (1..2)        /x /y                                --
-tuple!       /1 .. /12      pick (1..length)   --                                   --
-any-block!   /<integer>     pick poke          /<selector> (any-type!)              select put
-vector!      /<integer>     pick poke          /<selector> (element type)           select (put see issue #1960)
-any-string!  /<integer>     pick poke          /<selector> (any-string! binary!)    select (put see issue #1960)
-+ email!                                       /host /user                          --
-binary!      /<integer>     pick poke          /<selector> (any-string! binary!)    select (put see issue #1960)
-image!       /<integer>     pick poke          /size /rgb /alpha /rgba              --
-             /<pair>        pick poke
-bitset!      /<integer>     pick poke          --                                   --
-map!                                           /<selector> (any-word! any-string!   select put
-                                                     number! char! pair! tuple!)
-object!                                        /<word>                              select put
-error!                                         /code /type /id 	/arg1 /arg2 /arg3   select
-                                                     /near /where /stack
-event!                                         /type /face /window	/offset /key     --
-                                                     /picked /flags /away?
-                                                     /down? /mid-down? /alt-down?
-                                                     /ctrl? /shift?
+time!        1 2 3        pick        hour minute second                 --
+pair!        1 2          pick        x y                                --
+tuple!       1 .. 12      pick        --                                 --
+any-block!   integer!     pick poke   any-type!                          select put
+vector!      integer!     pick poke   integer! char!                     select (put see issue #1960)
+any-string!  integer!     pick poke   char! any-string! binary!          select (put see issue #1960)
++ email!                              host user                          --
+binary!      integer!     pick poke   integer! char! any-string! binary! select (put see issue #1960)
+image!       integer!     pick poke   size rgb alpha rgba                --
+             pair!        pick poke
+bitset!      integer!     pick poke   --                                 --
+map!                                  scalar! any-word! any-string!      select put
+object!                               word!                              select put
+error!                                code type id arg1 arg2 arg3        select
+                                           near where stack
+event!                                type face window offset key        --
+                                           picked flags away?
+                                           down? mid-down? alt-down?
+                                           ctrl? shift?
 
 ....
 
