@@ -895,6 +895,31 @@ event!                                type face window offset key        --
 
 ....
 
+=== Reflection on values
+
+Values of some types have (internal) properties of interest to the user which may
+usefully be exposed.
+
+This concerns first of all `(any-)word!` values for which information on their
+binding may be obtained by means of two built-in functions: `context?` and `index?`.
+These are explained in section _**Contexts**_. _See issue #2618**_. 
+
+_**What about `owner`??**_
+
+For values of type `object! error!` and `map!`, which consist of key/value pairs,
+the collection of keys, that of values, and the set of key/value pairs may each
+be obtained as a block by means of the built-in functions `words-of values-of`
+and `body-of`. In addition, for objects there is the property `class-of` which yields
+a unique number which is given to each object that is created from a `<spec>`, and is
+inherited by objects derived from it _**this needs description under `make` **_.
+
+For `any-function!` values, one can obtain the full `<argument-spec>` through
+the built-in function `spec-of` and the list of formal argument names through
+the function `words-of` _**not yet implemented**_. For `function!` and `routine!` values, there is in
+addition the function `body-of` which yields the function/routine body.
+
+Note that the `help` built-in function is typically making good use of `spec-of`. 
+
 == Words, contexts and binding
 
 === Words
