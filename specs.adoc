@@ -83,7 +83,7 @@ A special category of values is formed by _words_, that play
 a similar role to identifiers and keywords of other languages.
 Red does *not* have identifiers nor keywords: as will be explained in more
 detail below, any _word_ may _refer_ to a value in some _context_.
-We say that the word is _bound to_, or _in_ the context.
+The word is said to be _bound to_, or _in_ the context.
 Initially, some words refer to certain values in the _global context_,
 notably to _built-in functions_, _types_ (type names conventionally end in `!`)
 and _constants_ such as the truth values: `true` and `false`, as well as `none`
@@ -902,8 +902,8 @@ event!                                type face window offset key        --
 Red uses _words_ (values of type `word!`) to access values in much the same
 way that other languages use variables. However, in Red, words do not
 "store" values. Rather, a word _refers to a value_ in some _context_. i.e.
-evaluating the word in that context yields the value. We say that the word
-is _bound to_, or _in_ the context. Since functions, 
+evaluating the word in that context yields the value. The word is said to be
+_bound to_, or _in_ the context. Since functions, 
 including built-in functions and operators, are also values in Red, the words
 that refer to these values appear to work like keywords in other languages.
 
