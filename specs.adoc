@@ -1,6 +1,7 @@
 = Red Language Specification - draft
 :imagesdir: /images
 :toc:
+:toclevels: 3
 :numbered:
 
 == Introduction
@@ -1196,7 +1197,7 @@ _**elsewhere**_.
 evaluated `<path-head>` and go to the previous step, otherwise finish:
 the result of the evaluation is obtained.
 
-==== get-path! type
+==== `get-path!` type
 
 See also rule `E107`.
 
@@ -1236,7 +1237,7 @@ _**elsewhere**_.
 evaluated `<path-head>` and go to the previous step, otherwise finish and use
 the intermediate result of the evaluation.
 
-==== set-path! type
+==== `set-path!` type
 
 **`E109`**::
 TBD
