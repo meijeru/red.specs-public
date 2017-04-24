@@ -383,11 +383,11 @@ time!             L                 D                C                          
 pair!             L                 D                C                            P
 tuple!            L                 D                C                            P
 word!             L                 D                A             R              A
-lit-word!         L                 D                A                            D               word!
-set-word!         L                 D                A                            A               word!
-get-word!         L                 D                A                            A               word!
-refinement!       L                 D                A                            P               word!
-issue!            L                 D                A                            P               word!
+lit-word!         L                 D                A             R (#2618)      D               word!
+set-word!         L                 D                A             R (#2618)      A               word!
+get-word!         L                 D                A             R (#2618)      A               word!
+refinement!       L                 D                A             R (#2618)      P               word!
+issue!            L                 D                A             R (#2618)      P               word!
 block!            S                 I                C                            P
 hash!             M                 I                C                            P               block!
 paren!            S                 I                C                            A               block!
