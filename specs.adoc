@@ -410,7 +410,7 @@ object!           M                 I                C             R            
 error!            M                 I                C             R              P               object!
 native!           W                 F                A             R              F
 action!           W                 F                A             R              F               native!
-op!               W                 F                A             R              F               native!
+op!              W+M                F                A             R              F               native!
 function!         M                 F                A             R              F
 routine!          M                 F                A             R              F               function!
 unset!            M                 D                A                            P
@@ -490,7 +490,7 @@ any-type!
 
 === Introduction
 
-The types whose names are mentioned in rule S100 (`integer!` to `map!`) are the only ones
+The types whose names are mentioned in rule `S100` (`integer!` to `map!`) are the only ones
 that have lexically or syntactically determined values. Values that are not lexically
 or syntactically determined may generally be represented in programs by
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
