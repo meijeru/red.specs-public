@@ -276,7 +276,8 @@ map!            collection of pairs of values where the first value in each pair
 object!         collection of word-value pairs, i.e. a context in which the words
                 are bound, and refer to the corresponding values; objects are
                 capable of triggering asynchronous events in response to changes
-                in their components, thus enabling reactive programming
+                in their components, thus enabling reactive programming;
+                objects have a "class" property associated with them
 error!          specialized objects representing error conditions
 native!         pre-defined functions with built-in evaluation according to special rules
 action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
@@ -765,13 +766,29 @@ Examples: `make bitset! 16, charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 
 ==== `object!`
 
-object **`S119`**::
+**`S119`**::
 ....
-<object> ::= make object! <object-spec> | object <object-spec> | context <object-spec>
+<object> ::= make object! <object-spec> | object <object-spec> | context <object-spec> |
+             make <value> <object-spec>
 <object-spec> ::= <block>
 ....
-The built-in functions `object` and `context` are defined as shorthand for `make object!`.
 
+The built-in functions `object` and `context` are defined as shorthand for `make object!`.
+The <value> must be a value of type `object!`.
+
+If the first argument to `make` is `object!` this creates a new object as follows:
+A new context is created and associated to the object. The words of the new context
+are all the `set-word!` values that are (first-level) components of the `<object-spec>`.
+The corresponding values are set to the unset value. The `<object-spec>` is bound
+to this context (see section _**Built-in bind function**_). The bound block is then
+executed. The `class` property of the newly created object is set to a unique integer.
+
+If the first argument to `make` is an `object!` value, it serves as "prototype".
+A new object is created whose associated context is a copy of the prototype's context.
+The `set-word!` values that are (first-level) components of the `<object-spec>`
+are added to this context if they are not already present in that context.
+The `<object-spec>` is then treated as in the previous case.
+The `class` property of the new object is copied from the prototype.
 
 ==== `error!`
 
