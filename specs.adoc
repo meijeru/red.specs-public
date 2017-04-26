@@ -1353,7 +1353,7 @@ any evaluation; they are specialized objects with a fixed number of fields,
 that contain the necessary information for identifying the nature and the place
 of the error. As shown in section _**Components of values**_ the fields are:
 ....
-name      type           content
+name     type           content
 
 code      integer!       unique identifying number
 type      word!          characterizes a group of errors
@@ -1366,7 +1366,8 @@ where     any-type!      value whose evaluation triggered the error
 stack     integer!       machine address
 ....
 
-Any field except `type` and `id` can also be `none`.
+Any field except `type` and `id` can also be `none`. If `arg1` is `none`
+`arg2` and `arg3` will also be none`
 
 ==== Creation
 
@@ -1378,16 +1379,16 @@ in the object `system/catalog/errors`. This has the following sub-objects,
 whose field names correspond to the contents of the `type` field
 of the error value and which group related errors:
 ....
-name        code field  type field
+system/catalog/errors/...        code field  type field
 
-throw          0        "Throw Error"
-note         100        "note"
-syntax       200        "Syntax Error"
-script       300        "Script Error"
-math         400        "Math Error"
-access       500        "Access Error"
-user         800        "User Error"
-internal     900        "Internal Error"
+throw                              0        "Throw Error"
+note                             100        "note"
+syntax                           200        "Syntax Error"
+script                           300        "Script Error"
+math                             400        "Math Error"
+access                           500        "Access Error"
+user                             800        "User Error"
+internal                         900        "Internal Error"
 ....
 
 As indicated in the table, each of the sub-objects has two fixed fields:
@@ -1399,8 +1400,22 @@ correspond to the `id` field of the error value, and which identify
 the individual error. E.g. the `math` group has fields `zero-divide overflow`
 and `positive`. The contents of each of these fields is either a string,
 which is the error message, or a block, which needs to be bound 
-to the error value, in order for the values of `arg1` to `arg3` to be
-inserted in the error message.
+to the context of the error value, in order for the values of
+`arg1` to `arg3` to be inserted in the error message.
+
+When the error value is produced by the system, its `id` field
+is bound such that it refers to the right error message.
+Thus the following code will produce the full message for an error
+value, say `err`:
+....
+either err/arg1                        ; test if insertion is necessary
+[
+    bind (get error/id) (in err 'id)   ; yields a block
+][
+    get error/id                       ; yields a string
+]
+....
+
 Examples:
 ....
 system/catalog/errors/math is an object! of value:
