@@ -863,8 +863,10 @@ All keys should be unique. If identical keys are encountered in the `<map-spec>`
 corresponding to the last one encountered is taken. Keys of any type within `all-word!`
 that do not differ in their symbol are considered identical for this purpose.
 
-Note that the `logic!` values `true` and `false` are not allowed as keys. These
-words will be considered as `word!` values.
+Note that values of `logic!` type are not allowed as keys. Therefore
+`true` and `false` will be considered as `word!` values. Since the constituents
+of `<map-spec>` are not evaluated, these same words as well as `none` will be treated
+as `word!` values if they occur in `<value>` position.
 
 === Components of values
 
