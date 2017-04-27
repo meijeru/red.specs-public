@@ -273,7 +273,7 @@ bitset!         sequence of values true or false
 map!            collection of pairs of values where the first value in each pair functions
                 as key for retrieval of the second; keys are restricted to types
                 any-word!, any-string!, number!, char!, pair!, tuple!
-object!         collection of word-value pairs, i.e. a context in which the words
+object!         collection of word-value pairs with a context in which the words
                 are bound, and refer to the corresponding values; objects are
                 capable of triggering asynchronous events in response to changes
                 in their components, thus enabling reactive programming;
@@ -443,11 +443,12 @@ any-type!
 |  |  |  |--time!          
 |  |  |  |--pair!          
 |  |  |  |--tuple!         
-|  |  |--any-word!        
-|  |     |--word!          
-|  |     |--lit-word!      
-|  |     |--set-word!      
-|  |     |--get-word!      
+|  |  |--all-word!
+|  |     |--any-word!
+|  |     |  |--word!          
+|  |     |  |--lit-word!      
+|  |     |  |--set-word!      
+|  |     |  |--get-word!      
 |  |     |--refinement!    
 |  |     |--issue!         
 |  |--series!            
@@ -774,14 +775,15 @@ Examples: `make bitset! 16, charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 ....
 
 The built-in functions `object` and `context` are defined as shorthand for `make object!`.
-The <value> must be a value of type `object!`.
+The `<value>` must be a value of type `object!`.
 
 If the first argument to `make` is `object!` this creates a new object as follows:
 A new context is created and associated to the object. The words of the new context
-are all the `set-word!` values that are (first-level) components of the `<object-spec>`.
-The corresponding values are set to the unset value. The `<object-spec>` is bound
-to this context (see section _**Built-in bind function**_). The bound block is then
-executed. The `class` property of the newly created object is set to a unique integer.
+are the words of all the `set-word!` values that are (first-level) components
+of the `<object-spec>`. The corresponding values are set to the unset value.
+The `<object-spec>` is bound to this context (see section _**Built-in bind function**_).
+The bound block is then executed. The `class` property of the newly created object
+is set to a unique integer.
 
 If the first argument to `make` is an `object!` value, it serves as "prototype".
 A new object is created whose associated context is a copy of the prototype's context.
@@ -843,6 +845,20 @@ TBD
 The `<function>` should have exactly two arguments and no optional arguments.
 
 Example: `&&: make op! func [a b][all [a b]]`.
+
+=== Values of `map!` type
+
+**`S124`**::
+....
+<map> ::= #(<map-spec>) | make map! [<map-spec>]
+<map-spec> ::= <key-value-pair>*
+<key-value-pair> ::= <key><value>
+....
+
+Each `<key>` should be of type `all-word!, any-string!, number!, char!, pair!` or `tuple!`.
+All keys should be unique.  If identical keys are encountered in the `<map-spec>` the value
+corresponding to the last one encountered is taken. Keys of any type within `all-word!`
+that do not differ in their symbol are considered identical for this purpose.
 
 === Components of values
 
@@ -988,7 +1004,9 @@ special kind of value, distinct from `none`.
 
 In addition to the global context, any number of contexts may exist during
 program execution. Every _object_ (value of type `object!`) gives rise to a
-context, containing the field-name/value pairs of the object. Every function 
+context, containing the field-name/value pairs of the object. Every _error_
+(value of type `error!`), which is in fact a specialized object,
+likewise gives rise to a context. Every function 
 (value of type `function!`) also gives rise to a context, which contains
 the pairs of formal argument name and actual argument value to be used by 
 the body of the function when it is executed.
@@ -1145,8 +1163,8 @@ and that a function value is not applied but is itself yielded as result.
 
 ==== `set-word!` type
 
-**`E105`**:: Evaluating a `<word>:` outside an `<object-spec>` or a `<map>` (including
-the `<spec>` in `make map! <spec>`) has the effect that the `<word>` in its context
+**`E105`**:: Evaluating a `<word>:` outside an `<object-spec>` or a `<map-spec>`
+has the effect that the `<word>` in its context
 is made to refer to the value obtained by evaluating the next value(s). An error occurs
 if no value is following or if the value obtained is unset. The result of the evaluation
 is the value obtained. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
@@ -1367,7 +1385,8 @@ stack     integer!       machine address
 ....
 
 Any field except `type` and `id` can also be `none`. If `arg1` is `none`
-`arg2` and `arg3` will also be none`
+`arg2` and `arg3` will also be none`; likewise, if `arg2` is `none`,
+`arg3` will also be `none`.
 
 ==== Creation
 
@@ -1397,22 +1416,27 @@ errors, and `type` which is a string that can be used in forming the
 error message; this serves to sufficiently characterize the group.
 Each sub-object has furthermore a number of fields, whose names
 correspond to the `id` field of the error value, and which identify
-the individual error. E.g. the `math` group has fields `zero-divide overflow`
+the individual error. E.g. the `math` group has fields `zero-divide, overflow`
 and `positive`. The contents of each of these fields is either a string,
-which is the error message, or a block, which needs to be bound 
+which is a complete error message, or a block of strings and instances
+of `:arg1, :arg2` and `:arg3`, which needs to be bound 
 to the context of the error value, in order for the values of
-`arg1` to `arg3` to be inserted in the error message.
+`arg1` to `arg3` to be inserted; the block then can be used
+to construct the error message.
 
-When the error value is produced by the system, its `id` field
-is bound such that it refers to the right error message.
-Thus the following code will produce the full message for an error
-value, say `err`:
+When the error value is produced by the system, the word which
+is the value of its `type` field is bound such that it refers
+to the sub-object whose field name is that word; also, the word which
+is the value of `id` field is bound such that it refers to the
+error message (string or block) within that sub-object
+whose field name is that word. Thus the following code will produce
+the full message information for an error value, say `err`:
 ....
-either err/arg1                        ; test if insertion is necessary
+either err/arg1                             ; test if insertion is necessary
 [
-    bind (get error/id) (in err 'id)   ; yields a block
+    reduce bind (get err/id) (in err 'id)   ; yields a block of strings and values
 ][
-    get error/id                       ; yields a string
+    get err/id                              ; yields a string
 ]
 ....
 
