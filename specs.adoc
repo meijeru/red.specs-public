@@ -296,8 +296,8 @@ For a better understanding of their nature and that
 of their values, it is useful to make a number of distinctions into different categories.
 
 * textual representation: types having lexically/syntactically representable values or not
-* internal storage: _direct types_ vs _indirect types_ and _function types_
 * internal structure of values: _atomic types_ vs _composite types_
+* internal storage: _direct types_ vs _indirect types_ and _function types_
 * reflectivity: types with values that admit _reflection_  or not
 * evaluation: _passive types_, _decaying types_, _active types_, _function types_
 * implementation of built-in functions: _parent types_
@@ -313,6 +313,16 @@ _**An alternative, syntactical representation,
 will be offered for a number of types (or all??) in the form of construction syntax
 `#[<type> <spec>]`**_.
 
+==== Atomic/Composite types
+
+Values of certain types have _components_ which may be extracted and/or changed using a variety of
+facilities which will be specified below under evaluation. Such types are called _composite_ 
+and the others are _atomic_. All indirect types are composite, but the converse is not true:
+some direct types are also composite. Hoever, component selection
+in values of direct types cannot be used to change the component, only to extract it.
+Making such a component refer to a new value results in a new instance of the direct value
+being created, having the changed component.
+
 ==== Direct/Indirect/Function types
 
 Red values are internally stored using _value slots_ of uniform size. Values of _direct types_
@@ -324,16 +334,6 @@ be changed through operations on the variable or the function argument.
 In order to prevent this, values of indirect types must be explicitly copied before being
 transmitted as argument or having a word refer to them. A third category to be distinguished
 is that of _function types_, where pointers to the argument list and the body are stored in the slot.
-
-==== Atomic/Composite types
-
-Values of certain types have _components_ which may be extracted and/or changed using a variety of
-facilities which will be specified below under evaluation. Such types are called _composite_ 
-and the others are _atomic_. All indirect types are composite, but the converse is not true:
-some direct types are also composite. Hoever, component selection
-in values of direct types cannot be used to change the component, only to extract it.
-Making such a component refer to a new value results in a new instance of the direct value
-being created, having the changed component.
 
 ==== Types that admit reflection
 
