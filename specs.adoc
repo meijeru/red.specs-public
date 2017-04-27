@@ -274,9 +274,9 @@ map!            collection of pairs of values where the first value in each pair
                 as key for retrieval of the second; keys are restricted to types in
                 scalar!, all-word! and any-string!
 object!         collection of word-value pairs with a context in which the words
-                are bound, and refer to the corresponding values; objects are
-                capable of triggering asynchronous events in response to changes
-                in their components, thus enabling reactive programming;
+                (also called fields) are bound, and refer to the corresponding values;
+                objects are capable of triggering asynchronous events in response
+                to changes in their components, thus enabling reactive programming;
                 objects have a "class" property associated with them
 error!          specialized objects representing error conditions
 native!         pre-defined functions with built-in evaluation according to special rules
@@ -779,11 +779,11 @@ The `<value>` must be a value of type `object!`.
 
 If the first argument to `make` is `object!` this creates a new object as follows:
 A new context is created and associated to the object. The words of the new context
-are the words of all the `set-word!` values that are (first-level) components
-of the `<object-spec>`. The corresponding values are set to the unset value.
-The `<object-spec>` is bound to this context (see section _**Built-in bind function**_).
-The bound block is then executed. The `class` property of the newly created object
-is set to a unique integer.
+(i.e. the fields of the object) are the words of all the `set-word!` values that are
+(first-level) components f the `<object-spec>`. The corresponding values are set
+to the unset value. The `<object-spec>` is bound to this context (see section
+_**Built-in bind function**_). The bound block is then _executed_.
+The `class` property of the newly created object is set to a unique integer.
 
 If the first argument to `make` is an `object!` value, it serves as "prototype".
 A new object is created whose associated context is a copy of the prototype's context.
@@ -799,6 +799,15 @@ The `class` property of the new object is copied from the prototype.
 <error> ::= make error! <error-spec>
 <error-spec> ::= <integer> | <block> | <string>
 ....
+
+For the fields of an `error!` value, and the structure of the error repertoire
+(`system/catalog/errors`) see section _**Errors**_.
+
+If the `<error-spec>` is an `integer!` value, it is used to find values of the `type`
+and `id` fields of the `error!` value which result in the `code` with that `integer!`
+value. The values of these two fields are then bound as described in section _**Errors**_.
+
+
 
 ==== `function!`
 
