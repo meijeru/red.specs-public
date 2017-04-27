@@ -41,7 +41,9 @@ The prefix letter can be:
 Red is a next-generation programming language strongly inspired by Rebol,
 but with a broader field of usage thanks to its native-code compiler,
 from system programming to high-level scripting and cross-platform reactive GUI,
-while providing modern support for concurrency.
+while providing modern support for concurrency. Red has its own complete cross-platform
+toolchain, featuring two compilers, an interpreter and a linker,
+not depending on any third-party library. Once complete, Red will be self-hosted.
 
 _**The concurrency part is far from being implemented, mention it here?**_
 
@@ -777,10 +779,10 @@ Examples: `make bitset! 16, charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 The built-in functions `object` and `context` are defined as shorthand for `make object!`.
 The `<value>` must be a value of type `object!`.
 
-If the first argument to `make` is `object!` this creates a new object as follows:
+If the first argument to `make` is `object!` this creates a new object as follows.
 A new context is created and associated to the object. The words of the new context
 (i.e. the fields of the object) are the words of all the `set-word!` values that are
-(first-level) components f the `<object-spec>`. The corresponding values are set
+(first-level) components of the `<object-spec>`. The corresponding values are set
 to the unset value. The `<object-spec>` is bound to this context (see section
 _**Built-in bind function**_). The bound block is then _executed_.
 The `class` property of the newly created object is set to a unique integer.
@@ -904,12 +906,12 @@ if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent
 and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `pair!` value as index
 must be enclosed in parentheses, thus if `v` is an image, the pixel at 2x2 is addressed as `v/(2x2)`.
 Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
-`true~1` and `false~2`.
+`true ~ 1` and `false ~ 2`.
 
 Values of type `time! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `time!` values, which are stored as a `float!` number
-of seconds, this selection proceeds by calculation (`1~hour`, `2~minute`, `3~second`).
-For `pair!` , `1~x` and `2~y`. As stated in section _**Atomic/Composite types**_,
+of seconds, this selection proceeds by calculation (`1 ~ hour`, `2 ~ minute`, `3 ~ second`).
+For `pair!` , `1 ~ x` and `2 ~ y`. As stated in section _**Atomic/Composite types**_,
 component selection in values of direct types cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
 
@@ -927,7 +929,8 @@ and the first position where the key is found is marked. The result is then
 the component *after* the found key (single or sequence).
 
 For the other types, which contain key/value pairs, the result is the value
-corresponding to the given key.
+corresponding to the given key. In the case of `object!` and `error!` it is
+customary to call the keys "fields".
 
 Values of type `time! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
@@ -979,7 +982,7 @@ the collection of keys, that of values, and the set of key/value pairs may each
 be obtained as a block by means of the built-in functions `words-of values-of`
 and `body-of`. In addition, for objects there is the property `class-of` which yields
 a unique number which is given to each object that is created from a `<spec>`, and is
-inherited by objects derived from it _**this needs description under `make` **_.
+inherited by objects derived from it (see _**Values of map! type**_).
 
 For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
