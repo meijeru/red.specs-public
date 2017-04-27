@@ -1006,7 +1006,8 @@ where the first is a list of unique symbols and the second contains
 a corresponding value for each. Each word that is bound in this context
 has its symbol and the value it refers to, positioned in a row of the
 table. The value can be retrieved by finding the symbol, or by using
-an index (row number) in the table.
+an index (row number) in the table. Note that such tables actually exist
+in the implementation as values of an internal pseudo-type.
 
 There is one _global context_ containing all words that have passed lexical
 analysis as well as those that have been pre-defined in the toolchain, and
@@ -1016,9 +1017,10 @@ special kind of value, distinct from `none`.
 
 In addition to the global context, any number of contexts may exist during
 program execution. Every _object_ (value of type `object!`) gives rise to a
-context, containing the field-name/value pairs of the object. Every _error_
-(value of type `error!`), which is in fact a specialized object,
-likewise gives rise to a context. Every function 
+context, containing the field-name/value pairs of the object. From an
+implementation viewpoint, an object is just a combination of a context
+and a class. Every _error_ (value of type `error!`) is a specialized object,
+and therefore also has a context associated with it. Every function 
 (value of type `function!`) also gives rise to a context, which contains
 the pairs of formal argument name and actual argument value to be used by 
 the body of the function when it is executed.
@@ -1026,10 +1028,12 @@ the body of the function when it is executed.
 The user may access the context of a word reflectively through the built-in
 function `context-of` _**(this is still called `context?` but there is interest
 in changing its name)**_ which can be applied to any word and will yield the
-context the word is bound to, in the form of an object or function
-as the case may be. Asking for the global context yields the object
-`system/words`. The index of the word in its context may be obtained through
-the built-in function `index?`.
+context the word is bound to. Since contexts themselves are not values
+of a type of the langauge, they are yielded in the form of an object or function
+as the case may be. The context of a word which is a field of an error value
+is yielded as an object having the same field names and values as the error.
+The global context is yielded as the object `system/words`. The index of a word
+in its context may be obtained through the built-in function `index?`.
 
 === Binding
 
