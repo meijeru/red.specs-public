@@ -928,7 +928,7 @@ binary!      integer!     pick poke   integer! char! any-string! binary! select 
 image!       integer!     pick poke   size rgb alpha rgba                --
              pair!        pick poke
 bitset!      integer!     pick poke   --                                 --
-map!                                  scalar! any-word! any-string!      select put
+map!                                  scalar! all-word! any-string!      select put
 object!                               word!                              select put
 error!                                code type id arg1 arg2 arg3        select
                                            near where stack
@@ -1615,6 +1615,7 @@ _**Currently it is 504, is this correct?**_
 ....
 === typesets
 ....
+    all-word!
     any-block!
     any-function!
     any-list!
