@@ -809,10 +809,13 @@ value. The values of these two fields are then bound as described in section _**
 
 If the `<error-spec>` is a `block!` value, it should either contain two `word!` values
 which will be used for the `type` and `id` value of the intended `error!` value, or
-it should be an `<object-spec>` containing at least `type:` and 'id:` fields;
-in the former case, the `type` and `id` values will be bound as described in section_**Errors**_.
+it should be an `<object-spec>` containing at least `type:` and `id:` fields;
+in the former case, the `type` and `id` values will be bound as described in section _**Errors**_;
 in the latter case, the `<block>` will be treated as described under rule `S119`;
 note that also in this case, the `<block>` will be executed.
+
+Except in the case where an `<object-spec>` is provided, any fields other than `type` and `id`
+cannot be set by `make`. They should be set afterwards.
 
 If the `<error-spec>` is a `string!` value, this will be used as `arg1` for the error with
 `type: 'user id: 'message`. 
