@@ -271,8 +271,8 @@ binary!         sequence of bytes
 image!          2-dimensional array of pixels (RGBA values encoded in 4 bytes each)) 
 bitset!         sequence of values true or false
 map!            collection of pairs of values where the first value in each pair functions
-                as key for retrieval of the second; keys are restricted to types
-                any-word!, any-string!, number!, char!, pair!, tuple!
+                as key for retrieval of the second; keys are restricted to types in
+                scalar!, all-word! and any-string!
 object!         collection of word-value pairs with a context in which the words
                 are bound, and refer to the corresponding values; objects are
                 capable of triggering asynchronous events in response to changes
@@ -848,6 +848,9 @@ Example: `&&: make op! func [a b][all [a b]]`.
 
 === Values of `map!` type
 
+A `map!` value can be produced both as grouped value and by `make`. The specification
+is the same in both cases.
+
 **`S124`**::
 ....
 <map> ::= #(<map-spec>) | make map! [<map-spec>]
@@ -855,10 +858,13 @@ Example: `&&: make op! func [a b][all [a b]]`.
 <key-value-pair> ::= <key><value>
 ....
 
-Each `<key>` should be of type `all-word!, any-string!, number!, char!, pair!` or `tuple!`.
-All keys should be unique.  If identical keys are encountered in the `<map-spec>` the value
+Each `<key>` should be of a type in `scalar!, all-word!` or `any-string!`.
+All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `all-word!`
 that do not differ in their symbol are considered identical for this purpose.
+
+Note that the `logic!` values `true` and `false` are not allowed as keys. These
+words will be considered as `word!` values.
 
 === Components of values
 
@@ -873,6 +879,8 @@ Built-in functions exist to perform the same operations. The correspondence is a
 if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
 and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `pair!` value as index
 must be enclosed in parentheses, thus if `v` is an image, the pixel at 2x2 is addressed as `v/(2x2)`.
+Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
+`true~1` and `false~2`.
 
 Values of type `time! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `time!` values, which are stored as a `float!` number
