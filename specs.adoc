@@ -445,14 +445,13 @@ any-type!
 |  |  |  |--time!          
 |  |  |  |--pair!          
 |  |  |  |--tuple!         
-|  |  |--all-word!
-|  |     |--any-word!
-|  |     |  |--word!          
-|  |     |  |--lit-word!      
-|  |     |  |--set-word!      
-|  |     |  |--get-word!      
-|  |     |--refinement!    
-|  |     |--issue!         
+|  |  |--any-word!
+|  |  |  |--word!          
+|  |  |  |--lit-word!      
+|  |  |  |--set-word!      
+|  |  |  |--get-word!      
+|  |  |--refinement!    
+|  |  |--issue!         
 |  |--series!            
 |  |  |--any-block!       
 |  |  |  |--any-list!      
@@ -688,6 +687,14 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 Note that `make` evaluates its arguments. In this section, therefore,
 non-terminals like `<integer>` do not stand for a literal integer
 but for a value (to be evaluated) of `integer!` type etc.
+Note also that, as stated above, the first argument of `make` does not
+have to be a `datatype!` value; if it is a value of another type,
+that type is taken to be the desired type. This is not made explicit
+in the following rules, except in the case of `make object!` where
+an `object!` value as second argument has a different interpretation.
+In the case of `make error!` only the type `error!` is allowed as first argument
+_**See issue 2640**_.
+
 In the following rules, the sign `°` signifies an optional element.
 
 ==== `typeset!`
