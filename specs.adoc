@@ -497,8 +497,9 @@ any-type!
 The types whose names are mentioned in rule `S100` (`integer!` to `map!`) are the only ones
 that have lexically or syntactically determined values. Values that are not lexically
 or syntactically determined may generally be represented in programs by
-expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
-is a value that is interpreted by the `make` function as appropriate for the given type.
+expressions of the form `make <type> <spec>`, where `<type>` evaluates to a type
+(`datatype!` value) or to a value ("prototype") of the desired type and `<spec>`
+is interpreted by the `make` function as appropriate for the given type.
 For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
 type names pre-defined; likewise `native! action!` and `op!` have all the built-in functions
@@ -684,6 +685,9 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 
 === Values to be constructed by the `make` function
 
+Note that `make` evaluates its arguments. In this section, therefore,
+non-terminals like `<integer>` do not stand for a literal integer
+but for a value (to be evaluated) of `integer!` type etc.
 In the following rules, the sign `°` signifies an optional element.
 
 ==== `typeset!`
@@ -882,7 +886,7 @@ is the same in both cases.
 <key-value-pair> ::= <key><value>
 ....
 
-Each `<key>` should be of a type in `scalar!, all-word!` or `any-string!`.
+Each `<key>` should be a value of a type in `scalar!, all-word!` or `any-string!`.
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `all-word!`
 that do not differ in their symbol are considered identical for this purpose.
@@ -2116,6 +2120,13 @@ _**Currently it is 504, is this correct?**_
     write-stdout
 ....
 == Errors list
+
+The format in each sub-section is
+....
+type (code base)
+    id -> string or block
+    etc. 
+....
 
 === Throw Errors
 ....
