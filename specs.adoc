@@ -108,9 +108,9 @@ in ways of their own, and thus create _dialects_ or _Domain Specific Languages
 In fact, Red itself contains a number of dialects where blocks of data are
 interpreted in a specific way; this includes
 the _parse dialect_, the _visual interface dialect (VID)_, which also uses
-the _draw dialect_, the various _spec dialects_ involved in defining functions,
-objects, bitsets, vectors, the _compose dialect_ and the _system dialect_
-(Red/System).
+the _draw dialect_, the various _spec dialects_ involved in defining vectors,
+images, bitsets, objects, errors, maps, operators, functions and routines,
+furthermore the _compose dialect_ and the _system dialect_ (Red/System).
 
 Red/System is on the one hand a language of its own: it is a C-level language
 with memory pointer support and a very basic and limited set of datatypes.
@@ -119,7 +119,7 @@ can be compiled and executed using the toolchain. As a dialect of Red its purpos
 is to provide low-level system programming capabilities, and it serves both as
 a tool to build Red's runtime library and as intermediate language for the
 compiler to generate machine code from. Red/System is specified in a separate
-document (see list at end of this document).
+document (see _**Additional documentation**_).
 
 == Structure of Red programs
 
@@ -2116,14 +2116,22 @@ _**Currently it is 504, is this correct?**_
     write-stdout
 ....
 == Errors list
+
+=== Throw Errors
 ....
 throw ( 0 )
     break -> "no loop to break"
     return -> "return or exit not in function"
     throw -> ["no catch for throw:" :arg1]
     continue -> "no loop to continue"
+....
+=== Notes
+....
 note ( 100 )
     no-load -> ["cannot load: " :arg1]
+....
+=== Syntax Errors
+....
 syntax ( 200 )
     invalid -> ["invalid" :arg1 "at" :arg2]
     missing -> ["missing" :arg1 "at" :arg2]
@@ -2132,6 +2140,9 @@ syntax ( 200 )
     bad-header -> ["script header is not valid:" :arg1]
     malconstruct -> ["invalid construction spec:" :arg1]
     bad-char -> ["invalid character in:" :arg1]
+....
+=== Script Errors
+....
 script ( 300 )
     no-value -> [:arg1 "has no value"]
     need-value -> [:arg1 "needs a value"]
@@ -2212,16 +2223,28 @@ script ( 300 )
     react-bad-obj -> "REACT - target can only contain object values"
     react-gctx -> ["REACT - word" :arg1 "is not a reactor's field"]
     lib-invalid-arg -> ["LIBRED - invalid argument for" :arg1]
+....
+=== Math Errors
+....
 math ( 400 )
     zero-divide -> "attempt to divide by zero"
     overflow -> "math or number overflow"
     positive -> "positive number required"
+....
+=== Access Errors
+....
 access ( 500 )
     cannot-open -> ["cannot open:" :arg1]
     invalid-utf8 -> ["invalid UTF-8 encoding:" :arg1]
     no-connect -> ["cannot connect:" :arg1 "reason: timeout"]
+....
+=== User Errors
+....
 user ( 800 )
     message -> [:arg1]
+....
+=== Internal Errors
+....
 internal ( 900 )
     bad-path -> ["bad path:" arg1]
     not-here -> [arg1 "not supported on your system"]
