@@ -1238,6 +1238,17 @@ This does not apply to `image!` values.
 
 === Casting (as)
 
+The casting facility applies to most of the `series!` types, and makes use of the fact
+that values of several different but related types have their component values
+stored in identical fashion. Therefore a change of type can be performed without copying
+any component values. Two groups of related types are involved: `block! paren! any-path`
+and `any-string!`. The built-in casting function `as` is defined with arguments
+`<type> <spec>`. Here `<type>` is a type or example value ("prototype") and `<spec>`
+is the value to be given a new type. The type of this value should be in the same group
+as the (type of the) first argument. Note the absence of `hash!` from the first group,
+explained by the fact that `hash!` values are stored differently from other `any-block!` values.
+
+
 == Evaluation rules
 
 General remark: operator application has precedence over application of other functions
