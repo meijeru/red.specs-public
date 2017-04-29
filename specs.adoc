@@ -885,7 +885,7 @@ The built-in function `routine` is defined as shorthand for `make routine!`.
 
 Values of type `routine!` may not occur in programs submitted to the interpreter.
 The toolchain will convert the routine into a Red/System function as follows:
-the <routine-spec> is converted into a Red/System function specification block
+the `<routine-spec>` is converted into a Red/System function specification block
 by changing every Red type mentioned in it to the name of the corresponding
 Red/System `struct!` that describes the value slot, thus `integer!` becomes
 `red-integer!` etc.; the `<routine-body>` (which lexically consists of Red values)
