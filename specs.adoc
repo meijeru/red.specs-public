@@ -1213,11 +1213,13 @@ contains the actual argument values. See evaluation rule `E110`.
 
 == Creation, conversion and casting of values
 
-=== Creation (make)
+This section treats several related means that Red provides in order to produce
+new values:
+* to create them with the help of other ones (`make`)
+* to convert values to other types (`to`)
+* to change their type without changing their content (`as`)
 
-_**This section is necessary for two reasons: make applies in more cases than
-described above, and make may take second seat if construction syntax is
-exposed first**_
+=== Creation (make)
 
 === Conversion (to)
 
