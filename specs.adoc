@@ -871,11 +871,15 @@ is similar to `func` but it adds all set-words found in the body to the list of 
 
 ....
 <routine> ::= make routine! [<routine-spec> <routine-body>] | routine <routine-spec> <routine-body>
-<routine-spec> ::= [<docstring>° <argument>* <return-spec>°]
+<routine-spec> ::= [<docstring>° <routine-argument>* <locals>° <routine-return>°]
+<routine-argument> ::= <word> [<type>] <argument-doc>°
+<locals> ::= /local <routine-argument>*
+<routine-return> ::= return: [<type>]
 <routine-body> ::= <block>
 ....
-For `<docstring> <argument>` and `<return-spec>` see rule `S121`. Note that routines
-do not have optional arguments, except `/local`.
+For `<docstring>` and `<argument-doc>` see rule `S121`. Note that routines
+do not have optional arguments, except `/local`. Note also that arguments
+and return spec must have a single type specified.
 
 The built-in function `routine` is defined as shorthand for `make routine!`.
 
@@ -896,10 +900,13 @@ and the representation and storage of argument and result values.
 
 **`S123`**::
 ....
-<operator> ::= make op! <function> 
+<op> ::= make op! <function> 
 ....
 
-The `<function>` should have exactly two arguments and no optional arguments.
+In contrast to `action!` and `native!` values which cannot be made by means of
+`make`, the user may create new infix functions of two arguments ("operators"),
+using `make op!`. The `<function>` should have exactly two arguments and no optional
+arguments.
 
 Example: `&&: make op! func [a b][all [a b]]`.
 
@@ -915,15 +922,15 @@ is the same in both cases.
 <key-value-pair> ::= <key><value>
 ....
 
-Each `<key>` should be a value of a type in `scalar!, all-word!` or `any-string!`.
+Each `<key>` should be a value of a type in `scalar!, any-word!` or `any-string!`.
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
-corresponding to the last one encountered is taken. Keys of any type within `all-word!`
+corresponding to the last one encountered is taken. Keys of any type within `any-word!`
 that do not differ in their symbol are considered identical for this purpose.
 
-Note that values of `logic!` type are not allowed as keys. Therefore
-`true` and `false` will be considered as `word!` values. Since the constituents
-of `<map-spec>` are not evaluated, these same words as well as `none` will be treated
-as `word!` values if they occur in `<value>` position.
+Note that values of `logic!` and `none!` type are not allowed as keys. Nevertheless
+`true false` and `none` may occur in `<key>` position. Since the constituents
+of `<map-spec>` are not evaluated, these words will be treated as `word!` values.
+The same is true if they occur in `<value>` position.
 
 === Components of values
 
