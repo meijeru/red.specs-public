@@ -1215,11 +1215,24 @@ contains the actual argument values. See evaluation rule `E110`.
 
 This section treats several related means that Red provides in order to produce
 new values:
-* to create them with the help of other ones (`make`)
-* to convert values to other types (`to`)
-* to change their type without changing their content (`as`)
+
+* creating them with the help of other ones (`make`)
+* converting values to related ones of other types (`to`)
+* changing their type without changing their content (`as`)
+
+In quite a number of cases, the operation of `make` and `to` is identical.
+That is why the sub-section on `make` will only treat the cases where `make`
+is different from `to`; also, the cases already treated in section
+_**Values to be constructed by the make function**_ will not be repeated.
 
 === Creation (make)
+
+* Making `integer!` and `float!` values from `logic!` values: `true -> 1/1.0, false -> 0/0.0` _**See issue 2644**_
+* Making `logic!` values from `integer!` and `float!` values: `0/0.0 -> false, all else -> true`
+* Making `time!` values from `block!` values: the block should contain three values (hours, minutes, seconds).
+* Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
+or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
+This does not apply to `image!` values.
 
 === Conversion (to)
 
