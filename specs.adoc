@@ -683,6 +683,12 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 
 === Values to be constructed by the `make` function
 
+For some types, the values can only be introduced in a program as a
+result of the `make function`. This section deals with the types
+for which that is the case. The make function can also be used
+to construct values of other types. This is dealt with in the
+section _**Creation, conversion and casting of values**_.
+
 Note that `make` evaluates its arguments. In this section, therefore,
 non-terminals like `<integer>` do not stand for a literal integer
 but for a value (to be evaluated) of `integer!` type etc.
@@ -912,7 +918,7 @@ arguments.
 
 Example: `&&: make op! func [a b][all [a b]]`.
 
-=== Values of `map!` type
+==== `map!`
 
 A `map!` value can be produced both as grouped value and by `make`. The specification
 is the same in both cases.
