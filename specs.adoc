@@ -1131,42 +1131,64 @@ TBD
 
 ==== Setting words to values
 
-TBD
+The evaluation of `<word>: <value>` is treated in rule `E105`.
+Equivalent to this is the application of the built-in function `set`:
+`<word>: <value>` ~ `set '<word> <value>`. The full specification of `set` is as follows:
+....
+USAGE:
+    SET word value /any /case /only /some
+DESCRIPTION: 
+    Sets the value(s) one or more words refer to 
+    SET is a native! value
+ARGUMENTS:
+    word      [any-word! block! object! path!] "Word, object, map path or block of words to set"
+    value     [any-type!] "Value or block of values to assign to words"
+REFINEMENTS:
+    /any      => Allow UNSET as a value rather than causing an error
+    /case     => Use case-sensitive comparison (path only)
+    /only     => Block or object value argument is set as a single value
+    /some     => None values in a block or object value argument, are not set
+RETURNS: 
+     [any-type!] 
+....
 
 ==== Object creation
 
-TBD
+This is treated in rule `S119`.
 
 ==== Function application
 
-TBD
+This is treated in rule `E110`.
 
 ==== Built-in `bind` function
 
-The built-in function `bind` is a `native!` with the following `<function-spec>`:
+The built-in function `bind` is a `native!` with the following specification:
 ....
-[
-  word    [block! any-word!]
-  context [any-word! any-object! function!]
-  /copy
-  return: [block! any-word!]
-]
+USAGE:
+    BIND word context /copy
+DESCRIPTION: 
+    BIND is a native! value
+ARGUMENTS:
+    word     [block! any-word!] 
+    context  [any-word! any-object! function!] 
+REFINEMENTS:
+    /copy
+RETURNS: 
+     [block! any-word!] 
 ....
 
 The function will try to change the binding of a single word or
 of all words in a block, and will return the (modified) word or block.
-It operates on values of type `word! lit-word! set-word! get-word!
-refinement!` and `issue!` (for brevity, called "words" in the rest of this
-section), and will treat them at any depth within
-the block and its sub-blocks (including values of type `paren! path!
-lit-path! set-path! get-path!` and `hash!`).
+It operates on values of type `word! lit-word! set-word!` and `get-word!`
+(for brevity, called "words" in the rest of this section),
+and will treat them at any depth within the block and its sub-blocks
+(including values of type `paren! path! lit-path! set-path! get-path!` and `hash!`).
 
-For each word to be treated
-it will search for the presence of an equally spelled word in the given context,
-which is supplied in the form of a word (whose context will be used),
-or of an object or error value or a function. If an equally spelled 
-word is found, the function will change the context of the treated word
-to that given context and will adapt the index of the word;
+For each word to be treated it will search for the presence of an equally spelled
+word in the given context, which is supplied in the form of a word
+(whose context will be used), or of an object or error value or a function.
+If an equally spelled word is found, the function will change the context
+of the treated word to that given context and will adapt the index of the word;
 otherwise, the word is left untouched.
 
 With the `/copy` refinement the `block!` argument will be deep-copied before it
