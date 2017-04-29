@@ -684,8 +684,9 @@ Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part
 === Values to be constructed by the `make` function
 
 For some types, the values can only be introduced in a program as a
-result of the `make function`. This section deals with the types
-for which that is the case. The make function can also be used
+result of the `make` function. This section deals with the types
+for which that is the case, and with `map!` which has a "parallel"
+syntactic form of its own. The make function can also be used
 to construct values of other types. This is dealt with in the
 section _**Creation, conversion and casting of values**_.
 
@@ -1192,7 +1193,7 @@ contains the actual argument values. See evaluation rule `E110`.
 
 === Creation (make)
 
-_**This section necessary for two reasons: make applies in more cases than
+_**This section is necessary for two reasons: make applies in more cases than
 described above, and make may take second seat if construction syntax is
 exposed first**_
 
