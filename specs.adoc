@@ -850,7 +850,7 @@ Note that `error!` values all have `class = 0`.
 **`S121`**::
 ....
 <function> ::= make function! [<function-spec> <function-body>] | func <function-spec> <function-body> |
-               function <function-spec> <function-body>
+               has [<argument>*] <function-body> | does <function-body> | function <function-spec> <function-body>
 <function-spec> ::= [<docstring>° <argument-spec> <return-spec>°]
 <docstring> ::= <string>
 <argument-spec> ::= <argument>* <optional-argument>*
@@ -873,8 +873,12 @@ The optional argument `/local` is conventionally used to list the local words of
 It is normally put after any other optional arguments (in fact the built-in `help` function
 expects this to be the case).
 
-The built-in function `func` is defined as shorthand for `make function!`. The built-in function `function`
-is similar to `func` but it adds all set-words found in the body to the list of local arguments 
+The built-in function `func` is defined as shorthand for `make function!`. The built-in function
+`has` is defined as shorthand for a function without other arguments than local words, thus
+`has [<arguments>*] <block>` is equivalent to `func [/local <arguments>*] <block>`.
+The built-in function `does` is defined as shorthand for `func [ ]` (no arguments at all).
+The built-in function `function` is similar to `func` but it adds all set-words
+found in the body to the list of local arguments.
 
 ==== `routine!`
 
@@ -1539,8 +1543,8 @@ Values of `any-function!` type must be evaluated together with any
 actual refinements (`word!` values that are found as `<selector>` in a `path!`
 value whose `<path-head>` evaluates to the `any-function!` value). 
 
-Recall the basic structure of the `<argument-spec>`, which is valid for all
-values of `any-function!` type:
+Recall the basic structure of the `<argument-spec>`, which is valid, with
+soem limitations,  for all values of `any-function!` type:
 
 **`(S121)`**::
 ....
