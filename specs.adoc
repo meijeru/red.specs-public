@@ -1373,6 +1373,9 @@ The function `to-word` is defined for:
 * `logic!` and `datatype!` values: yields the word that refers to the value
 * `string!` values: yields the result of `load` or an error
 
+The functions `to-lit-word` etc. perform the same conversiosn and yield
+the result as a value of the appropriate type.
+
 Note that `to-word none` does not yield the word `none`, it raises an error.
 
 ==== Target type `image!`
