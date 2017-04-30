@@ -1297,7 +1297,7 @@ a result of the appropriate type.
 
 The function `to-integer` is defined for
 
-* `any-float!` and `time!` values: truncates the float value (seconds in the case
+* `any-float!` and `time!` values: truncates the floating point value (seconds in the case
 of `time!`) towards `0`
 * `char!` values: yields the Unicode Code Point number
 * `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
@@ -1338,7 +1338,7 @@ The function to-pair is defined for
 yields the pair wih the (truncated) numbers as components
 
 Note that a similar built-in function `as-pair` of two arguments is defined,
-which created a pair out of the arguments.
+which creates a pair out of the arguments.
 
 ==== Target type `tuple!`
 
@@ -1384,7 +1384,7 @@ The function `to-image` is defined for `object!` values that are _faces_ i.e.
 derived from the `face!` object which describes a window in the Red GUI system.
 It yields the face such as it would be rendered on the screen, as an `image!`
 value. See further the documentation of the GUI system (reference in section
-_**Additional information**-).
+_**Additional documentation**_).
 
 === Casting (as)
 
