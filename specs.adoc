@@ -1300,8 +1300,8 @@ The function `to-integer` is defined for
 * `any-float!` and `time!` values: truncates the float value (seconds in the case
 of `time!`) towards `0`
 * `char!` values: yields the Unicode Code Point number
-* `binary!` values: interprets the first 4 components as an integer (two's complement notation)
-if there are fewer than 4 components, `#{00}` bytes are prepended
+* `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
+if there are fewer than 4 bytes, `#{00}` bytes are prepended
 * `string!` values: yields the result of `load` or an error
 
 ==== Target types in `any-float!` and `time!`
@@ -1311,10 +1311,10 @@ The function `to-float` is defined for
 * `integer!` values: yields the corresponding `float!` value
 * `time!` values: yields the number of seconds
 * `char!` values: yields the Unicode Code Point number as `float!` value
-* `binary!` values: interprets the first 8 components as a floating point number (IEEE 754 binary64 format)
-if there are fewer than 8 components, `#{00}` bytes are prepended
+* `binary!` values: interprets the first 8 bytes as a floating point number (IEEE 754 binary64 format)
+if there are fewer than 8 bytes, `#{00}` bytes are prepended
 * `string!` values: yields the result of `load` or an error
-* `block!` values: the block should contain two components of type `integer!` or `float!`
+* `any-list!` values: these should contain two components of type `integer!` or `float!`
 the result is the first number times 10 to the power of the truncated second number
 
 The function `to-percent` will perform the same conversions and yield a value of type `percent!.
@@ -1326,8 +1326,19 @@ and yield a `time!` value.
 The function `to-char` is defined for
 
 * `number!` values: yields the Unicode Code Point with the (truncated) number
-* `binary!` values: decodes as many UTF-8 bytes as necessary to obtain a Unicode Code Point
+* `binary!` values: assumes UTF-8 encoding; decodes as many bytes as necessary to obtain a Unicode Code Point
 * `any-string!` values: yields the first character
+
+==== Target type `pair!`
+
+The function to-pair is defined for
+
+* `integer!` and `any-float!` values: yields the pair with two components equal to the (truncated) number
+* `any-list!` values: these should contain two `integer!` or `float!` values;
+yields the pair wih the (truncated) numbers as components
+
+Note that a similar built-in function `as-pair` of two arguments is defined,
+which created a pair out of the arguments.
 
 ==== Target type `tuple!`
 
@@ -1336,13 +1347,41 @@ The function to-tuple is defined for
 * `binary!` values: yields the first 12 bytes or fewer as tuple components; if only 1 or 2 bytes are 
 present, components `0` are added
 * `string!` values: yields the result of `load` or an error
-* `any-list!` values: these should contain only `integer!` or `float!` values;
+* `any-list!` values: these should contain only `integer!` or `float!` values in the range `0..255`;
 yields the first 12 components or fewer as tuple components;  if only 1 or 2 values are 
 present, components `0` are added
 
 ==== Target type `binary!`
 
-TBD
+The function `to-binary` is defined for
+
+* `integer!` and `any-float!` values: yields the corresponding 4 resp. 8 byte binary value
+* `char!` values: yields the 1 to 4 byte binary value corresponding to the Unicode Code Point number
+* `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
+* `bitset!` values: yields the corresponding binary value
+* `string!` values: yields the UTF-8 encoded binary value
+* `any-list!` values: these should contain only `integer!` or `float!` values;
+the binary equivalents are concatenated, using as few bytes as needed
+for each `integer!` value and 8 bytes for each `float! value
+* `image!` values: yields a binary value with 4 bytes for each pixel
+
+==== Target types in `any-word!` `refinement!` and `issue!`
+
+The function `to-word` is defined for:
+
+* `char!` values: makes a `word!` value with that single character
+* `logic!` and `datatype!` values: yields the word that refers to the value
+* `string!` values: yields the result of `load` or an error
+
+Note that `to-word none` does not yield the word `none`, it raises an error.
+
+==== Target type `image!`
+
+The function `to-image` is defined for `object!` values that are _faces_ i.e.
+derived from the `face!` object which describes a window in the Red GUI system.
+It yields the face such as it would be rendered on the screen, as an `image!`
+value. See further the documentation of the GUI system (reference in section
+_**Additional information**-).
 
 === Casting (as)
 
