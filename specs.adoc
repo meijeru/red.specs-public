@@ -242,7 +242,7 @@ char!           character (Unicode Code Point)
 integer!        integer numbers 
 float!          floating point numbers
 percent!        id. expressed as a percentage
-time!           time interval or point in time
+time!           time interval or point in time, stored as a floating point number of seconds
 pair!           2-dimensional coordinates or size 
 tuple!          color in RGB or other scheme, IPv4 adres
 word!           identifier that can be bound
@@ -297,8 +297,8 @@ For a better understanding of their nature and that
 of their values, it is useful to make a number of distinctions into different categories.
 
 * textual representation: types having lexically/syntactically representable values or not
-* internal structure of values: _atomic types_ vs _composite types_
 * internal storage: _direct types_ vs _indirect types_ and _function types_
+* internal structure of values: _atomic types_ vs _composite types_
 * reflectivity: types with values that admit _reflection_  or not
 * evaluation: _passive types_, _decaying types_, _active types_, _function types_
 * implementation of built-in functions: _parent types_
@@ -314,16 +314,6 @@ _**An alternative, syntactical representation,
 will be offered for a number of types (or all??) in the form of construction syntax
 `#[<type> <spec>]`**_.
 
-==== Atomic/Composite types
-
-Values of certain types have _components_ which may be extracted and/or changed using a variety of
-facilities which will be specified below under evaluation. Such types are called _composite_ 
-and the others are _atomic_. All indirect types are composite, but the converse is not true:
-some direct types are also composite. Hoever, component selection
-in values of direct types cannot be used to change the component, only to extract it.
-Making such a component refer to a new value results in a new instance of the direct value
-being created, having the changed component.
-
 ==== Direct/Indirect/Function types
 
 Red values are internally stored using _value slots_ of uniform size. Values of _direct types_
@@ -333,8 +323,22 @@ of the value. As a consequence, when a word ("variable") is made to refer to a v
 type or such a value is supplied as argument to a function, the components of this value may
 be changed through operations on the variable or the function argument.
 In order to prevent this, values of indirect types must be explicitly copied before being
-transmitted as argument or having a word refer to them. A third category to be distinguished
-is that of _function types_, where pointers to the argument list and the body are stored in the slot.
+transmitted as argument or having a word refer to them. The built-in function `copy` will do this.
+If the components themselves are of indirect type, `copy` will not copy their components,
+unless the function refinement `/deep` is used. 
+
+A third category to be distinguished is that of _function types_, where pointers to the argument
+list and the body are stored in the slot.
+
+==== Atomic/Composite types
+
+Values of certain types have _components_ which may be extracted and/or changed using a variety of
+facilities which will be specified below under evaluation. Such types are called _composite_ 
+and the others are _atomic_. All indirect types are composite, but the converse
+is not true: some direct types are also composite. Hoever, component selection
+in values of direct types cannot be used to change the component, only to extract it.
+Making such a component refer to a new value results in a new instance of the direct value
+being created, having the changed component.
 
 ==== Types that admit reflection
 
@@ -722,7 +726,7 @@ Note that an empty typeset is allowed (`make typeset! []`).
 ....
 <hash> ::= make hash! <block> 
 ....
-The contents of the `<block>` are copied.
+The contents of the `<block>` are copied (not deeply).
 
 ==== `vector!`
 
@@ -973,7 +977,7 @@ but not `bitset!`) and for values of types `object! error!` and `map!`.
 The semantics are different in the two cases.
 
 For sequences, a `find` action is performed on the components using the key,
-which should be a single value of the right type, or itself a sequence of them,
+which should be a single value of the right type, or itself a sequence of such values,
 and the first position where the key is found is marked. The result is then
 the component *after* the found key (single or sequence).
 
@@ -1068,8 +1072,6 @@ Values of types `lit-word! set-word!` and `get-word!` (these types form
 typeset `any-word!` with `word!`) have the same binding as the word
 with the same symbol. Variables of types `refinement!` and `issue!`,
 although not bindable, may share the same symbol.
-
-_**The removed paragraph duplicated what was said under direct/indirect types**_
 
 === Contexts
 
@@ -1216,9 +1218,16 @@ contains the actual argument values. See evaluation rule `E110`.
 This section treats several related means that Red provides in order to produce
 new values:
 
-* creating them with the help of other ones (`make`)
-* converting values to related ones of other types (`to`)
-* changing their type without changing their content (`as`)
+* creating them with the help of other ones (built-in function `make`)
+* converting values to related ones of other types (built-in function `to`)
+* changing their type without changing their content (built-in function `as`)
+
+All three built-in functions have two arguments: `<type>` and `<spec>`.
+Here `<type>` is a type or example value ("prototype") indicated the
+desired type. The significance of `<spec>` for the `make` function has
+been explained in section _**Values to be constructed by the make function**_.
+For `to` and `as`, `<spec>` is the value to be converted resp. to be given
+a new type.
 
 In quite a number of cases, the operation of `make` and `to` is identical.
 That is why the sub-section on `make` will only treat the cases where `make`
@@ -1236,18 +1245,119 @@ This does not apply to `image!` values.
 
 === Conversion (to)
 
+Conversion is possible for selected combinations of "source" and "target" type.
+The list given below is meant to be exhaustive. A summary table is available
+elsewhere (see section _**Additional documentation**_).
+
+Note that for each type that may occur as target type, there is a built-in function
+defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
+
+==== Target types `none!` and `unset!`
+
+The functions `to-none` and `to-unset` yield a `none!` resp. `unset!` value
+for any argument value.
+
+==== Target type `logic!`
+
+The function `to-logic` yields `true` for any argument value except `none`. Note that
+`to logic! 0` yields `true` whereas `make logic! 0` yields `false`!
+
+==== Target types in `any-string!`
+
+The function `to-string` yields the same result as the built-in function `form` (see
+section _**Conversion from/to textual representation**_) except for
+
+* `none!` values: conversion is not allowed
+* `unset!` values:  yields empty string
+* `binary!` values: these will be decoded as UTF-8
+* `any-list!` values: the function will apply `form` to each component and concatenate the results
+
+The functions `to-file` etc. will perform the same conversion and yield
+a result of the appropriate type.
+
+==== Target types in `any-list!`
+
+The function `to-block` yields a block with the argument as single component except
+for
+
+* `string!` values: first applies `load` (see section _**Conversion from/to textual representation**_)
+and applies `to-block` to the result
+* `typeset!` values: yields a block with the individual types
+* `any-block!` and `vector!` values: yields a block with the components
+* `any-object!` and `map!` values: yields the same as `body-of`
+
+The functions `to-paren` etc. will perform the same conversion and yield
+a result of the appropriate type.
+
+==== Target type `integer!`
+
+The function `to-integer` is defined for
+
+* `any-float!` and `time!` values: truncates the float value (seconds in the case
+of `time!`) towards `0`
+* `char!` values: yields the Unicode Code Point number
+* `binary!` values: interprets the first 4 components as an integer (two's complement notation)
+if there are fewer than 4 components, `#{00}` bytes are prepended
+* `string!` values: yields the result of `load` or an error
+
+==== Target types in `any-float!` and `time!`
+
+The function `to-float` is defined for
+
+* `integer!` values: yields the corresponding `float!` value
+* `time!` values: yields the number of seconds
+* `char!` values: yields the Unicode Code Point number as `float!` value
+* `binary!` values: interprets the first 8 components as a floating point number (IEEE 754 binary64 format)
+if there are fewer than 8 components, `#{00}` bytes are prepended
+* `string!` values: yields the result of `load` or an error
+* `block!` values: the block should contain two components of type `integer!` or `float!`
+the result is the first number times 10 to the power of the truncated second number
+
+The function `to-percent` will perform the same conversions and yield a value of type `percent!.
+The function `to-time` will do the same (except that a `block!` argument is not allowed)
+and yield a `time!` value.
+
+==== Target type `char!`
+
+The function `to-char` is defined for
+
+* `number!` values: yields the Unicode Code Point with the (truncated) number
+* `binary!` values: decodes as many UTF-8 bytes as necessary to obtain a Unicode Code Point
+* `any-string!` values: yields the first character
+
+==== Target type `tuple!`
+
+The function to-tuple is defined for
+
+* `binary!` values: yields the first 12 bytes or fewer as tuple components; if only 1 or 2 bytes are 
+present, components `0` are added
+* `string!` values: yields the result of `load` or an error
+* `any-list!` values: these should contain only `integer!` or `float!` values;
+yields the first 12 components or fewer as tuple components;  if only 1 or 2 values are 
+present, components `0` are added
+
+==== Target type `binary!`
+
+TBD
+
 === Casting (as)
 
 The casting facility applies to most of the `series!` types, and makes use of the fact
 that values of several different but related types have their component values
 stored in identical fashion. Therefore a change of type can be performed without copying
 any component values. Two groups of related types are involved: `block! paren! any-path`
-and `any-string!`. The built-in casting function `as` is defined with arguments
-`<type> <spec>`. Here `<type>` is a type or example value ("prototype") and `<spec>`
-is the value to be given a new type. The type of this value should be in the same group
-as the (type of the) first argument. Note the absence of `hash!` from the first group,
+and `any-string!`. The type of the second argument should be in the same group
+as the (type of the) first argument. The result is a new value of the desired type,
+pointing to the components of the old value. Note the absence of `hash!` from the first group,
 explained by the fact that `hash!` values are stored differently from other `any-block!` values.
 
+== Input/output
+
+=== Conversion from/to textual representation
+
+=== Printing
+
+=== File and Url I/O
 
 == Evaluation rules
 
@@ -1285,6 +1395,12 @@ These are `lit-word!` and `lit-path!`.
 .. If the type is `error!` raise the error and yield the error value as result.
 .. If the type is in `any-function!` apply the function (see rules `E110-114`).
 .. Otherwise, the result is the value referred to.
+
+Note: there are cases in which a `<word>` is not to be evaluated, e.g. when it occurs as
+`<key>` or `<value>` in a `<map-spec>`. As a consequence, the predefined words `true false`
+and `none` as well as the type names will be interpreted as `word!` values rather than as
+`logic!` or `none!` values. To represent values of the desired type in such cases one may use
+the generalized value construction syntax: `#[true] #[false]` and `#[none]`.
 
 ==== `get-word!` type
 
@@ -2406,4 +2522,5 @@ The following is a list of official documents that complement the information gi
   .. https://doc.red-lang.org/en/gui.html[GUI System]
   .. https://doc.red-lang.org/en/reactivity.html[Reactive Programming]
   .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
+. https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
 . http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse] (blog article from 2013)
