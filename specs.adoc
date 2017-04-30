@@ -1662,7 +1662,8 @@ TBD
 Two kinds of exceptions (exceptional situations which disturb the normal
 evaluation process) may be distinguished: _error exceptions_  or _errors_,
 which arise in the course of evaluation because of inappropriate (combinations
-of) values, and _user exceptions_ _**to be developed**_.
+of) values, and _user exceptions_ that are "thrown" on conditions
+determined by the user.
 
 === Errors
 
