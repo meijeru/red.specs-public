@@ -588,7 +588,8 @@ A `char!` value must be a valid single Unicode code point, i.e. an integer in th
 A `<viewable character>` is, in most cases, simply a displayable character. For example, `e`, `é`, `€` or `😀`.
 When a displayable character requires two or more graphemes to display it, each grapheme requires a separate Red character.
 For example, when `é` is encoded in its two character decomposed form `e` (`U+0065`) followed by
-the combining `´` (`U+0301`) they cannot be considered a single `char!` value.
+the combining `´` (`U+0301`) they cannot be considered a single `char!` value, and programs must
+explicitly handle their interpretation. 
 
 The correspondence between the escaped characters and Unicode Code Points is given in the table below.
 
@@ -875,7 +876,7 @@ expects this to be the case).
 
 The built-in function `func` is defined as shorthand for `make function!`. The built-in function
 `has` is defined as shorthand for a function without other arguments than local words, thus
-`has [<arguments>*] <block>` is equivalent to `func [/local <arguments>*] <block>`.
+`has [<arguments>] <block>` is equivalent to `func [/local <arguments>] <block>`.
 The built-in function `does` is defined as shorthand for `func [ ]` (no arguments at all).
 The built-in function `function` is similar to `func` but it adds all set-words
 found in the body to the list of local arguments.
@@ -978,8 +979,12 @@ The built-in functions `first second third fourth` and `fifth` are defined as `p
 
 This is possible both for values that are sequences (with types in `series!`,
 but not `bitset!`) and for values of types `object! error!` and `map!`.
-The semantics are different in the two cases.
+The lexical/syntactic form for this is again `<path>` for extraction and `<path>: <value>` for changing.
+Built-in functions exist to perform the same operations. The correspondence is as follows:
+if `v` is the value from which to select and `k` is the key, then `v/k` is equivalent to `select v k`
+and `v/k: x` is equivalent to `put v i k`.
 
+The semantics of selection are different in the two cases (sequences vs. objects/maps).
 For sequences, a `find` action is performed on the components using the key,
 which should be a single value of the right type, or itself a sequence of such values,
 and the first position where the key is found is marked. The result is then
@@ -1106,8 +1111,7 @@ the pairs of formal argument name and actual argument value to be used by
 the body of the function when it is executed.
 
 The user may access the context of a word reflectively through the built-in
-function `context-of` _**(this is still called `context?` but there is interest
-in changing its name)**_ which can be applied to any word and will yield the
+function `context?` which can be applied to any word and will yield the
 context the word is bound to. Since contexts themselves are not values
 of a type of the langauge, they are yielded in the form of an object or function
 as the case may be. The context of a word which is a field of an error value
@@ -1227,7 +1231,7 @@ new values:
 * changing their type without changing their content (built-in function `as`)
 
 All three built-in functions have two arguments: `<type>` and `<spec>`.
-Here `<type>` is a type or example value ("prototype") indicated the
+Here `<type>` is a type or example value (_prototype_) indicating the
 desired type. The significance of `<spec>` for the `make` function has
 been explained in section _**Values to be constructed by the make function**_.
 For `to` and `as`, `<spec>` is the value to be converted resp. to be given
@@ -1601,7 +1605,8 @@ soem limitations,  for all values of `any-function!` type:
 
 **`E110`**::
 
-The evaluation of `function!` values proceeds as follows:
+The evaluation of a `function!` value (also called _function call_
+or _function application_) proceeds as follows:
 
 . If the function does not have any arguments (optional or not), execute
 the body of the function to yield the result of the function.
@@ -1656,16 +1661,19 @@ TBD
 
 === Evaluation loop
 
-
 == Exceptions
 
 Two kinds of exceptions (exceptional situations which disturb the normal
 evaluation process) may be distinguished: _error exceptions_  or _errors_,
 which arise in the course of evaluation because of inappropriate (combinations
-of) values, and _user exceptions_ that are "thrown" on conditions
-determined by the user.
+of) values, and _user exceptions_ that are raised or "thrown" on conditions
+determined by the user. An intermediate case is the _user error_ which is
+also raised on conditions determined by the user but which is treated
+like an error value.
 
 === Errors
+
+==== Composition
 
 Errors are values of type `error!` that can be produced as a result of
 any evaluation; they are specialized objects with a fixed number of fields,
@@ -1690,11 +1698,7 @@ Any field except `type` and `id` can also be `none`. If `arg1` is `none`
 `arg2` and `arg3` will also be none`; likewise, if `arg2` is `none`,
 `arg3` will also be `none`.
 
-==== Creation
-
-Errors are normally generated by the compiled code or by the interpreter,
-as the case may be, but they can also be raised by the user.
-There is a fixed "repertoire" of errors; identifying information
+There is a fixed _repertoire_ of errors; identifying information
 and (parametrized) error messages for each possible error are stored
 in the object `system/catalog/errors`. This has the following sub-objects,
 whose field names correspond to the contents of the `type` field
@@ -1727,11 +1731,11 @@ to the context of the error value, in order for the values of
 to construct the error message. The full list of possible
 errors is shown in section _**Errors list**_.
 
-When the error value is produced by the system, the word which
-is the value of its `type` field is bound such that it refers
-to the sub-object whose field name is that word; also, the word which
-is the value of `id` field is bound such that it refers to the
-error message (string or block) within that sub-object
+When the error value is produced,
+the word which is the value of its `type` field is bound such that
+it refers to the sub-object whose field name is that word;
+also, the word which is the value of `id` field is bound such that
+it refers to the error message (string or block) within that sub-object
 whose field name is that word. Thus the following code will produce
 the full message information for an error value, say `err`:
 ....
@@ -1763,17 +1767,80 @@ The `code` for each individual error is the base number + the ordinal number
 of the error in the sub-object, e.g. for `no-connect` it is `502`.
 _**Currently it is 504, is this correct?**_
 
-==== Propagation
+==== Raising and interception
 
-==== Interception
+Errors are normally raised by the compiled code or by the interpreter,
+as the case may be, but they can also be raised by evaluating a word
+referring to an error value, by `make error! <spec>` or the built-in
+function `cause-error`. The raising of an error will break off program
+execution, unless it is intercepted by `try` or `attempt`.
+
+The built-in function `try <block>` will execute the block and if there is
+an error, it will yield that error value; otherwise it will yield the value
+resulting from the execution. The built-in function `attempt <block>` will
+apply `try` and if the result is an error value, it will yield `none`.
 
 === User exceptions
 
-==== Creation
+In contrast to errors, a user exception is not a value of the language,
+but a call of a built-in function, which interrupst program execution
+and may cause resumption at another place in the code, or result in
+breaking off the execution like an unintercepted error does.
 
-==== Propagation
+Three types of user exceptions exist:
 
-==== Interception
+* interruption of repeated execution (_loops_)
+* interruption of function body execution
+* "throws"
+
+==== Interruption of loops
+
+Red has a number of _loop_ constructs which cause repeated execution
+of a block. _**Should they be described here??**_
+In each of these, the block (_loop body_) may contain calls of the built-in functions
+`break` and `continue`. A call of `break` will interrupt execution
+of the body and resume directly after it. A call of `break/return <value>`
+will in addition yield the `<value>` as a result of evaluating the loop.
+A call of `continue` will interrupt execution of the body and resume
+at the end of the body, potentially resulting in further cycles of execution.
+Calls of these functions outside a loop body raise an error.
+
+==== Interruption of function body execution
+
+A call of the built-in function `exit` will interrupt execution of the
+function body and resume in the code directly after the call.
+A call of the built-in function `return <value>` will do the same
+and yield the `<value>` as a result of the function body execution.
+Calls of these functions outside a function body raise an error.
+
+==== Throws
+
+A _throw_ is a call of the built-in function `throw <value>` which will
+interrupt execution and resume just after a corresponding call
+of the built-in function `catch`, yielding the `<value>` as a result.
+
+A _catch_, i.e. a call of the built-in function `catch <block>`,
+will execute the block and if there are no throws during the execution,
+it will yield the result of the execution as a value. If within the block,
+including within the body of any function called within the block,
+to any depth, there is a throw, the result of the catch
+will be the value yielded by this throw.
+
+For more control, `throw` has a refinement `/name` with a `word!` argument.
+Correspondingly, `catch` has a refinement `/name` with as argument
+a word or a block of words. A _named throw_ will only be reacted on
+by a _named catch_ which has (amongst others) this name as argument,
+or by a catch without a name. Other encompassing `catch` calls
+will let it pass through.
+
+If a throw is not caught by a catch, it will result in an error. 
+
+==== Interception by `try`
+
+The built-in function `try` (see _**Raising and interception**_) has
+a refinement `/all`, allowing it to catch all possible forms of exceptions,
+including `break`, `continue`, `exit` and `return` misuses as well as
+uncaught throws.
 
 == Preprocessor
 
