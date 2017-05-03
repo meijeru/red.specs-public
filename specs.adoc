@@ -1515,7 +1515,7 @@ or `any-object!`, the result is the component at the index given
 by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
-the result is obtained as in the step iv. If the `<selector>` is an
+the result is obtained as in step iv hereafter. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
 indirect type (except `image!`), an intermediate result is obtained by
@@ -1555,7 +1555,7 @@ or `any-object!`, the result is the component at the index given
 by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
-the result is obtained as in the step iv. If the `<selector>` is an
+the result is obtained as in step iv hereafter. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
 indirect type (except `image!`), an intermediate result is obtained by
