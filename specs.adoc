@@ -1436,10 +1436,11 @@ These are `lit-word!` and `lit-path!`.
 .. Otherwise, the result is the value referred to.
 
 Note: there are cases in which a `<word>` is not to be evaluated, e.g. when it occurs as
-`<key>` or `<value>` in a `<map-spec>`. As a consequence, the predefined words `true false`
+`<key>` or `<value>` in a `<map-spec>`, or when it is an actual argument to a function
+where the formal argument is a `lit-word!`. In these cases, the predefined words `true false`
 and `none` as well as the type names will be interpreted as `word!` values rather than as
 `logic!` or `none!` values. To represent values of the desired type in such cases one may use
-the generalized value construction syntax: `#[true] #[false]` and `#[none]`.
+the generalized value construction syntax: `#[true], #[false], #[none]` etc.
 
 ==== `get-word!` type
 
@@ -1496,7 +1497,7 @@ as per rule `E103`.
 . Determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, this will yield
-a component of the composite value as described in the next step.
+a component of the composite value as described in step 3.
 .. If the result is of `file!` or `url!` type and there are one or more
 next elements each of which is a `<selector>`, the result is currently
 a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
@@ -1508,13 +1509,13 @@ to the rules for values of function types (see section _**Function types**_).
 .. If the result is of any other type, the path is in error.
 . Determine the type of the `<selector>`.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
-use the value obtained as `<selector>` and go to the beginning of this step .
+use the value obtained as `<selector>` and go to the beginning of step 3.
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
 or `any-object!`, the result is the component at the index given
 by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
-the result is obtained as in the next sub-step. If the `<selector>` is an
+the result is obtained as in the step iv. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
 indirect type (except `image!`), an intermediate result is obtained by
@@ -1524,7 +1525,7 @@ with as arguments the evaluated `<path-head>` and `<selector>`.
 direct type or `image!`, an intermediate result is obtained as explained
 _**elsewhere**_.
 .. If a further `<selector>` is present, use the result just obtained as 
-evaluated `<path-head>` and go to the previous step, otherwise finish:
+evaluated `<path-head>` and go to step 2, otherwise finish:
 the result of the evaluation is obtained.
 
 ==== `get-path!` type
@@ -1539,7 +1540,7 @@ as per rule `E103`.
 . Determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, this will yield
-a component of the composite value as described in the next step.
+a component of the composite value as described in step 3.
 .. If the result is of `file!` or `url!` type and there are one or more
 next elements each of which is a `<selector>`, the result is currently
 a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
@@ -1548,13 +1549,13 @@ a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578
 .. If the result is of any other type, the path is in error.
 . Determine the type of the `<selector>`.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
-use the value obtained as `<selector>` and go to the beginning of this step .
+use the value obtained as `<selector>` and go to the beginning of step 3.
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
 or `any-object!`, the result is the component at the index given
 by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
-the result is obtained as in the next sub-step. If the `<selector>` is an
+the result is obtained as in the step iv. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
 indirect type (except `image!`), an intermediate result is obtained by
@@ -1564,7 +1565,7 @@ with as arguments the evaluated `<path-head>` and `<selector>`.
 direct type or `image!`, an intermediate result is obtained as explained
 _**elsewhere**_.
 .. If a further `<selector>` is present, use the result just obtained as 
-evaluated `<path-head>` and go to the previous step, otherwise finish and use
+evaluated `<path-head>` and go to step 2, otherwise finish and use
 the intermediate result of the evaluation.
 
 ==== `set-path!` type
