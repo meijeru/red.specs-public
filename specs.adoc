@@ -6,6 +6,8 @@
 
 == Introduction
 
+=== Purpose
+
 The purpose of this document is to codify the lexical/syntactic and semantic rules
 of the Red programming language, and thus to be the authoritative document for: 
 
@@ -21,7 +23,7 @@ This document is *not* intended to be used in order to learn the language (tutor
 for that purpose sufficient materials can be found elsewhere
 _** need one comprehensive and sufficiently maintained collection of links **_
 
-== Conventions
+=== Conventions
 
 In this document, technical terms -- whether in general use or specific to the Red
 language -- will be written in _italics_ when first used and sometimes also on
@@ -142,8 +144,8 @@ and non-breaking space (`U+00A0`).
 _**This is most certainly short of some whitespace values, please correct See also issue #2492**_
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
-can be relaxed. For example, it is possible to omit whitespace between two consecutive block!
-values and between word! values and block! values. These two examples are both syntatically valid:
+can be relaxed. For example, it is possible to omit whitespace between two consecutive `block!`
+values and between `word!` values and `block!` values. These two examples are both syntatically valid:
 
      equal?[1234][1234]
      equal?   [1234]   [1234]
@@ -282,7 +284,7 @@ object!         collection of word-value pairs with a context in which the words
 error!          specialized objects representing error conditions
 native!         pre-defined functions with built-in evaluation according to special rules
 action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
-op!             operators, i.e. pre-defined infix functions of two arguments
+op!             operators, i.e. infix functions of two arguments
 function!       user-defined functions
 routine!        user-defined functions with body in Red/System code
 unset!          single value indicating the absence of a usable value
@@ -309,7 +311,7 @@ Not all types listed have lexically or syntactically determined values. Those th
 may have their values generally be represented in programs by
 expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
 is a value that is interpreted by the `make` function as appropriate for the given type.
-This is explained in detail in section _**Values to be constructed by the make function**_.
+This is explained in detail in section _**Creation of values (make)**_.
 _**An alternative, syntactical representation,
 will be offered for a number of types (or all??) in the form of construction syntax
 `#[<type> <spec>]`**_.
@@ -318,7 +320,7 @@ will be offered for a number of types (or all??) in the form of construction syn
 
 Red values are internally stored using _value slots_ of uniform size. Values of _direct types_
 fit completely into one such slot; for values of _indirect types_, which have a variable number
-of components, the slot stores a _pointer_ to a further storage area that holds the components
+of _components_, the slot stores a _pointer_ to a further storage area that holds the components
 of the value. As a consequence, when a word ("variable") is made to refer to a value of indirect
 type or such a value is supplied as argument to a function, the components of this value may
 be changed through operations on the variable or the function argument.
@@ -335,7 +337,7 @@ list and the body are stored in the slot.
 Values of certain types have _components_ which may be extracted and/or changed using a variety of
 facilities which will be specified below under evaluation. Such types are called _composite_ 
 and the others are _atomic_. All indirect types are composite, but the converse
-is not true: some direct types are also composite. Hoever, component selection
+is not true: some direct types are also composite. However, component selection
 in values of direct types cannot be used to change the component, only to extract it.
 Making such a component refer to a new value results in a new instance of the direct value
 being created, having the changed component.
@@ -413,7 +415,7 @@ image!            M                 I                C                          
 bitset!           M                 I                C                            P
 map!              S                 I                C             R              P
 object!           M                 I                C             R              P
-error!            M                 I                C             R              P               object!
+error!            M                 I                C             R              P(note)         object!
 native!           W                 F                A             R              F
 action!           W                 F                A             R              F               native!
 op!              W+M                F                A             R              F               native!
@@ -423,12 +425,14 @@ unset!            M                 D                A                          
 event!            W                 D                C                            P
 handle!           W                 D                A                            P               integer!
 ....
+Note: `error!` values evaluate to themselves, but raise an error in addition. See _**Errors**_
+
 === Type hierarchy
 
 For the convenience of the user, certain typesets have been pre-defined
 which group related types. These will notably be used for indicating
 the allowed types of arguments to polymorphic functions. E.g. `power` takes
-two arguments whose types are in the typeset `number!`.
+two arguments whose types are both in the typeset `number!`.
 
 ....
 any-type!              
@@ -930,7 +934,7 @@ and the representation and storage of argument and result values.
 ....
 
 In contrast to `action!` and `native!` values which cannot be made by means of
-`make`, the user may create new infix functions of two arguments ("operators"),
+`make`, the user may create new infix functions of two arguments (operators),
 using `make op!`. The `<function>` should have exactly two arguments and no optional
 arguments.
 
@@ -984,7 +988,7 @@ for any argument value.
 ==== Target type `logic!`
 
 The function `to-logic` yields `true` for any argument value except `none`. Note that
-`to logic! 0` yields `true` whereas `make logic! 0` yields `false`!
+`to logic! 0` yields `true` whereas `make logic! 0` yields `false`! _**See issue #2645**_
 
 ==== Target types in `any-string!`
 
@@ -1112,10 +1116,11 @@ The casting facility applies to most of the `series!` types, and makes use of th
 that values of several different but related types have their component values
 stored in identical fashion. Therefore a change of type can be performed without copying
 any component values. Two groups of related types are involved: `block! paren! any-path`
-and `any-string!`. The type of the second argument should be in the same group
-as the (type of the) first argument. The result is a new value of the desired type,
-pointing to the components of the old value. Note the absence of `hash!` from the first group,
-explained by the fact that `hash!` values are stored differently from other `any-block!` values.
+on the one hand, and `any-string!` on the other. The type of the second argument shoul
+d be in the same group as the (type of the) first argument. The result is a new value
+of the desired type, pointing to the components of the old value.
+Note the absence of `hash!` from the first group, explained by the fact that `hash!`
+values are stored differently from other `any-block!` values.
 
 === Components of values
 
@@ -1149,23 +1154,21 @@ but not `bitset!`) and for values of types `object! error!` and `map!`.
 The lexical/syntactic form for this is again `<path>` for extraction and `<path>: <value>` for changing.
 Built-in functions exist to perform the same operations. The correspondence is as follows:
 if `v` is the value from which to select and `k` is the key, then `v/k` is equivalent to `select v k`
-and `v/k: x` is equivalent to `put v i k`.
+and `v/k: x` is equivalent to `put v k x`.
 
 The semantics of selection are different in the two cases (sequences vs. objects/maps).
 For sequences, a `find` action is performed on the components using the key,
 which should be a single value of the right type, or itself a sequence of such values,
 and the first position where the key is found is marked. The result is then
-the component *after* the found key (single or sequence).
-
-For the other types, which contain key/value pairs, the result is the value
-corresponding to the given key. In the case of `object!` and `error!` it is
-customary to call the keys "fields".
+the component *after* the found key (single or sequence). For the other types,
+which contain key/value pairs, the result is the value corresponding to the given key.
+In the case of `object!` and `error!` it is customary to call the keys _fields_.
 
 Values of type `time! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
 In case of `time! email! image!` and `event!`, the result is obtained by performing
 a certain calculation.
-Again, for the direct types among them, only the `<path>` form is valid.
+Again, for the direct types among them, only the `<path>` and `<pick>` forms are valid.
 
 ==== Overview table
 
