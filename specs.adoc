@@ -498,10 +498,18 @@ any-type!
 
 The types whose names are mentioned in rule `S100` (`integer!` to `map!`) are the only ones
 that have lexically or syntactically determined values. Values that are not lexically
-or syntactically determined may generally be represented in programs by
-expressions of the form `make <type> <spec>`, where `<type>` evaluates to a type
-(`datatype!` value) or to a value ("prototype") of the desired type and `<spec>`
-is interpreted by the `make` function as appropriate for the given type.
+or syntactically determined may generally be represented in programs with the help
+of the built-in function `make`. This is one of three related means that Red provides
+in order to produce new values:
+
+* creating them with the help of other ones (built-in function `make`)
+* converting values to related ones of other types (built-in function `to`)
+* changing their type without changing their content (built-in function `as`)
+
+All three built-in functions have two arguments: `<type>` and `<spec>`,
+where `<type>` evaluates to a type (`datatype!` value) or to a value (_prototype_)
+of the desired type and `<spec>` is interpreted as appropriate for the given type. 
+
 For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
 type names pre-defined; likewise `native! action!` and `op!` have all the built-in functions
@@ -511,8 +519,8 @@ handling this communication.
 
 _**Mention general typed value constructor #[ <type> <value>* ]**_
 
-The following sub-sections will specify the lexical structure resp. the `<spec>` argument of the `make`
-function for values of each of the types as appropriate.
+The following sub-sections will specify the lexical structure resp. the `<spec>` argument
+of the `make`, `to` and `as` function for values of each of the types as appropriate.
 
 === Lexical structure of values
 
@@ -686,14 +694,14 @@ Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{AQID}`
 
 Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part`
 
-=== Values to be constructed by the `make` function
+=== Creation of values (`make`)
 
-For some types, the values can only be introduced in a program as a
-result of the `make` function. This section deals with the types
+For some types, the values can *only* be introduced in a program as a
+result of the `make` function. This section deals first of all with the types
 for which that is the case, and with `map!` which has a "parallel"
 syntactic form of its own. The make function can also be used
 to construct values of other types. This is dealt with in the
-section _**Creation, conversion and casting of values**_.
+latter part of the section.
 
 Note that `make` evaluates its arguments. In this section, therefore,
 non-terminals like `<integer>` do not stand for a literal integer
@@ -949,6 +957,165 @@ Note that values of `logic!` and `none!` type are not allowed as keys. Neverthel
 `true false` and `none` may occur in `<key>` position. Since the constituents
 of `<map-spec>` are not evaluated, these words will be treated as `word!` values.
 The same is true if they occur in `<value>` position.
+
+==== other types 
+
+* Making `integer!` and `float!` values from `logic!` values: `true -> 1/1.0, false -> 0/0.0` _**See issue 2644**_
+* Making `logic!` values from `integer!` and `float!` values: `0/0.0 -> false, all else -> true`
+* Making `time!` values from `block!` values: the block should contain three values (hours, minutes, seconds).
+* Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
+or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
+This does not apply to `image!` values.
+
+=== Conversion (to)
+
+Conversion is possible for selected combinations of "source" and "target" type.
+The list given below is meant to be exhaustive. A summary table is available
+elsewhere (see section _**Additional documentation**_).
+
+Note that for each type that may occur as target type, there is a built-in function
+defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
+
+==== Target types `none!` and `unset!`
+
+The functions `to-none` and `to-unset` yield a `none!` resp. `unset!` value
+for any argument value.
+
+==== Target type `logic!`
+
+The function `to-logic` yields `true` for any argument value except `none`. Note that
+`to logic! 0` yields `true` whereas `make logic! 0` yields `false`!
+
+==== Target types in `any-string!`
+
+The function `to-string` yields the same result as the built-in function `form` (see
+section _**Conversion from/to textual representation**_) except for
+
+* `none!` values: conversion is not allowed
+* `unset!` values:  yields empty string
+* `binary!` values: these will be decoded as UTF-8
+* `any-list!` values: the function will apply `form` to each component and concatenate the results
+
+The functions `to-file` etc. will perform the same conversion and yield
+a result of the appropriate type.
+
+==== Target types in `any-list!`
+
+The function `to-block` yields a block with the argument as single component except
+for
+
+* `string!` values: first applies `load` (see section _**Conversion from/to textual representation**_)
+and applies `to-block` to the result
+* `typeset!` values: yields a block with the individual types
+* `any-block!` and `vector!` values: yields a block with the components
+* `any-object!` and `map!` values: yields the same as `body-of`
+
+The functions `to-paren` etc. will perform the same conversion and yield
+a result of the appropriate type.
+
+==== Target type `integer!`
+
+The function `to-integer` is defined for
+
+* `any-float!` and `time!` values: truncates the floating point value (seconds in the case
+of `time!`) towards `0`
+* `char!` values: yields the Unicode Code Point number
+* `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
+if there are fewer than 4 bytes, `#{00}` bytes are prepended
+* `string!` values: yields the result of `load` or an error
+
+==== Target types in `any-float!` and `time!`
+
+The function `to-float` is defined for
+
+* `integer!` values: yields the corresponding `float!` value
+* `time!` values: yields the number of seconds
+* `char!` values: yields the Unicode Code Point number as `float!` value
+* `binary!` values: interprets the first 8 bytes as a floating point number (IEEE 754 binary64 format)
+if there are fewer than 8 bytes, `#{00}` bytes are prepended
+* `string!` values: yields the result of `load` or an error
+* `any-list!` values: these should contain two components of type `integer!` or `float!`
+the result is the first number times 10 to the power of the truncated second number
+
+The function `to-percent` will perform the same conversions and yield a value of type `percent!.
+The function `to-time` will do the same (except that a `block!` argument is not allowed)
+and yield a `time!` value.
+
+==== Target type `char!`
+
+The function `to-char` is defined for
+
+* `number!` values: yields the Unicode Code Point with the (truncated) number
+* `binary!` values: assumes UTF-8 encoding; decodes as many bytes as necessary to obtain a Unicode Code Point
+* `any-string!` values: yields the first character
+
+==== Target type `pair!`
+
+The function to-pair is defined for
+
+* `integer!` and `any-float!` values: yields the pair with two components equal to the (truncated) number
+* `any-list!` values: these should contain two `integer!` or `float!` values;
+yields the pair wih the (truncated) numbers as components
+
+Note that a similar built-in function `as-pair` of two arguments is defined,
+which creates a pair out of the arguments.
+
+==== Target type `tuple!`
+
+The function to-tuple is defined for
+
+* `binary!` values: yields the first 12 bytes or fewer as tuple components; if only 1 or 2 bytes are 
+present, components `0` are added
+* `string!` values: yields the result of `load` or an error
+* `any-list!` values: these should contain only `integer!` or `float!` values in the range `0..255`;
+yields the first 12 components or fewer as tuple components;  if only 1 or 2 values are 
+present, components `0` are added
+
+==== Target type `binary!`
+
+The function `to-binary` is defined for
+
+* `integer!` and `any-float!` values: yields the corresponding 4 resp. 8 byte binary value
+* `char!` values: yields the 1 to 4 byte binary value corresponding to the Unicode Code Point number
+* `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
+* `bitset!` values: yields the corresponding binary value
+* `string!` values: yields the UTF-8 encoded binary value
+* `any-list!` values: these should contain only `integer!` or `float!` values;
+the binary equivalents are concatenated, using as few bytes as needed
+for each `integer!` value and 8 bytes for each `float! value
+* `image!` values: yields a binary value with 4 bytes for each pixel
+
+==== Target types in `any-word!` `refinement!` and `issue!`
+
+The function `to-word` is defined for:
+
+* `char!` values: makes a `word!` value with that single character
+* `logic!` and `datatype!` values: yields the word that refers to the value
+* `string!` values: yields the result of `load` or an error
+
+The functions `to-lit-word` etc. perform the same conversiosn and yield
+the result as a value of the appropriate type.
+
+Note that `to-word none` does not yield the word `none`, it raises an error.
+
+==== Target type `image!`
+
+The function `to-image` is defined for `object!` values that are _faces_ i.e.
+derived from the `face!` object which describes a window in the Red GUI system.
+It yields the face such as it would be rendered on the screen, as an `image!`
+value. See further the documentation of the GUI system (reference in section
+_**Additional documentation**_).
+
+=== Casting (as)
+
+The casting facility applies to most of the `series!` types, and makes use of the fact
+that values of several different but related types have their component values
+stored in identical fashion. Therefore a change of type can be performed without copying
+any component values. Two groups of related types are involved: `block! paren! any-path`
+and `any-string!`. The type of the second argument should be in the same group
+as the (type of the) first argument. The result is a new value of the desired type,
+pointing to the components of the old value. Note the absence of `hash!` from the first group,
+explained by the fact that `hash!` values are stored differently from other `any-block!` values.
 
 === Components of values
 
@@ -1219,187 +1386,6 @@ contains the actual argument values. See evaluation rule `E110`.
 === Type ordering
 
 === Type comparisons
-
-
-== Creation, conversion and casting of values
-
-This section treats several related means that Red provides in order to produce
-new values:
-
-* creating them with the help of other ones (built-in function `make`)
-* converting values to related ones of other types (built-in function `to`)
-* changing their type without changing their content (built-in function `as`)
-
-All three built-in functions have two arguments: `<type>` and `<spec>`.
-Here `<type>` is a type or example value (_prototype_) indicating the
-desired type. The significance of `<spec>` for the `make` function has
-been explained in section _**Values to be constructed by the make function**_.
-For `to` and `as`, `<spec>` is the value to be converted resp. to be given
-a new type.
-
-In quite a number of cases, the operation of `make` and `to` is identical.
-That is why the sub-section on `make` will only treat the cases where `make`
-is different from `to`; also, the cases already treated in section
-_**Values to be constructed by the make function**_ will not be repeated.
-
-=== Creation (make)
-
-* Making `integer!` and `float!` values from `logic!` values: `true -> 1/1.0, false -> 0/0.0` _**See issue 2644**_
-* Making `logic!` values from `integer!` and `float!` values: `0/0.0 -> false, all else -> true`
-* Making `time!` values from `block!` values: the block should contain three values (hours, minutes, seconds).
-* Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
-or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
-This does not apply to `image!` values.
-
-=== Conversion (to)
-
-Conversion is possible for selected combinations of "source" and "target" type.
-The list given below is meant to be exhaustive. A summary table is available
-elsewhere (see section _**Additional documentation**_).
-
-Note that for each type that may occur as target type, there is a built-in function
-defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
-
-==== Target types `none!` and `unset!`
-
-The functions `to-none` and `to-unset` yield a `none!` resp. `unset!` value
-for any argument value.
-
-==== Target type `logic!`
-
-The function `to-logic` yields `true` for any argument value except `none`. Note that
-`to logic! 0` yields `true` whereas `make logic! 0` yields `false`!
-
-==== Target types in `any-string!`
-
-The function `to-string` yields the same result as the built-in function `form` (see
-section _**Conversion from/to textual representation**_) except for
-
-* `none!` values: conversion is not allowed
-* `unset!` values:  yields empty string
-* `binary!` values: these will be decoded as UTF-8
-* `any-list!` values: the function will apply `form` to each component and concatenate the results
-
-The functions `to-file` etc. will perform the same conversion and yield
-a result of the appropriate type.
-
-==== Target types in `any-list!`
-
-The function `to-block` yields a block with the argument as single component except
-for
-
-* `string!` values: first applies `load` (see section _**Conversion from/to textual representation**_)
-and applies `to-block` to the result
-* `typeset!` values: yields a block with the individual types
-* `any-block!` and `vector!` values: yields a block with the components
-* `any-object!` and `map!` values: yields the same as `body-of`
-
-The functions `to-paren` etc. will perform the same conversion and yield
-a result of the appropriate type.
-
-==== Target type `integer!`
-
-The function `to-integer` is defined for
-
-* `any-float!` and `time!` values: truncates the floating point value (seconds in the case
-of `time!`) towards `0`
-* `char!` values: yields the Unicode Code Point number
-* `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
-if there are fewer than 4 bytes, `#{00}` bytes are prepended
-* `string!` values: yields the result of `load` or an error
-
-==== Target types in `any-float!` and `time!`
-
-The function `to-float` is defined for
-
-* `integer!` values: yields the corresponding `float!` value
-* `time!` values: yields the number of seconds
-* `char!` values: yields the Unicode Code Point number as `float!` value
-* `binary!` values: interprets the first 8 bytes as a floating point number (IEEE 754 binary64 format)
-if there are fewer than 8 bytes, `#{00}` bytes are prepended
-* `string!` values: yields the result of `load` or an error
-* `any-list!` values: these should contain two components of type `integer!` or `float!`
-the result is the first number times 10 to the power of the truncated second number
-
-The function `to-percent` will perform the same conversions and yield a value of type `percent!.
-The function `to-time` will do the same (except that a `block!` argument is not allowed)
-and yield a `time!` value.
-
-==== Target type `char!`
-
-The function `to-char` is defined for
-
-* `number!` values: yields the Unicode Code Point with the (truncated) number
-* `binary!` values: assumes UTF-8 encoding; decodes as many bytes as necessary to obtain a Unicode Code Point
-* `any-string!` values: yields the first character
-
-==== Target type `pair!`
-
-The function to-pair is defined for
-
-* `integer!` and `any-float!` values: yields the pair with two components equal to the (truncated) number
-* `any-list!` values: these should contain two `integer!` or `float!` values;
-yields the pair wih the (truncated) numbers as components
-
-Note that a similar built-in function `as-pair` of two arguments is defined,
-which creates a pair out of the arguments.
-
-==== Target type `tuple!`
-
-The function to-tuple is defined for
-
-* `binary!` values: yields the first 12 bytes or fewer as tuple components; if only 1 or 2 bytes are 
-present, components `0` are added
-* `string!` values: yields the result of `load` or an error
-* `any-list!` values: these should contain only `integer!` or `float!` values in the range `0..255`;
-yields the first 12 components or fewer as tuple components;  if only 1 or 2 values are 
-present, components `0` are added
-
-==== Target type `binary!`
-
-The function `to-binary` is defined for
-
-* `integer!` and `any-float!` values: yields the corresponding 4 resp. 8 byte binary value
-* `char!` values: yields the 1 to 4 byte binary value corresponding to the Unicode Code Point number
-* `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
-* `bitset!` values: yields the corresponding binary value
-* `string!` values: yields the UTF-8 encoded binary value
-* `any-list!` values: these should contain only `integer!` or `float!` values;
-the binary equivalents are concatenated, using as few bytes as needed
-for each `integer!` value and 8 bytes for each `float! value
-* `image!` values: yields a binary value with 4 bytes for each pixel
-
-==== Target types in `any-word!` `refinement!` and `issue!`
-
-The function `to-word` is defined for:
-
-* `char!` values: makes a `word!` value with that single character
-* `logic!` and `datatype!` values: yields the word that refers to the value
-* `string!` values: yields the result of `load` or an error
-
-The functions `to-lit-word` etc. perform the same conversiosn and yield
-the result as a value of the appropriate type.
-
-Note that `to-word none` does not yield the word `none`, it raises an error.
-
-==== Target type `image!`
-
-The function `to-image` is defined for `object!` values that are _faces_ i.e.
-derived from the `face!` object which describes a window in the Red GUI system.
-It yields the face such as it would be rendered on the screen, as an `image!`
-value. See further the documentation of the GUI system (reference in section
-_**Additional documentation**_).
-
-=== Casting (as)
-
-The casting facility applies to most of the `series!` types, and makes use of the fact
-that values of several different but related types have their component values
-stored in identical fashion. Therefore a change of type can be performed without copying
-any component values. Two groups of related types are involved: `block! paren! any-path`
-and `any-string!`. The type of the second argument should be in the same group
-as the (type of the) first argument. The result is a new value of the desired type,
-pointing to the components of the old value. Note the absence of `hash!` from the first group,
-explained by the fact that `hash!` values are stored differently from other `any-block!` values.
 
 == Input/output
 
