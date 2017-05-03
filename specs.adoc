@@ -271,7 +271,7 @@ url!            URL
 tag!            tag in the sense of HTML, XML etc.
 email!          email-address
 binary!         sequence of bytes
-image!          2-dimensional array of pixels (RGBA values encoded in 4 bytes each)) 
+image!          2-dimensional array of pixels (RGBA values stored in 4 bytes each) 
 bitset!         sequence of values true or false
 map!            collection of pairs of values where the first value in each pair functions
                 as key for retrieval of the second; keys are restricted to types in
@@ -1141,7 +1141,8 @@ Note that `pick` and `poke` additionally allow the `logic!` values `true` and `f
 Values of type `time! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `time!` values, which are stored as a `float!` number
 of seconds, this selection proceeds by calculation (`1 ~ hour`, `2 ~ minute`, `3 ~ second`).
-For `pair!` , `1 ~ x` and `2 ~ y`. As stated in section _**Atomic/Composite types**_,
+For `pair!` , `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
+top to bottom). As stated in section _**Atomic/Composite types**_,
 component selection in values of direct types cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
 
@@ -1166,9 +1167,21 @@ In the case of `object!` and `error!` it is customary to call the keys _fields_.
 
 Values of type `time! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
+Again, for the direct types among them, only the `<path>` and `pick` forms are valid.
+
 In case of `time! email! image!` and `event!`, the result is obtained by performing
 a certain calculation.
-Again, for the direct types among them, only the `<path>` and `<pick>` forms are valid.
+
+* `time!` values: given a `float!` number of seconds, the `hour` and `minute` components
+are the result of finding the whole number of `3600` seconds in the total, and then the
+whole number of `60` seconds in the remainder; the `second` component is what remains after that
+* `email!` values: the `user` component is the part before the `@` and the `host` component
+is the part after the `@`
+* `image!` values: the `size` component is the `pair!` value that holds the dimensions,
+the `argb`, `rgb` and `alpha` components are the `binary!` sequences of RGBA, RGB and A values
+respectively
+* `event!` values: the components, which are explained in the Red GUi documentation
+(see _**Additional documentation**_) are calculated in an OS-dependent way
 
 ==== Overview table
 
@@ -1184,7 +1197,7 @@ vector!      integer!     pick poke   integer! char!                     select 
 any-string!  integer!     pick poke   char! any-string! binary!          select (put see issue #1960)
 + email!                              host user                          --
 binary!      integer!     pick poke   integer! char! any-string! binary! select (put see issue #1960)
-image!       integer!     pick poke   size rgb alpha rgba                --
+image!       integer!     pick poke   size rgb alpha argb                --
              pair!        pick poke
 bitset!      integer!     pick poke   --                                 --
 map!                                  scalar! all-word! any-string!      select put
@@ -1522,8 +1535,8 @@ indirect type (except `image!`), an intermediate result is obtained by
 applying the built-in function `select`
 with as arguments the evaluated `<path-head>` and `<selector>`.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-direct type or `image!`, an intermediate result is obtained as explained
-_**elsewhere**_.
+direct type, `image!` or `event!`, an intermediate result is obtained as explained
+in section _**Selection by "key"**_.
 .. If a further `<selector>` is present, use the result just obtained as 
 evaluated `<path-head>` and go to step 2, otherwise finish:
 the result of the evaluation is obtained.
@@ -1562,8 +1575,8 @@ indirect type (except `image!`), an intermediate result is obtained by
 applying the built-in function `select`
 with as arguments the evaluated `<path-head>` and `<selector>`.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-direct type or `image!`, an intermediate result is obtained as explained
-_**elsewhere**_.
+direct type, `image!` or `event!`, an intermediate result is obtained as explained
+in section _**Selection by "key"**_.
 .. If a further `<selector>` is present, use the result just obtained as 
 evaluated `<path-head>` and go to step 2, otherwise finish and use
 the intermediate result of the evaluation.
