@@ -971,7 +971,7 @@ The same is true if they occur in `<value>` position.
 or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
 This does not apply to `image!` values.
 
-=== Conversion (to)
+=== Conversion of values (`to`)
 
 Conversion is possible for selected combinations of "source" and "target" type.
 The list given below is meant to be exhaustive. A summary table is available
@@ -1110,7 +1110,7 @@ It yields the face such as it would be rendered on the screen, as an `image!`
 value. See further the documentation of the GUI system (reference in section
 _**Additional documentation**_).
 
-=== Casting (as)
+=== Casting of values (`as`)
 
 The casting facility applies to most of the `series!` types, and makes use of the fact
 that values of several different but related types have their component values
@@ -1208,7 +1208,6 @@ event!                                type face window offset key        --
                                            picked flags away?
                                            down? mid-down? alt-down?
                                            ctrl? shift?
-
 ....
 
 === Reflection on values
@@ -1235,6 +1234,14 @@ the function `words-of` _**not yet implemented**_. For `function!` and `routine!
 addition the function `body-of` which yields the function/routine body.
 
 Note that the `help` built-in function is typically making good use of `spec-of`. 
+
+=== Comparison of values
+
+==== Equality
+
+==== Strict equality
+
+==== Sameness
 
 == Words, contexts and binding
 
@@ -1390,18 +1397,6 @@ is modified.
 A major application of this function is the binding of the formal arguments
 of a function, as they occur within the function body, to the context which
 contains the actual argument values. See evaluation rule `E110`.
-
-== Comparison
-
-=== Equality
-
-=== Strict equality
-
-=== Sameness
-
-=== Type ordering
-
-=== Type comparisons
 
 == Input/output
 
