@@ -1237,11 +1237,41 @@ Note that the `help` built-in function is typically making good use of `spec-of`
 
 === Comparison of values
 
-==== Equality
+Red has the following operators and corresponding `native!` functions
+for comparison of two values. Each of these operators/functions allows
+arguments of any type, although in most cases the comparison may only
+yield `true` if the two types are the same. Exceptions will be noted below.
+The _equality_ functions, i.e. the first four, are defined for all types
+of the first argument. The others (the _ordering_ ones) are only defined
+for certain combinations of types. Also this will be noted.
 
-==== Strict equality
+....
+    operator   native function
 
-==== Sameness
+    =          equal?
+    ==         strict-equal?
+    =?         same?
+    <>         not-equal?
+
+    <          lesser?
+    <=         lesser-or-equal?
+    >          greater?
+    >=         greater-or-equal?
+....
+
+==== Equality comparisons
+
+The strictest equality test is `same?` which yields true only if the
+two _value slots_ (see _**Direct/Indirect/Function types**_) have identical
+content. For values of direct types this comes down to simple equality,
+but for values of other types it is quite possible to be equal but not the same
+(e.g. two strings of identical content, but stored in two different places).
+
+For two values to succeed the `strict-equal?` test, TBD
+
+==== Ordering comparisons
+
+TBD
 
 == Words, contexts and binding
 
