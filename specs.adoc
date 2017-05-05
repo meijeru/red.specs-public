@@ -1288,7 +1288,7 @@ any-object!                              --
 ....
 
 Note that since `word!` values are case-insensitive, within each of the types in `any-word!`,
-`refinement!` and ìssue!`, equality obtains between two values when their symbols differ only
+`refinement!` and `issue!`, equality obtains between two values when their symbols differ only
 in upper-/lower-case.
 
 ==== Ordering comparisons
