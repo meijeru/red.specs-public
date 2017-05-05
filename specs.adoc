@@ -1274,11 +1274,22 @@ for the `equal?` test.
 
 The `equal?` test allows not only different but related types for the two arguments,
 and case differences in spelling, but also, in the case of floating point numbers,
-a very small difference in actual value. The table below gives the details.
+a very small difference in actual value. The table below gives the details. For each
+group of types, `equal?` will allow any two types for the values to be compared,
+and will in addition allow the indicated differences.
 
 ....
-TBD
+types                                    allowed differences
+
+char! integer! float! percent! time!     1 in 1E16 of value
+any-word! refinement!                    same spelling, except for upper-/lower-case
+any-string!                              same characters, except for upper-/lower-case
+any-object!                              --
 ....
+
+Note that since `word!` values are case-insensitive, within each of the types in `any-word!`,
+`refinement!` and ìssue!`, equality obtains between two values when their symbols differ only
+in upper-/lower-case.
 
 ==== Ordering comparisons
 
