@@ -1261,9 +1261,9 @@ for certain combinations of types. Also this will be noted.
 
 ==== Equality comparisons
 
-The strictest equality test is `same?` which yields true only if the
-two _value slots_ (see _**Direct/Indirect/Function types**_) have identical
-content. For values of direct types this comes down to simple equality,
+The strictest equality test is `same?` which yields true only if the values
+are of the same type and the two _value slots_ (see _**Direct/Indirect/Function types**_)
+have identical content. For values of direct types this comes down to simple equality,
 but for values of other types it is quite possible to be equal but not the same
 (e.g. two strings of identical content, but one a string literal and the
 other the result of decoding a `binary!` value).
@@ -1272,24 +1272,21 @@ For two values to succeed the `strict-equal?` test, they have to be of the same
 type and also have exactly the same value, i.e. not have the differences allowed
 for the `equal?` test.
 
-The `equal?` test allows not only different but related types for the two arguments,
-and case differences in spelling, but also, in the case of floating point numbers,
-a very small difference in actual value. The table below gives the details. For each
-group of types, `equal?` will allow any two types for the values to be compared,
-and will in addition allow the indicated differences.
+The `equal?` test ignores case differences in spelling of words and strings, and
+in the case of floating point numbers, a very small difference in actual value.
 
-....
-types                                    allowed differences
+For values of `any-block!` and `any-object!` type, the `strict-equal?` and `equal?`
+tests apply pairwise to the components and if these are also of `any-block!` or
+`any-object!` type, there is recursion involved, with cycle detection.
 
-char! integer! float! percent! time!     1 in 1E16 of value
-any-word! refinement!                    same spelling, except for upper-/lower-case
-any-string!                              same characters, except for upper-/lower-case
-any-object!                              --
-....
+Finally, for the `equal?` test, the requirement of equal type is relaxed for four
+groups of types. Within each group of types, `equal?` will allow any two types
+for the values to be compared:
 
-Note that since `word!` values are case-insensitive, within each of the types in `any-word!`,
-`refinement!` and `issue!`, equality obtains between two values when their symbols differ only
-in upper-/lower-case.
+* `char! number!`
+* `any-word! refinement!` (note the absence of `issue!`)
+* `any-string!`
+* `any-object!`                             --
 
 ==== Ordering comparisons
 
