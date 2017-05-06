@@ -1279,14 +1279,15 @@ For values of `any-block!` and `any-object!` type, the `strict-equal?` and `equa
 tests apply pairwise to the components and if these are also of `any-block!` or
 `any-object!` type, there is recursion involved, with cycle detection.
 
-Finally, for the `equal?` test, the requirement of equal type is relaxed for four
-groups of types. Within each group of types, `equal?` will allow any two types
+Finally, for the `equal?` test, the requirement of equal type is relaxed for several
+combinations of types. Within each such combination, `equal?` will allow any two types
 for the values to be compared:
 
-* `char! number!`
+* `char! integer!` _**See issue #2650**_
+* `number!`
 * `any-word! refinement!` (note the absence of `issue!`)
 * `any-string!`
-* `any-object!`                             --
+* `any-object!` _**See issue #2657**_                             --
 
 ==== Ordering comparisons
 
