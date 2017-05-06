@@ -1275,17 +1275,12 @@ for the `equal?` test.
 The `equal?` test ignores case differences in spelling of words and strings, and
 in the case of floating point numbers, a very small difference in actual value.
 
-To be refined!!!-----------------------------
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
-and equality of field values (types within `any-word!` or `integer! + float!`).
-If these are also of `any-block!` or
-`any-object!` type, there is recursion involved, with cycle detection.
-To be refined!!!-----------------------------
+and (strict) equality of field values. If the components or field values are also of
+`any-block!` or `any-object!` type, there is recursion involved, with cycle detection.
 
-
-
-Finally, for the `equal?` test, the requirement of equal type is relaxed for several
+In all cases, for the `equal?` test, the requirement of equal type is relaxed for several
 combinations of types. Within each such combination, `equal?` will allow any two types
 for the values to be compared:
 
