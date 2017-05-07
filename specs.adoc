@@ -1302,8 +1302,8 @@ The following cases can be distinguished:
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`
 * lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`
-* no comparison: `datatype! typeset! none! logic! image! map! function! routine! action!
-native! op! event! handle! event!` and `unset!`.
+* no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
+action! native! op! handle! event!` and `unset!`.
 
 As a rule, for ordering comparisons the types of the two values have to be the same. However,
 as with equality, for some combinations of types this requirement is relaxed.
