@@ -59,8 +59,8 @@ the program execution may take the form of _interpretation_, i.e. the effect
 of the program is the result of the toolchain's operation itself.
 In either case, the execution may occur through _compilation_, i.e. the toolchain
 produces a program in a lower-level language (e.g. machine code) suitable
-for execution on the target computer. The toolchain is constructed such that
-the effect of the program is the same whether it is executed through
+for execution on the target computer. The toolchain is to be constructed
+such that the effect of the program is the same whether it is executed through
 interpretation or compilation. A further facility of the toolchain is
 that it provides one or more _interactive consoles_, i.e. visual interfaces
 which accept program fragments and display the result of evaluating them
@@ -1485,20 +1485,21 @@ submitted to `load`.
 
 Examples:
 ....
-load "[1 2 3]"  -> [1 2 3]   ; one (grouped) value detected
-load "1 2 3"    -> [1 2 3]   ; load produces a block for more than one value
+load "[1 2 3]"            -> [1 2 3]              ; one (grouped) value detected
+load "1 2 3"              -> [1 2 3]              ; load produces a block for more than one value
 
-form [1 2 3]    -> "1 2 3"   ; block brackets omitted
-mold [1 2 3]    -> "[1 2 3]" ; load is guaranteed to recognize this
-
-v: make vector! [1 2 3]
-form v          -> "1 2 3"
-mold v          -> "make vector! [1 2 3]"
+form [1 2 3]              -> "1 2 3"              ; block brackets omitted
+form quote (1 2 3)        -> "1 2 3"              ; parens also omitted
+form make hash! [1 2 3]   -> "1 2 3"              ; hash property not shown
+mold [1 2 3]              -> "[1 2 3]"            ; load is guaranteed to recognize this
+mold make hash! [1 2 3]   -> "make hash! [1 2 3]" ; hash property conserved
+form make vector! [1 2 3] -> "1 2 3"
+mold make vector! [1 2 3] -> "make vector! [1 2 3]"
 ....
 
 === Printing
 
-The built-in function "prin" will take a value or a block of values
+The built-in function `prin` will take a value or a block of values
 and send a string to the standard output device. In the case of
 a single value the string is the result of applying `form` to the
 result of evaluating the value; in the case of a block, the individual
@@ -1506,20 +1507,36 @@ components are evaluated and converted by `form` and separated by
 single spaces. The built-in function `print` calls `prin` and outputs
 a line feed afterwards.
 
+The built-in function `probe` will call `mold` and then `print`, and
+yield its argument as a result. This is useful for debugging intermediate
+results; note that `print` itself will yield the unset value.
+
+Examples:
+....
+print [1 + 2 3 + 4]    ; prints "3 7" and yields unset
+probe [1 + 2 3 + 4]    ; prints "[1 + 2 3 + 4]" and yields [1 + 2 3 + 4]
+....
+
 === File and Url I/O
 
 The built-in function `read` will read a string from a file on an external
 device which can be indicated by a `file!` or `url!` value. The content
 is assumed to be UTF-8 encoded unless the refinement `/as` is used,
-which has a `word!` argument indicating the encoding. If the refinement
-`/lines` is used, the content will be split into lines at the line feed
-character (U+000A) _**any more??**_. If the refinement `/binary` is used,
-the content will be read as a `binary!` value and not be decoded.
+which has a `word!` argument indicating the character encoding _**What is allowed??**_.
+If the refinement `/lines` is used, the content will be split into lines
+at the line feed character (U+000A); a preceding carriage return (U+000D)
+will be accounted for. If the refinement `/binary` is used, the content
+will be read as a `binary!` value and not be decoded.
 
 The built-in function `load` will not only accept a string or binary value
 as input, but also a `file!` or `url!` value indicating a text or binary file.
+Moreover, with the `/as` refinement, it will accept data encoded as indicated
+in the `word!` argument: `none` indicates Red code (Red data), other values
+implemented are `jpeg png bmp tiff` which will result in an `image!` value.
+The corresponding decoding and encoding functions are stored in `system/codecs`.
 
-The built-in function `write`
+The built-in function `save` 
+The built-in function `write` 
 
 == Evaluation rules
 
