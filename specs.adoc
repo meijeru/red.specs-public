@@ -1474,9 +1474,52 @@ contains the actual argument values. See evaluation rule `E110`.
 
 === Conversion from/to textual representation
 
+The built-in function `load` will convert textual input (or its binary UTF-8 encoded
+equivalent) to one or more values by calling upon the lexical/syntactic analysis
+facilities of the toolchain.
+
+There are two built-in functions for converting values to readable strings:
+`form` will produce a basic representation intended for human readers, and `mold`
+will produce strings that are guaranteed to re-produce the original values when
+submitted to `load`.
+
+Examples:
+....
+load "[1 2 3]"  -> [1 2 3]   ; one (grouped) value detected
+load "1 2 3"    -> [1 2 3]   ; load produces a block for more than one value
+
+form [1 2 3]    -> "1 2 3"   ; block brackets omitted
+mold [1 2 3]    -> "[1 2 3]" ; load is guaranteed to recognize this
+
+v: make vector! [1 2 3]
+form v          -> "1 2 3"
+mold v          -> "make vector! [1 2 3]"
+....
+
 === Printing
 
+The built-in function "prin" will take a value or a block of values
+and send a string to the standard output device. In the case of
+a single value the string is the result of applying `form` to the
+result of evaluating the value; in the case of a block, the individual
+components are evaluated and converted by `form` and separated by
+single spaces. The built-in function `print` calls `prin` and outputs
+a line feed afterwards.
+
 === File and Url I/O
+
+The built-in function `read` will read a string from a file on an external
+device which can be indicated by a `file!` or `url!` value. The content
+is assumed to be UTF-8 encoded unless the refinement `/as` is used,
+which has a `word!` argument indicating the encoding. If the refinement
+`/lines` is used, the content will be split into lines at the line feed
+character (U+000A) _**any more??**_. If the refinement `/binary` is used,
+the content will be read as a `binary!` value and not be decoded.
+
+The built-in function `load` will not only accept a string or binary value
+as input, but also a `file!` or `url!` value indicating a text or binary file.
+
+The built-in function `write`
 
 == Evaluation rules
 
