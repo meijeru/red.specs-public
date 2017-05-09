@@ -1587,7 +1587,7 @@ unless the refinement `/as` is used, which has a `word!` argument indicating
 the character encoding _**What is allowed??**_.
 If the refinement `/append` is used the output will be written at the end of the file.
 If the refinement `/lines` is used, and the value to be written is a block,
-the coomponents of the block will be written with a line feed after every component.
+the components of the block will be written with a line feed after every component.
 
 The built-in function `save` will not only accept a string or `binary!` value
 as destination, but also a `file!` or `url!` value indicating a text or binary file.
@@ -1866,12 +1866,6 @@ compose [([1 + 2]) (3 + 4)]      ->  [1 + 2 7]     ; evaluation of a block yield
 compose/only [([1 + 2]) (3 + 4)] ->  [[1 + 2] 7]   ; with /only, a block stays a block
 compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens are also evaluated
 ....
-
-== Evaluation process
-
-=== Loading stage
-
-=== Evaluation loop
 
 == Exceptions
 
