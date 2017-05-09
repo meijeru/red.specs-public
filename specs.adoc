@@ -1474,8 +1474,9 @@ contains the actual argument values. See evaluation rule `E110`.
 === Conversion from/to textual representation
 
 The built-in function `load` will convert textual input (or its binary UTF-8 encoded
-equivalent) to one or more values by calling upon the lexical/syntactic analysis
-facilities of the toolchain.
+equivalent), specified as its argument, to one or more values by calling upon
+the lexical/syntactic analysis facilities of the toolchain. The result is either one
+value or a block of values.
 
 There are two built-in functions for converting values to readable strings:
 `form` will produce a basic representation intended for human readers, and `mold`
@@ -1504,10 +1505,11 @@ mold make hash! [1 2 3]   -> "make hash! [1 2 3]"   ; hash property conserved
 mold make vector! [1 2 3] -> "make vector! [1 2 3]" ; vector property conserved
 ....
 
-The built-in function `save` will apply `mold` to its second argument
-and append the result to its first argument if that is a string, or
-create a UTF-8 encoded `binary!` value out of the result
-which it will append to its first argument if that is a `binary!` value.
+The built-in function `save` will apply `mold` to the value which is its
+second argument. If the destination specified as its first argument is a string,
+it will append the result of `mold` to that string. If the destination
+is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
+out of the result of `mold` and append that value to the destination .
 _**See issue #2668**_
 
 === Conversion from/to other representations
@@ -1560,19 +1562,32 @@ probe [1 + 2 3 + 4]    ; prints "[1 + 2 3 + 4]" and yields [1 + 2 3 + 4]
 === File and Url I/O
 
 The built-in function `read` will read a string from a file on an external
-device which can be indicated by a `file!` or `url!` value. The content
+device which is indicated by a `file!` or `url!` value as its argument. The content
 is assumed to be UTF-8 encoded unless the refinement `/as` is used,
 which has a `word!` argument indicating the character encoding _**What is allowed??**_.
 If the refinement `/lines` is used, the content will be split into lines
-at the line feed character (U+000A); a preceding carriage return (U+000D)
-will be accounted for. If the refinement `/binary` is used, the content
-will be read as a `binary!` value and not be decoded.
+at the line feed character (`U+000A`); a preceding carriage return (`U+000D`),
+if present, will be accounted for. If the refinement `/binary` is used,
+the content will be read as a `binary!` value and not be decoded.
 
-The built-in function `load` will not only accept a string or binary value
+The built-in function `load` will not only accept a string or `binary!` value
 as input, but also a `file!` or `url!` value indicating a text or binary file.
+It will read the content of the file and treat it as indicated above. 
 
-The built-in function `write` 
-The built-in function `save` 
+The built-in function `write` will send a string or `binary!` value which is
+its second argument to a file on an external device which is indicated
+by a `file!` or `url!` value as its first argument.  If the second argument
+is not a string or `binary!` value, it will first be passed to `mold`.
+The resulting string will be UTF-8 encoded (as by `to-binary`)
+unless the refinement `/as` is used, which has a `word!` argument indicating
+the character encoding _**What is allowed??**_.
+If the refinement `/append` is used the output will be written at the end of the file.
+If the refinement `/lines` is used, and the value to be written is a block,
+the coomponents of the block will be written with a line feed after every component.
+
+The built-in function `save` will not only accept a string or `binary!` value
+as destination, but also a `file!` or `url!` value indicating a text or binary file.
+It will send its result to that file.
 
 == Evaluation rules
 
