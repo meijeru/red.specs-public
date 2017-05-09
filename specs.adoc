@@ -773,7 +773,11 @@ transparency being `0`. If a single `<binary>` is specified, this should contain
 (three bytes per pixel, stored by horizontal line), the transparency being `0`. The second `<binary>`, if present,
 contains the transparency (one byte per pixel, in the same ordering).
 
-Examples: `make image! 200x300, make image! [200x300 255.0.0], make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{00000000}]`
+Examples:
+....
+make image! 200x300, make image! [200x300 255.0.0],
+make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{00000000}]
+....
 
 ==== `bitset!`
 
