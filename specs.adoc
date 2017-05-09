@@ -1838,7 +1838,7 @@ As stated before, evaluation of a block leaves it unchanged. Execution of a bloc
 is the term used to indicate sequential evaluation of the components of the block,
 yielding as a result the result of the last evaluation, if any, and the unset value
 otherwise. Two built-in functions are available to evaluate components of a block
-and preserve the results in a block
+and preserve the results in a block.
 
 The built-in function `reduce` applied to a block yields a new block, with
 as components all the results of evaluating the block's components, in the same order.
@@ -1852,7 +1852,7 @@ do [1 + 2 3 + 4]            ->  7       ; compare with execution
 It is also possible to selectively evaluate the block's components: the built-in function
 `compose` will only evaluate those components that are of type `paren!`. With refinement
 `/deep`,`compose` will also act on nested blocks. With refinement `/only`, `compose` will
-evaluate a block
+evaluate a block as a block, instead of yielding its components separately.
 
 Example:
 ....
