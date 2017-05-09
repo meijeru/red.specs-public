@@ -1504,6 +1504,27 @@ mold make hash! [1 2 3]   -> "make hash! [1 2 3]"  ; hash property conserved
 mold make vector! [1 2 3] -> "make vector! [1 2 3]"
 ....
 
+=== Conversion from/to other representations
+
+The built-in function `load` has an `/as` refinement, which makes it
+accept data encoded as indicated in a `word!` argument: `none` indicates
+Red code (Red data); other values implemented are `jpeg png bmp tiff`
+each of which will result in an `image!` value. The corresponding
+decoding and encoding functions are found via `system/codecs`.
+This is a block of pairs: <word><object>, where the <word> indicates
+the encoding e.g. `jpeg`, and the corresponding object has the following
+content:
+....
+    key             title        content
+
+    title           string!      | 
+    name            word!        | JPEG
+    mime-type       block!       | length: 1  [image/jpeg]
+    suffixes        block!       | length: 4  [%.jpg %.jpeg %.jpe %.jfif]
+    encode          routine!     | [img [image!] where [any-type!]]
+    decode          routine!     | [data [any-type!]]
+....
+
 === Printing
 
 The built-in function `prin` will take a value or a block of values
@@ -1537,10 +1558,6 @@ will be read as a `binary!` value and not be decoded.
 
 The built-in function `load` will not only accept a string or binary value
 as input, but also a `file!` or `url!` value indicating a text or binary file.
-Moreover, with the `/as` refinement, it will accept data encoded as indicated
-in the `word!` argument: `none` indicates Red code (Red data), other values
-implemented are `jpeg png bmp tiff` which will result in an `image!` value.
-The corresponding decoding and encoding functions are stored in `system/codecs`.
 
 The built-in function `save` 
 The built-in function `write` 
