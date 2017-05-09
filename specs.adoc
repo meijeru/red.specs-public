@@ -1604,6 +1604,7 @@ Note that `block!` is one of the passive types. Thus evaluation of a block
 leaves the block unchanged. The term _execution of a block_ will be used to
 indicate sequential evaluation of the components of the block; the result of this
 execution is the result of the last evaluation, if any, and the unset value otherwise.
+See also the section _**Reduction**_.
 
 === Decaying types
 
@@ -1833,8 +1834,34 @@ TBD
 
 === Reduction
 
-=== Selective reduction
+As stated before, evaluation of a block leaves it unchanged. Execution of a block
+is the term used to indicate sequential evaluation of the components of the block,
+yielding as a result the result of the last evaluation, if any, and the unset value
+otherwise. Two built-in functions are available to evaluate components of a block
+and preserve the results in a block
 
+The built-in function `reduce` applied to a block yields a new block, with
+as components all the results of evaluating the block's components, in the same order.
+
+Example:
+....
+reduce [1 + 2 3 + 4]        ->  [3 7]   ; reduction
+do [1 + 2 3 + 4]            ->  7       ; compare with execution
+....
+
+It is also possible to selectively evaluate the block's components: the built-in function
+`compose` will only evaluate those components that are of type `paren!`. With refinement
+`/deep`,`compose` will also act on nested blocks. With refinement `/only`, `compose` will
+evaluate a block
+
+Example:
+....
+compose [1 + 2 (3 + 4)]          ->  [1 + 2 7]     ; evaluation only within parens
+compose [[(1 + 2)] (3 + 4)]      ->  [[(1 + 2)] 7] ; inner blocks are untouched
+compose [([1 + 2]) (3 + 4)]      ->  [1 + 2 7]     ; evaluation of a block yields the components 
+compose/only [([1 + 2]) (3 + 4)] ->  [[1 + 2] 7]   ; with /only, a block stays a block
+compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens are also evaluated
+....
 
 == Evaluation process
 
