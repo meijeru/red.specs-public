@@ -1489,40 +1489,46 @@ the essentials without conserving type information.
 
 Examples:
 ....
-load "[1 2 3]"            -> [1 2 3]               ; one (grouped) value detected
-load "1 + 2"              -> [1 + 2]               ; load produces a block for more than one value
+load "[1 2 3]"            -> [1 2 3]                ; one (grouped) value detected
+load "1 + 2"              -> [1 + 2]                ; load produces a block for more than one value
 
-form ()                   -> ""                    ; unset! value
-form #{414243}            -> "#{414243}"           ; to-string gives "ABC"
-form [1 2 3]              -> "1 2 3"               ; block brackets omitted
-form quote (1 2 3)        -> "1 2 3"               ; parens also omitted
-form make hash! [1 2 3]   -> "1 2 3"               ; hash property not shown
-form make vector! [1 2 3] -> "1 2 3"               ; vector property not shown
-form object [a: 1]        -> "a: 1"                ; object property not shown
-mold [1 2 3]              -> "[1 2 3]"             ; load is guaranteed to recognize this
-mold make hash! [1 2 3]   -> "make hash! [1 2 3]"  ; hash property conserved
-mold make vector! [1 2 3] -> "make vector! [1 2 3]"
+form ()                   -> ""                     ; unset! value
+form #{414243}            -> "#{414243}"            ; to-string gives "ABC"
+form [1 2 3]              -> "1 2 3"                ; block brackets omitted
+form quote (1 2 3)        -> "1 2 3"                ; parens also omitted
+form make hash! [1 2 3]   -> "1 2 3"                ; hash property not shown
+form make vector! [1 2 3] -> "1 2 3"                ; vector property not shown
+form object [a: 1]        -> "a: 1"                 ; object property not shown
+mold [1 2 3]              -> "[1 2 3]"              ; load is guaranteed to recognize this
+mold make hash! [1 2 3]   -> "make hash! [1 2 3]"   ; hash property conserved
+mold make vector! [1 2 3] -> "make vector! [1 2 3]" ; vector property conserved
 ....
+
+The built-in function `save` will apply `mold` to its second argument
+and append the result to its first argument if that is a string, or
+create a UTF-8 encoded `binary!` value out of the result
+which it will append to its first argument if that is a `binary!` value.
+_**See issue #2668**_
 
 === Conversion from/to other representations
 
 The built-in function `load` has an `/as` refinement, which makes it
-accept data encoded as indicated in a `word!` argument: `none` indicates
-Red code (Red data); other values implemented are `jpeg png bmp tiff`
+accept data encoded as indicated in a `word!` argument: the value `none`
+indicates Red code (Red data); other values implemented are `jpeg png bmp tiff`
 each of which will result in an `image!` value. The corresponding
 decoding and encoding functions are found via `system/codecs`.
-This is a block of pairs: <word><object>, where the <word> indicates
-the encoding e.g. `jpeg`, and the corresponding object has the following
+This is a block of pairs: `<word><object>`, where the `<word>` indicates
+the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
 content:
 ....
-    key             title        content
+    key             value type   content
 
-    title           string!      | 
-    name            word!        | JPEG
-    mime-type       block!       | length: 1  [image/jpeg]
-    suffixes        block!       | length: 4  [%.jpg %.jpeg %.jpe %.jfif]
-    encode          routine!     | [img [image!] where [any-type!]]
-    decode          routine!     | [data [any-type!]]
+    title           string!      (not filled in) 
+    name            word!        'JPEG
+    mime-type       block!       [image/jpeg]
+    suffixes        block!       [%.jpg %.jpeg %.jpe %.jfif]
+    encode          routine!     routine [img [image!] where [any-type!]][...]
+    decode          routine!     routine [data [any-type!]][...]
 ....
 
 === Printing
