@@ -1522,7 +1522,7 @@ _**See issue #2668**_
 The built-in functions `load` and `save` each have an `/as` refinement
 with a `word!` argument: the value `none` indicates Red code (Red data)
 and makes `load` and `save` operate as already described;
-other values implemented are `jpeg png bmp tiff`; for each of these values
+other values implemented are `png jpeg bmp gif`; for each of these values
 `load` will accept binary data in the indicated format and yield an `image!`
 value, and `save` will take an `image!` value and produce the encoded binary
 value.
