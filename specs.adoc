@@ -2086,7 +2086,7 @@ see section _**Additional documentation**_.
 === Parse
 
 The _parse dialect_ is an embedded Domain Specific Language for parsing input series
-using grammar rules. It is an enhanced member of the TDPL family.
+using grammar rules. It is an enhanced member of the Top Down Parsing Languages (TDPL) family.
 Parse's common usages are for checking, validating, extracting, modifying
 input data and implementing embedded and external DSLs.
 
