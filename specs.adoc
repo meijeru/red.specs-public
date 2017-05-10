@@ -108,7 +108,7 @@ in ways of their own, and thus create _dialects_ or _Domain Specific Languages
 (DSLs_).
 
 In fact, Red itself contains a number of dialects where blocks of data are
-interpreted in a specific way; this includes
+interpreted in a specific way; this includes the _preprocessor dialect_, 
 the _parse dialect_, the _visual interface dialect (VID)_, which also uses
 the _draw dialect_, the various _spec dialects_ involved in defining vectors,
 images, bitsets, objects, errors, maps, operators, functions and routines,
@@ -2048,13 +2048,16 @@ a refinement `/all`, allowing it to catch all possible forms of exceptions,
 including `break`, `continue`, `exit` and `return` misuses as well as
 uncaught throws.
 
-== Preprocessor
+== Miscellaneous
+
+=== Preprocessor
 
 The Red preprocessor is a dialect of Red, enabling transformation of Red source code
 using a specific layer on top of regular Red language code. Transformations are achieved
 by inlining preprocessor keywords (called _directives_) inside Red source code.
 
 These directives will be processed:
+
 * when the Red source code is compiled
 * when the Red source code is executed by the `do` built-in function with a `file!` argument
 * when the `expand-directives` built-in function is called on a `block!` value
@@ -2063,9 +2066,10 @@ The preprocessor is invoked after the lexical/syntactic analysis phase, so it pr
 Red values, and not the source code in text form.
 
 Directive categories:
-* conditional directives: include code depending on the result of an expression
-* control directives: control the behavior of the preprocessor.
-* macros: transform code using functions, enables more complex transformations
+
+* _conditional directives_: include code depending on the result of an expression
+* _control directives_: control the behavior of the preprocessor.
+* _macros_: transform code using functions, enables more complex transformations
 
 Directives are denoted by specific `issue!` values (starting with a `#` character).
 
@@ -2075,6 +2079,45 @@ That is how transformations of source code is achieved.
 
 Note: Red/System has its own preprocessor, which is similar, but low-level
 and applied to the source code in text form.
+
+Further explanations are provided in separate documentation;
+see section _**Additional documentation**_.
+
+=== Parse
+
+The _parse dialect_ is an embedded Domain Specific Language for parsing input series
+using grammar rules. It is an enhanced member of the TDPL family.
+Parse's common usages are for checking, validating, extracting, modifying
+input data and implementing embedded and external DSLs.
+
+Parse's core principles are:
+
+* advance input series by matching grammar rules until top-level rule failure
+(returning `false`) or input exhaustion (returning `true )
+* ordered choices (e.g. in `["a" | "ab"]` rule, the second one will never succeed)
+* rules composability (unlimited)
+* limited backtracking: only input and rules positions are backtracked,
+other changes remain
+* two modes: string-parsing (for example: external DSL) or block-parsing (for example: embedded DSL)
+
+Further explanations are provided in separate documentation;
+see section _**Additional documentation**_.
+
+=== Red/View component, GUI System
+
+The Red/View (or just View) component is a graphic system for the Red programming language.
+The design goals are:
+
+* data-oriented, minimal API
+* virtual tree of objects as programming interface
+* realtime or deferred synchronization between the virtual tree and the display system
+* make two-way binding trivial to support
+* ability to have different backends, across different platforms
+* support OS, third-party and custom widget sets
+* low performance overhead
+
+The virtual tree is built using _face objects_. Each face object maps to a graphic component
+on the display in a two-way binding.
 
 Further explanations are provided in separate documentation;
 see section _**Additional documentation**_.
