@@ -1588,6 +1588,9 @@ the character encoding _**What is allowed??**_.
 If the refinement `/append` is used the output will be written at the end of the file.
 If the refinement `/lines` is used, and the value to be written is a block,
 the components of the block will be written with a line feed after every component.
+The refinement `/binary` ensures that a line feed character (`LF`, `U+000A`)
+present in the source is not translated to an OS-specific character combination
+(e.g. `CRLF`, `U+000D + U+000A`) but is output as a single `LF`.
 
 The built-in function `save` will not only accept a string or `binary!` value
 as destination, but also a `file!` or `url!` value indicating a text or binary file.
