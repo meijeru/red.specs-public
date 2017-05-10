@@ -1518,11 +1518,15 @@ _**See issue #2668**_
 
 === Conversion from/to other representations
 
-The built-in function `load` has an `/as` refinement, which makes it
-accept data encoded as indicated in a `word!` argument: the value `none`
-indicates Red code (Red data); other values implemented are `jpeg png bmp tiff`
-each of which will result in an `image!` value. The corresponding
-decoding functions are found via `system/codecs`.
+The built-in functions `load` and `save` each have an `/as` refinement
+with a `word!` argument: the value `none` indicates Red code (Red data)
+and makes `load` and `save` operate as already described;
+other values implemented are `jpeg png bmp tiff`; for each of these values
+`load` will accept binary data in the indicated format and yield an `image!`
+value, and `save` will take an `image!` value and produce the encoded binary
+value.
+
+The necessary decoding and encoding routines are stored in `system/codecs`.
 This is a block of pairs: `<word><object>`, where the `<word>` indicates
 the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
 content:
@@ -1536,12 +1540,6 @@ content:
     encode          routine!     routine [img [image!] where [any-type!]][...]
     decode          routine!     routine [data [any-type!]][...]
 ....
-
-The built-in function `save` also has an `/as` refinement, which makes it
-emit data encoded as indicated in a `word!` argument: the value `none`
-indicates Red code (or Red data) as "molded" string; other values implemented
-are `jpeg png bmp tiff` each of which will result in a `binary!` value
-which encodes an `image!` value using an encoding function found in `system/codecs`.
 
 === Printing
 
