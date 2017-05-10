@@ -1495,6 +1495,7 @@ the essentials without conserving type information.
 Examples:
 ....
 load "[1 2 3]"            -> [1 2 3]                ; one (grouped) value detected
+load #{5B31203220335D}    -> [1 2 3]                ; same input as binary value
 load "1 + 2"              -> [1 + 2]                ; load produces a block for more than one value
 
 form ()                   -> ""                     ; unset! value
