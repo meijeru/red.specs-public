@@ -500,7 +500,8 @@ any-type!
 
 The built-in function `type?` will yield the type of a value. For every pre-defined
 type and typeset there is a built-in function which will test if a value is of that type
-(or a type in that typeset).
+(or a type in that typeset). These functions have the name of the type(set) with the
+`!` replaced by `?`.
 
 Examples:
 ....
