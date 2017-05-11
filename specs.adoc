@@ -496,6 +496,19 @@ any-type!
    |--handle!            
 ....
 
+=== Type and typeset related functions
+
+The built-in function `type?` will yield the type of a value. For every pre-defined
+type and typeset there is a built-in function which will test if a value is of that type
+(or a type in that typeset).
+
+Examples:
+....
+type? 1        -> integer!
+integer? 1     -> true
+number? 1.0    -> true
+....
+
 == Values
 
 === Introduction
@@ -687,6 +700,19 @@ brackets and from each other by whitespace.
 
 Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{AQID}`
 
+In order to help convert between the 3 representations (base2, base16 and base64),
+the built-in functions `debase` and `enbase` have been defined. They each have
+a refinement `/base` with an argument of 2, 16 or 64 (default).
+
+Examples:
+....
+enbase #{010203}           -> "AQID"
+enbase "^A^B^C"            -> "AQID"
+enbase/base #{010203} 2    -> "000000010000001000000011"
+debase "AQID"              -> #{010203}
+....
+
+
 ==== `path!`
 
 **`S113`**::
@@ -805,6 +831,9 @@ produced by the following bit-position numbers, while actually storing only thes
 
 Examples: `make bitset! 16, charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
 
+The built-in function `complement?` will test if the bitset is a complemented one,
+i.e. if its complement is what is actually stored.
+
 ==== `object!`
 
 **`S119`**::
@@ -831,6 +860,8 @@ The `set-word!` values that are (first-level) components of the `<object-spec>`
 are added to this context if they are not already present in that context.
 The `<object-spec>` is then treated as in the previous case.
 The `class` property of the new object is copied from the prototype.
+
+An additional built-in function `construct` _** does what?? **_
 
 ==== `error!`
 
@@ -1400,9 +1431,15 @@ Words are bound to contexts as a result of:
 
 Details of the binding process in these cases are given in the following sub-sections.
 
+Note that a word bound to a context does not necessarily have a value. The built-in
+function `value?` tests if it does.
+
 ==== Lexical analysis
 
-TBD
+Every lexeme that is recognized in the source text as being of a type in `any-word!
+refinement!` and `issue!`, either by the operation of the toolchain or
+-- at runtime -- by the `load` function, is bound to the global context,
+and will initially not refer to any value in that context.
 
 ==== Setting words to values
 
@@ -2415,7 +2452,6 @@ F    lit-word?
 F    logic?
 F    map?
 F    native?
-N    new-line?
 F    none?
 F    number?
 F    object?
