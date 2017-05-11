@@ -89,13 +89,22 @@ a similar role to identifiers and keywords of other languages.
 Red does *not* have identifiers nor keywords: as will be explained in more
 detail below, any _word_ may _refer_ to a value in some _context_.
 The word is said to be _bound to_, or _in_ the context.
-Initially, some words refer to certain values in the _global context_,
-notably to _built-in functions_, _types_ (type names conventionally end in `!`)
-and _constants_ such as the truth values: `true` and `false`, as well as `none`
-("nil" or "null" in other languages). Evaluation of a word yields the value
-it refers to. The evaluation rules given below will state,
-amongst others, how words can come to refer to values in the course of
-program execution.
+Evaluation of a word yields the value it refers to. The evaluation rules
+given below will state, amongst others, how words can come to refer
+to values in the course of program execution.
+
+A large number of words are _pre-defined_ to refer to certain values
+in the _global context_, notably to _built-in functions_, _types_
+(type names conventionally end in `!`) and _constants_ such as
+the truth values: `true` and `false`, as well as `none` ("nil"
+or "null" in other languages). See section _**Pre-defined words**_
+for the complete list.
+
+As regards the built-in functions, a number of them will be mentioned
+in this document, and their operation explained. To find more information
+about these and all other functions for (or any value for that matter),
+Red has a built-in mechanism: the `help` function, which can be called
+from an interactive console.
 
 === Dialects
 
@@ -2333,83 +2342,23 @@ see section _**Additional documentation**_.
 
 The functions are classified by functionality: 
 
-* making values (see section _** **_)
-* converting values (see sections _** **_ and _** **_)
-* enquiry
-* comparison (see section _** **_)
-* evaluation and binding
-* input/output (see section _** **_)
-* exception handling
+* enquiry, i.e. properties of types and values (see sections
+_**Type and typeset related functions**_ and _**Reflection on values**_)
+* making values (see section _**Creation of values**_)
+* converting values (see sections _**Conversion of values**_ and _**Casting of values**_)
+* comparison (see section _**Conmparison of values**_)
+* evaluation and binding (see sections
+_**Words, contexts and binding**_ and _**Evaluation rules**_)
+* numerical and logical computation
+* series manipulation
+* control
+* input/output (see section _**Input/output**_)
+* exception handling (see section _**Exceptions**_)
+
 
 The letter in front of each word gives the type: `A` for `action!`, `N` for `native!`,
 `O` for `op!`, `R` for `routine!` and `F` for `function!`
 
-==== making values
-....
-F    charset
-F    collect
-N    compose
-N    construct
-F    context
-N    does
-N    extend
-N    func
-N    function
-N    has
-A    make
-F    object
-N    reduce
-F    routine
-....
-==== converting values
-....
-N    as
-R    as-color
-R    as-ipv4
-N    as-pair
-R    as-rgba
-N    debase
-N    dehex
-N    enbase
-N    lowercase
-A    to
-F    to-binary
-F    to-bitset
-F    to-block
-F    to-char
-F    to-email
-F    to-file
-F    to-float
-F    to-get-path
-F    to-get-word
-F    to-hash
-F    to-image
-F    to-integer
-F    to-issue
-F    to-lit-path
-F    to-lit-word
-N    to-local-file
-F    to-logic
-F    to-map
-F    to-none
-F    to-pair
-F    to-paren
-F    to-path
-F    to-percent
-F    to-red-file
-F    to-refinement
-F    to-set-path
-F    to-set-word
-F    to-string
-F    to-tag
-F    to-time
-F    to-tuple
-F    to-typeset
-F    to-unset
-F    to-url
-F    to-word
-N    uppercase
-....
 ==== enquiry
 ....
 F    action?
@@ -2483,6 +2432,72 @@ F    vector?
 F    word?
 F    words-of
 ....
+==== making values
+....
+F    charset
+F    collect
+N    compose
+N    construct
+F    context
+N    does
+N    extend
+N    func
+N    function
+N    has
+A    make
+F    object
+N    reduce
+F    routine
+....
+==== converting values
+....
+N    as
+R    as-color
+R    as-ipv4
+N    as-pair
+R    as-rgba
+N    debase
+N    dehex
+N    enbase
+N    lowercase
+A    to
+F    to-binary
+F    to-bitset
+F    to-block
+F    to-char
+F    to-email
+F    to-file
+F    to-float
+F    to-get-path
+F    to-get-word
+F    to-hash
+F    to-image
+F    to-integer
+F    to-issue
+F    to-lit-path
+F    to-lit-word
+N    to-local-file
+F    to-logic
+F    to-map
+F    to-none
+F    to-pair
+F    to-paren
+F    to-path
+F    to-percent
+F    to-red-file
+F    to-refinement
+F    to-set-path
+F    to-set-word
+F    to-string
+F    to-tag
+F    to-time
+F    to-tuple
+F    to-typeset
+F    to-unset
+F    to-url
+F    to-word
+N    uppercase
+....
 ==== comparison
 ....
 O    <        N    lesser?
@@ -2504,7 +2519,124 @@ N    get
 N    in
 F    quote
 N    set
+R    set-quiet
 N    unset
+....
+==== numerical and logical computation
+....
+A    absolute
+O    +           A    add
+O    and         A    and~
+F    acos        N    arccosine
+F    asin        N    arcsine
+F    atan        N    arctangent
+F    atan2       N    arctangent2
+N    checksum
+A    complement
+F    cos         N    cosine
+O    /           A    divide
+A    even?
+N    exp
+N    log-10
+N    log-2
+N    log-e
+N    max
+F    mod
+O    //          F    modulo
+O    *           A    multiply
+N    min
+N    NaN?
+A    negate
+N    negative?
+N    not
+A    odd?
+O    or          A    or~
+N    positive?
+O    **          A    power
+A    random
+O    %           A    remainder
+A    round
+O    <<          R    shift-left    <- N shift/left
+O    >>          R    shift-right   <- N shift
+O    >>>         R    shift-logical <- N shift/logical
+N    shift
+N    sign?
+F    sin         N    sine
+F    sqrt        N    square-root
+O    -           A    subtract
+F    tan         N    tangent
+O    xor         A    xor~
+N    zero?
+....
+==== series manipulation
+....
+F    alter
+A    append
+A    at
+A    back
+A    change
+A    clear
+A    copy
+F    extract
+F    fifth
+A    find
+F    first
+F    fourth
+A    head
+A    head?
+A    index?
+A    insert
+F    last
+A    length?
+A    move
+A    next
+F    offset?
+F    pad
+A    pick
+A    poke
+A    put
+F    rejoin
+A    remove
+F    repend
+F    replace
+A    reverse
+F    second
+A    select
+A    sort
+A    skip
+F    split
+A    swap
+A    tail
+A    tail?
+A    take
+F    third
+A    trim
+....
+==== control
+....
+F    also
+N    break
+N    case
+F    comment
+N    continue
+N    either
+N    exit
+N    forall
+N    foreach
+N    forever
+F    halt
+N    if
+N    loop
+F    q
+F    quit
+R    quit-return
+N    remove-each
+N    repeat
+N    return
+N    switch
+N    unless
+N    until
+N    while
 ....
 ==== input/output
 ....
@@ -2558,59 +2690,14 @@ F    cause-error
 N    throw
 N    try
 ....
-
 TBD
 ....
-  control
-N    break
-N    case
-N    continue
-N    either
-N    exit
-N    forall
-N    foreach
-N    forever
-N    if
-N    loop
-N    remove-each
-N    repeat
-N    return
-N    switch
-N    unless
-N    until
-N    while
-  short-cut evaluation
-  math
-N    arccosine
-N    arcsine
-N    arctangent
-N    arctangent2
-N    checksum
-N    cosine
-N    exp
-N    log-10
-N    log-2
-N    log-e
-N    max
-N    min
-N    NaN?
-N    negative?
-N    positive?
-N    shift
-N    sign?
-N    sine
-N    square-root
-N    tangent
-N    zero?
-
   set-operations
 N    difference
 N    exclude
 N    intersect
 N    union
 N    unique
-
-  error handling
 
   environment and OS related
 N    call
@@ -2623,80 +2710,10 @@ N    stats
 N    wait
   miscellaneous
 N    new-line
-N    not
 N    parse
 
-  general
-A    random
-  scalar
-A    absolute
-A    add
-A    divide
-A    multiply
-A    negate
-A    power
-A    remainder
-A    round
-A    subtract
-A    even?
-A    odd?
-  bitwise
-A    and~
-A    complement
-A    or~
-A    xor~
-  series
-A    append
-A    at
-A    back
-A    change
-A    clear
-A    copy
-A    find
-A    head
-A    head?
-A    index?
-A    insert
-A    length?
-A    move
-A    next
-A    pick
-A    poke
-A    put
-A    remove
-A    reverse
-A    select
-A    sort
-A    skip
-A    swap
-A    tail
-A    tail?
-A    take
-A    trim
 
 
-O    %        A remainder 
-O    *        A multiply
-O    **       A power
-O    +        A add
-O    -        A subtract
-O    /        A divide
-O    //       F modulo
-O    <        N lesser?
-O    <<       R shift-left <- N shift/left
-O    <=       N lesser-or-equal?
-O    <>       N not-equal?
-O    =        N equal?
-O    ==       N strict-equal?
-O    =?       N same?
-O    >        N greater?
-O    >=       N greater-or-equal?
-O    >>       R shift-right <- N shift
-O    >>>      R shift-logical <- N shift/logical
-O    and      A and~
-O    is       F is~ (hidden)
-O    or       N or~
-O    xor      N xor~
 
   help
 F    ?
@@ -2705,33 +2722,7 @@ F    about
 F    help
 F    source
 F    what
-  series
-F    alter
-F    extract
-F    fifth
-F    first
-F    fourth
-F    last
-F    offset?
-F    pad
-F    rejoin
-F    repend
-F    replace
-F    second
-F    split
-F    third
-  math
-F    acos
-F    asin
-F    atan
-F    atan2
-F    cos
-F    math
-F    mod
-F    modulo
-F    sin
-F    sqrt
-F    tan
+
   GUI
 F    center-face
 F    clear-reactions
@@ -2754,14 +2745,10 @@ F    size-text
 F    unview
 F    view
 F    within?
-  control
-F    also
-F    comment
-F    halt
-F    q
-F    quit
+
   miscellaneous
   reactivity
+O    is       F is~ (hidden)
 F    react
 F    react?
   pre-processing
@@ -2776,15 +2763,6 @@ F    dump-reactions
 F    on-parse-event
 F    parse-trace
 
-  conversion
-
-  bitwise operations
-R    shift-left
-R    shift-logical
-R    shift-right
-  control
-R    quit-return
-R    set-quiet
   GUI
 R    find-flag?
 
