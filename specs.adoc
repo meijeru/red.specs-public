@@ -2156,11 +2156,11 @@ see section _**Additional documentation**_.
     pi
   logic! values
     false
-    no
-    off
-    on
+    no     = false
+    off    = false
+    on     = true
     true
-    yes
+    yes    = true
   none! value
     none
   strings
@@ -2285,13 +2285,80 @@ see section _**Additional documentation**_.
     series!
 ....
 === functions
+
+The letter in front of each word gives the type: `A` for `action!`, `N` for `native!`,
+`O` for `op!`, `R` for `routine!` and `F` for `function!`
+
+==== enquiry
 ....
-  enquiry
 N    complement?
 N    context?
 N    new-line?
 N    type?
 N    value?
+F    action?
+F    binary?
+F    bitset?
+F    block?
+F    char?
+F    datatype?
+F    email?
+F    error?
+F    file?
+F    float?
+F    function?
+F    get-path?
+F    get-word?
+F    handle?
+F    hash?
+F    image?
+F    integer?
+F    issue?
+F    lit-path?
+F    lit-word?
+F    logic?
+F    map?
+F    native?
+F    none?
+F    object?
+F    op?
+F    pair?
+F    paren?
+F    path?
+F    percent?
+F    refinement?
+F    routine?
+F    set-path?
+F    set-word?
+F    string?
+F    tag?
+F    time?
+F    tuple?
+F    typeset?
+F    unset?
+F    url?
+F    vector?
+F    word?
+F    any-block?
+F    any-function?
+F    any-list?
+F    any-object?
+F    any-path?
+F    any-string?
+F    any-word?
+F    immediate?
+F    number?
+F    scalar?
+F    series?
+F    body-of
+F    class-of
+F    keys-of
+F    spec-of
+F    values-of
+F    words-of
+F    dir?
+F    empty?
+F    face?
   making
 N    compose
 N    construct
@@ -2463,8 +2530,7 @@ A    rename
 A    update
 A    write
 
-             related action! (A)/native! (N)/
-                routine! (R)/function (F)
+
 O    %        A remainder 
 O    *        A multiply
 O    **       A power
@@ -2496,69 +2562,7 @@ F    help
 F    source
 F    what
   enquiry
-F    action?
-F    binary?
-F   bitset?
-F   block?
-F    char?
-F    datatype?
-F    email?
-F    error?
-F    file?
-F    float?
-F    function?
-F    get-path?
-F    get-word?
-F    handle?
-F    hash?
-F    image?
-F    integer?
-F    issue?
-F    lit-path?
-F    lit-word?
-F    logic?
-F    map?
-F    native?
-F    none?
-F    object?
-F    op?
-F    pair?
-F    paren?
-F    path?
-F    percent?
-F    refinement?
-F    routine?
-F    set-path?
-F    set-word?
-F    string?
-F    tag?
-F    time?
-F    tuple?
-F    typeset?
-F    unset?
-F    url?
-F    vector?
-F    word?
-F    any-block?
-F    any-function?
-F    any-list?
-F    any-object?
-F    any-path?
-F    any-string?
-F    any-word?
-F    immediate?
-F    number?
-F    scalar?
-F    series?
-F    body-of
-F    class-of
-F    keys-of
-F    spec-of
-F    values-of
-F    words-of
-F    dir?
-F    empty?
-F    face?
+
   making
 F    charset
 F    context
