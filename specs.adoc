@@ -2286,24 +2286,106 @@ see section _**Additional documentation**_.
 ....
 === functions
 
+The functions are classified by functionality: 
+
+* making values (see section _** **_)
+* converting values (see sections _** **_ and _** **_)
+* enquiry
+* comparison (see section _** **_)
+* evaluation and binding
+* I/O (see section _** **_)
+
 The letter in front of each word gives the type: `A` for `action!`, `N` for `native!`,
 `O` for `op!`, `R` for `routine!` and `F` for `function!`
 
+==== making
+....
+F    charset
+N    compose
+N    construct
+F    context
+N    does
+N    func
+N    function
+N    has
+A    make
+F    object
+N    reduce
+F    routine
+....
+==== conversion
+N    as
+R    as-color
+R    as-ipv4
+N    as-pair
+R    as-rgba
+N    debase
+N    dehex
+N    enbase
+N    lowercase
+A    to
+F    to-binary
+F    to-bitset
+F    to-block
+F    to-char
+F    to-email
+F    to-file
+F    to-float
+F    to-get-path
+F    to-get-word
+F    to-hash
+F    to-image
+F    to-integer
+F    to-issue
+F    to-lit-path
+F    to-lit-word
+N    to-local-file
+F    to-logic
+F    to-map
+F    to-none
+F    to-pair
+F    to-paren
+F    to-path
+F    to-percent
+F    to-red-file
+F    to-refinement
+F    to-set-path
+F    to-set-word
+F    to-string
+F    to-tag
+F    to-time
+F    to-tuple
+F    to-typeset
+F    to-unset
+F    to-url
+F    to-word
+N    uppercase
+....
 ==== enquiry
 ....
-N    complement?
-N    context?
-N    new-line?
-N    type?
-N    value?
 F    action?
+F    any-block?
+F    any-function?
+F    any-list?
+F    any-object?
+F    any-path?
+F    any-string?
+F    any-word?
 F    binary?
 F    bitset?
 F    block?
+F    body-of
 F    char?
+F    class-of
+N    complement?
+N    context?
 F    datatype?
+F    dir?
 F    email?
+F    empty?
 F    error?
+R    event?
+F    face?
 F    file?
 F    float?
 F    function?
@@ -2312,14 +2394,18 @@ F    get-word?
 F    handle?
 F    hash?
 F    image?
+F    immediate?
 F    integer?
 F    issue?
+F    keys-of
 F    lit-path?
 F    lit-word?
 F    logic?
 F    map?
 F    native?
+N    new-line?
 F    none?
+F    number?
 F    object?
 F    op?
 F    pair?
@@ -2327,50 +2413,93 @@ F    paren?
 F    path?
 F    percent?
 F    refinement?
+A    reflect
 F    routine?
+F    scalar?
+F    series?
 F    set-path?
 F    set-word?
+F    spec-of
 F    string?
 F    tag?
 F    time?
 F    tuple?
+N    type?
 F    typeset?
 F    unset?
 F    url?
+N    value?
+F    values-of
 F    vector?
 F    word?
-F    any-block?
-F    any-function?
-F    any-list?
-F    any-object?
-F    any-path?
-F    any-string?
-F    any-word?
-F    immediate?
-F    number?
-F    scalar?
-F    series?
-F    body-of
-F    class-of
-F    keys-of
-F    spec-of
-F    values-of
 F    words-of
-F    dir?
-F    empty?
-F    face?
-  making
-N    compose
-N    construct
-N    reduce
-  conversion
-N    debase
-N    dehex
-N    enbase
-N    lowercase
-N    uppercase
-N    to-hex
-N    to-local-file
+....
+==== comparison
+....
+O    <        N    lesser?
+O    <=       N    lesser-or-equal?
+O    <>       N    not-equal?
+O    =        N    equal?
+O    ==       N    strict-equal?
+O    =?       N    same?
+O    >        N    greater?
+O    >=       N    greater-or-equal?
+....
+==== evaluation and binding
+....
+N    all
+N    any
+N    bind
+N    do
+N    get
+N    in
+F    quote
+N    set
+N    unset
+....
+==== I/O
+....
+R    ask
+R    browse
+F    cd
+F    change-dir
+F    clean-path
+A    close
+A    create
+R    create-dir
+A    delete
+F    dir
+F    dirize
+R    exists?
+R    get-current-dir
+F    input
+F    list-dir
+F    ll
+F    load
+F    ls
+F    make-dir
+A    modify
+F    normalize-dir
+A    open
+A    open?
+N    prin
+N    print
+F    probe
+F    pwd
+A    query
+A    read
+R    read-clipboard
+A    rename
+F    save
+R    set-current-dir
+F    split-path
+F    suffix?
+A    update
+F    what-dir
+A    write
+R    write-clipboard
+....
+....
   control
 N    break
 N    case
@@ -2390,13 +2519,6 @@ N    unless
 N    until
 N    while
   short-cut evaluation
-N    all
-N    any
-  function definition
-N    does
-N    func
-N    function
-N    has
   math
 N    arccosine
 N    arcsine
@@ -2419,30 +2541,14 @@ N    sine
 N    square-root
 N    tangent
 N    zero?
-  comparison
-N    equal?
-N    greater-or-equal?
-N    greater?
-N    lesser-or-equal?
-N    lesser?
-N    not-equal?
-N    same?
-N    strict-equal?
+
   set-operations
 N    difference
 N    exclude
 N    intersect
 N    union
 N    unique
-  evaluation and binding
-N    as
-N    as-pair
-N    bind
-N    do
-N    get
-N    in
-N    set
-N    unset
+
   error handling
 N    catch
 N    throw
@@ -2452,8 +2558,7 @@ N    call
 N    get-env
 N    list-env
 N    now
-N    prin
-N    print
+
 N    set-env
 N    stats
 N    wait
@@ -2464,13 +2569,9 @@ N    not
 N    parse
 
   general
-A    make
 A    random
-A    reflect
-A    to
 A    form
 A    mold
-A    eval-path
 A    compare
   scalar
 A    absolute
@@ -2517,18 +2618,6 @@ A    tail
 A    tail?
 A    take
 A    trim
-  I/O
-A    create
-A    close
-A    delete
-A    modify
-A    open
-A    open?
-A    query
-A    read
-A    rename
-A    update
-A    write
 
 
 O    %        A remainder 
@@ -2561,49 +2650,6 @@ F    about
 F    help
 F    source
 F    what
-  enquiry
-
-  making
-F    charset
-F    context
-F    object
-F    routine
-  conversion
-F    hex-to-rgb
-F    to-binary
-F    to-bitset
-F    to-block
-F    to-char
-F    to-email
-F    to-file
-F    to-float
-F    to-get-path
-F    to-get-word
-F    to-hash
-F    to-image
-F    to-integer
-F    to-issue
-F    to-lit-path
-F    to-lit-word
-F    to-logic
-F    to-map
-F    to-none
-F    to-pair
-F    to-paren
-F    to-path
-F    to-percent
-F    to-red-file
-F    to-refinement
-F    to-set-path
-F    to-set-word
-F    to-string
-F    to-tag
-F    to-time
-F    to-tuple
-F    to-typeset
-F    to-unset
-F    to-url
-F    to-word
   series
 F    alter
 F    extract
@@ -2653,30 +2699,6 @@ F    size-text
 F    unview
 F    view
 F    within?
-  I/O
-F    cd
-F    change-dir
-F    clean-path
-F    dir
-F    dirize
-F    input
-F    list-dir
-F    ll
-F    load
-F    ls
-F    make-dir
-F    normalize-dir
-F    prin-out
-F    print-out
-F    probe
-F    pwd
-F    red-complete-file
-F    red-complete-input
-F    red-complete-path
-F    save
-F    split-path
-F    suffix?
-F    what-dir
   control
 F    also
 F    comment
@@ -2685,7 +2707,6 @@ F    q
 F    quit
   miscellaneous
 F    collect
-F    quote
   reactivity
 F    react
 F    react?
@@ -2702,12 +2723,8 @@ F    dump-reactions
 F    on-parse-event
 F    parse-trace
 
-  enquiry
-R    event?
   conversion
-R    as-color
-R    as-ipv4
-R    as-rgba
+
   bitwise operations
 R    shift-left
 R    shift-logical
@@ -2717,17 +2734,7 @@ R    quit-return
 R    set-quiet
   GUI
 R    find-flag?
-  I/O
-R    ask
-R    browse
-R    create-dir
-R    exists?
-R    get-current-dir
-R    last-lf?
-R    read-clipboard
-R    set-current-dir
-R    write-clipboard
-R    write-stdout
+
 ....
 == Errors list
 
