@@ -1494,9 +1494,10 @@ the essentials without conserving type information.
 
 Examples:
 ....
+load "1"                  -> 1                      ; string analyzed as representing an integer
+load "1 + 2"              -> [1 + 2]                ; load produces a block for more than one value
 load "[1 2 3]"            -> [1 2 3]                ; one (grouped) value detected
 load #{5B31203220335D}    -> [1 2 3]                ; same input as binary value
-load "1 + 2"              -> [1 + 2]                ; load produces a block for more than one value
 
 form ()                   -> ""                     ; unset! value
 form #{414243}            -> "#{414243}"            ; to-string gives "ABC"
@@ -1600,6 +1601,12 @@ It will send its result to that file.
 General remark: operator application has precedence over application of other functions
 and over set-word target evaluation. Note that in Red all operators (values of type `op!`)
 are binary infix functions. See further rule `E112`.
+
+The operation of the toolchain will result in the evaluation of the Red source text presented
+to it. The user can, at runtime, achieve evaluation of a (fragment of) Red source, i.e. Red data,
+by invoking the built-in function `do`. If this is presented with a string argument. it will
+involke `load` (see _**Input/output**_) first , and then evaluate the result. If the argument is
+a block, the block will be _executed_ as described in rule `E100`.
 
 === Passive types
 
@@ -2293,18 +2300,21 @@ The functions are classified by functionality:
 * enquiry
 * comparison (see section _** **_)
 * evaluation and binding
-* I/O (see section _** **_)
+* input/output (see section _** **_)
+* exception handling
 
 The letter in front of each word gives the type: `A` for `action!`, `N` for `native!`,
 `O` for `op!`, `R` for `routine!` and `F` for `function!`
 
-==== making
+==== making values
 ....
 F    charset
+F    collect
 N    compose
 N    construct
 F    context
 N    does
+N    extend
 N    func
 N    function
 N    has
@@ -2313,7 +2323,7 @@ F    object
 N    reduce
 F    routine
 ....
-==== conversion
+==== converting values
 ....
 N    as
 R    as-color
@@ -2396,6 +2406,7 @@ F    handle?
 F    hash?
 F    image?
 F    immediate?
+A    index?
 F    integer?
 F    issue?
 F    keys-of
@@ -2458,7 +2469,7 @@ F    quote
 N    set
 N    unset
 ....
-==== I/O
+==== input/output
 ....
 R    ask
 R    browse
@@ -2472,6 +2483,7 @@ A    delete
 F    dir
 F    dirize
 R    exists?
+A    form
 R    get-current-dir
 F    input
 F    list-dir
@@ -2480,6 +2492,7 @@ F    load
 F    ls
 F    make-dir
 A    modify
+A    mold
 F    normalize-dir
 A    open
 A    open?
@@ -2500,6 +2513,15 @@ F    what-dir
 A    write
 R    write-clipboard
 ....
+==== exception handling
+....
+F    attempt
+N    catch
+F    cause-error
+N    throw
+N    try
+....
+
 TBD
 ....
   control
@@ -2552,9 +2574,7 @@ N    union
 N    unique
 
   error handling
-N    catch
-N    throw
-N    try
+
   environment and OS related
 N    call
 N    get-env
@@ -2565,16 +2585,12 @@ N    set-env
 N    stats
 N    wait
   miscellaneous
-N    extend
 N    new-line
 N    not
 N    parse
 
   general
 A    random
-A    form
-A    mold
-A    compare
   scalar
 A    absolute
 A    add
@@ -2708,7 +2724,6 @@ F    halt
 F    q
 F    quit
   miscellaneous
-F    collect
   reactivity
 F    react
 F    react?
@@ -2716,8 +2731,7 @@ F    react?
 F    expand
 F    expand-directives
   error handling
-F    attempt
-F    cause-error
+
   debugging
 F    do-safe
 F    dump-face
