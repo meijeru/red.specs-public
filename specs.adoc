@@ -2199,6 +2199,16 @@ a graphic element created by `view/layout`.
 Further explanations are provided in separate documentation;
 see section _**Additional documentation**_.
 
+=== Reactivity
+
+Red introduced support for "reactive programming" to help reduce the size and complexity of Red programs. Red’s reactive model relies on dataflow and object events to construct a directed graph and propagate changes in objects. It uses a "push" model. More specifically, Red implements the object-oriented reactive programming model, where only object fields can be the source of change.
+Reactions are run asynchronously, when a source field’s value is changed. The reaction relationship is maintained until the reaction is explicitly destroyed using react/unlink or clear-reactions.
+Only the source objects in a reactive expression need to be a reactor. The target can be a simple object. If the target is also a reactor, reactions are chained and a graph of relations is constructed implicitly.
+Notes:
+Red’s reactive support could be extended in the future to support a "pull" model.
+This is not a FRP framework, though event streams could be supported in the future.
+The Red/View GUI engine relies on face! objects in order to operate on graphic objects. Faces are reactors, and they can be used for setting reactive relations between faces or with non-reactor objects.
+
 == Pre-defined words list
 
 === constants
@@ -2364,10 +2374,15 @@ _**Words, contexts and binding**_ and _**Evaluation rules**_)
 * control (see section _**Control**_)
 * input/output (see section _**Input/output**_)
 * exception handling (see section _**Exceptions**_)
-
+* preprocessor (see section _**Preprocessor**_)
+* parse (see section _**Parse**_)
+* GUI System (see section _**GUI System**_)
+* reactivity (see section _**Reactivity**_)
 
 The letter in front of each word gives the type: `A` for `action!`, `N` for `native!`,
-`O` for `op!`, `R` for `routine!` and `F` for `function!`
+`O` for `op!`, `R` for `routine!` and `F` for `function!`. When a function is directly
+derived from another one, the two are written on one line, and the most frequently
+used one is written first.
 
 ==== enquiry
 ....
@@ -2700,6 +2715,48 @@ F    cause-error
 N    throw
 N    try
 ....
+==== preprocessor
+....
+F    expand
+F    expand-directives
+....
+==== parser
+....
+F    on-parse-event
+N    parse
+F    parse-trace
+....
+==== GUI system
+....
+F    center-face
+F    clear-reactions
+F    distance?
+F    do-actor
+F    do-events
+F    do-file
+F    draw
+R    find-flag?
+F    get-scroller
+F    insert-event-func
+F    layout
+F    overlap?
+F    remove-event-func
+F    request-dir
+F    request-file
+F    request-font
+F    set-focus
+F    show
+F    size-text
+F    unview
+F    view
+F    within?
+....
+==== reactivity
+....
+O    is       F is~ (hidden)
+F    react
+F    react?
+....
 TBD
 ....
   set-operations
@@ -2720,8 +2777,7 @@ N    stats
 N    wait
   miscellaneous
 N    new-line
-N    parse
-
+....
 
 
 
@@ -2733,48 +2789,8 @@ F    help
 F    source
 F    what
 
-  GUI
-F    center-face
-F    clear-reactions
-F    distance?
-F    do-actor
-F    do-events
-F    do-file
-F    draw
-F    get-scroller
-F    insert-event-func
-F    layout
-F    overlap?
-F    remove-event-func
-F    request-dir
-F    request-file
-F    request-font
-F    set-focus
-F    show
-F    size-text
-F    unview
-F    view
-F    within?
-
-  miscellaneous
-  reactivity
-O    is       F is~ (hidden)
-F    react
-F    react?
-  pre-processing
-F    expand
-F    expand-directives
-  error handling
-
-  debugging
-F    do-safe
-F    dump-face
-F    dump-reactions
-F    on-parse-event
-F    parse-trace
 
   GUI
-R    find-flag?
 
 ....
 == Errors list
