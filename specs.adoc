@@ -1520,6 +1520,16 @@ A major application of this function is the binding of the formal arguments
 of a function, as they occur within the function body, to the context which
 contains the actual argument values. See evaluation rule `E110`.
 
+== Numerical and logical computation
+
+== Series manipulation
+
+== Control
+
+=== Alternative execution
+
+=== Repeated execution (loops)
+
 == Input/output
 
 === Conversion from/to textual representation
@@ -1652,7 +1662,7 @@ are binary infix functions. See further rule `E112`.
 The operation of the toolchain will result in the evaluation of the Red source text presented
 to it. The user can, at runtime, achieve evaluation of a (fragment of) Red source, i.e. Red data,
 by invoking the built-in function `do`. If this is presented with a string argument. it will
-involke `load` (see _**Input/output**_) first , and then evaluate the result. If the argument is
+invoke `load` (see _**Input/output**_) first , and then evaluate the result. If the argument is
 a block, the block will be _executed_ as described in rule `E100`.
 
 === Passive types
@@ -2349,9 +2359,9 @@ _**Type and typeset related functions**_ and _**Reflection on values**_)
 * comparison (see section _**Conmparison of values**_)
 * evaluation and binding (see sections
 _**Words, contexts and binding**_ and _**Evaluation rules**_)
-* numerical and logical computation
-* series manipulation
-* control
+* numerical and logical computation (see section _**Numerical and logical computation**_)
+* series manipulation (see section _**Series manipulation**_)
+* control (see section _**Control**_)
 * input/output (see section _**Input/output**_)
 * exception handling (see section _**Exceptions**_)
 
