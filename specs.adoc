@@ -1966,18 +1966,19 @@ Semantics:
 the `<body>` is executed after which the `<condition>` is again executed etc.
 * `until`: the `<condition>` is executed as long as it does not yield `false` or `none`.
 * `loop`: the `<body>` is executed an integer number of times.
-* `repeat`: the `<body> is executed repeatedly with the `<word>` assuming values
+* `repeat`: the `<body>` is executed repeatedly with the `<word>` assuming values
 from 1 to the integer. Note that the `<word>` is _not_ local to the loop,
 i.e. there is no separate context for the `repeat` loop.
 * `foreach`: the `<counter>` may be a word or a block of words. The `<body>` is executed
 repeatedly with the word(s) being set to subsequent components of the series.
+The word(s) are again not local to the loop.
 
 Example:
 ....
 foreach [name phone] ["John" "123-4567" "Mary" "345-6789"] [print [name phone]]
 ....
 * `forall`: the `<body>` is executed repeatedly starting with the word referring
-to the head of the series; on subsequent iterations the word will refer to the
+to the head of the series; on each subsequent iteration the word will refer to the
 series at the next position (see `next` function in section _**Series manipulation**_).
 
 Example:
