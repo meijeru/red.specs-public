@@ -1901,8 +1901,71 @@ is `false` or `none` (for `any`) or `not none` (i.e.`true`) for (`all`).
 
 == Series manipulation
 
+As explained earlier, series in Red, as values of indirect types, have their
+components stored contiguously, but separately from the value slot that
+stores the "series value" itself. This value slot only contains the following
+information: a pointer to the components storage, and the current index.
+The components storage itself keeps track of the length of the series
+i.e. the index of the last component.
+
+=== Positioning and navigation
+
+The following functions of a series value yield a new series value with the index
+modified:
+....
+function                 new index
+
+head <series>            1
+tail <series>            length + 1
+at <series> <value>      <value>
+skip <series> <value>    index + <value>
+next <series>            index + 1
+back <series>            index - 1           
+....
+
+For `image!` values, a `pair!` is allowed as `<value>` argument to `at` and `skip`.
+This will be converted to a regular index. For all series, if the index becomes
+smaller than 1 or greater than the length + 1, it will be fixed at 1 or length + 1.
+
+The following enquiry functions are available: `head? tail? length? index?`.
+
+=== Selection of components
+
+The following functions have been described in section _**Components of values**_.
+
+
 TBD
 ....
+F    first
+F    second
+F    fourth
+F    third
+F    fifth
+F    last
+A    find
+A    select
+F    alter
+A    append
+A    change
+A    clear
+A    copy
+F    extract
+A    insert
+A    move
+F    pad
+A    pick
+A    poke
+A    put
+F    rejoin
+A    remove
+F    repend
+F    replace
+A    reverse
+A    sort
+F    split
+A    swap
+A    take
+A    trim
 max
 min
 random
