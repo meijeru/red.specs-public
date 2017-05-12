@@ -101,10 +101,10 @@ or "null" in other languages). See section _**Pre-defined words**_
 for the complete list.
 
 As regards the built-in functions, a number of them will be mentioned
-in this document, and their operation explained. To find more information
-about these and all other functions for (or any value for that matter),
-Red has a built-in mechanism: the `help` function, which can be called
-from an interactive console.
+in this document, and their basic operation explained. To find more
+information about these functions, especially their various options,
+and in general on all other functions or any Red value for that matter,
+the built-in `help` function can be called from an interactive console.
 
 === Dialects
 
