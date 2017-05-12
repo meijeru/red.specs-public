@@ -1827,12 +1827,13 @@ zero?                          number! time! char! pair! tuple!           logic!
 even? odd?                     number! char!                              logic!
 negate                         number! time! pair!
 absolute round                 number! time! pair!
-max min                        number! time! char!
+max min                        number! time! char! series!
 ....
 
 Note that not all combinations of argument types are allowed. In general, the types
 `number! time! char!` are freely combinable. The operations on values of type
-`pair! tuple! vector!` take place component-by-component where possible.
+`pair! tuple! vector!` take place component-by-component where possible. The functions
+`max min` applied to `series!` arguments do a lexicographic comparison.
 
 === Higher mathematical functions
 
@@ -1853,6 +1854,11 @@ atan2                          float!
 random                         number! time! char! pair! tuple!
 checksum                       binary! string! file!                      binary!
 ....
+
+Notes: all trigonometric functions take an argument in radians, except `atan2`
+which takes two `float!` arguments representing `y` and `x` coordinates.
+The function `random` is also defined for `series!` arguments. See section
+_**Series manipulation**_.
 
 === Bitwise functions
 
@@ -1894,16 +1900,105 @@ situations, it is preferable to use the _shortcut evaluation_ functions
 is `false` or `none` (for `any`) or `not none` (i.e.`true`) for (`all`).
 
 == Series manipulation
+
+TBD
 ....
 max
 min
 random
 ....
+
 == Control
 
-=== Alternative execution
+=== Conditional execution
+
+The following functions enable conditional execution of a block:
+`if unless either case switch`. The definitions may be presented as follows:
+
+....
+<if>          ::= if <condition> <true-block>
+<unless>      ::= unless <condition> <false-block>
+<either>      ::= either <condition> <true-block> <false-block>
+<case>        ::= case [ <case-alt>* ] | case/all [ <case-alt>* ] 
+<case-alt>    ::= <condition> <true-block>
+<switch>      ::= switch <value> [ <switch-alt>* ]
+                  | switch/default <value> [ <switch-alt>* ] <default-block>
+<switch-alt>  ::= <label> <true-block> | <label> <switch-alt>
+....
+
+The `<condition>` is evaluated and is satisfied unless it yields `false` or `none`,
+except for `unless`, where the condition _should_ yield `false` or `none`.
+
+With refinement `/all`, all conditions of the `<case>` are tested; otherwise only
+the first one that is satisfied, if any, is executed.
+
+The `<label>` values of the `<switch>` are _not_ evaluated. The selection condition
+is satisfied at the first alternative where the `<value>` is equal to a `<label>`.
+With refinement `/default`, the `<default-block>` will be executed if none
+of the conditions is satisfied.
+
+The functions `if` `unless` `case`and `switch` without `/default` yield `none` if
+no condition is satisfied.
+
 
 === Repeated execution (loops)
+
+The available constructs are the following:
+....
+<forever>     ::= forever <body>
+<while>       ::= while <condition> <body>
+<until>       ::= until <condition>
+<loop>        ::= loop <integer> <body>
+<repeat>      ::= repeat <word> <integer> <body>
+<foreach>     ::= foreach <counter> <series> <body>
+<forall>      ::= foreach <word> <body>
+<remove-each> ::= remove-each <counter> <series> <condition>
+<condition>   ::= <block>
+<counter>     ::= <word> | <block>
+<body>        ::= <block>
+....
+
+Semantics:
+
+* `forever`: the `<body>` is executed until an exception is encountered
+(see section _**Exceptions**_).
+* `while`: the `<condition>` is executed and if does not yield `false` or `none`,
+the `<body>` is executed after which the `<condition>` is again executed etc.
+* `until`: the `<condition>` is executed as long as it does not yield `false` or `none`.
+* `loop`: the `<body>` is executed an integer number of times.
+* `repeat`: the `<body> is executed repeatedly with the `<word>` assuming values
+from 1 to the integer. Note that the `<word>` is _not_ local to the loop,
+i.e. there is no separate context for the `repeat` loop.
+* `foreach`: the `<counter>` may be a word or a block of words. The `<body>` is executed
+repeatedly with the word(s) being set to subsequent components of the series.
+
+Example:
+....
+foreach [name phone] ["John" "123-4567" "Mary" "345-6789"] [print [name phone]]
+....
+* `forall`: the `<body>` is executed repeatedly starting with the word referring
+to the head of the series, and moving to the `next` on subsequent iterations.
+
+Example:
+....
+
+....
+* `remove-each`: the `<condition>` is executed on each iteration, with the word(s)
+of the `<counter>` being set as in `foreach`. If the condition is satisfied,
+the components of the series that the word(s) currently refer to, are removed from the series.
+
+=== Interrupting execution
+....
+N    break
+N    continue
+N    exit
+N    return
+F    halt
+F    q
+F    quit
+R    quit-return
+
+....
 
 == Input/output
 
