@@ -1910,9 +1910,9 @@ random
 
 == Control
 
-=== Conditional execution
+=== Selective execution
 
-The following functions enable conditional execution of a block:
+The following functions enable conditional execution of one or more block:
 `if unless either case switch`. The definitions may be presented as follows:
 
 ....
@@ -1929,15 +1929,15 @@ The following functions enable conditional execution of a block:
 The `<condition>` is evaluated and is satisfied unless it yields `false` or `none`,
 except for `unless`, where the condition _should_ yield `false` or `none`.
 
-With refinement `/all`, all conditions of the `<case>` are tested; otherwise only
-the first one that is satisfied, if any, is executed.
+With refinement `/all`, all conditions of the `<case>` are tested; otherwise testing
+stops after the first one that is satisfied, if any.
 
 The `<label>` values of the `<switch>` are _not_ evaluated. The selection condition
 is satisfied at the first alternative where the `<value>` is equal to a `<label>`.
 With refinement `/default`, the `<default-block>` will be executed if none
 of the conditions is satisfied.
 
-The functions `if` `unless` `case`and `switch` without `/default` yield `none` if
+The functions `if` `unless` `case` and `switch` without `/default` yield `none` if
 no condition is satisfied.
 
 
@@ -1977,28 +1977,28 @@ Example:
 foreach [name phone] ["John" "123-4567" "Mary" "345-6789"] [print [name phone]]
 ....
 * `forall`: the `<body>` is executed repeatedly starting with the word referring
-to the head of the series, and moving to the `next` on subsequent iterations.
+to the head of the series; on subsequent iterations the word will refer to the
+series at the next position (see `next` function in section _**Series manipulation**_).
 
 Example:
 ....
-
+b: [1 2 3 4 5 6]
+forall b [if even? b/1 [print b/2]]
 ....
 * `remove-each`: the `<condition>` is executed on each iteration, with the word(s)
 of the `<counter>` being set as in `foreach`. If the condition is satisfied,
 the components of the series that the word(s) currently refer to, are removed from the series.
 
-=== Interrupting execution
-....
-N    break
-N    continue
-N    exit
-N    return
-F    halt
-F    q
-F    quit
-R    quit-return
+The result of `forever` is that of the exception that causes its interruption.
+For the other functions, unless an exception has occurred, the result is the unset value
+for `while loop` and `remove-each`, and the result of the execution of the body
+for the remaining ones.
 
-....
+=== Interrupting execution
+
+The functions `break continue exit return` are descripbed in section _**Exceptions**_.
+
+The functions `halt` and `quit` or `q` stop the execution of the program. _**Difference??_**
 
 == Input/output
 
@@ -2258,11 +2258,12 @@ Three types of user exceptions exist:
 ==== Interruption of loops
 
 Red has a number of _loop_ constructs which cause repeated execution
-of a block. _**Should they be described here??**_
+of a block (see section _**Repeated execution**_).
 In each of these, the block (_loop body_) may contain calls of the built-in functions
 `break` and `continue`. A call of `break` will interrupt execution
-of the body and resume directly after it. A call of `break/return <value>`
-will in addition yield the `<value>` as a result of evaluating the loop.
+of the body and resume directly after it. The result of `break` and thus
+of the evaluation of the loop is the unset value. A call of `break/return <value>`
+will yield the `<value>` as a result of evaluating the loop.
 A call of `continue` will interrupt execution of the body and resume
 at the end of the body, potentially resulting in further cycles of execution.
 Calls of these functions outside a loop body raise an error.
@@ -2271,7 +2272,8 @@ Calls of these functions outside a loop body raise an error.
 
 A call of the built-in function `exit` will interrupt execution of the
 function body and resume in the code directly after the call.
-A call of the built-in function `return <value>` will do the same
+The result of `exit` is the unset value. A call of the built-in function
+`return <value>` will also interrupt execution
 and yield the `<value>` as a result of the function body execution.
 Calls of these functions outside a function body raise an error.
 
