@@ -262,6 +262,7 @@ set-word!       word to be given a value to refer to
 get-word!       word to be evaluated
 refinement!     optional argument of function
 issue!          literal identifier (word that does not refer to a value)
+handle!         opaque integer for communication with operating system
 block!          ordered collection of values of any type (polymorphic array),
                 may also be used as unordered collection (set)
 hash!           block with quick access
@@ -298,7 +299,6 @@ function!       user-defined functions
 routine!        user-defined functions with body in Red/System code
 unset!          single value indicating the absence of a usable value
 event!          representation of external activity   
-handle!         opaque integer for communication with operating system
 ....
 
 === Type categories
@@ -406,6 +406,7 @@ set-word!         L                 D                A             R (#2618)    
 get-word!         L                 D                A             R (#2618)      A               word!
 refinement!       L                 D                A             R (#2618)      P               word!
 issue!            L                 D                A             R (#2618)      P               word!
+handle!           W                 D                A                            P               integer!
 block!            S                 I                C                            P
 hash!             M                 I                C                            P               block!
 paren!            S                 I                C                            A               block!
@@ -432,7 +433,6 @@ function!         M                 F                A             R            
 routine!          M                 F                A             R              F               function!
 unset!            M                 D                A                            P
 event!            W                 D                C                            P
-handle!           W                 D                A                            P               integer!
 ....
 Note: `error!` values evaluate to themselves, but raise an error in addition. See _**Errors**_
 
@@ -468,6 +468,7 @@ any-type!
 |  |  |  |--get-word!      
 |  |  |--refinement!    
 |  |  |--issue!         
+|  |  |--handle!            
 |  |--series!            
 |  |  |--any-block!       
 |  |  |  |--any-list!      
@@ -502,7 +503,6 @@ any-type!
 |--internal!            
    |--unset!             
    |--event!             
-   |--handle!            
 ....
 
 === Type and typeset related functions
@@ -1920,55 +1920,48 @@ tail <series>            length + 1
 at <series> <value>      <value>
 skip <series> <value>    index + <value>
 next <series>            index + 1
-back <series>            index - 1           
+back <series>            index - 1
+find <series> <value>    "index of first occurrence of <value>"
 ....
 
-For `image!` values, a `pair!` is allowed as `<value>` argument to `at` and `skip`.
-This will be converted to a regular index. For all series, if the index becomes
-smaller than 1 or greater than the length + 1, it will be fixed at 1 or length + 1.
+Here the `<value>` argument of `at`and `skip` is an integer. For `image!` values,
+a `pair!` value is also allowed. This will be converted to a regular index.
+The `<value>` argument of `find` may be a single component value or a sub-series.
 
-The following enquiry functions are available: `head? tail? length? index?`.
+For all series, if the index becomes smaller than 1 or greater than the length + 1,
+it will be fixed at 1 or length + 1. If `find` does not have a match, its result is `none`.
 
-=== Selection of components
+The following enquiry functions are available: `head? tail? length? index?`. The function
+`empty?` is a synonym for `tail?`.
 
-The following functions have been described in section _**Components of values**_.
+=== Extraction and modification of components
 
+The following functions have been described in section _**Components of values**_:
+`pick poke select put first second third fourth fifth`.
+
+The function `last` may be seen as shorthand for `first back tail`.
+
+These functions create a new series value, with a new series value slot:
+....
+function                    result
+
+copy <series>               copy of the series
+extract <series> <integer>  copy of the series with every nth component 
+split <series> <delimiter>  a block of sub-strings split at the delimiter(s)
+....
+
+For `split`, the `<series>` must be of type `any-string!`, and the
+`<delimiter>` may be a single character, a bitset representing
+a choice of characters, or a string.
+
+The following functions modify the series _in place_, i.e. they modify
+the series value slot to point to the changed series:
+`reverse sort random clear remove take change replace alter trim pad insert append repend swap move`
 
 TBD
 ....
-F    first
-F    second
-F    fourth
-F    third
-F    fifth
-F    last
-A    find
-A    select
-F    alter
-A    append
-A    change
-A    clear
-A    copy
-F    extract
-A    insert
-A    move
-F    pad
-A    pick
-A    poke
-A    put
-F    rejoin
-A    remove
-F    repend
-F    replace
-A    reverse
-A    sort
-F    split
-A    swap
-A    take
-A    trim
 max
 min
-random
 ....
 
 == Control
