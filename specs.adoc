@@ -2114,7 +2114,7 @@ a refinement `/all`, allowing it to catch all possible forms of exceptions,
 including `break`, `continue`, `exit` and `return` misuses as well as
 uncaught throws.
 
-== Miscellaneous
+== Additional facilities
 
 === Preprocessor
 
@@ -2201,13 +2201,14 @@ see section _**Additional documentation**_.
 
 === Reactivity
 
-Red introduced support for "reactive programming" to help reduce the size and complexity of Red programs. Red’s reactive model relies on dataflow and object events to construct a directed graph and propagate changes in objects. It uses a "push" model. More specifically, Red implements the object-oriented reactive programming model, where only object fields can be the source of change.
-Reactions are run asynchronously, when a source field’s value is changed. The reaction relationship is maintained until the reaction is explicitly destroyed using react/unlink or clear-reactions.
-Only the source objects in a reactive expression need to be a reactor. The target can be a simple object. If the target is also a reactor, reactions are chained and a graph of relations is constructed implicitly.
-Notes:
-Red’s reactive support could be extended in the future to support a "pull" model.
-This is not a FRP framework, though event streams could be supported in the future.
-The Red/View GUI engine relies on face! objects in order to operate on graphic objects. Faces are reactors, and they can be used for setting reactive relations between faces or with non-reactor objects.
+Red objects are capable of triggering asynchronous events in response
+to changes in their components, thus enabling _reactive programming_.
+
+The most prominent application of this in the toolchain is in the GUI engine
+where the `face!` objects are reactors.
+
+Further explanations are provided in separate documentation;
+see section _**Additional documentation**_.
 
 == Pre-defined words list
 
