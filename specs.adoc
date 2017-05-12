@@ -1813,45 +1813,92 @@ by a prefix function `negate`, not by an operator, since these have always two a
 Lastly, there are functions for determining the absolute value (`absolute`),
 the maximum and minimum of two numbers (`max min`) and for rounding (`round`).
 
-=== Higher mathematical functions
+The arguments and result types for these functions are as follows.
+Result types are only indicated if different from argument types.
 ....
-F    acos        N    arccosine
-F    asin        N    arcsine
-F    atan        N    arctangent
-F    atan2       N    arctangent2
-F    cos         N    cosine
-N    exp
-N    log-10
-N    log-2
-N    log-e
-A    random
-F    sin         N    sine
-F    sqrt        N    square-root
-F    tan         N    tangent
-N    checksum
+function                       argument type(s)                           result type
+
++ - * / // %                   number! time! char! pair! tuple! vector!
+**                             number!
+NaN?                           number!                                    logic!
+sign?                          number! time!                              integer!
+positive? negative?            number! time!                              logic!
+zero?                          number! time! char! pair! tuple!           logic!
+even? odd?                     number! char!                              logic!
+negate                         number! time! pair!
+absolute round                 number! time! pair!
+max min                        number! time! char!
+....
+
+Note that not all combinations of argument types are allowed. In general, the types
+`number! time! char!` are freely combinable. The operations on values of type
+`pair! tuple! vector!` take place component-by-component where possible.
+
+=== Higher mathematical functions
+
+This concerns first of all the familiar functions `exp` for raising
+`e = 2.718281828459045` to a power, the logarithms `log-e log-2 log-10`,
+and the square root `sqrt`. Furthermore the trigonometric functions
+`sin cos tan asin acos atan atan2`, and the functions `random` and
+`checksum`. The latter allows the following methods: `MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP`.
+
+The arguments and result types for these functions are as follows.
+Result types are only indicated if different from argument types.
+....
+function                       argument type(s)                           result type
+
+exp log-e log-2 log-10 sqrt    number!                                    float!
+sin cos tan asin acos atan     float!
+atan2                          float!
+random                         number! time! char! pair! tuple!
+checksum                       binary! string! file!                      binary!
 ....
 
 === Bitwise functions
+
+The following functions operate on the bit patterns underlying Red values
+of suitable types.
+
+The function `complement` yields the bit-by-bit complement, thus for integers
+it yields the two's complement, e.g. `complement 2` is `-3`.
+The operators `and or xor` with prefix counterparts `and~ or~ xor~` operate
+bit-by-bit on their arguments.
+
+Three bit-shift operators are defined on integers:
+
+* `<<` for left shift: highest bits are shifted out, zero bits are added to the right
+* `>>` for right shift: lowest bits are shifted out, highest bit is duplicated
+* `>>>` for "logical" shift: lowest bits are shifted out, zero bits are added to the left
+
+The arguments and result types for these functions are as follows.
+Result types are only indicated if different from argument types.
 ....
-O    and         A    and~
-A    complement
-O    or          A    or~
-O    <<          R    shift-left    <- N shift/left
-O    >>          R    shift-right   <- N shift
-O    >>>         R    shift-logical <- N shift/logical
-N    shift
-O    xor         A    xor~
+function                       argument type(s)                           result type
+
+complement                     integer! bitset! typeset! binary!
+and or xor                     integer! char! pair! tuple!
+                               bitset! typeset! binary! vector!
+<< >> >>>                      integer!
 ....
 
 === Logical functions
-....
-N    not
-O    and         A    and~
-O    or          A    or~
-O    xor         A    xor~
-....
-== Series manipulation
 
+The bitwise functions `complement and or xor` are also applicable to
+`logic!` values; on these values, `not` is equivalent to `complement`.
+On values of other types, `not` will always yield `false` except on
+`none`, where it will yield `true`.
+
+Note that `and or xor` evaluate both their arguments. In many programming
+situations, it is preferable to use the _shortcut evaluation_ functions
+`any` and `all`, which only evaluate subsequent arguments if an earlier one
+is `false` or `none` (for `any`) or `not none` (i.e.`true`) for (`all`).
+
+== Series manipulation
+....
+max
+min
+random
+....
 == Control
 
 === Alternative execution
