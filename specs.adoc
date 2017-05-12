@@ -1802,6 +1802,54 @@ compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens ar
 
 == Numerical and logical computation
 
+=== Basic arithmetic operations
+
+Red makes available the usual _arithmetic operations_ through `+ - * /` as operators
+(values of type `op!`) and their prefix counterparts: `add subtract multiply divide`.
+In addition, there are operators and prefix functions for exponentiation (`**` or `power`),
+modulo (`//` or `modulo`) and remainder (`%` or `remainder`). Enquiry functions are:
+`sign? positive? negative? zero? even? odd? NaN?`. The unary minus function is only represented
+by a prefix function `negate`, not by an operator, since these have always two arguments.
+Lastly, there are functions for determining the absolute value (`absolute`),
+the maximum and minimum of two numbers (`max min`) and for rounding (`round`).
+
+=== Higher mathematical functions
+....
+F    acos        N    arccosine
+F    asin        N    arcsine
+F    atan        N    arctangent
+F    atan2       N    arctangent2
+F    cos         N    cosine
+N    exp
+N    log-10
+N    log-2
+N    log-e
+A    random
+F    sin         N    sine
+F    sqrt        N    square-root
+F    tan         N    tangent
+N    checksum
+....
+
+=== Bitwise functions
+....
+O    and         A    and~
+A    complement
+O    or          A    or~
+O    <<          R    shift-left    <- N shift/left
+O    >>          R    shift-right   <- N shift
+O    >>>         R    shift-logical <- N shift/logical
+N    shift
+O    xor         A    xor~
+....
+
+=== Logical functions
+....
+N    not
+O    and         A    and~
+O    or          A    or~
+O    xor         A    xor~
+....
 == Series manipulation
 
 == Control
