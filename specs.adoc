@@ -1520,139 +1520,6 @@ A major application of this function is the binding of the formal arguments
 of a function, as they occur within the function body, to the context which
 contains the actual argument values. See evaluation rule `E110`.
 
-== Numerical and logical computation
-
-== Series manipulation
-
-== Control
-
-=== Alternative execution
-
-=== Repeated execution (loops)
-
-== Input/output
-
-=== Conversion from/to textual representation
-
-The built-in function `load` will convert textual input (or its binary UTF-8 encoded
-equivalent), specified as its argument, to one or more values by calling upon
-the lexical/syntactic analysis facilities of the toolchain. The result is either one
-value or a block of values.
-
-There are two built-in functions for converting values to readable strings:
-`form` will produce a basic representation intended for human readers, and `mold`
-will produce strings that are guaranteed to re-produce the original values when
-submitted to `load`. As stated in section _**Conversion of values (`to`)**_ the
-operation of `form` is the same as that of `to-string` with the exception of
-argument types `none! binary!` and `any-list!`. Especially values of the
-last group of types, as well as values of types `vector!` and `object!`
-merit special attention since the are converted to strings showing
-the essentials without conserving type information.
-
-Examples:
-....
-load "1"                  -> 1                      ; string analyzed as representing an integer
-load "1 + 2"              -> [1 + 2]                ; load produces a block for more than one value
-load "[1 2 3]"            -> [1 2 3]                ; one (grouped) value detected
-load #{5B31203220335D}    -> [1 2 3]                ; same input as binary value
-
-form ()                   -> ""                     ; unset! value
-form #{414243}            -> "#{414243}"            ; to-string gives "ABC"
-form [1 2 3]              -> "1 2 3"                ; block brackets omitted
-form quote (1 2 3)        -> "1 2 3"                ; parens also omitted
-form make hash! [1 2 3]   -> "1 2 3"                ; hash property not shown
-form make vector! [1 2 3] -> "1 2 3"                ; vector property not shown
-form object [a: 1]        -> "a: 1"                 ; object property not shown
-mold [1 2 3]              -> "[1 2 3]"              ; load is guaranteed to recognize this
-mold make hash! [1 2 3]   -> "make hash! [1 2 3]"   ; hash property conserved
-mold make vector! [1 2 3] -> "make vector! [1 2 3]" ; vector property conserved
-....
-
-The built-in function `save` will apply `mold` to the value which is its
-second argument. If the destination specified as its first argument is a string,
-it will append the result of `mold` to that string. If the destination
-is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
-out of the result of `mold` and append that value to the destination .
-_**See issue #2668**_
-
-=== Conversion from/to other representations
-
-The built-in functions `load` and `save` each have an `/as` refinement
-with a `word!` argument: the value `none` indicates Red code (Red data)
-and makes `load` and `save` operate as already described;
-other values implemented are `png jpeg bmp gif`; for each of these values
-`load` will accept binary data in the indicated format and yield an `image!`
-value, and `save` will take an `image!` value and produce the encoded binary
-value.
-
-The necessary decoding and encoding routines are stored in `system/codecs`.
-This is a block of pairs: `<word><object>`, where the `<word>` indicates
-the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
-content:
-....
-    key             value type   content
-
-    title           string!      (not filled in) 
-    name            word!        'JPEG
-    mime-type       block!       [image/jpeg]
-    suffixes        block!       [%.jpg %.jpeg %.jpe %.jfif]
-    encode          routine!     routine [img [image!] where [any-type!]][...]
-    decode          routine!     routine [data [any-type!]][...]
-....
-
-=== Printing
-
-The built-in function `prin` will take a value or a block of values
-and send a string to the standard output device. In the case of
-a single value the string is the result of applying `form` to the
-result of evaluating the value; in the case of a block, the individual
-components are evaluated and converted by `form` and separated by
-single spaces. The built-in function `print` calls `prin` and outputs
-a line feed afterwards.
-
-The built-in function `probe` will call `mold` and then `print`, and
-yield its argument as a result. This is useful for debugging intermediate
-results; note that `print` itself will yield the unset value.
-
-Examples:
-....
-print [1 + 2 3 + 4]    ; prints "3 7" and yields unset
-probe [1 + 2 3 + 4]    ; prints "[1 + 2 3 + 4]" and yields [1 + 2 3 + 4]
-....
-
-=== File and Url I/O
-
-The built-in function `read` will read a string from a file on an external
-device which is indicated by a `file!` or `url!` value as its argument. The content
-is assumed to be UTF-8 encoded unless the refinement `/as` is used,
-which has a `word!` argument indicating the character encoding _**What is allowed??**_.
-If the refinement `/lines` is used, the content will be split into lines
-at the line feed character (`U+000A`); a preceding carriage return (`U+000D`),
-if present, will be accounted for. If the refinement `/binary` is used,
-the content will be read as a `binary!` value and not be decoded.
-
-The built-in function `load` will not only accept a string or `binary!` value
-as input, but also a `file!` or `url!` value indicating a text or binary file.
-It will read the content of the file and treat it as indicated above. 
-
-The built-in function `write` will send a string or `binary!` value which is
-its second argument to a file on an external device which is indicated
-by a `file!` or `url!` value as its first argument.  If the second argument
-is not a string or `binary!` value, it will first be passed to `mold`.
-The resulting string will be UTF-8 encoded (as by `to-binary`)
-unless the refinement `/as` is used, which has a `word!` argument indicating
-the character encoding _**What is allowed??**_.
-If the refinement `/append` is used the output will be written at the end of the file.
-If the refinement `/lines` is used, and the value to be written is a block,
-the components of the block will be written with a line feed after every component.
-The refinement `/binary` ensures that a line feed character (`LF`, `U+000A`)
-present in the source is not translated to an OS-specific character combination
-(e.g. `CRLF`, `U+000D + U+000A`) but is output as a single `LF`.
-
-The built-in function `save` will not only accept a string or `binary!` value
-as destination, but also a `file!` or `url!` value indicating a text or binary file.
-It will send its result to that file.
-
 == Evaluation rules
 
 General remark: operator application has precedence over application of other functions
@@ -1932,6 +1799,139 @@ compose [([1 + 2]) (3 + 4)]      ->  [1 + 2 7]     ; evaluation of a block yield
 compose/only [([1 + 2]) (3 + 4)] ->  [[1 + 2] 7]   ; with /only, a block stays a block
 compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens are also evaluated
 ....
+
+== Numerical and logical computation
+
+== Series manipulation
+
+== Control
+
+=== Alternative execution
+
+=== Repeated execution (loops)
+
+== Input/output
+
+=== Conversion from/to textual representation
+
+The built-in function `load` will convert textual input (or its binary UTF-8 encoded
+equivalent), specified as its argument, to one or more values by calling upon
+the lexical/syntactic analysis facilities of the toolchain. The result is either one
+value or a block of values.
+
+There are two built-in functions for converting values to readable strings:
+`form` will produce a basic representation intended for human readers, and `mold`
+will produce strings that are guaranteed to re-produce the original values when
+submitted to `load`. As stated in section _**Conversion of values (`to`)**_ the
+operation of `form` is the same as that of `to-string` with the exception of
+argument types `none! binary!` and `any-list!`. Especially values of the
+last group of types, as well as values of types `vector!` and `object!`
+merit special attention since the are converted to strings showing
+the essentials without conserving type information.
+
+Examples:
+....
+load "1"                  -> 1                      ; string analyzed as representing an integer
+load "1 + 2"              -> [1 + 2]                ; load produces a block for more than one value
+load "[1 2 3]"            -> [1 2 3]                ; one (grouped) value detected
+load #{5B31203220335D}    -> [1 2 3]                ; same input as binary value
+
+form ()                   -> ""                     ; unset! value
+form #{414243}            -> "#{414243}"            ; to-string gives "ABC"
+form [1 2 3]              -> "1 2 3"                ; block brackets omitted
+form quote (1 2 3)        -> "1 2 3"                ; parens also omitted
+form make hash! [1 2 3]   -> "1 2 3"                ; hash property not shown
+form make vector! [1 2 3] -> "1 2 3"                ; vector property not shown
+form object [a: 1]        -> "a: 1"                 ; object property not shown
+mold [1 2 3]              -> "[1 2 3]"              ; load is guaranteed to recognize this
+mold make hash! [1 2 3]   -> "make hash! [1 2 3]"   ; hash property conserved
+mold make vector! [1 2 3] -> "make vector! [1 2 3]" ; vector property conserved
+....
+
+The built-in function `save` will apply `mold` to the value which is its
+second argument. If the destination specified as its first argument is a string,
+it will append the result of `mold` to that string. If the destination
+is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
+out of the result of `mold` and append that value to the destination .
+_**See issue #2668**_
+
+=== Conversion from/to other representations
+
+The built-in functions `load` and `save` each have an `/as` refinement
+with a `word!` argument: the value `none` indicates Red code (Red data)
+and makes `load` and `save` operate as already described;
+other values implemented are `png jpeg bmp gif`; for each of these values
+`load` will accept binary data in the indicated format and yield an `image!`
+value, and `save` will take an `image!` value and produce the encoded binary
+value.
+
+The necessary decoding and encoding routines are stored in `system/codecs`.
+This is a block of pairs: `<word><object>`, where the `<word>` indicates
+the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
+content:
+....
+    key             value type   content
+
+    title           string!      (not filled in) 
+    name            word!        'JPEG
+    mime-type       block!       [image/jpeg]
+    suffixes        block!       [%.jpg %.jpeg %.jpe %.jfif]
+    encode          routine!     routine [img [image!] where [any-type!]][...]
+    decode          routine!     routine [data [any-type!]][...]
+....
+
+=== Printing
+
+The built-in function `prin` will take a value or a block of values
+and send a string to the standard output device. In the case of
+a single value the string is the result of applying `form` to the
+result of evaluating the value; in the case of a block, the individual
+components are evaluated and converted by `form` and separated by
+single spaces. The built-in function `print` calls `prin` and outputs
+a line feed afterwards.
+
+The built-in function `probe` will call `mold` and then `print`, and
+yield its argument as a result. This is useful for debugging intermediate
+results; note that `print` itself will yield the unset value.
+
+Examples:
+....
+print [1 + 2 3 + 4]    ; prints "3 7" and yields unset
+probe [1 + 2 3 + 4]    ; prints "[1 + 2 3 + 4]" and yields [1 + 2 3 + 4]
+....
+
+=== File and Url I/O
+
+The built-in function `read` will read a string from a file on an external
+device which is indicated by a `file!` or `url!` value as its argument. The content
+is assumed to be UTF-8 encoded unless the refinement `/as` is used,
+which has a `word!` argument indicating the character encoding _**What is allowed??**_.
+If the refinement `/lines` is used, the content will be split into lines
+at the line feed character (`U+000A`); a preceding carriage return (`U+000D`),
+if present, will be accounted for. If the refinement `/binary` is used,
+the content will be read as a `binary!` value and not be decoded.
+
+The built-in function `load` will not only accept a string or `binary!` value
+as input, but also a `file!` or `url!` value indicating a text or binary file.
+It will read the content of the file and treat it as indicated above. 
+
+The built-in function `write` will send a string or `binary!` value which is
+its second argument to a file on an external device which is indicated
+by a `file!` or `url!` value as its first argument.  If the second argument
+is not a string or `binary!` value, it will first be passed to `mold`.
+The resulting string will be UTF-8 encoded (as by `to-binary`)
+unless the refinement `/as` is used, which has a `word!` argument indicating
+the character encoding _**What is allowed??**_.
+If the refinement `/append` is used the output will be written at the end of the file.
+If the refinement `/lines` is used, and the value to be written is a block,
+the components of the block will be written with a line feed after every component.
+The refinement `/binary` ensures that a line feed character (`LF`, `U+000A`)
+present in the source is not translated to an OS-specific character combination
+(e.g. `CRLF`, `U+000D + U+000A`) but is output as a single `LF`.
+
+The built-in function `save` will not only accept a string or `binary!` value
+as destination, but also a `file!` or `url!` value indicating a text or binary file.
+It will send its result to that file.
 
 == Exceptions
 
