@@ -1956,8 +1956,13 @@ a choice of characters, or a string.
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series:
-`reverse sort random clear remove take change replace alter trim pad insert append repend swap move`
-
+....
+reverse
+sort
+random
+clear
+remove take change replace alter trim pad insert append repend swap move
+....
 TBD
 ....
 max
