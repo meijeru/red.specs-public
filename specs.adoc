@@ -1860,6 +1860,17 @@ which takes two `float!` arguments representing `y` and `x` coordinates.
 The function `random` is also defined for `series!` arguments. See section
 _**Series manipulation**_.
 
+=== Set-theoretical functions
+
+The following functions operate on values that can be conceived as representing
+_sets_ of other values; this concerns some series types: `block! hash! string!`,
+as well as `bitset!` and `typeset!`.
+
+The functions `intersect union difference` and `exclude` have two arguments
+of one of the types mentioned, and yield a result of the same type. The function
+`unique` has one argument of one of the types mentioned, and again yields
+a result of the same type. The operation of these functions follows from their names.
+
 === Bitwise functions
 
 The following functions operate on the bit patterns underlying Red values
@@ -1886,6 +1897,9 @@ and or xor                     integer! char! pair! tuple!
                                bitset! typeset! binary! vector!
 << >> >>>                      integer!
 ....
+
+Note that `and or` and `xor` on values of type `bitset!` and `typeset!` yield
+the same result as `intersect union` and `difference` (see previous section).  
 
 === Logical functions
 
@@ -2758,7 +2772,6 @@ R    as-ipv4
 N    as-pair
 R    as-rgba
 N    debase
-N    dehex
 N    enbase
 N    lowercase
 A    to
