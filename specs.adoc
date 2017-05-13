@@ -1897,7 +1897,7 @@ On values of other types, `not` will always yield `false` except on
 Note that `and or xor` evaluate both their arguments. In many programming
 situations, it is preferable to use the _shortcut evaluation_ functions
 `any` and `all`, which only evaluate subsequent arguments if an earlier one
-is `false` or `none` (for `any`) or `not none` (i.e.`true`) for (`all`).
+is `false` or `none` for `any` or `not none` (i.e.`true`) for `all`.
 
 == Series manipulation
 
@@ -1943,11 +1943,11 @@ The function `last` may be seen as shorthand for `first back tail`.
 
 These functions create a new series value, with a new series value slot:
 ....
-function                    result
+function                      result
 
-copy <series>               copy of the series
-extract <series> <integer>  copy of the series with every nth component 
-split <series> <delimiter>  a block of sub-strings split at the delimiter(s)
+copy <series>                 copy of the series
+extract <series> <integer>    copy of the series with every nth component 
+split <series> <delimiter>    a block of sub-strings split at the delimiter(s)
 ....
 
 For `split`, the `<series>` must be of type `any-string!`, and the
@@ -1955,18 +1955,39 @@ For `split`, the `<series>` must be of type `any-string!`, and the
 a choice of characters, or a string.
 
 The following functions modify the series _in place_, i.e. they modify
-the series value slot to point to the changed series:
+the series value slot to point to the changed series. With the exception of
+`take` and `alter`, their result is the series itself.
 ....
-reverse
-sort
-random
-clear
-remove take change replace alter trim pad insert append repend swap move
+function                      operation                                 resulting position of series
+
+reverse <series>              order of components reversed              at head
+sort <series>                 components in increasing order            at head
+random <series>               components in random order                at head
+clear <series>                components removed till tail              at tail
+remove <series>               current component removed                 unchanged, i.e. before next component
+take <series>                 current component removed                 (unchanged, result is component value)
+change <series> <value>       current component replaced by <value>     after current component
+replace <series> <pattern>    components equal to <pattern>             at head
+     <value>                  replaced by <value>
+alter <series> <value>        if <value> in <series> remove it,         (at head, result is true if appended,
+                              else append                               else false)
+insert <series> <value>       insert <value> before current component   before current component                         
+append <series> <value>       insert <value> at tail                    at head
+repend <series> <value>       insert reduced <value> at tail            at head
+trim <series>                 spaces removed from string                at head
+pad <series>                  string padded on right side with spaces   at head
 ....
-TBD
+
+The following functions take two series as arguments:
 ....
-max
-min
+function                      operation                                 result and position
+
+swap <series> <series>        swap components at current positions      first series at head
+move <series> <series>        remove current component of first series  first series before next component
+                              and insert it before current component
+                              of second one
+max <series> <series>         compare series lexicographically          greater series before current component
+min <series> <series>         compare series lexicographically          smaller series before current component
 ....
 
 == Control
