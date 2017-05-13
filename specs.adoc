@@ -3008,6 +3008,7 @@ F    ls
 F    make-dir
 A    modify
 A    mold
+N    new-line
 F    normalize-dir
 A    open
 A    open?
@@ -3093,16 +3094,9 @@ N    call
 N    get-env
 N    list-env
 N    now
-
 N    set-env
 N    stats
 N    wait
-....
-TBD
-....
-
-  miscellaneous
-N    new-line
 ....
 == Errors list
 
