@@ -3037,7 +3037,7 @@ F    cause-error
 N    throw
 N    try
 ....
-=== help facilities
+==== help facilities
 ....
 F    ?
 F    ??
@@ -3088,7 +3088,7 @@ O    is       F is~ (hidden)
 F    react
 F    react?
 ....
-=== environment and OS-related
+==== environment and OS-related
 ....
 N    call
 N    get-env
