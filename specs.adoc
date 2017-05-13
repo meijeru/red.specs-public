@@ -19,6 +19,13 @@ In as much as feasible, and in order to avoid duplication, existing pieces
 of official documentation will be referred to. A list of those can be found in
 section _**Additional documentation**_.
 
+Because of the wealth of built-in functions that Red makes available, combined
+with the numerous optional facilities ("refinements") that these functions have,
+it is not possible to give an exhaustive treatment of Red's functionality.
+Red allows quite detailed information about a function's operation to be
+documented within the function specification, and this should be consulted
+in order to be able to use any function optimally. See section _**Help facilities**_.
+
 This document is *not* intended to be used in order to learn the language (tutorial);
 for that purpose sufficient materials can be found elsewhere
 _** need one comprehensive and sufficiently maintained collection of links **_
@@ -2405,6 +2412,17 @@ uncaught throws.
 
 == Additional facilities
 
+=== Help facilities
+
+
+....
+F    ?
+F    ??
+F    about
+F    help
+F    source
+F    what
+....
 === Preprocessor
 
 The Red preprocessor is a dialect of Red, enabling transformation of Red source code
@@ -2498,6 +2516,18 @@ where the `face!` objects are reactors.
 
 Further explanations are provided in separate documentation;
 see section _**Additional documentation**_.
+
+=== Environment and OS-related functions
+....
+N    call
+N    get-env
+N    list-env
+N    now
+
+N    set-env
+N    stats
+N    wait
+....
 
 == Pre-defined words list
 
@@ -2664,10 +2694,12 @@ _**Words, contexts and binding**_ and _**Evaluation rules**_)
 * control (see section _**Control**_)
 * input/output (see section _**Input/output**_)
 * exception handling (see section _**Exceptions**_)
+* help facilities (see section _**Help facilities**_)
 * preprocessor (see section _**Preprocessor**_)
 * parse (see section _**Parse**_)
 * GUI System (see section _**GUI System**_)
 * reactivity (see section _**Reactivity**_)
+* environment and OS-related (see section _**Environment and OS-related functions**_)
 
 The letter in front of each word gives the type: `A` for `action!`, `N` for `native!`,
 `O` for `op!`, `R` for `routine!` and `F` for `function!`. When a function is directly
@@ -3004,6 +3036,15 @@ F    cause-error
 N    throw
 N    try
 ....
+=== help facilities
+....
+F    ?
+F    ??
+F    about
+F    help
+F    source
+F    what
+....
 ==== preprocessor
 ....
 F    expand
@@ -3046,16 +3087,8 @@ O    is       F is~ (hidden)
 F    react
 F    react?
 ....
-TBD
+=== environment and OS-related
 ....
-  set-operations
-N    difference
-N    exclude
-N    intersect
-N    union
-N    unique
-
-  environment and OS related
 N    call
 N    get-env
 N    list-env
@@ -3064,23 +3097,12 @@ N    now
 N    set-env
 N    stats
 N    wait
+....
+TBD
+....
+
   miscellaneous
 N    new-line
-
-
-
-
-  help
-F    ?
-F    ??
-F    about
-F    help
-F    source
-F    what
-
-
-  GUI
-
 ....
 == Errors list
 
