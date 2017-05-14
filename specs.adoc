@@ -1272,10 +1272,18 @@ These are explained in section _**Contexts**_. _**See issue #2618**_.
 
 _**What about `owner`??**_
 
+The function `complement?` is described in section _**bitset! in Creating values**_.
+
+The function `face?` tests if an object is derived of the `face!` object which is
+explained in section _**GUI System**_.
+
+_**Functions on vector! values have been requested see issue #2527**_
+
 For values of type `object! error!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
 be obtained as a block by means of the built-in functions `words-of values-of`
-and `body-of`. In addition, for objects there is the property `class-of` which yields
+and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
+In addition, for objects there is the property `class-of` which yields
 a unique number which is given to each object that is created from a `<spec>`, and is
 inherited by objects derived from it (see _**Values of map! type**_).
 
@@ -1283,6 +1291,9 @@ For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
 the function `words-of` _**not yet implemented**_. For `function!` and `routine!` values, there is in
 addition the function `body-of` which yields the function/routine body.
+
+All functions `<property>-of <value>` are shorthand for the general function
+`reflect <value> <property>` e.g. `words-of <value>` is defined as `reflect <value> 'words`. 
 
 Note that the `help` built-in function is typically making good use of `spec-of`. 
 
@@ -2734,7 +2745,6 @@ F    class-of
 N    complement?
 N    context?
 F    datatype?
-F    dir?
 F    email?
 F    empty?
 F    error?
@@ -2782,7 +2792,6 @@ N    type?
 F    typeset?
 F    unset?
 F    url?
-N    value?
 F    values-of
 F    vector?
 F    word?
@@ -2869,13 +2878,16 @@ O    >=       N    greater-or-equal?
 N    all
 N    any
 N    bind
+N    context?
 N    do
 N    get
 N    in
+A    index?
 F    quote
 N    set
 R    set-quiet
 N    unset
+N    value?
 ....
 ==== numerical and logical computation
 ....
@@ -3005,6 +3017,7 @@ A    create
 R    create-dir
 A    delete
 F    dir
+F    dir?
 F    dirize
 R    exists?
 A    form
