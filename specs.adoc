@@ -1462,24 +1462,7 @@ and will initially not refer to any value in that context.
 
 The evaluation of `<word>: <value>` is treated in rule `E105`.
 Equivalent to this is the application of the built-in function `set`:
-`<word>: <value>` ~ `set '<word> <value>`. The full specification of `set` is as follows:
-....
-USAGE:
-    SET word value /any /case /only /some
-DESCRIPTION: 
-    Sets the value(s) one or more words refer to 
-    SET is a native! value
-ARGUMENTS:
-    word      [any-word! block! object! path!] "Word, object, map path or block of words to set"
-    value     [any-type!] "Value or block of values to assign to words"
-REFINEMENTS:
-    /any      => Allow UNSET as a value rather than causing an error
-    /case     => Use case-sensitive comparison (path only)
-    /only     => Block or object value argument is set as a single value
-    /some     => None values in a block or object value argument, are not set
-RETURNS: 
-     [any-type!] 
-....
+`<word>: <value>` ~ `set '<word> <value>`.
 
 ==== Object creation
 
@@ -1491,20 +1474,8 @@ This is treated in rule `E110`.
 
 ==== Built-in `bind` function
 
-The built-in function `bind` is a `native!` with the following specification:
-....
-USAGE:
-    BIND word context /copy
-DESCRIPTION: 
-    BIND is a native! value
-ARGUMENTS:
-    word     [block! any-word!] 
-    context  [any-word! any-object! function!] 
-REFINEMENTS:
-    /copy
-RETURNS: 
-     [block! any-word!] 
-....
+The built-in function `bind` is a `native!` with two arguments: a word
+(or block of words) and a context.
 
 The function will try to change the binding of a single word or
 of all words in a block, and will return the (modified) word or block.
@@ -2522,6 +2493,12 @@ N    wait
 ....
 
 === Help facilities
+
+These facilities owe much to the homoiconicity of Red, and to the systematic
+use of _docstrings_ (see section _**function! in Creation of values**_).
+
+An overview of available facilities is obtained by typing `help` at the console.
+This gives the following output:
 ....
     Use HELP or ? to view built-in docs for functions, values 
     for contexts, or all values of a given datatype:
