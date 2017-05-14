@@ -166,6 +166,11 @@ values and between `word!` values and `block!` values. These two examples are bo
      equal?[1234][1234]
      equal?   [1234]   [1234]
 
+_Comments_, which have no significance for the operation of the program, may be placed following
+a semicolon `;` until the end of an input line, or they may follow the word `comment` and be
+formulated as a single Red value -- most usefully a series of characters enclosed in `{ }` or
+a series of Red values enclosed in `[ ]`.
+
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
 and/or the reader. The relevant data will be described in section _**Metadata for the toolchain**_.
 
@@ -2161,9 +2166,23 @@ for the remaining ones.
 
 === Interrupting execution
 
-The functions `break continue exit return` are descripbed in section _**Exceptions**_.
+The built-in functions `break continue exit return` are described
+in section _**Exceptions**_.
 
-The functions `halt` and `quit` or `q` stop the execution of the program. _**Difference??_**
+The built-in functions `halt` and `quit` or `q` stop the execution
+of the program. _**Difference??_** The built-in function `quit-return`
+delivers its integer argument as status code back to the Operating System.
+
+=== Special execution cases
+
+The built-in function `comment` evaluates its argument and yields
+the unset value as result. It is mostly used to insert multi-line
+comments, with a multi-line string, or a block as argument. Care has to
+be taken that the argument is a valid Red value, even though its
+evaluation is intended to have no effect.
+
+The built-in function `also` has two arguments. It evaluates both one after the
+other, and yields the result of the first one.
 
 == Input/output
 
