@@ -2481,16 +2481,28 @@ Further explanations are provided in separate documentation;
 see section _**Additional documentation**_.
 
 === Environment and OS-related functions
-....
-N    call
-N    get-env
-N    list-env
-N    now
 
-N    set-env
-N    stats
-N    wait
-....
+The operation of these functions is dependent on the particular Operating System
+(OS) running on the target computer.
+
+The following functions allow interaction with the set of _environment variables_
+that most Operating Systems maintain:
+
+* `list-env` will yield a `map!` value with string keys and values for all variables
+for the current process
+* `get-env` with a string or word argument will yield the current value of the named variable
+* `set-env` with a string or word argument and a string value as second argument will set
+the named variable to the value, or unset it if the second argument in `none`
+
+The function `now` yields the current date and time as a Red `date!` value _**for the moment
+only `now/time` is available yielding the time as a Red `time!` valu**_.
+
+The function `wait` with a `number!` or `time!` argument will wait for the specified time
+or number of seconds.
+
+The function `call` will execute an OS shell command to run another process. Its argument
+is a `string!` value representing a shell command or a `file!` value representing
+an executable file.
 
 === Help facilities
 
