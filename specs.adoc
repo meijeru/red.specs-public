@@ -881,6 +881,13 @@ The new object is said to be _derived_ from the prototype.
 
 An additional built-in function `construct` _** does what?? **_
 
+The built-in function `extend` takes an `object!` value as first argument
+and a set of key-value pairs as second argument of type `block! hash!` or `map!`.
+It will add the keys that are not present in the map, with their values,
+and replace the values for those keys that are
+already present. The keys and values are not evaluated.
+_**It is not yet implemented**_
+
 ==== `error!`
 
 **`S120`**::
@@ -1015,6 +1022,12 @@ Note that values of `logic!` and `none!` type are not allowed as keys. Neverthel
 of `<map-spec>` are not evaluated, these words will be treated as `word!` values.
 The same is true if they occur in `<value>` position.
 
+The built-in function `extend` takes a `map!` value as first argument
+and a set of key-value pairs as second argument of type `block! hash!` or `map!`.
+It will add the keys that are not present in the map, with their values,
+and replace the values for those keys that are already present.
+The keys and values are not evaluated.
+
 ==== other types 
 
 * Making `integer!` and `float!` values from `logic!` values: `true -> 1/1.0, false -> 0/0.0` _**See issue 2644**_
@@ -1026,7 +1039,7 @@ This does not apply to `image!` values.
 
 === Conversion of values (`to`)
 
-Conversion is possible for selected combinations of "source" and "target" type.
+Conversion is possible for selected combinations of _source_ and _target_ type.
 The list given below is meant to be exhaustive. A summary table is available
 elsewhere (see section _**Additional documentation**_).
 
@@ -1161,6 +1174,18 @@ derived from the `face!` object which describes a window in the Red GUI system.
 It yields the face such as it would be rendered on the screen, as an `image!`
 value. See further the documentation of the GUI system (reference in section
 _**Additional documentation**_).
+
+==== Additional conversion functions
+
+* `as-pair` takes two integer arguments and combines them into a `pair!` value,
+thus `as-pair x y` is equivalent to `to-pair reduce [x y]` 
+* `as-color` takes three integer arguments `0..255` and makes a `tuple!` value
+representing a color (RGB)
+* `as-rgba` does the same with four arguments, with additional transparency (RGBA)
+* `as-ipv4` also has four arguments, and suggests an IPv4 address interpretation of the tuple
+* `uppercase` and `lowercase` will work on values of type `char!` and `any-string!`
+and convert them to upper case or lower case respectively; they use the
+Unicode 7.0 case folding table (only character pairs with status C and S)
 
 === Casting of values (`as`)
 
@@ -1759,9 +1784,9 @@ TBD
 **`E114`**::
 TBD
 
-=== Reduction
+=== Blocks: reduction and selective evaluation
 
-As stated before, evaluation of a block leaves it unchanged. Execution of a block
+As stated before, evaluation of a block leaves it unchanged. _Execution of a block_
 is the term used to indicate sequential evaluation of the components of the block,
 yielding as a result the result of the last evaluation, if any, and the unset value
 otherwise. Two built-in functions are available to evaluate components of a block
@@ -1788,6 +1813,15 @@ compose [[(1 + 2)] (3 + 4)]      ->  [[(1 + 2)] 7] ; inner blocks are untouched
 compose [([1 + 2]) (3 + 4)]      ->  [1 + 2 7]     ; evaluation of a block yields the components 
 compose/only [([1 + 2]) (3 + 4)] ->  [[1 + 2] 7]   ; with /only, a block stays a block
 compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens are also evaluated
+....
+
+The built-in function `collect` will execute the block which is its argument
+and yield a new block as result which contains all values that are argument
+to the function `keep` invoked inside the argument block.
+
+Example:
+....
+collect [repeat i 10 [if even? i [keep i ** 2]]] -> [4 16 36 64 100]
 ....
 
 == Numerical and logical computation
@@ -2705,7 +2739,7 @@ The functions are classified by functionality:
 
 * enquiry, i.e. properties of types and values (see sections
 _**Type and typeset related functions**_ and _**Reflection on values**_)
-* making values (see section _**Creation of values**_)
+* making values (see sections _**Creation of values**_ and _**Blocks: reduction and selective evaluation**_)
 * converting values (see sections _**Conversion of values**_ and _**Casting of values**_)
 * comparison (see section _**Conmparison of values**_)
 * evaluation and binding (see sections
@@ -2841,7 +2875,6 @@ F    to-integer
 F    to-issue
 F    to-lit-path
 F    to-lit-word
-N    to-local-file
 F    to-logic
 F    to-map
 F    to-none
@@ -2849,7 +2882,6 @@ F    to-pair
 F    to-paren
 F    to-path
 F    to-percent
-F    to-red-file
 F    to-refinement
 F    to-set-path
 F    to-set-word
@@ -3047,6 +3079,8 @@ F    save
 R    set-current-dir
 F    split-path
 F    suffix?
+N    to-local-file
+F    to-red-file
 A    update
 F    what-dir
 A    write
