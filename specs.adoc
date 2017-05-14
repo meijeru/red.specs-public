@@ -2008,7 +2008,10 @@ it will be fixed at 1 or length + 1. If `find` does not have a match, its result
 
 The following enquiry functions are available: `head? tail? length? index?`. The function
 `empty?` is a synonym for `tail?`. The built-in function `offset?` yields the difference
-of the `index?` values of its two `series!` arguments.
+of the `index?` values of its two `series!` arguments. 
+
+Note: for programming convenience, the functions `length?` and `empty?` (but not `tail?`)
+accept `none` as an argument, yielding `none` as result.
 
 === Extraction and modification of components
 
@@ -2067,7 +2070,7 @@ min <series> <series>         compare series lexicographically          smaller 
 ....
 
 Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
-`clear find length? remove select take`.
+`clear find remove select take`.
 
 == Control
 
