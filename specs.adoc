@@ -1501,6 +1501,9 @@ The evaluation of `<word>: <value>` is treated in rule `E105`.
 Equivalent to this is the application of the built-in function `set`:
 `<word>: <value>` ~ `set '<word> <value>`.
 
+The counterpart to `set` is `unset`: this will make the word argument
+refer to the unset value.
+
 ==== Object creation
 
 This is treated in rule `S119`.
@@ -1544,7 +1547,7 @@ are binary infix functions. See further rule `E112`.
 The operation of the toolchain will result in the evaluation of the Red source text presented
 to it. The user can, at runtime, achieve evaluation of a (fragment of) Red source, i.e. Red data,
 by invoking the built-in function `do`. If this is presented with a string argument. it will
-invoke `load` (see _**Input/output**_) first , and then evaluate the result. If the argument is
+invoke `load` (see _**Input/output**_) first, and then evaluate the result. If the argument is
 a block, the block will be _executed_ as described in rule `E100`.
 
 === Passive types
@@ -1556,7 +1559,7 @@ Note that `block!` is one of the passive types. Thus evaluation of a block
 leaves the block unchanged. The term _execution of a block_ will be used to
 indicate sequential evaluation of the components of the block; the result of this
 execution is the result of the last evaluation, if any, and the unset value otherwise.
-See also the section _**Reduction**_.
+See also the section _**Blocks: Reduction and selective evaluation**_.
 
 === Decaying types
 
@@ -1565,6 +1568,10 @@ These are `lit-word!` and `lit-path!`.
 **`E101`**:: Evaluating a `'<word>` results in its `<word>` counterpart.
 
 **`E102`**:: Evaluating a `'<path>` results in its `<path>` counterpart.
+
+The built-in function `quote` will yield its argument, which may be of any type,
+without evaluating it. In particular `quote <word>` is equivalent to `'<word>`,
+and `quote <path>` is equivalent to `'<path>`.
 
 === Active types
 
@@ -1586,6 +1593,9 @@ and `none` as well as the type names will be interpreted as `word!` values rathe
 `logic!` or `none!` values. To represent values of the desired type in such cases one may use
 the generalized value construction syntax: `#[true], #[false], #[none]` etc.
 
+The built-in function `get` evaluates its `word!` argument: `get '<word>` is equivalent
+to `<word>`.
+
 ==== `get-word!` type
 
 **`E104`**:: Evaluating a `:<word>` proceeds as follows:
@@ -1599,6 +1609,10 @@ the generalized value construction syntax: `#[true], #[false], #[none]` etc.
 Note that the difference with evaluating a `<word>` is that no errors are raised
 and that a function value is not applied but is itself yielded as result.
 
+The built-in function `get` has a refinement `/any` which will ensure that
+no error occurs if the `<word>` refers to the unset value. Thus `get/any '<word>`
+is equivalent to `:<word>`.
+
 ==== `set-word!` type
 
 **`E105`**:: Evaluating a `<word>:` outside an `<object-spec>` or a `<map-spec>`
@@ -1607,6 +1621,10 @@ is made to refer to the value obtained by evaluating the next value(s). An error
 if no value is following or if the value obtained is unset. The result of the evaluation
 is the value obtained. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
 is equivalent to `a: 1 b: 1 c: 1`.
+
+As stated before, the equivalent to `<word>: <value>` is `set '<word> <value>`.
+The built-in function `set` has a refinement `/any` which will ensure that
+no error occurs if the <value> is unset.
 
 ==== `paren!` type
 
