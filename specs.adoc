@@ -871,12 +871,13 @@ to the unset value. The `<object-spec>` is bound to this context (see section
 _**Built-in bind function**_). The bound block is then _executed_.
 The `class` property of the newly created object is set to a unique integer.
 
-If the first argument to `make` is an `object!` value, it serves as "prototype".
+If the first argument to `make` is an `object!` value, it serves as _prototype_.
 A new object is created whose associated context is a copy of the prototype's context.
 The `set-word!` values that are (first-level) components of the `<object-spec>`
 are added to this context if they are not already present in that context.
 The `<object-spec>` is then treated as in the previous case.
 The `class` property of the new object is copied from the prototype.
+The new object is said to be _derived_ from the prototype.
 
 An additional built-in function `construct` _** does what?? **_
 
