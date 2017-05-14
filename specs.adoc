@@ -1482,6 +1482,7 @@ Words are bound to contexts as a result of:
 * evaluating a `make object! <spec>` construct
 * applying a function to its arguments
 * applying the built-in `bind` function
+* applying the built-in `in` function
 
 Details of the binding process in these cases are given in the following sub-sections.
 
@@ -1514,8 +1515,8 @@ This is treated in rule `E110`.
 
 ==== Built-in `bind` function
 
-The built-in function `bind` is a `native!` with two arguments: a word
-(or block of words) and a context.
+The built-in function `bind` has two arguments: a word (or block of words)
+and a context.
 
 The function will try to change the binding of a single word or
 of all words in a block, and will return the (modified) word or block.
@@ -1537,6 +1538,14 @@ is modified.
 A major application of this function is the binding of the formal arguments
 of a function, as they occur within the function body, to the context which
 contains the actual argument values. See evaluation rule `E110`.
+
+==== Built-in `in` function
+
+The built-in function `in` has two arguments: an `object!` or `error!` value
+and a word.
+
+It will bind the word to the object or error context, and yield the word thus
+bound as result.
 
 == Evaluation rules
 
@@ -1842,6 +1851,15 @@ Example:
 collect [repeat i 10 [if even? i [keep i ** 2]]] -> [4 16 36 64 100]
 ....
 
+The _shortcut evaluation_ functions `any` and `all` have a block as argument;
+they will evaluate the components one by one; `any` will stop at the first
+one which is not `false` or `none` (i.e.`true`) and yield that as result;
+if there is no such component it will yield `none`;
+`all` will stop at the first one which is `false` or `none`
+and yield that as a result; if there is no such one
+it will yield the result of evaluating the last one. Note that `any [ ]`
+and `all [ ]` both yield `none`.
+
 == Numerical and logical computation
 
 === Basic arithmetic operations
@@ -1954,6 +1972,7 @@ Note that `and or xor` evaluate both their arguments. In many programming
 situations, it is preferable to use the _shortcut evaluation_ functions
 `any` and `all`, which only evaluate subsequent arguments if an earlier one
 is `false` or `none` for `any` or `not none` (i.e.`true`) for `all`.
+See section _**Blocks: reduction and selective evaluation**_.
 
 == Series manipulation
 
