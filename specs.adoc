@@ -2011,6 +2011,9 @@ max <series> <series>         compare series lexicographically          greater 
 min <series> <series>         compare series lexicographically          smaller series before current component
 ....
 
+Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
+`clear find length? remove select take`.
+
 == Control
 
 === Selective execution
@@ -2412,17 +2415,6 @@ uncaught throws.
 
 == Additional facilities
 
-=== Help facilities
-
-
-....
-F    ?
-F    ??
-F    about
-F    help
-F    source
-F    what
-....
 === Preprocessor
 
 The Red preprocessor is a dialect of Red, enabling transformation of Red source code
@@ -2527,6 +2519,34 @@ N    now
 N    set-env
 N    stats
 N    wait
+....
+
+=== Help facilities
+....
+    Use HELP or ? to view built-in docs for functions, values 
+    for contexts, or all values of a given datatype:
+
+        help append
+        ? system
+        ? function!
+
+    To search for values by name, use a word:
+
+        ? pri
+        ? to-
+
+    To also search in function specs, use a string:
+
+        ? "pri"
+        ? "issue!"
+
+    Other useful functions:
+
+        ??     - Display a variable and its value
+        probe  - Print a molded value
+        source - Show a function's source code
+        what   - Show a list of known functions or words
+        about  - Display version number and build date
 ....
 
 == Pre-defined words list
