@@ -1853,7 +1853,7 @@ collect [repeat i 10 [if even? i [keep i ** 2]]] -> [4 16 36 64 100]
 
 The _shortcut evaluation_ functions `any` and `all` have a block as argument;
 they will evaluate the components one by one; `any` will stop at the first
-one which is not `false` or `none` (i.e.`true`) and yield that as result;
+one which is not `false` or `none` and yield that as result;
 if there is no such component it will yield `none`;
 `all` will stop at the first one which is `false` or `none`
 and yield `none` as a result; if there is no such one
@@ -1999,7 +1999,7 @@ back <series>            index - 1
 find <series> <value>    "index of first occurrence of <value>"
 ....
 
-Here the `<value>` argument of `at`and `skip` is an integer. For `image!` values,
+Here the `<value>` argument of `at` and `skip` is an integer. For `image!` values,
 a `pair!` value is also allowed. This will be converted to a regular index.
 The `<value>` argument of `find` may be a single component value or a sub-series.
 
@@ -2007,7 +2007,8 @@ For all series, if the index becomes smaller than 1 or greater than the length +
 it will be fixed at 1 or length + 1. If `find` does not have a match, its result is `none`.
 
 The following enquiry functions are available: `head? tail? length? index?`. The function
-`empty?` is a synonym for `tail?`.
+`empty?` is a synonym for `tail?`. The built-in function `offset?` yields the difference
+of the `index?` values of its two `series!` arguments.
 
 === Extraction and modification of components
 
@@ -2818,7 +2819,6 @@ N    complement?
 N    context?
 F    datatype?
 F    email?
-F    empty?
 F    error?
 R    event?
 F    face?
@@ -2955,7 +2955,6 @@ N    in
 A    index?
 F    quote
 N    set
-R    set-quiet
 N    unset
 N    value?
 ....
@@ -3014,6 +3013,7 @@ A    back
 A    change
 A    clear
 A    copy
+F    empty?
 F    extract
 F    fifth
 A    find
@@ -3032,6 +3032,7 @@ F    pad
 A    pick
 A    poke
 A    put
+A    random
 F    rejoin
 A    remove
 F    repend
@@ -3131,15 +3132,6 @@ F    cause-error
 N    throw
 N    try
 ....
-==== help facilities
-....
-F    ?
-F    ??
-F    about
-F    help
-F    source
-F    what
-....
 ==== preprocessor
 ....
 F    expand
@@ -3181,6 +3173,7 @@ F    within?
 O    is       F is~ (hidden)
 F    react
 F    react?
+R    set-quiet
 ....
 ==== environment and OS-related
 ....
@@ -3191,6 +3184,15 @@ N    now
 N    set-env
 N    stats
 N    wait
+....
+==== help facilities
+....
+F    ?
+F    ??
+F    about
+F    help
+F    source
+F    what
 ....
 == Errors list
 
