@@ -2331,6 +2331,42 @@ The built-in function `save` will not only accept a string or `binary!` value
 as destination, but also a `file!` or `url!` value indicating a text or binary file.
 It will send its result to that file.
 
+=== File system information
+
+Notes: some Operating Systems use _directory_, others use _folder_. Red
+consistently uses directory. A `file!` value may either indicate
+a file or a directory. The device name, if any, and the names
+in the directory hierarchy are separated by a `/` character.
+Some operating systems use the `\` character for the same purpose.
+The built-in function `to-local-file` translates a Red `file!` value
+into the appropriate string for the target OS. The built-in function
+`to-red-file` will take a string indicating a file in the target OS
+and produce the equivalent Red `file!` value.
+
+The Red file convention is that a file name starting with
+a `/` character represents an _absolute path_, and a file name
+ending in a `/` character represents a directory.
+
+The current working directory is stored in `system/options/path`.
+
+The following built-in functions deal with the file system:
+
+* `exists?` will yield `true` if its `file!` argument exists in the file system,
+and `false` otherwise
+* `suffix?` yields the suffix (extension) of a file, or `none` if there is no suffix
+* `what-dir` will yield the current working directory as a `file!` value
+* `cd` or `change-dir` will set the current working directory to the argument
+which may be a `file!`, `word!` or `path!` value; the argument will first be
+_normalized_ (see below)
+* `pwd` will print the current working directory
+* `make-dir` will create the directory that is indicated by its `file!` argument;
+if this contains more than one directory level, and the `/deep` refinement
+is specified, the intermediate directory or directories will also be created
+* `normalize-path`
+* `clean-path`
+* `split-path`
+
+
 == Exceptions
 
 Two kinds of exceptions (exceptional situations which disturb the normal
@@ -2367,6 +2403,9 @@ stack     integer!       machine address
 Any field except `type` and `id` can also be `none`. If `arg1` is `none`
 `arg2` and `arg3` will also be none`; likewise, if `arg2` is `none`,
 `arg3` will also be `none`.
+
+The `type` field may contain one of the following words: `throw note syntax
+script math access user internal`.
 
 There is a fixed _repertoire_ of errors; identifying information
 and (parametrized) error messages for each possible error are stored
@@ -2416,6 +2455,9 @@ either err/arg1                             ; test if insertion is necessary
     get err/id                              ; yields a string
 ]
 ....
+
+Note the use of the `in` built-in function to obtain the context of the
+error value.
 
 Examples:
 ....
