@@ -1856,7 +1856,7 @@ they will evaluate the components one by one; `any` will stop at the first
 one which is not `false` or `none` (i.e.`true`) and yield that as result;
 if there is no such component it will yield `none`;
 `all` will stop at the first one which is `false` or `none`
-and yield that as a result; if there is no such one
+and yield `none` as a result; if there is no such one
 it will yield the result of evaluating the last one. Note that `any [ ]`
 and `all [ ]` both yield `none`.
 
