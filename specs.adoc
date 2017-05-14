@@ -2229,6 +2229,30 @@ is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
 out of the result of `mold` and append that value to the destination .
 _**See issue #2668**_
 
+For `block!` and `paren!` values (not `hash!` _**see issue #2686**_),
+the user can control the way they are presented by `mold` by inserting
+line feed characters (`U+000A`) before selected values. The built-in
+function `new-line` with a `block!` or `paren!` first argument will
+set a _new-line markerthe value slot of the current component of
+its argument (if the second argument is `true`) or clear this marker
+if the second argument is `false`.
+
+Example:
+....
+b: [1 2 3 4]
+forall b [new-line b true]
+print mold b -> [
+    1 
+    2 
+    3 
+    4
+]
+....
+
+The state of the new-line marker may be tested with the built-in function
+`new-line?` which has a `block!` or `paren!` argument, and yields `true`
+or `false`.
+
 === Conversion from/to other representations
 
 The built-in functions `load` and `save` each have an `/as` refinement
@@ -3124,6 +3148,7 @@ F    make-dir
 A    modify
 A    mold
 N    new-line
+N    new-line?
 F    normalize-dir
 A    open
 A    open?
