@@ -2241,7 +2241,11 @@ Example:
 ....
 b: [1 2 3 4]
 forall b [new-line b true]
-print mold b -> [
+print mold b
+....
+gives
+....
+[
     1 
     2 
     3 
@@ -2333,19 +2337,27 @@ It will send its result to that file.
 
 === File system information
 
-Notes: some Operating Systems use _directory_, others use _folder_. Red
-consistently uses directory. A `file!` value may either indicate
-a file or a directory. The device name, if any, and the names
-in the directory hierarchy are separated by a `/` character.
-Some operating systems use the `\` character for the same purpose.
+A `file!` value may indicate either a file or a _directory_ (some
+Operating Systems call this a _folder_). The conventions for
+Red file names are:
+
+* the device name, if any, and the names in the directory hierarchy
+are separated by a `/` character (some operating systems use
+the `\` character for the same purpose)
+* a file name starting with a `/` character represents an _absolute path_,
+otherwise the path is _relative_ to the _current working directory_
+* a file name ending in a `/` character represents a directory
+
 The built-in function `to-local-file` translates a Red `file!` value
 into the appropriate string for the target OS. The built-in function
 `to-red-file` will take a string indicating a file in the target OS
 and produce the equivalent Red `file!` value.
 
-The Red file convention is that a file name starting with
-a `/` character represents an _absolute path_, and a file name
-ending in a `/` character represents a directory.
+Examples: 
+....
+to-local-file %/C/Projects/Red/programs/ -> "C:\Projects\Red\programs\"
+to-red-file "C:\Projects\Red\programs\"  -> %/C/Projects/Red/programs/
+....
 
 The current working directory is stored in `system/options/path`.
 
@@ -2362,7 +2374,7 @@ _normalized_ (see below)
 * `make-dir` will create the directory that is indicated by its `file!` argument;
 if this contains more than one directory level, and the `/deep` refinement
 is specified, the intermediate directory or directories will also be created
-* `normalize-path`
+* `normalize-dir`
 * `clean-path`
 * `split-path`
 
