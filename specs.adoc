@@ -107,12 +107,6 @@ the truth values: `true` and `false`, as well as `none` ("nil"
 or "null" in other languages). See section _**Pre-defined words**_
 for the complete list.
 
-As regards the built-in functions, a number of them will be mentioned
-in this document, and their basic operation explained. To find more
-information about these functions, especially their various options,
-and in general on all other functions or any Red value for that matter,
-the built-in `help` function can be called from an interactive console.
-
 === Dialects
 
 Red makes available a large number of different value types. The evaluation
@@ -239,13 +233,13 @@ can of course be prescribed by the use of parentheses.
 
 Some basic examples:
 ....
-1 + 2 * 3                  <- result is 9, not 7
-1 + (2 * 3)                <- result is 7
-pick copy "abc" 1          <- 1 is argument to pick, since copy has 1 argument itself
-copy/part "abc" 2          <- with the "refinement" /part, copy now has 2 arguments
-mod x 2 + 1                <- mod has 2 arguments; this will be interpreted as mod x 3
-1 + mod x 2                <- this is what was probably meant
-(mod x 2) + 1              <- another way  of writing that
+1 + 2 * 3                  ; result is 9, not 7
+1 + (2 * 3)                ; result is 7
+pick copy "abc" 1          ; 1 is argument to pick, since copy has 1 argument itself
+copy/part "abc" 2          ; with the "refinement" /part, copy now has 2 arguments
+mod x 2 + 1                ; mod has 2 arguments; this will be interpreted as mod x 3
+1 + mod x 2                ; this is what was probably meant
+(mod x 2) + 1              ; another way  of writing that
 ....
 
 == Types
@@ -263,11 +257,11 @@ none!           single value: none, i.e. a value belonging to none of the other 
 logic!          true or false
 char!           character (Unicode Code Point)
 integer!        integer numbers 
-float!          floating point numbers
+float!          floating point (decimal) numbers
 percent!        id. expressed as a percentage
 time!           time interval or point in time, stored as a floating point number of seconds
 pair!           2-dimensional coordinates or size 
-tuple!          color in RGB or other scheme, IPv4 adres
+tuple!          e.g. color in RGB or other scheme, IPv4 adres
 word!           identifier that can be bound
 lit-word!       quoted (unevaluated) word
 set-word!       word to be given a value to refer to
@@ -291,15 +285,15 @@ string!         sequence of characters (Unicode Code Points)
 file!           file or directory (folder)
 url!            URL
 tag!            tag in the sense of HTML, XML etc.
-email!          email-address
+email!          email address
 binary!         sequence of bytes
 image!          2-dimensional array of pixels (RGBA values stored in 4 bytes each) 
 bitset!         sequence of values true or false
 map!            collection of pairs of values where the first value in each pair functions
                 as key for retrieval of the second; keys are restricted to types in
-                scalar!, all-word! and any-string!
+                scalar!, any-word! and any-string!
 object!         collection of word-value pairs with a context in which the words
-                (also called fields) are bound, and refer to the corresponding values;
+                (also called fields) are bound, and are referring to the corresponding values;
                 objects are capable of triggering asynchronous events in response
                 to changes in their components, thus enabling reactive programming;
                 objects have a "class" property associated with them
@@ -641,6 +635,7 @@ explicitly handle their interpretation.
 The correspondence between the escaped characters and Unicode Code Points is given in the table below.
 
      Named Form   Short Form    Character           Code Point
+     
      #"^(null)    #"^@"         null                U+0000
      #"^(back)"   #"^H"         backspace           U+0008
      #"^(tab)"    #"^I" #"^-"   horizontal tab      U+0009
@@ -648,6 +643,8 @@ The correspondence between the escaped characters and Unicode Code Points is giv
      #"^(page)"   #"^L"         form feed           U+000C 
      #"^(esc)"    #"^["         escape              U+001B
      #"^(del)"    #"^~"         delete              U+007F
+     
+     
      #"^""                      " - double quote    U+0022
      #"^^"                      ^ - caret           U+005E
      #"^A" - #"^Z"              control characters  U+0001 - U+001A
