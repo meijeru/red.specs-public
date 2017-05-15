@@ -2347,11 +2347,15 @@ the `\` character for the same purpose)
 * a file name starting with a `/` character represents an _absolute path_,
 otherwise the path is _relative_ to the _current working directory_
 * a file name ending in a `/` character represents a directory
+* the abbreviations `.` for current directory and `..` for one level
+higher directory are honored; the built-in function `clean-path`
+will do the necessary substitutions (_normalization_)
 
 The built-in function `to-local-file` translates a Red `file!` value
 into the appropriate string for the target OS. The built-in function
 `to-red-file` will take a string indicating a file in the target OS
-and produce the equivalent Red `file!` value.
+and produce the equivalent Red `file!` value. These functions will
+not do normalization.
 
 Examples: 
 ....
@@ -2363,20 +2367,28 @@ The current working directory is stored in `system/options/path`.
 
 The following built-in functions deal with the file system:
 
-* `exists?` will yield `true` if its `file!` argument exists in the file system,
-and `false` otherwise
+* `exists?` will yield `true` if the file indicated by its `file!` argument
+exists in the file system, and `false` otherwise
 * `suffix?` yields the suffix (extension) of a file, or `none` if there is no suffix
+* `dir?` will yield `true` if the `file!` value indicates a directory
+and `false` otherwise
 * `what-dir` will yield the current working directory as a `file!` value
 * `cd` or `change-dir` will set the current working directory to the argument
 which may be a `file!`, `word!` or `path!` value; the argument will first be
-_normalized_ (see below)
+_normalized_
 * `pwd` will print the current working directory
 * `make-dir` will create the directory that is indicated by its `file!` argument;
 if this contains more than one directory level, and the `/deep` refinement
 is specified, the intermediate directory or directories will also be created
-* `normalize-dir`
-* `clean-path`
-* `split-path`
+* `clean-path` will normalize its `file!` argument to an absolute path
+where `.` and `..` are eliminated
+* `split-path` will take a `file!` argument and yield a block of two
+`file!` values: the last file or directory in the path, preceded by the
+directory containing that file or directory (or `%./` if the argument
+was a single file or directory)
+
+=== Console functions
+
 
 
 == Exceptions
