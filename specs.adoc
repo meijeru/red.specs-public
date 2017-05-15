@@ -2335,7 +2335,19 @@ The built-in function `save` will not only accept a string or `binary!` value
 as destination, but also a `file!` or `url!` value indicating a text or binary file.
 It will send its result to that file.
 
-=== File system information
+TBD
+....
+R    browse
+A    close
+A    create
+A    modify
+A    open
+A    open?
+A    query
+A    update
+....
+
+=== File system functions
 
 A `file!` value may indicate either a file or a _directory_ (some
 Operating Systems call this a _folder_). The conventions for
@@ -2386,10 +2398,30 @@ where `.` and `..` are eliminated
 `file!` values: the last file or directory in the path, preceded by the
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
-
+TBD
+....
+A    delete
+F    dir
+F    dirize
+F    list-dir
+F    ll
+F    ls
+A    rename
+....
 === Console functions
 
+The _console prompt_ and the string preceding the result of the user input
+are available as `system/console/prompt` and `system/console/result`. Their
+initial values are `">> "` and `"== "` respectively.
 
+The built-in function `ask` will print its argument at the console prompt
+and wait for user input until a line feed (`U+000A`) is received;
+the string before the line feed will be yield as result.
+
+The built-in function `input` is shorthand for `ask ""`.
+
+The built-in functions `read-clipboard` and `write-clipboard` 
+return respectively set the clipboard content as a string.
 
 == Exceptions
 
