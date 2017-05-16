@@ -94,7 +94,7 @@ values_).
 A special category of values is formed by _words_, that play
 a similar role to identifiers and keywords of other languages.
 Red does *not* have identifiers nor keywords: as will be explained in more
-detail below, any _word_ may _refer_ to a value in some _context_.
+detail below, any _word_ may _refer_ to another value in some _context_.
 The word is said to be _bound to_, or _in_ the context.
 Evaluation of a word yields the value it refers to. The evaluation rules
 given below will state, amongst others, how words can come to refer
@@ -115,7 +115,7 @@ occur in a Red _program_ which, as stated before, is nothing more or less
 than a sequence of values.
 The users may furthermore use and interpret Red values, when considered as _data_,
 in ways of their own, and thus create _dialects_ or _Domain Specific Languages
-(DSLs_).
+(DSLs)_.
 
 In fact, Red itself contains a number of dialects where blocks of data are
 interpreted in a specific way; this includes the _preprocessor dialect_, 
@@ -155,10 +155,16 @@ _**This is most certainly short of some whitespace values, please correct See al
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
 can be relaxed. For example, it is possible to omit whitespace between two consecutive `block!`
-values and between `word!` values and `block!` values. These two examples are both syntatically valid:
-
-     equal?[1234][1234]
-     equal?   [1234]   [1234]
+values and between `word!` values and `block!` values. These examples are all syntactically valid:
+....
+     either x = 1["OK"]["NOK"]
+     either x = 1  ["OK"]     ["NOK"]
+     either x = 1 [
+         "OK"
+     ] [
+         "NOK"
+     ]
+....
 
 _Comments_, which have no significance for the operation of the program, may be placed following
 a semicolon `;` until the end of an input line, or they may follow the word `comment` and be
@@ -177,45 +183,45 @@ further defined in the grammar is explained in the individual sub-sections of se
 _**Lexical structure of values**_ hereafter.
 
 **`S100`**:: program structure
-
-    <program>  ::= <prologue> <value>*
-    <prologue> ::= Red [ <value>* ]
-    <value>    ::= <lexeme> | <group>
-    <lexeme>   ::= <integer>            ; integer!
-             | <float>                  ; float!
-             | <integer>% | <float>%    ; percent!
-             | <integer>x<integer>      ; pair!
-             | <time>                   ; time!
-             | <tuple>                  ; tuple!
-             | <word>                   ; word!
-             | '<word>                  ; lit-word!
-             | <word>:                  ; set-word!
-             | :<word>                  ; get-word!
-             | /<word>                  ; refinement!
-             | #<word>                  ; issue!
-             | <char>                   ; char!
-             | <string>                 ; string!
-             | <file>                   ; file!
-             | <url>                    ; url!
-             | <email>                  ; email!
-             | <tag>                    ; tag!
-             | <binary>                 ; binary!
-             | <path>                   ; path!
-             | '<path>                  ; lit-path!
-             | <path>:                  ; set-path!
-             | :<path>                  ; get-path!
+....
+<program>  ::= <prologue> <value>*
+<prologue> ::= Red [ <value>* ]
+<value>    ::= <lexeme> | <group>
+<lexeme>   ::= <integer-literal>                        ; integer!
+             | <float-literal>                          ; float!
+             | <integer-literal>% | <float-literal>%    ; percent!
+             | <integer-literal>x<integer-literal>      ; pair!
+             | <time-literal>                           ; time!
+             | <tuple-literal>                          ; tuple!
+             | <word-literal>                           ; word!
+             | '<word-literal>                          ; lit-word!
+             | <word-literal>:                          ; set-word!
+             | :<word-literal>                          ; get-word!
+             | /<word-literal>                          ; refinement!
+             | #<word-literal>                          ; issue!
+             | <char-literal>                           ; char!
+             | <string-literal>                         ; string!
+             | <file-literal>                           ; file!
+             | <url-literal>                            ; url!
+             | <email-literal>                          ; email!
+             | <tag-literal>                            ; tag!
+             | <binary-literal>                         ; binary!
+             | <path-literal>                           ; path!
+             | '<path-literal>                          ; lit-path!
+             | <path-literal>:                          ; set-path!
+             | :<path-literal>                          ; get-path!
     <group>    ::= <paren>
              | <block>
              | <map>
              | <constructor>
-    <paren> ::=    ( <value>* )         ; paren!
-    <block> ::=    [ <value>* ]         ; block!
-    <map> ::=      #( <value>* )        ; map! (even number of values only)
-    <constructor> ::= #[ <value>* ]     ; reserved for general typed value constructor
+    <paren> ::=    ( <value>* )                         ; paren!
+    <block> ::=    [ <value>* ]                         ; block!
+    <map> ::=      #( <value>* )                        ; map! (even number of values only)
+    <constructor> ::= #[ <value>* ]                     ; reserved for general typed value constructor
+....
 
-
-In what follows, terms like `<integer>` will be used to refer to lexemes;
-to indicate the corresponding value, terms like "value of type `integer!`,
+In what follows, terms like `<integer-literal>` will be used to refer to lexemes;
+to indicate the corresponding values, terms like "value of type `integer!`,
 `integer!` value" or plain "integer" will be used.
 
 === Evaluation order
@@ -223,7 +229,7 @@ to indicate the corresponding value, terms like "value of type `integer!`,
 The constituents of a Red programs are in principle evaluated from left to right, according
 to the evaluation rules given in the section _**Evaluation rules**_, with the following
 peculiarities: certain function arguments are not evaluated before the function application
-(see section _**Function types (rule E110)**_), and evaluation of the arguments of
+(see rule `E110` in section _**Function types**_), and evaluation of the arguments of
 _operators_ (values of type `op!` which represent binary infix functions) has precedence
 over function application; operators are strictly _left associative_, there is no precedence
 between any two operators. The arguments of a function simply follow the function itself,
@@ -560,55 +566,55 @@ of the `make`, `to` and `as` function for values of each of the types as appropr
 ==== `integer!`
 
 **`S101`**::
-An `integer!` value is written as a signed integer number from `-2^31^` to `2^31^-1`
+An `<integer-literal>` is written as a signed integer number from `-2^31^` to `2^31^-1`
 in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation.
 _**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
 
-Examples: `123`, `-123`, `+0001`, `1'000`
+Examples: `123`  `-123`  `+0001`  `1'000`
 
 ==== `float!`
 
 **`S102`**::
-A `float!` value is written as a signed floating point number in the range of the IEEE 754 binary64 format,
+A `<float-literal>` is written as a signed floating point number in the range of the IEEE 754 binary64 format,
 in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation.
 No zero is needed before the decimal point when the absolute value is smaller than `1.0`.
 The number may be followed by `E` or `e` with a signed integer exponent on base 10.
 Note that in this case, no decimal point is required.
 
-Examples: `1.23`, `-0.5`, `.5`, `+010.20`, `1E9`
+Examples: `1.23`  `-0.5`  `.5`  `+010.20`  `1E9`
 
 ==== `time!`
 
 **`S103`**::
 ....
-    <time> ::= <hmsd> | +<hmsd> | -<hmsd>
+    <time-literal> ::= <hmsd> | +<hmsd> | -<hmsd>
     <hmsd> ::= <hours>:<minutes> | <hours>:<minutes>:<seconds> | <hours>:<minutes>:<seconds>.<decimals> |
                <minutes>:<seconds>.<decimals>
 ....
 
-where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<integer>`
+where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<integer-literal>`
 (leading zeroes are allowed, carry is performed as appropriate when the numbers are outside
 the normal range `0..23` for hours, `0..59` for minutes and seconds).
 
-Examples: `10:20`, `10:20:30.456`, `20:30.5`, `-1:00:00`
+Examples: `10:20`  `10:20:30.456`  `20:30.5`  `-1:00:00`
 
 ==== `tuple!`
 
 **`S104`**::
-A `tuple!` value is written as 3 to 12 `integer!` values in the range `0..255` separated by dots `.`
+A `<tuple-literal>` is written as 3 to 12 `integer!` values in the range `0..255` separated by dots `.`
 
 Examples: `192.168.1.2` (an IPv4 address), `255.255.128` (an RGB value)
 
 ==== `word!`
 
 **`S105`**::
-A `word!` value is written as one or more characters from the entire Unicode range excluding control characters
+A `<word-literal>` is written as one or more characters from the entire Unicode range excluding control characters
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
-A `word!` value does not begin with `0-9` or `'`.
+A `<word-literal>` does not begin with `0-9` or `'`.
 Words are _case-insensitive_, i.e. changing any letter in the word into the corresponding upper- or lower-case
 variant does not create a different word.
 
-Examples: `abc`, `Abc`, `ABC`, `+`, `<>`, `integer!`, `last-item?` ; the first three are the same `word!` value.
+Examples: `abc`  `Abc`  `ABC`  `+`  `<>`  `integer!`  `last-item?` ; the first three are the same `word!` value.
 
 Note: punctuation characters from the ASCII subset that *are* allowed in words are: `! & ' * + - . < = > ? _ `` `| ~`.
 
@@ -616,7 +622,7 @@ Note: punctuation characters from the ASCII subset that *are* allowed in words a
 
 **`S106`**::
 ....
-    <char> :: = #"<single-character>"
+    <char-literal> :: = #"<single-character>"
     <single-character> ::= <viewable-character> | <escaped-character> | <hexadecimal-codepoint>
     <escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) |
                           ^(esc) | ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
@@ -624,7 +630,7 @@ Note: punctuation characters from the ASCII subset that *are* allowed in words a
 ....
 where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
-A `char!` value must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFFF` (hexadecimal notation). 
+A `<char-literal>` must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFFF` (hexadecimal notation). 
 
 A `<viewable character>` is, in most cases, simply a displayable character. For example, `e`, `é`, `€` or `😀`.
 When a displayable character requires two or more graphemes to display it, each grapheme requires a separate Red character.
@@ -655,31 +661,35 @@ Note that code point `U+001E` cannot be represented by `#"^^"` as expected, sinc
 Note also that `^` will be ignored in front of any single character with which it does not form (the beginning of)
 an `<escaped-character>` or `<hexadecimal-codepoint>`. Thus e.g. `^3` yields the same as `3`.
 
-Examples: `#"A", #"^/", #"^(0A)"`
+Examples: `#"A"  #"^/"  #"^(0A)"`
 
 ==== `string!`
 
 **`S107`**::
 ....
-     <string> ::= "<single-character>*" | {<single-character>*}
+     <string-literal> ::= "<single-character>*" | {<single-character>*}
 ....
 
 where `<single-character>` is defined in rule `S106`
 
-When the `<string>` is delimited by `" "` it must not contain unescaped _new-line characters_
-`U+000A`, `U+0085`, `U+2028` and `U+2029`. When the `<string>` is delimited by `{ }` it may contain
+When the `<string-literal>` is delimited by `" "` it must not contain unescaped _new-line characters_
+`U+000A`, `U+0085`, `U+2028` and `U+2029`. When the `<string-literal>` is delimited by `{ }` it may contain
 unescaped new-line characters and any `"` as well as nested `{ }` pairs, but any unpaired `}`
-character that is part of the `<string`> must be escaped by preceding it with `^`. Within a `<string>`,
-the same remark holds for `^` as noted above for a `<char>`. 
+character that is part of the `<string-literal>` must be escaped by preceding it with `^`.
+Within a `<string-literal>`, the same remark holds for `^` as noted above for a `<char-literal>`. 
 
-Examples: `"abc^/def", {abc` +
-`def}`
+Examples:
+....
+"abc^/def"
+{abc +
+def}
+....
 
 ==== `file!`
 
 **`S108`**::
 
-A `file!` value is written as `%` followed by one or more non whitespace characters, or by zero or more
+A `<file-literal>` is written as `%` followed by one or more non whitespace characters, or by zero or more
 characters enclosed in `"  "` in which case whitespace characters except line feed and next line may be
 included. The interpretation of this value is operating system dependent, but escaped characters of the
 form `%<hex>` are accepted and converted.
@@ -688,28 +698,28 @@ form `%<hex>` are accepted and converted.
 
 **`S109`**::
 
-A `url!` value is written as three or more non whitespace characters, of which at least one `:` which must not
+A `<url-literal` is written as three or more non whitespace characters, of which at least one `:` which must not
 be the first or last character. Escaped characters of the form `%<hex>` are accepted and converted.
 
 ==== `email!`
 
 **`S110`**::
 
-An `email!` value is written as two or more characters containing one `@` but not beginning with it.
+An `<email-literal>` is written as two or more characters containing one `@` but not beginning with it.
 Escaped characters of the form `%<hex>` are accepted and converted.
 
 ==== `tag!`
 
 **`S111`**::
 
-A `tag!` value is written as zero or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
+A `<tag-literal>` value is written as zero or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
 Characters `"` and `'` are allowed but must each be properly paired and nested.
 
 ==== `binary!`
 
 **`S112`**::
 ....
-    <binary> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
+    <binary-literal> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
 
 where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S106`
@@ -717,7 +727,12 @@ and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`; the in
 the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
 brackets and from each other by whitespace.
 
-Examples: `2#{00000001 00000010 00000011}, \#{ 01 02 03 }, 64#{AQID}`
+Examples:
+....
+2#{00000001 00000010 00000011}
+#{ 01 02 03 }
+64#{AQID}
+....
 
 In order to help convert between the 3 representations (base2, base16 and base64),
 the built-in functions `debase` and `enbase` have been defined. They each have
@@ -731,17 +746,23 @@ enbase/base #{010203} 2    -> "000000010000001000000011"
 debase "AQID"              -> #{010203}
 ....
 
-
 ==== `path!`
 
 **`S113`**::
 ....
-    <path> ::= <path-head>/<selector>
-    <path-head> ::= <word> | <path>
+    <path-literal> ::= <path-head>/<selector>
+    <path-head> ::= <word> | <path-literal>
     <selector> ::= <integer> | <word> | :<word> | <paren>
 ....
 
-Examples: `list/1/2`, `system/view/screens/2`, `list/:i`, `list/(i)`, `copy/part`
+Examples:
+....
+list/1/2
+system/view/screens/2
+list/:i
+list/(i)
+copy/part
+....
 
 === Creation of values (`make`)
 
@@ -752,9 +773,8 @@ syntactic form of its own. The make function can also be used
 to construct values of other types. This is dealt with in the
 latter part of the section.
 
-Note that `make` evaluates its arguments. In this section, therefore,
-non-terminals like `<integer>` do not stand for a literal integer
-but for a value (to be evaluated) of `integer!` type etc.
+In this section, non-terminals like `<integer>` do not stand for
+a literal integer but for a value (to be evaluated) of `integer!` type etc.
 Note also that, as stated above, the first argument of `make` does not
 have to be a `datatype!` value; if it is a value of another type,
 that type is taken to be the desired type. This is not made explicit
@@ -773,10 +793,13 @@ In the following rules, the sign `°` signifies an optional element.
 <typeset-element> ::= <typeset> | <datatype>
 ....
 
-Examples: `number!` is defined as `make typeset! [integer! float! percent!]`,
-`scalar!` is defined as `make typeset! [char! number! time! pair! tuple!]`.
+Examples:
+....
+number!: make typeset! [integer! float! percent!]
+scalar!: make typeset! [char! number! time! pair! tuple!]
+....
 
-Note that an empty typeset is allowed (`make typeset! []`).
+Note that an empty typeset is allowed (`make typeset! [ ]`).
 
 ==== `hash!`
 
@@ -803,7 +826,12 @@ If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`
 the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the assumed type
 is `integer!` of size 32.
 
-Examples: `make vector! [], make vector! [integer! 16 [1 2 3]], make vector! [#"a" #"b" #"c"]`
+Examples:
+....
+make vector! []
+make vector! [integer! 16 [1 2 3]]
+make vector! [#"a" #"b" #"c"]`
+....
 
 ==== `image!`
 
@@ -820,7 +848,7 @@ contains the transparency (one byte per pixel, in the same ordering).
 
 Examples:
 ....
-make image! 200x300, make image! [200x300 255.0.0],
+make image! 200x300, make image! [200x300 255.0.0]
 make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{00000000}]
 ....
 
@@ -848,7 +876,12 @@ bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) l
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
 produced by the following bit-position numbers, while actually storing only these bit-positions.
 
-Examples: `make bitset! 16, charset "abc", charset [#"A" - #"Z" #"a" - #"z"]`
+Examples:
+....
+make bitset! 16
+charset "abc"
+charset [#"A" - #"Z" #"a" - #"z"]
+....
 
 The built-in function `complement?` will test if the bitset is a complemented one,
 i.e. if its complement is what is actually stored.
@@ -1034,7 +1067,6 @@ The keys and values are not evaluated.
 
 * Making `integer!` and `float!` values from `logic!` values: `true -> 1/1.0, false -> 0/0.0` _**See issue 2644**_
 * Making `logic!` values from `integer!` and `float!` values: `0/0.0 -> false, all else -> true`
-* Making `time!` values from `block!` values: the block should contain three values (hours, minutes, seconds).
 * Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
 or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
 This does not apply to `image!` values.
@@ -1109,8 +1141,10 @@ if there are fewer than 8 bytes, `#{00}` bytes are prepended
 the result is the first number times 10 to the power of the truncated second number
 
 The function `to-percent` will perform the same conversions and yield a value of type `percent!.
-The function `to-time` will do the same (except that a `block!` argument is not allowed)
-and yield a `time!` value.
+The function `to-time` will do the same and yield a `time!` value; in this case,
+the `any-list!` argument should contain two integer values and an integer or float value,
+for hours, minutes and seconds respectively. 
+
 
 ==== Target type `char!`
 
