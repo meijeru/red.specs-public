@@ -1909,27 +1909,41 @@ by a prefix function `negate`, not by an operator, since these have always two a
 Lastly, there are functions for determining the absolute value (`absolute`),
 the maximum and minimum of two numbers (`max min`) and for rounding (`round`).
 
-The arguments and result types for these functions are as follows.
-Result types are only indicated if different from argument types.
+The arity (number of arguments) and the argument and result types for these
+functions are as follows. Result types are only indicated if different from argument types.
 ....
-function                       argument type(s)                           result type
+function               arity        argument type(s)                           result type
 
-+ - * / // %                   number! time! char! pair! tuple! vector!
-**                             number!
-NaN?                           number!                                    logic!
-sign?                          number! time!                              integer!
-positive? negative?            number! time!                              logic!
-zero?                          number! time! char! pair! tuple!           logic!
-even? odd?                     number! char!                              logic!
-negate                         number! time! pair!
-absolute round                 number! time! pair!
-max min                        number! time! char! series!
++ - * / // %             2          number! time! char! pair! tuple! vector!
+**                       2          number!
+NaN?                     1          number!                                    logic!
+sign?                    1          number! time!                              integer!
+positive? negative?      1          number! time!                              logic!
+zero?                    1          number! time! char! pair! tuple!           logic!
+even? odd?               1          number! char!                              logic!
+negate                   1          number! time! pair!
+absolute round           1          number! time! pair!
+max min                  2          number! time! char!
+....
+
+Note that `round` has a number of refinements:
+....
+/to             => Return the nearest multiple of the scale parameter
+   scale    [number!] "Must be a non-zero value"
+/even          => Halves round toward even results
+/down          => Round toward zero, ignoring discarded digits. (truncate)
+/half-down     => Halves round toward zero
+/floor         => Round in negative direction
+/ceiling       => Round in positive direction
+/half-ceiling  => Halves round in positive direction
 ....
 
 Note that not all combinations of argument types are allowed. In general, the types
 `number! time! char!` are freely combinable. The operations on values of type
-`pair! tuple! vector!` take place component-by-component where possible. The functions
-`max min` applied to `series!` arguments do a lexicographic comparison.
+`pair! tuple! vector!` take place component-by-component where possible.
+
+The functions `max min` are also defined for `series!` arguments. See section
+_**Series manipulation**_.
 
 === Higher mathematical functions
 
@@ -1937,24 +1951,29 @@ This concerns first of all the familiar functions `exp` for raising
 `e = 2.718281828459045` to a power, the logarithms `log-e log-2 log-10`,
 and the square root `sqrt`. Furthermore the trigonometric functions
 `sin cos tan asin acos atan atan2`, and the functions `random` and
-`checksum`. The latter allows the following methods: `MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP`.
+`checksum`.
 
-The arguments and result types for these functions are as follows.
-Result types are only indicated if different from argument types.
+The arity (number of arguments) and the argument and result types
+for these functions are as follows. Result types are only indicated
+if different from argument types.
 ....
-function                       argument type(s)                           result type
+function                       arity argument type(s)                    result type
 
-exp log-e log-2 log-10 sqrt    number!                                    float!
-sin cos tan asin acos atan     float!
-atan2                          float!
-random                         number! time! char! pair! tuple!
-checksum                       binary! string! file!                      binary!
+exp log-e log-2 log-10 sqrt     1    number!                             float!
+sin cos tan asin acos atan      1    float!
+atan2                           2    float!
+random                          1    number! time! char! pair! tuple!
+checksum                        2    binary! string! file!               binary!
+                                     word!
 ....
 
 Notes: all trigonometric functions take an argument in radians, except `atan2`
 which takes two `float!` arguments representing `y` and `x` coordinates.
-The function `random` is also defined for `series!` arguments. See section
-_**Series manipulation**_.
+The function `random` yields a random value between zero and its argument
+value; for `pair!` and `tuple!` values it operates per component; 
+it is also defined for `series!` arguments. See section _**Series manipulation**_.
+The `word!` argument to `checksum` indicates the method; allowed are
+`MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP`.
 
 === Set-theoretical functions
 
@@ -1977,21 +1996,21 @@ it yields the two's complement, e.g. `complement 2` is `-3`.
 The operators `and or xor` with prefix counterparts `and~ or~ xor~` operate
 bit-by-bit on their arguments.
 
-Three bit-shift operators are defined on integers:
+Three bit-shift operators are defined on integers, with positive integer shift count:
 
 * `<<` for left shift: highest bits are shifted out, zero bits are added to the right
 * `>>` for right shift: lowest bits are shifted out, highest bit is duplicated
 * `>>>` for "logical" shift: lowest bits are shifted out, zero bits are added to the left
 
-The arguments and result types for these functions are as follows.
-Result types are only indicated if different from argument types.
-....
-function                       argument type(s)                           result type
+The arity (number of arguments) and the argument and result types
+for these functions are as follows.
 
-complement                     integer! bitset! typeset! binary!
-and or xor                     integer! char! pair! tuple!
-                               bitset! typeset! binary! vector!
-<< >> >>>                      integer!
+....
+function     arity  argument type(s)
+
+complement     1    integer! bitset! typeset! binary!
+and or xor     2    integer! char! pair! tuple! bitset! typeset! binary! vector!
+<< >> >>>      2    integer!
 ....
 
 Note that `and or` and `xor` on values of type `bitset!` and `typeset!` yield
@@ -2029,18 +2048,36 @@ function                 new index
 head <series>            1
 tail <series>            length + 1
 at <series> <value>      <value>
-skip <series> <value>    index + <value>
-next <series>            index + 1
-back <series>            index - 1
-find <series> <value>    "index of first occurrence of <value>"
+skip <series> <value>    current index + <value>
+next <series>            current index + 1
+back <series>            current index - 1
+find <series> <value>    index of first occurrence of <value>
 ....
 
 Here the `<value>` argument of `at` and `skip` is an integer. For `image!` values,
 a `pair!` value is also allowed. This will be converted to a regular index.
 The `<value>` argument of `find` may be a single component value or a sub-series.
 
-For all series, if the index becomes smaller than 1 or greater than the length + 1,
-it will be fixed at 1 or length + 1. If `find` does not have a match, its result is `none`.
+For all series, if the index becomes smaller than `1` or greater than `length + 1`,
+it will be fixed at `1` or `length + 1`. If `find` does not have a match, its result is `none`.
+
+Note that `find` has a rich set of refinements:
+....
+/part     => Limit the length of the search
+    length   [number! series!] 
+/only     => Treat a series search value as a single value
+/case     => Perform a case-sensitive search
+/same     => Use "same?" as comparator
+/any      => TBD: Use * and ? wildcards in string searches
+/with     => TBD: Use custom wildcards in place of * and ?
+    wild     [string!] 
+/skip     => Treat the series as fixed size records
+    size     [integer!] 
+/last     => Find the last occurrence of value, from the tail
+/reverse  => Find the last occurrence of value, from the current index
+/tail     => Return the tail of the match found, rather than the head
+/match    => Match at current index only and return tail of match
+....
 
 The following enquiry functions are available: `head? tail? length? index?`. The function
 `empty?` is a synonym for `tail?`. The built-in function `offset?` yields the difference
@@ -2051,8 +2088,11 @@ accept `none` as an argument, yielding `none` as result.
 
 === Extraction and modification of components
 
-The following functions have been described in section _**Components of values**_:
+The following built-in functions have been described in section _**Components of values**_:
 `pick poke select put first second third fourth fifth`.
+
+The function `select` has the same set of refinements as `find` (see previous section)
+with the exception of `/tail` and `/match`.
 
 The function `last` may be seen as shorthand for `first back tail`.
 
@@ -2071,7 +2111,7 @@ a choice of characters, or a string.
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series. With the exception of
-`take` and `alter`, their result is the series itself.
+`take` and `alter`, their result is the changed series itself.
 ....
 function                      operation                                 resulting position of series
 
@@ -2095,14 +2135,14 @@ pad <series>                  string padded on right side with spaces   at head
 
 The following functions take two series as arguments:
 ....
-function                      operation                                 result and position
+function   operation                                 result and position
 
-swap <series> <series>        swap components at current positions      first series at head
-move <series> <series>        remove current component of first series  first series before next component
-                              and insert it before current component
-                              of second one
-max <series> <series>         compare series lexicographically          greater series before current component
-min <series> <series>         compare series lexicographically          smaller series before current component
+swap       swap components at current positions      first series at head
+move       remove current component of first series  first series before next component
+           and insert it before current component
+           of second one
+max        compare series lexicographically          greater series before current component
+min        compare series lexicographically          smaller series before current component
 ....
 
 Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
@@ -2184,8 +2224,10 @@ series at the next position (see `next` function in section _**Series manipulati
 Example:
 ....
 b: [1 2 3 4 5 6]
-forall b [if even? b/1 [print b/2]]
+forall b [if odd? b/1 [prin b/2]]
 ....
+this will print `246`
+
 * `remove-each`: the `<condition>` is executed on each iteration, with the word(s)
 of the `<counter>` being set as in `foreach`. If the condition is satisfied,
 the components of the series that the word(s) currently refer to, are removed from the series.
@@ -2208,9 +2250,9 @@ delivers its integer argument as status code back to the Operating System.
 
 The built-in function `comment` evaluates its argument and yields
 the unset value as result. It is mostly used to insert multi-line
-comments, with a multi-line string, or a block as argument. Care has to
-be taken that the argument is a valid Red value, even though its
-evaluation is intended to have no effect.
+comments, with a multi-line string as argument or to "comment out"
+blocks of code. Care has to be taken that the argument is a valid Red value,
+even though its evaluation is intended to have no effect.
 
 The built-in function `also` has two arguments. It evaluates both one after the
 other, and yields the result of the first one.
@@ -2296,9 +2338,7 @@ and makes `load` and `save` operate as already described;
 other values implemented are `png jpeg bmp gif`; for each of these values
 `load` will accept binary data in the indicated format and yield an `image!`
 value, and `save` will take an `image!` value and produce the encoded binary
-value.
-
-The necessary decoding and encoding routines are stored in `system/codecs`.
+value. The necessary decoding and encoding routines are stored in `system/codecs`.
 This is a block of pairs: `<word><object>`, where the `<word>` indicates
 the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
 content:
@@ -2447,7 +2487,7 @@ initial values are `">> "` and `"== "` respectively.
 
 The built-in function `ask` will print its argument at the console prompt
 and wait for user input until a line feed (`U+000A`) is received;
-the string before the line feed will be yield as result.
+the string before the line feed will be yielded as result.
 
 The built-in function `input` is shorthand for `ask ""`.
 
@@ -2754,7 +2794,7 @@ for the current process
 the named variable to the value, or unset it if the second argument in `none`
 
 The function `now` yields the current date and time as a Red `date!` value _**for the moment
-only `now/time` is available yielding the time as a Red `time!` valu**_.
+only `now/time` is available yielding the time as a Red `time!` value**_.
 
 The function `wait` with a `number!` or `time!` argument will wait for the specified time
 or number of seconds.
