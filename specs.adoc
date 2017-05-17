@@ -1847,8 +1847,8 @@ to this function value, with all the words (including values of type
 Make all these words initially refer to `none`.
 .. Evaluate as many subsequent expressions as needed to obtain values corresponding
 to the non-optional arguments, except that when the `<argument-name>`
-is a `'<word>`, do not evaluate the corresponding value, and if the
-`<argument-name>` is a `:<word>`, _**then do what??**_.
+is a `'<word>` or `:<word>`, do not evaluate the corresponding expression but yield its first `<value>`.
+If the `<argument-name>` is `:<word>`, do not raise an error if this value is unset.
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
 .. If actual refinements are present, match each of them with the corresponding `<refinement>`
 in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
