@@ -1954,7 +1954,7 @@ even? odd?               1          number! char!                              l
 negate                   1          number! time! pair!
 absolute round           1          number! time! pair!
 max min                  2          scalar!
-
+....
 Note that `round` has a number of refinements:
 ....
 /to             => Return the nearest multiple of the scale parameter
