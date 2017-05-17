@@ -920,12 +920,12 @@ i.e. if its complement is what is actually stored.
 **`S129`**::
 ....
 <object> ::= make object! <object-spec> | object <object-spec> | context <object-spec> |
-             make <value> <object-spec>
+             make <expression> <object-spec>
 <object-spec> ::= <block>
 ....
 
 The built-in functions `object` and `context` are defined as shorthand for `make object!`.
-The `<value>` must be a value of type `object!`.
+The `<expression>` must evaluate to a value of type `object!`.
 
 If the first argument to `make` is `object!` this creates a new object as follows.
 A new context is created and associated to the object. The words of the new context
@@ -1272,7 +1272,7 @@ Composite values can have their components extracted and changed by various mean
 
 Values that are sequences (with types in `series!` and `bitset!`)
 admit indexing by integers, and images also by pairs as coordinates.
-The lexical/syntactic form for this is `<path>` for extraction and `<path>: <value>` for changing.
+The expression for this is `<path>` for extraction and `<path>: <expression>` for changing.
 Built-in functions exist to perform the same operations. The correspondence is as follows:
 if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
 and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `pair!` value as index
@@ -1294,7 +1294,7 @@ The built-in functions `first second third fourth` and `fifth` are defined as `p
 
 This is possible both for values that are sequences (with types in `series!`,
 but not `bitset!`) and for values of types `object! error!` and `map!`.
-The lexical/syntactic form for this is again `<path>` for extraction and `<path>: <value>` for changing.
+The expression for this is again `<path>` for extraction and `<path>: <expression>` for changing.
 Built-in functions exist to perform the same operations. The correspondence is as follows:
 if `v` is the value from which to select and `k` is the key, then `v/k` is equivalent to `select v k`
 and `v/k: x` is equivalent to `put v k x`.
@@ -1696,9 +1696,9 @@ if no value is following or if the value obtained is unset. The result of the ev
 is the value obtained. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
 is equivalent to `a: 1 b: 1 c: 1`.
 
-As stated before, the equivalent to `<word>: <value>` is `set '<word> <value>`.
+As stated before, the equivalent to `<word>: <expression>` is `set '<word> <expression>`.
 The built-in function `set` has a refinement `/any` which will ensure that
-no error occurs if the <value> is unset.
+no error occurs if the expression yields the unset value.
 
 ==== `paren!` type
 
@@ -2193,10 +2193,11 @@ The following functions enable conditional execution of one or more block:
 <either>      ::= either <condition> <true-block> <false-block>
 <case>        ::= case [ <case-alt>* ] | case/all [ <case-alt>* ] 
 <case-alt>    ::= <condition> <true-block>
-<switch>      ::= switch <value> [ <switch-alt>* ]
-                  | switch/default <value> [ <switch-alt>* ] <default-block>
+<switch>      ::= switch <expression> [ <switch-alt>* ]
+                  | switch/default <expression> [ <switch-alt>* ] <default-block>
 <switch-alt>  ::= <label> <true-block> | <label> <switch-alt>
 <condition>   ::= <expression>
+<label>       ::= <value>
 ....
 
 The `<condition>` is evaluated and is satisfied unless it yields `false` or `none`,
@@ -2206,7 +2207,7 @@ With refinement `/all`, all conditions of the `<case>` are tested; otherwise tes
 stops after the first one that is satisfied, if any.
 
 The `<label>` values of the `<switch>` are _not_ evaluated. The selection condition
-is satisfied at the first alternative where the `<value>` is equal to a `<label>`.
+is satisfied at the first alternative where the value of the `<expression>` is equal to a `<label>`.
 With refinement `/default`, the `<default-block>` will be executed if none
 of the conditions is satisfied.
 
@@ -2672,8 +2673,8 @@ of a block (see section _**Repeated execution**_).
 In each of these, the block (_loop body_) may contain calls of the built-in functions
 `break` and `continue`. A call of `break` will interrupt execution
 of the body and resume directly after it. The result of `break` and thus
-of the evaluation of the loop is the unset value. A call of `break/return <value>`
-will yield the `<value>` as a result of evaluating the loop.
+of the evaluation of the loop is the unset value. A call of `break/return <expression>`
+will yield the value of the `<expression>` as a result of evaluating the loop.
 A call of `continue` will interrupt execution of the body and resume
 at the end of the body, potentially resulting in further cycles of execution.
 Calls of these functions outside a loop body raise an error.
@@ -2683,15 +2684,15 @@ Calls of these functions outside a loop body raise an error.
 A call of the built-in function `exit` will interrupt execution of the
 function body and resume in the code directly after the call.
 The result of `exit` is the unset value. A call of the built-in function
-`return <value>` will also interrupt execution
-and yield the `<value>` as a result of the function body execution.
+`return <expression>` will also interrupt execution
+and yield the value of the `<expression>` as a result of the function body execution.
 Calls of these functions outside a function body raise an error.
 
 ==== Throws
 
-A _throw_ is a call of the built-in function `throw <value>` which will
+A _throw_ is a call of the built-in function `throw <expression>` which will
 interrupt execution and resume just after a corresponding call
-of the built-in function `catch`, yielding the `<value>` as a result.
+of the built-in function `catch`, yielding the value of the `<expression>` as a result.
 
 A _catch_, i.e. a call of the built-in function `catch <block>`,
 will execute the block and if there are no throws during the execution,
