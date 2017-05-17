@@ -751,7 +751,7 @@ Characters `"` and `'` are allowed but must each be properly paired and nested.
     <binary-literal> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
 
-where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S106`
+where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S116`
 and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`; the individual elements within
 the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
 brackets and from each other by whitespace.
@@ -999,7 +999,7 @@ Note that `error!` values all have `class = 0`.
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
-For `<typeset-element>` see rule `S114`.
+For `<typeset-element>` see rule `S124`.
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
@@ -1029,7 +1029,7 @@ found in the body to the list of local arguments.
 <routine-return> ::= return: [<type>]
 <routine-body> ::= <block>
 ....
-For `<docstring>` and `<argument-doc>` see rule `S121`. Note that routines
+For `<docstring>` and `<argument-doc>` see rule `S131`. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
 and return spec must have a single type specified.
 
