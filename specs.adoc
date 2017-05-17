@@ -2292,7 +2292,7 @@ delivers its integer argument as status code back to the Operating System.
 The built-in function `comment` evaluates its argument and yields
 the unset value as result. It is mostly used to insert multi-line
 comments, with a multi-line string as argument or to "comment out"
-blocks of code. Care has to be taken that the argument is a valid Red value,
+blocks of code. Care has to be taken that the argument is a valid Red expression,
 even though its evaluation is intended to have no effect.
 
 The built-in function `also` has two arguments. It evaluates both one after the
@@ -2309,7 +2309,7 @@ value or a block of values.
 
 There are two built-in functions for converting values to readable strings:
 `form` will produce a basic representation intended for human readers, and `mold`
-will produce strings that are guaranteed to re-produce the original values when
+will produce strings that are guaranteed to re-produce the original expressions when
 submitted to `load`. As stated in section _**Conversion of values (`to`)**_ the
 operation of `form` is the same as that of `to-string` with the exception of
 argument types `none! binary!` and `any-list!`. Especially values of the
@@ -2336,7 +2336,7 @@ mold make hash! [1 2 3]   -> "make hash! [1 2 3]"   ; hash property conserved
 mold make vector! [1 2 3] -> "make vector! [1 2 3]" ; vector property conserved
 ....
 
-The built-in function `save` will apply `mold` to the value which is its
+The built-in function `save` will apply `mold` to the expression which is its
 second argument. If the destination specified as its first argument is a string,
 it will append the result of `mold` to that string. If the destination
 is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
@@ -2345,11 +2345,11 @@ _**See issue #2668**_
 
 For `block!` and `paren!` values (not `hash!` _**see issue #2686**_),
 the user can control the way they are presented by `mold` by inserting
-line feed characters (`U+000A`) before selected values. The built-in
+line feed characters (`U+000A`) before selected components. The built-in
 function `new-line` with a `block!` or `paren!` first argument will
-set a _new-line markerthe value slot of the current component of
-its argument (if the second argument is `true`) or clear this marker
-if the second argument is `false`.
+set a _new-line marker in the value slot of the current component of
+its argument (if the second argument evaluates to `true`) or clear this marker
+if the second argument evaluates to `false`.
 
 Example:
 ....
@@ -2396,11 +2396,11 @@ content:
 
 === Printing
 
-The built-in function `prin` will take a value or a block of values
-and send a string to the standard output device. In the case of
-a single value the string is the result of applying `form` to the
-result of evaluating the value; in the case of a block, the individual
-components are evaluated and converted by `form` and separated by
+The built-in function `prin` will take an expression
+and send a string to the standard output device. If the expression
+is not a block, the string is the result of applying `form` to the
+result of evaluating the expression; in the case of a block, the individual
+expressions it contains are evaluated and converted by `form` and separated by
 single spaces. The built-in function `print` calls `prin` and outputs
 a line feed afterwards.
 
