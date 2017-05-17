@@ -368,9 +368,9 @@ will be offered for a number of types (or all??) in the form of construction syn
 Red values are internally stored using _value slots_ of uniform size. Values of _direct types_
 fit completely into one such slot; for values of _indirect types_, which have a variable number
 of _components_, the slot stores a _pointer_ to a further storage area that holds the components
-of the value. As a consequence, when a word ("variable") is made to refer to a value of indirect
-type or such a value is supplied as argument to a function, the components of this value may
-be changed through operations on the variable or the function argument.
+of the value. As a consequence, when a word is made to refer to a value of indirect
+type or such a value is supplied as actual argument to a function, the components of this value may
+be changed through operations on the word or the function formal argument.
 In order to prevent this, values of indirect types must be explicitly copied before being
 transmitted as argument or having a word refer to them. The built-in function `copy` will do this.
 If the components themselves are of indirect type, `copy` will not copy their components,
@@ -1496,7 +1496,7 @@ individually, and each occurence of a word with the same symbol can
 therefore be bound to a different context, and refer to a different value.
 Values of types `lit-word! set-word!` and `get-word!` (these types form
 typeset `any-word!` with `word!`) have the same binding as the word
-with the same symbol. Variables of types `refinement!` and `issue!`,
+with the same symbol. Values of types `refinement!` and `issue!`,
 although not bindable, may share the same symbol.
 
 === Contexts
@@ -2871,7 +2871,7 @@ This gives the following output:
 
     Other useful functions:
 
-        ??     - Display a variable and its value
+        ??     - Display a word and its value
         probe  - Print a molded value
         source - Show a function's source code
         what   - Show a list of known functions or words
