@@ -210,23 +210,41 @@ _**Lexical structure of values**_ hereafter.
              | '<path-literal>                          ; lit-path!
              | <path-literal>:                          ; set-path!
              | :<path-literal>                          ; get-path!
-    <group>    ::= <paren>
-             | <block>
-             | <map>
+    <group>    ::= <paren-literal>
+             | <block-literal>
+             | <map-literal>
              | <constructor>
-    <paren> ::=    ( <value>* )                         ; paren!
-    <block> ::=    [ <value>* ]                         ; block!
-    <map> ::=      #( <value>* )                        ; map! (even number of values only)
-    <constructor> ::= #[ <value>* ]                     ; reserved for general typed value constructor
+    <paren-literal> ::= ( <value>* )                    ; paren!
+    <block-literal> ::= [ <value>* ]                    ; block!
+    <map-literal> ::=   #( <value>* )                   ; map! (even number of values only)
+    <constructor> ::=   #[ <value>* ]                   ; reserved for general typed value constructor
 ....
 
 In what follows, terms like `<integer-literal>` will be used to refer to lexemes;
 to indicate the corresponding values, terms like "value of type `integer!`,
 `integer!` value" or plain "integer" will be used.
 
-=== Evaluation order
+=== Expressions and valuation order
 
-The constituents of a Red programs are in principle evaluated from left to right, according
+At a semantic level, the constituents of a Red program are not values but _expressions_.
+An expression groups one or more values, and may be formed in two ways: as an _application_
+of a (prefix) _function_ or as an _infix expression_ which uses an _operator_.
+In context-free formulation:
+
+**`S101`**:: expressions
+....
+<expression> ::= <value>
+               | <expression> <op> <value>
+               | <prefix-function> <expression>*
+....
+
+Here `<op>` is an expression which evaluates to an operator, i.e. an `op!` value representing
+an infix function of two arguments, and `<prefix-function>` is an expression which evaluates
+to a prefix function (value of type `action! native! function!` or `routine!`).
+
+TBD: change this
+
+The values of a Red programs are in principle evaluated from left to right, according
 to the evaluation rules given in the section _**Evaluation rules**_, with the following
 peculiarities: certain function arguments are not evaluated before the function application
 (see rule `E110` in section _**Function types**_), and evaluation of the arguments of
