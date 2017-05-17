@@ -1824,7 +1824,7 @@ actual refinements (`word!` values that are found as `<selector>` in a `path!`
 value whose `<path-head>` evaluates to the `any-function!` value). 
 
 Recall the basic structure of the `<argument-spec>`, which is valid, with
-soem limitations,  for all values of `any-function!` type:
+some limitations,  for all values of `any-function!` type except `op!` values:
 
 **`(S121)`**::
 ....
@@ -1867,7 +1867,25 @@ in the `<argument-spec>`.
 ==== `action!` type
 
 **`E111`**::
-TBD
+
+During initialization of the toolchain, a dispatch table (_action table_) is
+prepared that contains entries for each combination of action and type of first argument 
+for which the action is defined. As suggested before, this initialization will fill the
+entry with the address of a Red/System function handling the action for this combination,
+or with the address already determined for the combination of action and _parent type_
+of the given type (_inheritance_).
+
+The evaluation of an `action!` value then proceeds as follows:
+. Determine the `<argument-spec>` of the action.
+. Evaluate one or two expressions corresponding to the non-optional arguments.
+Evaluate expressions as needed for the optional arguments corresponding to
+the refinements specified, if any, and determine default values for the others.
+. Call the Red/System function that handles the action (its name is the action name followed by `*`)
+with all the arguments in standard order. This will do the following:
+.. Determine the type of the first argument and look up the appropriate entry in the dispatch table.
+.. Call the Red/System function that the entry refers to, with all the arguments
+.. This Red/System function will check the type of the second argument, if any, and determine
+its operation on the basis of the combination of the argument type(s).
 
 ==== `op!` type
 
