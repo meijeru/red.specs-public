@@ -1288,7 +1288,7 @@ top to bottom). As stated in section _**Atomic/Composite types**_,
 component selection in values of direct types cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
 
-The built-in functions `first second third fourth` and `fifth` are defined as `pick <value> 1` etc.
+The built-in functions `first second third fourth` and `fifth` are defined as `pick <expression> 1` etc.
 
 ==== Selection by "key"
 
