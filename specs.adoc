@@ -355,8 +355,9 @@ of their values, it is useful to make a number of distinctions into different ca
 
 Not all types listed have lexically or syntactically determined values. Those that have not
 may have their values generally be represented in programs by
-expressions of the form `make <type> <spec>`, where `<type>` is a type name and `<spec>`
-is a value that is interpreted by the `make` function as appropriate for the given type.
+expressions of the form `make <type> <spec>`, where `<type>` is an expression that evaluates
+to a type name or to a value of the desired type, and `<spec>` is an `<expression>`
+whose value is interpreted by the `make` function as appropriate for the given type.
 This is explained in detail in section _**Creation of values (make)**_.
 _**An alternative, syntactical representation,
 will be offered for a number of types (or all??) in the form of construction syntax
