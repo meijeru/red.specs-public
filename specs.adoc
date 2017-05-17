@@ -263,6 +263,7 @@ by the use of parentheses.
 
 Some basic examples:
 ....
+1 + 2 3 + 4                ; 6 values, 2 expressions 
 1 + 2 * 3                  ; result is 9, not 7
 1 + (2 * 3)                ; result is 7
 pick copy "abc" 1          ; 1 is argument to pick, since copy has 1 argument itself
@@ -2414,7 +2415,7 @@ print [1 + 2 3 + 4]    ; prints "3 7" and yields unset
 probe [1 + 2 3 + 4]    ; prints "[1 + 2 3 + 4]" and yields [1 + 2 3 + 4]
 ....
 
-=== File and Url I/O
+=== File and URL I/O
 
 The built-in function `read` will read a string from a file on an external
 device which is indicated by a `file!` or `url!` value as its argument. The content
@@ -2449,7 +2450,6 @@ It will send its result to that file.
 
 TBD
 ....
-R    browse
 A    close
 A    create
 A    modify
@@ -2501,6 +2501,13 @@ and `false` otherwise
 which may be a `file!`, `word!` or `path!` value; the argument will first be
 _normalized_
 * `pwd` will print the current working directory
+* `list-dir` will list the contents of the directory that is its argument
+(type `file!` `word!` or `path!`) in as many columns as will fit the screen;
+it has a refinement `/col` to specify the number of columns;
+it also has several near-synonyms: `ls` and `dir` will call `list-dir` without
+refinement and `ll` will call it with 1 column specified; all three will use the
+current working directory if they are called with no argument;
+note that `read <directory>` will yield a block with the content of the directory
 * `make-dir` will create the directory that is indicated by its `file!` argument;
 if this contains more than one directory level, and the `/deep` refinement
 is specified, the intermediate directory or directories will also be created
@@ -2510,14 +2517,10 @@ where `.` and `..` are eliminated
 `file!` values: the last file or directory in the path, preceded by the
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
+
 TBD
 ....
 A    delete
-F    dir
-F    dirize
-F    list-dir
-F    ll
-F    ls
 A    rename
 ....
 === Console functions
@@ -2534,6 +2537,11 @@ The built-in function `input` is shorthand for `ask ""`.
 
 The built-in functions `read-clipboard` and `write-clipboard` 
 return respectively set the clipboard content as a string.
+
+=== URL functions
+
+The function `browse` with a `url!` argument will open the system default browser
+at the URL that is indicated by its argument.
 
 == Exceptions
 
