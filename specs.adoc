@@ -240,7 +240,7 @@ being construed as the largest sequence of values conforming to the following de
 
 **`S101`**:: expressions
 ....
-<expression>      ::= <value>
+<expression>      ::= <operand>
                     | <expression> <op> <operand>
 <operand>         ::= <value>
                     | <application>
@@ -254,8 +254,8 @@ an infix function of two arguments, and `<prefix-function>` is an expression whi
 to a prefix function (value of type `action! native! function!` or `routine!`). The
 number of expressions following a prefix function is strictly dependent on the function value
 and is known as the _arity_ of the function value. See further the evaluation rules given
-in section _**Evaluation rules**_. As evident from rule `S101`, evaluation of the operands of
-operators has precedence over function application; also, operators are strictly _left associative_,
+in section _**Evaluation rules**_. Evaluation of the operands of operators has precedence
+over function application; also, as suggested in rule `S101`, operators are strictly _left associative_,
 there is no precedence between any two operators. The arguments of a function simply follow
 the function itself, they are not enclosed in parentheses, thus for the reader to understand a program,
 knowledge of the arity of functions is necessary. Evaluation order can of course be influenced
