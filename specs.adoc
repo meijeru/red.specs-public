@@ -1886,7 +1886,7 @@ with all the arguments in standard order. This will do the following:
 .. Determine the type of the first argument and look up the appropriate entry in the dispatch table.
 .. Call the Red/System function that the entry refers to, with all the arguments
 .. This Red/System function will check the type of the second argument, if any, and determine
-its operation on the basis of the combination of the argument type(s).
+its operation on the basis of the (combination of the) argument type(s).
 
 ==== `op!` type
 
