@@ -230,8 +230,9 @@ Decorated non-terminals like `<true-block>` will stand for `<block>`
 === Expressions and evaluation order
 
 At a semantic level, the constituents of a Red program are not values but _expressions_.
-An expression groups one or more values, and may be formed in two ways: as an _application_
-of a (prefix) _function_ or as an _infix expression_ which uses an _operator_.
+An expression groups one or more values, and may be formed in three ways: as an _application_
+of a (prefix) _function_, as an _infix expression_ which uses an _operator_,
+or as a _binding_ of a word to a value.
 The statement made earlier: "execution of a Red program is tantamount to evaluating
 each of its constituent _values_ in turn, according to the evaluation rules" can therefore
 be modified to: "execution of a Red program is tantamount to evaluating each of its
@@ -243,9 +244,8 @@ being construed as the largest sequence of values conforming to the following de
 <expression>      ::= <operand>
                     | <expression> <op> <operand>
 <operand>         ::= <value>
-                    | <application>
-<application>     ::= <prefix-function> <argument>*
-<prefix-function> ::= <action> | <native> | <function> | <routine>
+                    | <prefix-function> <argument>*
+                    | <set-word> <expression>
 <argument>        ::= <expression>
 ....
 
@@ -255,7 +255,7 @@ to a prefix function (value of type `action! native! function!` or `routine!`). 
 number of expressions following a prefix function is strictly dependent on the function value
 and is known as the _arity_ of the function value. See further the evaluation rules given
 in section _**Evaluation rules**_. Evaluation of the operands of operators has precedence
-over function application; also, as suggested in rule `S101`, operators are strictly _left associative_,
+over function application and binding; also, as suggested in rule `S101`, operators are strictly _left associative_,
 there is no precedence between any two operators. The arguments of a function simply follow
 the function itself, they are not enclosed in parentheses, thus for the reader to understand a program,
 knowledge of the arity of functions is necessary. Evaluation order can of course be influenced
@@ -270,6 +270,7 @@ copy/part "abc" 2          ; with the "refinement" /part, copy now has 2 argumen
 mod x 2 + 1                ; mod has 2 arguments; this will be interpreted as mod x 3
 1 + mod x 2                ; this is what was probably meant
 (mod x 2) + 1              ; another way  of writing that
+1 + a: 2                   ; result is 3, a now refers to 2
 ....
 
 == Types
