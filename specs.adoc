@@ -1876,6 +1876,7 @@ or with the address already determined for the combination of action and _parent
 of the given type (_inheritance_).
 
 The evaluation of an `action!` value then proceeds as follows:
+
 . Determine the `<argument-spec>` of the action.
 . Evaluate one or two expressions corresponding to the non-optional arguments.
 Evaluate expressions as needed for the optional arguments corresponding to
