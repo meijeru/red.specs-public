@@ -1545,6 +1545,7 @@ Words are bound to contexts as a result of:
 * applying the built-in `set` function
 * evaluating a `set-word!` value
 * evaluating a `make object! <spec>` construct
+* making an `error!` value
 * applying a function to its arguments
 * applying the built-in `bind` function
 * applying the built-in `in` function
@@ -1573,6 +1574,10 @@ refer to the unset value.
 ==== Object creation
 
 This is treated in rule `S129`.
+
+==== Making an `error!` value
+
+This is treated in rule `S130` and in section _**Errors**_.
 
 ==== Function application
 
