@@ -1971,12 +1971,12 @@ functions are as follows. Result types are only indicated if different from argu
 ....
 function               arity        argument type(s)                           result type
 
-+ - * / // %             2          number! time! char! pair! tuple! vector!
++ - * / // %             2          scalar! vector!
 **                       2          number!
 NaN?                     1          number!                                    logic!
 sign?                    1          number! time!                              integer!
 positive? negative?      1          number! time!                              logic!
-zero?                    1          number! time! char! pair! tuple!           logic!
+zero?                    1          scalar!                                    logic!
 even? odd?               1          number! char!                              logic!
 negate                   1          number! time! pair!
 absolute round           1          number! time! pair!
