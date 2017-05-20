@@ -1868,8 +1868,14 @@ in the `<argument-spec>`.
 
 **`E111`**::
 
-During initialization of the toolchain, a dispatch table (_action table_) is
-prepared that contains entries for each combination of action and type of first argument 
+As stated before, the definitions of the actions are fixed at the start of
+the toolchain's operation. No new actions can be made by the user. In fact,
+during initialization of the toolchain, each action name (`word!` value) is made to refer
+to an `action!` value that consists of a spec similar to the `<argument-spec>` of a function,
+and an _action number_. Also, a table is prepared that contains the addresses of the
+primary Red/System functions that handle the actions, indexed by the action number
+(their names are the action names followed by `*`). Subsequently, a dispatch table (_action table_) is
+prepared that contains entries for each combination of action number and type of first argument 
 for which the action is defined. As suggested before, this initialization will fill the
 entry with the address of a Red/System function handling the action for this combination,
 or with the address already determined for the combination of action and _parent type_
@@ -1877,16 +1883,20 @@ of the given type (_inheritance_).
 
 The evaluation of an `action!` value then proceeds as follows:
 
-. Determine the `<argument-spec>` of the action.
+. From the action number, determine the `<argument-spec>` of the action.
 . Evaluate one or two expressions corresponding to the non-optional arguments.
 Evaluate expressions as needed for the optional arguments corresponding to
 the refinements specified, if any, and determine default values for the others.
-. Call the Red/System function that handles the action (its name is the action name followed by `*`)
+. Call the primary Red/System function that handles the action 
 with all the arguments in standard order. This will do the following:
 .. Determine the type of the first argument and look up the appropriate entry in the dispatch table.
 .. Call the Red/System function that the entry refers to, with all the arguments
 .. This Red/System function will check the type of the second argument, if any, and determine
 its operation on the basis of the (combination of the) argument type(s).
+
+As with `function!` evaluation, the order of the expressions to be supplied
+for the optional arguments is dictated by the order of the actual refinements present,
+*not* by the order of the `<refinement>` s in the `<argument-spec>`.
 
 ==== `op!` type
 
@@ -1896,7 +1906,23 @@ TBD
 ==== `native!` type
 
 **`E113`**::
-TBD
+
+As stated before, the definitions of the native functions are fixed at the start of
+the toolchain's operation. No new natives can be made by the user. In fact,
+during initialization of the toolchain, each native name (`word!` value) is made to refer
+to a `native!` value that consists of a spec similar to the `<argument-spec>` of a function,
+and a _native number_. Also, a table is prepared that contains the addresses of the Red/System
+functions that implement the native functions, indexed by the native number
+(their names are the native names followed by `*`).
+
+The evaluation of a `native!` value then proceeds as follows:
+
+. From the native number, determine the `<argument-spec>` of the native function.
+. TBD
+
+As with `function!` evaluation, the order of the expressions to be supplied
+for the optional arguments is dictated by the order of the actual refinements present,
+*not* by the order of the `<refinement>` s in the `<argument-spec>`.
 
 ==== `routine!` type
 
