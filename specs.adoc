@@ -899,10 +899,10 @@ that are integers `0..255`, with 1-origin index, while `bitset!` values have com
 that are `logic!` values (`true = 1, false = 0`), with 0-origin index.
 The built-in function `charset` is defined as shorthand for `make bitset!`,
 except that `<binary>` is not allowed as its argument. The `<bitset-spec>` that is
-an `<integer>` produces an "empty" bitset (all bits set to false) of size the nearest
+an `integer!` value produces an "empty" bitset (all bits set to false) of size the nearest
 multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers,
 or ranges of them, that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
-A `<string>` is interpreted as the collection of all its component characters.
+A `string!` va;ue is interpreted as the collection of all its component characters.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
@@ -1378,8 +1378,9 @@ the collection of keys, that of values, and the set of key/value pairs may each
 be obtained as a block by means of the built-in functions `words-of values-of`
 and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
 In addition, for objects there is the property `class-of` which yields
-a unique number which is given to each object that is created from a `<spec>`, and is
-inherited by objects derived from it (see _**Values of map! type**_).
+the unique number that is given to each object that is created from a `<spec>`, and is
+inherited by objects _derived_ from it (see rule `S129` in section
+_**Creation of values (`make`)**_).
 
 For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
