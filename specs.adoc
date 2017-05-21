@@ -1765,15 +1765,16 @@ by the `integer!` value (0-origin for `bitset!` values,
 the result is obtained as in step iv hereafter. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-indirect type (except `image!`), an intermediate result is obtained by
+indirect type (except `image!` and `email!`), an intermediate result is obtained by
 applying the built-in function `select`
 with as arguments the evaluated `<path-head>` and `<selector>`.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-direct type, `image!` or `event!`, an intermediate result is obtained as explained
-in section _**Selection by "key"**_.
-.. If a further `<selector>` is present, use the result just obtained as 
-evaluated `<path-head>` and go to step 2, otherwise finish:
-the result of the evaluation is obtained.
+direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
+as explained in section _**Selection by "key"**_.
+.. Otherwise, the path is in error.
+. If a further `<selector>` is present, use the intermediate result just obtained as 
+evaluated `<path-head>` and go to step 2, otherwise finish: the result of the evaluation is
+the intermediate result just obtained.
 
 ==== `get-path!` type
 
@@ -1805,15 +1806,16 @@ by the `integer!` value (0-origin for `bitset!` values,
 the result is obtained as in step iv hereafter. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-indirect type (except `image!`), an intermediate result is obtained by
-applying the built-in function `select`
-with as arguments the evaluated `<path-head>` and `<selector>`.
+indirect type (except `image!` and `email!`), an intermediate result is obtained by
+applying the built-in function `select` with as arguments the evaluated
+`<path-head>` and `<selector>`.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-direct type, `image!` or `event!`, an intermediate result is obtained as explained
-in section _**Selection by "key"**_.
-.. If a further `<selector>` is present, use the result just obtained as 
+direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
+as explained in section _**Selection by "key"**_.
+.. Otherwise, the path is in error.
+. If a further `<selector>` is present, use the intermediate result just obtained as 
 evaluated `<path-head>` and go to step 2, otherwise finish and use
-the intermediate result of the evaluation.
+the intermediate result as result of the evaluation.
 
 ==== `set-path!` type
 
@@ -1830,22 +1832,23 @@ and there is a next element which is a `<selector>`, proceed to step 3.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
 use the value obtained as `<selector>` and go to the beginning of step 3.
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
-or `any-object!`, an intermediate result is obtained which is the position
+or `any-object!`, an intermediate result is determined which is the position
 of the component at the index given by the `integer!` value
 (0-origin for `bitset!` values, 1-origin for values of all other composite types).
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
 the result is obtained as in step iv hereafter. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-indirect type (except `image!`), an intermediate result is obtained which is
+indirect type (except `image!` and `email!`), an intermediate result is determined which is
 the position of the first component found by applying the built-in function `find`
 with as arguments the evaluated `<path-head>` and `<selector>`.
 .. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
-direct type, `image!` or `event!`, an intermediate result is obtained which is the
-position of the first component found as as explained in section _**Selection by "key"**_.
-.. If a further `<selector>` is present, use the result just obtained as 
-evaluated `<path-head>` and go to step 2, otherwise finish:
-replace the component at the position found by the value obtained by evaluating the next expression.
+type `image!`, an intermediate result is obtained which is the
+position of the component found as as explained in section _**Selection by "key"**_.
+.. Otherwise, the path is in error.
+. If a further `<selector>` is present, use the component at the position just determined,
+as evaluated `<path-head>` and go to step 2, otherwise finish:
+replace the component at the position determined, by the value obtained by evaluating the next expression.
 An error occurs if no value is following or if the value obtained is unset.
 The result of the evaluation is the value obtained.
 As a consequence, set-paths may be "chained", also with set-words, thus: `a/b/c: d/e/f: g: 1`
