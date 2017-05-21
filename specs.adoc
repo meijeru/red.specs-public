@@ -581,7 +581,9 @@ For several types, the available values are referred to by words at program star
 type names pre-defined; likewise `native! action!` and `op!` have all the built-in functions
 and operators pre-defined. Values of types `event!` and `handle!`, that are used to
 communicate with operating system, can only be represented by words that are arguments to functions
-handling this communication.
+handling this communication. Likewise, values of type `action!` and `native!` cannot
+be made by the user, but all necessary values of those types are made by
+the toolchain itself as part of its initialization.
 
 _**Mention general typed value constructor #[ <type> <value>* ]**_
 
@@ -619,9 +621,9 @@ Examples: `1.23`  `-0.5`  `.5`  `+010.20`  `1E9`
 
 **`S113`**::
 ....
-    <time-literal> ::= <hmsd> | +<hmsd> | -<hmsd>
-    <hmsd> ::= <hours>:<minutes> | <hours>:<minutes>:<seconds> | <hours>:<minutes>:<seconds>.<decimals> |
-               <minutes>:<seconds>.<decimals>
+<time-literal> ::= <hmsd> | +<hmsd> | -<hmsd>
+<hmsd> ::= <hours>:<minutes> | <hours>:<minutes>:<seconds> | <hours>:<minutes>:<seconds>.<decimals> |
+           <minutes>:<seconds>.<decimals>
 ....
 
 where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<integer-literal>`
@@ -654,11 +656,11 @@ Note: punctuation characters from the ASCII subset that *are* allowed in words a
 
 **`S116`**::
 ....
-    <char-literal> :: = #"<single-character>"
-    <single-character> ::= <viewable-character> | <escaped-character> | <hexadecimal-codepoint>
-    <escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) |
-                          ^(esc) | ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
-    <hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
+<char-literal> :: = #"<single-character>"
+<single-character> ::= <viewable-character> | <escaped-character> | <hexadecimal-codepoint>
+<escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) | ^(esc) | 
+              ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
+<hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
 ....
 where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
@@ -699,7 +701,7 @@ Examples: `#"A"  #"^/"  #"^(0A)"`
 
 **`S117`**::
 ....
-     <string-literal> ::= "<single-character>*" | {<single-character>*}
+<string-literal> ::= "<single-character>*" | {<single-character>*}
 ....
 
 where `<single-character>` is defined in rule `S116`
@@ -751,7 +753,7 @@ Characters `"` and `'` are allowed but must each be properly paired and nested.
 
 **`S122`**::
 ....
-    <binary-literal> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
+<binary-literal> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
 
 where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S116`
@@ -782,9 +784,9 @@ debase "AQID"              -> #{010203}
 
 **`S123`**::
 ....
-    <path-literal> ::= <path-head>/<selector>
-    <path-head> ::= <word> | <path-literal>
-    <selector> ::= <integer> | <word> | :<word> | <paren>
+<path-literal> ::= <path-head>/<selector>
+<path-head> ::= <word> | <path-literal>
+<selector> ::= <integer> | <word> | :<word> | <paren>
 ....
 
 Examples:
@@ -1919,7 +1921,13 @@ functions that implement the native functions, indexed by the native number
 The evaluation of a `native!` value then proceeds as follows:
 
 . From the native number, determine the `<argument-spec>` of the native function.
-. TBD
+. Evaluate as many expressions as correspond to the non-optional arguments.
+Evaluate expressions as needed for the optional arguments corresponding to
+the refinements specified, if any, and determine default values for the others.
+. Call the primary Red/System function that handles the native function
+with all the arguments in standard order. This will call upon the full
+repertoire of runtime functions, notably the interpreter for executing the blocks
+of the control functions (`if`, `either`, `repeat` etc.).
 
 As with `function!` evaluation, the order of the expressions to be supplied
 for the optional arguments is dictated by the order of the actual refinements present,
