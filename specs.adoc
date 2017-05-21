@@ -1868,7 +1868,7 @@ The result of the evaluation is the value obtained.
 As a consequence, set-paths may be "chained", also with set-words, thus: `a/b/c: d/e/f: g: 1`
 is equivalent to `a/b/c: 1 d/e/f: 1 g: 1`.
 
-Moreover, the equivalent to <path>: <expression> is set '<path> <expression>.
+Moreover, the equivalent to `<path>: <expression>` is `set '<path> <expression>`.
 The built-in function `set` has a refinement `/any` which will ensure that
 no error occurs if the expression yields the unset value.
 
