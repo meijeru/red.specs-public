@@ -1702,8 +1702,8 @@ is equivalent to `:<word>`.
 
 **`E105`**:: Evaluating a `<word>:` outside an `<object-spec>` or a `<map-spec>`
 has the effect that the `<word>` in its context
-is made to refer to the value obtained by evaluating the next value(s). An error occurs
-if no value is following or if the value obtained is unset. The result of the evaluation
+is made to refer to the value obtained by evaluating the next expression. An error occurs
+if no expression is following or if the value obtained is unset. The result of the evaluation
 is the value obtained. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
 is equivalent to `a: 1 b: 1 c: 1`.
 
@@ -1741,7 +1741,9 @@ The evaluation of a `<path>` proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
 as per rule `E103`.
-. Determine the type of the evaluated `<path-head>`.
+. If there is no next element which is a `<selector>`, use the value of the `<path-head>`
+as intermediate result and go to step 4.
+.. Otherwise, determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in step 3.
@@ -1753,28 +1755,32 @@ a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578
 corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
 Evaluate the combination of the result and the actual refinements according
 to the rules for values of function types (see section _**Function types**_).
-.. If the result is of any other type, the path is in error.
+.. Otherwise, the path is in error.
 . Determine the type of the `<selector>`.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
 use the value obtained as `<selector>` and go to the beginning of step 3.
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
-or `any-object!`, the result is the component at the index given
-by the `integer!` value (0-origin for `bitset!` values,
+or `any-object!`, the intermediate result is the component of the composite value
+at the index given by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
-the result is obtained as in step iv hereafter. If the `<selector>` is an
+go to step iv. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
-.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+.. If the `<selector>` is a `<word>`, and the composite value is of
 indirect type (except `image!` and `email!`), an intermediate result is obtained by
 applying the built-in function `select`
-with as arguments the evaluated `<path-head>` and `<selector>`.
-.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+with as arguments the composite value and the `<selector>`.
+.. If the `<selector>` is a `<word>`, and the composite value is of
 direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
 as explained in section _**Selection by "key"**_.
 .. Otherwise, the path is in error.
-. If a further `<selector>` is present, use the intermediate result just obtained as 
-evaluated `<path-head>` and go to step 2, otherwise finish: the result of the evaluation is
-the intermediate result just obtained.
+.. If a further `<selector>` is present, use the intermediate result just obtained
+as evaluated `<path-head>` and go to step 2.
+. Determine the type of the intermediate result just obtained.
+.. If the type is `unset!` raise an error and yield the unset value as result.
+.. If the type is `error!` raise the error and yield the error value as result.
+.. If the type is in `any-function!` apply the function (see rules `E110-114`).
+.. Otherwise, the result is the intermediate result just obtained.
 
 ==== `get-path!` type
 
@@ -1785,7 +1791,9 @@ The evaluation of a `:<path>` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
 as per rule `E103`.
-. Determine the type of the evaluated `<path-head>`.
+. If there is no next element which is a `<selector>`, use the value of the `<path-head>`
+as intermediate result and go to step 4.
+.. Otherwise, determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in step 3.
@@ -1794,28 +1802,31 @@ next elements each of which is a `<selector>`, the result is currently
 a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
 .. If the result is a value of `any-function!` type, no following
 `<selector>` is allowed and the result is the function value.
-.. If the result is of any other type, the path is in error.
+.. Otherwise, the path is in error.
 . Determine the type of the `<selector>`.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
 use the value obtained as `<selector>` and go to the beginning of step 3.
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
-or `any-object!`, the result is the component at the index given
-by the `integer!` value (0-origin for `bitset!` values,
+or `any-object!`, the intermediate result is the component of the composite value
+at the index given by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
-the result is obtained as in step iv hereafter. If the `<selector>` is an
+go to step iv. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
-.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+.. If the `<selector>` is a `<word>`, and the composite value is of
 indirect type (except `image!` and `email!`), an intermediate result is obtained by
-applying the built-in function `select` with as arguments the evaluated
-`<path-head>` and `<selector>`.
-.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+applying the built-in function `select` with as arguments the composite value
+and the `<selector>`.
+.. If the `<selector>` is a `<word>`, and the composite value is of
 direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
 as explained in section _**Selection by "key"**_.
 .. Otherwise, the path is in error.
-. If a further `<selector>` is present, use the intermediate result just obtained as 
-evaluated `<path-head>` and go to step 2, otherwise finish and use
-the intermediate result as result of the evaluation.
+.. If a further `<selector>` is present, use the intermediate result just obtained as 
+evaluated `<path-head>` and go to step 2
+. Determine the type of the intermediate result just obtained.
+.. If the type is `unset!` yield the unset value as result.
+.. If the type is `error!` (raise the error and) yield the error value as result._**see issue 2621**_
+.. Otherwise, the result is the intermediate result just obtained.
 
 ==== `set-path!` type
 
@@ -1824,10 +1835,12 @@ The evaluation of a `<path>:` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
 as per rule `E103`.
-. Determine the type of the evaluated `<path-head>`.
+. If there is no next element which is a `<selector>`, use the value of the `<path-head>`
+as intermediate result and go to step 4.
+.. Otherwise, determine the type of the evaluated `<path-head>`.
 .. If the result is a value of composite type (except `file!` and `url!`),
 and there is a next element which is a `<selector>`, proceed to step 3.
-.. If the result is of any other type, the path is in error.
+.. Otherwise, the path is in error.
 . Determine the type of the `<selector>`.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
 use the value obtained as `<selector>` and go to the beginning of step 3.
@@ -1838,23 +1851,26 @@ of the component at the index given by the `integer!` value
 .. If the `<selector>` is an `<integer>` and the composite type is `map!`
 the result is obtained as in step iv hereafter. If the `<selector>` is an
 `<integer>` and the composite type is `any-object!` the path is in error.
-.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+.. If the `<selector>` is a `<word>`, and the composite value is of
 indirect type (except `image!` and `email!`), an intermediate result is determined which is
 the position of the first component found by applying the built-in function `find`
-with as arguments the evaluated `<path-head>` and `<selector>`.
-.. If the `<selector>` is a `<word>`, and the evaluated `<path-head>` is of
+with as arguments the composite value and the `<selector>`.
+.. If the `<selector>` is a `<word>`, and the composite value is of
 type `image!`, an intermediate result is obtained which is the
 position of the component found as as explained in section _**Selection by "key"**_.
 .. Otherwise, the path is in error.
-. If a further `<selector>` is present, use the component at the position just determined,
-as evaluated `<path-head>` and go to step 2, otherwise finish:
-replace the component at the position determined, by the value obtained by evaluating the next expression.
-An error occurs if no value is following or if the value obtained is unset.
+.. If a further `<selector>` is present, use the component at the position just determined,
+as evaluated `<path-head>` and go to step 2
+. Replace the component at the position determined, by the value obtained
+by evaluating the next expression.
+An error occurs if no expression is following or if the value obtained is unset.
 The result of the evaluation is the value obtained.
 As a consequence, set-paths may be "chained", also with set-words, thus: `a/b/c: d/e/f: g: 1`
 is equivalent to `a/b/c: 1 d/e/f: 1 g: 1`.
 
 Moreover, the equivalent to <path>: <expression> is set '<path> <expression>.
+The built-in function `set` has a refinement `/any` which will ensure that
+no error occurs if the expression yields the unset value.
 
 === Function types
 
