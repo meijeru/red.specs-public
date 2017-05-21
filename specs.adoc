@@ -1904,7 +1904,12 @@ for the optional arguments is dictated by the order of the actual refinements pr
 ==== `op!` type
 
 **`E112`**::
-TBD
+A value of `op!` type is always derived from a value of another `any-function!` type:
+`function! action! native!` or `routine!`. Moreover, an `op!` value always has exactly
+two arguments and no refinements. Therefore, the evaluation proceeds as for the
+function etc. it is derived from, with the expression that precedes the `op!` value
+corresponding to the first argument and the expression following the `op!` value
+corresponding to the second one.
 
 ==== `native!` type
 
