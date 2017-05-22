@@ -221,12 +221,6 @@ of section _**Lexical structure of values**_ hereafter.
     <constructor> ::=   #[ <value>* ]                   ; reserved for general typed value constructor
 ....
 
-In what follows, terms like `<integer-literal>` will be used to refer to lexemes;
-to indicate the corresponding values, terms like "value of type `integer!`,
-`integer!` value" or plain "integer" will be used. Also, in grammar fragments,
-`<integer>` will stand for " `<expression>` evaluating to an `integer!` value".
-Decorated non-terminals like `<true-block>` will stand for `<block>`
-
 === Expressions and evaluation order
 
 At a semantic level, the constituents of a Red program are not values but _expressions_.
