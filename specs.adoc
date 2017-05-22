@@ -334,9 +334,11 @@ object!         collection of word-value pairs with a context in which the words
 error!          specialized objects representing error conditions
 native!         pre-defined functions with built-in evaluation according to special rules
 action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
-op!             operators, i.e. infix functions of two arguments
-function!       user-defined functions
+op!             operators, i.e. infix functions of two arguments, each one is
+                derived from a native! action! function! or routine! value
 routine!        user-defined functions with body in Red/System code
+function!       user-defined functions; as with native! action! and routine! values,
+                function! values may have optional arguments, indicated by refinements
 unset!          single value indicating the absence of a usable value
 event!          representation of external activity   
 
