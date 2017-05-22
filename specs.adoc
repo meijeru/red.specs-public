@@ -233,6 +233,7 @@ At a semantic level, the constituents of a Red program are not values but _expre
 An expression groups one or more values, and may be formed in three ways: as an _application_
 of a (prefix) _function_, as an _infix expression_ which uses an _operator_,
 or as a _binding_ of a word to a value.
+
 The statement made earlier: "execution of a Red program is tantamount to evaluating
 each of its constituent _values_ in turn, according to the evaluation rules" can therefore
 be modified to: "execution of a Red program is tantamount to evaluating each of its
@@ -273,6 +274,12 @@ mod x 2 + 1                ; mod has 2 arguments; this will be interpreted as mo
 (mod x 2) + 1              ; another way  of writing that
 1 + a: 2                   ; result is 3, a now refers to 2
 ....
+
+In what follows, terms like `<integer-literal>` will be used to refer to lexemes;
+to indicate the corresponding values, terms like "value of type `integer!`,
+`integer!` value" or plain "integer" will be used. Also, in grammar fragments,
+`<integer>` will stand for " `<expression>` evaluating to an `integer!` value".
+Decorated non-terminals like `<true-block>` will stand for `<block>`.
 
 == Types
 
@@ -1546,8 +1553,8 @@ Words are bound to contexts as a result of:
 
 * lexical analysis
 - notably when the program containing the words is submitted to the toolchain
-- or when a string representing some values, including words, is submitted to the REPL
 - or through application of the built-in `load` function
+- or when a string representing some values, including words, is submitted to the REPL
 * applying the built-in `set` function
 * evaluating a `set-word!` value
 * evaluating a `make object! <spec>` construct
@@ -1563,8 +1570,9 @@ function `value?` tests if it does.
 
 ==== Lexical analysis
 
-Every lexeme that is recognized in the source text as being of a type in `any-word!
-refinement!` and `issue!`, either by the operation of the toolchain or
+Every lexeme that is recognized in the source text as representing
+a value of a type in `any-word! refinement!` and `issue!`,
+either by the operation of the toolchain or
 -- at runtime -- by the `load` function, is bound to the global context,
 and will initially not refer to any value in that context.
 
