@@ -338,6 +338,15 @@ function!       user-defined functions
 routine!        user-defined functions with body in Red/System code
 unset!          single value indicating the absence of a usable value
 event!          representation of external activity   
+
+TBD
+date!
+point!
+closure!
+port!
+ref!
+struct!
+library!
 ....
 
 === Type categories
@@ -463,7 +472,7 @@ email!            L                 I                C                          
 binary!           L                 I                C                            P               string!
 image!            M                 I                C                            P
 bitset!           M                 I                C                            P
-map!              S                 I                C             R              P
+map!             S+M                I                C             R              P
 object!           M                 I                C             R              P
 error!            M                 I                C             R              P(note)         object!
 native!           W                 F                A             R              F
@@ -473,6 +482,15 @@ function!         M                 F                A             R            
 routine!          M                 F                A             R              F               function!
 unset!            M                 D                A                            P
 event!            W                 D                C                            P
+
+TBD
+date!
+point!
+closure!
+port!
+ref!
+struct!
+library!
 ....
 Note: `error!` values evaluate to themselves, but raise an error in addition. See _**Errors**_
 
