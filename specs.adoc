@@ -272,8 +272,9 @@ mod x 2 + 1                ; mod has 2 arguments; this will be interpreted as mo
 In what follows, terms like `<integer-literal>` will be used to refer to lexemes;
 to indicate the corresponding values, terms like "value of type `integer!`,
 `integer!` value" or plain "integer" will be used. Also, in grammar fragments,
-`<integer>` will stand for " `<expression>` evaluating to an `integer!` value".
-Decorated non-terminals like `<true-block>` will stand for `<block>`.
+on the right-hand side of the `::=` sign, terms like `<integer>` will stand for
+" `<expression>` evaluating to an `integer!` value" etc.
+Decorated non-terminals like `<true-block>` will stand for `<block>` etc.
 
 == Types
 
