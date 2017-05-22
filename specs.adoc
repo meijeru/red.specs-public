@@ -1464,7 +1464,6 @@ and (strict) equality of field values. If the components or field values are als
 For values of `vector!` type, these tests also apply pairwise to the components. In
 addition, the component type (`char! integer! float!` or `percent!`) must be the same.
 
-
 In all cases, for the `equal?` test, the requirement of equal type is relaxed for several
 combinations of types. Within each such combination, `equal?` will allow any two types
 for the values to be compared:
@@ -1486,15 +1485,14 @@ vector! any-string! binary!` and `bitset!`
 * no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
 action! native! op! handle! event!` and `unset!`.
 
-As a rule, for ordering comparisons the types of the two values have to be the same. However,
-as with equality, for some combinations of types this requirement is relaxed.
+As a rule, for ordering comparisons the types of the two values have to be the same.
+For `vector!` values, the component type (`char! integer! float!` or `percent!`) must also be the same.
+However, as with equality, for some combinations of types this requirement is relaxed.
 
 * `char!` and `integer!`
 * `integer! float!` and `percent!`
 * `any-word!` and `refinement!`
 * `any-string!`
-
-For `vector!` values, the component type (`char! integer! float!` or `percent!`) must be the same.
 
 == Words, contexts and binding
 
