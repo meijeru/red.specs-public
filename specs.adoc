@@ -336,9 +336,9 @@ native!         pre-defined functions with built-in evaluation according to spec
 action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
 op!             operators, i.e. infix functions of two arguments, each one is
                 derived from a native! action! function! or routine! value
-routine!        user-defined functions with body in Red/System code
-function!       user-defined functions; as with native! action! and routine! values,
+function!       user-defined functions; as with native! and action! values,
                 function! values may have optional arguments, indicated by refinements
+routine!        user-defined functions with body in Red/System code
 unset!          single value indicating the absence of a usable value
 event!          representation of external activity   
 
