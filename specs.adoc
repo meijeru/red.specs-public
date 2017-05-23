@@ -2015,7 +2015,8 @@ for the optional arguments is dictated by the order of the actual refinements pr
 ==== `routine!` type
 
 Recall the basic structure of `<routine-spec>`:
-**`S132`**::
+
+**`(S132)`**::
 ....
 <routine-spec> ::= [<routine-argument>* <locals>° <routine-return>°]
 <routine-argument> ::= <word> | <word> [<type-literal>]
