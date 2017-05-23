@@ -2636,6 +2636,7 @@ The following built-in functions deal with the file system:
 * `exists?` will yield `true` if the file indicated by its `file!` argument
 exists in the file system, and `false` otherwise
 * `suffix?` yields the suffix (extension) of a file, or `none` if there is no suffix
+* `size?` will yield the size of the file in bytes
 * `dir?` will yield `true` if the `file!` value indicates a directory
 and `false` otherwise
 * `what-dir` will yield the current working directory as a `file!` value
@@ -3522,6 +3523,7 @@ R    read-clipboard
 A    rename
 F    save
 R    set-current-dir
+N    size?
 F    split-path
 F    suffix?
 N    to-local-file
