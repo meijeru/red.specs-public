@@ -506,65 +506,65 @@ two arguments whose types are both in the typeset `number!`.
 
 ....
 any-type!              
-|--default!              
-|  |--external!
-|  |  |--event!
-|  |--immediate!         
-|  |  |--datatype!        
-|  |  |--typeset!         
-|  |  |--none!            
-|  |  |--logic!           
-|  |  |--scalar!          
-|  |  |  |--char!          
-|  |  |  |--number!        
-|  |  |  |  |--integer!     
-|  |  |  |  |--any-float!   <---- see issue #2565
-|  |  |  |     |--float!     
-|  |  |  |     |--percent!   
-|  |  |  |--time!          
-|  |  |  |--pair!          
-|  |  |  |--tuple!         
-|  |  |--any-word!
-|  |  |  |--word!          
-|  |  |  |--lit-word!      
-|  |  |  |--set-word!      
-|  |  |  |--get-word!      
-|  |  |--refinement!    
-|  |  |--issue!         
-|  |  |--handle!            
-|  |--series!            
-|  |  |--any-block!       
-|  |  |  |--any-list!      
-|  |  |  |  |--block!       
-|  |  |  |  |--hash!        
-|  |  |  |  |--paren!       
-|  |  |  |--any-path!      
-|  |  |     |--path!        
-|  |  |     |--lit-path!    
-|  |  |     |--set-path!    
-|  |  |     |--get-path!    
-|  |  |--vector!          
-|  |  |--any-string!      
-|  |  |  |--string!        
-|  |  |  |--file!          
-|  |  |  |--url!           
-|  |  |  |--tag!           
-|  |  |  |--email!         
-|  |  |--binary!          
-|  |  |--image!           
-|  |--bitset!            
-|  |--map!               
-|  |--any-object!        
-|  |  |--object!          
-|  |  |--error!           
-|  |--any-function!      
-|     |--native!          
-|     |--action!          
-|     |--op!              
-|     |--function!        
-|     |--routine!         
 |--internal!            
-   |--unset!
+|  |--unset!
+|--default!              
+   |--external!
+   |  |--event!
+   |--immediate!         
+   |  |--datatype!        
+   |  |--typeset!         
+   |  |--none!            
+   |  |--logic!           
+   |  |--scalar!          
+   |  |  |--char!          
+   |  |  |--number!        
+   |  |  |  |--integer!     
+   |  |  |  |--any-float!   <---- see issue #2565
+   |  |  |     |--float!     
+   |  |  |     |--percent!   
+   |  |  |--time!          
+   |  |  |--pair!          
+   |  |  |--tuple!         
+   |  |--any-word!
+   |  |  |--word!          
+   |  |  |--lit-word!      
+   |  |  |--set-word!      
+   |  |  |--get-word!      
+   |  |--refinement!    
+   |  |--issue!         
+   |  |--handle!            
+   |--series!            
+   |  |--any-block!       
+   |  |  |--any-list!      
+   |  |  |  |--block!       
+   |  |  |  |--hash!        
+   |  |  |  |--paren!       
+   |  |  |--any-path!      
+   |  |     |--path!        
+   |  |     |--lit-path!    
+   |  |     |--set-path!    
+   |  |     |--get-path!    
+   |  |--vector!          
+   |  |--any-string!      
+   |  |  |--string!        
+   |  |  |--file!          
+   |  |  |--url!           
+   |  |  |--tag!           
+   |  |  |--email!         
+   |  |--binary!          
+   |  |--image!           
+   |--bitset!            
+   |--map!               
+   |--any-object!        
+   |  |--object!          
+   |  |--error!           
+   |--any-function!      
+      |--native!          
+      |--action!          
+      |--op!              
+      |--function!        
+      |--routine!         
    
 TBD
 date!
