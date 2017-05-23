@@ -1061,28 +1061,19 @@ found in the body to the list of local arguments.
 ....
 <routine> ::= make routine! [<routine-spec> <routine-body>] | routine <routine-spec> <routine-body>
 <routine-spec> ::= [<docstring>° <routine-argument>* <locals>° <routine-return>°]
-<routine-argument> ::= <word> <argument-doc>° | <word> [<type>] <argument-doc>°
+<routine-argument> ::= <word> <argument-doc>° | <word> [<type-literal>] <argument-doc>°
 <locals> ::= /local <routine-argument>*
-<routine-return> ::= return: [<type>]
+<routine-return> ::= return: [<type-literal>]
 <routine-body> ::= <block>
 ....
 For `<docstring>` and `<argument-doc>` see rule `S131`. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
-and return spec must have a single type specified.
+and return spec must have a single type specified. The `<routine-body>`
+must contain valid Red/System code.
 
 The built-in function `routine` is defined as shorthand for `make routine!`.
 
 Values of type `routine!` may not occur in programs submitted to the interpreter.
-When compiling, the toolchain will convert the routine into a Red/System function as follows:
-the `<routine-spec>` is converted into a Red/System function specification block
-by changing every Red type mentioned in it, except `integer! logic!` and `float!`
-to the corresponding Red/System `struct!` alias that describes the value slot,
-thus `string!` becomes `red-string!` etc.; an argument without a type is given
-Red/System alias `red-value!` which corresponds to `any-type!`; the `<routine-body>`
-(which lexically consists of Red values) becomes the body of this Red/System function,
-and will be treated as Red/System code. The function thus constructed becomes part
-of the intermediate Red/System code that the toolchain produces internally
-for compilation into machine code.
 
 The construction of routines requires a fairly deep knowledge of the Red runtime system
 and the representation and storage of argument and result values.
@@ -2023,8 +2014,31 @@ for the optional arguments is dictated by the order of the actual refinements pr
 
 ==== `routine!` type
 
+Recall the basic structure of `<routine-spec>`:
+**`S132`**::
+....
+<routine-spec> ::= [<routine-argument>* <locals>° <routine-return>°]
+<routine-argument> ::= <word> | <word> [<type-literal>]
+<locals> ::= /local <routine-argument>*
+<routine-return> ::= return: [<type-literal>]
+....
+
 **`E114`**::
-TBD
+Values of `routine!` type may not occur in programs submitted to the interpreter.
+
+When compiling, the toolchain will convert the routine into a _Red/System function_ as follows:
+
+. The `<routine-spec>` is converted into a Red/System function specification block
+by changing every Red type mentioned in it, except `integer! logic!` and `float!`
+to the corresponding Red/System `struct!` alias that describes the value slot,
+thus `string!` becomes `red-string!` etc.
+. An argument without a type is given Red/System alias `red-value!` which corresponds
+to `any-type!`.
+. The `<routine-body>` (which is a block of Red values) becomes the body of
+this Red/System function,  and will be treated as Red/System code.
+
+The function thus constructed becomes part of the intermediate Red/System code
+that the toolchain produces internally for compilation into machine code.
 
 === Blocks: reduction and selective evaluation
 
