@@ -2505,7 +2505,7 @@ For `block!` and `paren!` values (not `hash!` _**see issue #2686**_),
 the user can control the way they are presented by `mold` by inserting
 line feed characters (`U+000A`) before selected components. The built-in
 function `new-line` with a `block!` or `paren!` first argument will
-set a _new-line marker in the value slot of the current component of
+set a _new-line marker_ in the value slot of the current component of
 its argument (if the second argument evaluates to `true`) or clear this marker
 if the second argument evaluates to `false`.
 
@@ -2552,6 +2552,48 @@ content:
     decode          routine!     routine [data [any-type!]][...]
 ....
 
+=== Full specification of load and save
+
+Because of their importance, the complete specification of the built-in functions
+`load` and `save` is given here.
+....
+USAGE:
+     LOAD source
+DESCRIPTION: 
+     Returns a value or block of values by reading and evaluating a source 
+     LOAD is a function! value
+ARGUMENTS:
+     source       [file! url! string! binary!] 
+REFINEMENTS:
+     /header      => TBD
+     /all         => Load all values, returns a block. TBD: Don't evaluate Red header
+     /trap        => Load all values, returns [[values] position error]
+     /next        => Load the next value only, updates source series word
+        position     [word!] "Word updated with new series position"
+     /part        => 
+        length       [integer! string!] 
+     /into        => Put results in out block, instead of creating a new block
+        out          [block!] "Target block for results"
+     /as          => Specify the type of data; use NONE to load as code
+        type         [word! none!] "E.g. json, html, jpeg, png, etc"
+
+USAGE:
+     SAVE where value
+DESCRIPTION: 
+     Saves a value, block, or other data to a file, URL, binary, or string 
+     SAVE is a function! value
+ARGUMENTS:
+     where        [file! url! string! binary! none!] "Where to save"
+     value         "Value(s) to save"
+REFINEMENTS:
+     /header      => Provide a Red header block (or output non-code datatypes)
+        header-data  [block! object!] 
+     /all         => TBD: Save in serialized format
+     /length      => Save the length of the script content in the header
+     /as          => Specify the format of data; use NONE to save as plain text
+        format       [word! none!] "E.g. json, html, jpeg, png, redbin etc"
+....
+
 === Printing
 
 The built-in function `prin` will take an expression
@@ -2583,9 +2625,9 @@ at the line feed character (`U+000A`); a preceding carriage return (`U+000D`),
 if present, will be accounted for. If the refinement `/binary` is used,
 the content will be read as a `binary!` value and not be decoded.
 
-The built-in function `load` will not only accept a string or `binary!` value
-as input, but also a `file!` or `url!` value indicating a text or binary file.
-It will read the content of the file and treat it as indicated above. 
+The built-in function `load` also accepts a `file!` or `url!` value
+indicating a text or binary file. It will read the content of the file
+and treat it as indicated above. 
 
 The built-in function `write` will send a string or `binary!` value which is
 its second argument to a file on an external device which is indicated
@@ -2601,9 +2643,8 @@ The refinement `/binary` ensures that a line feed character (`LF`, `U+000A`)
 present in the source is not translated to an OS-specific character combination
 (e.g. `CRLF`, `U+000D + U+000A`) but is output as a single `LF`.
 
-The built-in function `save` will not only accept a string or `binary!` value
-as destination, but also a `file!` or `url!` value indicating a text or binary file.
-It will send its result to that file.
+The built-in function `save` also accepts a `file!` or `url!` value indicating
+a text or binary file. It will send its result to that file.
 
 TBD
 ....
@@ -2693,8 +2734,8 @@ the string before the line feed will be yielded as result.
 
 The built-in function `input` is shorthand for `ask ""`.
 
-The built-in functions `read-clipboard` and `write-clipboard` 
-return respectively set the clipboard content as a string.
+The built-in function `read-clipboard` will return the clipboard content as a string
+and `write-clipboard` with a string argument will set the clipblaord content.
 
 === URL functions
 
