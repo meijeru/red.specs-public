@@ -3414,9 +3414,9 @@ O    **          A    power
 A    random
 O    %           A    remainder
 A    round
-O    <<          R    shift-left    <- N shift/left
-O    >>          R    shift-right   <- N shift
-O    >>>         R    shift-logical <- N shift/logical
+O    <<          R    shift-left       N shift/left
+O    >>          R    shift-right      N shift
+O    >>>         R    shift-logical    N shift/logical
 N    shift
 N    sign?
 F    sin         N    sine
