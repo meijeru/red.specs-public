@@ -578,7 +578,8 @@ library!
 
 === Type and typeset related functions
 
-The built-in function `type?` will yield the type of a value. For every pre-defined
+The built-in function `type?` will yield the type of a value. It has a refinement
+`/word` which will yield the type as a `word!` value. For every pre-defined
 type and typeset there is a built-in function which will test if a value is of that type
 (or a type in that typeset). These functions have the name of the type(set) with the
 `!` replaced by `?`.
@@ -1852,6 +1853,9 @@ evaluated `<path-head>` and go to step 2
 .. If the type is `error!` (raise the error and) yield the error value as result._**see issue 2621**_
 .. Otherwise, the result is the intermediate result just obtained.
 
+The built-in function `get` has a refinement `/any` which will ensure that
+no error occurs if the `path!` value refers to the unset value.
+
 ==== `set-path!` type
 
 **`E109`**::
@@ -2457,7 +2461,7 @@ blocks of code. Care has to be taken that the argument is a valid Red expression
 even though its evaluation is intended to have no effect.
 
 The built-in function `also` has two arguments. It evaluates both one after the
-other, and yields the result of the first one.
+other, and yields the result of the first one, using `get/any`.
 
 == Input/output
 
