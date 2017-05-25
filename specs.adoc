@@ -982,7 +982,12 @@ The `<object-spec>` is then treated as in the previous case.
 The `class` property of the new object is copied from the prototype.
 The new object is said to be _derived_ from the prototype.
 
-An additional built-in function `construct` _** does what?? **_
+An additional built-in function `construct <spec>` creates an object,
+but without executing the `<spec>` block. It has a refinement `/with`
+to specify a base object which will be extended with the (unevaluated)
+set-word/value pairs in `<spec>`. The words `true yes on false no off`
+and `none` will be evaluated to their `logic!` or `none!` value, except if
+the refinement `/only` is specified.
 
 The built-in function `extend` takes an `object!` value as first argument
 and a set of key-value pairs as second argument of type `block! hash!` or `map!`.
