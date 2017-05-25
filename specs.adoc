@@ -1684,13 +1684,13 @@ and `quote <path>` is equivalent to `'<path>`.
 
 ==== `word!` type
 
-**`E103`**:: Evaluating a `<word>` proceeds as follows:
+**`E103`**:: Evaluating a `word!` value proceeds as follows:
 . Determine the context to which the word is bound._**can it happen that there is no context?**_
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
 .. If the type is `unset!` raise an error and yield the unset value as result.
 .. If the type is `error!` raise the error and yield the error value as result.
-.. If the type is in `any-function!` apply the function (see rules `E110-114`).
+.. If the type is in `any-function!` _apply_ the function (see rules `E110-114`).
 .. Otherwise, the result is the value referred to.
 
 Note: there are cases in which a `<word>` is not to be evaluated, e.g. when it occurs as
@@ -1700,12 +1700,12 @@ and `none` as well as the type names will be interpreted as `word!` values rathe
 `logic!` or `none!` values. To represent values of the desired type in such cases one may use
 the generalized value construction syntax: `#[true], #[false], #[none]` etc.
 
-The built-in function `get` evaluates its `word!` argument: `get '<word>` is equivalent
-to `<word>`.
+The built-in function `get` with a `word!` argument applies the above rule except when the type of
+the value referred to is in `any-function!` in which case no _function application_ occurs.
 
 ==== `get-word!` type
 
-**`E104`**:: Evaluating a `:<word>` proceeds as follows:
+**`E104`**:: Evaluating a `get-word!` value proceeds as follows:
 . Determine the context to which the word is bound._**can it happen that there is no context?**_
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
@@ -1713,29 +1713,28 @@ to `<word>`.
 .. If the type is `error!` (raise the error and) yield the error value as result._**see issue 2621**_
 .. Otherwise, the result is the value referred to.
 
-Note that the difference with evaluating a `<word>` is that no errors are raised
+Note that the difference with evaluating a `word!` value is that no errors are raised
 and that a function value is not applied but is itself yielded as result.
 
 The built-in function `get` has a refinement `/any` which will ensure that
-no error occurs if the `<word>` refers to the unset value. Thus `get/any '<word>`
-is equivalent to `:<word>`.
+no error occurs if the `word!` value refers to the unset value.
 
 ==== `set-word!` type
 
-**`E105`**:: Evaluating a `<word>:` outside an `<object-spec>` or a `<map-spec>`
+**`E105`**:: Evaluating a `set-word!` value outside an `<object-spec>` or a `<map-spec>`
 has the effect that the `<word>` in its context
 is made to refer to the value obtained by evaluating the next expression. An error occurs
 if no expression is following or if the value obtained is unset. The result of the evaluation
 is the value obtained. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
 is equivalent to `a: 1 b: 1 c: 1`.
 
-As stated before, the equivalent to `<word>: <expression>` is `set '<word> <expression>`.
+As stated before, the alternative to `<word-literal>: <expression>` is `set <word> <expression>`.
 The built-in function `set` has a refinement `/any` which will ensure that
 no error occurs if the expression yields the unset value.
 
 ==== `paren!` type
 
-**`E106`**:: The evaluation of a `<paren>` proceeds by the evaluation of its component
+**`E106`**:: The evaluation of a `paren!` value proceeds by the evaluation of its component
 values. The result is the value obtained from the last evaluation. This is similar to the
 execution of a block. The following table compares parens and blocks.
 ....
@@ -1759,7 +1758,7 @@ Recall the structure of `path!` values:
 
 **`E107`**::
 
-The evaluation of a `<path>` proceeds as follows:
+The evaluation of a `path!` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
 as per rule `E103`.
@@ -1775,7 +1774,7 @@ a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578
 .. If the result is a value of `any-function!` type, each following
 `<selector>`, if any, should be an actual refinement of the function, i.e a `word!` value,
 corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
-Evaluate the combination of the result and the actual refinements according
+Apply the combination of the result and the actual refinements according
 to the rules for values of function types (see section _**Function types**_).
 .. Otherwise, the path is in error.
 . Determine the type of the `<selector>`.
@@ -1804,12 +1803,15 @@ as evaluated `<path-head>` and go to step 2.
 .. If the type is in `any-function!` apply the function (see rules `E110-114`).
 .. Otherwise, the result is the intermediate result just obtained.
 
+The built-in function `get` with a `path!` argument applies the above rule except when the type of
+the value referred to is in `any-function!` in which case no _function application_ occurs.
+
 ==== `get-path!` type
 
 See also rule `E107`.
 
 **`E108`**::
-The evaluation of a `:<path>` value proceeds as follows:
+The evaluation of a `get-path!` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
 as per rule `E103`.
@@ -1853,7 +1855,7 @@ evaluated `<path-head>` and go to step 2
 ==== `set-path!` type
 
 **`E109`**::
-The evaluation of a `<path>:` value proceeds as follows:
+The evaluation of a `set-path!` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
 as per rule `E103`.
@@ -1890,13 +1892,13 @@ The result of the evaluation is the value obtained.
 As a consequence, set-paths may be "chained", also with set-words, thus: `a/b/c: d/e/f: g: 1`
 is equivalent to `a/b/c: 1 d/e/f: 1 g: 1`.
 
-Moreover, the equivalent to `<path>: <expression>` is `set '<path> <expression>`.
+Moreover, the alternative to `<path-literal>: <expression>` is `set <path> <expression>`.
 The built-in function `set` has a refinement `/any` which will ensure that
 no error occurs if the expression yields the unset value.
 
 === Function types
 
-Values of `any-function!` type must be evaluated together with any
+Values of `any-function!` type must be applied together with any
 actual refinements (`word!` values that are found as `<selector>` in a `path!`
 value whose `<path-head>` evaluates to the `any-function!` value). 
 
@@ -1916,7 +1918,7 @@ some limitations,  for all values of `any-function!` type except `op!` values:
 
 **`E110`**::
 
-The evaluation of a `function!` value (also called _function call_
+The application of a `function!` value (also called _function call_
 or _function application_) proceeds as follows:
 
 . If the function does not have any arguments (optional or not), execute
@@ -1958,7 +1960,7 @@ entry with the address of a Red/System function handling the action for this com
 or with the address already determined for the combination of action and _parent type_
 of the given type (_inheritance_).
 
-The evaluation of an `action!` value then proceeds as follows:
+The application of an `action!` value then proceeds as follows:
 
 . From the action number, determine the `<argument-spec>` of the action.
 . Evaluate one or two expressions corresponding to the non-optional arguments.
@@ -1980,7 +1982,7 @@ for the optional arguments is dictated by the order of the actual refinements pr
 **`E112`**::
 A value of `op!` type is always derived from a value of another `any-function!` type:
 `function! action! native!` or `routine!`. Moreover, an `op!` value always has exactly
-two arguments and no refinements. Therefore, the evaluation proceeds as for the
+two arguments and no refinements. Therefore, the application proceeds as for the
 function etc. it is derived from, with the expression that precedes the `op!` value
 corresponding to the first argument and the expression following the `op!` value
 corresponding to the second one.
@@ -1997,7 +1999,7 @@ and a _native number_. Also, a table is prepared that contains the addresses of 
 functions that implement the native functions, indexed by the native number
 (their names are the native names followed by `*`).
 
-The evaluation of a `native!` value then proceeds as follows:
+The application of a `native!` value then proceeds as follows:
 
 . From the native number, determine the `<argument-spec>` of the native function.
 . Evaluate as many expressions as correspond to the non-optional arguments.
@@ -2039,7 +2041,8 @@ to `any-type!`.
 this Red/System function,  and will be treated as Red/System code.
 
 The function thus constructed becomes part of the intermediate Red/System code
-that the toolchain produces internally for compilation into machine code.
+that the toolchain produces internally for compilation into machine code,
+and the application of the function will proceed according to the Red/System rules.
 
 === Blocks: reduction and selective evaluation
 
