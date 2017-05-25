@@ -477,7 +477,7 @@ image!            M                 I                C                          
 bitset!           M                 I                C                            P
 map!             S+M                I                C             R              P
 object!           M                 I                C             R              P
-error!            M                 I                C             R              P(note)         object!
+error!            M                 I                C             R              P               object!
 native!           W                 F                A             R              F
 action!           W                 F                A             R              F               native!
 op!              W+M                F                A             R              F               native!
@@ -495,7 +495,6 @@ ref!
 struct!
 library!
 ....
-Note: `error!` values evaluate to themselves, but raise an error in addition. See _**Errors**_
 
 === Type hierarchy
 
