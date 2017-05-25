@@ -445,21 +445,21 @@ datatype!         W                 D                A                          
 typeset!          M                 D                A                            P   
 none!             W                 D                A                            P
 logic!            W                 D                A                            P
-char!             L                 D                A                            P              integer!
+char!             L                 D                A                            P               integer!
 integer!          L                 D                A                            P
 float!            L                 D                A                            P
-percent!          L                 D                A                            P              float!
-time!             L                 D                C                            P              float!
+percent!          L                 D                A                            P               float!
+time!             L                 D                C                            P               float!
 pair!             L                 D                C                            P
 tuple!            L                 D                C                            P
-word!             L                 D                A             R              A
+word!             L                 D                A             R              A              (symbol!)
 lit-word!         L                 D                A             R (#2618)      D               word!
 set-word!         L                 D                A             R (#2618)      A               word!
 get-word!         L                 D                A             R (#2618)      A               word!
 refinement!       L                 D                A             R (#2618)      P               word!
 issue!            L                 D                A             R (#2618)      P               word!
 handle!           W                 D                A                            P               integer!
-block!            S                 I                C                            P
+block!            S                 I                C                            P              (series!)
 hash!             M                 I                C                            P               block!
 paren!            S                 I                C                            A               block!
 path!             L                 I                C                           A+F              block!
@@ -467,7 +467,7 @@ lit-path!         L                 I                C                          
 set-path!         L                 I                C                            A               path!
 get-path!         L                 I                C                            A               path!
 vector!           M                 I                C                            P               string!
-string!           L                 I                C                            P
+string!           L                 I                C                            P              (series!)
 file!             L                 I                C                            P               url!
 url!              L                 I                C                            P               string!
 tag!              L                 I                C                            P               string!
@@ -481,7 +481,7 @@ error!            M                 I                C             R            
 native!           W                 F                A             R              F
 action!           W                 F                A             R              F               native!
 op!              W+M                F                A             R              F               native!
-function!         M                 F                A             R              F
+function!         M                 F                A             R              F              (context!)
 routine!          M                 F                A             R              F               function!
 unset!            M                 D                A                            P
 event!            W                 D                C                            P
