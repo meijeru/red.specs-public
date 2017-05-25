@@ -1690,7 +1690,6 @@ and `quote <path>` is equivalent to `'<path>`.
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
 .. If the type is `unset!` raise an error and yield the unset value as result.
-.. If the type is `error!` raise the error and yield the error value as result.
 .. If the type is in `any-function!` _apply_ the function (see rules `E110-114`).
 .. Otherwise, the result is the value referred to.
 
@@ -1712,7 +1711,6 @@ Moreover, with the refinement `/any` no error occurs if the `word!` value refers
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
 .. If the type is `unset!` yield the unset value as result.
-.. If the type is `error!` (raise the error and) yield the error value as result._**see issue 2621**_
 .. Otherwise, the result is the value referred to.
 
 Note that the difference with evaluating a `word!` value is that no errors are raised
@@ -1798,7 +1796,6 @@ as explained in section _**Selection by "key"**_.
 as evaluated `<path-head>` and go to step 2.
 . Determine the type of the intermediate result just obtained.
 .. If the type is `unset!` raise an error and yield the unset value as result.
-.. If the type is `error!` raise the error and yield the error value as result.
 .. If the type is in `any-function!` apply the function (see rules `E110-114`).
 .. Otherwise, the result is the intermediate result just obtained.
 
@@ -1849,7 +1846,6 @@ as explained in section _**Selection by "key"**_.
 evaluated `<path-head>` and go to step 2
 . Determine the type of the intermediate result just obtained.
 .. If the type is `unset!` yield the unset value as result.
-.. If the type is `error!` (raise the error and) yield the error value as result._**see issue 2621**_
 .. Otherwise, the result is the intermediate result just obtained.
 
 ==== `set-path!` type
@@ -2860,8 +2856,7 @@ _**Currently it is 504, is this correct?**_
 ==== Raising and interception
 
 Errors are normally raised by the compiled code or by the interpreter,
-as the case may be, but they can also be raised by evaluating a word
-referring to an error value, by `make error! <spec>` or the built-in
+as the case may be, but they can also be raised by the built-in
 function `cause-error`. The raising of an error will break off program
 execution, unless it is intercepted by `try` or `attempt`.
 
