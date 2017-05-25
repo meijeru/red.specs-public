@@ -1703,6 +1703,7 @@ the generalized value construction syntax: `#[true], #[false], #[none]` etc.
 
 The built-in function `get` with a `word!` argument applies the above rule except when the type of
 the value referred to is in `any-function!` in which case no _function application_ occurs.
+Moreover, with the refinement `/any` no error occurs if the `word!` value refers to the unset value.
 
 ==== `get-word!` type
 
@@ -1716,9 +1717,6 @@ the value referred to is in `any-function!` in which case no _function applicati
 
 Note that the difference with evaluating a `word!` value is that no errors are raised
 and that a function value is not applied but is itself yielded as result.
-
-The built-in function `get` has a refinement `/any` which will ensure that
-no error occurs if the `word!` value refers to the unset value.
 
 ==== `set-word!` type
 
@@ -1806,6 +1804,7 @@ as evaluated `<path-head>` and go to step 2.
 
 The built-in function `get` with a `path!` argument applies the above rule except when the type of
 the value referred to is in `any-function!` in which case no _function application_ occurs.
+Moreover, with the refinement `/any` no error occurs if the `path!` value refers to the unset value.
 
 ==== `get-path!` type
 
@@ -1852,9 +1851,6 @@ evaluated `<path-head>` and go to step 2
 .. If the type is `unset!` yield the unset value as result.
 .. If the type is `error!` (raise the error and) yield the error value as result._**see issue 2621**_
 .. Otherwise, the result is the intermediate result just obtained.
-
-The built-in function `get` has a refinement `/any` which will ensure that
-no error occurs if the `path!` value refers to the unset value.
 
 ==== `set-path!` type
 
