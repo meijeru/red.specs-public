@@ -1672,13 +1672,13 @@ See also the section _**Blocks: Reduction and selective evaluation**_.
 
 These are `lit-word!` and `lit-path!`.
 
-**`E101`**:: Evaluating a `'<word>` results in its `<word>` counterpart.
+**`E101`**:: Evaluating a `lit-word!` value results in its `word!` counterpart.
 
-**`E102`**:: Evaluating a `'<path>` results in its `<path>` counterpart.
+**`E102`**:: Evaluating a `lit-path!` value results in its `path!` counterpart.
 
 The built-in function `quote` will yield its argument, which may be of any type,
-without evaluating it. In particular `quote <word>` is equivalent to `'<word>`,
-and `quote <path>` is equivalent to `'<path>`.
+without evaluating it. In particular `quote <word-literal>` is equivalent to `'<word-literal>`,
+and `quote <path-literal>` is equivalent to `'<path-literal>`.
 
 === Active types
 
