@@ -2921,12 +2921,13 @@ will let it pass through.
 
 If a throw is not caught by a catch, it will result in an error. 
 
-==== Interception by `try`
+==== Interception by `try` and `attempt`
 
 The built-in function `try` (see _**Raising and interception**_) has
 a refinement `/all`, allowing it to catch all possible forms of exceptions,
 including `break`, `continue`, `exit` and `return` misuses as well as
-uncaught throws.
+uncaught throws. The built-in function `attempt`, which calls `try`,
+has a refinement `safer` which causes it to use `try/all`.
 
 == Additional facilities
 
