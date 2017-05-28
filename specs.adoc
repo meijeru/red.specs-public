@@ -1914,6 +1914,8 @@ some limitations,  for all values of `any-function!` type except `op!` values:
 <refinement> ::= /<word>
 ....
 
+_**TBD: apply**_
+
 ==== `function!` type
 
 **`E110`**::
@@ -3413,6 +3415,7 @@ O    >=       N    greater-or-equal?
 ....
 N    all
 N    any
+N    apply
 N    bind
 N    context?
 N    do
