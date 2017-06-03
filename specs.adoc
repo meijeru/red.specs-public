@@ -1087,7 +1087,8 @@ and the representation and storage of argument and result values.
 
 **`S133`**::
 ....
-<op> ::= make op! <prefix-function>
+<op> ::= make op! <binary-function>
+<binary-function> ::= <op> | <prefix-function>
 ....
 
 For `<prefix-function>` see rule `S101`.
