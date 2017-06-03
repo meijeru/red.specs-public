@@ -1087,13 +1087,15 @@ and the representation and storage of argument and result values.
 
 **`S133`**::
 ....
-<op> ::= make op! <function> 
+<op> ::= make op! <prefix-function>
 ....
+
+For `<prefix-function>` see rule `S101`.
 
 In contrast to `action!` and `native!` values which cannot be made by means of
 `make`, the user may create new infix functions of two arguments (operators),
-using `make op!`. The `<function>` should have exactly two arguments and no optional
-arguments.
+using `make op!`. The `<prefix-function>` should have exactly two arguments
+and no optional arguments.
 
 Example: `&&: make op! func [a b][all [a b]]`.
 
