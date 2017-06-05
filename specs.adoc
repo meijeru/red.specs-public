@@ -1068,14 +1068,16 @@ found in the body to the list of local arguments.
 ....
 <routine> ::= routine <routine-spec> <routine-body>
 <routine-spec> ::= [<docstring>° <routine-argument>* <locals>° <routine-return>°]
-<routine-argument> ::= <word> <argument-doc>° | <word> [<type-literal>] <argument-doc>°
+<routine-argument> ::= <word> [<type-literal>] <argument-doc>°
 <locals> ::= /local <routine-argument>*
 <routine-return> ::= return: [<type-literal>]
+<type-literal> ::= any-type! | <word-literal>
 <routine-body> ::= <block>
 ....
 For `<docstring>` and `<argument-doc>` see rule `S131`. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
-and return spec must have a single type specified. The `<routine-body>`
+and return spec must have a single type specified. The `<word-literal>`
+must refer to an existing Red type. The `<routine-body>`
 must contain valid Red/System code.
 
 Values of type `routine!` may not occur in programs submitted to the interpreter.
@@ -1096,7 +1098,7 @@ For `<prefix-function>` see rule `S101`.
 In contrast to `action!` and `native!` values which cannot be made by means of
 `make`, the user may create new infix functions of two arguments (operators),
 using `make op!`. The `<prefix-function>` should have exactly two arguments
-and no optional arguments.
+and no optional arguments, except `/local`.
 
 Example: `&&: make op! func [a b][all [a b]]`.
 
@@ -2043,7 +2045,7 @@ thus `string!` becomes `red-string!` etc.
 . An argument without a type is given Red/System alias `red-value!` which corresponds
 to `any-type!`.
 . The `<routine-body>` (which is a block of Red values) becomes the body of
-this Red/System function,  and will be treated as Red/System code.
+this Red/System function, and will be treated as Red/System code.
 
 The function thus constructed becomes part of the intermediate Red/System code
 that the toolchain produces internally for compilation into machine code,
