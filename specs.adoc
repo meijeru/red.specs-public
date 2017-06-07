@@ -2115,21 +2115,24 @@ Lastly, there are functions for determining the absolute value (`absolute`),
 the maximum and minimum of two numbers (`max min`) and for rounding (`round`).
 
 The arity (number of arguments) and the argument and result types for these
-functions are as follows. Result types are only indicated if different from argument types.
+functions are as follows.
 ....
-function               arity        argument type(s)                           result type
+function            arity   argument type(s)                      result type
+                            operand 1           operand 2
 
-+ - * / // %             2          scalar! vector!
-**                       2          number!
-NaN?                     1          number!                                    logic!
-sign?                    1          number! time!                              integer!
-positive? negative?      1          number! time!                              logic!
-zero?                    1          scalar!                                    logic!
-even? odd?               1          number! char!                              logic!
-negate                   1          number! time! pair!
-absolute round           1          number! time! pair!
-max min                  2          scalar!
++ - * / // %          2     scalar! vector!     scalar! vector!   see ???
+**                    2     number!             integer! float!   integer! float!
+NaN?                  1     number!                               logic!
+sign?                 1     number! time!                         integer!
+positive? negative?   1     number! time!                         logic!
+zero?                 1     scalar!                               logic!
+even? odd?            1     number! char!                         logic!
+negate                1     number! time! pair!                   same as operand
+absolute round        1     number! time! pair!                   same as operand
+max min               2     scalar!             scalar!           same as greatest/smallest
+                                                                  operand (operand 1 if equal)
 ....
+
 Note that `round` has a number of refinements:
 ....
 /to             => Return the nearest multiple of the scale parameter
