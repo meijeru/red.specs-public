@@ -1034,11 +1034,11 @@ Note that `error!` values all have `class = 0`.
                has [<argument>*] <function-body> | does <function-body> | function <function-spec> <function-body>
 <function-spec> ::= [<docstring>° <argument-spec> <return-spec>°]
 <docstring> ::= <string>
-<argument-spec> ::= <argument>* <optional-argument>*
+<argument-spec> ::= <argument>* <optional-arguments>*
 <argument> ::= <argument-name> <argument-doc>° | <argument-name> [<typeset-element>*] <argument-doc>°
 <argument-name> ::= <word> | '<word> | :<word>
 <argument-doc> ::= <string>
-<optional-argument> ::= <refinement> <argument-doc>° <argument>*
+<optional-arguments> ::= <refinement> <argument-doc>° <argument>*
 <refinement> ::= /<word>
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
@@ -1047,12 +1047,16 @@ For `<typeset-element>` see rule `S124`.
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
-of each `<argument>` will be used to check the type of the actual argument supplied.
-Likewise, when present, the type(set)s of the `<return-spec>` will be used to check the type of the result.
-_**This is not yet implemented!**_
+specified for an `<argument>` will be used to check the type of the actual argument supplied.
+Otherwise, `any-type!` will be assumed. Likewise, when present, the type(set)s of the `<return-spec>`
+will be used to check the type of the result._**This is not yet implemented!**_
+The `<word>` s of the `<argument>` s following the `<refinement>`, if any,
+are to be matched with actual arguments, if the function application (see rule `E110`)
+specifies the corresponding `<selector>` (see rule `S123`).
 The optional argument `/local` is conventionally used to list the local words of the function.
 It is normally put after any other optional arguments (in fact the built-in `help` function
-expects this to be the case).
+expects this to be the case). It is not usual, although not forbidden, to supply actual arguments
+for these local words.
 
 The built-in function `func` is defined as shorthand for `make function!`. The built-in function
 `has` is defined as shorthand for a function without other arguments than local words, thus
