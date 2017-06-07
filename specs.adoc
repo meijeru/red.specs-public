@@ -1068,7 +1068,7 @@ found in the body to the list of local arguments.
 ....
 <routine> ::= routine <routine-spec> <routine-body>
 <routine-spec> ::= [<docstring>° <routine-argument>* <locals>° <routine-return>°]
-<routine-argument> ::= <word> [<type-literal>] <argument-doc>°
+<routine-argument> ::= <word> <argument doc>° | <word> [<type-literal>] <argument-doc>°
 <locals> ::= /local <routine-argument>*
 <routine-return> ::= return: [<type-literal>]
 <type-literal> ::= any-type! | <word-literal>
@@ -1076,9 +1076,11 @@ found in the body to the list of local arguments.
 ....
 For `<docstring>` and `<argument-doc>` see rule `S131`. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
-and return spec must have a single type specified. The `<word-literal>`
-must refer to an existing Red type. The `<routine-body>`
-must contain valid Red/System code.
+and return spec must have a single type specified. If the argument has no
+type specified, `any-type!` is assumed._**see issue #2766**_ The `<word-literal>`
+must refer to an existing Red type, which must be `integer! float!` or `logic!`,
+or one that has a Red/System `structure!` alias defined that describes a value
+slot of that type._**see issue #2642**_ The `<routine-body>` must contain valid Red/System code.
 
 Values of type `routine!` may not occur in programs submitted to the interpreter.
 
