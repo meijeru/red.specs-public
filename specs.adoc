@@ -2726,10 +2726,11 @@ where `.` and `..` are eliminated
 `file!` values: the last file or directory in the path, preceded by the
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
+* `delete` will take a `file!` argument and delete the file indicated;
+the result is `true` if the operation was succesful, and `false` otherwise
 
 TBD
 ....
-A    delete
 A    rename
 ....
 === Console functions
