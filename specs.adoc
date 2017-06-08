@@ -2126,7 +2126,7 @@ functions are as follows.
 function            arity   argument type(s)                      result type
                             operand 1           operand 2
 
-+ - * / // %          2     scalar! vector!     scalar! vector!   see ???
++ - * / // %          2     scalar! vector!     scalar! vector!   see next table
 **                    2     number!             integer! float!   integer! float!
 NaN?                  1     number!                               logic!
 sign?                 1     number! time!                         integer!
@@ -2139,6 +2139,49 @@ max min               2     scalar!             scalar!           same as greate
                                                                   operand (operand 1 if equal)
 ....
 
+The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
+When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
+mentioned through notes (1) to (7). The operations on values of type `pair! tuple!` and `vector!`
+take place component-by-component.
+
+
+....
+operand 2 -> char!    integer! float!   percent! time!    pair!    tuple!   vector!
+operand 1
+char!        char!    char!    char!
+             (1)      (1)      (1)
+
+integer!     integer! integer! float!   float!   time!    pair!    tuple!
+             (1)                                          (1)(2)   (1)(2)(3)
+
+float!       float!   float!   float!   float!   time!    pair!    tuple!
+             (1)                                          (1)(2)   (1)(2)(3)
+
+percent!              percent! percent! percent! time!    pair!    tuple!
+                                                          (1)(2)   (1)(2)(3)
+
+time!                 time!    time!    time!    time!
+                                                 (4)(5)
+
+pair!                 pair!    pair!    pair!             pair!
+                      (1)      (1)      (1)               (1)
+
+tuple!                tuple!   tuple!   tuple!                     tuple!
+                      (1)      (1)      (1)                        (1)
+
+vector!               vector!  vector!  vector!                             vector!
+                      (1)(6)   (1)(6)   (1)(6)                              (7)
+
+(1) modulo not allowed
+(2) division not allowed
+(3) subtraction not allowed
+(4) division has float! result
+(5) multiplication not allowed
+(6) result has element type of operand 1
+(7) operand 1 and 2 must have same element type
+....
+
+
 Note that `round` has a number of refinements:
 ....
 /to             => Return the nearest multiple of the scale parameter
@@ -2150,10 +2193,6 @@ Note that `round` has a number of refinements:
 /ceiling       => Round in positive direction
 /half-ceiling  => Halves round in positive direction
 ....
-
-Note that not all combinations of argument types are allowed. In general, the types
-`number! time! char!` are freely combinable. The operations on values of type
-`pair! tuple! vector!` take place component-by-component where possible.
 
 The functions `max min` are also defined for `series!` arguments. See section
 _**Series manipulation**_.
