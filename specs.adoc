@@ -2173,10 +2173,10 @@ vector!               vector!  vector!  vector!                             vect
                       (1)(6)   (1)(6)   (1)(6)                              (7)
 
 (1) modulo not allowed
-(2) division not allowed
-(3) subtraction not allowed
-(4) division has float! result
-(5) multiplication not allowed
+(2) divide not allowed
+(3) subtract not allowed
+(4) divide has float! result
+(5) multiply not allowed
 (6) result has element type of operand 1
 (7) operand 1 and 2 must have same element type
 ....
