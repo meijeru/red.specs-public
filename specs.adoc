@@ -1357,6 +1357,7 @@ and the first position where the key is found is marked. The result is then
 the component *after* the found key (single or sequence)._**See issue #2625**_ For the other types,
 which contain key/value pairs, the result is the value corresponding to the given key.
 In the case of `object!` and `error!` it is customary to call the keys _fields_.
+Fields of `error!`values cannot be set.-**See issue #2554**_
 
 Values of type `time! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
@@ -1393,6 +1394,7 @@ binary!      integer!     pick poke   integer! char! any-string! binary! select 
 image!       integer!     pick poke   size rgb alpha argb                --
              pair!        pick poke
 bitset!      integer!     pick poke   --                                 --
+             char!        pick poke   --                                 -- see issue #2523
 map!                                  scalar! all-word! any-string!      select put
 object!                               word!                              select put
 error!                                code type id arg1 arg2 arg3        select
@@ -1412,7 +1414,7 @@ This concerns first of all `(any-)word!` values for which information on their
 binding may be obtained by means of two built-in functions: `context?` and `index?`.
 These are explained in section 6.2. _**See issue #2618**_. 
 
-_**What about `owner`??**_
+_**What about `owner`??** see issue #1957_
 
 The function `complement?` is described in section 5.3.5.
 
@@ -2142,8 +2144,8 @@ sign?                 1     number! time!                         integer!
 positive? negative?   1     number! time!                         logic!
 zero?                 1     scalar!                               logic!
 even? odd?            1     number! char!                         logic!
-negate                1     number! time! pair!                   same as operand
-absolute round        1     number! time! pair!                   same as operand
+negate                1     number! time! pair!                   same as operand  see issue #1262
+absolute round        1     number! time! pair!                   same as operand see issue #1262, 1267
 max min               2     scalar!             scalar!           same as greatest/smallest
                                                                   operand (operand 1 if equal)
 ....
@@ -2186,7 +2188,7 @@ vector!               vector!  vector!  vector!                             vect
 (3) subtract not allowed
 (4) divide has float! result
 (5) multiply not allowed
-(6) result has element type of operand 1
+(6) result has element type of operand 1 see also issue #2216
 (7) operand 1 and 2 must have same element type
 ....
 
@@ -2268,7 +2270,7 @@ for these functions are as follows.
 ....
 function     arity  argument type(s)
 
-complement     1    integer! bitset! typeset! binary!
+complement     1    integer! bitset! typeset! binary! see issue #1263, 1267, 1956
 and or xor     2    integer! char! pair! tuple! bitset! typeset! binary! vector!
 << >> >>>      2    integer!
 ....
@@ -2393,6 +2395,7 @@ insert <series> <expression>  insert value of <expression>                before
 append <series> <expression>  insert value of expression at tail          at head
 repend <series> <expression>  insert reduced value of expression at tail  at head
 trim <series>                 spaces removed from string                  at head
+                              or none from block or hash value            see also issue #2521
 pad <series>                  string padded on right side with spaces     at head
 ....
 
@@ -2400,7 +2403,7 @@ The following functions take two series as arguments:
 ....
 function   operation                                 result and position
 
-swap       swap components at current positions      first series at head
+swap       swap components at current positions      first series at head   see also issue #1961
 move       remove current component of first series  first series before next component
            and insert it before current component
            of second one
