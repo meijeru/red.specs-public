@@ -3924,3 +3924,44 @@ The following is a list of official documents that complement the information gi
   .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
 . https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
 . http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse] (blog article from 2013)
+
+== List of outstanding issues
+....
+issue  spec section
+
+1262   8.1
+1263   8.4
+1267   8.1, 8.4
+1956   8.4
+1957   5.7
+1960   5.6.3
+1961   9.2
+2216   8.1
+2492   3.1
+2521   9.2
+2527   5.7
+2523   5.6.3
+2554   5.6.2
+2565   4.3
+2577   5.3.11
+2578   7.3.5
+2589   5.3.8
+2596   5.3.3
+2609   5.3.5
+2618   5.7
+2622   7.4.1
+2625   5.6.2
+2628   12.1.1
+2633   5.8.1, 12.1
+2640   5.3
+2642   5.3.9
+2645   5.4.2
+2650   5.8.1
+2657   5.8.1
+2658   5.8.1
+2661   5.8.1
+2662   5.8.2
+2663   5.8.2
+2668   11.1
+2686   11.1
+....
