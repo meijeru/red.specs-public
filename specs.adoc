@@ -421,7 +421,7 @@ _** We should perhaps consider `context?` or rather `context-of` as a reflector 
 * Values of _active types_ are bound to a context, their binding can be retrieved to yield the value referred to.
 * Values of _function types_, when evaluated, result in the application of the function to its arguments.
 
-Detailed rules for the evaluation in these various cases are given in section _**Evaluation rules**_. 
+Detailed rules for the evaluation in these various cases are given in section 7. 
 
 ==== Parent types
 
@@ -1010,16 +1010,16 @@ _**It is not yet implemented**_
 ....
 
 For the fields of an `error!` value, and the structure of the error repertoire
-(`system/catalog/errors`) see section _**Errors**_.
+(`system/catalog/errors`) see section 12.1.
 
 If the `<error-spec>` is an `integer!` value, it is used to find values for the `type`
 and `id` fields of the `error!` value which result in the `code` with that `integer!`
-value. The values of these two fields are then bound as described in section _**Errors**_.
+value. The values of these two fields are then bound as described in section 12.1.
 
 If the `<error-spec>` is a `block!` value, it should either contain two `word!` values
 which will be used for the `type` and `id` value of the intended `error!` value, or
 it should be an `<object-spec>` containing at least `type:` and `id:` fields;
-in the former case, the `type` and `id` values will be bound as described in section _**Errors**_;
+in the former case, the `type` and `id` values will be bound as described in section 12.1;
 in the latter case, the `<block>` will be treated as described under rule `S129`;
 note that also in this case, the `<block>` will be executed.
 
@@ -1153,7 +1153,7 @@ This does not apply to `image!` values.
 
 Conversion is possible for selected combinations of _source_ and _target_ type.
 The list given below is meant to be exhaustive. A summary table is available
-elsewhere (see section _**Additional documentation**_).
+elsewhere (see section 17).
 
 Note that for each type that may occur as target type, there is a built-in function
 defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
@@ -1415,7 +1415,7 @@ _**What about `owner`??**_
 The function `complement?` is described in section 5.3.5.
 
 The function `face?` tests if an object is derived of the `face!` object which is
-explained in section _**GUI System**_.
+explained in section 13.3.
 
 _**Functions on vector! values have been requested see issue #2527**_
 
@@ -1954,7 +1954,7 @@ Make the `<word>` of each `<argument name>` refer to the corresponding value.
 in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
 Furthermore, process each `<argument>` following the `<refinement>`
 as in the previous sub-step, evaluating the necessary expressions and inserting the values obtained in the context.
-.. Bind the body of the function to the context (see section _**Built-in bind function**_).
+.. Bind the body of the function to the context (see section 6.3.6).
 .. Execute the body of the function to yield the result of the function.
 
 Note that the order of the expressions to be supplied for the optional arguments is dictated
