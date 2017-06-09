@@ -24,10 +24,10 @@ with the numerous optional facilities ("refinements") that these functions have,
 it is not possible to give an exhaustive treatment of Red's functionality.
 Red allows quite detailed information about a function's operation to be
 documented within the function specification, and this should be consulted
-in order to be able to use any function optimally. See section 14.4.16.
+in order to be able to use any function optimally. See section 13.6.
 
 This document is *not* intended to be used in order to learn the language (tutorial);
-for that purpose sufficient materials can be found elsewhere
+for that purpose sufficient materials can be found elsewhere.
 _** need one comprehensive and sufficiently maintained collection of links **_
 
 === Conventions
@@ -119,9 +119,10 @@ in ways of their own, and thus create _dialects_ or _Domain Specific Languages
 In fact, Red itself contains a number of dialects where blocks of data are
 interpreted in a specific way; this includes the _preprocessor dialect_, 
 the _parse dialect_, the _visual interface dialect (VID)_, which also uses
-the _draw dialect_, the various _spec dialects_ involved in defining vectors,
-images, bitsets, objects, errors, maps, operators, functions and routines,
-furthermore the _compose dialect_ and the _system dialect_ (Red/System).
+the _draw dialect_ and the _shape dialect_, the various _spec dialects_
+involved in defining vectors, images, bitsets, objects, errors, maps,
+functions and routines, furthermore the _compose dialect_
+and the _system dialect_ (Red/System).
 
 Red/System is on the one hand a language of its own: it is a C-level language
 with memory pointer support and a very basic and limited set of datatypes.
@@ -138,7 +139,7 @@ Red/System is specified in a separate document (see section 17).
 For submission to the Red toolchain, a Red program must be prepared as a text file.
 This may contain any _Unicode Code Points_, encoded using the _UTF-8 scheme_. 
 
-As a first operation of the toolchain, the text file will be subjected to lexical analysis
+As a first operation of the toolchain, the text file will be subjected to _lexical analysis_
 which will break the text up in a series of _lexemes_, i.e. textual representations of Red
 _single values_, interspersed with _grouping tokens_. The grouping tokens should occur in
 properly nested pairs, and are the following: `( ), [ ], #( ), #[ ]`. A sequence of lexemes
@@ -168,9 +169,9 @@ values and between `word!` values and `block!` values. These examples are all sy
 ....
 
 _Comments_, which have no significance for the operation of the program, may be placed following
-a semicolon `;` until the end of an input line, or they may follow the word `comment` and be
-formulated as a single Red value -- most usefully a series of characters enclosed in `{ }` or
-a series of Red values enclosed in `[ ]`.
+a semicolon `;` until the end of an input line (_end-of-line comment_), or they may follow the word
+`comment` and be formulated as a single Red value -- most usefully a series of characters enclosed
+in `{ }` or a series of Red values enclosed in `[ ]`.
 
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
 and/or the reader. The relevant data will be described in section 16.
@@ -252,7 +253,7 @@ an infix function of two arguments, and `<prefix-function>` is an expression whi
 to a prefix function (value of type `action! native! function!` or `routine!`). The
 number of expressions following a prefix function is strictly dependent on the function value
 and is known as the _arity_ of the function value. See further the evaluation rules given
-in section 7. Evaluation of the operands of operators has precedence
+in section 7. Evaluation of the operands of operators has _precedence_
 over function application and binding; also, as suggested in rule `S101`, operators are strictly _left associative_,
 there is no precedence between any two operators. The arguments of a function simply follow
 the function itself, they are not enclosed in parentheses, thus for the reader to understand a program,
@@ -503,7 +504,7 @@ library!
 
 For the convenience of the user, certain typesets have been pre-defined
 which group related types. These will notably be used for indicating
-the allowed types of arguments to polymorphic functions. E.g. `power` takes
+the allowed types of arguments to _polymorphic functions_. E.g. `power` takes
 two arguments whose types are both in the typeset `number!`.
 
 ....
@@ -679,7 +680,7 @@ Examples: `192.168.1.2` (an IPv4 address), `255.255.128` (an RGB value)
 ==== `word!`
 
 **`S115`**::
-A `<word-literal>` is written as one or more characters from the entire Unicode range excluding control characters
+A `<word-literal>` is written as one or more characters from the entire Unicode range excluding _control characters_
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
 A `<word-literal>` does not begin with `0-9` or `'`.
 Words are _case-insensitive_, i.e. changing any letter in the word into the corresponding upper- or lower-case
@@ -1616,9 +1617,9 @@ and will initially not refer to any value in that context.
 
 ==== Setting words to values
 
-The evaluation of `<word>: <expression>` is treated in rule `E115`.
+The evaluation of `<word-literal>: <expression>` is treated in rule `E115`.
 Equivalent to this is the application of the built-in function `set`:
-`<word>: <expression>` ~ `set '<word> <expression>`.
+`<word-literal>: <expression>` ~ `set '<word-literal> <expression>`.
 
 The counterpart to `set` is `unset`: this will make the word argument
 refer to the unset value.
