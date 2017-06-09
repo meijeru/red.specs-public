@@ -854,7 +854,7 @@ that type is taken to be the desired type. This is not made explicit
 in the following rules, except in the case of `make object!` where
 an `object!` value as second argument has a different interpretation.
 In the case of `make error!` only the type `error!` is allowed as first argument
-_**See issue 2640**_.
+_**See issue #2640**_.
 
 In the following rules, the sign `°` signifies an optional element.
 
@@ -1506,7 +1506,7 @@ The following cases can be distinguished:
 * straightforward numerical ordering: `char! integer! float! percent!` and `time!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`
-* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`_**See issue# 2663**_
+* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`_**See issue #2663**_
 * no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
 action! native! op! handle! event!` and `unset!`.
 
