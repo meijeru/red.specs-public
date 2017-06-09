@@ -2175,7 +2175,7 @@ tuple!                tuple!   tuple!   tuple!                     tuple!
                       (1)      (1)      (1)                        (1)
 
 vector!               vector!  vector!  vector!                             vector!
-                      (1)(6)   (1)(6)   (1)(6)                              (7)
+                      (1)(6)   (1)(6)   (1)(6)                              (1)(7)
 
 (1) modulo not allowed
 (2) divide not allowed
