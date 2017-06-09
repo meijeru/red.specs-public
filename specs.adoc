@@ -948,6 +948,7 @@ The length of the bitset is computed as the smallest multiple of 8 needed to fit
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
 produced by the following bit-position numbers, while actually storing only these bit-positions.
+_**See issue #2609**_
 
 Examples:
 ....
@@ -1352,7 +1353,7 @@ The semantics of selection are different in the two cases (sequences vs. objects
 For sequences, a `find` action is performed on the components using the key,
 which should be a single value of the right type, or itself a sequence of such values,
 and the first position where the key is found is marked. The result is then
-the component *after* the found key (single or sequence). For the other types,
+the component *after* the found key (single or sequence)._**See issue #2625**_ For the other types,
 which contain key/value pairs, the result is the value corresponding to the given key.
 In the case of `object!` and `error!` it is customary to call the keys _fields_.
 
@@ -1477,7 +1478,7 @@ for the `equal?` test.
 
 The `equal?` test ignores case differences in the spelling of words, characters
 and strings, and in the case of floating point numbers, a very small difference
-(1 in 10^16^) in actual value.
+(1 in 10^16^) in actual value._**See also issues #2658, 2661 and 2661**_
 
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
@@ -1503,11 +1504,11 @@ The following cases can be distinguished:
 * straightforward numerical ordering: `char! integer! float! percent!` and `time!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`
-* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`
+* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`_**See issue# 2663**_
 * no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
 action! native! op! handle! event!` and `unset!`.
 
-As a rule, for ordering comparisons the types of the two values have to be the same.
+As a rule, for ordering comparisons the types of the two values have to be the same._**See issue #2662**_
 For `vector!` values, the component type (`char! integer! float!` or `percent!`) must also be the same.
 However, as with equality, for some combinations of types this requirement is relaxed.
 
@@ -1948,6 +1949,7 @@ Make all these words initially refer to `none`.
 .. Evaluate as many subsequent expressions as needed to obtain values corresponding
 to the non-optional arguments, except that when the `<argument-name>`
 is a `'<word>` or `:<word>`, do not evaluate the corresponding expression but yield its first `<value>`.
+_**See issue #2622**_
 If the `<argument-name>` is `:<word>`, do not raise an error if this value is unset.
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
 .. If actual refinements are present, match each of them with the corresponding `<refinement>`
@@ -2883,7 +2885,7 @@ the word which is the value of its `type` field is bound such that
 it refers to the sub-object whose field name is that word;
 also, the word which is the value of `id` field is bound such that
 it refers to the error message (string or block) within that sub-object
-whose field name is that word. Thus the following code will produce
+whose field name is that word. _**See issue #2633**_ Thus the following code will produce
 the full message information for an error value, say `err`:
 ....
 either err/arg1                             ; test if insertion is necessary
