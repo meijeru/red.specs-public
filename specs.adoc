@@ -1055,7 +1055,7 @@ The `<docstring>` may be used to document the purpose and working of the functio
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
 specified for an `<argument>` will be used to check the type of the actual argument supplied.
 Otherwise, `any-type!` will be assumed. Likewise, when present, the type(set)s of the `<return-spec>`
-will be used to check the type of the result._**This is not yet implemented!**_
+will be used to check the type of the result._**See issue #2589**_
 The `<word>` s of the `<argument>` s following the `<refinement>`, if any,
 are to be matched with actual arguments, if the function application (see rule `E110`)
 specifies the corresponding `<selector>` (see rule `S123`).
@@ -1130,6 +1130,7 @@ Each `<key>` should be a value of a type in `scalar!, any-word!` or `any-string!
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `any-word!`
 that do not differ in their symbol are considered identical for this purpose.
+_**See issue #2577**_
 
 Note that values of `logic!` and `none!` type are not allowed as keys. Nevertheless
 `true false` and `none` may occur in `<key>` position. Since the constituents
@@ -1426,8 +1427,7 @@ be obtained as a block by means of the built-in functions `words-of values-of`
 and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
 In addition, for objects there is the property `class-of` which yields
 the unique number that is given to each object that is created from a `<spec>`, and is
-inherited by objects _derived_ from it (see rule `S129` in section
-5.3).
+inherited by objects _derived_ from it (see rule `S129` in section 5.3).
 
 For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
@@ -1788,7 +1788,7 @@ and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in step 3.
 .. If the result is of `file!` or `url!` type and there are one or more
 next elements each of which is a `<selector>`, the result is currently
-a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
+a new file or url composed as `<path-head>/<selector>/...` _**but see issue #2578**_
 .. If the result is a value of `any-function!` type, each following
 `<selector>`, if any, should be an actual refinement of the function, i.e a `word!` value,
 corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
@@ -1952,12 +1952,14 @@ is a `'<word>` or `:<word>`, do not evaluate the corresponding expression but yi
 _**See issue #2622**_
 If the `<argument-name>` is `:<word>`, do not raise an error if this value is unset.
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
+Check the type of each value against the type(set)s specified for the argument.
 .. If actual refinements are present, match each of them with the corresponding `<refinement>`
 in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
 Furthermore, process each `<argument>` following the `<refinement>`
 as in the previous sub-step, evaluating the necessary expressions and inserting the values obtained in the context.
 .. Bind the body of the function to the context (see section 6.3.6).
 .. Execute the body of the function to yield the result of the function.
+Check the type of the resulting value against the type(set)s specified with `return:`, if any.
 
 Note that the order of the expressions to be supplied for the optional arguments is dictated
 by the order of the actual refinements present, *not* by the order of the `<refinement>` s
