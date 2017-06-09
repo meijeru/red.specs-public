@@ -3926,6 +3926,187 @@ The following is a list of official documents that complement the information gi
 . https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
 . http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse] (blog article from 2013)
 
+== Glossary
+....
+                                        section
+
+action                                  4.2.6
+  inherited action                      4.2.6
+active type                             4.2.5
+application of a function               3.3
+arity of a function                     3.3
+atomic type                             4.2.3
+backspace (U+0008)                      5.2.6
+base64 character                        5.2.12
+binding                                 2.4, 3.3, 6.3
+bitset spec dialect                     2.5
+bound word                              2.4
+built-in constant                       2.4
+built-in function                       2.4
+built-in type                           2.4
+built-in typeset                        4.3
+caret (U+005E)                          5.2.6
+catch                                   12.2.3
+character
+  backspace (U+0008)                    5.2.6
+  base64 character                      5.2.12
+  caret (U+005E)                        5.2.6
+  control character                     5.2.5, 5.2.6
+  delete (U+007F)                       5.2.6
+  double quote (U+0022)                 5.2.6
+  escape (U+001B)                       5.2.6
+  escaped character                     5.2.6, 5.2.8, 5.2.9, 5.2.10
+  form feed (U+000C)                    5.2.6
+  hexadecimal codepoint                 5.2.6
+  horizontal tab (U+0009)               3.1, 5.2.6
+  line feed ( U+000A)                   3.1, 5.2.6
+  new-line character                    5.2.7
+  next line (U+0085)                    3.1, 5.2.7
+  non-breaking space (U+00A0)           3.1
+  null (U+0000)                         5.2.6
+  semicolon                             3.1
+  space (U+0020)                        3.1
+  tab (U+0009)                          3.1, 5.2.6
+  Unicode Code Point                    3.1
+  whitespece character                  3.1
+class (of object)                       5.3.6
+color (RGB)                             5.2.4, 5.3.4
+comment                                 3.1
+compilation                             2.2
+compiler                                2.2
+compose dialect                         2.5
+composite type                          4.2.3
+console                                 2.2
+context                                 2.4, 6.2
+  global context                        2.4, 6.2
+control character                       5.2.5, 5.2.6
+decaying type                           4.2.5
+delete character (U+007F)               5.2.6
+dialect                                 2.5
+  bitset spec dialect                   2.5
+  compose dialect                       2.5
+  draw dialect                          2.5
+  error spec dialect                    2.5
+  function spec dialect                 2.5
+  image spec dialect                    2.5
+  map spec dialect                      2.5
+  object spec dialect                   2.5
+  parse dialect                         2.5
+  preprocessor dialect                  2.5
+  routine spec dialect                  2.5
+  shape dialect                         2.5
+  system dialect                        2.5
+  vector spec dialect                   2.5
+  Visual Interface dialect (VID)        2.5
+direct type                             4.2.2
+docstring                               5.3.8, 5.3.9
+Domain Specific Language (DSL)          2.5
+double quote (U+0022)                   5.2.6
+draw dialect                            2.5
+DSL (Domain Specific Language)          2.5
+end-of-line comment                     3.1, 3.2
+error spec dialect                      2.5
+escape (U+001B)                         5.2.6
+escaped character                       5.2.6, 5.2.8, 5.2.9, 5.2.10
+evaluation                              7
+  shortcut evaluation                   7.5
+execution                               2.2
+  of a block                            7.1, 7.5
+expression                              3.3
+  infix expression                      3.3
+form feed (U+000C)                      5.2.6
+free-form text                          3.1
+function
+  application                           3.3
+  infix function                        3.3
+  prefix function                       3.3
+function spec dialect                   2.5
+function type                           4.2.2
+global context                          2.4, 6.2
+graphical user interface (GUI)          13.3
+grouped value                           3.1
+grouping token                          3.1
+GUI (graphical user interface)          13.3
+hexadecimal codepoint                   5.2.6
+homoiconic                              2.3
+horizontal tab (U+0009)                 3.1, 5.2.6
+host coputer                            2.2
+IEEE 754 binary64 format                5.2.2
+image spec dialect                      2.5
+image color/transparency                5.3.4
+indentation                             3.1
+indirect type                           4.2.2
+infix expression                        3.3
+inherited action                        4.2.6
+interactive console                     2.2
+interpretation                          2.2
+ipv4                                    5.2.4
+left associative operator               3.3
+lexeme                                  3.1
+lexical analysis                        3.1
+line feed ( U+000A)                     3.1, 5.2.6
+map spec dialect                        2.5
+metadata                                3.1, 16
+new-line character                      5.2.7
+next line (U+0085)                      3.1, 5.2.7
+non-breaking space                      3.1
+null (U+0000)                           5.2.6
+object class                            5.3.6
+object spec dialect                     2.5
+operator                                3.3
+parent type                             4.2.6
+parse dialect                           2.5, 13.2
+passive type                            4.2.5
+polymorphic function - see action
+pre-defined word                        2.4
+precedence rules                        3.3
+prefix function                         3.3
+preprocessor dialect                    2.5, 13.1
+prologue                                3.1
+reactivity                              13.4
+Read Evaluate Print Loop (REPL)         2.2
+Red toolchain                           2.2
+Red/System (dialect)                    2.5
+REPL (Read Evaluate Print Loop)         2.2
+RGB color scheme                        5.2.4, 5.3.4, 14.1
+RGBA color/transparency scheme          5.3.4
+routine spec dialect                    2.5
+shape dialect                           2.5
+shortcut evaluation                     7.5
+single value                            3.1
+space (U+0020)                          3.1
+syntactic analysis                      3.1
+system dialect                          2.5
+tab (U+0009)                            3.1, 5.2.6
+target computer                         2.2
+throw                                   12.2.3
+toolchain                               2.2
+transparency (of image)                 5.3.4
+type                                    2.3, 4
+  active type                           4.2.5
+  atomic type                           4.2.3
+  composite type                        4.2.3
+  decaying type                         4.2.5
+  direct type                           4.2.2
+  function type                         4.2.2
+  indirect type                         4.2.2
+  parent type                           4.2.6
+  passive type                          4.2.5
+  type hierarchy                        4.3
+Unicode Code Point                      3.1
+UTF-8 scheme                            3.1, 5.4.3, 5.4.7, 5.4.10, 11.1, 11.5
+value                                   2.3, 5
+  grouped value                         3.1
+  single value                          3.1
+  value casting                         5.5
+  value conversion                      5.4
+  value creation                        5.3
+vector spec dialect                     2.5
+Visual Interface) dialect (VID)         2.5
+whitespace                              3.1
+word                                    2.4, 6.1
+....
+
 == List of outstanding issues
 ....
 issue  spec section
