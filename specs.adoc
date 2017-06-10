@@ -2459,13 +2459,33 @@ Note: for programming convenience, the following functions take `none` as argume
 
 === Operations on bitsets
 
-The following operations on bitsets have been described in section 8.3: `intersect union difference exclude`,
-and 8.4: `complement and or xor`. Series-like operations defined on bitsets are: `append clear copy find
-insert length? pick poke remove`.
+The following operations on bitsets have been described in earlier sections: `complement?` (5.3.5)
+`pick poke` (5.6), `intersect union difference exclude` (8.3), and `complement and or xor` (8.4).
+The following built-in functions are also defined on bitsets, with the following semantics:
+....
+append
+clear
+copy
+find
+insert
+length?
+negate
+remove
+....
 
 === Operations on maps
 
-Series-like operations defined maps are: `clear copy find put select`.
+The following operations on maps have been described in section 5.6: `put select`.
+The following built-in functions are also defined on maps, with the following semantics:
+....
+clear
+copy
+extend
+find
+length?
+modify
+trim
+....
 
 === Operations on objects and errors
 
