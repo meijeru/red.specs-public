@@ -2163,22 +2163,22 @@ take place component-by-component. When the two operand types are different, the
 . the type of operand 1
 
 ....
-operand 2 -> char!    integer! float!   percent! time!    pair!    tuple!   vector!
+operand 2 -> char!    integer! float!   percent! time!    pair!    tuple!     vector!
 operand 1
-char!        char!    char!    char!
-             (1)      (1)      (1)
+char!        char!    char!    char!                                          vector!
+             (1)      (1)      (1)                                            (1)(6)
 
-integer!     integer! integer! float!   float!   time!    pair!    tuple!
-             (1)                                          (1)(2)   (1)(2)(3)
+integer!     integer! integer! float!   float!   time!    pair!    tuple!     vector!
+             (1)                                          (1)(2)   (1)(2)(3)  (1)(6)
 
-float!       float!   float!   float!   float!   time!    pair!    tuple!
-             (1)                                          (1)(2)   (1)(2)(3)
+float!       float!   float!   float!   float!   time!    pair!    tuple!     vector!
+             (1)                                          (1)(2)   (1)(2)(3)  (1)(6)
 
-percent!              percent! percent! percent! time!    pair!    tuple!
-                                                          (1)(2)   (1)(2)(3)
+percent!              percent! percent! percent! time!    pair!    tuple!     vector!
+                                                          (1)(2)   (1)(2)(3)  (1)(6)
 
-time!                 time!    time!    time!    time!
-                                                 (4)(5)
+time!                 time!    time!    time!    time!                        vector!
+                                                 (4)(5)                       (1)(6)
 
 pair!                 pair!    pair!    pair!             pair!
                       (1)      (1)      (1)               (1)
@@ -2186,15 +2186,15 @@ pair!                 pair!    pair!    pair!             pair!
 tuple!                tuple!   tuple!   tuple!                     tuple!
                       (1)      (1)      (1)                        (1)
 
-vector!               vector!  vector!  vector!                             vector!
-                      (1)(6)   (1)(6)   (1)(6)                              (1)(7)
+vector!     vector!   vector!  vector!  vector!  vector!                      vector!
+            (1)(6)    (1)(6)   (1)(6)   (1)(6)   (1)(6)                       (1)(7)
 
 (1) modulo not allowed
 (2) divide not allowed
 (3) subtract not allowed
 (4) divide has float! result
 (5) multiply not allowed
-(6) result has element type of operand 1 see also issue #2216
+(6) result has element type of vector operand see also issue #2216
 (7) operand 1 and 2 must have same element type
 ....
 
