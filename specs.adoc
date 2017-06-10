@@ -2230,7 +2230,7 @@ function                       arity argument type(s)                    result 
 exp log-e log-2 log-10 sqrt     1    number!                             float!
 sin cos tan asin acos atan      1    float!
 atan2                           2    float!
-random                          1    number! time! char! pair! tuple!
+random                          1    logic! scalar!
 checksum                        2    binary! string! file!               binary!
                                      word!
 ....
@@ -2238,8 +2238,8 @@ checksum                        2    binary! string! file!               binary!
 Notes: all trigonometric functions take an argument in radians, except `atan2`
 which takes two `float!` arguments representing `y` and `x` coordinates.
 The function `random` yields a random value between zero and its argument
-value; for `pair!` and `tuple!` values it operates per component; 
-it is also defined for `series!` arguments. See section 9.
+value or one of `false` and `true` for `logic!`; for `pair!` and `tuple!` values
+it operates per component; it is also defined for `series!` arguments (see section 9).
 The `word!` argument to `checksum` indicates the method; allowed are
 `MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP`.
 
@@ -2325,7 +2325,7 @@ find <series> <expression> index of first occurrence of (component or sub-series
 Here the `<expression>` argument of `at` and `skip` should evaluate to an integer.
 For `image!` values, a `pair!` value is also allowed. This will be converted to
 a regular index. The `<expression>` argument of `find` may be a single component
-value or a sub-series.
+value or a sub-series. This function is not defined on `image!`values.
 
 For all series, if the index becomes smaller than `1` or greater than `length + 1`,
 it will be fixed at `1` or `length + 1`. If `find` does not have a match, its result is `none`.
@@ -2380,12 +2380,14 @@ a choice of characters, or a string.
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series. With the exception of
-`take` and `alter`, their result is the changed series itself.
+`take` and `alter`, their result is the changed series itself. These functions
+are not defined on `image!` values.
+
 ....
 function                      operation                                 resulting position of series
 
 reverse <series>              order of components reversed                at head
-sort <series>                 components in increasing order              at head
+sort <series>                 components in increasing/decreasing order   at head
 random <series>               components in random order                  at head
 clear <series>                components removed till tail                at tail
 remove <series>               current component removed                   unchanged, i.e. before next component
@@ -2405,6 +2407,29 @@ trim <series>                 spaces removed from string                  at hea
 pad <series>                  string padded on right side with spaces     at head
 ....
 
+The function `sort` is only defined on values of type `string! binary! vector! block! hash! paren!`.
+Since it has quite a number of options, here is the full specification:
+....
+DESCRIPTION: 
+     Sorts a series (modified); default sort order is ascending. 
+     SORT is an action! value.
+ARGUMENTS:
+     series       [series!] 
+REFINEMENTS:
+     /case        => Perform a case-sensitive sort.
+     /skip        => Treat the series as fixed size records.
+        size         [integer!] 
+     /compare     => Comparator offset, block or function.
+        comparator   [integer! block! any-function!] 
+     /part        => Sort only part of a series.
+        length       [number! series!] 
+     /all         => Compare all fields.
+     /reverse     => Reverse sort order.
+     /stable      => Stable sorting.
+RETURNS:
+     [series!]
+....
+
 The following functions take two series as arguments:
 ....
 function   operation                                 result and position
@@ -2416,6 +2441,8 @@ move       remove current component of first series  first series before next co
 max        compare series lexicographically          greater series before current component
 min        compare series lexicographically          smaller series before current component
 ....
+
+Also these functions are not defined on `image!` values.
 
 Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
 `clear find remove select take`.
