@@ -2252,7 +2252,7 @@ as well as `bitset!` and `typeset!`.
 
 The functions `intersect union difference` and `exclude` have two arguments
 of one of the types mentioned, and yield a result of the same type. The function
-`unique` has one argument of one of the types mentioned, and again yields
+`unique` has one argument of type `block! hash! string!`, and again yields
 a result of the same type. The operation of these functions follows from their names.
 
 === Bitwise functions
@@ -2456,6 +2456,18 @@ Also these functions are not defined on `image!` values.
 
 Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
 `clear find remove select take`.
+
+=== Operations on bitsets
+
+The following operations on bitsets have been described in section 8.3: `intersect union difference exclude`,
+and 8.4: `complement and or xor`. Series-like operations defined on bitsets are: `append clear copy find
+insert length? pick poke remove`.
+
+=== Operations on maps
+
+Series-like operations defined maps are: `clear copy find put select`.
+
+=== Operations on objects and errors
 
 == Control
 
