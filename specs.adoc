@@ -2298,7 +2298,11 @@ situations, it is preferable to use the _shortcut evaluation_ functions
 is `false` or `none` for `any` or `not none` (i.e.`true`) for `all`.
 See section 7.5.
 
-== Series manipulation
+== Operations on values of indirect types
+
+=== Introduction
+
+This concerns series, bitsets, maps, objects and errors.
 
 As explained earlier, series in Red, as values of indirect types, have their
 components stored contiguously, but separately from the value slot that
@@ -2307,7 +2311,12 @@ information: a pointer to the components storage, and the current index.
 The components storage itself keeps track of the length of the series
 i.e. the index of the last component.
 
-=== Positioning and navigation
+Bitsets are stored similarly to series, but have a restricted number of operations.
+
+Maps, objects and errors all have _fields_, and share a number of operations, although
+there are also differences to be taken into account.
+
+=== Series: positioning and navigation
 
 The following functions of a series value yield a new series value with the index
 modified:
@@ -2356,7 +2365,7 @@ of the `index?` values of its two `series!` arguments.
 Note: for programming convenience, the functions `length?` and `empty?` (but not `tail?`)
 accept `none` as an argument, yielding `none` as result.
 
-=== Extraction and modification of components
+=== Series: extraction and modification of components
 
 The following built-in functions have been described in section 5.6:
 `pick poke select put first second third fourth fifth`.
@@ -2521,7 +2530,7 @@ foreach [name phone] ["John" "123-4567" "Mary" "345-6789"] [print [name phone]]
 ....
 * `forall`: the `<body>` is executed repeatedly starting with the word referring
 to the head of the series; on each subsequent iteration the word will refer to the
-series at the next position (see `next` function in section 9.1).
+series at the next position (see `next` function in section 9.2).
 
 Example:
 ....
@@ -4150,10 +4159,10 @@ issue  spec section
 1956   8.4
 1957   5.7
 1960   5.6.3
-1961   9.2
+1961   9.3
 2216   8.1
 2492   3.1
-2521   9.2
+2521   9.3
 2527   5.7
 2523   5.6.3
 2554   5.6.2
