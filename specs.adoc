@@ -2155,13 +2155,14 @@ max min               2     scalar!             scalar!           same as greate
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
 mentioned through notes (1) to (7). The operations on values of type `pair! tuple!` and `vector!`
-take place component-by-component. When the two operand types are different, the result type is determined as
-(in decreasing order of precedence):
+take place component-by-component. When the two operand types are different,
+the result type is determined as (in decreasing order of precedence):
 
 . the higher dimension type
 . the higher precision type
 . the type of operand 1
 
+_**See issue #2776**_
 ....
 operand 2 -> char!    integer! float!   percent! time!    pair!    tuple!     vector!
 operand 1
@@ -4062,7 +4063,7 @@ GUI (graphical user interface)          13.3
 hexadecimal codepoint                   5.2.6
 homoiconic                              2.3
 horizontal tab (U+0009)                 3.1, 5.2.6
-host coputer                            2.2
+host computer                           2.2
 IEEE 754 binary64 format                5.2.2
 image spec dialect                      2.5, 5.3.4
 image color/transparency                5.3.4
@@ -4178,4 +4179,5 @@ issue  spec section
 2663   5.8.2
 2668   11.1
 2686   11.1
+2776   8.1
 ....
