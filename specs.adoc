@@ -2479,7 +2479,8 @@ For `<bitset-spec>` see section 5.3.5. If this is a block, it may not contain `n
 === Operations on maps
 
 The following operations on maps have been described in section 5.6: `put select`.
-The following built-in functions are also defined on maps, with the following semantics:
+The following built-in functions are also defined on maps,
+with the following semantics:
 ....
 clear <map>              removes all key-value pairs from the map
 copy <map>               yields a copy of the map
@@ -2491,6 +2492,17 @@ length? <map>            yields the number of key-value pairs
 ....
 
 === Operations on objects and errors
+
+The following operations on objects have already been described: `put select` (section 5.6),
+`object context construct extend` (section 5.3.7), `in` (section 6.3.7). Of these,
+`in` and `select` are also defined on errors.
+
+The following built-in functions are also defined on objects and errors,
+with the following semantics:
+....
+copy <any-object>          yields a copy of the object or error
+find <any-object> <word>   yields true if key indicated by <word> exists, else none
+....
 
 == Control
 
