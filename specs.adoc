@@ -1360,7 +1360,7 @@ and the first position where the key is found is marked. The result is then
 the component *after* the found key (single or sequence)._**See issue #2625**_ For the other types,
 which contain key/value pairs, the result is the value corresponding to the given key.
 In the case of `object!` and `error!` it is customary to call the keys _fields_.
-Fields of `error!`values cannot be set.-**See issue #2554**_
+Fields of `error!` values cannot be set._**See issue #2554**_
 
 Setting a map component to `none` removes the component and its key from the map.
 
@@ -2397,27 +2397,27 @@ the series value slot to point to the changed series. With the exception of
 are not defined on `image!` values.
 
 ....
-function                      operation                                 resulting position of series
+function                      operation                                    resulting position of series
 
-reverse <series>              order of components reversed                at head
-sort <series>                 components in increasing/decreasing order   at head
-random <series>               components in random order                  at head
-clear <series>                components removed till tail                at tail
-remove <series>               current component removed                   unchanged, i.e. before next component
-take <series>                 current component removed                   (unchanged, result is component value)
+reverse <series>              order of components reversed                 at head
+sort <series>                 components in increasing/decreasing order    at head
+random <series>               components in random order                   at head
+clear <series>                components removed till tail                 at tail
+remove <series>               current component removed                    unchanged, i.e. before next component
+take <series>                 current component removed                    (unchanged, result is component value)
 change <series> <expression>  current component replaced
-                              by value of <expression>                    after current component
-replace <series> <pattern>    components equal to <pattern>               at head
+                              by value of <expression>                     after current component
+replace <series> <pattern>    components equal to <pattern>                at head
      <expression>             replaced by value of <expression>
-alter <series> <expression>   if value of expression in <series>          (at head, result is true if appended,
-                              remove it, else append                      else false)
-insert <series> <expression>  insert value of <expression>                before current component
+alter <series> <expression>   if value of expression in <series>           (at head, result is true if appended,
+                              it is removed, else appended                 else false)
+insert <series> <expression>  value of <expression> inserted               before current component
                               before current component
-append <series> <expression>  insert value of expression at tail          at head
-repend <series> <expression>  insert reduced value of expression at tail  at head
-trim <series>                 spaces removed from string                  at head
-                              or none from block or hash value            see also issue #2521
-pad <series>                  string padded on right side with spaces     at head
+append <series> <expression>  value of expression inserted at tail         at head
+repend <series> <expression>  reduced value of expression inserted at tail at head
+trim <series>                 spaces removed from string                   at head
+                              or none from block or hash value             see also issue #2521
+pad <series>                  string padded on right side with spaces      at head
 ....
 
 The function `sort` is only defined on values of type `string! binary! vector! block! hash! paren!`.
@@ -2471,9 +2471,9 @@ append <bitset> <bitset-spec>       idem
 remove/part <bitset> <bitset-spec>  set the bits at the indicated position to false
 clear <bitset>                      set all bits to false
 negate <bitset>                     complement 
-copy <bitset>                       yields a copy of the bitset
-find <bitset> <bitset-spec>         yields true if all indicated bits are set
-length? <bitset>                    yields the number of bits reserved for the bitset
+copy <bitset>                       yield a copy of the bitset
+find <bitset> <bitset-spec>         yield true if all indicated bits are set
+length? <bitset>                    yield the number of bits reserved for the bitset
 ....
 
 For `<bitset-spec>` see section 5.3.5. If this is a block, it may not contain `not`.
@@ -2484,13 +2484,13 @@ The following operations on maps have been described in section 5.6: `put select
 The following built-in functions are also defined on maps,
 with the following semantics:
 ....
-clear <map>              removes all key-value pairs from the map
-copy <map>               yields a copy of the map
-extend <map> <items>     adds key-value pairs from <items> (a block, hash or map)
+clear <map>              remove all key-value pairs from the map
+copy <map>               yield a copy of the map
+extend <map> <items>     add key-value pairs from <items> (a block, hash or map)
                          replacing the value if the corresponding key is already present
-find <map> <value>       yields true if key indicated by <value> exists, else none
+find <map> <value>       yield true if key indicated by <value> exists, else none
                          <value> must be of type scalar!, any-word! or any-string!
-length? <map>            yields the number of key-value pairs
+length? <map>            yield the number of key-value pairs
 ....
 
 === Operations on objects and errors
@@ -2502,8 +2502,8 @@ The following operations on objects have already been described: `put select` (s
 The following built-in functions are also defined on objects and errors,
 with the following semantics:
 ....
-copy <any-object>          yields a copy of the object or error
-find <any-object> <word>   yields true if key indicated by <word> exists, else none
+copy <any-object>          yield a copy of the object or error
+find <any-object> <word>   yield true if key indicated by <word> exists, else none
 ....
 
 == Control
