@@ -1362,6 +1362,8 @@ which contain key/value pairs, the result is the value corresponding to the give
 In the case of `object!` and `error!` it is customary to call the keys _fields_.
 Fields of `error!`values cannot be set.-**See issue #2554**_
 
+Setting a map component to `none` removes the component and its key from the map.
+
 Values of type `time! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
 Again, for the direct types among them, only the `<path>` and `pick` forms are valid.
