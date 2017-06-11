@@ -2466,7 +2466,7 @@ The following built-in functions are also defined on bitsets, with the following
 ....
 insert <bitset> <bitset-spec>       set the bits at the indicated positions to true
 append <bitset> <bitset-spec>       idem
-remove/part <bitset> <bitset-spec>  set the bit at the indicated position to false
+remove/part <bitset> <bitset-spec>  set the bits at the indicated position to false
 clear <bitset>                      set all bits to false
 negate <bitset>                     complement 
 copy <bitset>                       yields a copy of the bitset
@@ -2474,20 +2474,20 @@ find <bitset> <bitset-spec>         yields true if all indicated bits are set
 length? <bitset>                    yields the number of bits reserved for the bitset
 ....
 
-For `<bitset-spec>` see section 5.3.5.
+For `<bitset-spec>` see section 5.3.5. If this is a block, it may not contain `not`.
 
 === Operations on maps
 
 The following operations on maps have been described in section 5.6: `put select`.
 The following built-in functions are also defined on maps, with the following semantics:
 ....
-clear
-copy
-extend
-find
-length?
-modify
-trim
+clear <map>              removes all key-value pairs from the map
+copy <map>               yields a copy of the map
+extend <map> <items>     adds key-value pairs from <items> (a block, hash or map)
+                         replacing the value if the corresponding key is already present
+find <map> <value>       yields true if key indicated by <value> exists, else none
+                         <value> must be of type scalar!, any-word! or any-string!
+length? <map>            yields the number of key-value pairs
 ....
 
 === Operations on objects and errors
