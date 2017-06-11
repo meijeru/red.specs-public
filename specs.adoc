@@ -327,7 +327,8 @@ tag!            tag in the sense of HTML, XML etc.
 email!          email address
 binary!         sequence of bytes
 image!          2-dimensional array of pixels (RGBA values stored in 4 bytes each) 
-bitset!         sequence of values true or false
+bitset!         sequence of values true or false, used e.g. to model sets of
+                non-negative integers, such as Unicode Code Points
 map!            collection of pairs of values where the first value in each pair functions
                 as key for retrieval of the second; keys are restricted to types in
                 scalar!, any-word! and any-string!
@@ -945,7 +946,7 @@ except that `<binary>` is not allowed as its argument. The `<bitset-spec>` that 
 an `integer!` value produces an "empty" bitset (all bits set to false) of size the nearest
 multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers,
 or ranges of them, that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
-A `string!` va;ue is interpreted as the collection of all its component characters.
+A `string!` value is interpreted as the collection of all its component characters.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
