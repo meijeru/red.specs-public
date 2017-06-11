@@ -2464,15 +2464,17 @@ The following operations on bitsets have been described in earlier sections: `co
 `pick poke` (5.6), `intersect union difference exclude` (8.3), and `complement and or xor` (8.4).
 The following built-in functions are also defined on bitsets, with the following semantics:
 ....
-append
-clear
-copy
-find
-insert
-length?
-negate
-remove
+insert <bitset> <bitset-spec>       set the bits at the indicated positions to true
+append <bitset> <bitset-spec>       idem
+remove/part <bitset> <bitset-spec>  set the bit at the indicated position to false
+clear <bitset>                      set all bits to false
+negate <bitset>                     complement 
+copy <bitset>                       yields a copy of the bitset
+find <bitset> <bitset-spec>         yields true if all indicated bits are set
+length? <bitset>                    yields the number of bits reserved for the bitset
 ....
+
+For `<bitset-spec>` see section 5.3.5.
 
 === Operations on maps
 
