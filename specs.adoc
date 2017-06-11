@@ -3249,9 +3249,12 @@ This gives the following output:
 
 == Pre-defined words list
 
-=== constants
+=== Constants
+
+==== Characters
+
+See also section 5.2.6
 ....
-  characters
     comma
     CR
     dbl-quote
@@ -3264,25 +3267,38 @@ This gives the following output:
     sp
     space
     tab
-  floating point numbers
+....
+
+==== Floating point numbers
+
+See also sections 5.2.2 and 8.2 
+....
     pi
-  logic! values
+....
+
+==== Logic and related values
+....
     false
     no     = false
     off    = false
-    on     = true
     true
+    on     = true
     yes    = true
-  none! value
     none
-  strings
+....
+
+==== Strings
+....
     crlf
     font-fixed
     font-sans-serif
     font-serif
-    p-indent
-    value
-  tuples (RGB color values)
+....
+
+==== Tuples
+
+These are RGB color values (see also section 5.3.4)
+....
     aqua
     beige
     black
@@ -3330,7 +3346,10 @@ This gives the following output:
     yello
     yellow
 ....
-=== datatypes
+
+=== Datatypes
+
+See also section 4.1
 ....
     action!
     binary!
@@ -3378,7 +3397,10 @@ This gives the following output:
     vector!
     word!
 ....
-=== typesets
+
+=== Typesets
+
+See also section 4.3
 ....
     all-word!
     any-block!
@@ -3396,7 +3418,7 @@ This gives the following output:
     scalar!
     series!
 ....
-=== functions
+=== Functions
 
 The functions are classified by functionality: 
 
