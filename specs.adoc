@@ -3347,7 +3347,9 @@ These are RGB color values (see also section 5.3.4)
     yellow
 ....
 
-=== Datatypes
+=== Datatypes and typesets
+
+==== Datatypes
 
 See also section 4.1
 ....
@@ -3398,7 +3400,7 @@ See also section 4.1
     word!
 ....
 
-=== Typesets
+==== Typesets
 
 See also section 4.3
 ....
@@ -3412,6 +3414,7 @@ See also section 4.3
     any-type!
     any-word!
     default!
+    external!
     immediate!
     internal!
     number!
@@ -3444,7 +3447,7 @@ The letter in front of each word gives the type: `A` for `action!`, `N` for `nat
 derived from another one, the two are written on one line, and the most frequently
 used one is written first.
 
-==== enquiry
+==== Enquiry
 ....
 F    action?
 F    any-block?
@@ -3514,7 +3517,7 @@ F    vector?
 F    word?
 F    words-of
 ....
-==== making values
+==== Making values
 ....
 F    charset
 F    collect
@@ -3531,7 +3534,7 @@ F    object
 N    reduce
 F    routine
 ....
-==== converting values
+==== Converting values
 ....
 N    as
 R    as-color
@@ -3577,7 +3580,7 @@ F    to-url
 F    to-word
 N    uppercase
 ....
-==== comparison
+==== Comparison
 ....
 O    <        N    lesser?
 O    <=       N    lesser-or-equal?
@@ -3588,7 +3591,7 @@ O    =?       N    same?
 O    >        N    greater?
 O    >=       N    greater-or-equal?
 ....
-==== evaluation and binding
+==== Evaluation and binding
 ....
 N    all
 N    any
@@ -3604,7 +3607,7 @@ N    set
 N    unset
 N    value?
 ....
-==== numerical and logical computation
+==== Numerical and logical computation
 ....
 A    absolute
 O    +           A    add
@@ -3650,7 +3653,7 @@ F    tan         N    tangent
 O    xor         A    xor~
 N    zero?
 ....
-==== series manipulation
+==== Series manipulation
 ....
 F    alter
 A    append
@@ -3696,7 +3699,7 @@ A    take
 F    third
 A    trim
 ....
-==== control
+==== Control
 ....
 F    also
 N    break
@@ -3722,7 +3725,7 @@ N    unless
 N    until
 N    while
 ....
-==== input/output
+==== Input/Output
 ....
 R    ask
 R    browse
@@ -3772,7 +3775,7 @@ F    what-dir
 A    write
 R    write-clipboard
 ....
-==== exception handling
+==== Exception handling
 ....
 F    attempt
 N    catch
@@ -3780,12 +3783,12 @@ F    cause-error
 N    throw
 N    try
 ....
-==== preprocessor
+==== Preprocessor
 ....
 F    expand
 F    expand-directives
 ....
-==== parser
+==== Parser
 ....
 F    on-parse-event
 N    parse
@@ -3816,14 +3819,14 @@ F    unview
 F    view
 F    within?
 ....
-==== reactivity
+==== Reactivity
 ....
 O    is       F is~ (hidden)
 F    react
 F    react?
 R    set-quiet
 ....
-==== environment and OS-related
+==== Environment and OS-related
 ....
 N    call
 N    get-env
@@ -3833,7 +3836,7 @@ N    set-env
 N    stats
 N    wait
 ....
-==== help facilities
+==== Help facilities
 ....
 F    ?
 F    ??
