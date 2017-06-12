@@ -1483,9 +1483,9 @@ For two values to succeed the `strict-equal?` test, they have to be of the same
 type and also have exactly the same value, i.e. not have the differences allowed
 for the `equal?` test.
 
-The `equal?` test ignores case differences in the spelling of words, characters
-and strings, and in the case of floating point numbers, a very small difference
-(1 in 10^16^) in actual value._**See also issues #2658, 2661 and 2661**_
+The `equal?` test ignores case differences in the spelling of words and strings,
+and in the case of floating point numbers, a very small difference (1 in 10^16^)
+in actual value._**See also issues #2658, 2661 and 2661**_
 
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
@@ -1511,7 +1511,7 @@ The following cases can be distinguished:
 * straightforward numerical ordering: `char! integer! float! percent!` and `time!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`
-* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`_**See issue #2663**_
+* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!` _**See issue #2663**_
 * no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
 action! native! op! handle! event!` and `unset!`.
 
