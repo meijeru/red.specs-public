@@ -2462,7 +2462,7 @@ min        compare series lexicographically          smaller series before curre
 Also these functions are not defined on `image!` values.
 
 Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
-`clear find remove select take`.
+`clear find length? remove select take`.
 
 === Operations on bitsets
 
