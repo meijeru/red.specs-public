@@ -679,6 +679,8 @@ A `<tuple-literal>` is written as 3 to 12 `integer!` values in the range `0..255
 
 Examples: `192.168.1.2` (an IPv4 address), `255.255.128` (an RGB value)
 
+For a list of pre-defined words referring to RGB values see section 14.1.5.
+
 ==== `word!`
 
 **`S115`**::
@@ -730,6 +732,8 @@ The correspondence between the escaped characters and Unicode Code Points is giv
      #"^A" - #"^Z"              control characters  U+0001 - U+001A
      #"^[" #"^\" #"^]"          control characters  U+001B - U+001D
      #"^_"                      control character   U+001F
+
+For more pre-defined words referring to characters see section 14.1.1.
     
 Note that code point `U+001E` cannot be represented by `#"^^"` as expected, since that is already taken for caret.
 Note also that `^` will be ignored in front of any single character with which it does not form (the beginning of)
@@ -3251,29 +3255,31 @@ This gives the following output:
 
 === Constants
 
+For convenience, the values are indicated.
+
 ==== Characters
 
 See also section 5.2.6
 ....
-    comma
-    CR
-    dbl-quote
-    dot
-    escape
-    lf
-    newline
-    null
-    slash
-    sp
-    space
-    tab
+    comma         #","
+    CR            #"^(0D)"
+    dbl-quote     #"^""
+    dot           #"."
+    escape        #"^["
+    lf            #"^/"
+    newline       #"^/"
+    null          #"^@"
+    slash         #"/"
+    sp            #" "
+    space         #" "
+    tab           #"^-"
 ....
 
 ==== Floating point numbers
 
 See also sections 5.2.2 and 8.2 
 ....
-    pi
+    pi            3.141592653589793
 ....
 
 ==== Logic and related values
@@ -3289,10 +3295,7 @@ See also sections 5.2.2 and 8.2
 
 ==== Strings
 ....
-    crlf
-    font-fixed
-    font-sans-serif
-    font-serif
+    crlf          "^(0D)^(0A)"
 ....
 
 ==== Tuples
