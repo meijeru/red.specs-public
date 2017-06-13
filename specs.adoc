@@ -714,18 +714,18 @@ explicitly handle their interpretation.
 
 The correspondence between the escaped characters and Unicode Code Points is given in the table below.
 
-     Named Form   Short Form    Character           Code Point
+     Named Form   Short Form    Character           Code Point        Pre-defined word(s)
      
-     #"^(null)    #"^@"         null                U+0000
-     #"^(back)"   #"^H"         backspace           U+0008
-     #"^(tab)"    #"^I" #"^-"   horizontal tab      U+0009
-     #"^(line)"   #"^J" #"^/"   line feed           U+000A
+     #"^(null)    #"^@"         null                U+0000            null
+     #"^(back)"   #"^H"         backspace           U+0008      
+     #"^(tab)"    #"^I" #"^-"   horizontal tab      U+0009            tab
+     #"^(line)"   #"^J" #"^/"   line feed           U+000A            lf, newline
      #"^(page)"   #"^L"         form feed           U+000C 
-     #"^(esc)"    #"^["         escape              U+001B
+     #"^(esc)"    #"^["         escape              U+001B            escape
      #"^(del)"    #"^~"         delete              U+007F
      
      
-     #"^""                      " - double quote    U+0022
+     #"^""                      " - double quote    U+0022            dbl-quote
      #"^^"                      ^ - caret           U+005E
      #"^A" - #"^Z"              control characters  U+0001 - U+001A
      #"^[" #"^\" #"^]"          control characters  U+001B - U+001D
