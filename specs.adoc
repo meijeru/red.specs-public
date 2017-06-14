@@ -634,6 +634,8 @@ show the components of the block. It should be remembered, however, that `make t
 evaluate their arguments, so that any `<expression>`  which evaluates to a type or a block
 is allowed in the relevant argument positions.
 
+In the following rules, the sign `°` signifies an optional element.
+
 === Lexical structure of values
 
 ==== `integer!`
@@ -863,8 +865,6 @@ an `object!` value as second argument has a different interpretation.
 In the case of `make error!` only the type `error!` is allowed as first argument
 _**See issue #2640**_.
 
-In the following rules, the sign `°` signifies an optional element.
-
 ==== `typeset!`
 
 **`S124`**::
@@ -918,7 +918,7 @@ make vector! [#"a" #"b" #"c"]`
 **`S127`**::
 ....
 <image> ::= make image! <image-spec>
-<image-spec> ::= <pair> | [<pair> <tuple>] | [<pair> <binary>] | [<pair> <binary> <binary>] 
+<image-spec> ::= <pair> | [<pair> <tuple> <binary>°] | [<pair> <binary> <binary>°] 
 ....
 
 An `image!` value stores a sequence of RGBA (color + transparency) values for pixels, using 4 bytes in 1 word for
