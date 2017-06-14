@@ -326,7 +326,7 @@ url!            URL
 tag!            tag in the sense of HTML, XML etc.
 email!          email address
 binary!         sequence of bytes
-image!          2-dimensional array of pixels (RGBA values stored in 4 bytes each) 
+image!          2-dimensional array of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
 bitset!         sequence of values true or false, used e.g. to model sets of
                 non-negative integers, such as Unicode Code Points
 map!            collection of pairs of values where the first value in each pair functions
@@ -920,16 +920,23 @@ make vector! [#"a" #"b" #"c"]`
 <image> ::= make image! <image-spec>
 <image-spec> ::= <pair> | [<pair> <tuple>] | [<pair> <binary>] | [<pair> <binary> <binary>] 
 ....
+
+An `image!` value stores a sequence of RGBA (color + transparency) values for pixels, using 4 bytes in 1 word for
+each pixel, as follows: B in bits 0..7, G in bits 8..15, R in bits 16..23, A in bits 24..31. When specifying or retrieving
+a single pixel (see also section 5.6), these values are encoded in a 3 or 4-element `tuple!` value as follows:
+first 3 elements are R, G and B, and last element, if present, is 255 - A. Thus, with a 3-element tuple,
+the default value for A is obtained as `255` (fully opaque).
+
 If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and with all pixels having color
-`255.255.255` and transparency `0`. If a `<tuple>` is specified, this determines the color of all pixels,
-transparency being `0`. If a single `<binary>` is specified, this should contain the array of colors of all pixels
-(three bytes per pixel, stored by horizontal line), the transparency being `0`. The second `<binary>`, if present,
+`255.255.255` and transparency `255`. If a `<tuple>` is specified, this determines the color and transparency
+of all pixels as stated above. If a single `<binary>` is specified, this should contain the sequence of colors of all pixels
+(three bytes per pixel, stored by horizontal line), the transparency being `255`. The second `<binary>`, if present,
 contains the transparency (one byte per pixel, in the same ordering).
 
 Examples:
 ....
 make image! 200x300, make image! [200x300 255.0.0]
-make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{00000000}]
+make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{FFFFFFFF}]
 ....
 
 ==== `bitset!`
@@ -1335,6 +1342,7 @@ Built-in functions exist to perform the same operations. The correspondence is a
 if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
 and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `pair!` value as index
 must be enclosed in parentheses, thus if `v` is an image, the pixel at 2x2 is addressed as `v/(2x2)`.
+The component of an `image!` is a `tuple!` value as explained in section 5.3.4.
 Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
 `true ~ 1` and `false ~ 2`.
 
