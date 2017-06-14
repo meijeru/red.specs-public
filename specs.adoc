@@ -928,8 +928,9 @@ first 3 elements are R, G and B, and last element, if present, is 255 - A. With 
 the default value of `255` (fully opaque).
 
 If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and with all pixels having color
-`255.255.255` and transparency `255`. If a `<tuple>` is specified, this determines the color and transparency
-of all pixels as stated above. If a single `<binary>` is specified, this should contain the sequence of colors of all pixels
+`255.255.255` and transparency `255`. If a `<tuple>` is specified, it should have 3 or 4 elements; any more are
+ignored. These elements determine determines the color and transparency of all pixels as stated above.
+If a single `<binary>` is specified, this should contain the sequence of colors of all pixels
 (three bytes per pixel, stored by horizontal line), the transparency being `255`. The second `<binary>`, if present,
 contains the transparency (one byte per pixel, in the same ordering). If the previous item in the specification
 was a 4-element tuple, this `<binary>` is ignored. 
