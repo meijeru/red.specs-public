@@ -300,7 +300,7 @@ integer!        integer numbers
 float!          floating point (decimal) numbers
 percent!        id. expressed as a percentage
 time!           time interval or point in time, stored as a floating point number of seconds
-date!           Julian date, optionally with point in time and timezone
+date!           date according to the Gregorian calendar, optionally with point in time and timezone
 pair!           2-dimensional coordinates or size 
 tuple!          e.g. color in RGB or other scheme, IPv4 adres
 word!           identifier that can be bound
