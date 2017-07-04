@@ -1180,6 +1180,7 @@ The keys and values are not evaluated.
 * Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
 or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
 This does not apply to `image!` values.
+* For the following types, `make` operates in the same way as `to` (see next section): `pair!` _**to be completed**_
 
 === Conversion of values (`to`)
 
