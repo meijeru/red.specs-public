@@ -198,6 +198,7 @@ in the individual sub-sections of section 5.
              | <integer-literal>% | <float-literal>%    ; percent!
              | <integer-literal>x<integer-literal>      ; pair!
              | <time-literal>                           ; time!
+             | <date-literal>                           ; date!
              | <tuple-literal>                          ; tuple!
              | <word-literal>                           ; word!
              | '<word-literal>                          ; lit-word!
@@ -299,6 +300,7 @@ integer!        integer numbers
 float!          floating point (decimal) numbers
 percent!        id. expressed as a percentage
 time!           time interval or point in time, stored as a floating point number of seconds
+date!           Julian date, optionally with point in time and timezone
 pair!           2-dimensional coordinates or size 
 tuple!          e.g. color in RGB or other scheme, IPv4 adres
 word!           identifier that can be bound
@@ -349,7 +351,6 @@ unset!          single value indicating the absence of a usable value
 event!          representation of external activity   
 
 TBD
-date!
 point!
 closure!
 port!
@@ -456,6 +457,7 @@ integer!          L                 D                A                          
 float!            L                 D                A                            P
 percent!          L                 D                A                            P               float!
 time!             L                 D                C                            P               float!
+date!             L                 D                C                            P
 pair!             L                 D                C                            P
 tuple!            L                 D                C                            P
 word!             L                 D                A             R              A              (symbol!)
@@ -493,7 +495,6 @@ unset!            M                 D                A                          
 event!            W                 D                C                            P
 
 TBD
-date!
 point!
 closure!
 port!
@@ -528,7 +529,8 @@ any-type!
    |  |  |  |--any-float!   <---- see issue #2565
    |  |  |     |--float!     
    |  |  |     |--percent!   
-   |  |  |--time!          
+   |  |  |--time!
+   |  |  |--date!
    |  |  |--pair!          
    |  |  |--tuple!         
    |  |--any-word!
@@ -572,7 +574,6 @@ any-type!
       |--routine!         
    
 TBD
-date!
 point!
 closure!
 port!
@@ -843,6 +844,15 @@ list/:i
 list/(i)
 copy/part
 ....
+
+==== `date!`
+
+**`S135`**::
+....
+<date-literal> ::= 
+....
+
+Examples:
 
 === Creation of values (`make`)
 
@@ -1382,16 +1392,17 @@ Fields of `error!` values cannot be set._**See issue #2554**_
 
 Setting a map component to `none` removes the component and its key from the map.
 
-Values of type `time! pair! email!` and `image!` also admit component selection
+Values of type `time! date! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
 Again, for the direct types among them, only the `<path>` and `pick` forms are valid.
 
-In case of `time! email! image!` and `event!`, the result is obtained by performing
+In case of `time! date! email! image!` and `event!`, the result is obtained by performing
 a certain calculation.
 
 * `time!` values: given a `float!` number of seconds, the `hour` and `minute` components
 are the result of finding the whole number of `3600` seconds in the total, and then the
 whole number of `60` seconds in the remainder; the `second` component is what remains after that
+* `date!` values: 
 * `email!` values: the `user` component is the part before the `@` and the `host` component
 is the part after the `@`
 * `image!` values: the `size` component is the `pair!` value that holds the dimensions,
@@ -1407,6 +1418,7 @@ type         indexed      built-in    key values or types                built-i
              components   functions                                      functions
 
 time!        1 2 3        pick        hour minute second                 --
+date!
 pair!        1 2          pick        x y                                --
 tuple!       1 .. 12      pick        --                                 --
 any-block!   integer!     pick poke   any-type!                          select put
@@ -1526,7 +1538,7 @@ for the values to be compared:
 
 The following cases can be distinguished: 
 
-* straightforward numerical ordering: `char! integer! float! percent!` and `time!`
+* straightforward numerical ordering: `char! integer! float! percent! time!` and `date!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`
 * lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!` _**See issue #2663**_
@@ -2201,6 +2213,8 @@ percent!              percent! percent! percent! time!    pair!    tuple!     ve
 
 time!                 time!    time!    time!    time!                        vector!
                                                  (4)(5)                       (1)(6)
+
+date!
 
 pair!                 pair!    pair!    pair!             pair!
                       (1)      (1)      (1)               (1)
@@ -3221,8 +3235,8 @@ for the current process
 * `set-env` with a string or word argument and a string value as second argument will set
 the named variable to the value, or unset it if the second argument in `none`
 
-The function `now` yields the current date and time as a Red `date!` value _**for the moment
-only `now/time` is available yielding the time as a Red `time!` value**_.
+The function `now` yields the current date and time as a Red `date!` value. For its
+refinements see section 5.2.14.
 
 The function `wait` with a `number!` or `time!` argument will wait for the specified time
 or number of seconds.
