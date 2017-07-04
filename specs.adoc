@@ -2448,7 +2448,7 @@ insert <series> <expression>  value of <expression> inserted               befor
 append <series> <expression>  value of expression inserted at tail         at head
 repend <series> <expression>  reduced value of expression inserted at tail at head
 trim <series>                 spaces removed from string                   at head
-                              or none from block or hash value             see also issues #2521, 2783
+                              or none from block or hash value
 pad <series>                  string padded on right side with spaces      at head
 ....
 
@@ -4267,7 +4267,6 @@ issue  spec section
 1961   9.3
 2216   8.1
 2492   3.1
-2521   9.3
 2527   5.7
 2523   5.6.3
 2554   5.6.2
@@ -4294,5 +4293,4 @@ issue  spec section
 2668   11.1
 2686   11.1
 2776   8.1
-2783   9.3
 ....
