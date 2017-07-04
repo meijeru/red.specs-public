@@ -1403,8 +1403,8 @@ a certain calculation.
 are the result of finding the whole number of `3600` seconds in the total, and then the
 whole number of `60` seconds in the remainder; the `second` component is what remains after that
 * `date!` values: 
-* `email!` values: the `user` component is the part before the `@` and the `host` component
-is the part after the `@`
+* `email!` values: the `user` component is the part before the `@` (of type `string!`)
+and the `host` component is the part after the `@`
 * `image!` values: the `size` component is the `pair!` value that holds the dimensions,
 the `argb`, `rgb` and `alpha` components are the `binary!` sequences of RGBA, RGB and A values
 respectively
