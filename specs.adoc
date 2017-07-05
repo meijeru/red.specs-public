@@ -1355,7 +1355,7 @@ The function `to-word` is defined for:
 * `logic!` and `datatype!` values: yields the word that refers to the value
 * `string!` values: yields the result of `load` or an error
 
-The functions `to-lit-word` etc. perform the same conversiosn and yield
+The functions `to-lit-word` etc. perform the same conversions and yield
 the result as a value of the appropriate type.
 
 Note that `to-word none` does not yield the word `none`, it raises an error.
@@ -1367,6 +1367,12 @@ derived from the `face!` object which describes a window in the Red GUI system.
 It yields the face such as it would be rendered on the screen, as an `image!`
 value. See further the documentation of the GUI system (reference in section
 17).
+
+==== Target type `date!`
+
+The function `to-date` is defined for non-negative _** not checked!**_ `integer!` values
+which are interpreted as the number of seconds elapsed since 0:00:00 hours on 1 January 1970 to
+the desired date and time (Unix convention). It is also trivially defined for `date!` values.
 
 ==== Additional conversion functions
 
