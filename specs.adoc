@@ -850,7 +850,8 @@ copy/part
 A `date!` value comprises day, month and year information as well as, optionally,
 a time of day -- a non-negative `time!` value from 0:00:00 to 24:00:00 -- optionally
 combined with timezone information; the latter is a signed time value between
--15:45:00 and +15:45:00 in whole quarters of an hour.
+-15:45:00 and +15:45:00 in multiples of 00:15:00. Note that actual timezones
+vary between -12:00:00 and +14:00:00.
 
 A `<date-literal>` uses either a very restricted form of the _ISO 8601 standard
 date/time representation_ or a native Red format, as explained in the following
@@ -859,7 +860,8 @@ lexical/syntactic rule.
 **`S135`**::
 ....
 <date-literal> ::= <ISO 8601 date/time representation> | <date-part><time-part>°
-<date-part> ::=
+<date-part> ::= <year>/<month>/<day> | <year>-<month>-<day> |
+                <day>/month/<year> | <day>-<month>-<year>
 <time-part> ::=  /<hmsd><zone>
                | T<hmsd><zone>
 <zone>::= Z | +<zone-offset> | -<zone-offset>
@@ -871,13 +873,32 @@ with `y` `m` `d` `h` `m` `s` standing for the digits of year, month, day, hours,
 minutes and seconds respectively, and `T` and `Z` being obligatory elements.
 This represents a date and time with timezone 0:00 (UTC).
 
-For `<hmsd>` `<hours>` and `<minutes>` see rule `S113`; while `<hours>` may be
-a single-digit number, `<minutes>` must have 2 digits here; `<hhmm>` stands for
+The `<year>` part is either a 4-digit number with -- in initial position --
+an optional `-` sign, or -- but only in final position -- an unsigned 1- or 2-digit number
+which is interpreted in the 21st or 20th century depending on whether _**problem!**_.
+
+The `<month>` part is either a 1- or 2-digit unsigned number, or one of the month names
+which are stored in `system/locale/months` (both the full names and the first 3 characters
+of each name are allowed, and they are case-insensitive). Thus for the default locale, these
+names are:
+....
+Jan[uary] Feb[ruary] Mar[ch] Apr[il] May Jun[e] Jul[y]
+Aug[ust] Sep[tember] Oct[ober] Nov[ember] Dec[ember]
+....
+
+The `<day>` part is a 1- or 2-digit unsigned number. The combination of year, month and day
+is checked for validity.
+
+For `<hmsd> <hours>` and `<minutes>` see rule `S113`; while `<hours>` may be
+a single-digit number, `<minutes>` must have 2 digits here _**why**_; `<hhmm>` stands for
 hours and minutes as in the ISO representation.
 
 Note that all dates are understood to be in the (proleptic) Gregorian calendar.
+This has particular significance for the check on the validity of the date 29-Feb,
+since the leap years are computed according to that calendar both for present
+and future, but also for all past years, including before 1582 AD.
 
-Examples: `20170705T175800Z` `5-Jul-2017/19:58+2:00` ; these values are equal.
+Examples: `20170705T175800Z`, `5-Jul-2017/19:58+2:00` ; these values are equal.
 
 === Creation of values (`make`)
 
