@@ -1391,12 +1391,14 @@ Note that `pick` and `poke` additionally allow the `logic!` values `true` and `f
 Values of type `time! date! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `time!` values, which are stored as a `float!` number
 of seconds, this selection proceeds by calculation (`1 ~ hour 2 ~ minute 3 ~ second`).
-For `date!` values, which also have a time component, similarly `1 ~ year 2 ~ month `3 ~ day
+For `date!` values, which also have a time component, similarly `1 ~ year 2 ~ month 3 ~ day
 4 ~ zone 5 ~ time 6 ~ hour 7 ~ minute 8 ~ second 9 ~ weekday 10 ~ yearday = julian`.
 Here `year month day hour minute weekday` and `yearday` (also called `julian`) are `integer!`
 values, `second` is a `float!` value and `zone` and `time` are `time!` values.
 For `pair!` , `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
-top to bottom). As stated in section 4.2.3, component selection in values of direct types
+top to bottom).
+
+As stated in section 4.2.3, component selection in values of direct types
 cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
 
