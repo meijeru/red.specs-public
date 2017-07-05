@@ -300,7 +300,7 @@ integer!        integer numbers
 float!          floating point (decimal) numbers
 percent!        id. expressed as a percentage
 time!           time interval or point in time, stored as a floating point number of seconds
-date!           date according to the Gregorian calendar, optionally with point in time and timezone
+date!           date according to the Gregorian calendar, optionally with time of day and timezone
 pair!           2-dimensional coordinates or size 
 tuple!          e.g. color in RGB or other scheme, IPv4 adres
 word!           identifier that can be bound
@@ -847,12 +847,37 @@ copy/part
 
 ==== `date!`
 
+A `date!` value comprises day, month and year information as well as, optionally,
+a time of day -- a non-negative `time!` value from 0:00:00 to 24:00:00 -- optionally
+combined with timezone information; the latter is a signed time value between
+-15:45:00 and +15:45:00 in whole quarters of an hour.
+
+A `<date-literal>` uses either a very restricted form of the _ISO 8601 standard
+date/time representation_ or a native Red format, as explained in the following
+lexical/syntactic rule.
+
 **`S135`**::
 ....
-<date-literal> ::= 
+<date-literal> ::= <ISO 8601 date/time representation> | <date-part><time-part>°
+<date-part> ::=
+<time-part> ::=  /<hmsd><zone>
+               | T<hmsd><zone>
+<zone>::= Z | +<zone-offset> | -<zone-offset>
+<zone-offset> ::= <hours>:<minutes> | <hhmm>
 ....
 
-Examples:
+Here `<ISO 8601 date/time representation>` is `yyyymmddThhmmssZ`,
+with `y` `m` `d` `h` `m` `s` standing for the digits of year, month, day, hours,
+minutes and seconds respectively, and `T` and `Z` being obligatory elements.
+This represents a date and time with timezone 0:00 (UTC).
+
+For `<hmsd>` `<hours>` and `<minutes>` see rule `S113`; while `<hours>` may be
+a single-digit number, `<minutes>` must have 2 digits here; `<hhmm>` stands for
+hours and minutes as in the ISO representation.
+
+Note that all dates are understood to be in the (proleptic) Gregorian calendar.
+
+Examples: `20170705T175800Z` `5-Jul-2017/19:58+2:00` ; these values are equal.
 
 === Creation of values (`make`)
 
@@ -1363,9 +1388,13 @@ The component of an `image!` is a `tuple!` value as explained in section 5.3.4.
 Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
 `true ~ 1` and `false ~ 2`.
 
-Values of type `time! pair!` and `tuple!` also admit component selection
+Values of type `time! date! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `time!` values, which are stored as a `float!` number
-of seconds, this selection proceeds by calculation (`1 ~ hour`, `2 ~ minute`, `3 ~ second`).
+of seconds, this selection proceeds by calculation (`1 ~ hour 2 ~ minute 3 ~ second`).
+For `date!` values, which also have a time component, similarly `1 ~ year 2 ~ month `3 ~ day
+4 ~ zone 5 ~ time 6 ~ hour 7 ~ minute 8 ~ second 9 ~ weekday 10 ~ yearday = julian`.
+Here `year month day hour minute weekday` and `yearday` (also called `julian`) are `integer!`
+values, `second` is a `float!` value and `zone` and `time` are `time!` values.
 For `pair!` , `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
 top to bottom). As stated in section 4.2.3, component selection in values of direct types
 cannot be used to change the component, only to extract it.
@@ -1419,7 +1448,9 @@ type         indexed      built-in    key values or types                built-i
              components   functions                                      functions
 
 time!        1 2 3        pick        hour minute second                 --
-date!
+date!        1 .. 10      pick        year month day zone time           --
+                                      hour minute second
+                                      weekday yearday julian
 pair!        1 2          pick        x y                                --
 tuple!       1 .. 12      pick        --                                 --
 any-block!   integer!     pick poke   any-type!                          select put
