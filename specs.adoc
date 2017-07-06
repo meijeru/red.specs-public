@@ -871,7 +871,9 @@ lexical/syntactic rule.
 Here `<ISO 8601 date/time representation>` is `yyyymmddThhmmssZ`,
 with `y` `m` `d` `h` `m` `s` standing for the digits of year, month, day, hours,
 minutes and seconds respectively, and `T` and `Z` being obligatory elements.
-This represents a date and time with timezone 0:00 (UTC).
+This represents a date and time with timezone 0:00 (UTC).  The time part is
+in the 24 hours system and is used modulo `24:00` with overflow resulting
+in increasing the date.
 
 The `<year>` part is either a 4-digit number with -- in initial position --
 an optional `-` sign, or -- but only in final position -- an unsigned 1- or 2-digit number
@@ -889,8 +891,9 @@ January February March April May June July August September October November Dec
 The `<day>` part is a 1- or 2-digit unsigned number. The combination of year, month and day
 is checked for validity.
 
-For `<hmsd> <hours>` and `<minutes>` see rule `S113`; while `<hours>` may be
-a 1- or 2-digit number, `<minutes>` must have 2 digits here _**see issue #2854**_;
+For `<hmsd>` see rule `S113`. The time part is in the 24 hours system and is used modulo `24:00`
+with overflow resulting in increasing the date. For `<hours>` and `<minutes>` see again  rule `S113`;
+while `<hours>` may be a 1- or 2-digit number, `<minutes>` must have 2 digits here _**see issue #2854**_;
 `<hhmm>` stands for hours and minutes as in the ISO representation.
 The timezone value is used modulo `16:00` and is rounded down towards zero in multiples of `00:15`.
 
