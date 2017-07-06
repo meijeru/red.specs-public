@@ -853,9 +853,9 @@ optionally combined with timezone information; the latter is a signed time value
 between `-15:45` and `+15:45`. Note that actual timezones vary between
 `-12:00` and `+14:00`.
 
-A `<date-literal>` uses either a very restricted form of the _ISO 8601 standard
-date/time representation_ or a native Red format, as explained in the following
-lexical/syntactic rule.
+A `<date-literal>` uses either a very restricted form of the representation defined
+by the _ISO 8601 date and time standard_ or a native Red format, as explained
+in the following lexical/syntactic rule.
 
 **`S135`**::
 ....
@@ -1425,14 +1425,15 @@ The component of an `image!` is a `tuple!` value as explained in section 5.3.4.
 Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
 `true ~ 1` and `false ~ 2`.
 
-Values of type `time! date! pair!` and `tuple!` also admit component selection
-by "indexing". In the case of `time!` values, which are stored as a `float!` number
-of seconds, this selection proceeds by calculation (`1 ~ hour 2 ~ minute 3 ~ second`).
-For `date!` values, which also have a time component, similarly `1 ~ year 2 ~ month 3 ~ day
-4 ~ zone 5 ~ time 6 ~ hour 7 ~ minute 8 ~ second 9 ~ weekday 10 ~ yearday = julian`.
-Here `year month day hour minute weekday` and `yearday` (also called `julian`) are `integer!`
-values, `second` is a `float!` value and `zone` and `time` are `time!` values.
-For `pair!` , `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
+Values of the direct types `time! date! pair!` and `tuple!` also admit component selection
+by "indexing". In the case of `tuple!` values, this indexing treats the tuple as a sequence.
+In the other cases, the indexes are defined to correspond to named components, which can
+therefore be used in selection by "key"(see next section). The correspondences are as follows:
+
+* for `time!` values: `1 ~ hour 2 ~ minute 3 ~ second`
+* for `date!` values: `1 ~ year 2 ~ month 3 ~ day 4 ~ zone 5 ~ time 6 ~ hour 7 ~ minute
+8 ~ second 9 ~ weekday 10 ~ yearday = julian 11 ~ timezone 12 ~ week 13 ~ isoweek`
+* for `pair!` values: `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
 top to bottom).
 
 As stated in section 4.2.3, component selection in values of direct types
@@ -1463,7 +1464,9 @@ Setting a map component to `none` removes the component and its key from the map
 
 Values of type `time! date! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
-Again, for the direct types among them, only the `<path>` and `pick` forms are valid.
+Again, for the direct types among them, only the `<path>` and `pick` forms are valid,
+since component selection in values of direct types cannot be used to change the component,
+only to extract it.
 
 In case of `time! date! email! image!` and `event!`, the result is obtained by performing
 a certain calculation.
@@ -1471,14 +1474,17 @@ a certain calculation.
 * `time!` values: given a `float!` number of seconds, the `hour` and `minute` components
 are the result of finding the whole number of `3600` seconds in the total, and then the
 whole number of `60` seconds in the remainder; the `second` component is what remains after that
-* `date!` values: the `year month day zone time hour minute` and `second` components are extracted
-either directly or as in the case of `time!`; the `weekday` component is a number between 1 and 7
-(1 = Monday) and the `yearday` component is the ordinal number of the date in the
-current year (1 = first of January)
-* `email!` values: the `user` component is the part before the `@` (of type `string!`)
-and the `host` component is the part after the `@`
+* `date!` values: the `year month day zone time hour minute` and `second` components
+are extracted either directly or as in the case of `time!`; the `timezone` component is
+equal to the `zone` component on extraction; the others are the result of a calculation:
+the `weekday` component is a number between 1 and 7 (1 = Monday), the `yearday` component
+is the ordinal number of the date in the current year (1 = first of January), the `week`
+component is the week number according to the _**which**_ standard, and the `isoweek`
+component is the week number according to the ISO 8601 standard
+* `email!` values: the `user` component is the part before the `@` and the `host` component
+is the part after the `@`; both are of type `string!`
 * `image!` values: the `size` component is the `pair!` value that holds the dimensions,
-the `argb`, `rgb` and `alpha` components are the `binary!` sequences of RGBA, RGB and A values
+the `argb`, `rgb` and `alpha` components are the `binary!` sequences of ARGB, RGB and A values
 respectively
 * `event!` values: the components, which are explained in the Red GUi documentation
 (see section 17) are calculated in an OS-dependent way
@@ -1493,6 +1499,7 @@ time!        1 2 3        pick        hour minute second                 --
 date!        1 .. 10      pick        year month day zone time           --
                                       hour minute second
                                       weekday yearday julian
+                                      timezone week isoweek
 pair!        1 2          pick        x y                                --
 tuple!       1 .. 12      pick        --                                 --
 any-block!   integer!     pick poke   any-type!                          select put
@@ -4262,7 +4269,7 @@ inherited action                        4.2.6
 interactive console                     2.2
 interpretation                          2.2
 ipv4                                    5.2.4
-ISO 8601 date/time representation       5.2.14
+ISO 8601 date and time standard         5.2.14, 5.6.2
 left associative operator               3.3
 lexeme                                  3.1
 lexical analysis                        3.1
