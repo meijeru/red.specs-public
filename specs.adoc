@@ -848,10 +848,8 @@ copy/part
 ==== `date!`
 
 A `date!` value comprises day, month and year information as well as, optionally,
-a time of day -- a non-negative `time!` value from `0:00:00` up to `24:00:00` --
-optionally combined with timezone information; the latter is a signed time value
-between `-15:45` and `+15:45`. Note that actual timezones vary between
-`-12:00` and `+14:00`.
+a time of day expressed as a UTC time value with optional timezone information;
+the UTC time is a non-negative `time!` value and the timezone is a signed `time!` value.
 
 A `<date-literal>` uses either a very restricted form of the representation defined
 by the _ISO 8601 date and time standard_ or a native Red format, as explained
@@ -892,10 +890,14 @@ The `<day>` part is a 1- or 2-digit unsigned number. The combination of year, mo
 is checked for validity.
 
 For `<hmsd>` see rule `S113`. The time part is in the 24 hours system and is used modulo `24:00`
-with overflow resulting in increasing the date. For `<hours>` and `<minutes>` see again  rule `S113`;
+with overflow resulting in increasing the date.
+
+For `<hours>` and `<minutes>` see again  rule `S113`;
 `<hours>` may be a 1- or 2-digit number, `<minutes>` must have 2 digits;
 `<hhmm>` stands for hours and minutes as in the ISO representation.
-The timezone value is used modulo `16:00` and is rounded down towards zero in multiples of `00:15`.
+The value of `<zone-offset>` is used modulo `16:00` and is rounded down in multiples of `00:15`;
+thus the timezone varies between `-15:45` and `+15:45`
+(note that actual timezones vary between `-12:00` and `+14:00`).
 
 Note that all dates are understood to be in the (proleptic) Gregorian calendar.
 This has particular significance for the check on the validity of the date 29-Feb,
@@ -1480,13 +1482,17 @@ equal to the `zone` component on extraction; the others are the result of a calc
 the `weekday` component is a number between 1 and 7 (1 = Monday), the `yearday` component
 is the ordinal number of the date in the current year (1 = first of January), the `week`
 component is the week number according to the _**which**_ standard, and the `isoweek`
-component is the week number according to the ISO 8601 standard
+component is the week number according to the ISO 8601 standard; setting the `timezone` component
+results in a new `date!` value with the corresponding `zone` component and a changed `time` component
+such that the UTC time value is unchanged; setting the `week` or `isoweek` component results in
+a new `date!` value having the date of the first day in the indicated week; setting the `weekday`
+component results in a new `date!` value with the corresponding date in the same week
 * `email!` values: the `user` component is the part before the `@` and the `host` component
 is the part after the `@`; both are of type `string!`
 * `image!` values: the `size` component is the `pair!` value that holds the dimensions,
 the `argb`, `rgb` and `alpha` components are the `binary!` sequences of ARGB, RGB and A values
 respectively
-* `event!` values: the components, which are explained in the Red GUi documentation
+* `event!` values: the components, which are explained in the Red GUI documentation
 (see section 17) are calculated in an OS-dependent way
 
 ==== Overview table
