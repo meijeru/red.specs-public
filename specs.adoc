@@ -936,7 +936,7 @@ _**See issue #2640**_.
 Examples:
 ....
 number!: make typeset! [integer! float! percent!]
-scalar!: make typeset! [char! number! time! pair! tuple!]
+scalar!: make typeset! [char! number! time! date! pair! tuple!]
 ....
 
 Note that an empty typeset is allowed (`make typeset! [ ]`).
