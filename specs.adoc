@@ -893,7 +893,7 @@ is checked for validity.
 
 For `<hmsd>` see rule `S113`. The time part is in the 24 hours system and is used modulo `24:00`
 with overflow resulting in increasing the date. For `<hours>` and `<minutes>` see again  rule `S113`;
-while `<hours>` may be a 1- or 2-digit number, `<minutes>` must have 2 digits here _**see issue #2854**_;
+`<hours>` may be a 1- or 2-digit number, `<minutes>` must have 2 digits;
 `<hhmm>` stands for hours and minutes as in the ISO representation.
 The timezone value is used modulo `16:00` and is rounded down towards zero in multiples of `00:15`.
 
@@ -4368,5 +4368,4 @@ issue  spec section
 2668   11.1
 2686   11.1
 2776   8.1
-2854   5.2.14
 ....
