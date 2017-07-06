@@ -1470,7 +1470,7 @@ are the result of finding the whole number of `3600` seconds in the total, and t
 whole number of `60` seconds in the remainder; the `second` component is what remains after that
 * `date!` values: the `year month day zone time hour minute` and `second` components are extracted
 either directly or as in the case of `time!`; the `weekday` component is a number between 1 and 7
-(1 = Monday _**check**_) and the `yearday` component is the ordinal number of the date in the
+(1 = Monday) and the `yearday` component is the ordinal number of the date in the
 current year (1 = first of January)
 * `email!` values: the `user` component is the part before the `@` (of type `string!`)
 and the `host` component is the part after the `@`
