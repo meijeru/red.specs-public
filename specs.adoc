@@ -875,7 +875,8 @@ This represents a date and time with timezone 0:00 (UTC).
 
 The `<year>` part is either a 4-digit number with -- in initial position --
 an optional `-` sign, or -- but only in final position -- an unsigned 1- or 2-digit number
-which is interpreted in the 21st or 20th century depending on whether _**problem!**_.
+which is interpreted in the current century unless that would make it to be in the future,
+in which case it is interpreted in the previous one.
 
 The `<month>` part is either a 1- or 2-digit unsigned number, or one of the month names
 which are stored in `system/locale/months` (both the full names and the first 3 characters
