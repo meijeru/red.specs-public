@@ -890,7 +890,7 @@ The `<day>` part is a 1- or 2-digit unsigned number. The combination of year, mo
 is checked for validity.
 
 For `<hmsd> <hours>` and `<minutes>` see rule `S113`; while `<hours>` may be
-a single-digit number, `<minutes>` must have 2 digits here _**why**_; `<hhmm>` stands for
+a single-digit number, `<minutes>` must have 2 digits here _**see issue #2854**_; `<hhmm>` stands for
 hours and minutes as in the ISO representation. The timezone value is used modulo 16:00
 and is rounded down towards zero in multiples of 15 minutes.
 
@@ -4259,6 +4259,7 @@ inherited action                        4.2.6
 interactive console                     2.2
 interpretation                          2.2
 ipv4                                    5.2.4
+ISO 8601 date/time representation       5.2.14
 left associative operator               3.3
 lexeme                                  3.1
 lexical analysis                        3.1
@@ -4364,4 +4365,5 @@ issue  spec section
 2668   11.1
 2686   11.1
 2776   8.1
+2854   5.2.14
 ....
