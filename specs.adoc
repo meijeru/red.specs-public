@@ -1382,8 +1382,8 @@ value. See further the documentation of the GUI system (reference in section
 
 ==== Target type `date!`
 
-The function `to-date` is defined for non-negative _** not checked!**_ `integer!` values
-which are interpreted as the number of seconds elapsed since 0:00:00 hours on 1 January 1970 to
+The function `to-date` is defined for non-negative _**see issue #2858**_ `integer!` values
+which are interpreted as the number of seconds elapsed since midnight on 1 January 1970 to
 the desired date and time (Unix convention). It is also trivially defined for `date!` values.
 
 ==== Additional conversion functions
@@ -4402,4 +4402,5 @@ issue  spec section
 2668   11.1
 2686   11.1
 2776   8.1
+2858   5.4.13
 ....
