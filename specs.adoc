@@ -2301,33 +2301,34 @@ the result type is determined as (in decreasing order of precedence):
 
 _**See issue #2776**_
 ....
-operand 2 -> char!    integer! float!   percent! time!    pair!    tuple!     vector!
+operand 2 -> char!    integer! float!   percent! time!    date!    pair!    tuple!     vector!
 operand 1
 char!        char!    char!    char!                                          vector!
              (1)      (1)      (1)                                            (1)(6)
 
-integer!     integer! integer! float!   float!   time!    pair!    tuple!     vector!
-             (1)                                          (1)(2)   (1)(2)(3)  (1)(6)
+integer!     integer! integer! float!   float!   time!    date!    pair!    tuple!     vector!
+             (1)                                          (8)      (1)(2)   (1)(2)(3)  (1)(6)
 
-float!       float!   float!   float!   float!   time!    pair!    tuple!     vector!
-             (1)                                          (1)(2)   (1)(2)(3)  (1)(6)
+float!       float!   float!   float!   float!   time!             pair!    tuple!     vector!
+             (1)                                                   (1)(2)   (1)(2)(3)  (1)(6)
 
-percent!              percent! percent! percent! time!    pair!    tuple!     vector!
-                                                          (1)(2)   (1)(2)(3)  (1)(6)
+percent!              percent! percent! percent! time!             pair!    tuple!     vector!
+                                                                   (1)(2)   (1)(2)(3)  (1)(6)
 
-time!                 time!    time!    time!    time!                        vector!
-                                                 (4)(5)                       (1)(6)
+time!                 time!    time!    time!    time!    date!                        vector!
+                                                 (4)(5)   (8)                          (1)(6)
 
-date!
+date!                 date!                      date!
+                      (8)                        (8)
 
-pair!                 pair!    pair!    pair!             pair!
-                      (1)      (1)      (1)               (1)
-
-tuple!                tuple!   tuple!   tuple!                     tuple!
+pair!                 pair!    pair!    pair!                      pair!
                       (1)      (1)      (1)                        (1)
 
-vector!     vector!   vector!  vector!  vector!  vector!                      vector!
-            (1)(6)    (1)(6)   (1)(6)   (1)(6)   (1)(6)                       (1)(7)
+tuple!                tuple!   tuple!   tuple!                              tuple!
+                      (1)      (1)      (1)                                 (1)
+
+vector!     vector!   vector!  vector!  vector!  vector!                               vector!
+            (1)(6)    (1)(6)   (1)(6)   (1)(6)   (1)(6)                                (1)(7)
 
 (1) modulo not allowed
 (2) divide not allowed
@@ -2336,6 +2337,7 @@ vector!     vector!   vector!  vector!  vector!  vector!                      ve
 (5) multiply not allowed
 (6) result has element type of vector operand see also issue #2216
 (7) operand 1 and 2 must have same element type
+(8) only add/subtract allowed
 ....
 
 
