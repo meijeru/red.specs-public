@@ -2462,7 +2462,7 @@ there are also differences to be taken into account.
 === Series: positioning and navigation
 
 The following functions of a series value yield a new series value with the index
-modified:
+modified, but pointing to the same components:
 ....
 function                   new index
 
@@ -2478,7 +2478,7 @@ find <series> <expression> index of first occurrence of (component or sub-series
 Here the `<expression>` argument of `at` and `skip` should evaluate to an integer.
 For `image!` values, a `pair!` value is also allowed. This will be converted to
 a regular index. The `<expression>` argument of `find` may be a single component
-value or a sub-series. This function is not defined on `image!`values.
+value or a sub-series. This function is not defined on `image!` values.
 
 For all series, if the index becomes smaller than `1` or greater than `length + 1`,
 it will be fixed at `1` or `length + 1`. If `find` does not have a match, its result is `none`.
@@ -2518,7 +2518,7 @@ with the exception of `/tail` and `/match`.
 
 The function `last` may be seen as shorthand for `first back tail`.
 
-These functions create a new series value, with a new series value slot:
+These functions create a new series value, pointing to new components:
 ....
 function                      result
 
@@ -2528,8 +2528,8 @@ split <series> <delimiter>    a block of sub-strings split at the delimiter(s)
 ....
 
 For `split`, the `<series>` must be of type `any-string!`, and the
-`<delimiter>` may be a single character, a bitset representing
-a choice of characters, or a string.
+`<delimiter>` may be a single character, a string or -- in order
+to represent a choice of characters -- a bitset.
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series. With the exception of
