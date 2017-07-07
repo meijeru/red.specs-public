@@ -1239,7 +1239,8 @@ If there are 4 or 5 components, the 4th should be a `time!` value for the time o
 a 5th component should be an `integer!` or `time!` value for the timezone. If there are 6 or 7 components,
 the 4th, 5th and 6th components should be hours (`integer!`), minutes (`integer!`), seconds  (`integer!` or `float!`)
 for the time of day; a 7th component should be an `integer!` or `time!` value for the timezone.
-* For the following types, `make` operates in the same way as `to` (see next section): `pair!` _**to be completed**_
+* For the following types, `make` operates in the same way as `to` (see next section): `none! char!
+float! percent! time! pair! any-word! refinement! issue! unset!`.
 
 === Conversion of values (`to`)
 
