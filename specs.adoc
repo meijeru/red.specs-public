@@ -1234,7 +1234,8 @@ or truncated number is used to create an empty `series!` value with storage for 
 This does not apply to `image!` values.
 * Making a `date!` value from a `block!` value: the block should have 3 to 7 components; if any of them is a `word!`
 value, the value it refers to will be retrieved. The first 3 components should be of `integer!` type and are interpreted
-as year, month, day. If there are 4 or 5 components, the 4th should be a `time!` value for the time of day;
+as year, month, day, or day, month, year if the first value is greater than 99.
+If there are 4 or 5 components, the 4th should be a `time!` value for the time of day;
 a 5th component should be a `time!` value for the timezone. If there are 6 or 7 components,
 the 4th, 5th and 6th components should be hours (`integer!`), minutes (`integer!`), seconds  (`integer!` or `float!`)
 for the time of day; a 7th component should be a `time!` value for the timezone.
