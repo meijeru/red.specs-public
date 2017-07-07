@@ -1474,20 +1474,19 @@ only to extract it.
 In case of `time! date! email! image!` and `event!`, the result is obtained by performing
 a certain calculation.
 
-* `time!` values: given a `float!` number of seconds, the `hour` and `minute` components
+Extracting a component:
+
+* `time!` values: given the stored number of seconds, the `hour` and `minute` components
 are the result of finding the whole number of `3600` seconds in the total, and then the
 whole number of `60` seconds in the remainder; the `second` component is what remains after that
+(this is a `float!` value)
 * `date!` values: the `year month day zone time hour minute` and `second` components
 are extracted either directly or as in the case of `time!`; the `timezone` component is
 equal to the `zone` component on extraction; the others are the result of a calculation:
 the `weekday` component is a number between 1 and 7 (1 = Monday), the `yearday` component
 is the ordinal number of the date in the current year (1 = first of January), the `week`
 component is the week number according to the _**which**_ standard, and the `isoweek`
-component is the week number according to the ISO 8601 standard; setting the `timezone` component
-results in a new `date!` value with the corresponding `zone` component and a changed `time` component
-such that the UTC time value is unchanged; setting the `week` or `isoweek` component results in
-a new `date!` value having the date of the first day in the indicated week; setting the `weekday`
-component results in a new `date!` value with the corresponding date in the same week
+component is the week number according to the ISO 8601 standard;
 * `email!` values: the `user` component is the part before the `@` and the `host` component
 is the part after the `@`; both are of type `string!`
 * `image!` values: the `size` component is the `pair!` value that holds the dimensions,
@@ -1495,6 +1494,23 @@ the `argb`, `rgb` and `alpha` components are the `binary!` sequences of ARGB, RG
 respectively
 * `event!` values: the components, which are explained in the Red GUI documentation
 (see section 17) are calculated in an OS-dependent way
+
+Setting a component:
+
+* `time!` values: the `hour minute` and `second` components can be individually set
+and will replace the values they had before
+* `date!` values: the `year month day hour minute second` and `zone` components can be set directly;
+the value for the `time` component (which can be negative) is used modulo `24:00` with adjustment
+of the date; the same holds for the resulting time when any of the values of the `hour minute`
+and `second` components is changed; setting the `timezone` component results in a new `date!`
+value with the corresponding `zone` component and a changed `time` component
+such that the UTC time value is unchanged; setting the `week` or `isoweek` component results in
+a new `date!` value having the date of the first day in the indicated week; setting the `weekday`
+component results in a new `date!` value with the corresponding date in the same week
+* `email!` values: the ùser` and `host` component values should be supplied as strings
+* `image!` values: the `size` component cannot be set; the other components can be set
+to a `binary!` value of the required length; if the value is shorter, bytes `00` are appended
+* `event!` values: only the `type` component can be set
 
 ==== Overview table
 
