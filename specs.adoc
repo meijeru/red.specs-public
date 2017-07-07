@@ -2291,7 +2291,7 @@ max min               2     scalar!             scalar!           same as greate
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
-mentioned through notes (1) to (8). The operations on values of type `pair! tuple!` and `vector!`
+mentioned through notes (1) to (9). The operations on values of type `pair! tuple!` and `vector!`
 take place component-by-component. When the two operand types are different,
 the result type is determined as (in decreasing order of precedence):
 
@@ -2307,7 +2307,7 @@ char!        char!    char!    char!                                          ve
              (1)      (1)      (1)                                            (1)(6)
 
 integer!     integer! integer! float!   float!   time!    date!    pair!    tuple!     vector!
-             (1)                                          (8)      (1)(2)   (1)(2)(3)  (1)(6)
+             (1)                                          (9)      (1)(2)   (1)(2)(3)  (1)(6)
 
 float!       float!   float!   float!   float!   time!             pair!    tuple!     vector!
              (1)                                                   (1)(2)   (1)(2)(3)  (1)(6)
@@ -2316,7 +2316,7 @@ percent!              percent! percent! percent! time!             pair!    tupl
                                                                    (1)(2)   (1)(2)(3)  (1)(6)
 
 time!                 time!    time!    time!    time!    date!                        vector!
-                                                 (4)(5)   (8)                          (1)(6)
+                                                 (4)(5)   (9)                          (1)(6)
 
 date!                 date!                      date!
                       (8)                        (8)
@@ -2338,6 +2338,7 @@ vector!     vector!   vector!  vector!  vector!  vector!                        
 (6) result has element type of vector operand see also issue #2216
 (7) operand 1 and 2 must have same element type
 (8) only add/subtract allowed
+(9) only add allowed
 ....
 
 
