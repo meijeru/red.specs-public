@@ -849,8 +849,8 @@ copy/part
 
 A `date!` value comprises day, month and year numbers as well as, optionally,
 a time of day stored as a UTC time value with optional timezone information;
-the UTC time is a non-negative `time!` value and the timezone is a signed `time!` value;
-because the latter has a discrete number of values it is tightly encoded.
+the UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
+with a limited number of allowed values.
 
 A `<date-literal>` uses either a very restricted form of the representation defined
 by the _ISO 8601 date and time standard_ or a native Red format, as explained
@@ -870,7 +870,7 @@ in the following lexical/syntactic rule.
 Here `<ISO 8601 date/time representation>` is `yyyymmddThhmmssZ`,
 with `y` `m` `d` `h` `m` `s` standing for the digits of year, month, day, hours,
 minutes and seconds respectively, and `T` and `Z` being obligatory elements.
-This represents a date and time with timezone 0:00 (UTC).  The time part is
+This represents a date and time with timezone `0:00` (UTC).  The time part is
 in the 24 hours system and is used modulo `24:00` with overflow resulting
 in increasing the date.
 
@@ -2291,7 +2291,7 @@ max min               2     scalar!             scalar!           same as greate
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
-mentioned through notes (1) to (7). The operations on values of type `pair! tuple!` and `vector!`
+mentioned through notes (1) to (8). The operations on values of type `pair! tuple!` and `vector!`
 take place component-by-component. When the two operand types are different,
 the result type is determined as (in decreasing order of precedence):
 
