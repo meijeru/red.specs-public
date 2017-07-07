@@ -1227,8 +1227,8 @@ The keys and values are not evaluated.
 
 ==== Other types 
 
-* Making `integer!` and `float!` values from `logic!` values: `true -> 1/1.0, false -> 0/0.0` _**See issue 2644**_
-* Making `logic!` values from `integer!` and `float!` values: `0/0.0 -> false, all else -> true`
+* Making `integer!` values from `logic!` values: `true -> 1, false -> 0` _**See issue 2644**_
+* Making `logic!` values from `integer!` and `any-float!` values: `0/0.0/0% -> false, all else -> true`
 * Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
 or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
 This does not apply to `image!` values.
