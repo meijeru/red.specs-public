@@ -1396,7 +1396,7 @@ representing a color (RGB)
 * `as-ipv4` also has four arguments, and suggests an IPv4 address interpretation of the tuple
 * `uppercase` and `lowercase` will work on values of type `char!` and `any-string!`
 and convert them to upper case or lower case respectively; they use the
-Unicode 7.0 case folding table (only character pairs with status C and S)
+_Unicode 7.0 case folding table_ (only character pairs with status C and S)
 
 === Casting of values (`as`)
 
@@ -3497,6 +3497,7 @@ See also section 4.1
     block!
     char!
     datatype!
+    date!
     email!
     error!
     event!
@@ -3687,6 +3688,7 @@ F    to-binary
 F    to-bitset
 F    to-block
 F    to-char
+F    to-date
 F    to-email
 F    to-file
 F    to-float
@@ -4350,6 +4352,7 @@ type                                    2.3, 4
   passive type                          4.2.5
   type hierarchy                        4.3
 Unicode Code Point                      3.1
+Unicode 7.0 case folding table          5.4.14
 UTF-8 scheme                            3.1, 5.4.3, 5.4.7, 5.4.10, 11.1, 11.5
 value                                   2.3, 5
   grouped value                         3.1
