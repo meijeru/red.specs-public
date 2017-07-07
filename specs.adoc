@@ -1236,9 +1236,9 @@ This does not apply to `image!` values.
 value, the value it refers to will be retrieved. The first 3 components should be of `integer!` type and are interpreted
 as year, month, day, or day, month, year if the first value is smaller than 100.
 If there are 4 or 5 components, the 4th should be a `time!` value for the time of day;
-a 5th component should be a `time!` value for the timezone. If there are 6 or 7 components,
+a 5th component should be an `integer!` or `time!` value for the timezone. If there are 6 or 7 components,
 the 4th, 5th and 6th components should be hours (`integer!`), minutes (`integer!`), seconds  (`integer!` or `float!`)
-for the time of day; a 7th component should be a `time!` value for the timezone.
+for the time of day; a 7th component should be an `integer!` or `time!` value for the timezone.
 * For the following types, `make` operates in the same way as `to` (see next section): `pair!` _**to be completed**_
 
 === Conversion of values (`to`)
