@@ -1507,9 +1507,10 @@ value with the corresponding `zone` component and a changed `time` component
 such that the UTC time value is unchanged; setting the `week` or `isoweek` component results in
 a new `date!` value having the date of the first day in the indicated week; setting the `weekday`
 component results in a new `date!` value with the corresponding date in the same week
-* `email!` values: the ùser` and `host` component values should be supplied as strings
+* `email!` values: the `user` and `host` component values should be supplied as strings
 * `image!` values: the `size` component cannot be set; the other components can be set
-to a `binary!` value of the required length; if the value is shorter, bytes `00` are appended
+to a `binary!` value of the required length; if the value is shorter, bytes `#{00}` are appended;
+if the value is longer, the remainder is ignored
 * `event!` values: only the `type` component can be set
 
 ==== Overview table
