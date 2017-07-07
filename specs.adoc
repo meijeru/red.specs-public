@@ -876,8 +876,7 @@ in increasing the date.
 
 The `<year>` part is either a 4-digit number with -- in initial position --
 an optional `-` sign, or -- but only in final position -- an unsigned 1- or 2-digit number
-which is interpreted in the current (21^st^) century unless that would make the date
-lie in the future, in which case it is interpreted in the previous (20^th^) century.
+which is interpreted in the current (21^st^) or previous (20^th^) century depending on _**what?**_.
 
 The `<month>` part is either a 1- or 2-digit unsigned number, or one of the month names
 which are stored in `system/locale/months` (both the full names and the first 3 characters
