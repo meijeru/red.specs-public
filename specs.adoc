@@ -913,9 +913,14 @@ result of the `make` function. This section deals first of all with the types
 for which that is the case, and with `map!` which has a "parallel"
 syntactic form of its own. The `make` function can also be used
 to construct values of other types. This is dealt with in the
-latter part of the section. Note that `make routine!` is forbidden;
-values of type `routine!` should be made by invoking the built-in
-function `routine` which raises an error if called from the interpreter.
+latter part of the section.
+
+Note that `make routine!` is forbidden; values of type `routine!` should be made
+by invoking the built-in function `routine` which raises an error
+if called from the interpreter.
+
+Note also that `make` is trivially defined for a `<spec>` which is of the same
+type as `<target>`.
 
 In this section, non-terminals like `<integer>` do not stand for
 a literal integer but for a value (to be evaluated) of `integer!` type etc.
