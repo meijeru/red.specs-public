@@ -1178,7 +1178,7 @@ do not have optional arguments, except `/local`. Note also that arguments
 and return spec must have a single type specified. If the argument has no
 type specified, `any-type!` is assumed._**see issue #2766**_ The `<word-literal>`
 must refer to an existing Red type, which must be `integer! float!` or `logic!`,
-or one that has a Red/System `structure!` alias defined that describes a value
+or one that has a Red/System `struct!` alias defined that describes a value
 slot of that type._**see issue #2642**_ The `<routine-body>` must contain valid Red/System code.
 
 Values of type `routine!` may not occur in programs submitted to the interpreter.
@@ -1190,8 +1190,7 @@ and the representation and storage of argument and result values.
 
 **`S133`**::
 ....
-<op> ::= make op! <binary-function>
-<binary-function> ::= <op> | <prefix-function>
+<op> ::= make op! <prefix-function>
 ....
 
 For `<prefix-function>` see rule `S101`.
@@ -1199,7 +1198,7 @@ For `<prefix-function>` see rule `S101`.
 In contrast to `action!` and `native!` values which cannot be made by means of
 `make`, the user may create new infix functions of two arguments (operators),
 using `make op!`. The `<prefix-function>` should have exactly two arguments
-and no optional arguments, except `/local`.
+and no optional arguments, except possibly `/local`.
 
 Example: `&&: make op! func [a b][all [a b]]`.
 
