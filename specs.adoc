@@ -613,7 +613,11 @@ in order to produce new values:
 
 All three built-in functions have two arguments: `<target>` and `<spec>`,
 where `<target>` evaluates to a type (`datatype!` value) or to a value (_prototype_)
-of the desired type and `<spec>` is interpreted as appropriate for the given type. 
+of the desired type and `<spec>` is interpreted as appropriate for the given type.
+
+Both `make` and `to` are trivially defined if the type of their `<spec>` argument
+is the same as (the type of) their `<target>` argument; for indirect types, a copy is
+made of the value of `<spec>`.
 
 For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
@@ -918,9 +922,6 @@ latter part of the section.
 Note that `make routine!` is forbidden; values of type `routine!` should be made
 by invoking the built-in function `routine` which raises an error
 if called from the interpreter.
-
-Note also that `make` is trivially defined for a `<spec>` which is of the same
-type as `<target>`.
 
 In this section, non-terminals like `<integer>` do not stand for
 a literal integer but for a value (to be evaluated) of `integer!` type etc.
@@ -1258,8 +1259,6 @@ elsewhere (see section 17).
 
 Note that for each type that may occur as target type, there is a built-in function
 defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
-
-Note also that `to` is trivially defined for equal source and target type.
 
 ==== Target types `none!` and `unset!`
 
