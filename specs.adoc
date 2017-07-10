@@ -18,7 +18,7 @@ the authoritative document for:
 
 In as much as feasible, and in order to avoid duplication, existing pieces
 of official documentation will be referred to. A list of those can be found in
-section 17.
+section 18.
 
 Because of the wealth of built-in functions that Red makes available, combined
 with the numerous optional facilities ("refinements") that these functions have,
@@ -131,7 +131,7 @@ Programs written in Red/System can be compiled and executed using the toolchain.
 As a dialect of Red its purpose is to provide low-level system programming
 capabilities, and it serves both as a tool to build Red's runtime library
 and as intermediate language for the compiler to generate machine code from.
-Red/System is specified in a separate document (see section 17).
+Red/System is specified in a separate document (see section 18).
 
 == Structure of Red programs
 
@@ -1255,7 +1255,7 @@ float! percent! time! pair! any-word! refinement! issue! unset!`.
 
 Conversion is possible for selected combinations of _source_ and _target_ type.
 The list given below is meant to be exhaustive. A summary table is available
-elsewhere (see section 17).
+elsewhere (see section 18).
 
 Note that for each type that may occur as target type, there is a built-in function
 defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
@@ -1390,7 +1390,7 @@ The function `to-image` is defined for `object!` values that are _faces_ i.e.
 derived from the `face!` object which describes a window in the Red GUI system.
 It yields the face such as it would be rendered on the screen, as an `image!`
 value. See further the documentation of the GUI system (reference in section
-17).
+18).
 
 ==== Target type `date!`
 
@@ -1507,7 +1507,7 @@ is the part after the `@`; both are of type `string!`
 the `argb`, `rgb` and `alpha` components are the `binary!` sequences of ARGB, RGB and A values
 respectively
 * `event!` values: the components, which are explained in the Red GUI documentation
-(see section 17) are calculated in an OS-dependent way
+(see section 18) are calculated in an OS-dependent way
 
 Setting a component:
 
@@ -3280,7 +3280,7 @@ Note: Red/System has its own preprocessor, which is similar, but low-level
 and applied to the source code in text form.
 
 Further explanations are provided in separate documentation;
-see section 17.
+see section 18.
 
 === Parse
 
@@ -3300,7 +3300,7 @@ other changes remain
 * two modes: string-parsing (for example: external DSL) or block-parsing (for example: embedded DSL)
 
 Further explanations are provided in separate documentation;
-see section 17.
+see section 18.
 
 === GUI System
 
@@ -3330,7 +3330,7 @@ directly as an `image!` value using the `draw` built-in function, or as a part o
 a graphic element created by `view/layout`.
 
 Further explanations are provided in separate documentation;
-see section 17.
+see section 18.
 
 === Reactivity
 
@@ -3341,7 +3341,7 @@ The most prominent application of this in the toolchain is in the GUI engine
 where the `face!` objects are reactors.
 
 Further explanations are provided in separate documentation;
-see section 17.
+see section 18.
 
 === Environment and OS-related functions
 
@@ -4000,6 +4000,9 @@ F    help
 F    source
 F    what
 ....
+
+== System object
+
 == Errors list
 
 The format in each sub-section is
