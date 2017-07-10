@@ -175,7 +175,7 @@ a semicolon `;` until the end of an input line (_end-of-line comment_), or they 
 in `{ }` or a series of Red values enclosed in `[ ]`.
 
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
-and/or the reader. The relevant data will be described in section 16.
+and/or the reader. The relevant data will be described in section 17.
 
 === Formal grammar
 
