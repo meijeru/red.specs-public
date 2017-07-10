@@ -4164,28 +4164,30 @@ as the user. Certain elements of metadata, that are used by the toolchain,
 *must* be in this format: `Needs:` and `Config:`, with prescribed types for
 the `<value>` as indicated.
 
-The following is a list of suggested and compulsory elements.
-
+The following is a list of suggested and compulsory elements. The ones marked *
+are contained in the object `system/standard/header`.
 ....
-element     type           description
+  element     type           description
 
-Title:      string!        application title
-Purpose:    string!        short description of the application purpose
-Author:     string!        source code author name
-File:       file!          name of the source file
-Version:    tuple!         source code version
-Date:       date!          date of last version
-Rights:     string!        copyrights
-License:    [url! string!] source license (URL or full text)
-History:    block!         source modifications history
-Note(s):    string!        any special notice
+* Title:      string!        application title
+* Name:       string!        application name
+* Type:       ???
+  Purpose:    string!        short description of the application purpose
+* Version:    tuple!         source code version
+* Date:       date!          date of last version
+* File:       file!          name of the source file
+* Author:     string!        source code author name
+  Rights:     string!        copyrights
+  License:    [url! string!] source license (URL or full text)
+  History:    block!         source modifications history
+  Note(s):    string!        any special notice
 
-Language:   word!          language of the comments
-Tabs:       integer!       number of spaces between tab positions
-Icon:       file!          *.ico file with icon for executable
+  Language:   word!          language of the comments
+  Tabs:       integer!       number of spaces betw  een tab positions
+  Icon:       file!          *.ico file with icon   for executabl  e
 
-Needs:      [word! block!] module(s) that is/are to be included
-Config:     ???
+* Needs:      [word! block!] module(s) that is/are to be included
+  Config:     ???
 ....
 
 == Additional documentation
