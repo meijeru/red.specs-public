@@ -3129,7 +3129,7 @@ of `:arg1, :arg2` and `:arg3`, which needs to be bound
 to the context of the error value, in order for the values of
 `arg1` to `arg3` to be inserted; the block then can be used
 to construct the error message. The full list of possible
-errors is shown in section 15.
+errors is shown in section 16.
 
 When the error value is produced,
 the word which is the value of its `type` field is bound such that
