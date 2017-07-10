@@ -2749,7 +2749,7 @@ the components of the series that the word(s) currently refer to, are removed fr
 
 The result of `forever` is that of the exception that causes its interruption.
 For the other functions, unless an exception has occurred, the result is the unset value
-for `while loop` and `remove-each`, and the result of the execution of the body
+for `while` and `remove-each`, and the result of the execution of the body
 for the remaining ones.
 
 === Interrupting execution
