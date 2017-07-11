@@ -1448,8 +1448,8 @@ In the other cases, the indexes are defined to correspond to named components, w
 therefore be used in selection by "key"(see next section). The correspondences are as follows:
 
 * for `time!` values: `1 ~ hour 2 ~ minute 3 ~ second`
-* for `date!` values: `1 ~ year 2 ~ month 3 ~ day 4 ~ zone 5 ~ time 6 ~ hour 7 ~ minute
-8 ~ second 9 ~ weekday 10 ~ yearday = julian 11 ~ timezone 12 ~ week 13 ~ isoweek`
+* for `date!` values: `1 ~ date 2 ~ year 3 ~ month 4 ~ day 5 ~ zone 6 ~ time 7 ~ hour 8 ~ minute
+9 ~ second 10 ~ weekday 11 ~ yearday = julian 12 ~ timezone 13 ~ week 14 ~ isoweek`
 * for `pair!` values: `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
 top to bottom).
 
@@ -1535,8 +1535,8 @@ type         indexed      built-in    key values or types                built-i
              components   functions                                      functions
 
 time!        1 2 3        pick        hour minute second                 --
-date!        1 .. 10      pick        year month day zone time           --
-                                      hour minute second
+date!        1 .. 10      pick        date year month day zone           --
+                                      time hour minute second
                                       weekday yearday julian
                                       timezone week isoweek
 pair!        1 2          pick        x y                                --
