@@ -1518,7 +1518,7 @@ Extracting a component:
 are the result of finding the whole number of `3600` seconds in the total, and then the
 whole number of `60` seconds in the remainder; the `second` component is what remains after that
 (this is a `float!` value)
-* `date!` values: the `year month day zone time hour minute` and `second` components
+* `date!` values: the `date year month day zone time hour minute` and `second` components
 are extracted either directly or as in the case of `time!`; the `timezone` component is
 equal to the `zone` component on extraction; the others are the result of a calculation:
 the `weekday` component is a number between 1 and 7 (1 = Monday), the `yearday` component
@@ -1538,7 +1538,7 @@ Setting a component:
 
 * `time!` values: the `hour minute` and `second` components can be individually set
 and will replace the values they had before
-* `date!` values: the `year month day hour minute second` and `zone` components can be set directly;
+* `date!` values: the `date year month day hour minute second` and `zone` components can be set directly;
 the value for the `time` component (which can be negative) is used modulo `24:00` with adjustment
 of the date; the same holds for the resulting time when any of the values of the `hour minute`
 and `second` components is changed; setting the `timezone` component results in a new `date!`
