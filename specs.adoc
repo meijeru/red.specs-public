@@ -854,8 +854,8 @@ copy/part
 
 A `date!` value comprises day, month and year numbers as well as, optionally,
 a time of day stored as a UTC time value with optional timezone information.
-The year number ranges from -2^15^ to 2^15^-1, but in literals it must
-lie between -9999 and 9999. Other values may be constructed using `make` or `to`
+The year number ranges from `-2^15^` to `2^15^-1`, but in literals it must
+lie between `-9999` and `9999`. Other values may be constructed using `make` or `to`
 (see sections 5.3.12 and 5.4.13).
 The UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
 which varies between `-15:45` and `+15:45` in multiples of `0:15`
@@ -884,9 +884,11 @@ defined by the _ISO 8601 date and time standard_.
 <sign> ::= + | -
 ....
 
-The `<year>` part is a 3- or 4-digit number with an optional `-` sign. Years between -99 and 99 may
+Date representation
+
+The `<year>` part is a 3- or 4-digit number with an optional `-` sign. Years between `-99` and `99` may
 be expressed using leading zeroes. The `<short-year>` part is an unsigned 1- or 2-digit number
-which is interpreted in the current (21^st^) century if it is smaller than 50,
+which is interpreted in the current (21^st^) century if it is smaller than `50`,
 or in the previous (20^th^) century otherwise.
 
 The `<month>` part is either a 1- or 2-digit unsigned number, or one of the month names
@@ -906,15 +908,17 @@ The `<yyyy>` part is an unsigned 4-digit number indicating the year, the `<mm>` 
 are unsigned 2-digit numbers indicating the month and day. The `<ww>` part is an unsigned
 2-digit number indicating the week number as defined by the ISO 8601 standard, with the `<d>`
 part a single digit `1` to `7` for the day of the week (`1 = Monday`). When `<d>` is absent, the
-default is 1. The `<ddd>` part is an unsigned 3-digit number indicating the day of the year
-(`1` to`366`).
+default is `1`. The `<ddd>` part is an unsigned 3-digit number indicating the day of the year
+(`1` to `366`).
 
 The combination of year, month and day is checked for validity. 
+
+Time representation
 
 For `<Red-time>` see rule `S113`. The `<hh> <mm>` and `<ss>` parts are 2-digit unsigned numbers
 indicating the hours, minutes and seconds respectively. For `<decimals>` see rule `S113`.
 
-The time of day is in the 24 hours system and is used modulo `24:00` with a possible
+The time of day is in the 24-hour system and is used modulo `24:00` with a possible
 carry resulting in increasing the date. Note that it represents _local time_.
 
 The timezone may be represented as in rule `S113`, with `<hours>` be ing a 1- or 2-digit number,
@@ -922,7 +926,7 @@ and `<minutes>` having 2 digits, or in the ISO time format. The meaning of `Z` i
 The value is used modulo `16:00` and is rounded down in multiples of `00:15`.
 
 Note that all dates are understood to be in the (proleptic) Gregorian calendar.
-This has particular significance for the check on the validity of the date 29-Feb,
+This has particular significance for the check on the validity of the date `29-Feb`,
 since the leap years are computed according to that calendar both for present
 and future, but also for all past years, including before 1582 AD.
 
@@ -2350,8 +2354,8 @@ percent!              percent! percent! percent! time!             pair!    tupl
 time!                 time!    time!    time!    time!    date!
                                                  (4)(5)   (9)
 
-date!                 date!                      date!
-                      (8)                        (8)
+date!                 date!                      date!    integer!
+                      (8)                        (8)      (10)
 
 pair!                 pair!    pair!    pair!                      pair!
                       (1)      (1)      (1)                        (1)
@@ -2362,15 +2366,16 @@ tuple!                tuple!   tuple!   tuple!                              tupl
 vector!               vector!  vector!  vector!                                        vector!
                       (1)(6)   (1)(6)   (1)(6)                                         (1)(7)
 
-(1) modulo not allowed
-(2) divide not allowed
-(3) subtract not allowed
-(4) divide has float! result
-(5) multiply not allowed
-(6) result has element type of vector operand see also issue #2216
-(7) operand 1 and 2 must have same element type
-(8) only add/subtract allowed
-(9) only add allowed
+ (1) modulo not allowed
+ (2) divide not allowed
+ (3) subtract not allowed
+ (4) divide has float! result
+ (5) multiply not allowed
+ (6) result has element type of vector operand see also issue #2216
+ (7) operand 1 and 2 must have same element type
+ (8) only add/subtract allowed
+ (9) only add allowed
+(10) only subtract allowed
 ....
 
 
