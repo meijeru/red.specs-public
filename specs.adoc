@@ -853,34 +853,39 @@ copy/part
 ==== `date!`
 
 A `date!` value comprises day, month and year numbers as well as, optionally,
-a time of day stored as a UTC time value with optional timezone information;
-the UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
-with a limited number of allowed values.
+a time of day stored as a UTC time value with optional timezone information.
+The year number ranges from -2^15^ to 2^15^-1, but in literals it must
+lie between -9999 and 9999. Other values may be constructed using `make` or `to`
+(see sections 5.3.12 and 5.4.13).
+The UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
+which varies between `-15:45` and `+15:45` in multiples of `0:15`
+(note that actual timezones vary between `-12:00` and `+14:00`).
 
-A `<date-literal>` uses either a very restricted form of the representation defined
-by the _ISO 8601 date and time standard_ or a native Red format, as explained
-in the following lexical/syntactic rule.
+A `<date-literal>` may use a native Red format, or a subset of the representation
+defined by the _ISO 8601 date and time standard_.
 
 **`S135`**::
 ....
-<date-literal> ::= <ISO 8601 date/time representation> | <date-part><time-part>°
-<date-part> ::= <year>/<month>/<day> | <year>-<month>-<day> |
-                <day>/month/<year> | <day>-<month>-<year>
-<time-part> ::=  /<Red-time><zone>
-               | T<Red-time><zone>
-<zone>::= Z | +<zone-offset> | -<zone-offset>
-<zone-offset> ::= <hours>:<minutes> | <hhmm>
+<date-literal> ::= <Red-date> | <Red-date>/<time> | <Red-date>T<time> | <ISO-date>T<time>
+
+<Red-date> ::=  <year><sep><month><sep><day> | <day><sep><month><sep><year> |
+                <day><sep><month><sep><short-year>
+
+<sep> ::= / | -
+
+<ISO-date> ::= <yyyy><mm><dd> | <yyyy>-W<ww> | <yyyy>-W<ww>-<d> | <yyyy>-<ddd>
+
+<time> ::= <Red-time><zone>° | <ISO-time><zone>°
+
+<ISO-time> ::= <hh><mm> | <hh><mm><ss> | <hh><mm><ss>.<decimals>
+
+<zone> ::= Z | <sign><hours> | <sign><hours>:<minutes> | <sign><hh><mm>
+
+<sign> ::= + | -
 ....
 
-Here `<ISO 8601 date/time representation>` is `yyyymmddThhmmssZ`,
-with `y` `m` `d` `h` `m` `s` standing for the digits of year, month, day, hours,
-minutes and seconds respectively, and `T` and `Z` being obligatory elements.
-This represents a date and time with timezone `0:00` (UTC).  The time part is
-in the 24 hours system and is used modulo `24:00` with overflow resulting
-in increasing the date.
-
-The `<year>` part is either a 4-digit number with -- in initial position --
-an optional `-` sign, or -- but only in final position -- an unsigned 1- or 2-digit number
+The `<year>` part is a 3- or 4-digit number with an optional `-` sign. Years between -99 and 99 may
+be expressed using leading zeroes. The `<short-year>` part is an unsigned 1- or 2-digit number
 which is interpreted in the current (21^st^) century if it is smaller than 50,
 or in the previous (20^th^) century otherwise.
 
@@ -892,18 +897,29 @@ names are:
 January February March April May June July August September October November December
 ....
 
-The `<day>` part is a 1- or 2-digit unsigned number. The combination of year, month and day
-is checked for validity.
+The `<day>` part is a 1- or 2-digit unsigned number.
 
-For `<Red-time>` see rule `S113`. The time part is in the 24 hours system and is used modulo `24:00`
-with overflow resulting in increasing the date. Note that it represents _local time_.
+The separator `<sep>` must be the same in both positions. With a negative year in last position
+it is recommended to use `/` rather than `-`.
 
-For `<hours>` and `<minutes>` see again  rule `S113`;
-`<hours>` may be a 1- or 2-digit number, `<minutes>` must have 2 digits;
-`<hhmm>` stands for hours and minutes as in the ISO representation.
-The value of `<zone-offset>` is used modulo `16:00` and is rounded down in multiples of `00:15`;
-thus the timezone varies between `-15:45` and `+15:45`
-(note that actual timezones vary between `-12:00` and `+14:00`).
+The `<yyyy>` part is an unsigned 4-digit number indicating the year, the `<mm>` and `<dd>` parts
+are unsigned 2-digit numbers indicating the month and day. The `<ww>` part is an unsigned
+2-digit number indicating the week number as defined by the ISO 8601 standard, with the `<d>`
+part a single digit `1` to `7` for the day of the week (`1 = Monday`). When `<d>` is absent, the
+default is 1. The `<ddd>` part is an unsigned 3-digit number indicating the day of the year
+(`1` to`366`).
+
+The combination of year, month and day is checked for validity. 
+
+For `<Red-time>` see rule `S113`. The `<hh> <mm>` and `<ss>` parts are 2-digit unsigned numbers
+indicating the hours, minutes and seconds respectively. For `<decimals>` see rule `S113`.
+
+The time of day is in the 24 hours system and is used modulo `24:00` with a possible
+carry resulting in increasing the date. Note that it represents _local time_.
+
+The timezone may be represented as in rule `S113`, with `<hours>` be ing a 1- or 2-digit number,
+and `<minutes>` having 2 digits, or in the ISO time format. The meaning of `Z` is `0:00`.
+The value is used modulo `16:00` and is rounded down in multiples of `00:15`.
 
 Note that all dates are understood to be in the (proleptic) Gregorian calendar.
 This has particular significance for the check on the validity of the date 29-Feb,
