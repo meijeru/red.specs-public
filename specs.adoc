@@ -889,7 +889,8 @@ defined by the _ISO 8601 date and time standard_.
 
 Date representation
 
-The `<year>` part is a 3- or 4-digit number with an optional `-` sign. Years between `-99` and `99` may
+The `<year>` part is a 3- or 4-digit number with an optional `-` sign which is allowed only
+in third position. Years between `-99` and `99` may
 be expressed using leading zeroes. The `<short-year>` part is an unsigned 1- or 2-digit number
 which is interpreted in the current (21^st^) century if it is smaller than `50`,
 or in the previous (20^th^) century otherwise.
