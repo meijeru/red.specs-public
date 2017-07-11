@@ -4025,9 +4025,15 @@ F    what
 
 == System object
 
+The _system object_ is used by the run-time system to store both fixed data
+(e.g. codecs, error messages) and variable data (e.g. modules, script header
+data). All data can be retrieved by the user, and some data can also be set
+by the user at runtime.
+
 ....
 (sub-)component & type              significance/value
-system/
+
+system/   object!
     version/    tuple!              current version
     build/      object!
         date           date!        build date
@@ -4443,6 +4449,7 @@ single value                            3.1
 space (U+0020)                          3.1
 syntactic analysis                      3.1
 system dialect                          2.5, 17
+system object                           15
 tab (U+0009)                            3.1, 5.2.6
 target computer                         2.2
 throw                                   12.2.3
