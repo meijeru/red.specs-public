@@ -1523,8 +1523,9 @@ are extracted either directly or as in the case of `time!`; the `timezone` compo
 equal to the `zone` component on extraction; the others are the result of a calculation:
 the `weekday` component is a number between 1 and 7 (1 = Monday), the `yearday` component
 is the ordinal number of the date in the current year (1 = first of January), the `week`
-component is the week number according to the _**which**_ standard, and the `isoweek`
-component is the week number according to the ISO 8601 standard;
+component is the week number according to a casual definition (week starts on Sunday,
+first week starts on January 1st), and the `isoweek` component is the week number according 
+to the ISO 8601 standard;
 * `email!` values: the `user` component is the part before the `@` and the `host` component
 is the part after the `@`; both are of type `string!`
 * `image!` values: the `size` component is the `pair!` value that holds the dimensions,
