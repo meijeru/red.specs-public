@@ -4025,6 +4025,72 @@ F    what
 
 == System object
 
+....
+(sub-)component & type              significance/value
+system/
+    version/    tuple!              current version
+    build/      object!
+        date           date!        build date
+        config         object!      configuration used
+    words       object!             global context, see section 6.2
+    platform    function!           returns a word identifying the operating system
+    catalog/    object!
+        datatypes
+        actions
+        natives
+        accessors      block!       see section 5.6.2
+        errors         object!      see sections 5.3.7, 12.1.1
+    state/      object!
+        interpreted?   function!    returns TRUE if called from the interpreter
+        last-error     error!       
+        trace          integer!     
+    modules     block!              
+    codecs      block!              see section 11.2
+    schemes     object!             TBD
+    ports       object!             TBD
+    locale/     object!             
+        language       
+        language*      
+        locale         
+        locale*        
+        months         block!       see section 5.2.14
+        days           block!       names of days
+    options/    object!             
+        boot           string!      
+        home           
+        path           file!
+        script         
+        cache          file!
+        thru-cache     
+        args           
+        do-arg         
+        debug          logic!
+        secure         
+        quiet          logic!
+        binary-base    integer!     
+        decimal-digits integer!     
+        module-paths   block!       
+        file-types     
+        float          object!
+    script/     object!
+        title          
+        header         
+        parent         
+        path           
+        args           
+    standard/   object!
+       header          object!        see section 17
+       error           object!        see section 12.1.1
+    lexer       object!               run-time lexer program + data
+    console/    object!               console program + data
+        prompt         string!        see section 11.7
+        result         string!        see section 11.7
+        history        block!         previous inputs
+        ...
+    view        object!               see section 13.3
+    reactivity  object!               see section 13.4
+....
+
 == Errors list
 
 The format in each sub-section is
