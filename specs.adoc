@@ -2327,7 +2327,7 @@ max min               2     scalar!             scalar!           same as greate
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
-mentioned through notes (1) to (9). The operations on values of type `pair! tuple!` and `vector!`
+mentioned through notes (1) to (10). The operations on values of type `pair! tuple!` and `vector!`
 take place component-by-component. When the two operand types are different,
 the result type is determined as (in decreasing order of precedence):
 
