@@ -669,9 +669,9 @@ Examples: `1.23`  `-0.5`  `.5`  `+010.20`  `1E9`
 
 **`S113`**::
 ....
-<time-literal> ::= <hmsd> | +<hmsd> | -<hmsd>
-<hmsd> ::= <hours>:<minutes> | <hours>:<minutes>:<seconds> | <hours>:<minutes>:<seconds>.<decimals> |
-           <minutes>:<seconds>.<decimals>
+<time-literal> ::= <Red-time> | +<Red-time> | -<Red-time>
+<Red-time> ::= <hours>:<minutes> | <hours>:<minutes>:<seconds> | <hours>:<minutes>:<seconds>.<decimals> |
+               <minutes>:<seconds>.<decimals>
 ....
 
 where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<integer-literal>`
@@ -866,8 +866,8 @@ in the following lexical/syntactic rule.
 <date-literal> ::= <ISO 8601 date/time representation> | <date-part><time-part>°
 <date-part> ::= <year>/<month>/<day> | <year>-<month>-<day> |
                 <day>/month/<year> | <day>-<month>-<year>
-<time-part> ::=  /<hmsd><zone>
-               | T<hmsd><zone>
+<time-part> ::=  /<Red-time><zone>
+               | T<Red-time><zone>
 <zone>::= Z | +<zone-offset> | -<zone-offset>
 <zone-offset> ::= <hours>:<minutes> | <hhmm>
 ....
@@ -895,7 +895,7 @@ January February March April May June July August September October November Dec
 The `<day>` part is a 1- or 2-digit unsigned number. The combination of year, month and day
 is checked for validity.
 
-For `<hmsd>` see rule `S113`. The time part is in the 24 hours system and is used modulo `24:00`
+For `<Red-time>` see rule `S113`. The time part is in the 24 hours system and is used modulo `24:00`
 with overflow resulting in increasing the date. Note that it represents _local time_.
 
 For `<hours>` and `<minutes>` see again  rule `S113`;
