@@ -3084,10 +3084,11 @@ The built-in function `input` is shorthand for `ask ""`.
 The built-in function `read-clipboard` will return the clipboard content as a string
 and `write-clipboard` with a string argument will set the clipboard content.
 
-=== URL functions
+=== Other functions
 
-The function `browse` with a `url!` argument will open the system default browser
-at the URL that is indicated by its argument.
+The function `browse` with a `url!` of `file!` argument will open the system default browser
+at the URL that is indicated by its `url!` argument, or invoke the system file manager for
+the file that is indicated by its `file!` argument.
 
 == Exceptions
 
@@ -3914,7 +3915,7 @@ N    while
 ==== Input/Output
 ....
 R    ask
-R    browse
+N    browse
 F    cd
 F    change-dir
 F    clean-path
