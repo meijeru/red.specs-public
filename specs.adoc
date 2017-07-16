@@ -924,7 +924,7 @@ indicating the hours, minutes and seconds respectively. For `<decimals>` see rul
 The time of day is in the 24-hour system and is used modulo `24:00` with a possible
 carry resulting in increasing the date. Note that it represents _local time_.
 
-The timezone may be represented as in rule `S113`, with `<hours>` be ing a 1- or 2-digit number,
+The timezone may be represented as in rule `S113`, with `<hours>` being a 1- or 2-digit number,
 and `<minutes>` having 2 digits, or in the ISO time format. The meaning of `Z` is `0:00`.
 The value is used modulo `16:00` and is rounded down in multiples of `00:15`.
 
@@ -1262,7 +1262,7 @@ The keys and values are not evaluated.
 * Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
 or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
 This does not apply to `image!` values.
-* Making a `date!` value from a `block!` value: the block should have 3 to 7 components; if any of them is a `word!`
+* Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components; if any of them is a `word!`
 value, the value it refers to will be retrieved.
 The first 3 components should be of `integer!` type and are interpreted
 as year, month, day, or day, month, year if the first value is smaller than 100.
@@ -1423,7 +1423,7 @@ The function `to-date` is defined for non-negative _**see issue #2858**_ `intege
 which are interpreted as the number of seconds elapsed since midnight on 1 January 1970 to
 the desired date and time (Unix convention). Furthermore, it is defined for `block!` values
 which have the same interpretation as for `make date!` (see section 5.3.12) except that
-in this case, over- and under-flow are allowed and taken into account.
+in this case, over- and under-flow are allowed and taken into account _**see issue #2891**_.
 
 ==== Additional conversion functions
 
@@ -4533,4 +4533,5 @@ issue  spec section
 2776   8.1
 2858   5.4.13
 2883   5.6.2
+2891   5.4.13
 ....
