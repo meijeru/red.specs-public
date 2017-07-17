@@ -784,7 +784,7 @@ form `%<hex>` are accepted and converted.
 
 **`S119`**::
 
-A `<url-literal` is written as three or more non whitespace characters, of which at least one `:` which must not
+A `<url-literal>` is written as three or more non whitespace characters, of which at least one `:` which must not
 be the first or last character. Escaped characters of the form `%<hex>` are accepted and converted.
 
 ==== `email!`
@@ -1262,6 +1262,12 @@ The keys and values are not evaluated.
 * Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
 or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
 This does not apply to `image!` values.
+* Making a `url!` value from a `block!` value: the components (at leaast one is required)
+may be of any type; they will be `form` ed; the first component is assumed to be the _protocol_
+(e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
+if the third one is an `integer!` value, this is assumed to be the _port number_ (e.g. `80`),
+otherwise the third and any following components are assumed to constitute the file path
+including -- if the last one is an `issue!` value -- a _fragment_.
 * Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components; if any of them is a `word!`
 value, the value it refers to will be retrieved.
 The first 3 components should be of `integer!` type and are interpreted
@@ -1304,10 +1310,11 @@ section 11.1) except for
 * `binary!` values: these will be decoded as UTF-8
 * `any-list!` values: the function will apply `form` to each component and concatenate the results
 
-The functions `to-file` etc. will perform the same conversion and yield
-a result of the appropriate type.
+The functions `to-file to-email` and `to-tag` will perform the same conversion and yield
+a result of the appropriate type. The function `to-url` will operate analogously for `none!` and
+`binary!` values; a `block!` value has the same interpretation as for the `make url!` function.
 
-==== Target types in `any-list!`
+==== Target types in `any-list!` 
 
 The function `to-block` yields a block with the argument as single component except
 for
