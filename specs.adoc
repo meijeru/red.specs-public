@@ -3050,7 +3050,7 @@ The following built-in functions deal with the file system:
 
 * `exists?` will yield `true` if the file indicated by its `file!` argument
 exists in the file system, and `false` otherwise
-* `exists-thru?` operates the same with respect to the _thru-cache_ (see section 11.6)  
+* `exists-thru?` operates the same with respect to the _thru-cache_ (see section 11.5)  
 * `suffix?` yields the suffix (extension) of a file, or `none` if there is no suffix
 * `size?` will yield the size of the file in bytes
 * `dir?` will yield `true` if the `file!` value indicates a directory
@@ -3077,7 +3077,7 @@ where `.` and `..` are eliminated
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
 * `path-thru` will return the local disk cache path of a remote file
-indicated by its `url!` argument
+indicated by its `url!` argument (see section 11.5)
 * `delete` will take a `file!` argument and delete the file indicated;
 the result is `true` if the owill reratin was succesful, and `false` otherwise
 
@@ -4098,7 +4098,7 @@ system/   object!
         path           file!
         script         
         cache          file!         cache folder used by the Red toolchain
-        thru-cache     file!         see section 11.6
+        thru-cache     file!         see section 11.5
         args           
         do-arg         
         debug          logic!
@@ -4401,7 +4401,7 @@ dialect                                 2.5
   vector spec dialect                   2.5. 5.3.3
   Visual Interface dialect (VID)        2.5, 13.3
 direct type                             4.2.2
-disk-cached remote file access          11.6
+disk-cached remote file access          11.5
 docstring                               5.3.8, 5.3.9
 Domain Specific Language (DSL)          2.5
 double quote (U+0022)                   5.2.6
@@ -4471,7 +4471,7 @@ reactivity                              13.4
 Read Evaluate Print Loop (REPL)         2.2
 Red toolchain                           2.2
 Red/System (dialect)                    2.5, 17
-remote file access (disk-cached)        11.6
+remote file access (disk-cached)        11.5
 REPL (Read Evaluate Print Loop)         2.2
 RGB color scheme                        5.2.4, 5.3.4, 14.1
 RGBA color/transparency scheme          5.3.4
