@@ -1262,12 +1262,12 @@ The keys and values are not evaluated.
 * Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
 or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
 This does not apply to `image!` values.
-* Making a `url!` value from a `block!` value: the components (at leaast one is required)
+* Making a `url!` value from a `block!` value: the components (at least one is required)
 may be of any type; they will be `form` ed; the first component is assumed to be the _protocol_
 (e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
 if the third one is an `integer!` value, this is assumed to be the _port number_ (e.g. `80`),
 otherwise the third and any following components are assumed to constitute the file path
-including -- if the last one is an `issue!` value -- a _fragment_.
+including -- if the last one is an `issue!` value -- a _fragment_._**see issues #2900 and #2901**_
 * Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components; if any of them is a `word!`
 value, the value it refers to will be retrieved.
 The first 3 components should be of `integer!` type and are interpreted
@@ -4557,4 +4557,6 @@ issue  spec section
 2858   5.4.13
 2883   5.6.2
 2891   5.4.13
+2900   5.3.12
+2901   5.3.12
 ....
