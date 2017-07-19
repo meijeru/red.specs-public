@@ -2333,7 +2333,8 @@ function            arity   argument type(s)                      result type
 NaN?                  1     number!                               logic!
 sign?                 1     number! time!                         integer!
 positive? negative?   1     number! time!                         logic!
-zero?                 1     scalar!                               logic!
+zero?                 1     number! char!                         logic!
+                            time! pair! tuple!
 even? odd?            1     number! char!                         logic!
 negate                1     number! time! pair!                   same as operand  see issue #1262
 absolute round        1     number! time! pair!                   same as operand see issue #1262, 1267
