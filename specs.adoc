@@ -4286,7 +4286,7 @@ internal ( 900 )
 It is recommended to organize the metadata as `<word>: <value>` pairs. This
 will facilitate storage and retrieval of these data by the toolchain as well
 as the user. Certain elements of metadata, that are used by the toolchain,
-*must* be in this format: `Needs:` and `Config:`, with prescribed types for
+*must* be in this format: `Icon: Needs:` and `Config:`, with prescribed types for
 the `<value>` as indicated.
 
 The following is a list of suggested and compulsory elements. The ones marked *
@@ -4294,26 +4294,30 @@ are contained in the object `system/standard/header`.
 ....
   element     type           description
 
-* Title:      string!        application title
-* Name:       string!        application name
+* Title:      string!              application title
+* Name:       string!              application name
 * Type:       ???
-  Purpose:    string!        short description of the application purpose
-* Version:    tuple!         source code version
-* Date:       date!          date of last version
-* File:       file!          name of the source file
-* Author:     string!        source code author name
-  Rights:     string!        copyrights
-  License:    [url! string!] source license (URL or full text)
-  History:    block!         source modifications history
-  Note(s):    string!        any special notice
+  Purpose:    string!              short description of the application purpose
+* Version:    tuple!               source code version
+* Date:       date!                date of last version
+* File:       file!                name of the source file
+* Author:     string!              source code author name
+  Rights:     string!              copyrights
+  License:    [url! string!]       source license (URL or full text)
+  History:    block!               source modifications history
+  Note(s):    string!              any special notice
 
-  Language:   word!          language of the comments
-  Tabs:       integer!       number of spaces between tab positions
-  Icon:       file!          *.ico file with icon for executable
+  Language:   word!                language of the comments
+  Tabs:       integer!             number of spaces between tab positions
+  
 
-* Needs:      [word! block!] module(s) that is/are to be included
-  Config:     block!         set-word/value pairs for toolchain options
-                             see system-dialect/options-class in %red/system/compiler.r
+  Icon:       [file! block! word!] *.ico file(s) with icon(s) for executable,
+                                   or word default/flat/old/mono indicating
+                                   standard *.ico files provided by toolchain
+* Needs:      [word! block!]       module(s) that is/are to be included
+  Config:     block!               set-word/value pairs for toolchain options
+                                   for a list of options, see %red/system/compiler.r
+                                   (object system-dialect/options-class)
 ....
 
 == Additional documentation
