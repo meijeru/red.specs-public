@@ -4308,11 +4308,12 @@ are contained in the object `system/standard/header`.
   Note(s):    string!        any special notice
 
   Language:   word!          language of the comments
-  Tabs:       integer!       number of spaces betw  een tab positions
-  Icon:       file!          *.ico file with icon   for executabl  e
+  Tabs:       integer!       number of spaces between tab positions
+  Icon:       file!          *.ico file with icon for executable
 
 * Needs:      [word! block!] module(s) that is/are to be included
-  Config:     ???
+  Config:     block!         set-word/value pairs for toolchain options
+                             see system-dialect/options-class in %red/system/compiler.r
 ....
 
 == Additional documentation
