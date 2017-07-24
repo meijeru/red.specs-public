@@ -289,68 +289,70 @@ decorated non-terminals like `<true-block>` will stand for `<block>` etc.
  
 The full list of types of the languages is given below, with an explanation of the usage of their values.
 
+[cols="1,2", options="header"]
+|===
+
+|type             |values and usage
+|`datatype!`      |types of the language (first class values)
+|`typeset!`       |sets of types
+|`none!`          |single value: `none`, i.e. a value belonging to none of the other types
+|`logic!`         |`true` or `false`
+|`char!`          |character (Unicode Code Point)
+|`integer!`       |integer numbers 
+|`float!`         |floating point (decimal) numbers
+|`percent!`       |id. expressed as a percentage
+|`time!`          |time interval or point in time, stored as a floating point number of seconds
+|`date!`          |date according to the Gregorian calendar, optionally with time of day and timezone
+|`pair!`          |2-dimensional coordinates or size 
+|`tuple!`         |e.g. color in RGB or other scheme, IPv4 adres
+|`word!`          |identifier that can be bound
+|`lit-word!`      |quoted (unevaluated) word
+|`set-word!`      |word to be given a value to refer to
+|`get-word!`      |word to be evaluated
+|`refinement!`    |optional argument of function
+|`issue!`         |literal identifier (word that does not refer to a value)
+|`handle!`        |opaque integer for communication with operating system
+|`block!`         |ordered collection of values of any type (polymorphic array),
+                   may also be used as unordered collection (set)
+|`hash!`          |block with quick access
+|`paren!`         |differs from block in behaviour under evaluation  
+|`path!`          |specifying optional arguments in function calls,
+                   selection of components of composite values
+|`lit-path!`      |quoted (unevaluated) path
+|`set-path!`      |for setting a component of a composite value
+|`get-path!`      |path to be evaluated
+|`vector!`        |ordered sequences of values of identical type, which can be
+                   `char!` or `integer!` (8/16/32 bits), `percent!` or `float!` (32/64 bits);
+                   default: 32 bits for `char!` or `integer!` and 64 bits otherwise
+|`string!`        |sequence of characters (Unicode Code Points)
+|`file!`          |file or directory (folder)
+|`url!`           |URL
+|`tag!`           |tag in the sense of HTML, XML etc.
+|`email!`         |email address
+|`binary!`        |sequence of bytes
+|`image!`         |2-dimensional array of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
+|`bitset!`        |sequence of values true or false, used e.g. to model sets of
+                   non-negative integers, such as Unicode Code Points
+|`map! `          |collection of pairs of values where the first value in each pair functions
+                   as key for retrieval of the second; keys are restricted to types in
+                   `scalar! any-word!` and `any-string!`
+|`object!`        |collection of word-value pairs with a context in which the words
+                   (also called fields) are bound, and are referring to the corresponding values;
+                   objects are capable of triggering asynchronous events in response
+                   to changes in their components, thus enabling reactive programming;
+                   objects have a _class_ property associated with them
+|`error!`         |specialized objects representing error conditions
+|`native!`        |pre-defined functions with built-in evaluation according to special rules
+|`action!`        |pre-defined polymorphic functions of one or two arguments with built-in evaluation
+|`op!`            |operators, i.e. infix functions of two arguments, each one is
+                   derived from a `native! action! function!` or `routine!` value
+|`function!`      |user-defined functions; as with `native!` and `action!` values,
+                    `function!` values may have optional arguments, indicated by refinements
+|`routine!`       |user-defined functions with body in Red/System code
+|`unset!`         |single value indicating the absence of a usable value
+|`event!`         |representation of external activity   
+|===
 ....
-type            usage of values
-
-datatype!       types of the language (first class values)
-typeset!        sets of types
-none!           single value: none, i.e. a value belonging to none of the other types
-logic!          true or false
-char!           character (Unicode Code Point)
-integer!        integer numbers 
-float!          floating point (decimal) numbers
-percent!        id. expressed as a percentage
-time!           time interval or point in time, stored as a floating point number of seconds
-date!           date according to the Gregorian calendar, optionally with time of day and timezone
-pair!           2-dimensional coordinates or size 
-tuple!          e.g. color in RGB or other scheme, IPv4 adres
-word!           identifier that can be bound
-lit-word!       quoted (unevaluated) word
-set-word!       word to be given a value to refer to
-get-word!       word to be evaluated
-refinement!     optional argument of function
-issue!          literal identifier (word that does not refer to a value)
-handle!         opaque integer for communication with operating system
-block!          ordered collection of values of any type (polymorphic array),
-                may also be used as unordered collection (set)
-hash!           block with quick access
-paren!          differs from block in behaviour under evaluation  
-path!           specifying optional arguments in function calls,
-                selection of components of composite values
-lit-path!       quoted (unevaluated) path
-set-path!       for setting a component of a composite value
-get-path!       path to be evaluated
-vector!         ordered sequences of values of identical type, which can be
-                char! or integer! (8/16/32 bits), percent! or float! (32/64 bits);
-                default: 32 bits for char! or integer! and 64 bits otherwise
-string!         sequence of characters (Unicode Code Points)
-file!           file or directory (folder)
-url!            URL
-tag!            tag in the sense of HTML, XML etc.
-email!          email address
-binary!         sequence of bytes
-image!          2-dimensional array of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
-bitset!         sequence of values true or false, used e.g. to model sets of
-                non-negative integers, such as Unicode Code Points
-map!            collection of pairs of values where the first value in each pair functions
-                as key for retrieval of the second; keys are restricted to types in
-                scalar!, any-word! and any-string!
-object!         collection of word-value pairs with a context in which the words
-                (also called fields) are bound, and are referring to the corresponding values;
-                objects are capable of triggering asynchronous events in response
-                to changes in their components, thus enabling reactive programming;
-                objects have a "class" property associated with them
-error!          specialized objects representing error conditions
-native!         pre-defined functions with built-in evaluation according to special rules
-action!         pre-defined polymorphic functions of one or two arguments with built-in evaluation
-op!             operators, i.e. infix functions of two arguments, each one is
-                derived from a native! action! function! or routine! value
-function!       user-defined functions; as with native! and action! values,
-                function! values may have optional arguments, indicated by refinements
-routine!        user-defined functions with body in Red/System code
-unset!          single value indicating the absence of a usable value
-event!          representation of external activity   
-
 TBD
 point!
 closure!
