@@ -1645,8 +1645,9 @@ for comparison of two values. Each of these operators/functions allows
 arguments of any type, although in most cases the comparison may only
 yield `true` if the two types are the same. Exceptions will be noted below.
 The _equality_ functions, i.e. the first four, are defined for all types
-of the first argument. The others (the _ordering_ ones) are only defined
-for certain combinations of types. Also this will be noted.
+of the arguments. They always yield a value of type `logic!`, never
+an error. The others (the _ordering_ ones) are only defined for certain
+combinations of types and yield an error otherwise. Also this will be noted.
 
 ....
     operator   native function
@@ -1664,7 +1665,7 @@ for certain combinations of types. Also this will be noted.
 
 ==== Equality comparisons
 
-The strictest equality test is `same?` which yields true only if the values
+The strictest equality test is `same?` which yields `true` only if the two values
 are of the same type and the two _value slots_ (see section 4.2.2)
 have identical content. For values of direct types this comes down to simple equality,
 but for values of other types it is quite possible to be equal but not the same
@@ -1677,7 +1678,7 @@ for the `equal?` test.
 
 The `equal?` test ignores case differences in the spelling of words and strings,
 and in the case of floating point numbers, a very small difference (1 in 10^16^)
-in actual value._**See also issues #2658, 2661 and 2661**_
+in actual value._**See also issues #2658 and #2661**_
 
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
@@ -1686,15 +1687,17 @@ and (strict) equality of field values. If the components or field values are als
 For values of `vector!` type, these tests also apply pairwise to the components. In
 addition, the component type (`char! integer! float!` or `percent!`) must be the same.
 
-In all cases, for the `equal?` test, the requirement of equal type is relaxed for several
-combinations of types. Within each such combination, `equal?` will allow any two types
-for the values to be compared:
+In all cases, for the `equal?` and `not-equal?` test, the requirement of equal type
+is relaxed for several combinations of types of the two values.
 
 * `char!` and `integer!` _**See issue #2650**_
 * `integer! float!` and `percent!`
 * `any-word!` and `refinement!` (note the absence of `issue!`)
 * `any-string!`
 * `any-object!` _**See issue #2657**_
+
+If the combination of types of the two values is not allowed as detailed above,
+the three equality tests will all yield `false` and the `not-equal?` test will yield `true`.
 
 ==== Ordering comparisons
 
@@ -1717,6 +1720,9 @@ However, as with equality, for some combinations of types this requirement is re
 * `integer! float!` and `percent!`
 * `any-word!` and `refinement!`
 * `any-string!`
+
+If the combination of types of the two values is not allowed as detailed above, or if no
+comparison is defined, the comparison will raise an error.
 
 == Words, contexts and binding
 
