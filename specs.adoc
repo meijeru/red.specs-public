@@ -1703,7 +1703,9 @@ The following cases can be distinguished:
 * straightforward numerical ordering: `char! integer! float! percent! time!` and `date!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`
-* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!` _**See issue #2663**_
+* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`;
+for objects, the numbers of fields are compared first, and if they are unequal,
+the field contents are not tested further
 * no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
 action! native! op! handle! event!` and `unset!`.
 
@@ -1885,7 +1887,7 @@ Note that `block!` is one of the passive types. Thus evaluation of a block
 leaves the block unchanged. The term _execution of a block_ will be used to
 indicate sequential evaluation of the components of the block; the result of this
 execution is the result of the last evaluation, if any, and the unset value otherwise.
-See also the section 7.5.
+See also section 7.5.
 
 === Decaying types
 
@@ -2315,7 +2317,7 @@ and `all [ ]` both yield `none`.
 
 === Function `do`
 
-The built-in function `do` will evaluate its argument,which may be of any
+The built-in function `do` will evaluate its argument, which may be of any
 type, as follows:
 
 * if the argument is a `block!` value, the block will be _executed_ as
@@ -4578,7 +4580,6 @@ issue  spec section
 2658   5.8.1
 2661   5.8.1
 2662   5.8.2
-2663   5.8.2
 2668   11.1
 2686   11.1
 2776   8.1
