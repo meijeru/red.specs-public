@@ -1697,7 +1697,7 @@ is relaxed for several combinations of types of the two values.
 * `any-object!` _**See issue #2657**_
 
 If the combination of types of the two values is not allowed as detailed above,
-the three equality tests will all yield `false` and the `not-equal?` test will yield `true`.
+the `not-equal?` test will yield `true` and the other three equality tests will yield `false`.
 
 ==== Ordering comparisons
 
@@ -4444,6 +4444,7 @@ double quote (U+0022)                   5.2.6
 draw dialect                            2.5, 13.3
 DSL (Domain Specific Language)          2.5
 end-of-line comment                     3.1, 3.2
+equality comparison                     5.8.1
 error spec dialect                      2.5, 5.3.7
 escape (U+001B)                         5.2.6
 escaped character                       5.2.6, 5.2.8, 5.2.9, 5.2.10
@@ -4494,6 +4495,7 @@ null (U+0000)                           5.2.6
 object class                            5.3.6
 object spec dialect                     2.5, 5.3.6
 operator                                3.3
+ordering comparison                     5.8.2
 parent type                             4.2.6
 parse dialect                           2.5, 13.2
 passive type                            4.2.5
