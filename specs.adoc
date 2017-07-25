@@ -1874,9 +1874,7 @@ are binary infix functions. See further rule `E112`.
 
 The operation of the toolchain will result in the evaluation of the Red source text presented
 to it. The user can, at runtime, achieve evaluation of a (fragment of) Red source, i.e. Red data,
-by invoking the built-in function `do`. If this is presented with a string argument. it will
-invoke `load` (see section 11.1) first, and then evaluate the result. If the argument is
-a block, the block will be _executed_ as described in rule `E100`.
+by invoking the built-in function `do` (see section 7.6).
 
 === Passive types
 
@@ -2314,6 +2312,24 @@ if there is no such expressions it will yield `none`;
 and yield `none` as a result; if there is no such one
 it will yield the result of evaluating the last one. Note that `any [ ]`
 and `all [ ]` both yield `none`.
+
+=== Function `do`
+
+The built-in function `do` will evaluate its argument,which may be of any
+type, as follows:
+
+* if the argument is a `block!` value, the block will be _executed_ as
+described in section 7.1
+* if the argument is a `string!` value, the built-in function `load`
+(see section 11.1) will be invoked on the string, and `do` will be invoked
+on the resulting block
+* if the argument is a `url!` or `file!` value, this should contain a text
+which is a valid Red program (see section 3); the text string will be
+obtained by `read` (see section 11.5) and the previous step will be taken;
+* if the argument is an `error!` value, the error will be raised (see
+section 12.1.2)
+* otherwise, the argument will be evaluated according to the appropriate
+rule of section 7
 
 == Numerical and logical computation
 
