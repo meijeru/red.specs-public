@@ -1678,7 +1678,7 @@ for the `equal?` test.
 
 The `equal?` test ignores case differences in the spelling of words and strings,
 and in the case of floating point numbers, a very small difference (1 in 10^16^)
-in actual value._**See also issues #2658 and #2661**_
+in actual value._**See also issue #2658**_
 
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
@@ -4586,7 +4586,6 @@ issue  spec section
 2650   5.8.1
 2657   5.8.1
 2658   5.8.1
-2661   5.8.1
 2662   5.8.2
 2668   11.1
 2686   11.1
