@@ -867,8 +867,10 @@ The UTC time is a non-negative `time!` value and the timezone is a signed `time!
 which varies between `-15:45` and `+15:45` in multiples of `0:15`
 (note that actual timezones vary between `-12:00` and `+14:00`).
 
-A `date!` value without time specified is different from a `date!` value with zero
-time and timezone values, but only as far as displaying the value is concerned.
+A `date!` value without time specified has time and timezone components `none`
+and is conceptually different from a `date!` value with zero
+time and timezone values, but only as far as displaying the value is concerned,
+not for computation purposes.
 
 A `<date-literal>` may use a native Red format, or a subset of the representation
 defined by the _ISO 8601 date and time standard_.
@@ -876,20 +878,13 @@ defined by the _ISO 8601 date and time standard_.
 **`S135`**::
 ....
 <date-literal> ::= <Red-date> | <Red-date>/<time> | <Red-date>T<time> | <ISO-date>T<time>
-
 <Red-date> ::=  <year><sep><month><sep><day> | <day><sep><month><sep><year> |
                 <day><sep><month><sep><short-year>
-
 <sep> ::= / | -
-
 <ISO-date> ::= <yyyy><mm><dd> | <yyyy>-W<ww> | <yyyy>-W<ww>-<d> | <yyyy>-<ddd>
-
 <time> ::= <Red-time><zone>° | <ISO-time><zone>°
-
 <ISO-time> ::= <hh><mm> | <hh><mm><ss> | <hh><mm><ss>.<decimals>
-
 <zone> ::= Z | <sign><hours> | <sign><hours>:<minutes> | <sign><hh><mm>
-
 <sign> ::= + | -
 ....
 
