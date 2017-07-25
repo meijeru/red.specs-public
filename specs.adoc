@@ -497,7 +497,7 @@ _**Mention pseudo types `symbol`, `series!` and `context!`?**_
 
 Notes:
 
-. Values of all types may be represented using `make`, except those of `native! action!` and `routine!`
+. Values of all types may be represented using `make`, except those of `datatype! native! action!` and `routine!`
 . _**See issue #2618**_
 . _**See issue #2527**_
 ....
