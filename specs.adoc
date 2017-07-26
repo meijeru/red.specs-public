@@ -868,9 +868,9 @@ which varies between `-15:45` and `+15:45` in multiples of `0:15`
 (note that actual timezones vary between `-12:00` and `+14:00`).
 
 A `date!` value without time specified has time and timezone components `none`
-and is conceptually different from a `date!` value with zero
-time and timezone values, but only as far as displaying the value is concerned,
-not for computation purposes.
+and is conceptually different from a `date!` value with time and timezone components `0:00`;
+the former will be displayed as date-only, the latter will have time and timezone displayed;
+for computations, the former will effectively have time and timezone `0:00`. 
 
 A `<date-literal>` may use a native Red format, or a subset of the representation
 defined by the _ISO 8601 date and time standard_.
