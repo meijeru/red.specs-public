@@ -1427,11 +1427,14 @@ value. See further the documentation of the GUI system (reference in section
 
 ==== Target type `date!`
 
-The function `to-date` is defined for non-negative _**see issue #2858**_ `integer!` values
-which are interpreted as the number of seconds elapsed since midnight on 1 January 1970 to
-the desired date and time (Unix convention). Furthermore, it is defined for `block!` values
-which have the same interpretation as for `make date!` (see section 5.3.12) except that
-in this case, over- and under-flow are allowed and taken into account _**see issue #2891**_.
+The function `to-date` is defined for `integer!` values which are interpreted as
+the difference in number of seconds between midnight on 1 January 1970 and
+the desired date and time (Unix convention). This number can be both positive and
+negative and because of the limitation of integer numbers will yield dates between
+`13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`. Furthermore, it is defined
+for `any-list!` values which have the same interpretation as for `make date!`
+(see section 5.3.12) except that in this case, over- and under-flow are allowed
+and taken into account.
 
 ==== Additional conversion functions
 
@@ -4585,7 +4588,5 @@ issue  spec section
 2668   11.1
 2686   11.1
 2776   8.1
-2858   5.4.13
 2883   5.6.2
-2891   5.4.13
 ....
