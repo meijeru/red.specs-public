@@ -2885,10 +2885,9 @@ is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
 out of the result of `mold` and append that value to the destination .
 _**See issue #2668**_
 
-For `block!` and `paren!` values (not `hash!` _**see issue #2686**_),
-the user can control the way they are presented by `mold` by inserting
-line feed characters (`U+000A`) before selected components. The built-in
-function `new-line` with a `block!` or `paren!` first argument will
+For `any-list!` values the user can control the way they are presented by `mold`,
+by instructing it to insert line feed characters (`U+000A`) before selected components.
+The built-in function `new-line` with an `any-list!` first argument will
 set a _new-line marker_ in the value slot of the current component of
 its argument (if the second argument evaluates to `true`) or clear this marker
 if the second argument evaluates to `false`.
@@ -2910,8 +2909,7 @@ gives
 ....
 
 The state of the new-line marker may be tested with the built-in function
-`new-line?` which has a `block!` or `paren!` argument, and yields `true`
-or `false`.
+`new-line?` which has an `any-list!` argument, and yields `true` or `false`.
 
 === Conversion from/to other representations
 
@@ -4567,7 +4565,6 @@ issue  spec section
 2216   8.1
 2492   3.1
 2527   4.2.7, 5.7
-2523   5.6.3
 2554   5.6.2
 2565   4.3
 2577   5.3.11
@@ -4586,7 +4583,6 @@ issue  spec section
 2658   5.8.1
 2662   5.8.2
 2668   11.1
-2686   11.1
 2776   8.1
 2883   5.6.2
 ....
