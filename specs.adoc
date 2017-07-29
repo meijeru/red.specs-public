@@ -956,8 +956,6 @@ have to be a `datatype!` value; if it is a value of another type,
 that type is taken to be the desired type. This is not made explicit
 in the following rules, except in the case of `make object!` where
 an `object!` value as second argument has a different interpretation.
-In the case of `make error!` only the type `error!` is allowed as first argument
-_**See issue #2640**_.
 
 ==== `typeset!`
 
@@ -994,7 +992,7 @@ The contents of the `<block>` are copied (not deeply).
                     float! 32 | float! 64 | percent! 32 | percent! 64
 ....
 The `<integer>` should be non-negative. It produces an empty `vector!` value with the prescribed
-number of components of type `integer!` and size 32 being allocated _** and set to zero see issue #2596**_.
+number of components of type `integer!` and size 32 being allocated and set to zeromake vector! 2.0.
 The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
 the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the assumed type
@@ -1471,11 +1469,14 @@ admit indexing by integers, and images also by pairs as coordinates.
 The expression for this is `<path>` for extraction and `<path>: <expression>` for changing.
 Built-in functions exist to perform the same operations. The correspondence is as follows:
 if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
-and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `pair!` value as index
-must be enclosed in parentheses, thus if `v` is an image, the pixel at 2x2 is addressed as `v/(2x2)`.
+and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `char!`, `binary!`
+or `pair!` value used as index must be enclosed in parentheses.
 The component of an `image!` is a `tuple!` value as explained in section 5.3.4.
 Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
 `true ~ 1` and `false ~ 2`.
+
+Note further that path expressions cannot be used to index `file!` and `url!` values,
+as these path expressions will be interpreted as "extending" the file or url path.
 
 Values of the direct types `time! date! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `tuple!` values, this indexing treats the tuple as a sequence.
@@ -1571,30 +1572,31 @@ be similarly used _**see issue #2883**_
 ==== Overview table
 
 ....
-type         indexed      built-in    key values or types                built-in
-             components   functions                                      functions
+type         indexed      built-in    key values or types                 built-in
+             components   functions                                       functions
 
-time!        1 2 3        pick        hour minute second                 --
-date!        1 .. 10      pick        date year month day zone           --
+time!        1 2 3        pick        hour minute second                  --
+date!        1 .. 10      pick        date year month day zone            --
                                       time hour minute second
                                       weekday yearday julian
                                       timezone week isoweek
-pair!        1 2          pick        x y                                --
-tuple!       1 .. 12      pick        --                                 --
-any-block!   integer!     pick poke   any-type!                          select put
-vector!      integer!     pick poke   integer! char!                     select (put see issue #1960)
-any-string!  integer!     pick poke   char! any-string! binary!          select (put see issue #1960)
-+ email!                              host user                          --
-binary!      integer!     pick poke   integer! char! any-string! binary! select (put see issue #1960)
-image!       integer!     pick poke   size rgb alpha argb                --
+pair!        1 2          pick        x y                                 --
+tuple!       1 .. 12      pick        --                                  --
+any-block!   integer!     pick poke   any-type!                           select put
+vector!      integer!     pick poke   integer! char!                      select (put see issue #1960)
+string!      integer!     pick poke   char! any-string! binary!           select (put see issue #1960)
+email!       integer!     pick poke   char! any-string! binary! host user select (put see issue #1960)
+file! url!   integer!     pick poke   char! any-string! binary!           select (put see issue #1960)
+binary!      integer!     pick poke   integer! char! any-string! binary!  select (put see issue #1960)
+image!       integer!     pick poke   size rgb alpha argb                 --
              pair!        pick poke
-bitset!      integer!     pick poke   --                                 --
-             char!        pick poke   --                                 -- see issue #2523
-map!                                  scalar! all-word! any-string!      select put
-object!                               word!                              select put
-error!                                code type id arg1 arg2 arg3        select
+bitset!      integer!     pick poke   --                                  --
+             char!                                --
+map!                                  scalar! all-word! any-string!       select put
+object!                               word!                               select put
+error!                                code type id arg1 arg2 arg3         select
                                            near where stack
-event!                                type face window offset key        --
+event!                                type face window offset key         --
                                            picked flags away?
                                            down? mid-down? alt-down?
                                            aux-down? ctrl? shift?
@@ -2361,9 +2363,9 @@ function            arity   argument type(s)                      result type
 NaN?                  1     number!                               logic!
 sign?                 1     number! time!                         integer!
 positive? negative?   1     number! time!                         logic!
-zero?                 1     number! char!                         logic!
-                            time! pair! tuple!
-even? odd?            1     number! char!                         logic!
+zero?                 1     number! char! time!                   logic!
+                            pair! tuple!
+even? odd?            1     number! char! time!                   logic!
 negate                1     number! time! pair!                   same as operand  see issue #1262
 absolute round        1     number! time! pair!                   same as operand see issue #1262, 1267
 max min               2     scalar!             scalar!           same as greatest/smallest
