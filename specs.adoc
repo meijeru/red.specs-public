@@ -993,7 +993,7 @@ The contents of the `<block>` are copied (not deeply).
 ....
 The `<integer>` should be non-negative. It produces a `vector!` value with the number of components
 given by the `<integer>` allocated. These will be of type `integer!` and size 32, and set to `0`.
-Likewise, the `<float>` should be non-negative. It produces a`vector!` value with the number of components
+Likewise, the `<float>` should be non-negative. It produces a `vector!` value with the number of components
 given by the truncated `<float>` allocated . These will be of type `float!` and size 32 and set to `0.0`.
 _**see issue #2940**_
 The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
@@ -1564,8 +1564,8 @@ value with the corresponding `zone` component and a changed `time` component
 such that the UTC time value is unchanged; setting the `week` or `isoweek` component results in
 a new `date!` value having the date of the first day in the indicated week; setting the `weekday`
 component results in a new `date!` value with the corresponding date in the same week;
-setting the `time` component to `none` will effective set the `time` and `timezone` components
-to `0:00` but will also ensure that these components will not be displayed
+setting the `time` component to `none` will ensure that the `time` and `timezone` components
+will not be displayed, and that for computations they have the value `0:00`
 * `email!` values: the `user` and `host` component values should be supplied as strings
 * `image!` values: the `size` component cannot be set; the other components can be set
 to a `binary!` value of the required length; if the value is shorter, bytes `#{00}` are appended;
