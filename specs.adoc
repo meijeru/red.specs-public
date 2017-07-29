@@ -1204,7 +1204,9 @@ must refer to an existing Red type, which must be `integer! float!` or `logic!`,
 or one that has a Red/System `struct!` alias defined that describes a value
 slot of that type._**see issue #2642**_ The `<routine-body>` must contain valid Red/System code.
 
-Values of type `routine!` may not occur in programs submitted to the interpreter.
+Values of type `routine!` may not occur in programs submitted to the interpreter,
+and in programs submitted to the compiler, they may only occur preceded by a
+set-word (`<word-literal>:`).
 
 The construction of routines requires a fairly deep knowledge of the Red runtime system
 and the representation and storage of argument and result values.
