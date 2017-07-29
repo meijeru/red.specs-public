@@ -1591,7 +1591,7 @@ binary!      integer!     pick poke   integer! char! any-string! binary!  select
 image!       integer!     pick poke   size rgb alpha argb                 --
              pair!        pick poke
 bitset!      integer!     pick poke   --                                  --
-             char!                                --
+             char!
 map!                                  scalar! all-word! any-string!       select put
 object!                               word!                               select put
 error!                                code type id arg1 arg2 arg3         select
@@ -4573,14 +4573,12 @@ issue  spec section
 2577   5.3.11
 2578   7.3.5
 2589   5.3.8
-2596   5.3.3
 2609   5.3.5
 2618   4.2.7, 5.7
 2622   7.4.1
 2625   5.6.2
 2628   12.1.1
 2633   5.8.1, 12.1
-2640   5.3
 2642   5.3.9
 2645   5.4.2
 2650   5.8.1
