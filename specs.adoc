@@ -3089,8 +3089,9 @@ exists in the file system, and `false` otherwise
 * `exists-thru?` operates the same with respect to the _thru-cache_ (see section 11.5)  
 * `suffix?` yields the suffix (extension) of a file, or `none` if there is no suffix
 * `size?` will yield the size of the file in bytes
-* `dir?` will yield `true` if the `file!` value indicates a directory
+* `dir?` will yield `true` if the file indicated by its`file!` argument is a directory
 and `false` otherwise
+* `dirize` will add a trailing `/` to its `file!` argument if needed
 * `what-dir` will yield the current working directory as a `file!` value
 * `cd` or `change-dir` will set the current working directory to the argument
 which may be a `file!`, `word!` or `path!` value; the argument will first be
@@ -3108,20 +3109,25 @@ if this contains more than one directory level, and the `/deep` refinement
 is specified, the intermediate directory or directories will also be created
 * `clean-path` will normalize its `file!` argument to an absolute path
 where `.` and `..` are eliminated
+* `normalize-dir` will invoke `clean-path`, prefix the current working directory
+if the resulting path is relative, and invoke `dirize` afterwards
 * `split-path` will take a `file!` argument and yield a block of two
 `file!` values: the last file or directory in the path, preceded by the
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
 * `path-thru` will return the local disk cache path of a remote file
 indicated by its `url!` argument (see section 11.5)
-* `delete` will take a `file!` argument and delete the file indicated;
-the result is `true` if the owill reratin was succesful, and `false` otherwise
+* `delete` will take a `file!` argument and delete the file or directory indicated;
+the result is `true` if the operation was succesful, and `false` otherwise
+* `request-file` will invoke an interactive file requestor and yield
+a `file!` value or a block of `file!` values
+* `request-dir` will do the same for directories
 
 TBD
-indicated by its `url!` argument
 ....
 A    rename
 ....
+
 === Console functions
 
 The _console prompt_ and the string preceding the result of the user input
