@@ -957,6 +957,12 @@ that type is taken to be the desired type. This is not made explicit
 in the following rules, except in the case of `make object!` where
 an `object!` value as second argument has a different interpretation.
 
+For all types in `series!`, except `image!`, `make` is defined with a `<spec>` which is
+an `integer!` or `float!` value: the `float!` value is truncated; the integer
+or truncated number is used to create an empty `series!` value with storage
+for the given number of components reserved. For `vector!`, the components
+are initialized (see section 5.3.3).
+
 ==== `typeset!`
 
 **`S124`**::
@@ -986,20 +992,19 @@ The contents of the `<block>` are copied (not deeply).
 **`S126`**::
 ....
 <vector> ::= make vector! <vector-spec>
-<vector-spec> ::= <integer> | <float> | <block> | [ <type-and-size> <block>]
+<vector-spec> ::= <block> | [ <type-and-size> <block>]
 <type-and-size> ::= char! 8 | char! 16 | char! 32 |
                     integer! 8 | integer! 16 | integer 32! |
                     float! 32 | float! 64 | percent! 32 | percent! 64
 ....
-The `<integer>` should be non-negative. It produces a `vector!` value with the number of components
-given by the `<integer>` allocated. These will be of type `integer!` and size 32, and set to `0`.
-Likewise, the `<float>` should be non-negative. It produces a `vector!` value with the number of components
-given by the truncated `<float>` allocated . These will be of type `float!` and size 32 and set to `0.0`.
-_**see issue #2940**_
 The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
 the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the assumed type
 is `integer!` of size 32.
+
+Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
+initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>`
+(see the beginning of section 5.3). 
 
 Examples:
 ....
@@ -1263,9 +1268,6 @@ The keys and values are not evaluated.
 
 * Making `integer!` values from `logic!` values: `true -> 1, false -> 0` _**See issue 2644**_
 * Making `logic!` values from `integer!` and `any-float!` values: `0/0.0/0% -> false, all else -> true`
-* Making a `series!` value from an `integer!` or `float!` value: the `float!` value is truncated; the integer
-or truncated number is used to create an empty `series!` value with storage for the given number of components reserved.
-This does not apply to `image!` values.
 * Making a `url!` value from an `any-list!` value: the components (at least one is required)
 may be of any type; they will be `form` ed; the first component is assumed to be the _protocol_
 (e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
@@ -4590,5 +4592,4 @@ issue  spec section
 2668   11.1
 2776   8.1
 2883   5.6.2
-2940   5.3.3
 ....
