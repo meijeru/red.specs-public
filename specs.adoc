@@ -3109,8 +3109,9 @@ if this contains more than one directory level, and the `/deep` refinement
 is specified, the intermediate directory or directories will also be created
 * `clean-path` will normalize its `file!` argument to an absolute path
 where `.` and `..` are eliminated
-* `normalize-dir` will invoke `clean-path`, prefix the current working directory
-if the resulting path is relative, and invoke `dirize` afterwards
+* `normalize-dir` will invoke `clean-path` and prefix the current working directory
+if the file path indicated by its argument (`word! path!` or `file!`)
+is relative, and invoke `dirize` afterwards
 * `split-path` will take a `file!` argument and yield a block of two
 `file!` values: the last file or directory in the path, preceded by the
 directory containing that file or directory (or `%./` if the argument
