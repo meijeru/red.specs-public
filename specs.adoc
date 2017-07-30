@@ -4014,6 +4014,8 @@ A    read
 R    read-clipboard
 F    read-thru
 A    rename
+F    request-dir
+F    request-file
 F    save
 R    set-current-dir
 N    size?
@@ -4060,8 +4062,6 @@ F    insert-event-func
 F    layout
 F    overlap?
 F    remove-event-func
-F    request-dir
-F    request-file
 F    request-font
 F    set-focus
 F    show
