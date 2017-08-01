@@ -2838,11 +2838,12 @@ delivers its integer argument as status code back to the Operating System.
 
 === Special execution cases
 
-The built-in function `comment` evaluates its argument and yields
+The built-in function `comment` ignores its argument and yields
 the unset value as result. It is mostly used to insert multi-line
 comments, with a multi-line string as argument or to "comment out"
-blocks of code. Care has to be taken that the argument is a valid Red expression,
-even though its evaluation is intended to have no effect.
+blocks of code. Care has to be taken that the argument is a
+lexically and syntactically valid single Red expression,
+even though it will not be evaluated.
 
 The built-in function `also` has two arguments. It evaluates both one after the
 other, and yields the result of the first one, using `get/any`.
