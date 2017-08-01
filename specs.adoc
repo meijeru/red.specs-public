@@ -4154,7 +4154,7 @@ system/   object!
         file-types     
         float          object!
     script/     object!
-        title          
+        title          string!
         header         
         parent         
         path           
