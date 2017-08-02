@@ -957,11 +957,11 @@ that type is taken to be the desired type. This is not made explicit
 in the following rules, except in the case of `make object!` where
 an `object!` value as second argument has a different interpretation.
 
-For all types in `series!`, except `image!`, `make` is defined with a `<spec>` which is
-an `integer!` or `float!` value: the `float!` value is truncated; the integer
-or truncated number is used to create an empty `series!` value with storage
-for the given number of components reserved. For `vector!`, the components
-are initialized (see section 5.3.3).
+For all types in `series!` except `image!`, and for `map!`, `make` is defined
+with a `<spec>` which is an `integer!` or `float!` value: the `float!` value
+is truncated; the integer or truncated number is used to create an empty `series!`
+or `map!` value with storage for the given number of components reserved.
+For `vector!`, the components are initialized (see section 5.3.3).
 
 ==== `typeset!`
 
