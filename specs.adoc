@@ -2341,7 +2341,7 @@ type, as follows:
 described in section 7.1
 . if the argument is a `string!` value, the built-in function `load`
 (see section 11.1) will be invoked on the string, and `do` will be invoked
-on the resulting block
+on the result
 . if the argument is a `url!` or `file!` value, this should contain a text
 which is a valid Red program (see section 3); the text string will be
 obtained by `read` (see section 11.5) and the previous step will be taken
