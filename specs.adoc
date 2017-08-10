@@ -716,11 +716,11 @@ Note: punctuation characters from the ASCII subset that *are* allowed in words a
 <single-character> ::= <viewable-character> | <escaped-character> | <hexadecimal-codepoint>
 <escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) | ^(esc) | 
               ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
-<hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>) | ^(<hex><hex><hex><hex>)  
+<hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>)  
 ....
 where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
 
-A `<char-literal>` must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFFF` (hexadecimal notation). 
+A `<char-literal>` must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFF` (hexadecimal notation). 
 
 A `<viewable character>` is, in most cases, simply a displayable character. For example, `e`, `é`, `€` or `😀`.
 When a displayable character requires two or more graphemes to display it, each grapheme requires a separate Red character.
