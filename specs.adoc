@@ -762,7 +762,7 @@ Examples: `#"A"  #"^/"  #"^(0A)"`
 <string-literal> ::= "<single-character>*" | {<single-character>*}
 ....
 
-where `<single-character>` is defined in rule `S116`
+where `<single-character>` is defined in <<code-char-code,rule `S116`>>
 
 When the `<string-literal>` is delimited by `" "` it must not contain unescaped _new-line characters_
 `U+000A`, `U+0085`, `U+2028` and `U+2029`. When the `<string-literal>` is delimited by `{ }` it may contain
@@ -814,7 +814,7 @@ Characters `"` and `'` are allowed but must each be properly paired and nested.
 <binary-literal> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
 
-where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in <<code-char!-code,rule `S116`>>
+where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in <<code-char-code,rule `S116`>>
 and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`; the individual elements within
 the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
 brackets and from each other by whitespace.
@@ -862,7 +862,7 @@ A `date!` value comprises day, month and year numbers as well as, optionally,
 a time of day stored as a UTC time value with optional timezone information.
 The year number ranges from `-2^14^` to `2^14^-1`, but in literals it must
 lie between `-9999` and `9999`. Other values may be constructed using `make` or `to`
-(see <<other-types,sections 5.3.12>> and <<target-type-code-date!-code,5.4.13>>).
+(see <<other-types,sections 5.3.12>> and <<target-type-code-date-code,5.4.13>>).
 The UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
 which varies between `-15:45` and `+15:45` in multiples of `0:15`
 (note that actual timezones vary between `-12:00` and `+14:00`).
@@ -919,8 +919,8 @@ The combination of year, month and day is checked for validity.
 
 Time representation
 
-For `<Red-time>` see rule `S113`. The `<hh> <mm>` and `<ss>` parts are 2-digit unsigned numbers
-indicating the hours, minutes and seconds respectively. For `<decimals>` see rule `S113`.
+For `<Red-time>` see <<code-time-code,rule `S113`>>. The `<hh> <mm>` and `<ss>` parts are 2-digit unsigned numbers
+indicating the hours, minutes and seconds respectively. For `<decimals>` see <<code-time-code,rule `S113`>>.
 
 The time of day is in the 24-hour system and is used modulo `24:00` with a possible
 carry resulting in increasing the date. Note that it represents _local time_.
