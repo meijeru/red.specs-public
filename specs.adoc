@@ -382,7 +382,7 @@ may have their values generally be represented in programs by
 expressions of the form `make <type> <spec>`, where `<type>` is an expression that evaluates
 to a type name or to a value of the desired type, and `<spec>` is an `<expression>`
 whose value is interpreted by the `make` function as appropriate for the given type.
-This is explained in detail in section 5.3.
+This is explained in detail in <<creation-of-values-code-make-code,section 5.3>>.
 _**An alternative, syntactical representation,
 will be offered for a number of types (or all??) in the form of construction syntax
 `#[<type> <spec>]`**_.
@@ -428,7 +428,7 @@ _** We should perhaps consider `context?` or rather `context-of` as a reflector 
 * Values of _active types_ are bound to a context, their binding can be retrieved to yield the value referred to.
 * Values of _function types_, when evaluated, result in the application of the function to its arguments.
 
-Detailed rules for the evaluation in these various cases are given in section 7. 
+Detailed rules for the evaluation in these various cases are given in <<evaluation-rules,section 7>>. 
 
 ==== Parent types
 
@@ -693,7 +693,7 @@ A `<tuple-literal>` is written as 3 to 12 `integer!` values in the range `0..255
 
 Examples: `192.168.1.2` (an IPv4 address), `255.255.128` (an RGB value)
 
-For a list of pre-defined words referring to RGB values see section 14.1.5.
+For a list of pre-defined words referring to RGB values see <<tuples,section 14.1.5>>.
 
 ==== `word!`
 
@@ -747,7 +747,7 @@ The correspondence between the escaped characters and Unicode Code Points is giv
      #"^[" #"^\" #"^]"          control characters  U+001B - U+001D
      #"^_"                      control character   U+001F
 
-For more pre-defined words referring to characters see section 14.1.1.
+For more pre-defined words referring to characters see <<characters,section 14.1.1>>.
     
 Note that code point `U+001E` cannot be represented by `#"^^"` as expected, since that is already taken for caret.
 Note also that `^` will be ignored in front of any single character with which it does not form (the beginning of)
@@ -814,7 +814,7 @@ Characters `"` and `'` are allowed but must each be properly paired and nested.
 <binary-literal> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
 ....
 
-where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in rule `S116`
+where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in <<code-char!-code,rule `S116`>>
 and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`; the individual elements within
 the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
 brackets and from each other by whitespace.
@@ -862,7 +862,7 @@ A `date!` value comprises day, month and year numbers as well as, optionally,
 a time of day stored as a UTC time value with optional timezone information.
 The year number ranges from `-2^14^` to `2^14^-1`, but in literals it must
 lie between `-9999` and `9999`. Other values may be constructed using `make` or `to`
-(see sections 5.3.12 and 5.4.13).
+(see <<other-types,sections 5.3.12>> and <<target-type-code-date!-code,5.4.13>>).
 The UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
 which varies between `-15:45` and `+15:45` in multiples of `0:15`
 (note that actual timezones vary between `-12:00` and `+14:00`).
