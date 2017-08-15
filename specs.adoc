@@ -18,7 +18,7 @@ the authoritative document for:
 
 In as much as feasible, and in order to avoid duplication, existing pieces
 of official documentation will be referred to. A list of those can be found in
-section 18.
+<<additional documentation,section 18>>.
 
 Because of the wealth of built-in functions that Red makes available, combined
 with the numerous optional facilities ("refinements") that these functions have,
@@ -105,7 +105,7 @@ A large number of words are _pre-defined_ to refer to certain values
 in the _global context_, notably to _built-in functions_, _types_
 (type names conventionally end in `!`) and _constants_ such as
 the truth values: `true` and `false`, as well as `none` ("nil"
-or "null" in other languages). See section 14 for the complete list.
+or "null" in other languages). See <<pre-defined-words-list,section 14>> for the complete list.
 
 === Dialects
 
@@ -257,7 +257,7 @@ expressions (arguments) following a prefix function is strictly dependent on the
 and is known as the _arity_ of the function value. Binding is expressed by a `<word-literal>:`
 (`set-word!` value) followed by an `<expression>`. See further the evaluation rules given
 in <<evaluation-rules,section 7>>. Evaluation of the operands of operators has _precedence_ over function
-application and binding; also, as suggested in rule `S101`, operators are strictly _left associative_,
+application and binding; also, as suggested in <<expressions,rule `S101`>>, operators are strictly _left associative_,
 there is no precedence between any two operators. The fact that the arguments of a function simply follow
 the function itself (they are not enclosed in parentheses) means that, for the reader to understand
 a program, knowledge of the arity of functions is necessary. Evaluation order can of course
@@ -608,7 +608,7 @@ number? 1.0    -> true
 
 === Introduction
 
-The types whose names are mentioned in rule `S100` (`integer!` to `map!`) are the only ones
+The types whose names are mentioned in <<formal-grammar,rule `S100`>> (`integer!` to `map!`) are the only ones
 that have lexically or syntactically determined values. Values that are not lexically
 or syntactically determined may generally be represented in programs with the help
 of the built-in function `make`. This is one of three related means that Red provides
@@ -1135,7 +1135,7 @@ For the fields of an `error!` value, and the structure of the error repertoire
 
 If the `<error-spec>` is an `integer!` value, it is used to find values for the `type`
 and `id` fields of the `error!` value which result in the `code` with that `integer!`
-value. The values of these two fields are then bound as described in <errors,section 12.1>>.
+value. The values of these two fields are then bound as described in <<errors,section 12.1>>.
 
 If the `<error-spec>` is a `block!` value, it should either contain two `word!` values
 which will be used for the `type` and `id` value of the intended `error!` value, or
@@ -1177,7 +1177,7 @@ specified for an `<argument>` will be used to check the type of the actual argum
 Otherwise, `any-type!` will be assumed. Likewise, when present, the type(set)s of the `<return-spec>`
 will be used to check the type of the result._**See issue #2589**_
 The `<word>` s of the `<argument>` s following the `<refinement>`, if any,
-are to be matched with actual arguments, if the function application (see rule `E110`)
+are to be matched with actual arguments, if the function application (see <<code-function-code-type,rule `E110`>>)
 specifies the corresponding `<selector>` (see <<code-path-code,rule `S123`>>).
 The optional argument `/local` is conventionally used to list the local words of the function.
 It is normally put after any other optional arguments (in fact the built-in `help` function
