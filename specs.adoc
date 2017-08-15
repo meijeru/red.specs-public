@@ -925,7 +925,7 @@ indicating the hours, minutes and seconds respectively. For `<decimals>` see <<c
 The time of day is in the 24-hour system and is used modulo `24:00` with a possible
 carry resulting in increasing the date. Note that it represents _local time_.
 
-The timezone may be represented as in rule `S113`, with `<hours>` being a 1- or 2-digit number,
+The timezone may be represented as in <<code-time-code,rule `S113`>>, with `<hours>` being a 1- or 2-digit number,
 and `<minutes>` having 2 digits, or in the ISO time format. The meaning of `Z` is `0:00`.
 The value is used modulo `16:00` and is rounded down in multiples of `00:15`.
 
@@ -961,7 +961,7 @@ For all types in `series!` except `image!`, and for `map!`, `make` is defined
 with a `<spec>` which is an `integer!` or `float!` value: the `float!` value
 is truncated; the integer or truncated number is used to create an empty `series!`
 or `map!` value with storage for the given number of components reserved.
-For `vector!`, the components are initialized (see section 5.3.3).
+For `vector!`, the components are initialized (see <<code-vector-code,section 5.3.3>>).
 
 ==== `typeset!`
 
@@ -1004,7 +1004,7 @@ is `integer!` of size 32.
 
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
 initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>`
-(see the beginning of section 5.3). 
+(see the beginning of section <<creation-of-values-code-make-code,5.3>>). 
 
 Examples:
 ....
@@ -1096,8 +1096,8 @@ If the first argument to `make` is `object!` this creates a new object as follow
 A new context is created and associated to the object. The words of the new context
 (i.e. the fields of the object) are the words of all the `set-word!` values that are
 (first-level) components of the `<object-spec>`. The corresponding values are set
-to the unset value. The `<object-spec>` is bound to this context (see section
-6.3.6). The bound block is then _executed_.
+to the unset value. The `<object-spec>` is bound to this context (see <<built-in-code-bind-code-function,section
+6.3.6>>). The bound block is then _executed_.
 The `class` property of the newly created object is set to a unique integer.
 
 If the first argument to `make` is an `object!` value, it serves as _prototype_.
@@ -1131,17 +1131,17 @@ _**It is not yet implemented**_
 ....
 
 For the fields of an `error!` value, and the structure of the error repertoire
-(`system/catalog/errors`) see section 12.1.
+(`system/catalog/errors`) see <<errors,section 12.1>>.
 
 If the `<error-spec>` is an `integer!` value, it is used to find values for the `type`
 and `id` fields of the `error!` value which result in the `code` with that `integer!`
-value. The values of these two fields are then bound as described in section 12.1.
+value. The values of these two fields are then bound as described in <errors,section 12.1>>.
 
 If the `<error-spec>` is a `block!` value, it should either contain two `word!` values
 which will be used for the `type` and `id` value of the intended `error!` value, or
 it should be an `<object-spec>` containing at least `type:` and `id:` fields;
 in the former case, the `type` and `id` values will be bound as described in section 12.1;
-in the latter case, the `<block>` will be treated as described under rule `S129`;
+in the latter case, the `<block>` will be treated as described under <<code-object-code,rule `S129`>>;
 note that also in this case, the `<block>` will be executed.
 
 Except in the case where an `<object-spec>` is provided, any fields other than `type` and `id`
@@ -1169,7 +1169,7 @@ Note that `error!` values all have `class = 0`.
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
-For `<typeset-element>` see rule `S124`.
+For `<typeset-element>` see <<code-typeset-code,rule `S124`>>.
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
@@ -1178,7 +1178,7 @@ Otherwise, `any-type!` will be assumed. Likewise, when present, the type(set)s o
 will be used to check the type of the result._**See issue #2589**_
 The `<word>` s of the `<argument>` s following the `<refinement>`, if any,
 are to be matched with actual arguments, if the function application (see rule `E110`)
-specifies the corresponding `<selector>` (see rule `S123`).
+specifies the corresponding `<selector>` (see <<code-path-code,rule `S123`>>).
 The optional argument `/local` is conventionally used to list the local words of the function.
 It is normally put after any other optional arguments (in fact the built-in `help` function
 expects this to be the case). It is not usual, although not forbidden, to supply actual arguments
@@ -1204,7 +1204,7 @@ found in the body to the list of local arguments.
 <type-literal> ::= any-type! | <word-literal>
 <routine-body> ::= <block>
 ....
-For `<docstring>` and `<argument-doc>` see rule `S131`. Note that routines
+For `<docstring>` and `<argument-doc>` see <<code-function-code,rule `S131`>>. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
 and return spec must have a single type specified. If the argument has no
 type specified, `any-type!` is assumed._**see issue #2766**_ The `<word-literal>`
@@ -1226,7 +1226,7 @@ and the representation and storage of argument and result values.
 <op> ::= make op! <prefix-function>
 ....
 
-For `<prefix-function>` see rule `S101`.
+For `<prefix-function>` see <<expressions,rule `S101`>>.
 
 In contrast to `action!` and `native!` values which cannot be made by means of
 `make`, the user may create new infix functions of two arguments (operators),
@@ -1284,7 +1284,8 @@ a 5th component should be an `integer!` or `time!` value for the timezone. If th
 the 4th, 5th and 6th components should be hours (`integer!`), minutes (`integer!`), seconds  (`integer!` or `float!`)
 for the time of day; a 7th component should be an `integer!` or `time!` value for the timezone.
 All values are checked for validity, and over- and under-flow in the date and time (e.g. `32 1 2017 => 1-Feb-2017`
-and `3 -10 0 => 02:50:00`) is not allowed. The timezone value is treated as in `<date-literal>` (see section 5.2.14).
+and `3 -10 0 => 02:50:00`) is not allowed. The timezone value is treated as in `<date-literal>`
+(see <<code-date-code,section 5.2.14>>).
 * For the following types, `make` operates in the same way as `to` (see next section): `none! char!
 float! percent! time! pair! any-word! refinement! issue! unset!`.
 
@@ -1292,7 +1293,7 @@ float! percent! time! pair! any-word! refinement! issue! unset!`.
 
 Conversion is possible for selected combinations of _source_ and _target_ type.
 The list given below is meant to be exhaustive. A summary table is available
-elsewhere (see section 18).
+elsewhere (see <<additional-documentation,section 18>>).
 
 Note that for each type that may occur as target type, there is a built-in function
 defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
@@ -1310,7 +1311,7 @@ The function `to-logic` yields `true` for any argument value except `none`. Note
 ==== Target types in `any-string!`
 
 The function `to-string` yields the same result as the built-in function `form` (see
-section 11.1) except for
+<<conversion-from-to-textual-representation,section 11.1>>) except for
 
 * `none!` values: conversion is not allowed
 * `binary!` values: these will be decoded as UTF-8
@@ -1325,7 +1326,7 @@ a result of the appropriate type. The function `to-url` will operate analogously
 The function `to-block` yields a block with the argument as single component except
 for
 
-* `string!` values: first applies `load` (see section 11.1)
+* `string!` values: first applies `load` (see <<conversion-from-to-textual-representation,section 11.1>>)
 and applies `to-block` to the result
 * `typeset!` values: yields a block with the individual types
 * `any-block!` and `vector!` values: yields a block with the components
@@ -1427,8 +1428,8 @@ Note that `to-word none` does not yield the word `none`, it raises an error.
 The function `to-image` is defined for `object!` values that are _faces_ i.e.
 derived from the `face!` object which describes a window in the Red GUI system.
 It yields the face such as it would be rendered on the screen, as an `image!`
-value. See further the documentation of the GUI system (reference in section
-18).
+value. See further the documentation of the GUI system (reference in
+<<additional-documentation,section 18>>).
 
 ==== Target type `date!`
 
@@ -1438,7 +1439,7 @@ the desired date and time (Unix convention). This number can be both positive an
 negative and because of the limitation of integer numbers will yield dates between
 `13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`. Furthermore, it is defined
 for `any-list!` values which have the same interpretation as for `make date!`
-(see section 5.3.12) except that in this case, over- and under-flow are allowed
+(see <<code-date-code,section 5.3.12>>) except that in this case, over- and under-flow are allowed
 and taken into account.
 
 ==== Additional conversion functions
