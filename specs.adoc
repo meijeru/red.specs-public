@@ -2450,7 +2450,8 @@ Note that `round` has a number of refinements:
 /half-ceiling  => Halves round in positive direction
 ....
 
-The functions `max min` are also defined for `series!` arguments. See section 9.
+The functions `max min` are also defined for `series!` arguments.
+See <<series-extraction-and-modification-of-components,section 9.3>>.
 
 === Higher mathematical functions
 
@@ -2478,7 +2479,8 @@ Notes: all trigonometric functions take an argument in radians, except `atan2`
 which takes two `float!` arguments representing `y` and `x` coordinates.
 The function `random` yields a random value between zero and its argument
 value or one of `false` and `true` for `logic!`; for `pair!` and `tuple!` values
-it operates per component; it is also defined for `series!` arguments (see section 9).
+it operates per component; it is also defined for `series!` arguments
+(see <<series-extraction-and-modification-of-components,section 9.3>>).
 The `word!` argument to `checksum` indicates the method; allowed are
 `MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP`.
 
@@ -2521,7 +2523,8 @@ and or xor     2    integer! char! pair! tuple! bitset! typeset! binary! vector!
 ....
 
 Note that `and or` and `xor` on values of type `bitset!` and `typeset!` yield
-the same result as `intersect union` and `difference` (see previous section).  
+the same result as `intersect union` and `difference`
+(see <<set-theoretical-functions,previous section>>).  
 
 === Logical functions
 
@@ -2608,7 +2611,8 @@ accept `none` as an argument, yielding `none` as result.
 The following built-in functions have been described in <<components-of-values,section 5.6>>:
 `pick poke select put first second third fourth fifth`.
 
-The function `select` has the same set of refinements as `find` (see previous section)
+The function `select` has the same set of refinements as `find`
+(see <<series-positioning-and-navigation,previous section>>)
 with the exception of `/tail` and `/match`.
 
 The function `last <series>` is defined as `pick back tail <series> 1`.
@@ -2800,7 +2804,7 @@ The available constructs are the following:
 Semantics:
 
 * `forever`: the `<body>` is executed until an exception is encountered
-(see section 12).
+(see <<exceptions,section 12>>).
 * `while`: the `<condition>` is executed and if does not yield `false` or `none`,
 the `<body>` is executed after which the `<condition>` is again executed etc.
 * `until`: the `<condition>` is executed as long as it does not yield `false` or `none`.
@@ -3178,7 +3182,7 @@ Errors are values of type `error!` that can be produced as a result of
 any evaluation; they are specialized objects with a fixed number of fields,
 that contain the necessary information for identifying the nature and the place
 of the error. A prototype error value is contained in `system/standard/error`.
-As also shown in section 5.6 the fields are:
+As also shown in <<components-of-values,section 5.6>> the fields are:
 ....
 name     type           content
 
@@ -3460,7 +3464,7 @@ for the current process
 the named variable to the value, or unset it if the second argument in `none`
 
 The function `now` yields the current date and time as a Red `date!` value. For its
-refinements see <code-date-code,section 5.2.14>>.
+refinements see <<code-date-code,section 5.2.14>>.
 
 The function `wait` with a `number!` or `time!` argument will wait for the specified time
 or number of seconds.
