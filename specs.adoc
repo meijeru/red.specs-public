@@ -1497,7 +1497,7 @@ therefore be used in selection by "key"(see next section). The correspondences a
 * for `pair!` values: `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
 top to bottom).
 
-As stated in section 4.2.3, component selection in values of direct types
+As stated in <<atomic-composite-types,section 4.2.3>>, component selection in values of direct types
 cannot be used to change the component, only to extract it.
 That is, only `<path>` and `pick` are allowed for these values.
 
@@ -1553,7 +1553,7 @@ is the part after the `@`; both are of type `string!`
 the `argb`, `rgb` and `alpha` components are the `binary!` sequences of ARGB, RGB and A values
 respectively
 * `event!` values: the components, which are explained in the Red GUI documentation
-(see section 18) are calculated in an OS-dependent way
+(see <<additional-documentation,section 18>>) are calculated in an OS-dependent way
 
 Setting a component:
 
@@ -1617,14 +1617,14 @@ usefully be exposed.
 
 This concerns first of all `(any-)word!` values for which information on their
 binding may be obtained by means of two built-in functions: `context?` and `index?`.
-These are explained in section 6.2. _**See issue #2618**_. 
+These are explained in <<contexts,section 6.2>>. _**See issue #2618**_. 
 
 _**What about `owner`??** see issue #1957_
 
-The function `complement?` is described in section 5.3.5.
+The function `complement?` is described in <<code-bitset-code,section 5.3.5>>.
 
 The function `face?` tests if an object is derived of the `face!` object which is
-explained in section 13.3.
+explained in <<gui-system,section 13.3>>.
 
 _**Functions on vector! values have been requested see issue #2527**_
 
@@ -1634,7 +1634,7 @@ be obtained as a block by means of the built-in functions `words-of values-of`
 and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
 In addition, for objects there is the property `class-of` which yields
 the unique number that is given to each object that is created from a `<spec>`, and is
-inherited by objects _derived_ from it (see rule `S129` in section 5.3).
+inherited by objects _derived_ from it (see <<code-object-code,rule `S129`>>).
 
 For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
@@ -1674,7 +1674,7 @@ combinations of types and yield an error otherwise. Also this will be noted.
 ==== Equality comparisons
 
 The strictest equality test is `same?` which yields `true` only if the two values
-are of the same type and the two _value slots_ (see section 4.2.2)
+are of the same type and the two _value slots_ (see <<direct-indirect-function-types,section 4.2.2>>)
 have identical content. For values of direct types this comes down to simple equality,
 but for values of other types it is quite possible to be equal but not the same
 (e.g. two strings of identical content, but one a string literal and the
@@ -1829,7 +1829,7 @@ and will initially not refer to any value in that context.
 
 ==== Setting words to values
 
-The evaluation of `<word-literal>: <expression>` is treated in rule `E115`.
+The evaluation of `<word-literal>: <expression>` is treated in <<code-set-word-code-type,rule `E105`>>.
 Equivalent to this is the application of the built-in function `set`:
 `<word-literal>: <expression>` ~ `set '<word-literal> <expression>`.
 
@@ -1838,15 +1838,15 @@ refer to the unset value.
 
 ==== Object creation
 
-This is treated in rule `S129`.
+This is treated in <<code-object-code,rule `S129`>>.
 
 ==== Making an `error!` value
 
-This is treated in rule `S130` and in section 12.1.
+This is treated in <<code-error-code,rule `S130`>> and in section <<errors,12.1>>.
 
 ==== Function application
 
-This is treated in rule `E110`.
+This is treated in <<code-function-code-type,rule `E110`>>.
 
 ==== Built-in `bind` function
 
@@ -1872,7 +1872,7 @@ is modified.
 
 A major application of this function is the binding of the formal arguments
 of a function, as they occur within the function body, to the context which
-contains the actual argument values. See evaluation rule `E110`.
+contains the actual argument values. See evaluation <<code-function-code-type,rule `E110`>>.
 
 ==== Built-in `in` function
 
@@ -1886,11 +1886,11 @@ bound as result.
 
 General remark: operator application has precedence over application of other functions
 and over set-word target evaluation. Note that in Red all operators (values of type `op!`)
-are binary infix functions. See further rule `E112`.
+are binary infix functions. See further <<code-op-code-type,rule `E112`>>.
 
 The operation of the toolchain will result in the evaluation of the Red source text presented
 to it. The user can, at runtime, achieve evaluation of a (fragment of) Red source, i.e. Red data,
-by invoking the built-in function `do` (see section 7.6).
+by invoking the built-in function `do` (see <<function-do,section 7.6>>).
 
 === Passive types
 
@@ -1901,7 +1901,7 @@ Note that `block!` is one of the passive types. Thus evaluation of a block
 leaves the block unchanged. The term _execution of a block_ will be used to
 indicate sequential evaluation of the components of the block; the result of this
 execution is the result of the last evaluation, if any, and the unset value otherwise.
-See also section 7.5.
+See also <<blocks-reduction-and-selective-evaluation,section 7.5>>.
 
 === Decaying types
 
@@ -1924,7 +1924,7 @@ and `quote <path-literal>` is equivalent to `'<path-literal>`.
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
 .. If the type is `unset!` raise an error and yield the unset value as result.
-.. If the type is in `any-function!` _apply_ the function (see rules `E110-114`).
+.. If the type is in `any-function!` _apply_ the function (see rules <<code-function-code-type,`E110-114`>>).
 .. Otherwise, the result is the value referred to.
 
 Note: there are cases in which a `<word>` is not to be evaluated, e.g. when it occurs as
@@ -1992,7 +1992,7 @@ Recall the structure of `path!` values:
 The evaluation of a `path!` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
-as per rule `E103`.
+as per <<code-word-code-type,rule `E103`>>.
 . If there is no next element which is a `<selector>`, use the value of the `<path-head>`
 as intermediate result and go to step 4.
 .. Otherwise, determine the type of the evaluated `<path-head>`.
@@ -2006,7 +2006,7 @@ a new file or url composed as `<path-head>/<selector>/...` _**but see issue #257
 `<selector>`, if any, should be an actual refinement of the function, i.e a `word!` value,
 corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
 Apply the combination of the result and the actual refinements according
-to the rules for values of function types (see section 7.4).
+to the rules for values of function types (see <<function-types,section 7.4>>).
 .. Otherwise, the path is in error.
 . Determine the type of the `<selector>`.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
@@ -2024,13 +2024,13 @@ applying the built-in function `select`
 with as arguments the composite value and the `<selector>`.
 .. If the `<selector>` is a `<word>`, and the composite value is of
 direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
-as explained in section 5.6.2.
+as explained in <<selection-by-key,section 5.6.2>>.
 .. Otherwise, the path is in error.
 .. If a further `<selector>` is present, use the intermediate result just obtained
 as evaluated `<path-head>` and go to step 2.
 . Determine the type of the intermediate result just obtained.
 .. If the type is `unset!` raise an error and yield the unset value as result.
-.. If the type is in `any-function!` apply the function (see rules `E110-114`).
+.. If the type is in `any-function!` apply the function (see <<code-function-code-type,rules `E110-114`>>).
 .. Otherwise, the result is the intermediate result just obtained.
 
 The built-in function `get` with a `path!` argument applies the above rule except when the type of
@@ -2045,7 +2045,7 @@ See also rule `E107`.
 The evaluation of a `get-path!` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
-as per rule `E103`.
+as per <code-word-code-type,rule `E103`>>.
 . If there is no next element which is a `<selector>`, use the value of the `<path-head>`
 as intermediate result and go to step 4.
 .. Otherwise, determine the type of the evaluated `<path-head>`.
@@ -2074,7 +2074,7 @@ applying the built-in function `select` with as arguments the composite value
 and the `<selector>`.
 .. If the `<selector>` is a `<word>`, and the composite value is of
 direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
-as explained in section 5.6.2.
+as explained in <<selection-by-key,section 5.6.2>>.
 .. Otherwise, the path is in error.
 .. If a further `<selector>` is present, use the intermediate result just obtained as 
 evaluated `<path-head>` and go to step 2
@@ -2088,7 +2088,7 @@ evaluated `<path-head>` and go to step 2
 The evaluation of a `set-path!` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
-as per rule `E103`.
+as per <code-word-code-type,rule `E103`>>.
 . If there is no next element which is a `<selector>`, use the value of the `<path-head>`
 as intermediate result and go to step 4.
 .. Otherwise, determine the type of the evaluated `<path-head>`.
@@ -2111,7 +2111,7 @@ the position of the first component found by applying the built-in function `fin
 with as arguments the composite value and the `<selector>`.
 .. If the `<selector>` is a `<word>`, and the composite value is of
 type `image!`, an intermediate result is obtained which is the
-position of the component found as as explained in section 5.6.2.
+position of the component found as as explained in <<selection-by-key,section 5.6.2>>.
 .. Otherwise, the path is in error.
 .. If a further `<selector>` is present, use the component at the position just determined,
 as evaluated `<path-head>` and go to step 2
@@ -2170,7 +2170,7 @@ Check the type of each value against the type(set)s specified for the argument.
 in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
 Furthermore, process each `<argument>` following the `<refinement>`
 as in the previous sub-step, evaluating the necessary expressions and inserting the values obtained in the context.
-.. Bind the body of the function to the context (see section 6.3.6).
+.. Bind the body of the function to the context (see <<built-in-bind-function,section 6.3.6>>).
 .. Execute the body of the function to yield the result of the function.
 Check the type of the resulting value against the type(set)s specified with `return:`, if any.
 
@@ -2298,7 +2298,7 @@ do [1 + 2 3 + 4]            ->  7       ; compare with execution
 ....
 
 Applied to an argument of any other type, `reduce` yields the result of evaluating
-the argument (compare `do`, section 7.6).
+the argument (compare `do`, <<function-code-do-code,section 7.6>>).
 
 
 It is also possible to selectively evaluate the block's expressions: the built-in function
@@ -2339,17 +2339,17 @@ The built-in function `do` will evaluate its argument, which may be of any
 type, as follows:
 
 . if the argument is a `block!` value, the block will be _executed_ as
-described in section 7.1
+described in <<passive-types,section 7.1>>
 . if the argument is a `string!` value, the built-in function `load`
-(see section 11.1) will be invoked on the string, and `do` will be invoked
-on the result
+(see <<conversion-from-to_textual-representation,section 11.1>>)
+will be invoked on the string, and `do` will be invoked on the result
 . if the argument is a `url!` or `file!` value, this should contain a text
-which is a valid Red program (see section 3); the text string will be
-obtained by `read` (see section 11.5) and the previous step will be taken
+which is a valid Red program (see <<structure-of-red-programs,section 3>>); the text string will be
+obtained by `read` (see <<file-and-url-i-o,section 11.5>>) and the previous step will be taken
 . if the argument is an `error!` value, the error will be raised (see
-section 12.1.2)
+<<raising-and-interception,section 12.1.2>>)
 . otherwise, the argument will be evaluated according to the appropriate
-rule of section 7
+rule of <<evaluation-rules,section 7>>
 
 == Numerical and logical computation
 
