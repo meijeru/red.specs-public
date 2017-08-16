@@ -2534,7 +2534,7 @@ Note that `and or xor` evaluate both their arguments. In many programming
 situations, it is preferable to use the _shortcut evaluation_ functions
 `any` and `all`, which only evaluate subsequent arguments if an earlier one
 is `false` or `none` for `any` or `not none` (i.e.`true`) for `all`.
-See section 7.5.
+See <<blocks-reduction-and-selective-evaluation,section 7.5>>.
 
 == Operations on values of indirect types
 
@@ -2605,7 +2605,7 @@ accept `none` as an argument, yielding `none` as result.
 
 === Series: extraction and modification of components
 
-The following built-in functions have been described in section 5.6:
+The following built-in functions have been described in <<components-of-values,section 5.6>>:
 `pick poke select put first second third fourth fifth`.
 
 The function `select` has the same set of refinements as `find` (see previous section)
@@ -2697,8 +2697,10 @@ Note: for programming convenience, the following functions take `none` as argume
 
 === Operations on bitsets
 
-The following operations on bitsets have been described in earlier sections: `complement?` (5.3.5)
-`pick poke` (5.6), `intersect union difference exclude` (8.3), and `complement and or xor` (8.4).
+The following operations on bitsets have been described in earlier sections:
+`complement?` (<<code-bitset-code,5.3.5>>), `pick poke` (<<components-of-values,5.6>>),
+`intersect union difference exclude` (<<set-theoretical-functions,8.3>>)
+and `complement and or xor` (<<bitwise-functions,8.4>>).
 The following built-in functions are also defined on bitsets, with the following semantics:
 ....
 insert <bitset> <bitset-spec>       set the bits at the indicated positions to true
@@ -2711,11 +2713,11 @@ find <bitset> <bitset-spec>         yield true if all indicated bits are set
 length? <bitset>                    yield the number of bits reserved for the bitset
 ....
 
-For `<bitset-spec>` see section 5.3.5. If this is a block, it may not contain `not`.
+For `<bitset-spec>` see <<code-bitset-code,section 5.3.5>>. If this is a block, it may not contain `not`.
 
 === Operations on maps
 
-The following operations on maps have been described in section 5.6: `put select`.
+The following operations on maps have been described in section <<components-of-values,5.6>>: `put select`.
 The following built-in functions are also defined on maps,
 with the following semantics:
 ....
@@ -2730,8 +2732,10 @@ length? <map>            yield the number of key-value pairs
 
 === Operations on objects and errors
 
-The following operations on objects have already been described: `put select` (section 5.6),
-`object context construct extend` (section 5.3.7), `in` (section 6.3.7). Of these,
+The following operations on objects have already been described:
+`put select` (<<components-of-values,section 5.6>>),
+`object context construct extend` (<<code-object-code,section 5.3.7>>) and
+`in` (<<built-in-code-bid-code-function,section 6.3.7>>). Of these,
 `in` and `select` are also defined on errors.
 
 The following built-in functions are also defined on objects and errors,
@@ -2814,7 +2818,7 @@ foreach [name phone] ["John" "123-4567" "Mary" "345-6789"] [print [name phone]]
 ....
 * `forall`: the `<body>` is executed repeatedly starting with the word referring
 to the head of the series; on each subsequent iteration the word will refer to the
-series at the next position (see `next` function in section 9.2).
+series at the next position (see `next` function in <<series-positioning-and-navigation,section 9.2>>).
 
 Example:
 ....
@@ -2835,7 +2839,7 @@ for the remaining ones.
 === Interrupting execution
 
 The built-in functions `break continue exit return` are described
-in section 12.
+in <<exceptions,section 12>>.
 
 The built-in functions `halt` and `quit` or `q` stop the execution
 of the program. _**Difference??_** The built-in function `quit-return`
@@ -2865,7 +2869,7 @@ value or a block of values.
 There are two built-in functions for converting values to readable strings:
 `form` will produce a basic representation intended for human readers, and `mold`
 will produce strings that are guaranteed to re-produce the original expressions when
-submitted to `load`. As stated in section 5.4 the
+submitted to `load`. As stated in <<target-types-in-code-any-string-code,section 5.4.3>> the
 operation of `form` is the same as that of `to-string` with the exception of
 argument types `none! binary!` and `any-list!`. Especially values of the
 last group of types, as well as values of types `vector!` and `object!`
@@ -3092,7 +3096,7 @@ The following built-in functions deal with the file system:
 
 * `exists?` will yield `true` if the file indicated by its `file!` argument
 exists in the file system, and `false` otherwise
-* `exists-thru?` operates the same with respect to the _thru-cache_ (see section 11.5)  
+* `exists-thru?` operates the same with respect to the _thru-cache_ (see <<file-and-url-i-o,section 11.5>>)  
 * `suffix?` yields the suffix (extension) of a file, or `none` if there is no suffix
 * `size?` will yield the size of the file in bytes
 * `dir?` will yield `true` if the file indicated by its`file!` argument is a directory
@@ -3123,7 +3127,7 @@ is relative, and invoke `dirize` afterwards
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
 * `path-thru` will return the local disk cache path of a remote file
-indicated by its `url!` argument (see section 11.5)
+indicated by its `url!` argument (see <<file-and-url-i-o,section 11.5>>)
 * `delete` will take a `file!` argument and delete the file or directory indicated;
 the result is `true` if the operation was succesful, and `false` otherwise
 * `request-file` will invoke an interactive file requestor and yield
@@ -3227,7 +3231,7 @@ of `:arg1, :arg2` and `:arg3`, which needs to be bound
 to the context of the error value, in order for the values of
 `arg1` to `arg3` to be inserted; the block then can be used
 to construct the error message. The full list of possible
-errors is shown in section 16.
+errors is shown in <<errors-list,section 16>>.
 
 When the error value is produced,
 the word which is the value of its `type` field is bound such that
@@ -3296,7 +3300,7 @@ Three types of user exceptions exist:
 ==== Interruption of loops
 
 Red has a number of _loop_ constructs which cause repeated execution
-of a block (see section 10.2).
+of a block (see <<repeated-execution-loops,section 10.2>>).
 In each of these, the block (_loop body_) may contain calls of the built-in functions
 `break` and `continue`. A call of `break` will interrupt execution
 of the body and resume directly after it. The result of `break` and thus
@@ -3339,7 +3343,7 @@ If a throw is not caught by a catch, it will result in an error.
 
 ==== Interception by `try` and `attempt`
 
-The built-in function `try` (see 12.1.2) has
+The built-in function `try` (see <<raising-and-interception,section 12.1.2>>) has
 a refinement `/all`, allowing it to catch all possible forms of exceptions,
 including `break`, `continue`, `exit` and `return` misuses as well as
 uncaught throws. The built-in function `attempt`, which calls `try`,
@@ -3378,7 +3382,7 @@ Note: Red/System has its own preprocessor, which is similar, but low-level
 and applied to the source code in text form.
 
 Further explanations are provided in separate documentation;
-see section 18.
+see <<additional-documentation,section 18>>.
 
 === Parse
 
@@ -3398,7 +3402,7 @@ other changes remain
 * two modes: string-parsing (for example: external DSL) or block-parsing (for example: embedded DSL)
 
 Further explanations are provided in separate documentation;
-see section 18.
+see <<additional-documentation,section 18>>.
 
 === GUI System
 
@@ -3428,7 +3432,7 @@ directly as an `image!` value using the `draw` built-in function, or as a part o
 a graphic element created by `view/layout`.
 
 Further explanations are provided in separate documentation;
-see section 18.
+see <<additional-documentation,section 18>>.
 
 === Reactivity
 
@@ -3439,7 +3443,7 @@ The most prominent application of this in the toolchain is in the GUI engine
 where the `face!` objects are reactors.
 
 Further explanations are provided in separate documentation;
-see section 18.
+see <<additional-documentation,section 18>>.
 
 === Environment and OS-related functions
 
@@ -3456,7 +3460,7 @@ for the current process
 the named variable to the value, or unset it if the second argument in `none`
 
 The function `now` yields the current date and time as a Red `date!` value. For its
-refinements see section 5.2.14.
+refinements see <code-date-code,section 5.2.14>>.
 
 The function `wait` with a `number!` or `time!` argument will wait for the specified time
 or number of seconds.
@@ -3468,7 +3472,7 @@ an executable file.
 === Help facilities
 
 These facilities owe much to the homoiconicity of Red, and to the systematic
-use of _docstrings_ (see section 5.3.8).
+use of _docstrings_ (see section <<code-function-code,5.3.8>>).
 
 An overview of available facilities is obtained by typing `help` at the console.
 This gives the following output:
@@ -3507,7 +3511,7 @@ For convenience, the values are indicated.
 
 ==== Characters
 
-See also section 5.2.6
+See also <<code-char-code,section 5.2.6>>
 ....
     comma         #","
     CR            #"^(0D)"
@@ -3525,7 +3529,7 @@ See also section 5.2.6
 
 ==== Floating point numbers
 
-See also sections 5.2.2 and 8.2 
+See also <<code-float-code,sections 5.2.2>> and <<higher-mathematical-functions,8.2>> 
 ....
     pi            3.141592653589793
 ....
@@ -3548,7 +3552,7 @@ See also sections 5.2.2 and 8.2
 
 ==== Tuples
 
-These are RGB color values (see also section 5.3.4)
+These are RGB color values (see also <<code-image-code,section 5.3.4>>)
 ....
     aqua              40.100.130
     beige             255.228.196
@@ -3602,7 +3606,7 @@ These are RGB color values (see also section 5.3.4)
 
 ==== Datatypes
 
-See also section 4.1
+See also <<type-list,section 4.1>>
 ....
     action!
     binary!
@@ -3654,7 +3658,7 @@ See also section 4.1
 
 ==== Typesets
 
-See also section 4.3
+See also <<type-hierarchy,section 4.3>>
 ....
     all-word!
     any-block!
