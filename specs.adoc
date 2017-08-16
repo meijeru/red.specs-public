@@ -999,7 +999,7 @@ The contents of the `<block>` are copied (not deeply).
 ....
 The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
-the default size (32 for `char!` and `integer!`, 64 otherwise). If `<block>` is empty, the assumed type
+the default size (32 bits for `char!` and `integer!`, 64 bits otherwise). If `<block>` is empty, the assumed type
 is `integer!` of size 32.
 
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
@@ -1479,7 +1479,7 @@ Built-in functions exist to perform the same operations. The correspondence is a
 if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
 and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `char!`, `binary!`
 or `pair!` value used as index must be enclosed in parentheses.
-The component of an `image!` is a `tuple!` value as explained in section 5.3.4.
+The component of an `image!` is a `tuple!` value as explained in <<code-image-code,section 5.3.4>>.
 Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
 `true ~ 1` and `false ~ 2`.
 
@@ -1924,7 +1924,7 @@ and `quote <path-literal>` is equivalent to `'<path-literal>`.
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
 .. If the type is `unset!` raise an error and yield the unset value as result.
-.. If the type is in `any-function!` _apply_ the function (see rules <<code-function-code-type,`E110-114`>>).
+.. If the type is in `any-function!` _apply_ the function (see <<code-function-code-type,rules `E110-114`>>).
 .. Otherwise, the result is the value referred to.
 
 Note: there are cases in which a `<word>` is not to be evaluated, e.g. when it occurs as
@@ -2170,7 +2170,7 @@ Check the type of each value against the type(set)s specified for the argument.
 in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
 Furthermore, process each `<argument>` following the `<refinement>`
 as in the previous sub-step, evaluating the necessary expressions and inserting the values obtained in the context.
-.. Bind the body of the function to the context (see <<built-in-bind-function,section 6.3.6>>).
+.. Bind the body of the function to the context (see <<built-in-code-bind-code-function,section 6.3.6>>).
 .. Execute the body of the function to yield the result of the function.
 Check the type of the resulting value against the type(set)s specified with `return:`, if any.
 
@@ -2341,7 +2341,7 @@ type, as follows:
 . if the argument is a `block!` value, the block will be _executed_ as
 described in <<passive-types,section 7.1>>
 . if the argument is a `string!` value, the built-in function `load`
-(see <<conversion-from-to_textual-representation,section 11.1>>)
+(see <<conversion-from-to-textual-representation,section 11.1>>)
 will be invoked on the string, and `do` will be invoked on the result
 . if the argument is a `url!` or `file!` value, this should contain a text
 which is a valid Red program (see <<structure-of-red-programs,section 3>>); the text string will be
