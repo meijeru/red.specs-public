@@ -4152,14 +4152,14 @@ system/   object!
         datatypes
         actions
         natives
-        accessors      block!       see <<selection-by-key,section 5.6.2>>
-        errors         object!      see <<code-error-code,sections 5.3.7>>, <<composition,12.1.1>>
+        accessors      block!       see <a href = "#selection-by-key">section 5.6.2</a>
+        errors         object!      see <a href = "#code-error-code">sections 5.3.7</a>, <a href = "#composition">12.1.1</a>
     state/      object!
         interpreted?   function!    returns TRUE if called from the interpreter
         last-error     error!       
         trace          integer!     
     modules     block!              
-    codecs      block!              see <<conversion-from-to-other-representations,section 11.2>>
+    codecs      block!              see <a href = "#conversion-from-to-other-representations">section 11.</a>
     schemes     object!             TBD
     ports       object!             TBD
     locale/     object!             
@@ -4167,7 +4167,7 @@ system/   object!
         language*      
         locale         
         locale*        
-        months         block!       see section <<code-date-code,5.2.14>>
+        months         block!       see section <a href = "#code-date-code">5.2.14</a>
         days           block!       names of days
     options/    object!             
         boot           string!      
@@ -4175,7 +4175,7 @@ system/   object!
         path           file!
         script         
         cache          file!         cache folder used by the Red toolchain
-        thru-cache     file!         see section <<file-and-url-i-o,11.5>>
+        thru-cache     file!         see section <a href = "#file-and-url-i-o">11.5</a>
         args           
         do-arg         
         debug          logic!
@@ -4193,16 +4193,16 @@ system/   object!
         path           
         args           
     standard/   object!
-       header          object!        see <<metadata-for-the-toolchain,section 17>>
-       error           object!        see <<composition,section 12.1.1>>
+       header          object!        see <a href = "#metadata-for-the-toolchain">section 17</a>
+       error           object!        see <a href = "#composition">section 12.1.1</a>
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
-        prompt         string!        see <<console-functions,section 11.7>>
-        result         string!        see <<console-functions,section 11.7>>
+        prompt         string!        see <a href = "#console-functions">section 11.7</a>
+        result         string!        see <a href = "#console-functions">section 11.7</a>
         history        block!         previous inputs
         ...
-    view        object!               see <<gui-system,section 13.3>>
-    reactivity  object!               see <<reactivity,section 13.4>>
+    view        object!               see <a href = "#gui-system">section 13.3</a>
+    reactivity  object!               see <a href = "#reactivity">section 13.4</a>
 </pre>
 ++++
 
