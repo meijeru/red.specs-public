@@ -4145,20 +4145,20 @@ system/   object!
     build/      object!
         date           date!        build date
         config         object!      configuration used
-    words       object!             global context, see section 6.2
+    words       object!             global context, see <<contexts,section 6.2>>
     platform    function!           returns a word identifying the operating system
     catalog/    object!
         datatypes
         actions
         natives
-        accessors      block!       see section 5.6.2
-        errors         object!      see sections 5.3.7, 12.1.1
+        accessors      block!       see <<selection-by-key,section 5.6.2>>
+        errors         object!      see <<code-error-code,sections 5.3.7>>, <<composition,12.1.1>>
     state/      object!
         interpreted?   function!    returns TRUE if called from the interpreter
         last-error     error!       
         trace          integer!     
     modules     block!              
-    codecs      block!              see section 11.2
+    codecs      block!              see <<conversion-from-to-other-representations,section 11.2>>
     schemes     object!             TBD
     ports       object!             TBD
     locale/     object!             
@@ -4166,7 +4166,7 @@ system/   object!
         language*      
         locale         
         locale*        
-        months         block!       see section 5.2.14
+        months         block!       see section <<code-date-code,5.2.14>>
         days           block!       names of days
     options/    object!             
         boot           string!      
@@ -4174,7 +4174,7 @@ system/   object!
         path           file!
         script         
         cache          file!         cache folder used by the Red toolchain
-        thru-cache     file!         see section 11.5
+        thru-cache     file!         see section <<file-and-url-i-o,11.5>>
         args           
         do-arg         
         debug          logic!
@@ -4192,16 +4192,16 @@ system/   object!
         path           
         args           
     standard/   object!
-       header          object!        see section 17
-       error           object!        see section 12.1.1
+       header          object!        see <<metadata-for-the-toolchain,section 17>>
+       error           object!        see <<composition,section 12.1.1>>
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
-        prompt         string!        see section 11.7
-        result         string!        see section 11.7
+        prompt         string!        see <<console-functions,section 11.7>>
+        result         string!        see <<console-functions,section 11.7>>
         history        block!         previous inputs
         ...
-    view        object!               see section 13.3
-    reactivity  object!               see section 13.4
+    view        object!               see <<gui-system,section 13.3>>
+    reactivity  object!               see <<reactivity,section 13.4>>
 ....
 
 == Errors list
