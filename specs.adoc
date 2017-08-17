@@ -4416,67 +4416,67 @@ The following is a list of official documents that complement the information gi
 <pre>
 term                                    section
 
-action                                  <a href = "#">4.2.6</a>, <a href = "#">7.4.2</a>
-  inherited action                      <a href = "#">4.2.6</a>
-active type                             <a href = "#">4.2.5</a>
-application of a function               <a href = "#">3.3</a>
-arity of a function                     <a href = "#">3.3</a>
-atomic type                             <a href = "#">4.2.3</a>
-backspace (U+0008)                      <a href = "#">5.2.6</a>
-base64 character                        <a href = "#">5.2.12</a>
-binding                                 <a href = "#">2.4</a>, <a href = "#">3.3</a>, <a href = "#">6.3</a>
-bitset spec dialect                     <a href = "#">2.5</a>, <a href = "#">5.3.5</a>
-bound word                              <a href = "#">2.4</a>
-built-in constant                       <a href = "#">2.4</a>, <a href = "#">14.1</a>
-built-in function                       <a href = "#">2.4</a>, <a href = "#">14.3</a>
-built-in type                           <a href = "#">2.4</a>, <a href = "#">14.2</a>
-built-in typeset                        <a href = "#">4.3</a>, <a href = "#">14.2</a>
-caret (U+005E)                          <a href = "#">5.2.6</a>
-catch                                   <a href = "#">12.2.3</a>
-character                               <a href = "#">5.2.6</a>
-  backspace (U+0008)                    <a href = "#">5.2.6</a>
-  base64 character                      <a href = "#">5.2.12</a>
-  caret (U+005E)                        <a href = "#">5.2.6</a>
-  control character                     <a href = "#">5.2.5</a>, <a href = "#">5.2.6</a>
-  delete (U+007F)                       <a href = "#">5.2.6</a>
-  double quote (U+0022)                 <a href = "#">5.2.6</a>
-  escape (U+001B)                       <a href = "#">5.2.6</a>
-  escaped character                     <a href = "#">5.2.6</a>, <a href = "#">5.2.8-10</a>
-  form feed (U+000C)                    <a href = "#">5.2.6</a>
-  hexadecimal codepoint                 <a href = "#">5.2.6</a>
-  horizontal tab (U+0009)               <a href = "#">3.1</a>, <a href = "#">5.2.6</a>
-  line feed ( U+000A)                   <a href = "#">3.1</a>, <a href = "#">5.2.6</a>
-  new-line character                    <a href = "#">5.2.7</a>
-  next line (U+0085)                    <a href = "#">3.1</a>, <a href = "#">5.2.7</a>
-  non-breaking space (U+00A0)           <a href = "#">3.1</a>
-  null (U+0000)                         <a href = "#">5.2.6</a>
-  semicolon                             <a href = "#">3.1</a>
-  space (U+0020)                        <a href = "#">3.1</a>
-  tab (U+0009)                          <a href = "#">3.1</a>, <a href = "#">5.2.6</a>
-  Unicode Code Point                    <a href = "#">3.1</a>
-  whitespace character                  <a href = "#">3.1</a>
-class (of object)                       <a href = "#">5.3.6</a>
-color (RGB)                             <a href = "#">5.2.4</a>, <a href = "#">5.3.4</a>
-comment                                 <a href = "#">3.1</a>
-compilation                             <a href = "#">2.2</a>
-compiler                                <a href = "#">2.2</a>
+action                                  <a href = "#parent-types">4.2.6</a>, <a href = "#code-action-code-type">7.4.2</a>
+  inherited action                      <a href = "#parent-types">4.2.6</a>
+active type                             <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
+application of a function               <a href = "#expressions-and-evaluation-order">3.3</a>
+arity of a function                     <a href = "#expressions-and-evaluation-order">3.3</a>
+atomic type                             <a href = "#atomic-composite-types">4.2.3</a>
+backspace (U+0008)                      <a href = "#code-char-code">5.2.6</a>
+base64 character                        <a href = "#code-binary-code">5.2.12</a>
+binding                                 <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#expressions-and-evaluation-order">3.3</a>, <a href = "#binding">6.3</a>
+bitset spec dialect                     <a href = "#dialects">2.5</a>, <a href = "#code-bitset-code">5.3.5</a>
+bound word                              <a href = "#words-contexts-and-binding">2.4</a>
+built-in constant                       <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#constants">14.1</a>
+built-in function                       <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#functions">14.3</a>
+built-in type                           <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#datatypes">14.2.1</a>
+built-in typeset                        <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#type-hierarchy">4.3</a>, <a href = "#typesets">14.2.2</a>
+caret (U+005E)                          <a href = "#code-char-code">5.2.6</a>
+catch                                   <a href = "#throws">12.2.3</a>
+character                               <a href = "#code-char-code">5.2.6</a>
+  backspace (U+0008)                    <a href = "#code-char-code">5.2.6</a>
+  base64 character                      <a href = "#code-binary-code">5.2.12</a>
+  caret (U+005E)                        <a href = "#code-char-code">5.2.6</a>
+  control character                     <a href = "#code-word-code">5.2.5</a>, <a href = "#code-char-code">5.2.6</a>
+  delete (U+007F)                       <a href = "#code-char-code">5.2.6</a>
+  double quote (U+0022)                 <a href = "#code-char-code">5.2.6</a>
+  escape (U+001B)                       <a href = "#code-char-code">5.2.6</a>
+  escaped character                     <a href = "#code-char-code">5.2.6</a>, <a href = "#code-file-code">5.2.8-10</a>
+  form feed (U+000C)                    <a href = "#code-char-code">5.2.6</a>
+  hexadecimal codepoint                 <a href = "#code-char-code">5.2.6</a>
+  horizontal tab (U+0009)               <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
+  line feed ( U+000A)                   <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
+  new-line character                    <a href = "#code-string-code">5.2.7</a>
+  next line (U+0085)                    <a href = "#textual-structure">3.1</a>, <a href = "#code-string-code">5.2.7</a>
+  non-breaking space (U+00A0)           <a href = "#textual-structure">3.1</a>
+  null (U+0000)                         <a href = "#code-char-code">5.2.6</a>
+  semicolon                             <a href = "#textual-structure">3.1</a>
+  space (U+0020)                        <a href = "#textual-structure">3.1</a>
+  tab (U+0009)                          <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
+  Unicode Code Point                    <a href = "#textual-structure">3.1</a>
+  whitespace character                  <a href = "#textual-structure">3.1</a>
+class (of object)                       <a href = "#code-object-code">5.3.6</a>
+color (RGB)                             <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
+comment                                 <a href = "#textual-structure">3.1</a>
+compilation                             <a href = "#red-toolchain">2.2</a>
+compiler                                <a href = "#red-toolchain">2.2</a>
 compose dialect                         <a href = "#">2.5</a>, <a href = "#">7.5</a>
-composite type                          <a href = "#">4.2.3</a>
-console                                 <a href = "#">2.2</a>
-context                                 <a href = "#">2.4</a>, <a href = "#">6.2</a>
-  global context                        <a href = "#">2.4</a>, <a href = "#">6.2</a>
-control character                       <a href = "#">5.2.5</a>, <a href = "#">5.2.6</a>
-decaying type                           <a href = "#">4.2.5</a>
-delete character (U+007F)               <a href = "#">5.2.6</a>
-dialect                                 <a href = "#">2.5</a>
-  bitset spec dialect                   <a href = "#">5.3.5</a>
+composite type                          <a href = "#atomic-composite-types">4.2.3</a>
+console                                 <a href = "#red-toolchain">2.2</a>
+context                                 <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#">6.2</a>
+  global context                        <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#">6.2</a>
+control character                       <a href = "#code-word-code">5.2.5</a>, <a href = "#code-char-code">5.2.6</a>
+decaying type                           <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
+delete character (U+007F)               <a href = "#code-char-code">5.2.6</a>
+dialect                                 <a href = "#dialects">2.5</a>
+  bitset spec dialect                   <a href = "#code-bitset-code">5.3.5</a>
   compose dialect                       <a href = "#">7.5</a>
   draw dialect                          <a href = "#">13.3</a>
   error spec dialect                    <a href = "#">5.3.7</a>
-  function spec dialect                 <a href = "#">5.3.8</a>
-  image spec dialect                    <a href = "#">5.3.4</a>
+  function spec dialect                 <a href = "#code-function-code">5.3.8</a>
+  image spec dialect                    <a href = "#code-image-code">5.3.4</a>
   map spec dialect                      <a href = "#">5.3.11</a>
-  object spec dialect                   <a href = "#">5.3.6</a>
+  object spec dialect                   <a href = "#code-object-code">5.3.6</a>
   parse dialect                         <a href = "#">13.2</a>
   preprocessor dialect                  <a href = "#">13.1</a>
   routine spec dialect                  <a href = "#">5.3.9</a>
@@ -4486,119 +4486,120 @@ dialect                                 <a href = "#">2.5</a>
   Visual Interface dialect (VID)        <a href = "#">13.3</a>
 direct type                             <a href = "#">4.2.2</a>
 disk-cached remote file access          <a href = "#">11.5</a>
-docstring                               <a href = "#">5.3.8</a>, <a href = "#">5.3.9</a>
-Domain Specific Language (DSL)          <a href = "#">2.5</a>
-double quote (U+0022)                   <a href = "#">5.2.6</a>
-draw dialect                            <a href = "#">2.5</a>, <a href = "#">13.3</a>
-DSL (Domain Specific Language)          <a href = "#">2.5</a>
-end-of-line comment                     <a href = "#">3.1</a>, <a href = "#">3.2</a>
+docstring                               <a href = "#code-function-code">5.3.8</a>, <a href = "#">5.3.9</a>
+Domain Specific Language (DSL)          <a href = "#dialects">2.5</a>
+double quote (U+0022)                   <a href = "#code-char-code">5.2.6</a>
+draw dialect                            <a href = "#dialects">2.5</a>, <a href = "#">13.3</a>
+DSL (Domain Specific Language)          <a href = "#dialects">2.5</a>
+end-of-line comment                     <a href = "#textual-structure">3.1</a>, <a href = "#">3.2</a>
 equality comparison                     <a href = "#">5.8.1</a>
-error spec dialect                      <a href = "#">2.5</a>, <a href = "#">5.3.7</a>
-escape (U+001B)                         <a href = "#">5.2.6</a>
-escaped character                       <a href = "#">5.2.6</a>, <a href = "#">5.2.8-10</a>
+error spec dialect                      <a href = "#dialects">2.5</a>, <a href = "#">5.3.7</a>
+escape (U+001B)                         <a href = "#code-char-code">5.2.6</a>
+escaped character                       <a href = "#code-char-code">5.2.6</a>, <a href = "#">5.2.8-10</a>
 evaluation                              <a href = "#">7</a>
   shortcut evaluation                   <a href = "#">7.5</a>
-execution                               <a href = "#">2.2</a>
+execution                               <a href = "#red-toolchain">2.2</a>
   of a block                            <a href = "#">7.1</a>, <a href = "#">7.5</a>
-expression                              <a href = "#">3.3</a>
-  infix expression                      <a href = "#">3.3</a>
-form feed (U+000C)                      <a href = "#">5.2.6</a>
-free-form text                          <a href = "#">3.1</a>
-function                                <a href = "#">3.3</a>, <a href = "#">5.3.8</a>, <a href = "#">7.4.1</a>
-  application                           <a href = "#">3.3</a>, <a href = "#">7.4.1</a>
-  infix function                        <a href = "#">3.3</a>
-  prefix function                       <a href = "#">3.3</a>
-function spec dialect                   <a href = "#">2.5</a>, <a href = "#">5.3.8</a>
+expression                              <a href = "#expressions-and-evaluation-order">3.3</a>
+  infix expression                      <a href = "#expressions-and-evaluation-order">3.3</a>
+form feed (U+000C)                      <a href = "#code-char-code">5.2.6</a>
+free-form text                          <a href = "#textual-structure">3.1</a>
+function                                <a href = "#expressions-and-evaluation-order">3.3</a>, <a href = "#code-function-code">5.3.8</a>, <a href = "#">7.4.1</a>
+  application                           <a href = "#expressions-and-evaluation-order">3.3</a>, <a href = "#">7.4.1</a>
+  infix function                        <a href = "#expressions-and-evaluation-order">3.3</a>
+  prefix function                       <a href = "#expressions-and-evaluation-order">3.3</a>
+function spec dialect                   <a href = "#dialects">2.5</a>, <a href = "#code-function-code">5.3.8</a>
 function type                           <a href = "#">4.2.2</a>
-global context                          <a href = "#">2.4</a>, <a href = "#">6.2</a>
+global context                          <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#">6.2</a>
 graphical user interface (GUI)          <a href = "#">13.3</a>
-grouped value                           <a href = "#">3.1</a>
-grouping token                          <a href = "#">3.1</a>
+grouped value                           <a href = "#textual-structure">3.1</a>
+grouping token                          <a href = "#textual-structure">3.1</a>
 GUI (graphical user interface)          <a href = "#">13.3</a>
-hexadecimal codepoint                   <a href = "#">5.2.6</a>
+hexadecimal codepoint                   <a href = "#code-char-code">5.2.6</a>
 homoiconic                              <a href = "#">2.3</a>
-horizontal tab (U+0009)                 <a href = "#">3.1</a>, <a href = "#">5.2.6</a>
-host computer                           <a href = "#">2.2</a>
+horizontal tab (U+0009)                 <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
+host computer                           <a href = "#red-toolchain">2.2</a>
 IEEE 754 binary64 format                <a href = "#">5.2.2</a>
-image spec dialect                      <a href = "#">2.5</a>, <a href = "#">5.3.4</a>
-image color/transparency                <a href = "#">5.3.4</a>
-indentation                             <a href = "#">3.1</a>
+image spec dialect                      <a href = "#dialects">2.5</a>, <a href = "#code-image-code">5.3.4</a>
+image color/transparency                <a href = "#code-image-code">5.3.4</a>
+indentation                             <a href = "#textual-structure">3.1</a>
 indirect type                           <a href = "#">4.2.2</a>
-infix expression                        <a href = "#">3.3</a>
-inherited action                        <a href = "#">4.2.6</a>
-interactive console                     <a href = "#">2.2</a>
-interpretation                          <a href = "#">2.2</a>
-ipv4                                    <a href = "#">5.2.4</a>
+infix expression                        <a href = "#expressions-and-evaluation-order">3.3</a>
+inherited action                        <a href = "#parent-types">4.2.6</a>
+interactive console                     <a href = "#red-toolchain">2.2</a>
+interpretation                          <a href = "#red-toolchain">2.2</a>
+ipv4                                    <a href = "#code-tuple-code">5.2.4</a>
 ISO 8601 date and time standard         <a href = "#">5.2.14</a>, <a href = "#">5.6.2</a>
-left associative operator               <a href = "#">3.3</a>
-lexeme                                  <a href = "#">3.1</a>
-lexical analysis                        <a href = "#">3.1</a>
-line feed ( U+000A)                     <a href = "#">3.1</a>, <a href = "#">5.2.6</a>
-map spec dialect                        <a href = "#">2.5</a>, <a href = "#">5.3.11</a>
-metadata                                <a href = "#">3.1</a>, <a href = "#">16</a>
-new-line character                      <a href = "#">5.2.7</a>
-next line (U+0085)                      <a href = "#">3.1</a>, <a href = "#">5.2.7</a>
-non-breaking space                      <a href = "#">3.1</a>
-null (U+0000)                           <a href = "#">5.2.6</a>
-object class                            <a href = "#">5.3.6</a>
-object spec dialect                     <a href = "#">2.5</a>, <a href = "#">5.3.6</a>
-operator                                <a href = "#">3.3</a>
+left associative operator               <a href = "#expressions-and-evaluation-order">3.3</a>
+lexeme                                  <a href = "#textual-structure">3.1</a>
+lexical analysis                        <a href = "#textual-structure">3.1</a>
+line feed ( U+000A)                     <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
+map spec dialect                        <a href = "#dialects">2.5</a>, <a href = "#">5.3.11</a>
+metadata                                <a href = "#textual-structure">3.1</a>, <a href = "#">16</a>
+new-line character                      <a href = "#code-string-code">5.2.7</a>
+next line (U+0085)                      <a href = "#textual-structure">3.1</a>, <a href = "#code-string-code">5.2.7</a>
+non-breaking space                      <a href = "#textual-structure">3.1</a>
+null (U+0000)                           <a href = "#code-char-code">5.2.6</a>
+object class                            <a href = "#code-object-code">5.3.6</a>
+object spec dialect                     <a href = "#dialects">2.5</a>, <a href = "#code-object-code">5.3.6</a>
+operator                                <a href = "#expressions-and-evaluation-order">3.3</a>
+  left associative operator             <a href = "#expressions-and-evaluation-order">3.3</a>
 ordering comparison                     <a href = "#">5.8.2</a>
-parent type                             <a href = "#">4.2.6</a>
-parse dialect                           <a href = "#">2.5</a>, <a href = "#">13.2</a>
-passive type                            <a href = "#">4.2.5</a>
+parent type                             <a href = "#parent-types">4.2.6</a>
+parse dialect                           <a href = "#dialects">2.5</a>, <a href = "#">13.2</a>
+passive type                            <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
 polymorphic function                    <a href = "#">4.2.6</a>
-pre-defined word                        <a href = "#">2.4</a>, <a href = "#">14</a>
-precedence rules                        <a href = "#">3.3</a>
-prefix function                         <a href = "#">3.3</a>
-preprocessor dialect                    <a href = "#">2.5</a>, <a href = "#">13.1</a>
-prologue                                <a href = "#">3.1</a>
+pre-defined word                        <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#">14</a>
+precedence rules                        <a href = "#expressions-and-evaluation-order">3.3</a>
+prefix function                         <a href = "#expressions-and-evaluation-order">3.3</a>
+preprocessor dialect                    <a href = "#dialects">2.5</a>, <a href = "#">13.1</a>
+prologue                                <a href = "#textual-structure">3.1</a>
 reactivity                              <a href = "#">13.4</a>
-Read Evaluate Print Loop (REPL)         <a href = "#">2.2</a>
-Red toolchain                           <a href = "#">2.2</a>
+Read Evaluate Print Loop (REPL)         <a href = "#red-toolchain">2.2</a>
+Red toolchain                           <a href = "#red-toolchain">2.2</a>
 Red/System (dialect)                    <a href = "#">2.5</a>, <a href = "#">17</a>
 remote file access (disk-cached)        <a href = "#">11.5</a>
-REPL (Read Evaluate Print Loop)         <a href = "#">2.2</a>
-RGB color scheme                        <a href = "#">5.2.4</a>, <a href = "#">5.3.4</a>, <a href = "#">14.1</a>
-RGBA color/transparency scheme          <a href = "#">5.3.4</a>
-routine spec dialect                    <a href = "#">2.5</a>
-shape dialect                           <a href = "#">2.5</a>, <a href = "#">13.3</a>
+REPL (Read Evaluate Print Loop)         <a href = "#red-toolchain">2.2</a>
+RGB color scheme                        <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#">14.1</a>
+RGBA color/transparency scheme          <a href = "#code-image-code">5.3.4</a>
+routine spec dialect                    <a href = "#dialects">2.5</a>
+shape dialect                           <a href = "#dialects">2.5</a>, <a href = "#">13.3</a>
 shortcut evaluation                     <a href = "#">7.5</a>
-single value                            <a href = "#">3.1</a>
-space (U+0020)                          <a href = "#">3.1</a>
-syntactic analysis                      <a href = "#">3.1</a>
-system dialect                          <a href = "#">2.5</a>, <a href = "#">17</a>
+single value                            <a href = "#textual-structure">3.1</a>
+space (U+0020)                          <a href = "#textual-structure">3.1</a>
+syntactic analysis                      <a href = "#textual-structure">3.1</a>
+system dialect                          <a href = "#dialects">2.5</a>, <a href = "#">18</a>
 system object                           <a href = "#">15</a>
-tab (U+0009)                            <a href = "#">3.1</a>, <a href = "#">5.2.6</a>
-target computer                         <a href = "#">2.2</a>
-throw                                   <a href = "#">12.2.3</a>
-toolchain                               <a href = "#">2.2</a>
-transparency (of image)                 <a href = "#">5.3.4</a>
+tab (U+0009)                            <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
+target computer                         <a href = "#red-toolchain">2.2</a>
+throw                                   <a href = "#throws">12.2.3</a>
+toolchain                               <a href = "#red-toolchain">2.2</a>
+transparency (of image)                 <a href = "#code-image-code">5.3.4</a>
 type                                    <a href = "#">2.3</a>, <a href = "#">4</a>
-  active type                           <a href = "#">4.2.5</a>
-  atomic type                           <a href = "#">4.2.3</a>
-  composite type                        <a href = "#">4.2.3</a>
-  decaying type                         <a href = "#">4.2.5</a>
+  active type                           <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
+  atomic type                           <a href = "#atomic-composite-types">4.2.3</a>
+  composite type                        <a href = "#atomic-composite-types">4.2.3</a>
+  decaying type                         <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
   direct type                           <a href = "#">4.2.2</a>
   function type                         <a href = "#">4.2.2</a>
   indirect type                         <a href = "#">4.2.2</a>
-  parent type                           <a href = "#">4.2.6</a>
-  passive type                          <a href = "#">4.2.5</a>
+  parent type                           <a href = "#parent-types">4.2.6</a>
+  passive type                          <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
   type hierarchy                        <a href = "#">4.3</a>
-Unicode Code Point                      <a href = "#">3.1</a>
+Unicode Code Point                      <a href = "#textual-structure">3.1</a>
 Unicode 7.0 case folding table          <a href = "#">5.4.14</a>
-UTF-8 scheme                            <a href = "#">3.1</a>, <a href = "#">5.4.3</a>, <a href = "#">5.4.7</a>, <a href = "#">5.4.10</a>, <a href = "#">11.1</a>, <a href = "#">11.5</a>
+UTF-8 scheme                            <a href = "#textual-structure">3.1</a>, <a href = "#">5.4.3</a>, <a href = "#">5.4.7</a>, <a href = "#">5.4.10</a>, <a href = "#">11.1</a>, <a href = "#">11.5</a>
 value                                   <a href = "#">2.3</a>, <a href = "#">5</a>
-  grouped value                         <a href = "#">3.1</a>
-  single value                          <a href = "#">3.1</a>
+  grouped value                         <a href = "#textual-structure">3.1</a>
+  single value                          <a href = "#textual-structure">3.1</a>
   value casting                         <a href = "#">5.5</a>
   value conversion                      <a href = "#">5.4</a>
   value creation                        <a href = "#">5.3</a>
   value slot                            <a href = "#">4.2.2</a>
-vector spec dialect                     <a href = "#">2.5</a>, <a href = "#">5.3.3</a>
-Visual Interface dialect (VID)          <a href = "#">2.5</a>, <a href = "#">13.3</a>
-whitespace                              <a href = "#">3.1</a>
-word                                    <a href = "#">2.4</a>, <a href = "#">6.1</a>
+vector spec dialect                     <a href = "#dialects">2.5</a>, <a href = "#">5.3.3</a>
+Visual Interface dialect (VID)          <a href = "#dialects">2.5</a>, <a href = "#">13.3</a>
+whitespace                              <a href = "#textual-structure">3.1</a>
+word                                    <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#code-word-code">5.2.5</a>, <a href = "#">6.1</a>
 </pre>
 ++++
 
