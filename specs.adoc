@@ -3708,7 +3708,7 @@ derived from another one, the two are written on one line, and the most frequent
 used one is written first.
 
 ==== Enquiry
-see <<,sections 4.4>> and <<,5.7>>
+see <<type-and-typeset-related-functions,sections 4.4>> and <<reflection-on-values,5.7>>
 ....
 F    action?
 F    any-block?
@@ -3779,7 +3779,8 @@ F    word?
 F    words-of
 ....
 ==== Making values
-see <<,sections 5.3>> and <<,7.5>>
+see <<creation-of-values-code-make-code,sections 5.3>>
+and <<blocks-reduction-and-selective-evaluation,7.5>>
 ....
 F    charset
 F    collect
@@ -3797,7 +3798,8 @@ N    reduce
 F    routine
 ....
 ==== Converting values
-see <<,sections 5.4>> and <<,5.5>>
+see <<conversion-of-values-code-to-code,sections 5.4>>
+and <<casting-of-values-code-as-code,5.5>>
 ....
 N    as
 R    as-color
@@ -3845,7 +3847,7 @@ F    to-word
 N    uppercase
 ....
 ==== Comparison
-see <<,section 5.8>>
+see <<comparison-of-values,section 5.8>>
 ....
 O    <        N    lesser?
 O    <=       N    lesser-or-equal?
@@ -3857,7 +3859,8 @@ O    >        N    greater?
 O    >=       N    greater-or-equal?
 ....
 ==== Evaluation and binding
-see <<,sections 6>> and <<,7>>
+see <<words-contexts-and-binding,sections 6>>
+and <<evaluation-rules,7>>
 ....
 N    all
 N    any
@@ -3874,7 +3877,7 @@ N    unset
 N    value?
 ....
 ==== Numerical and logical computation
-see <<,section 8>>
+see <<numerical-and-logical-computation,section 8>>
 ....
 A    absolute
 O    +           A    add
@@ -3921,7 +3924,7 @@ O    xor         A    xor~
 N    zero?
 ....
 ==== Series manipulation
-see <<,section 9>>
+see <<operations-on-values-of-indirect-types,section 9>>
 ....
 F    alter
 A    append
@@ -3968,7 +3971,7 @@ F    third
 A    trim
 ....
 ==== Control
-see <<,section 10>>
+see <<control,section 10>>
 ....
 F    also
 N    break
@@ -3995,7 +3998,7 @@ N    until
 N    while
 ....
 ==== Input/Output
-see <<,section 11>>
+see <<input-output,section 11>>
 ....
 R    ask
 N    browse
@@ -4052,7 +4055,7 @@ A    write
 R    write-clipboard
 ....
 ==== Exception handling
-see <<,section 12>>
+see <<exceptions,section 12>>
 ....
 F    attempt
 N    catch
@@ -4061,20 +4064,20 @@ N    throw
 N    try
 ....
 ==== Preprocessor
-see <<,section 13.1>>
+see <<preprocessor,section 13.1>>
 ....
 F    expand
 F    expand-directives
 ....
 ==== Parser
-see <<,section 13.2>>
+see <<parse,section 13.2>>
 ....
 F    on-parse-event
 N    parse
 F    parse-trace
 ....
 ==== GUI system
-see <<,section 13.3>>
+see <<gui-system,section 13.3>>
 ....
 F    center-face
 F    clear-reactions
@@ -4106,7 +4109,7 @@ F    react?
 R    set-quiet
 ....
 ==== Environment and OS-related
-see <<,section 13.5>>
+see <<reactivity,section 13.5>>
 ....
 N    call
 N    get-env
@@ -4117,7 +4120,7 @@ N    stats
 N    wait
 ....
 ==== Help facilities
-see <<,section 13.6>>
+see <<help-facilities,section 13.6>>
 ....
 F    ?
 F    ??
