@@ -4159,7 +4159,7 @@ system/   object!
         last-error     error!       
         trace          integer!     
     modules     block!              
-    codecs      block!              see <a href = "#conversion-from-to-other-representations">section 11.</a>
+    codecs      block!              see <a href = "#conversion-from-to-other-representations">section 11.2</a>
     schemes     object!             TBD
     ports       object!             TBD
     locale/     object!             
