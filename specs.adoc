@@ -4416,7 +4416,7 @@ The following is a list of official documents that complement the information gi
 <pre>
 term                                    section
 
-action                                  <a href = "#">4.2.6</a>
+action                                  <a href = "#">4.2.6</a>, <a href = "#">7.4.2</a>
   inherited action                      <a href = "#">4.2.6</a>
 active type                             <a href = "#">4.2.5</a>
 application of a function               <a href = "#">3.3</a>
@@ -4427,21 +4427,21 @@ base64 character                        <a href = "#">5.2.12</a>
 binding                                 <a href = "#">2.4</a>, <a href = "#">3.3</a>, <a href = "#">6.3</a>
 bitset spec dialect                     <a href = "#">2.5</a>, <a href = "#">5.3.5</a>
 bound word                              <a href = "#">2.4</a>
-built-in constant                       <a href = "#">2.4</a>
-built-in function                       <a href = "#">2.4</a>
-built-in type                           <a href = "#">2.4</a>
-built-in typeset                        <a href = "#">4.3</a>
+built-in constant                       <a href = "#">2.4</a>, <a href = "#">14.1</a>
+built-in function                       <a href = "#">2.4</a>, <a href = "#">14.3</a>
+built-in type                           <a href = "#">2.4</a>, <a href = "#">14.2</a>
+built-in typeset                        <a href = "#">4.3</a>, <a href = "#">14.2</a>
 caret (U+005E)                          <a href = "#">5.2.6</a>
 catch                                   <a href = "#">12.2.3</a>
-character
-  backspace (U+0008)                   <a href = "#">5.2.6</a>
-  base64 character                     <a href = "#"> 5.2.12</a>
+character                               <a href = "#">5.2.6</a>
+  backspace (U+0008)                    <a href = "#">5.2.6</a>
+  base64 character                      <a href = "#">5.2.12</a>
   caret (U+005E)                        <a href = "#">5.2.6</a>
   control character                     <a href = "#">5.2.5</a>, <a href = "#">5.2.6</a>
   delete (U+007F)                       <a href = "#">5.2.6</a>
   double quote (U+0022)                 <a href = "#">5.2.6</a>
   escape (U+001B)                       <a href = "#">5.2.6</a>
-  escaped character                     <a href = "#">5.2.6</a>, 5.2.8</a>, 5.2.9</a>, 5.2.10</a>
+  escaped character                     <a href = "#">5.2.6</a>, <a href = "#">5.2.8-10</a>
   form feed (U+000C)                    <a href = "#">5.2.6</a>
   hexadecimal codepoint                 <a href = "#">5.2.6</a>
   horizontal tab (U+0009)               <a href = "#">3.1</a>, <a href = "#">5.2.6</a>
@@ -4456,7 +4456,7 @@ character
   Unicode Code Point                    <a href = "#">3.1</a>
   whitespace character                  <a href = "#">3.1</a>
 class (of object)                       <a href = "#">5.3.6</a>
-color (RGB)                             <a href = "#">5.2.4</a>, 5.3.4</a>
+color (RGB)                             <a href = "#">5.2.4</a>, <a href = "#">5.3.4</a>
 comment                                 <a href = "#">3.1</a>
 compilation                             <a href = "#">2.2</a>
 compiler                                <a href = "#">2.2</a>
@@ -4469,21 +4469,21 @@ control character                       <a href = "#">5.2.5</a>, <a href = "#">5
 decaying type                           <a href = "#">4.2.5</a>
 delete character (U+007F)               <a href = "#">5.2.6</a>
 dialect                                 <a href = "#">2.5</a>
-  bitset spec dialect                   <a href = "#">2.5</a>, <a href = "#">5.3.5</a>
-  compose dialect                       <a href = "#">2.5</a>, <a href = "#">7.5</a>
-  draw dialect                          <a href = "#">2.5</a>, <a href = "#">13.3</a>
-  error spec dialect                    <a href = "#">2.5</a>, <a href = "#">5.3.7</a>
-  function spec dialect                 <a href = "#">2.5</a>, <a href = "#">5.3.8</a>
-  image spec dialect                    <a href = "#">2.5</a>, <a href = "#">5.3.4</a>
-  map spec dialect                      <a href = "#">2.5</a>, <a href = "#">5.3.11</a>
-  object spec dialect                   <a href = "#">2.5</a>, <a href = "#">5.3.6</a>
-  parse dialect                         <a href = "#">2.5</a>, <a href = "#">13.2</a>
-  preprocessor dialect                  <a href = "#">2.5</a>, <a href = "#">13.1</a>
-  routine spec dialect                  <a href = "#">2.5</a>, <a href = "#">5.3.9</a>
-  shape dialect                         <a href = "#">2.5</a>, <a href = "#">13.3</a>
-  system dialect                        <a href = "#">2.5</a>, <a href = "#">17</a>
-  vector spec dialect                   <a href = "#">2.5</a>, <a href = "#">5.3.3</a>
-  Visual Interface dialect (VID)        <a href = "#">2.5</a>, <a href = "#">13.3</a>
+  bitset spec dialect                   <a href = "#">5.3.5</a>
+  compose dialect                       <a href = "#">7.5</a>
+  draw dialect                          <a href = "#">13.3</a>
+  error spec dialect                    <a href = "#">5.3.7</a>
+  function spec dialect                 <a href = "#">5.3.8</a>
+  image spec dialect                    <a href = "#">5.3.4</a>
+  map spec dialect                      <a href = "#">5.3.11</a>
+  object spec dialect                   <a href = "#">5.3.6</a>
+  parse dialect                         <a href = "#">13.2</a>
+  preprocessor dialect                  <a href = "#">13.1</a>
+  routine spec dialect                  <a href = "#">5.3.9</a>
+  shape dialect                         <a href = "#">13.3</a>
+  system dialect                        <a href = "#">18</a>
+  vector spec dialect                   <a href = "#">5.3.3</a>
+  Visual Interface dialect (VID)        <a href = "#">13.3</a>
 direct type                             <a href = "#">4.2.2</a>
 disk-cached remote file access          <a href = "#">11.5</a>
 docstring                               <a href = "#">5.3.8</a>, <a href = "#">5.3.9</a>
@@ -4504,8 +4504,8 @@ expression                              <a href = "#">3.3</a>
   infix expression                      <a href = "#">3.3</a>
 form feed (U+000C)                      <a href = "#">5.2.6</a>
 free-form text                          <a href = "#">3.1</a>
-function
-  application                           <a href = "#">3.3</a>
+function                                <a href = "#">3.3</a>, <a href = "#">5.3.8</a>, <a href = "#">7.4.1</a>
+  application                           <a href = "#">3.3</a>, <a href = "#">7.4.1</a>
   infix function                        <a href = "#">3.3</a>
   prefix function                       <a href = "#">3.3</a>
 function spec dialect                   <a href = "#">2.5</a>, <a href = "#">5.3.8</a>
@@ -4547,8 +4547,8 @@ ordering comparison                     <a href = "#">5.8.2</a>
 parent type                             <a href = "#">4.2.6</a>
 parse dialect                           <a href = "#">2.5</a>, <a href = "#">13.2</a>
 passive type                            <a href = "#">4.2.5</a>
-polymorphic function - see action
-pre-defined word                        <a href = "#">2.4</a>
+polymorphic function                    <a href = "#">4.2.6</a>
+pre-defined word                        <a href = "#">2.4</a>, <a href = "#">14</a>
 precedence rules                        <a href = "#">3.3</a>
 prefix function                         <a href = "#">3.3</a>
 preprocessor dialect                    <a href = "#">2.5</a>, <a href = "#">13.1</a>
