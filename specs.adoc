@@ -4137,7 +4137,7 @@ The _system object_ is used by the run-time system to store both fixed data
 data). All data can be retrieved by the user, and some data can also be set
 by the user at runtime.
 
-....
+++++
 (sub-)component & type              significance/value
 
 system/   object!
@@ -4202,7 +4202,7 @@ system/   object!
         ...
     view        object!               see <<gui-system,section 13.3>>
     reactivity  object!               see <<reactivity,section 13.4>>
-....
+++++
 
 == Errors list
 
