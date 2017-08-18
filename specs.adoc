@@ -4530,13 +4530,13 @@ inherited action                        <a href = "#parent-types">4.2.6</a>
 interactive console                     <a href = "#red-toolchain">2.2</a>
 interpretation                          <a href = "#red-toolchain">2.2</a>
 ipv4                                    <a href = "#code-tuple-code">5.2.4</a>
-ISO 8601 date and time standard         <a href = "#code-date-code">5.2.14</a>, <a href = "#">5.6.2</a>
+ISO 8601 date and time standard         <a href = "#code-date-code">5.2.14</a>, <a href = "#selection-by-key">5.6.2</a>
 left associative operator               <a href = "#expressions-and-evaluation-order">3.3</a>
 lexeme                                  <a href = "#textual-structure">3.1</a>
 lexical analysis                        <a href = "#textual-structure">3.1</a>
 line feed ( U+000A)                     <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
 map spec dialect                        <a href = "#dialects">2.5</a>, <a href = "#code-map-code">5.3.11</a>
-metadata                                <a href = "#textual-structure">3.1</a>, <a href = "#">16</a>
+metadata                                <a href = "#textual-structure">3.1</a>, <a href = "#metadata-for-the-toolchain">16</a>
 new-line character                      <a href = "#code-string-code">5.2.7</a>
 next line (U+0085)                      <a href = "#textual-structure">3.1</a>, <a href = "#code-string-code">5.2.7</a>
 non-breaking space                      <a href = "#textual-structure">3.1</a>
