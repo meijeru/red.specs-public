@@ -957,6 +957,9 @@ that type is taken to be the desired type. This is not made explicit
 in the following rules, except in the case of `make object!` where
 an `object!` value as second argument has a different interpretation.
 
+Furthermore, non-terminals like `<typeset-name>` stand for a bound `<word-literal>`
+referring to a `typeset!` value etc.
+
 For all types in `series!` except `image!`, and for `map!`, `make` is defined
 with a `<spec>` which is an `integer!` or `float!` value: the `float!` value
 is truncated; the integer or truncated number is used to create an empty `series!`
@@ -968,7 +971,7 @@ For `vector!`, the components are initialized (see <<code-vector-code,section 5.
 **`S124`**::
 ....
 <typeset> ::= make typeset! [<typeset-element>*]
-<typeset-element> ::= <typeset> | <datatype>
+<typeset-element> ::= <typeset-name> | <datatype-name>
 ....
 
 Examples:
@@ -1162,10 +1165,10 @@ Note that `error!` values all have `class = 0`.
 <docstring> ::= <string>
 <argument-spec> ::= <argument>* <optional-arguments>*
 <argument> ::= <argument-name> <argument-doc>° | <argument-name> [<typeset-element>*] <argument-doc>°
-<argument-name> ::= <word> | '<word> | :<word>
+<argument-name> ::= <word-literal> | '<word-literal> | :<word-literal>
 <argument-doc> ::= <string>
 <optional-arguments> ::= <refinement> <argument-doc>° <argument>*
-<refinement> ::= /<word>
+<refinement> ::= /<word-literal>
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
@@ -1201,13 +1204,13 @@ found in the body to the list of local arguments.
 <routine-argument> ::= <word> <argument doc>° | <word> [<type-literal>] <argument-doc>°
 <locals> ::= /local <routine-argument>*
 <routine-return> ::= return: [<type-literal>]
-<type-literal> ::= any-type! | <word-literal>
+<type-literal> ::= any-type! | <type-name>
 <routine-body> ::= <block>
 ....
 For `<docstring>` and `<argument-doc>` see <<code-function-code,rule `S131`>>. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
 and return spec must have a single type specified. If the argument has no
-type specified, `any-type!` is assumed._**see issue #2766**_ The `<word-literal>`
+type specified, `any-type!` is assumed._**see issue #2766**_ The `<type-name>`
 must refer to an existing Red type, which must be `integer! float!` or `logic!`,
 or one that has a Red/System `struct!` alias defined that describes a value
 slot of that type._**see issue #2642**_ The `<routine-body>` must contain valid Red/System code.
