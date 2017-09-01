@@ -843,8 +843,8 @@ debase "AQID"              -> #{010203}
 **`S123`**::
 ....
 <path-literal> ::= <path-head>/<selector>
-<path-head> ::= <word> | <path-literal>
-<selector> ::= <integer> | <word> | :<word> | <paren>
+<path-head> ::= <word-literal> | <path-literal>
+<selector> ::= <integer-literal> | <word-literal> | :<word-literal> | <paren>
 ....
 
 Examples:
@@ -852,7 +852,7 @@ Examples:
 list/1/2
 system/view/screens/2
 list/:i
-list/(i)
+list/(i + 1)
 copy/part
 ....
 
