@@ -1985,9 +1985,9 @@ Recall the structure of `path!` values:
 
 **`(S123)`**::
 ....
-    <path> ::= <path-head>/<selector>
-    <path-head> ::= <word> | <path>
-    <selector> ::= <integer> | <word> | :<word> | <paren>
+    <path-literal> ::= <path-head>/<selector>
+    <path-head> ::= <word-literal> | <path-literal>
+    <selector> ::= <integer> | <word-literal> | :<word-literal> | <paren>
 ....
 
 **`E107`**::
@@ -2037,7 +2037,9 @@ as evaluated `<path-head>` and go to step 2.
 .. Otherwise, the result is the intermediate result just obtained.
 
 The built-in function `get` with a `path!` argument applies the above rule except when the type of
-the value referred to is in `any-function!` in which case no _function application_ occurs.
+the value referred to by the `<path-head>` is in `any-function!`. If there isn't any `<selector>`, 
+no _function application_ occurs, and the result is the function value.
+If there is a `<selector>`, an error is raised.
 Moreover, with the refinement `/any` no error occurs if the `path!` value refers to the unset value.
 
 ==== `get-path!` type
