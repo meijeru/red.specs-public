@@ -2487,7 +2487,7 @@ value or one of `false` and `true` for `logic!`; for `pair!` and `tuple!` values
 it operates per component; it is also defined for `series!` arguments
 (see <<series-extraction-and-modification-of-components,section 9.3>>).
 The `word!` argument to `checksum` indicates the method; allowed are
-`MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP`.
+`MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP ADLER32 hash`.
 
 === Set-theoretical functions
 
