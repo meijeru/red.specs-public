@@ -2584,7 +2584,14 @@ a regular index. The `<expression>` argument of `find` may be a single component
 value or a sub-series. This function is not defined on `image!` values.
 
 For all series, if the index becomes smaller than `1` or greater than `length + 1`,
-it will be fixed at `1` or `length + 1`. If `find` does not have a match, its result is `none`.
+it will be fixed at `1` or `length + 1`.
+
+If `find` on a series does not have a match, its result is `none`.
+The function is also defined on values of type `bitset!` (with `<expression>`
+of type `char!`, `string!`, `integer!` or `block!` of integers),
+`typeset!` (with `<expression>` of type `datatype!`)
+and `object!` and `map!` (with `<expression>` evaluating to a _field_  value).
+The result of `find` in these cases is `true` if there is a match, and `false` otherwise.
 
 Note that `find` has a rich set of refinements:
 ....
@@ -2611,6 +2618,8 @@ of the `index?` values of its two `series!` arguments.
 Note: for programming convenience, the functions `length?` and `empty?` (but not `tail?`)
 accept `none` as an argument, yielding `none` as result.
 
+The function `length?` is also defined for values of type `bitset!`, `tuple!` and `map!`.
+
 === Series: extraction and modification of components
 
 The following built-in functions have been described in <<components-of-values,section 5.6>>:
@@ -2634,6 +2643,11 @@ split <series> <delimiter>    a block of sub-strings split at the delimiter(s)
 For `split`, the `<series>` must be of type `any-string!`, and the
 `<delimiter>` may be a single character, a string or -- in order
 to represent a choice of characters -- a bitset.
+
+
+The function `copy` is also defined on values of type `bitset!`, `map!`, `object!`
+and `error!`.
+
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series. With the exception of
@@ -2666,6 +2680,14 @@ pad <series>                  string padded on right side with spaces      at he
 
 The function `reverse` is also defined on values of type `pair!` and `tuple!`, but in these cases
 it does not modify the value in place, yielding instead a new value.
+
+The function `clear` is also defined on values of type `bitset!` and `map!`.
+In the first case it yields a bitset of the same size with all bits cleared,
+in the second case an empty map.
+
+The functions `append` and `insert` are also defined on values of type `bitset!`.
+The effect of both is to set the bits corresponding to the argument (a value
+of type `char!`, `string!`, `integer!` or `block!` of integers).
 
 The function `sort` is only defined on values of type `string! binary! vector! block! hash! paren!`.
 Since it has quite a number of options, here is the full specification:
