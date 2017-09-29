@@ -2664,6 +2664,9 @@ trim <series>                 spaces removed from string                   at he
 pad <series>                  string padded on right side with spaces      at head
 ....
 
+The function `reverse` is also defined on values of type `pair!` and `tuple!`, but in these cases
+it does not modify the value in place, yielding instead a new value.
+
 The function `sort` is only defined on values of type `string! binary! vector! block! hash! paren!`.
 Since it has quite a number of options, here is the full specification:
 ....
