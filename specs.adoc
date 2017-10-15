@@ -1250,7 +1250,7 @@ is the same in both cases.
 <key-value-pair> ::= <key><value>
 ....
 
-Each `<key>` should be a value of a type in `scalar!, any-word!` or `any-string!`.
+Each `<key>` should be a value of a type in `scalar!, any-word!`, `any-string!` or `binary!`.
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `any-word!`
 that do not differ in their symbol are considered identical for this purpose.
@@ -1603,7 +1603,8 @@ image!       integer!     pick poke   size rgb alpha argb                 --
              pair!        pick poke
 bitset!      integer!     pick poke   --                                  --
              char!
-map!                                  scalar! all-word! any-string!       select put
+map!                                  scalar! any-word! any-string!       select put
+                                      binary!
 object!                               word!                               select put
 error!                                code type id arg1 arg2 arg3         select
                                            near where stack
