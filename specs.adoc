@@ -2440,7 +2440,8 @@ vector!               vector!  vector!  vector!                                 
  (7) operand 1 and 2 must have same element type
  (8) only add/subtract allowed
  (9) only add allowed
-(10) only subtract allowed
+(10) only subtract allowed; result is number of days;
+     for exact difference use built-in function difference
 ....
 
 
