@@ -2502,6 +2502,9 @@ of one of the types mentioned, and yield a result of the same type. The function
 `unique` has one argument of type `block! hash! string!`, and again yields
 a result of the same type. The operation of these functions follows from their names.
 
+Note that the function `difference` is also defined on two `date!` values; in this case
+it yields a `time!` value as the result of subtracting one date and time from the other. 
+
 === Bitwise functions
 
 The following functions operate on the bit patterns underlying Red values
