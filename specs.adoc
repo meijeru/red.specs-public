@@ -681,8 +681,8 @@ Examples: `1.23`  `-0.5`  `.5`  `+010.20`  `1E9`
 ....
 
 where `<hours> <minutes> <seconds>` and `<decimals>` may each be any unsigned `<integer-literal>`
-(leading zeroes are allowed, carry is performed as appropriate when the numbers are outside
-the normal range `0..23` for hours, `0..59` for minutes and seconds).
+(leading zeroes are allowed, carry is performed as appropriate when the minutes and/or the 
+integer part of the seconds are outside the normal range `0..59`).
 
 Examples: `10:20`  `10:20:30.456`  `20:30.5`  `-1:00:00`
 
