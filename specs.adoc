@@ -333,7 +333,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`image!`         |2-dimensional array of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
 |`bitset!`        |sequence of values true or false, used e.g. to model sets of
                    non-negative integers, such as Unicode Code Points
-|`map! `          |collection of pairs of values where the first value in each pair functions
+|`map!`           |collection of pairs of values where the first value in each pair functions
                    as key for retrieval of the second; keys are restricted to types in
                    `scalar! any-word!` and `any-string!`
 |`object!`        |collection of word-value pairs with a context in which the words
