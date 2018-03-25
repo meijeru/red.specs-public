@@ -2171,7 +2171,7 @@ to the non-optional arguments, except: When the `<argument-name>`
 is a `'<word>`, then if the next value is a `:<word>` or `:<path>` or `<paren>`,
 evaluate this to fetch the value it refers to; else pass the next value as-is.
 If the `<argument-name>` is `:<word>`, do not evaluate the corresponding expression
-but yield its first `<value>` as is; do not raise an error if this value is unset.
+but yield its first `<value>` as-is; do not raise an error if this value is unset.
 _**See issues #2622 and 3174**_
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
 Check the type of each value against the type(set)s specified for the argument.
@@ -4676,4 +4676,5 @@ issue  spec section
 2668   11.1
 2776   8.1
 2883   5.6.2
+3174   7.4.1
 ....
