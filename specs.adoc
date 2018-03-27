@@ -1173,7 +1173,9 @@ Note that `error!` values all have `class = 0`.
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
-For `<typeset-element>` see <<code-typeset-code,rule `S124`>>.
+For `<typeset-element>` see <<code-typeset-code,rule `S124`>>. Note that both in the `<argument-spec>`
+and the `<return-spec>` any `<typeset-name>` must refer to a pre-defined typeset value (see
+<<type-hierarchy,section 4.3>>. User-defined typesets may not be mentioned. _**See issue #3285**_
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
@@ -4677,4 +4679,5 @@ issue  spec section
 2776   8.1
 2883   5.6.2
 3174   7.4.1
+3285   5.3.8
 ....
