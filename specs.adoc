@@ -1175,7 +1175,7 @@ Note that `error!` values all have `class = 0`.
 ....
 For `<typeset-element>` see <<code-typeset-code,rule `S124`>>. Note that both in the `<argument-spec>`
 and the `<return-spec>` any `<typeset-name>` must refer to a pre-defined typeset value (see
-<<type-hierarchy,section 4.3>>. User-defined typesets may not be mentioned. _**See issue #3285**_
+<<type-hierarchy,section 4.3>>). User-defined typesets may not be mentioned. _**See issue #3285**_
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
@@ -1214,9 +1214,9 @@ For `<docstring>` and `<argument-doc>` see <<code-function-code,rule `S131`>>. N
 do not have optional arguments, except `/local`. Note also that arguments
 and return spec must have a single type specified. If the argument has no
 type specified, `any-type!` is assumed._**see issue #2766**_ The `<type-name>`
-must refer to an existing Red type, which must be `integer! float!` or `logic!`,
-or one that has a Red/System `struct!` alias defined that describes a value
-slot of that type._**see issue #2642**_ The `<routine-body>` must contain valid Red/System code.
+must be `integer! float!` or `logic!`, or one that has a Red/System `struct!`
+alias defined that describes a value slot of that type._**see issue #2642**_
+The `<routine-body>` must contain valid Red/System code.
 
 Values of type `routine!` may not occur in programs submitted to the interpreter,
 and in programs submitted to the compiler, they may only occur preceded by a
