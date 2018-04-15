@@ -1503,10 +1503,6 @@ therefore be used in selection by "key"(see next section). The correspondences a
 * for `pair!` values: `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
 top to bottom).
 
-As stated in <<atomic-composite-types,section 4.2.3>>, component selection in values of direct types
-cannot be used to change the component, only to extract it.
-That is, only `<path>` and `pick` are allowed for these values.
-
 The built-in functions `first second third fourth` and `fifth` are defined as `pick <expression> 1` etc.
 
 ==== Selection by "key"
@@ -1531,13 +1527,12 @@ Setting a map component to `none` removes the component and its key from the map
 
 Values of type `time! date! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
-Again, for the direct types among them, only the `<path>` and `pick` forms are valid,
-since component selection in values of direct types cannot be used to change the component,
-only to extract it. The allowed values of the keys for each of these types are stored
-in `system/catalog/accessors`.
+However, here the selection is only possible by `<path>` and `<path>:` expressions,
+not by `select` and `put`. The allowed values of the keys for each of these types
+are stored in `system/catalog/accessors`.
 
 In case of `time! date! email! image!` and `event!`, the result is obtained by performing
-a certain calculation.
+a certain calculation, as follows.
 
 Extracting a component:
 
@@ -1568,11 +1563,11 @@ and will replace the values they had before
 * `date!` values: the `date year month day hour minute second` and `zone` components can be set directly;
 the value for the `time` component (which can be negative) is used modulo `24:00` with adjustment
 of the date; the same holds for the resulting time when any of the values of the `hour minute`
-and `second` components is changed; setting the `timezone` component results in a new `date!`
+and `second` components is changed; setting the `timezone` component results in a `date!`
 value with the corresponding `zone` component and a changed `time` component
 such that the UTC time value is unchanged; setting the `week` or `isoweek` component results in
-a new `date!` value having the date of the first day in the indicated week; setting the `weekday`
-component results in a new `date!` value with the corresponding date in the same week;
+a `date!` value having the date of the first day in the indicated week; setting the `weekday`
+component results in a `date!` value with the corresponding date in the same week;
 setting the `time` component to `none` will ensure that the `time` and `timezone` components
 will not be displayed, and that for computations they have the value `0:00`
 * `email!` values: the `user` and `host` component values should be supplied as strings
