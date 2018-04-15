@@ -1715,7 +1715,8 @@ The following cases can be distinguished:
 
 * straightforward numerical ordering: `char! integer! float! percent! time!` and `date!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
-vector! any-string! binary!` and `bitset!`
+vector! any-string! binary!` and `bitset!`; with pairs, the `y` component is tested
+before the `x` component
 * lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`;
 for objects, the numbers of fields are compared first, and if they are unequal,
 the field contents are not tested further
