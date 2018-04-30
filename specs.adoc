@@ -3950,7 +3950,6 @@ A    round
 O    <<          R    shift-left       N shift/left
 O    >>          R    shift-right      N shift
 O    >>>         R    shift-logical    N shift/logical
-N    shift
 N    sign?
 F    sin         N    sine
 F    sqrt        N    square-root
@@ -4137,7 +4136,7 @@ F    view
 F    within?
 ....
 ==== Reactivity
-see <<,section 13.4>>
+see <<reactivity,section 13.4>>
 ....
 O    is       F is~ (hidden)
 F    react
@@ -4145,7 +4144,7 @@ F    react?
 R    set-quiet
 ....
 ==== Environment and OS-related
-see <<reactivity,section 13.5>>
+see <<environment-and-os-related-functions,section 13.5>>
 ....
 N    call
 N    get-env
