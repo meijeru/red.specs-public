@@ -4646,8 +4646,7 @@ There are two types of issues: Red issues that represent a bug or other observed
 of the current toolchain, which are reported in the issue section of the toolchain repository
 and suggestions for enhancement ("wishes") that are reported separately in the REP
 (Red Enhancement Proposals) repository. The numbered issues can be found at
-[https://github.com/red/red/issues/](https://github.com/red/red/issues/)
-and [https://github.com/red/REP/issues/](https://github.com/red/REP/issues/)
+https://github.com/red/red/issues/ and https://github.com/red/REP/issues/
 respectively.
 
 ....
