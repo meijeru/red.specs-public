@@ -4640,9 +4640,19 @@ word                                    <a href = "#words-contexts-and-binding">
 </pre>
 ++++
 
-== List of outstanding issues and REPs
+== List of outstanding issues
+
+There are two types of issues: Red issues that represent a bug or other observed imperfection
+of the current toolchain, which are reported in the issue section of the toolchain repository
+and suggestions for enhancement ("wishes") that are reported separately in the REP
+(Red Enhancement Proposals) repository. The numbered issues can be found at
+<a href = "https://github.com/red/red/issues/">https://github.com/red/red/issues/</a>
+and <a href = "https://github.com/red/REP/issues/">https://github.com/red/REP/issues/</a>
+respectively.
+
 ....
-issue  spec section
+Red    spec
+issue  section
 
 1957   5.7
 1960   5.6.3
@@ -4671,7 +4681,9 @@ issue  spec section
 3174   7.4.1
 3285   5.3.8
 
-REP    spec section
+REP    spec
+issue  section
+
  10    8.1, 8.4
  12    5.7
  13    5.3.3
