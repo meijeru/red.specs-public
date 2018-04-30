@@ -1007,7 +1007,7 @@ is `integer!` of size 32.
 
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
 initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>`
-(see the beginning of section <<creation-of-values-code-make-code,5.3>>). 
+(see the beginning of section <<creation-of-values-code-make-code,5.3>>). _**See REP #13**_
 
 Examples:
 ....
@@ -1617,9 +1617,9 @@ event!                                type face window offset key         --
 Values of some types have (internal) properties of interest to the user which may
 usefully be exposed.
 
-This concerns first of all `(any-)word!` values for which information on their
+This concerns first of all `any-word!` values for which information on their
 binding may be obtained by means of two built-in functions: `context?` and `index?`.
-These are explained in <<contexts,section 6.2>>. _**See issue #2618**_. 
+These are explained in <<contexts,section 6.2>>. _**See REP #14**_. 
 
 _**What about `owner`??** see issue #1957_
 
@@ -1628,7 +1628,7 @@ The function `complement?` is described in <<code-bitset-code,section 5.3.5>>.
 The function `face?` tests if an object is derived of the `face!` object which is
 explained in <<gui-system,section 13.3>>.
 
-_**Functions on vector! values have been requested see issue #2527**_
+_**Functions on vector! values have been requested see REP #12**_
 
 For values of type `object! error!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
@@ -2385,8 +2385,8 @@ positive? negative?   1     number! time!                         logic!
 zero?                 1     number! char! time!                   logic!
                             pair! tuple!
 even? odd?            1     number! char! time!                   logic!
-negate                1     number! time! pair!                   same as operand  see issue #1262
-absolute round        1     number! time! pair!                   same as operand see issue #1262, 1267
+negate                1     number! time! pair!                   same as operand see REP #10
+absolute round        1     number! time! pair!                   same as operand see REP #10
 max min               2     scalar!             scalar!           same as greatest/smallest
                                                                   operand (operand 1 if equal)
 ....
@@ -2528,7 +2528,7 @@ for these functions are as follows.
 ....
 function     arity  argument type(s)
 
-complement     1    integer! bitset! typeset! binary! see issue #1263, 1267, 1956
+complement     1    integer! bitset! typeset! binary! see REP #10
 and or xor     2    integer! char! pair! tuple! bitset! typeset! binary! vector!
 << >> >>>      2    integer!
 ....
@@ -4640,27 +4640,21 @@ word                                    <a href = "#words-contexts-and-binding">
 </pre>
 ++++
 
-== List of outstanding issues
+== List of outstanding issues and REPs
 ....
 issue  spec section
 
-1262   8.1
-1263   8.4
-1267   8.1, 8.4
-1956   8.4
 1957   5.7
 1960   5.6.3
 1961   9.3
 2216   8.1
 2492   3.1
-2527   4.2.7, 5.7
 2554   5.6.2
 2565   4.3
 2577   5.3.11
 2578   7.3.5
 2589   5.3.8
 2609   5.3.5
-2618   4.2.7, 5.7
 2622   7.4.1
 2625   5.6.2
 2628   12.1.1
@@ -4676,4 +4670,10 @@ issue  spec section
 2883   5.6.2
 3174   7.4.1
 3285   5.3.8
+
+REP    spec section
+ 10    8.1, 8.4
+ 12    5.7
+ 13    4.2.7
+ 14    5.7
 ....
