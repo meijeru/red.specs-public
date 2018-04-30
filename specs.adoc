@@ -4674,6 +4674,6 @@ issue  spec section
 REP    spec section
  10    8.1, 8.4
  12    5.7
- 13    4.2.7
+ 13    5.3.3
  14    5.7
 ....
