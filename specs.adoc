@@ -1612,6 +1612,10 @@ be similarly used _**see issue #2883**_
 
 |===
 
+Notes:
+
+. See issue #1960
+
 === Reflection on values
 
 Values of some types have (internal) properties of interest to the user which may
