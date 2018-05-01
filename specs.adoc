@@ -519,7 +519,9 @@ which group related types. These will notably be used for indicating
 the allowed types of arguments to _polymorphic functions_. E.g. `power` takes
 two arguments whose types are both in the typeset `number!`. Note that there is
 a typeset `series!` which covers the same types that have the pseudo-type `series!`
-as parent type.
+as parent type. Note further that there is not a one-to-one correpondence between
+this (semantic) hierarchy and the implementation hierarchy implied by the
+assignment of parent types.
 
 ....
 any-type!              
