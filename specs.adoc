@@ -545,14 +545,15 @@ any-type!
    |  |  |--time!
    |  |  |--date!
    |  |  |--pair!          
-   |  |  |--tuple!         
-   |  |--any-word!
-   |  |  |--word!          
-   |  |  |--lit-word!      
-   |  |  |--set-word!      
-   |  |  |--get-word!      
-   |  |--refinement!    
-   |  |--issue!         
+   |  |  |--tuple!
+   |  |--all-word!
+   |  |  |--any-word!
+   |  |  |  |--word!          
+   |  |  |  |--lit-word!      
+   |  |  |  |--set-word!      
+   |  |  |  |--get-word!      
+   |  |  |--refinement!    
+   |  |  |--issue!         
    |  |--handle!            
    |--series!            
    |  |--any-block!       
