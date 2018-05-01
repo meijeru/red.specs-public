@@ -440,7 +440,7 @@ are grouped by the type to which they apply. Now for any action/type combination
 such function may be designated as _inherited_ from the parent type, and in this way
 two or more types may share the same implementation for that action. In this approach, there
 are two _pseudo-types_ defined, which function as parent types from which to inherit:
-they are `symbol` for types related to `word!` and `series!` for types related to `block! and `string!`.
+they are `symbol` for types related to `word!` and `series!` for types related to `block!` and `string!`.
 A further pseudo-type `context!` provides implementation of context-related functionality
 (see <<words-contexts-and-binding,sections 2.4>> and <<words-contexts-and-binding-1,6>>).
 
@@ -734,22 +734,23 @@ explicitly handle their interpretation.
 
 The correspondence between the escaped characters and Unicode Code Points is given in the table below.
 
-     Named Form   Short Form    Character           Code Point        Pre-defined word(s)
-     
-     #"^(null)    #"^@"         null                U+0000            null
-     #"^(back)"   #"^H"         backspace           U+0008      
-     #"^(tab)"    #"^I" #"^-"   horizontal tab      U+0009            tab
-     #"^(line)"   #"^J" #"^/"   line feed           U+000A            lf, newline
-     #"^(page)"   #"^L"         form feed           U+000C 
-     #"^(esc)"    #"^["         escape              U+001B            escape
-     #"^(del)"    #"^~"         delete              U+007F
-     
-     
-     #"^""                      " - double quote    U+0022            dbl-quote
-     #"^^"                      ^ - caret           U+005E
-     #"^A" - #"^Z"              control characters  U+0001 - U+001A
-     #"^[" #"^\" #"^]"          control characters  U+001B - U+001D
-     #"^_"                      control character   U+001F
+[cols="1,1,1,1,2", options="header"]
+|===
+
+|Named Form   |Short Form    |Character           |Code Point        |Pre-defined word(s)
+|#"^(null)    |#"^@"         |null                |U+0000            |null
+|#"^(back)"   |#"^H"         |backspace           |U+0008            |
+|#"^(tab)"    |#"^I" #"^-"   |horizontal tab      |U+0009            |tab
+|#"^(line)"   |#"^J" #"^/"   |line feed           |U+000A            |lf, newline
+|#"^(page)"   |#"^L"         |form feed           |U+000C            |
+|#"^(esc)"    |#"^["         |escape              |U+001B            |escape
+|#"^(del)"    |#"^~"         |delete              |U+007F            |
+|             |              |                    |                  |
+|             |#"^""         |" (double quote)    |U+0022            |dbl-quote
+|             |#"^^"         |^ (caret)           |U+005E            |
+|             |#"^A" - #"^]" |control characters  |U+0001 - U+001D   |
+|             |#"^_"         |control character   |U+001F            |
+|===
 
 For more pre-defined words referring to characters see <<characters,section 14.1.1>>.
     
