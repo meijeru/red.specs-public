@@ -4596,6 +4596,7 @@ precedence rules                        <a href = "#expressions-and-evaluation-o
 prefix function                         <a href = "#expressions-and-evaluation-order">3.3</a>
 preprocessor dialect                    <a href = "#dialects">2.5</a>, <a href = "#preprocessor">13.1</a>
 prologue                                <a href = "#textual-structure">3.1</a>
+pseudo-type                             <a href = "#parent-types">4.2.6</a>, <a href = "#overview-table">4.2.7</a>
 reactivity                              <a href = "#reactivity">13.4</a>
 Read Evaluate Print Loop (REPL)         <a href = "#red-toolchain">2.2</a>
 Red toolchain                           <a href = "#red-toolchain">2.2</a>
@@ -4627,6 +4628,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
   indirect type                         <a href = "#direct-indirect-function-types">4.2.2</a>
   parent type                           <a href = "#parent-types">4.2.6</a>
   passive type                          <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
+  pseudo-type                           <a href = "#parent-types">4.2.6</a>, <a href = "#overview-table">4.2.7</a>
   type hierarchy                        <a href = "#type-hierarchy">4.3</a>
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
 Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.14</a>
