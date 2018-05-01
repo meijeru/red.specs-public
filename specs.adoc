@@ -18,7 +18,7 @@ the authoritative document for:
 
 In as much as feasible, and in order to avoid duplication, existing pieces
 of official documentation will be referred to. A list of those can be found in
-<<additional documentation,section 18>>.
+<<additional-documentation,section 18>>.
 
 Because of the wealth of built-in functions that Red makes available, combined
 with the numerous optional facilities ("refinements") that these functions have,
@@ -28,8 +28,8 @@ documented within the function specification, and this should be consulted
 in order to be able to use any function optimally. See <<help-facilities,section 13.6.>>
 
 This document is *not* intended to be used in order to learn the language (tutorial);
-for that purpose sufficient materials can be found elsewhere.
-_** need one comprehensive and sufficiently maintained collection of links **_
+for that purpose sufficient materials can be found using the Red Wiki at
+https://github.com/red/red/wiki .
 
 === Conventions
 
@@ -438,68 +438,70 @@ The implementation uses a _dispatch table_ which contains a pointer to a specifi
 function for each allowed combination of action and type of first argument. These functions
 are grouped by the type to which they apply. Now for any action/type combination,
 such function may be designated as _inherited_ from the parent type, and in this way
-two or more types may share the same implementation for that action.
-
-_**Mention pseudo types `symbol`, `series!` and `context!`?**_ 
+two or more types may share the same implementation for that action. In this approach, there
+are two _pseudo-types_ defined, which function as parent types from which to inherit:
+they are `symbol` for types related to `word!` and `series!` for types related to `block! and `string!`.
+A further pseudo-type `context!` provides implementation of context-related functionality
+(see <<words-contexts-and-binding,sections 2.4>> and <<words-contexts-and-binding-1,6>>).
 
 ==== Overview table
 
 [cols="1,1,1,1,1,1,2", options="header"]
 |===
 
-|type |value representation (1) |storage |atomic/composite |reflection? |evaluation |parent type
-|`datatype!`   |using words   |direct    |atomic           |N           |passive  |
-|`typeset!`    |using `make`  |direct    |atomic           |N           |passive  |
-|`none!`       |using words   |direct    |atomic           |N           |passive  |
-|`logic!`      |using words   |direct    |atomic           |N           |passive  |
-|`char!`       |lexical       |direct    |atomic           |N           |passive  |`integer!`
-|`integer!`    |lexical       |direct    |atomic           |N           |passive  |
-|`float!`      |lexical       |direct    |atomic           |N           |passive  |
-|`percent!`    |lexical       |direct    |atomic           |N           |passive  |`float!`
-|`time!`       |lexical       |direct    |composite        |N           |passive  |`float!`
-|`date!`       |lexical       |direct    |composite        |N           |passive  |
-|`pair!`       |lexical       |direct    |composite        |N           |passive  |
-|`tuple!`      |lexical       |direct    |composite        |N           |passive  |
-|`word!`       |lexical       |direct    |atomic           |Y           |active   |`symbol!`
-|`lit-word!`   |lexical       |direct    |atomic           |Y (2)       |decaying |`word!`
-|`set-word!`   |lexical       |direct    |atomic           |Y (2)       |active   |`word!`
-|`get-word!`   |lexical       |direct    |atomic           |Y (2)       |active   |`word!`
-|`refinement!` |lexical       |direct    |atomic           |Y (2)       |passive  |`word!`
-|`issue!`      |lexical       |direct    |atomic           |Y (2)       |passive  |`word!`
-|`handle!`     |using words   |direct    |atomic           |N           |passive  |`integer!`
-|`block!`      |syntactic     |indirect  |composite        |N           |passive  |`series!`
-|`hash!`       |using `make`  |indirect  |composite        |N           |passive  |`block!`
-|`paren!`      |syntactic     |indirect  |composite        |N           |active   |`block!`
-|`path!`       |lexical       |indirect  |composite        |N           |active and function |`block!`
-|`lit-path!`   |lexical       |indirect  |composite        |N           |decaying |`path!`
-|`set-path!`   |lexical       |indirect  |composite        |N           |active   |`path!`
-|`get-path!`   |lexical       |indirect  |composite        |N           |active   |`path!`
-|`vector!`     |using `make`  |indirect  |composite        |N (3)       |passive  |`string!`
-|`string!`     |lexical       |indirect  |composite        |N           |passive  |`series!`
-|`file!`       |lexical       |indirect  |composite        |N           |passive  |`url!`
-|`url!`        |lexical       |indirect  |composite        |N           |passive  |`string!`
-|`tag!`        |lexical       |indirect  |composite        |N           |passive  |`string!`
-|`email!`      |lexical       |indirect  |composite        |N           |passive  |`string!`
-|`binary!`     |lexical       |indirect  |composite        |N           |passive  |`string!`
-|`image!`      |using `make`  |indirect  |composite        |N           |passive  |
-|`bitset!`     |using `make`  |indirect  |composite        |N           |passive  |
-|`map!`        |syntactic     |indirect  |composite        |Y           |passive  |
-|`object!`     |using `make`  |indirect  |composite        |Y           |passive  |
-|`error!`      |using `make`  |indirect  |composite        |Y           |passive  |`object!`
-|`native!`     |using words   |function  |atomic           |Y           |function |
-|`action!`     |using words   |function  |atomic           |Y           |function |`native!`
-|`op!`         |using words   |function  |atomic           |Y           |function |`native!`
-|`function!`   |using `make`  |function  |atomic           |Y           |function |`context!`
-|`routine!`    |using `routine`  |function  |atomic           |Y           |function |`function!`
-|`unset!`      |using `make`  |direct    |atomic           |N           |passive  |
-|`event!`      |using words   |direct    |composite        |N           |passive  |
+|type |value representation (1)  |storage   |atomic/composite |reflection? |evaluation |parent type
+|`datatype!`   |using words      |direct    |atomic           |N           |passive    |
+|`typeset!`    |using `make`     |direct    |atomic           |N           |passive    |
+|`none!`       |using words      |direct    |atomic           |N           |passive    |
+|`logic!`      |using words      |direct    |atomic           |N           |passive    |
+|`char!`       |lexical          |direct    |atomic           |N           |passive    |`integer!`
+|`integer!`    |lexical          |direct    |atomic           |N           |passive    |
+|`float!`      |lexical          |direct    |atomic           |N           |passive    |
+|`percent!`    |lexical          |direct    |atomic           |N           |passive    |`float!`
+|`time!`       |lexical          |direct    |composite        |N           |passive    |`float!`
+|`date!`       |lexical          |direct    |composite        |N           |passive    |
+|`pair!`       |lexical          |direct    |composite        |N           |passive    |
+|`tuple!`      |lexical          |direct    |composite        |N           |passive    |
+|`word!`       |lexical          |direct    |atomic           |Y           |active     |`symbol!`
+|`lit-word!`   |lexical          |direct    |atomic           |Y           |decaying   |`word!`
+|`set-word!`   |lexical          |direct    |atomic           |Y           |active     |`word!`
+|`get-word!`   |lexical          |direct    |atomic           |Y           |active     |`word!`
+|`refinement!` |lexical          |direct    |atomic           |Y (2)       |passive    |`word!`
+|`issue!`      |lexical          |direct    |atomic           |Y (2)       |passive    |`word!`
+|`handle!`     |using words      |direct    |atomic           |N           |passive    |`integer!`
+|`block!`      |syntactic        |indirect  |composite        |N           |passive    |`series!`
+|`hash!`       |using `make`     |indirect  |composite        |N           |passive    |`block!`
+|`paren!`      |syntactic        |indirect  |composite        |N           |active     |`block!`
+|`path!`       |lexical          |indirect  |composite        |N           |active and function |`block!`
+|`lit-path!`   |lexical          |indirect  |composite        |N           |decaying   |`path!`
+|`set-path!`   |lexical          |indirect  |composite        |N           |active     |`path!`
+|`get-path!`   |lexical          |indirect  |composite        |N           |active     |`path!`
+|`vector!`     |using `make`     |indirect  |composite        |N (3)       |passive    |`string!`
+|`string!`     |lexical          |indirect  |composite        |N           |passive    |`series!`
+|`file!`       |lexical          |indirect  |composite        |N           |passive    |`url!`
+|`url!`        |lexical          |indirect  |composite        |N           |passive    |`string!`
+|`tag!`        |lexical          |indirect  |composite        |N           |passive    |`string!`
+|`email!`      |lexical          |indirect  |composite        |N           |passive    |`string!`
+|`binary!`     |lexical          |indirect  |composite        |N           |passive    |`string!`
+|`image!`      |using `make`     |indirect  |composite        |N           |passive    |`series!`
+|`bitset!`     |using `make`     |indirect  |composite        |N           |passive    |
+|`map!`        |syntactic        |indirect  |composite        |Y           |passive    |
+|`object!`     |using `make`     |indirect  |composite        |Y           |passive    |
+|`error!`      |using `make`     |indirect  |composite        |Y           |passive    |`object!`
+|`native!`     |using words      |function  |atomic           |Y           |function   |
+|`action!`     |using words      |function  |atomic           |Y           |function   |`native!`
+|`op!`         |using words      |function  |atomic           |Y           |function   |`native!`
+|`function!`   |using `make`     |function  |atomic           |Y           |function   |
+|`routine!`    |using `routine`  |function  |atomic           |Y           |function   |`function!`
+|`unset!`      |using `make`     |direct    |atomic           |N           |passive    |
+|`event!`      |using words      |direct    |composite        |N           |passive    |
 |===
 
 Notes:
 
 . Values of all types may be represented using `make`, except those of `datatype! native! action! routine!` and `event!`
-. _**See issue #2618**_
-. _**See issue #2527**_
+. _**See REP #14**_
+. _**See REP #12**_
 ....
 TBD
 point!
@@ -515,7 +517,9 @@ library!
 For the convenience of the user, certain typesets have been pre-defined
 which group related types. These will notably be used for indicating
 the allowed types of arguments to _polymorphic functions_. E.g. `power` takes
-two arguments whose types are both in the typeset `number!`.
+two arguments whose types are both in the typeset `number!`. Note that there is
+a typeset `series!` which covers the same types that have the pseudo-type `series!`
+as parent type.
 
 ....
 any-type!              
