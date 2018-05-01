@@ -1589,37 +1589,28 @@ be similarly used _**see issue #2883**_
 
 ==== Overview table
 
-....
-type         indexed      built-in    key values or types                 built-in
-             components   functions                                       functions
+[cols="1,1,1,1,2", options="header"]
+|===
 
-time!        1 2 3        pick        hour minute second                  --
-date!        1 .. 10      pick        date year month day zone            --
-                                      time hour minute second
-                                      weekday yearday julian
-                                      timezone week isoweek
-pair!        1 2          pick        x y                                 --
-tuple!       1 .. 12      pick        --                                  --
-any-block!   integer!     pick poke   any-type!                           select put
-vector!      integer!     pick poke   integer! char!                      select (put see issue #1960)
-string!      integer!     pick poke   char! any-string! binary!           select (put see issue #1960)
-email!       integer!     pick poke   char! any-string! binary! host user select (put see issue #1960)
-file! url!   integer!     pick poke   char! any-string! binary!           select (put see issue #1960)
-binary!      integer!     pick poke   integer! char! any-string! binary!  select (put see issue #1960)
-image!       integer!     pick poke   size rgb alpha argb                 --
-             pair!        pick poke
-bitset!      integer!     pick poke   --                                  --
-             char!
-map!                                  scalar! any-word! any-string!       select put
-                                      binary!
-object!                               word!                               select put
-error!                                code type id arg1 arg2 arg3         select
-                                           near where stack
-event!                                type face window offset key         --
-                                           picked flags away?
-                                           down? mid-down? alt-down?
-                                           aux-down? ctrl? shift?
-....
+|type       |indexed components |built-in functions |key values or types   | built-in functions
+|time!      |1 2 3        |pick        |hour minute second                  |
+|date!      |1 .. 10      |pick        |date year month day zone time hour minute second weekday yearday julian timezone week isoweek |
+|pair!      |1 2          |pick        |x y                                 |
+|tuple!     |1 .. 12      |pick        |                                    |
+|any-block! |integer!     |pick poke   |any-type!                           |select put
+|vector!    |integer!     |pick poke   |integer! char!                      |select (1)
+|string!    |integer!     |pick poke   |char! any-string! binary!           |select (1)
+|email!     |integer!     |pick poke   |char! any-string! binary! host user |select (1)
+|file! url! |integer!     |pick poke   |char! any-string! binary!           |select (1)
+|binary!    |integer!     |pick poke   |integer! char! any-string! binary!  |select (1)
+|image!     |integer! pair! |pick poke |size rgb alpha argb                 |
+|bitset!    |integer! char! |pick poke |                                    |
+|map!       |             |            |scalar! any-word! any-string! binary! |select put
+|object!    |             |            |word!                               |select put
+|error!     |             |            |code type id arg1 arg2 arg3 near where stack |select
+|event!     |             |            |type face window offset key picked flags away? down? mid-down? alt-down? aux-down? ctrl? shift? |
+
+|===
 
 === Reflection on values
 
