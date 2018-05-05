@@ -1101,19 +1101,15 @@ i.e. if its complement is what is actually stored.
 <object-spec> ::= <block>
 ....
 
-The built-in functions `object` and `context` are defined as shorthand for `make object!`,
-however they behave slightly differently as noted below.
-The `<expression>` must evaluate to a value of type `object!`.
+The built-in functions `object` and `context` will invoke `make object!` on their argument.
+The `<exp1ression>` must evaluate to a value of type `object!`.
 
 If the first argument to `make` is `object!` this creates a new object as follows.
 A new context is created and associated to the object. The words of the new context
 (i.e. the fields of the object) are the words of all the `set-word!` values that are
 (first-level) components of the `<object-spec>`. The corresponding values are set
 to the unset value. The `<object-spec>` is bound to this context (see <<built-in-code-bind-code-function,section
-6.3.6>>). The bound block is then _executed_. It is an error for the bound block to contain a `return`
-or `exit` as first level component. However if the object is made by applying `context`
-or `object`, the presence of `return` followed by an expression yields the value of that expression,
-without an object being created._**See issue #3362**_
+6.3.6>>). The bound block is then _executed_. _**See issue #3362**_
 
 The `class` property of the newly created object is set to a unique integer.
 
