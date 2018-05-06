@@ -1102,7 +1102,7 @@ i.e. if its complement is what is actually stored.
 ....
 
 The built-in functions `object` and `context` will invoke `make object!` on their argument.
-The `<exp1ression>` must evaluate to a value of type `object!`.
+The `<expression>` must evaluate to a value of type `object!`.
 
 If the first argument to `make` is `object!` this creates a new object as follows.
 A new context is created and associated to the object. The words of the new context
