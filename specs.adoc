@@ -2397,10 +2397,9 @@ functions are as follows.
 |                    |        |                    |                |(operand 1 if equal)
 |===
 
-Note
+Notes:
 
-.see REP #10
-
+. see REP #10
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
