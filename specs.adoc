@@ -172,7 +172,7 @@ values and between `word!` values and `block!` values. These examples are all sy
 _Comments_, which have no significance for the operation of the program, may be placed following
 a semicolon `;` until the end of an input line (_end-of-line comment_), or they may follow the word
 `comment` and be formulated as a single Red value -- most usefully a series of characters enclosed
-in `{ }` or a series of Red values enclosed in `[ ]`.
+in `"&nbsp;"` or `{&nbsp;}` -- or a series of Red values enclosed in `[ ]`.
 
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
 and/or the reader. The relevant data will be described in <<metadata-for-the-toolchain,section 17>>.
