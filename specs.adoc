@@ -3592,7 +3592,10 @@ See also <<code-float-code,sections 5.2.2>> and <<higher-mathematical-functions,
 
 ==== Strings
 ....
-    crlf          "^(0D)^(0A)"
+    crlf              "^(0D)^(0A)"
+    font-fixed        "Consolas"
+    font-sans-serif   "Arial"
+    font-serif        "Times"
 ....
 
 ==== Tuples
