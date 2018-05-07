@@ -176,6 +176,8 @@ in `"&nbsp;"` or `{&nbsp;}` -- or a series of Red values enclosed in `[&nbsp;]`.
 
 A well-formed Red program begins with a _prologue_ which may contain _metadata_ for the toolchain
 and/or the reader. The relevant data will be described in <<metadata-for-the-toolchain,section 17>>.
+Note that, although Red text is in general case-insensitive (barring exceptions noted in
+<<values,section 5>>), the first three letters of the prologue must be literally `R&nbsp;e&nbsp;d`.
 
 === Formal grammar
 
