@@ -263,7 +263,7 @@ application and binding; also, as suggested in <<expressions,rule `S101`>>, oper
 there is no precedence between any two operators. The fact that the arguments of a function simply follow
 the function itself (they are not enclosed in parentheses) means that, for the reader to understand
 a program, knowledge of the arity of functions is necessary. Evaluation order can of course
-be influenced by the use of parentheses, given the evauation rule for values of `paren!` type
+be influenced by the use of parentheses, given the evaluation rule for values of `paren!` type
 (see <<code-paren-code-type, section 7.3.4>>).
 
 Some basic examples:
