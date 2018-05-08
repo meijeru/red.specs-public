@@ -2418,7 +2418,7 @@ _**See issue #2776**_
 |operand 1    |          |          |          |         |         |         |         |           | 
 |char!        |char! (1) |char! (1) |char! (1) |         |         |         |         |           |vector! (1)(6)
 |integer!     |integer! (1) |integer! |float!  |float!   |time!    |date! (9) |pair! (1)(2) |tuple! (1)(2)(3) |vector! (1)(6)
-|float!       |float!    |float!    |float!    |float!   |time!    |         |pair!    |tuple!     |vector!
+|float!       |float! (1)|float!    |float!    |float!   |time!    |         |pair!    |tuple!     |vector!
 |percent!     |          |percent!  |percent!  |percent! |time!    |         |pair! (1)(2) |tuple! (1)(2)(3) |vector! (1)(6)
 |time!        |          |time!     |time!     |time!    |time! (4)(5) |date! (9) |         |           |
 |date!        |          |date! (8) |          |         |date! (8) |integer! (10) |    |          |
