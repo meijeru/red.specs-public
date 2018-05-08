@@ -2426,7 +2426,9 @@ _**See issue #2776**_
 |tuple!       |          |tuple! (1)|tuple! (1)|tuple! (1)|        |         |          |tuple! (1)|
 |vector!      |          |vector! (1)(6)|vector! (1)(6)|vector! (1)(6)| |    |          |          |vector! (1)(7)
 |===
+
 Notes: 
+
 . modulo not allowed
 . divide not allowed
 . subtract not allowed
