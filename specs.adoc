@@ -2412,49 +2412,31 @@ the result type is determined as (in decreasing order of precedence):
 . the type of operand 1
 
 _**See issue #2776**_
-....
-operand 2 -> char!    integer! float!   percent! time!    date!    pair!    tuple!     vector!
-operand 1
-char!        char!    char!    char!                                          vector!
-             (1)      (1)      (1)                                            (1)(6)
-
-integer!     integer! integer! float!   float!   time!    date!    pair!    tuple!     vector!
-             (1)                                          (9)      (1)(2)   (1)(2)(3)  (1)(6)
-
-float!       float!   float!   float!   float!   time!             pair!    tuple!     vector!
-             (1)                                                   (1)(2)   (1)(2)(3)  (1)(6)
-
-percent!              percent! percent! percent! time!             pair!    tuple!     vector!
-                                                                   (1)(2)   (1)(2)(3)  (1)(6)
-
-time!                 time!    time!    time!    time!    date!
-                                                 (4)(5)   (9)
-
-date!                 date!                      date!    integer!
-                      (8)                        (8)      (10)
-
-pair!                 pair!    pair!    pair!                      pair!
-                      (1)      (1)      (1)                        (1)
-
-tuple!                tuple!   tuple!   tuple!                              tuple!
-                      (1)      (1)      (1)                                 (1)
-
-vector!               vector!  vector!  vector!                                        vector!
-                      (1)(6)   (1)(6)   (1)(6)                                         (1)(7)
-
- (1) modulo not allowed
- (2) divide not allowed
- (3) subtract not allowed
- (4) divide has float! result
- (5) multiply not allowed
- (6) result has element type of vector operand see also issue #2216
- (7) operand 1 and 2 must have same element type
- (8) only add/subtract allowed
- (9) only add allowed
-(10) only subtract allowed; result is number of days;
-     for exact difference use built-in function difference
-....
-
+[cols="1,1,1,1,1,1,1,1,1,2", options="header"]
+|===
+|operand 2 -> |char!     |integer!  |float!    |percent! |time!    |date!    |pair!    |tuple!     |vector!
+|operand 1    |          |          |          |         |         |         |         |           | 
+|char!        |char! (1) |char! (1) |char! (1) |         |         |         |         |           |vector! (1)(6)
+|integer!     |integer! (1) |integer! |float!  |float!   |time!    |date! (9) |pair! (1)(2) |tuple! (1)(2)(3) |vector! (1)(6)
+|float!       |float!    |float!    |float!    |float!   |time!    |         |pair!    |tuple!     |vector!
+|percent!     |          |percent!  |percent!  |percent! |time!    |         |pair! (1)(2) |tuple! (1)(2)(3) |vector! (1)(6)
+|time!        |          |time!     |time!     |time!    |time! (4)(5) |date! (9) |         |           |
+|date!        |          |date! (8) |          |         |date! (8) |integer! (10) |    |          |
+|pair!        |          |pair! (1) |pair! (1) |pair! (1)|         |         |pair! (1) |          |
+|tuple!       |          |tuple! (1)|tuple! (1)|tuple! (1)|        |         |          |tuple! (1)|
+|vector!      |          |vector! (1)(6)|vector! (1)(6)|vector! (1)(6)| |    |          |          |vector! (1)(7)
+|===
+Notes: 
+. modulo not allowed
+. divide not allowed
+. subtract not allowed
+. divide has float! result
+. multiply not allowed
+. result has element type of vector operand see also issue #2216
+. operand 1 and 2 must have same element type
+. only add/subtract allowed
+. only add allowed
+. only subtract allowed; result is number of days; for exact difference use built-in function difference
 
 Note that `round` has a number of refinements:
 ....
