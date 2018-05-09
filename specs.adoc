@@ -2660,6 +2660,7 @@ the series value slot to point to the changed series. With the exception of
 are not defined on `image!` values.
 
 [cols="1,1,2", options="header"]
+|===
 |function                      |operation                                   |resulting position of series
 |reverse <series>              |order of components reversed                 |at head
 |sort <series>                 |components in increasing/decreasing order    |at head
