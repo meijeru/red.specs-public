@@ -2471,9 +2471,9 @@ if different from argument types.
 |===
 |function                     |arity |argument type(s)                    |result type
 |exp log-e log-2 log-10 sqrt    |1   |number!                             |float!
-|sin cos tan asin acos atan     |1   |float!
-|atan2                          |2   |float!
-|random                         |1   |logic! scalar!
+|sin cos tan asin acos atan     |1   |float!                              |
+|atan2                          |2   |float!                              |
+|random                         |1   |logic! scalar!                      |
 |checksum                       |2   |binary! string! file! word!         |binary!
 |===
 
