@@ -2393,8 +2393,8 @@ functions are as follows.
 |even? odd?          |1       |number! char! time! |                |logic!
 |negate              |1       |number! time! pair! |                |same as operand^1^
 |absolute round      |1       |number! time! pair! |                |same as operand^1^
-|max min             |2       |scalar!             |scalar!         |same as greatest/smallest operand
-|                    |        |                    |                |(operand 1 if equal)
+|max min             |2       |scalar!             |scalar!         |same as greatest/smallest operand +
+(operand 1 if equal)
 |===
 
 Notes:
