@@ -2414,7 +2414,7 @@ the result type is determined as (in decreasing order of precedence):
 _**See issue #2776**_
 [cols="1,1,1,1,1,1,1,1,1,2", options="header"]
 |===
-|operand 1 &2193 ; 2 -> |char!|integer!|float! |percent! |time!    |date!    |pair!    |tuple!     |vector!
+|operand 1 &2193; 2 -> |char!|integer!|float! |percent! |time!    |date!    |pair!    |tuple!     |vector!
 |char!        |char!^1^  |char!^1^  |char!^1^  |         |         |         |         |           |vector!^1,6^
 |integer!     |integer!^1^ |integer! |float!   |float!   |time!    |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
 |float!       |float!^1^ |float!    |float!    |float!   |time!    |         |pair!    |tuple!     |vector!
