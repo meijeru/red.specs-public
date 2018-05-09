@@ -452,7 +452,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 [cols="1,1,1,1,1,1,2", options="header"]
 |===
 
-|type |value representation (1)  |storage   |atomic/composite |reflection? |evaluation |parent type
+|type |value representation^1^  |storage   |atomic/composite |reflection? |evaluation |parent type
 |`datatype!`   |using words      |direct    |atomic           |N           |passive    |
 |`typeset!`    |using `make`     |direct    |atomic           |N           |passive    |
 |`none!`       |using words      |direct    |atomic           |N           |passive    |
@@ -469,8 +469,8 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`lit-word!`   |lexical          |direct    |atomic           |Y           |decaying   |`word!`
 |`set-word!`   |lexical          |direct    |atomic           |Y           |active     |`word!`
 |`get-word!`   |lexical          |direct    |atomic           |Y           |active     |`word!`
-|`refinement!` |lexical          |direct    |atomic           |Y (2)       |passive    |`word!`
-|`issue!`      |lexical          |direct    |atomic           |Y (2)       |passive    |`word!`
+|`refinement!` |lexical          |direct    |atomic           |Y^2^        |passive    |`word!`
+|`issue!`      |lexical          |direct    |atomic           |Y^2^        |passive    |`word!`
 |`handle!`     |using words      |direct    |atomic           |N           |passive    |`integer!`
 |`block!`      |syntactic        |indirect  |composite        |N           |passive    |`series!`
 |`hash!`       |using `make`     |indirect  |composite        |N           |passive    |`block!`
@@ -479,7 +479,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`lit-path!`   |lexical          |indirect  |composite        |N           |decaying   |`path!`
 |`set-path!`   |lexical          |indirect  |composite        |N           |active     |`path!`
 |`get-path!`   |lexical          |indirect  |composite        |N           |active     |`path!`
-|`vector!`     |using `make`     |indirect  |composite        |N (3)       |passive    |`string!`
+|`vector!`     |using `make`     |indirect  |composite        |N^3^        |passive    |`string!`
 |`string!`     |lexical          |indirect  |composite        |N           |passive    |`series!`
 |`file!`       |lexical          |indirect  |composite        |N           |passive    |`url!`
 |`url!`        |lexical          |indirect  |composite        |N           |passive    |`string!`
@@ -1602,11 +1602,11 @@ be similarly used _**see issue #2883**_
 |pair!      |1 2          |pick        |x y                                 |
 |tuple!     |1 .. 12      |pick        |                                    |
 |any-block! |integer!     |pick poke   |any-type!                           |select put
-|vector!    |integer!     |pick poke   |integer! char!                      |select (1)
-|string!    |integer!     |pick poke   |char! any-string! binary!           |select (1)
-|email!     |integer!     |pick poke   |char! any-string! binary! host user |select (1)
-|file! url! |integer!     |pick poke   |char! any-string! binary!           |select (1)
-|binary!    |integer!     |pick poke   |integer! char! any-string! binary!  |select (1)
+|vector!    |integer!     |pick poke   |integer! char!                      |select^1^
+|string!    |integer!     |pick poke   |char! any-string! binary!           |select^1^
+|email!     |integer!     |pick poke   |char! any-string! binary! host user |select^1^
+|file! url! |integer!     |pick poke   |char! any-string! binary!           |select^1^
+|binary!    |integer!     |pick poke   |integer! char! any-string! binary!  |select^1^
 |image!     |integer! pair! |pick poke |size rgb alpha argb                 |
 |bitset!    |integer! char! |pick poke |                                    |
 |map!       |             |            |scalar! any-word! any-string! binary! |select put
@@ -2391,9 +2391,9 @@ functions are as follows.
 |positive? negative? |1       |number! time!       |                |logic!
 |zero?               |1       |number! char! time! pair! tuple! |   |logic!
 |even? odd?          |1       |number! char! time! |                |logic!
-|negate              |1       |number! time! pair! |                |same as operand (1)
-|absolute round      |1       |number! time! pair! |                |same as operand (1)
-|max min             |2       |scalar!             |scalar!         |same as greatest/smallest operand
+|negate              |1       |number! time! pair! |                |same as operand^1^
+|absolute round      |1       |number! time! pair! |                |same as operand^1^
+|max min             |2       |scalar!             |scalar!         |same as greatest/smallest operand
 |                    |        |                    |                |(operand 1 if equal)
 |===
 
@@ -2416,15 +2416,15 @@ _**See issue #2776**_
 |===
 |operand 2 -> |char!     |integer!  |float!    |percent! |time!    |date!    |pair!    |tuple!     |vector!
 |operand 1    |          |          |          |         |         |         |         |           | 
-|char!        |char! (1) |char! (1) |char! (1) |         |         |         |         |           |vector! (1)(6)
-|integer!     |integer! (1) |integer! |float!  |float!   |time!    |date! (9) |pair! (1)(2) |tuple! (1)(2)(3) |vector! (1)(6)
-|float!       |float! (1)|float!    |float!    |float!   |time!    |         |pair!    |tuple!     |vector!
-|percent!     |          |percent!  |percent!  |percent! |time!    |         |pair! (1)(2) |tuple! (1)(2)(3) |vector! (1)(6)
-|time!        |          |time!     |time!     |time!    |time! (4)(5) |date! (9) |         |           |
-|date!        |          |date! (8) |          |         |date! (8) |integer! (10) |    |          |
-|pair!        |          |pair! (1) |pair! (1) |pair! (1)|         |         |pair! (1) |          |
-|tuple!       |          |tuple! (1)|tuple! (1)|tuple! (1)|        |         |          |tuple! (1)|
-|vector!      |          |vector! (1)(6)|vector! (1)(6)|vector! (1)(6)| |    |          |          |vector! (1)(7)
+|char!        |char!^1^  |char!^1^  |char!^1^  |         |         |         |         |           |vector!^1,6^
+|integer!     |integer!^1^ |integer! |float!   |float!   |time!    |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
+|float!       |float!^1^ |float!    |float!    |float!   |time!    |         |pair!    |tuple!     |vector!
+|percent!     |          |percent!  |percent!  |percent! |time!    |         |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
+|time!        |          |time!     |time!     |time!    |time!^4,5^ |date!^9^ |         |           |
+|date!        |          |date!^8^  |          |         |date!^8^ |integer!^10^ |    |          |
+|pair!        |          |pair!^1^  |pair!^1^  |pair!^1^ |         |         |pair!^1^  |          |
+|tuple!       |          |tuple!^1^ |tuple!^1^ |tuple!^1^|         |         |          |tuple!^1^ |
+|vector!      |          |vector!^1,6^|vector!^1,6^|vector!^1,6^ | |         |          |          |vector!^1,7^
 |===
 
 Notes: 
@@ -2466,16 +2466,16 @@ and the square root `sqrt`. Furthermore the trigonometric functions
 The arity (number of arguments) and the argument and result types
 for these functions are as follows. Result types are only indicated
 if different from argument types.
-....
-function                       arity argument type(s)                    result type
 
-exp log-e log-2 log-10 sqrt     1    number!                             float!
-sin cos tan asin acos atan      1    float!
-atan2                           2    float!
-random                          1    logic! scalar!
-checksum                        2    binary! string! file!               binary!
-                                     word!
-....
+[cols="1,1,1,2", options="header"]
+|===
+|function                     |arity |argument type(s)                    |result type
+|exp log-e log-2 log-10 sqrt    |1   |number!                             |float!
+|sin cos tan asin acos atan     |1   |float!
+|atan2                          |2   |float!
+|random                         |1   |logic! scalar!
+|checksum                       |2   |binary! string! file! word!         |binary!
+|===
 
 Notes: all trigonometric functions take an argument in radians, except `atan2`
 which takes two `float!` arguments representing `y` and `x` coordinates.
@@ -2519,13 +2519,13 @@ Three bit-shift operators are defined on integers, with positive integer shift c
 The arity (number of arguments) and the argument and result types
 for these functions are as follows.
 
-....
-function     arity  argument type(s)
-
-complement     1    integer! bitset! typeset! binary! see REP #10
-and or xor     2    integer! char! pair! tuple! bitset! typeset! binary! vector!
-<< >> >>>      2    integer!
-....
+[cols="1,1,2", options="header"]
+|===
+|function   |arity  |argument type(s)
+|complement   |1    |integer! bitset! typeset! binary! see REP #10
+|and or xor   |2    |integer! char! pair! tuple! bitset! typeset! binary! vector!
+|<< >> >>>    |2    |integer!
+|===
 
 Note that `and or` and `xor` on values of type `bitset!` and `typeset!` yield
 the same result as `intersect union` and `difference`
