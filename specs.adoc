@@ -2639,6 +2639,7 @@ The function `last <series>` is defined as `pick back tail <series> 1`.
 
 These functions create a new series value, pointing to new components:
 [cols="1,2", options="header"]
+|===
 |function                      |result
 |copy <series>                 |copy of the series
 |extract <series> <integer>    |copy of the series with 1st component and every nth following one
