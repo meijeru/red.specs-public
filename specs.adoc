@@ -2403,13 +2403,13 @@ Notes:
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
-mentioned through notes (1) to (10). The operations on values of type `pair! tuple!` and `vector!`
+mentioned through notes 1 to 10. The operations on values of type `pair! tuple!` and `vector!`
 take place component-by-component. When the two operand types are different,
 the result type is determined as (in decreasing order of precedence):
 
-. the higher dimension type
-. the higher precision type
-. the type of operand 1
+* the higher dimension type
+* the higher precision type
+* the type of operand 1
 
 _**See issue #2776**_
 [cols="1,1,1,1,1,1,1,1,1,2", options="header"]
@@ -2522,12 +2522,16 @@ for these functions are as follows.
 [cols="1,1,2", options="header"]
 |===
 |function   |arity  |argument type(s)
-|complement   |1    |integer! bitset! typeset! binary! see REP #10
+|complement   |1    |integer! bitset! typeset! binary !^1^
 |and or xor   |2    |integer! char! pair! tuple! bitset! typeset! binary! vector!
 |<< >> >>>    |2    |integer!
 |===
 
-Note that `and or` and `xor` on values of type `bitset!` and `typeset!` yield
+Note:
+
+. see REP #10
+
+Note further that `and or` and `xor` on values of type `bitset!` and `typeset!` yield
 the same result as `intersect union` and `difference`
 (see <<set-theoretical-functions,previous section>>).  
 
@@ -2566,21 +2570,23 @@ there are also differences to be taken into account.
 
 The following functions of a series value yield a new series value with the index
 modified, but pointing to the same components:
-....
-function                   new index
 
-head <series>              1
-tail <series>              length + 1
-at <series> <expression>   (index calculated from <expression>)
-skip <series> <expression> current index + (offset calculated from <expression>)
-next <series>              current index + 1
-back <series>              current index - 1
-find <series> <expression> index of first occurrence of (component or sub-series)
-....
+[cols="1,2", options="header"]
+|===
+|function                   |new index
+|head <series>              |1
+|tail <series>              |length + 1
+|at <series> <expression>   |(index calculated from <expression>)
+|skip <series> <expression> |current index + (offset calculated from <expression>)
+|next <series>              |current index + 1
+|back <series>              |current index - 1
+|find <series> <expression> |index of first occurrence of (component or sub-series)
+|===
 
 Here the `<expression>` argument of `at` and `skip` should evaluate to an integer.
 For `image!` values, a `pair!` value is also allowed. This will be converted to
-a regular index. The `<expression>` argument of `find` may be a single component
+a regular index, taking into acount that image pixels are stored row-wise.
+The `<expression>` argument of `find` may be a single component
 value or a sub-series. This function is not defined on `image!` values.
 
 For all series, if the index becomes smaller than `1` or greater than `length + 1`,
@@ -2632,13 +2638,12 @@ with the exception of `/tail` and `/match`.
 The function `last <series>` is defined as `pick back tail <series> 1`.
 
 These functions create a new series value, pointing to new components:
-....
-function                      result
-
-copy <series>                 copy of the series
-extract <series> <integer>    copy of the series with 1st component and every nth following one
-split <series> <delimiter>    a block of sub-strings split at the delimiter(s)
-....
+[cols="1,2", options="header"]
+|function                      |result
+|copy <series>                 |copy of the series
+|extract <series> <integer>    |copy of the series with 1st component and every nth following one
+|split <series> <delimiter>    |a block of sub-strings split at the delimiter(s)
+|===
 
 For `split`, the `<series>` must be of type `any-string!`, and the
 `<delimiter>` may be a single character, a string or -- in order
@@ -2654,29 +2659,30 @@ the series value slot to point to the changed series. With the exception of
 `take` and `alter`, their result is the changed series itself. These functions
 are not defined on `image!` values.
 
-....
-function                      operation                                    resulting position of series
+[cols="1,1,2", options="header"]
+|function                      |operation                                   |resulting position of series
+|reverse <series>              |order of components reversed                 |at head
+|sort <series>                 |components in increasing/decreasing order    |at head
+|random <series>               |components in random order                   |at head
+|clear <series>                |components removed till tail                 |at tail
+|remove <series>               |current component removed                    |unchanged, i.e. before next component
+|take <series>                 |current component removed                    |(unchanged, result is component value)
+|change <series> <expression>  |current component replaced +
+                              by value of <expression>                       |after current component
+|replace <series> <pattern> +
+<expression>                   |components equal to <pattern> +                
+replaced by value of <expression>                                            |at head
+|alter <series> <expression>   |if value of expression in <series> +         
+it is removed, else appended                                                 |(at head, result is true if appended, else false)
+|insert <series> <expression>  |value of <expression> inserted +
+before current component                                                     |before current component
+|append <series> <expression>  |value of expression inserted at tail         |at head
+|repend <series> <expression>  |reduced value of expression inserted at tail |at head
+|trim <series>                 |spaces removed from string +
+or `none` from block or hash value                                           |at head
+|pad <series>                  |string padded on right side with spaces      |at head
+|===
 
-reverse <series>              order of components reversed                 at head
-sort <series>                 components in increasing/decreasing order    at head
-random <series>               components in random order                   at head
-clear <series>                components removed till tail                 at tail
-remove <series>               current component removed                    unchanged, i.e. before next component
-take <series>                 current component removed                    (unchanged, result is component value)
-change <series> <expression>  current component replaced
-                              by value of <expression>                     after current component
-replace <series> <pattern>    components equal to <pattern>                at head
-     <expression>             replaced by value of <expression>
-alter <series> <expression>   if value of expression in <series>           (at head, result is true if appended,
-                              it is removed, else appended                 else false)
-insert <series> <expression>  value of <expression> inserted               before current component
-                              before current component
-append <series> <expression>  value of expression inserted at tail         at head
-repend <series> <expression>  reduced value of expression inserted at tail at head
-trim <series>                 spaces removed from string                   at head
-                              or none from block or hash value
-pad <series>                  string padded on right side with spaces      at head
-....
 
 The function `reverse` is also defined on values of type `pair!` and `tuple!`, but in these cases
 it does not modify the value in place, yielding instead a new value.
