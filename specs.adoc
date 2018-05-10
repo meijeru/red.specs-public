@@ -1364,6 +1364,9 @@ of `time!`) towards `0`
 * `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
 if there are fewer than 4 bytes, `#{00}` bytes are prepended
 * `string!` values: yields the result of `load` or an error
+* `date!` values: yields the Unix epoch time value (see e.g. https://en.wikipedia.org/wiki/Unix_time)
+based on the time component adjusted to UTC; because of the limitations on integer values
+the date should be between `13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`; see also `to-date` below 
 
 ==== Target types in `any-float!` and `time!`
 
@@ -1453,8 +1456,8 @@ value. See further the documentation of the GUI system (reference in
 ==== Target type `date!`
 
 The function `to-date` is defined for `integer!` values which are interpreted as
-the difference in number of seconds between midnight on 1 January 1970 and
-the desired date and time (Unix convention). This number can be both positive and
+Unix epoch time, i.e. the difference in number of seconds between midnight on 1 January 1970 and
+the desired date and time. This number can be both positive and
 negative and because of the limitation of integer numbers will yield dates between
 `13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`. Furthermore, it is defined
 for `any-list!` values which have the same interpretation as for `make date!`
@@ -1479,8 +1482,8 @@ The casting facility applies to most of the `series!` types, and makes use of th
 that values of several different but related types have their component values
 stored in identical fashion. Therefore a change of type can be performed without copying
 any component values. Two groups of related types are involved: `block! paren! any-path`
-on the one hand, and `any-string!` on the other. The type of the second argument shoul
-d be in the same group as the (type of the) first argument. The result is a new value
+on the one hand, and `any-string!` on the other. The type of the second argument should
+be in the same group as the (type of the) first argument. The result is a new value
 of the desired type, pointing to the components of the old value.
 Note the absence of `hash!` from the first group, explained by the fact that `hash!`
 values are stored differently from other `any-block!` values.
