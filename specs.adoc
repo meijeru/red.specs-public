@@ -3087,6 +3087,9 @@ present in the source is not translated to an OS-specific character combination
 The built-in function `save` also accepts a `file!` or `url!` value indicating
 a text or binary file. It will send its result to that file.
 
+The built-in function `query` accepts a `file!` value and yields the date and time
+(UTC) of the last modification of the file or directory, as a `date!` value.
+
 The functions `load-thru` and `read-thru` are used for _disk-cached remote file access_.
 They work in the same way as their normal counterparts,
 except that the retrieved file is cached locally, so on their next access,
@@ -3100,7 +3103,6 @@ A    create
 A    modify
 A    open
 A    open?
-A    query
 A    update
 ....
 
