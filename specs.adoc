@@ -2438,7 +2438,7 @@ Notes:
 . operand 1 and 2 must have same element type
 . only add/subtract allowed
 . only add allowed
-. only subtract allowed; result is number of days; for exact difference use built-in function difference
+. only subtract allowed; result is number of days, ignoring any time components; for exact difference use built-in function difference
 
 Note that `round` has a number of refinements:
 ....
@@ -2498,7 +2498,7 @@ of one of the types mentioned, and yield a result of the same type. The function
 a result of the same type. The operation of these functions follows from their names.
 
 Note that the function `difference` is also defined on two `date!` values; in this case
-it yields a `time!` value as the result of subtracting one date and time from the other. 
+it yields a `time!` value as the result of subtracting one date with its time from the other. 
 
 === Bitwise functions
 
