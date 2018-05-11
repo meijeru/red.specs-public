@@ -1670,19 +1670,18 @@ of the arguments. They always yield a value of type `logic!`, never
 an error. The others (the _ordering_ ones) are only defined for certain
 combinations of types and yield an error otherwise. Also this will be noted.
 
-....
-    operator   native function
-
-    =          equal?
-    ==         strict-equal?
-    =?         same?
-    <>         not-equal?
-
-    <          lesser?
-    <=         lesser-or-equal?
-    >          greater?
-    >=         greater-or-equal?
-....
+[cols="1,2", options="header"]
+|===
+    |operator   |native function
+    |=          |equal?
+    |==         |strict-equal?
+    |=?         |same?
+    |<>         |not-equal?
+    |<          |lesser?
+    |<=         |lesser-or-equal?
+    |>          |greater?
+    |>=         |greater-or-equal?
+|===
 
 ==== Equality comparisons
 
@@ -2724,16 +2723,15 @@ RETURNS:
 ....
 
 The following functions take two series as arguments:
-....
-function   operation                                 result and position
-
-swap       swap components at current positions      first series at head   see also issue #1961
-move       remove current component of first series  first series before next component
-           and insert it before current component
-           of second one
-max        compare series lexicographically          greater series before current component
-min        compare series lexicographically          smaller series before current component
-....
+[cols="1,1,2", options="header"]
+|===
+|function   |operation                                 |result and position
+|swap       |swap components at current positions      |first series, at head   see also issue #1961
+|move       |remove current component of first series and + 
+insert it before current component of second one      |first series, before next component
+|max        |compare series lexicographically          |greater series, before current component
+|min        |compare series lexicographically          |smaller series, before current component
+|===
 
 Also these functions are not defined on `image!` values.
 
@@ -2747,16 +2745,18 @@ The following operations on bitsets have been described in earlier sections:
 `intersect union difference exclude` (<<set-theoretical-functions,8.3>>)
 and `complement and or xor` (<<bitwise-functions,8.4>>).
 The following built-in functions are also defined on bitsets, with the following semantics:
-....
-insert <bitset> <bitset-spec>       set the bits at the indicated positions to true
-append <bitset> <bitset-spec>       idem
-remove/part <bitset> <bitset-spec>  set the bits at the indicated position to false
-clear <bitset>                      set all bits to false
-negate <bitset>                     complement 
-copy <bitset>                       yield a copy of the bitset
-find <bitset> <bitset-spec>         yield true if all indicated bits are set
-length? <bitset>                    yield the number of bits reserved for the bitset
-....
+[cols="1,2", options="header"]
+|===
+|function                            |operation
+|insert <bitset> <bitset-spec>       |set the bits at the indicated positions to true
+|append <bitset> <bitset-spec>       |idem
+|remove/part <bitset> <bitset-spec>  |set the bits at the indicated position to false
+|clear <bitset>                      |set all bits to false
+|negate <bitset>                     |complement 
+|copy <bitset>                       |yield a copy of the bitset
+|find <bitset> <bitset-spec>         |yield true if all indicated bits are set
+|length? <bitset>                    |yield the number of bits reserved for the bitset
+|===
 
 For `<bitset-spec>` see <<code-bitset-code,section 5.3.5>>. If this is a block, it may not contain `not`.
 
@@ -2765,15 +2765,17 @@ For `<bitset-spec>` see <<code-bitset-code,section 5.3.5>>. If this is a block, 
 The following operations on maps have been described in section <<components-of-values,5.6>>: `put select`.
 The following built-in functions are also defined on maps,
 with the following semantics:
-....
-clear <map>              remove all key-value pairs from the map
-copy <map>               yield a copy of the map
-extend <map> <items>     add key-value pairs from <items> (a block, hash or map)
+[cols="1,2", options="header"]
+|===
+|function                 |operation
+|clear <map>              |remove all key-value pairs from the map
+|copy <map>               |yield a copy of the map
+|extend <map> <items>     |add key-value pairs from <items> (a block, hash or map) +
                          replacing the value if the corresponding key is already present
-find <map> <value>       yield true if key indicated by <value> exists, else none
+|find <map> <value>       |yield true if key indicated by <value> exists, else none +
                          <value> must be of type scalar!, any-word! or any-string!
-length? <map>            yield the number of key-value pairs
-....
+|length? <map>            |yield the number of key-value pairs
+|===
 
 === Operations on objects and errors
 
@@ -2785,10 +2787,12 @@ The following operations on objects have already been described:
 
 The following built-in functions are also defined on objects and errors,
 with the following semantics:
-....
-copy <any-object>          yield a copy of the object or error
-find <any-object> <word>   yield true if key indicated by <word> exists, else none
-....
+[cols="1,2", options="header"]
+|===
+|function                  |operation
+|copy <any-object>         |yield a copy of the object or error
+|find <any-object> <word>  |yield true if key indicated by <word> exists, else none
+|===
 
 == Control
 
