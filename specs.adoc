@@ -2989,16 +2989,16 @@ value. The necessary decoding and encoding routines are stored in `system/codecs
 This is a block of pairs: `<word><object>`, where the `<word>` indicates
 the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
 content:
-....
-    key             value type   content
-
-    title           string!      (not filled in) 
-    name            word!        'JPEG
-    mime-type       block!       [image/jpeg]
-    suffixes        block!       [%.jpg %.jpeg %.jpe %.jfif]
-    encode          routine!     routine [img [image!] where [any-type!]][...]
-    decode          routine!     routine [data [any-type!]][...]
-....
+[cols="1,1,2", options="header"]
+|===
+    |key             |value type   |content
+    |title           |string!      |(not filled in) 
+    |name            |word!        |'JPEG
+    |mime-type       |block!       |[image/jpeg]
+    |suffixes        |block!       |[%.jpg %.jpeg %.jpe %.jfif]
+    |encode          |routine!     |routine [img [image!] where [any-type!]][...]
+    |decode          |routine!     |routine [data [any-type!]][...]
+|===
 
 === Full specification of load and save
 
@@ -3230,22 +3230,22 @@ any evaluation; they are specialized objects with a fixed number of fields,
 that contain the necessary information for identifying the nature and the place
 of the error. A prototype error value is contained in `system/standard/error`.
 As also shown in <<components-of-values,section 5.6>> the fields are:
-....
-name     type           content
-
-code      integer!       unique identifying number
-type      word!          characterizes a group of errors
-id        word!          identifier for the error within the group       
-arg1      any-type!      additional information for the error message
-arg2      any-type!      id.
-arg3      any-type!      id.
-near      block!         program fragment
-where     any-type!      value whose evaluation triggered the error 
-stack     integer!       machine address
-....
+[cols="1,1,2", options="header"]
+|===
+|name      |type           |content
+|code      |integer!       |unique identifying number
+|type      |word!          |characterizes a group of errors
+|id        |word!          |identifier for the error within the group       
+|arg1      |any-type!      |additional information for the error message
+|arg2      |any-type!      |id.
+|arg3      |any-type!      |id.
+|near      |block!         |program fragment
+|where     |any-type!      |value whose evaluation triggered the error 
+|stack     |integer!       |machine address
+|===
 
 Any field except `type` and `id` can also be `none`. If `arg1` is `none`
-`arg2` and `arg3` will also be none`; likewise, if `arg2` is `none`,
+`arg2` and `arg3` will also be `none`; likewise, if `arg2` is `none`,
 `arg3` will also be `none`.
 
 The `type` field may contain one of the following words: `throw note syntax
@@ -3256,18 +3256,18 @@ and (parametrized) error messages for each possible error are stored
 in the object `system/catalog/errors`. This has the following sub-objects,
 whose field names correspond to the contents of the `type` field
 of the error value and which group related errors:
-....
-system/catalog/errors/...        code field  type field
-
-throw                              0        "Throw Error"
-note                             100        "note"
-syntax                           200        "Syntax Error"
-script                           300        "Script Error"
-math                             400        "Math Error"
-access                           500        "Access Error"
-user                             800        "User Error"
-internal                         900        "Internal Error"
-....
+[cols="1,1,2", options="header"]
+|===
+|system/catalog/errors/...        |code field  |type field
+|throw                            |0           |"Throw Error"
+|note                             |100         |"note"
+|syntax                           |200         |"Syntax Error"
+|script                           |300         |"Script Error"
+|math                             |400         |"Math Error"
+|access                           |500         |"Access Error"
+|user                             |800         |"User Error"
+|internal                         |900         |"Internal Error"
+|===
 
 As indicated in the table, each of the sub-objects has two fixed fields:
 `code` which contains the base number for the codes of the individual
@@ -3321,7 +3321,6 @@ system/catalog/errors/access is an object! of value:
 
 The `code` for each individual error is the base number + the ordinal number
 of the error in the sub-object, e.g. for `no-connect` it is `502`.
-_**Currently it is 504, is this correct? See issue #2628**_
 
 ==== Raising and interception
 
@@ -4681,7 +4680,6 @@ issue  section
 2609   5.3.5
 2622   7.4.1
 2625   5.6.2
-2628   12.1.1
 2633   5.8.1, 12.1
 2642   5.3.9
 2645   5.4.2
