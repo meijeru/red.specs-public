@@ -2387,7 +2387,7 @@ functions are as follows.
 |===
 |function            |arity   |operand 1 type      |operand 2 type  |result type
 |+ - * / // %        |2       |scalar! vector!     |scalar! vector! |see next table
-|*                   |2       |number!             |integer! float! |integer! float!
+|**                  |2       |number!             |integer! float! |integer! float!
 |NaN?                |1       |number!             |                |logic!
 |sign?               |1       |number! time!       |                |integer!
 |positive? negative? |1       |number! time!       |                |logic!
