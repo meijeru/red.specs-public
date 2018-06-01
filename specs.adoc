@@ -1936,16 +1936,16 @@ and `quote <path-literal>` is equivalent to `'<path-literal>`.
 . Determine the context to which the word is bound._**can it happen that there is no context?**_
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
-.. If the type is `unset!` raise an error and yield the unset value as result.
+.. If the type is `unset!` raise an error.
 .. If the type is in `any-function!` _apply_ the function (see <<code-function-code-type,rules `E110-114`>>).
 .. Otherwise, the result is the value referred to.
 
 Note: there are cases in which a `<word>` is not to be evaluated, e.g. when it occurs as
 `<key>` or `<value>` in a `<map-spec>`, or when it is an actual argument to a function
-where the formal argument is a `lit-word!`. In these cases, the predefined words `true false`
-and `none` as well as the type names will be interpreted as `word!` values rather than as
+where the formal argument is a `lit-word!`. In these cases, all predefined words,
+in particular `true false` and `none` will be interpreted as `word!` values rather than as
 `logic!` or `none!` values. To represent values of the desired type in such cases one may use
-the generalized value construction syntax: `#[true], #[false], #[none]` etc.
+the generalized value construction syntax: `#[true], #[false], #[none]`.
 
 The built-in function `get` with a `word!` argument applies the above rule except when the type of
 the value referred to is in `any-function!` in which case no _function application_ occurs.
@@ -1955,10 +1955,7 @@ Moreover, with the refinement `/any` no error occurs if the `word!` value refers
 
 **`E104`**:: Evaluating a `get-word!` value proceeds as follows:
 . Determine the context to which the word is bound._**can it happen that there is no context?**_
-. Obtain the value that the word refers to in this context.
-. Determine the type of this value.
-.. If the type is `unset!` yield the unset value as result.
-.. Otherwise, the result is the value referred to.
+. Obtain the value that the word refers to in this context and yield this as result.
 
 Note that the difference with evaluating a `word!` value is that no errors are raised
 and that a function value is not applied but is itself yielded as result.
@@ -1969,8 +1966,8 @@ and that a function value is not applied but is itself yielded as result.
 has the effect that the `<word>` in its context
 is made to refer to the value obtained by evaluating the next expression. An error occurs
 if no expression is following or if the value obtained is unset. The result of the evaluation
-is the value obtained. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
-is equivalent to `a: 1 b: 1 c: 1`.
+is the value obtained from the expression. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
+is equivalent to `a: (b: (c: 1))` and thus to `a: 1 b: 1 c: 1`.
 
 As stated before, the alternative to `<word-literal>: <expression>` is `set <word> <expression>`.
 The built-in function `set` has a refinement `/any` which will ensure that
