@@ -1494,16 +1494,18 @@ Composite values can have their components extracted and changed by various mean
 
 ==== Indexing
 
-Values that are sequences (with types in `series!` and `bitset!`)
-admit indexing by integers, and images also by pairs as coordinates.
-The expression for this is `<path>` for extraction and `<path>: <expression>` for changing.
-Built-in functions exist to perform the same operations. The correspondence is as follows:
+Values that are sequences (with types in `series!` and `bitset!`) admit indexing by integers.
+Additionally, values of `series!` types may be indexed by `logic!` values, where `true` yields
+the first component and `false` the second component.
+Furthermore, bitsets admit indexing by characters and strings, with the result being `true`
+if the given character(s) is/are found in the bitset, and images may also be indexed by pairs
+as coordinates, in accordance with the row-oriented storage of the pixels.
+The built-in functions for indexing are `pick` for extraction and `poke` for changing.
+Path expressions may also be used. The correspondence is as follows:
 if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
-and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `char!`, `binary!`
-or `pair!` value used as index must be enclosed in parentheses.
+and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `char!`, `string!`
+or `pair!` value used as index must be enclosed in parentheses, and `logic!` values are not allowed.
 The component of an `image!` is a `tuple!` value as explained in <<code-image-code,section 5.3.4>>.
-Note that `pick` and `poke` additionally allow the `logic!` values `true` and `false` as indexes:
-`true ~ 1` and `false ~ 2`.
 
 Note further that path expressions cannot be used to index `file!` and `url!` values,
 as these path expressions will be interpreted as "extending" the file or url path.
@@ -1611,7 +1613,7 @@ be similarly used _**see issue #2883**_
 |file! url! |integer!     |pick poke   |char! any-string! binary!           |select^1^
 |binary!    |integer!     |pick poke   |integer! char! any-string! binary!  |select^1^
 |image!     |integer! pair! |pick poke |size rgb alpha argb                 |
-|bitset!    |integer! char! |pick poke |                                    |
+|bitset!    |integer! char! string!|pick poke |                                    |
 |map!       |             |            |scalar! any-word! any-string! binary! |select put
 |object!    |             |            |word!                               |select put
 |error!     |             |            |code type id arg1 arg2 arg3 near where stack |select
