@@ -4725,7 +4725,7 @@ issue  section
 3379   9.3
 3395   8.1
 3409   5.4.3, 11.1
-3423   5.6.1
+<a href= "https://github.com/red/red/issues/3423">3423</a>   <a href="#indexing">5.6.1</a>
 
 REP    spec
 issue  section
