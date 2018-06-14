@@ -1084,7 +1084,7 @@ The length of the bitset is computed as the smallest multiple of 8 needed to fit
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
 produced by the following bit-position numbers, while actually storing only these bit-positions.
-_**See issue #2609**_
+_**See https://github.com/red/red/issues/2609[issue #2609]**_
 
 Examples:
 ....
@@ -1113,7 +1113,7 @@ A new context is created and associated to the object. The words of the new cont
 (i.e. the fields of the object) are the words of all the `set-word!` values that are
 (first-level) components of the `<object-spec>`. The corresponding values are set
 to the unset value. The `<object-spec>` is bound to this context (see <<built-in-code-bind-code-function,section
-6.3.6>>). The bound block is then _executed_. _**See issue #3362**_
+6.3.6>>). The bound block is then _executed_. _**See https://github.com/red/red/issues/3362[issue #3362]**_
 
 The `class` property of the newly created object is set to a unique integer.
 
@@ -1189,13 +1189,14 @@ Note that `error!` values all have `class = 0`.
 ....
 For `<typeset-element>` see <<code-typeset-code,rule `S124`>>. Note that both in the `<argument-spec>`
 and the `<return-spec>` any `<typeset-name>` must refer to a pre-defined typeset value (see
-<<type-hierarchy,section 4.3>>). User-defined typesets may not be mentioned. _**See issue #3285**_
+<<type-hierarchy,section 4.3>>). User-defined typesets may not be mentioned.
+_**See https://github.com/red/red/issues/3285[issue #3285]**_
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
 specified for an `<argument>` will be used to check the type of the actual argument supplied.
 Otherwise, `any-type!` will be assumed. Likewise, when present, the type(set)s of the `<return-spec>`
-will be used to check the type of the result._**See issue #2589**_
+will be used to check the type of the result._**See https://github.com/red/red/issues/2589[issue #2589]**_
 The `<word>` s of the `<argument>` s following the `<refinement>`, if any,
 are to be matched with actual arguments, if the function application (see <<code-function-code-type,rule `E110`>>)
 specifies the corresponding `<selector>` (see <<code-path-code,rule `S123`>>).
@@ -1227,9 +1228,9 @@ found in the body to the list of local arguments.
 For `<docstring>` and `<argument-doc>` see <<code-function-code,rule `S131`>>. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
 and return spec must have a single type specified. If the argument has no
-type specified, `any-type!` is assumed._**see issue #2766**_ The `<type-name>`
+type specified, `any-type!` is assumed._**see https://github.com/red/red/issues/2766[issue #2766]**_ The `<type-name>`
 must be `integer! float!` or `logic!`, or one that has a Red/System `struct!`
-alias defined that describes a value slot of that type._**see issue #2642**_
+alias defined that describes a value slot of that type._**see https://github.com/red/red/issues/2642[issue #2642]**_
 The `<routine-body>` must contain valid Red/System code.
 
 Values of type `routine!` may not occur in programs submitted to the interpreter,
@@ -1271,7 +1272,7 @@ Each `<key>` should be a value of a type in `scalar!, any-word!`, `any-string!` 
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `any-word!`
 that do not differ in their symbol are considered identical for this purpose.
-_**See issue #2577**_
+_**See https://github.com/red/red/issues/2577[issue #2577]**_
 
 Note that values of `logic!` and `none!` type are not allowed as keys. Nevertheless
 `true false` and `none` may occur in `<key>` position. Since the constituents
@@ -1286,7 +1287,8 @@ The keys and values are not evaluated.
 
 ==== Other types 
 
-* Making `integer!` values from `logic!` values: `true -> 1, false -> 0` _**See issue 2644**_
+* Making `integer!` values from `logic!` values: `true -> 1, false -> 0`
+_**See https://github.com/red/red/issues/2644[issue 2644]**_
 * Making `logic!` values from `integer!` and `any-float!` values: `0/0.0/0% -> false, all else -> true`
 * Making a `url!` value from an `any-list!` value: the components (at least one is required)
 may be of any type; they will be `form` ed; the first component is assumed to be the _protocol_
@@ -1326,7 +1328,8 @@ for any argument value.
 ==== Target type `logic!`
 
 The function `to-logic` yields `true` for any argument value except `none`. Note that
-`to logic! 0` yields `true` whereas `make logic! 0` yields `false`! _**See issue #2645**_
+`to logic! 0` yields `true` whereas `make logic! 0` yields `false`!
+_**See https://github.com/red/red/issues/2645[issue #2645]**_
 
 ==== Target types in `any-string!`
 
@@ -1559,7 +1562,7 @@ and the result is the component *after* the first occurrence of the key (single 
 if found, and `none` otherwise.
 * For the other types, which contain key/value pairs, the result is the value
 corresponding to the given key. In these cases, it is customary to call the keys _fields_.
-Fields of `error!` values cannot be set._**See issue #2554**_
+Fields of `error!` values cannot be set._**See https://github.com/red/red/issues/2554[issue #2554]**_
 
 Setting a map component to `none` removes the component and its key from the map.
 
@@ -1620,7 +1623,7 @@ will not be displayed, and that for computations they have the value `0:00`
 to a `binary!` value of the required length; if the value is shorter, bytes `#{00}` are appended;
 if the value is longer, the remainder is ignored; a `tuple!` value can also be supplied, its
 components will be used for each pixel; if an `integer!` value is supplied, its 4 bytes will
-be similarly used _**see issue #2883**_
+be similarly used _**see https://github.com/red/red/issues/2883[issue #2883]**_
 * `event!` values: only the `type` component can be set to a `word!` value
 
 ==== Overview table
@@ -1651,8 +1654,8 @@ be similarly used _**see issue #2883**_
 Notes:
 
 . not in path expressions
-. _**See issue #2625**_
-. _**See issue #1960**_
+. _**See https://github.com/red/red/issues/2625[issue #2625]**_
+. _**See https://github.com/red/red/issues/1960[issue #1960]**_
 
 === Reflection on values
 
@@ -1663,7 +1666,7 @@ This concerns first of all `any-word!` values for which information on their
 binding may be obtained by means of two built-in functions: `context?` and `index?`.
 These are explained in <<contexts,section 6.2>>. _**See REP #14**_. 
 
-_**What about `owner`??** see issue #1957_
+_**What about `owner`??** see https://github.com/red/red/issues/1975[issue #1957]_
 
 The function `complement?` is described in <<code-bitset-code,section 5.3.5>>.
 
@@ -1729,7 +1732,7 @@ for the `equal?` test.
 
 The `equal?` test ignores case differences in the spelling of words and strings,
 and in the case of floating point numbers, a very small difference (1 in 10^16^)
-in actual value._**See also issue #2658**_
+in actual value._**See also https://github.com/red/red/issues/2658[issue #2658]**_
 
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
@@ -1741,11 +1744,11 @@ addition, the component type (`char! integer! float!` or `percent!`) must be the
 In all cases, for the `equal?` and `not-equal?` test, the requirement of equal type
 is relaxed for several combinations of types of the two values.
 
-* `char!` and `integer!` _**See issue #2650**_
+* `char!` and `integer!` _**See https://github.com/red/red/issues/2650[issue #2650]**_
 * `integer! float!` and `percent!`
 * `any-word!` and `refinement!` (note the absence of `issue!`)
 * `any-string!`
-* `any-object!` _**See issue #2657**_
+* `any-object!` _**See https://github.com/red/red/issues/2657[issue #2657]**_
 
 If the combination of types of the two values is not allowed as detailed above,
 the `not-equal?` test will yield `true` and the other three equality tests will yield `false`.
@@ -1764,7 +1767,8 @@ the field contents are not tested further
 * no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
 action! native! op! handle! event!` and `unset!`.
 
-As a rule, for ordering comparisons the types of the two values have to be the same._**See issue #2662**_
+As a rule, for ordering comparisons the types of the two values have to be the same.
+_**See https://github.com/red/red/issues/2662[issue #2662]**_
 For `vector!` values, the component type (`char! integer! float!` or `percent!`) must also be the same.
 However, as with equality, for some combinations of types this requirement is relaxed.
 
@@ -2042,7 +2046,8 @@ and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in step 3.
 .. If the result is of `file!` or `url!` type and there are one or more
 next elements each of which is a `<selector>`, the result is currently
-a new file or url composed as `<path-head>/<selector>/...` _**but see issue #2578**_
+a new file or url composed as `<path-head>/<selector>/...`
+_**but see https://github.com/red/red/issues/2578[issue #2578]**_
 .. If the result is a value of `any-function!` type, each following
 `<selector>`, if any, should be an actual refinement of the function, i.e a `word!` value,
 corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
@@ -2097,7 +2102,8 @@ and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in step 3.
 .. If the result is of `file!` or `url!` type and there are one or more
 next elements each of which is a `<selector>`, the result is currently
-a new file or url composed as `<path-head>/<selector>/...` _**but see issue 2578**_
+a new file or url composed as `<path-head>/<selector>/...`
+_**but see https://github.com/red/red/issues/2578[issue 2578]**_
 .. If the result is a value of `any-function!` type, no following
 `<selector>` is allowed and the result is the function value.
 .. Otherwise, the path is in error.
@@ -2208,7 +2214,7 @@ is a `'<word>`, then if the next value is a `:<word>` or `:<path>` or `<paren>`,
 evaluate this to fetch the value it refers to; else pass the next value as-is.
 If the `<argument-name>` is `:<word>`, do not evaluate the corresponding expression
 but yield its first `<value>` as-is; do not raise an error if this value is unset.
-_**See issues #2622 and 3174**_
+_**See https://github.com/red/red/issues/2622[issues #2622] and https://github.com/red/red/issues/3174[3174]**_
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
 Check the type of each value against the type(set)s specified for the argument.
 .. If actual refinements are present, match each of them with the corresponding `<refinement>`
@@ -2441,7 +2447,7 @@ the result type is determined as (in decreasing order of precedence):
 * the higher precision type
 * the type of operand 1
 
-_**See issue #2776**_
+_**See https://github.com/red/red/issues/2776[issue #2776]**_
 [cols="1,1,1,1,1,1,1,1,1,2", options="header"]
 |===
 |operand&nbsp;2 -> +
@@ -2464,7 +2470,7 @@ Notes:
 . subtract not allowed
 . divide has float! result
 . multiply not allowed
-. result has element type of vector operand see also issue #2216
+. result has element type of vector operand _**see also https://github.com/red/red/issues/2216[issue #2216]**_
 . operand 1 and 2 must have same element type
 . only add/subtract allowed
 . only add allowed
@@ -2754,7 +2760,7 @@ The following functions take two series as arguments:
 [cols="1,1,2", options="header"]
 |===
 |function   |operation                                 |result and position
-|swap       |swap components at current positions      |first series, at head   see also issue #1961
+|swap       |swap components at current positions      |first series, at head   _**see also https://github.com/red/red/issues/1961[issue #1961]**_
 |move       |remove current component of first series and + 
 insert it before current component of second one      |first series, before next component
 |max        |compare series lexicographically          |greater series, before current component
@@ -2978,7 +2984,7 @@ second argument. If the destination specified as its first argument is a string,
 it will append the result of `mold` to that string. If the destination
 is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
 out of the result of `mold` and append that value to the destination .
-_**See issue #2668**_
+_**See https://github.com/red/red/issues/2668[issue #2668]**_
 
 For `any-list!` values the user can control the way they are presented by `mold`,
 by instructing it to insert line feed characters (`U+000A`) before selected components.
@@ -3318,7 +3324,8 @@ the word which is the value of its `type` field is bound such that
 it refers to the sub-object whose field name is that word;
 also, the word which is the value of `id` field is bound such that
 it refers to the error message (string or block) within that sub-object
-whose field name is that word. _**See issue #2633**_ Thus the following code will produce
+whose field name is that word. _**See https://github.com/red/red/issues/2633[issue #2633]**_
+Thus the following code will produce
 the full message information for an error value, say `err`:
 ....
 either err/arg1                             ; test if insertion is necessary
