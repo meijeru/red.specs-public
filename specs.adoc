@@ -155,7 +155,7 @@ i.e. neither their arrangement in separate lines, nor their formatting with inde
 and the like, has any significance for their interpretation.
 
 _**This is most certainly short of some whitespace values, please correct
-See also <a href= "https://github.com/red/red/issues/2492">issue #2492</a>**_
+See also [issue #2492](https://github.com/red/red/issues/2492)**_
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
 can be relaxed. For example, it is possible to omit whitespace between two consecutive `block!`
