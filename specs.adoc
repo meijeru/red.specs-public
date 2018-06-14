@@ -154,7 +154,8 @@ and non-breaking space (`U+00A0`). Consequently, Red program texts are _free for
 i.e. neither their arrangement in separate lines, nor their formatting with indentation
 and the like, has any significance for their interpretation.
 
-_**This is most certainly short of some whitespace values, please correct See also issue #2492**_
+_**This is most certainly short of some whitespace values, please correct
+See also <a href= "https://github.com/red/red/issues/2492">issue #2492</a>**_
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
 can be relaxed. For example, it is possible to omit whitespace between two consecutive `block!`
