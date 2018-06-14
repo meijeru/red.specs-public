@@ -1553,9 +1553,9 @@ put <destination> <key> <value>
 The semantics of selection are different in the two cases (sequences vs. objects/maps).
 
 * For sequences, a `find` action is performed on the components using the key,
-which should be a single value of the right type, or itself a sequence of such values,
-and the first position where the key is found is marked. The result is then
-the component *after* the found key (single or sequence)._**See issue #2625**_
+which should be a single value of allowable type for `find`, or a sequence of such values,
+and the result is the component *after* the first occurrence of the key (single or sequence)
+if found, and `none` otherwise.
 * For the other types, which contain key/value pairs, the result is the value
 corresponding to the given key. In these cases, it is customary to call the keys _fields_.
 Fields of `error!` values cannot be set._**See issue #2554**_
@@ -1633,11 +1633,11 @@ be similarly used _**see issue #2883**_
 |pair!      |1 2          |pick        |x y                                 |
 |tuple!     |1 .. 12      |pick        |                                    |
 |any-block! |integer! logic!^1^ |pick poke   |any-type!                           |select put
-|vector!    |integer! logic!^1^ |pick poke   |integer! char!                      |select^2^
-|string!    |integer! logic!^1^ |pick poke   |char! any-string! binary!           |select^2^
-|email!     |integer! logic!^1^ |pick poke   |char! any-string! binary! host user |select^2^
-|file! url! |integer!^1^ logic!^1^ |pick poke   |char! any-string! binary!           |select^2^
-|binary!    |integer! logic!^1^ |pick poke   |integer! char! any-string! binary!  |select^2^
+|vector!    |integer! logic!^1^ |pick poke   |char! integer! float!^2^            |select^3^
+|string!    |integer! logic!^1^ |pick poke   |char! any-string! binary!           |select^3^
+|email!     |integer! logic!^1^ |pick poke   |char! any-string! binary! host user |select^3^
+|file! url! |integer!^1^ logic!^1^ |pick poke   |char! any-string! binary!        |select^3^
+|binary!    |integer! logic!^1^ |pick poke   |integer! char! any-string! binary!  |select^3^
 |image!     |integer! pair! |pick poke |size rgb alpha argb                 |
 |bitset!    |integer! char! string!|pick poke |                                    |
 |map!       |             |            |scalar! any-word! any-string! binary! |select put
@@ -1650,6 +1650,7 @@ be similarly used _**see issue #2883**_
 Notes:
 
 . not in path expressions
+. _**See issue #2625**_
 . _**See issue #1960**_
 
 === Reflection on values
