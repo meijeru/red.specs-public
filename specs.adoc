@@ -4724,13 +4724,13 @@ issue  section
 <a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#">5.3.6</a>
 <a href= "https://github.com/red/red/issues/3379">3379</a>   <a href="#">9.3</a>
 <a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#">8.1</a>
-<a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#">5.4.3</a>, <a href="#>11.1</a>
+<a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#">5.4.3</a>, <a href="#">11.1</a>
 <a href= "https://github.com/red/red/issues/3423">3423</a>   <a href="#indexing">5.6.1</a>
 
 REP    spec
 issue  section
 
- <a href="https://github.com/red/REP/issues/9"> 9</a>     <a href="#">3.2</a>
+ <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#">3.2</a>
  <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#">8.1</a>, <a href="#">8.4</a>
  <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#">11.7</a>
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#">5.7</a>
