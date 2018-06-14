@@ -4696,43 +4696,45 @@ respectively.
 Red    spec
 issue  section
 
-1957   5.7
-1960   5.6.3
-1961   9.3
-2216   8.1
-2492   3.1
-2554   5.6.2
-2565   4.3
-2577   5.3.11
-2578   7.3.5
-2589   5.3.8
-2609   5.3.5
-2622   7.4.1
-2625   5.6.2
-2633   5.8.1, 12.1
-2642   5.3.9
-2645   5.4.2
-2650   5.8.1
-2657   5.8.1
-2658   5.8.1
-2662   5.8.2
-2668   11.1
-2776   8.1
-2883   5.6.2
-3174   7.4.1
-3285   5.3.8
-3362   5.3.6
-3379   9.3
-3395   8.1
-3409   5.4.3, 11.1
+<a href= "https://github.com/red/red/issues/1957">1957</a>   <a href="#">5.7</a>
+<a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#">5.6.3</a>
+<a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#">9.3</a>
+<a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#">8.1</a>
+<a href= "https://github.com/red/red/issues/2492">2492</a>   <a href="#">3.1</a>
+<a href= "https://github.com/red/red/issues/2554">2554</a>   <a href="#">5.6.2</a>
+<a href= "https://github.com/red/red/issues/2565">2565</a>   <a href="#">4.3</a>
+<a href= "https://github.com/red/red/issues/2577">2577</a>   <a href="#">5.3.11</a>
+<a href= "https://github.com/red/red/issues/2578">2578</a>   <a href="#">7.3.5</a>
+<a href= "https://github.com/red/red/issues/2589">2589</a>   <a href="#">5.3.8</a>
+<a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#">5.3.5</a>
+<a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#">7.4.1</a>
+<a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#">5.6.2</a>
+<a href= "https://github.com/red/red/issues/2633">2633</a>   <a href="#">5.8.1</a>, <a href="#">12.1</a>
+<a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#">5.3.9</a>
+<a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#">5.4.2</a>
+<a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#">5.8.2</a>
+<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#">11.1</a>
+<a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#">8.1</a>
+<a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#">5.6.2</a>
+<a href= "https://github.com/red/red/issues/3174">3174</a>   <a href="#">7.4.1</a>
+<a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#">5.3.8</a>
+<a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#">5.3.6</a>
+<a href= "https://github.com/red/red/issues/3379">3379</a>   <a href="#">9.3</a>
+<a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#">8.1</a>
+<a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#">5.4.3</a>, <a href="#>11.1</a>
 <a href= "https://github.com/red/red/issues/3423">3423</a>   <a href="#indexing">5.6.1</a>
 
 REP    spec
 issue  section
 
- 10    8.1, 8.4
- 12    5.7
- 13    5.3.3
- 14    5.7
+ <a href="https://github.com/red/REP/issues/9"> 9</a>     <a href="#">3.2</a>
+ <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#">8.1</a>, <a href="#">8.4</a>
+ <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#">11.7</a>
+ <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#">5.7</a>
+ <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#">5.3.3</a>
+ <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#">5.7</a>
 </pre>
 ++++
