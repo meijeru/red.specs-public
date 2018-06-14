@@ -2459,7 +2459,7 @@ operand&nbsp;1 |char!    |integer!  |float!    |percent! |time!    |date!    |pa
 |time!        |          |time!     |time!     |time!    |time!^4,5^ |date!^9^ |         |           |
 |date!        |          |date!^8^  |          |         |date!^8^ |integer!^10^ |    |          |
 |pair!        |          |pair!^1^  |pair!^1^  |pair!^1^ |         |         |pair!^1^  |          |
-|tuple!       |          |tuple!^1^ |tuple!^1^ |tuple!^1^|         |         |          |tuple!^1^ |
+|tuple!       |          |tuple!^1^ |tuple!^1^ |tuple!^1^|         |         |          |tuple!^1,11^ |
 |vector!      |          |vector!^1,6^|vector!^1,6^|vector!^1,6^ | |         |          |          |vector!^1,7^
 |===
 
@@ -2475,6 +2475,7 @@ Notes:
 . only add/subtract allowed
 . only add allowed
 . only subtract allowed; result is number of days, ignoring any time components; for exact difference use built-in function difference
+. with tuples of unequal length, the shortest one is extended with values `0`
 
 Note that `round` has a number of refinements:
 ....
@@ -2488,7 +2489,9 @@ Note that `round` has a number of refinements:
 /half-ceiling  => Halves round in positive direction
 ....
 
-The functions `max min` are also defined for `series!` arguments.
+The functions `max min` on arguments of type `pair!` and `tuple!` are applied on a component-by-component basis
+(tuples must be of equal length). _**See https://github.com/red/red/issues/3395[issue #3395]**_
+These functions are also defined for `series!` arguments.
 See <<series-extraction-and-modification-of-components,section 9.3>>.
 
 === Higher mathematical functions
