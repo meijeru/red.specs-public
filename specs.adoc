@@ -4696,45 +4696,45 @@ respectively.
 Red    spec
 issue  section
 
-<a href= "https://github.com/red/red/issues/1957">1957</a>   <a href="#">5.7</a>
-<a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#">5.6.3</a>
-<a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#">9.3</a>
-<a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#">8.1</a>
-<a href= "https://github.com/red/red/issues/2492">2492</a>   <a href="#">3.1</a>
-<a href= "https://github.com/red/red/issues/2554">2554</a>   <a href="#">5.6.2</a>
-<a href= "https://github.com/red/red/issues/2565">2565</a>   <a href="#">4.3</a>
-<a href= "https://github.com/red/red/issues/2577">2577</a>   <a href="#">5.3.11</a>
-<a href= "https://github.com/red/red/issues/2578">2578</a>   <a href="#">7.3.5</a>
-<a href= "https://github.com/red/red/issues/2589">2589</a>   <a href="#">5.3.8</a>
-<a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#">5.3.5</a>
-<a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#">7.4.1</a>
-<a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#">5.6.2</a>
-<a href= "https://github.com/red/red/issues/2633">2633</a>   <a href="#">5.8.1</a>, <a href="#">12.1</a>
-<a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#">5.3.9</a>
-<a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#">5.4.2</a>
-<a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#">5.8.1</a>
-<a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#">5.8.1</a>
-<a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#">5.8.1</a>
-<a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#">5.8.2</a>
-<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#">11.1</a>
-<a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#">8.1</a>
-<a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#">5.6.2</a>
-<a href= "https://github.com/red/red/issues/3174">3174</a>   <a href="#">7.4.1</a>
-<a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#">5.3.8</a>
-<a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#">5.3.6</a>
-<a href= "https://github.com/red/red/issues/3379">3379</a>   <a href="#">9.3</a>
-<a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#">8.1</a>
-<a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#">5.4.3</a>, <a href="#">11.1</a>
+<a href= "https://github.com/red/red/issues/1957">1957</a>   <a href="#reflection-on-values">5.7</a>
+<a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
+<a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/2492">2492</a>   <a href="#textual-structure">3.1</a>
+<a href= "https://github.com/red/red/issues/2554">2554</a>   <a href="#selection-by-key">5.6.2</a>
+<a href= "https://github.com/red/red/issues/2565">2565</a>   <a href="#type-hierarchy">4.3</a>
+<a href= "https://github.com/red/red/issues/2577">2577</a>   <a href="#code-map-code">5.3.11</a>
+<a href= "https://github.com/red/red/issues/2578">2578</a>   <a href="#code-path-code-type">7.3.5</a>
+<a href= "https://github.com/red/red/issues/2589">2589</a>   <a href="#code-function-code">5.3.8</a>
+<a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#code-bitset-code">5.3.5</a>
+<a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#code-function-code-type">7.4.1</a>
+<a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#selection-by-key">5.6.2</a>
+<a href= "https://github.com/red/red/issues/2633">2633</a>   <a href="#equality-comparisons">5.8.1</a>, <a href="#errors">12.1</a>
+<a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
+<a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#target-type-code-logic-code">5.4.2</a>
+<a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#equality-comparisons">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#equality-comparisons">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
+<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-from-to-textual-representation">11.1</a>
+<a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#selection-by-key">5.6.2</a>
+<a href= "https://github.com/red/red/issues/3174">3174</a>   <a href="#code-function-code-type">7.4.1</a>
+<a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#code-function-code">5.3.8</a>
+<a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#code-object-code">5.3.6</a>
+<a href= "https://github.com/red/red/issues/3379">3379</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-code-any-string-code">5.4.3</a>, <a href="#conversion-from-to-textual-representation">11.1</a>
 <a href= "https://github.com/red/red/issues/3423">3423</a>   <a href="#indexing">5.6.1</a>
 
 REP    spec
 issue  section
 
- <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#">3.2</a>
- <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#">8.1</a>, <a href="#">8.4</a>
- <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#">11.7</a>
- <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#">5.7</a>
- <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#">5.3.3</a>
- <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#">5.7</a>
+ <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#formal-grammar">3.2</a>
+ <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
+ <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.7</a>
+ <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#code-vector-code">5.3.3</a>
+ <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#reflection-on-values">5.7</a>
 </pre>
 ++++
