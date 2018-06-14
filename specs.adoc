@@ -1500,11 +1500,23 @@ the first component and `false` the second component.
 Furthermore, bitsets admit indexing by characters and strings, with the result being `true`
 if the given character(s) is/are found in the bitset, and images may also be indexed by pairs
 as coordinates, in accordance with the row-oriented storage of the pixels.
-The built-in functions for indexing are `pick` for extraction and `poke` for changing.
+Built-in functions for indexing are `pick` for extraction and `poke` for changing, with the
+following definitions:
+....
+pick <source> <index>
+poke <destination> <index> <value>
+....
+where `<index>` evaluates to a value of permitted index type given the type
+of `<source>` resp. `<destination>` and `<value>` evaluates to a value for the component
+type of `<destination>`.
 Path expressions may also be used. The correspondence is as follows:
-if `v` is the value to be indexed and `i` is the index, then `v/i` is equivalent to `pick v i`
-and `v/i: x` is equivalent to `poke v i x`. Note that for lexical reasons, a `char!`, `string!`
-or `pair!` value used as index must be enclosed in parentheses, and `logic!` values are not allowed.
+....
+pick <source> <index> <=> <source>/<index>
+poke <destination> <index> <value> <=> <destination>/<index>: <value>
+....
+Here `<source>` and `<destination>` must be a `<word-literal>` or a `<path-literal>`.
+Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
+in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed.
 The component of an `image!` is a `tuple!` value as explained in <<code-image-code,section 5.3.4>>.
 
 Note further that path expressions cannot be used to index `file!` and `url!` values,
@@ -1527,11 +1539,12 @@ The built-in functions `first second third fourth` and `fifth` are defined as `p
 
 This is possible both for values that are sequences (with types in `series!`,
 but not `bitset!`) and for values of types `object! error!` and `map!`.
-The expression for this is again `<path>` for extraction and `<path>: <expression>` for changing.
-Built-in functions exist to perform the same operations. The correspondence is as follows:
-if `v` is the value from which to select and `k` is the key, then `v/k` is equivalent to `select v k`
-and `v/k: x` is equivalent to `put v k x`.
-
+Built-in functions for selection are  `select` for extraction and `put` for changing, with the
+following definitions:
+....
+select <source> <key>
+put <destination> <key> <value>
+....
 The semantics of selection are different in the two cases (sequences vs. objects/maps).
 For sequences, a `find` action is performed on the components using the key,
 which should be a single value of the right type, or itself a sequence of such values,
@@ -1542,6 +1555,13 @@ In the case of `object!` and `error!` it is customary to call the keys _fields_.
 Fields of `error!` values cannot be set._**See issue #2554**_
 
 Setting a map component to `none` removes the component and its key from the map.
+
+Path expressions may also be used for selection. The correspondence is as follows:
+....
+select <source> <key> <=> <source>/<key>
+put <destination> <key> <value> <=> <destination>/<key>: <value>
+....
+The same lexical restrictions apply as noted above for indexing.
 
 Values of type `time! date! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
@@ -1606,12 +1626,12 @@ be similarly used _**see issue #2883**_
 |date!      |1 .. 14      |pick        |date year month day zone time hour minute second weekday yearday julian timezone week isoweek |
 |pair!      |1 2          |pick        |x y                                 |
 |tuple!     |1 .. 12      |pick        |                                    |
-|any-block! |integer!     |pick poke   |any-type!                           |select put
-|vector!    |integer!     |pick poke   |integer! char!                      |select^1^
-|string!    |integer!     |pick poke   |char! any-string! binary!           |select^1^
-|email!     |integer!     |pick poke   |char! any-string! binary! host user |select^1^
-|file! url! |integer!     |pick poke   |char! any-string! binary!           |select^1^
-|binary!    |integer!     |pick poke   |integer! char! any-string! binary!  |select^1^
+|any-block! |integer! logic!    |pick poke   |any-type!                           |select put
+|vector!    |integer! logic!    |pick poke   |integer! char!                      |select^1^
+|string!    |integer! logic!    |pick poke   |char! any-string! binary!           |select^1^
+|email!     |integer! logic!    |pick poke   |char! any-string! binary! host user |select^1^
+|file! url! |integer! logic!    |pick poke   |char! any-string! binary!           |select^1^
+|binary!    |integer! logic!    |pick poke   |integer! char! any-string! binary!  |select^1^
 |image!     |integer! pair! |pick poke |size rgb alpha argb                 |
 |bitset!    |integer! char! string!|pick poke |                                    |
 |map!       |             |            |scalar! any-word! any-string! binary! |select put
