@@ -1332,7 +1332,7 @@ The function `to-logic` yields `true` for any argument value except `none`. Note
 The function `to-string` yields the same result as the built-in function `form` (see
 <<conversion-from-to-textual-representation,section 11.1>>) except for
 
-* `none!` values: conversion is not allowed
+* `unset!` and `none!` values: conversion is not allowed
 * `binary!` values: these will be decoded as UTF-8
 * `any-list!` values: the function will apply `form` to each component and concatenate the results
 
@@ -2942,12 +2942,13 @@ equivalent), specified as its argument, to one or more values by calling upon
 the lexical/syntactic analysis facilities of the toolchain. The result is either one
 value or a block of values.
 
-There are two built-in functions for converting values to readable strings:
-`form` will produce a basic representation intended for human readers, and `mold`
-will produce strings that are guaranteed to re-produce the original expressions when
-submitted to `load`. As stated in <<target-types-in-code-any-string-code,section 5.4.3>> the
+There are three mechanisms for converting values to readable strings:
+the built-in function `form` will produce a basic representation intended for human readers,
+the built-in function `mold` will produce a representation that mirrors the source code
+of the value, while its variant `mold/all` will produce a representation that can be read
+back by `load` to yield the original value. As stated in <<target-types-in-code-any-string-code,section 5.4.3>> the
 operation of `form` is the same as that of `to-string` with the exception of
-argument types `none! binary!` and `any-list!`. Especially values of the
+argument types `unset! none! binary!` and `any-list!`. Especially values of the
 last group of types, as well as values of types `vector!` and `object!`
 merit special attention since the are converted to strings showing
 the essentials without conserving type information.
