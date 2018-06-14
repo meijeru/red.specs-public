@@ -1516,13 +1516,12 @@ type of `<destination>`.
 
 _Path expressions_ may also be used. The correspondence is as follows:
 ....
-pick <source> <index> <= => <source>/<index>
+pick <source> <index> <==> <source>/<index>
 poke <destination> <index> <value> <==> <destination>/<index>: <value>
 ....
 Here `<source>` and `<destination>` must be a `<word-literal>` or a `<path-literal>`.
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
 in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed.
-The component of an `image!` is a `tuple!` value as explained in <<code-image-code,section 5.3.4>>.
 
 Note further that path expressions cannot be used to index `file!` and `url!` values,
 as these path expressions will be interpreted as "extending" the file or url path.
@@ -1542,7 +1541,7 @@ The built-in functions `first second third fourth` and `fifth` are defined as `p
 
 ==== Selection by "key"
 
-This is possible both for values that are _sequences_ (with types in `series!`,
+This is possible both for values that are sequences (with types in `series!`,
 but not `bitset!`) and for values of types `object! error!` and `map!`.
 
 _Built-in functions_ for selection are  `select` for extraction and `put` for changing, with the
@@ -1556,18 +1555,17 @@ The semantics of selection are different in the two cases (sequences vs. objects
 * For sequences, a `find` action is performed on the components using the key,
 which should be a single value of the right type, or itself a sequence of such values,
 and the first position where the key is found is marked. The result is then
-the component *after* the found key (single or sequence)._**See issue #2625**_ For the other types,
-which contain key/value pairs, the result is the value corresponding to the given key.
-
-* In the case of `object!` and `error!` it is customary to call the keys _fields_.
+the component *after* the found key (single or sequence)._**See issue #2625**_
+* For the other types, which contain key/value pairs, the result is the value
+corresponding to the given key. In these cases, it is customary to call the keys _fields_.
 Fields of `error!` values cannot be set._**See issue #2554**_
 
 Setting a map component to `none` removes the component and its key from the map.
 
 _Path expressions_ may also be used for selection. The correspondence is as follows:
 ....
-select <source> <key> <=> <source>/<key>
-put <destination> <key> <value> <=> <destination>/<key>: <value>
+select <source> <key> <==> <source>/<key>
+put <destination> <key> <value> <==> <destination>/<key>: <value>
 ....
 The same lexical restrictions apply as noted above for indexing.
 
