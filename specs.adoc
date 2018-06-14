@@ -504,8 +504,8 @@ A further pseudo-type `context!` provides implementation of context-related func
 Notes:
 
 . Values of all types may be represented using `make`, except those of `datatype! native! action! routine!` and `event!`
-. _**See REP #14**_
-. _**See REP #12**_
+. _**See https://github.com/red/REP/issues/14[REP #14]**_
+. _**See https://github.com/red/REP/issues/12[REP #12]**_
 ....
 TBD
 point!
@@ -647,7 +647,7 @@ Values of types `event!` and `handle!`, that are used to communicate with
 the operating system, can only be represented by words that are arguments
 to functions handling this communication.
 
-_**Mention general typed value constructor #[ <type> <value>* ]**_
+_**Mention general typed value constructor #[ <type> <value>* ] See also https://github.com/red/REP/issues/9[REP #9]**_
 
 The following sub-sections will specify the lexical structure resp. the `<spec>` argument
 of the `make`, `to` and `as` function for values of each of the types as appropriate.
@@ -1020,7 +1020,7 @@ is `integer!` of size 32.
 
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
 initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>`
-(see the beginning of section <<creation-of-values-code-make-code,5.3>>). _**See REP #13**_
+(see the beginning of section <<creation-of-values-code-make-code,5.3>>). _**See https://github.com/red/REP/issues/13[REP #13]**_
 
 Examples:
 ....
@@ -1664,16 +1664,16 @@ usefully be exposed.
 
 This concerns first of all `any-word!` values for which information on their
 binding may be obtained by means of two built-in functions: `context?` and `index?`.
-These are explained in <<contexts,section 6.2>>. _**See REP #14**_. 
+These are explained in <<contexts,section 6.2>>. _**See https://github.com/red/REP/issues/14[REP #14]**_. 
 
-_**What about `owner`??** see https://github.com/red/red/issues/1975[issue #1957]_
+_**What about `owner`?? see https://github.com/red/red/issues/1975[issue #1957]**_
 
 The function `complement?` is described in <<code-bitset-code,section 5.3.5>>.
 
 The function `face?` tests if an object is derived of the `face!` object which is
 explained in <<gui-system,section 13.3>>.
 
-_**Functions on vector! values have been requested see REP #12**_
+_**Functions on vector! values have been requested see https://github.com/red/REP/issues/12[REP #12]**_
 
 For values of type `object! error!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
@@ -2435,7 +2435,7 @@ functions are as follows.
 
 Notes:
 
-. see REP #10
+. see https://github.com/red/REP/issues/10[REP #10]
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
@@ -2565,7 +2565,7 @@ for these functions are as follows.
 
 Note:
 
-. see REP #10
+. see https://github.com/red/REP/issues/10[REP #10]
 
 Note further that `and or` and `xor` on values of type `bitset!` and `typeset!` yield
 the same result as `intersect union` and `difference`
@@ -3235,7 +3235,7 @@ The built-in function `ask` will print its argument at the console prompt
 and wait for user input until a line feed (`U+000A`) is received;
 the string before the line feed will be yielded as result.
 
-The built-in function `input` is shorthand for `ask ""`.
+The built-in function `input` is shorthand for `ask ""`. _**See https://github.com/red/REP/issues/11[REP #11]**_
 
 The built-in function `read-clipboard` will return the clipboard content as a string
 and `write-clipboard` with a string argument will set the clipboard content.
