@@ -1636,7 +1636,7 @@ be similarly used _**see issue #2883**_
 |vector!    |integer! logic!^1^ |pick poke   |integer! char!                      |select^2^
 |string!    |integer! logic!^1^ |pick poke   |char! any-string! binary!           |select^2^
 |email!     |integer! logic!^1^ |pick poke   |char! any-string! binary! host user |select^2^
-|file! url! |integer! logic!^1^ |pick poke   |char! any-string! binary!           |select^2^
+|file! url! |integer!^1^ logic!^1^ |pick poke   |char! any-string! binary!           |select^2^
 |binary!    |integer! logic!^1^ |pick poke   |integer! char! any-string! binary!  |select^2^
 |image!     |integer! pair! |pick poke |size rgb alpha argb                 |
 |bitset!    |integer! char! string!|pick poke |                                    |
