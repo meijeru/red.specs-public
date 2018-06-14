@@ -1048,10 +1048,10 @@ If `<image-spec>` is `<pair>`, the image is created with the given dimensions, a
 ignored. These elements determine the color and transparency of all pixels, in the manner as stated above.
 If a single `<binary>` is specified, this should contain the sequence of colors of all pixels
 (three bytes per pixel, in the order R, G, B, stored by horizontal line). The number of triplets should match
-the image size, more bytes are ignored, fewer bytes are supplemented with bytes `#{00}`. The transparency for all
+the image size, more bytes are ignored, fewer bytes are supplemented with bytes `#{00}` for `0`. The transparency for all
 pixels is set to `255`. The second `<binary>`, if present, contains the transparency values (one byte per pixel,
 in the same ordering). Again, the number of bytes should match the image size. More are ignored, fewer are
-supplemented with bytes `#{FF}` for`255`. If the previous item in the specification was a 4-element tuple,
+supplemented with bytes `#{FF}` for `255`. If the previous item in the specification was a 4-element tuple,
 this `<binary>` is ignored.
 
 Examples:
@@ -1495,13 +1495,17 @@ Composite values can have their components extracted and changed by various mean
 ==== Indexing
 
 Values that are sequences (with types in `series!` and `bitset!`) admit indexing by integers.
-Additionally, values of `series!` types may be indexed by `logic!` values, where `true` yields
+As explained earlier, components of `series!` values are indexed from `1`, while components
+of `bitset!` values are indexed from `0`. Additionally, for programming convenience,
+values of `series!` types may be indexed by `logic!` values, where `true` yields
 the first component and `false` the second component.
-Furthermore, bitsets admit indexing by characters and strings, with the result being `true`
-if the given character(s) is/are found in the bitset, and images may also be indexed by pairs
-as coordinates, in accordance with the row-oriented storage of the pixels.
-Built-in functions for indexing are `pick` for extraction and `poke` for changing, with the
-following definitions:
+Also, bitsets admit indexing by characters and strings, with the result being `true`
+if the component(s) with the corresponding Unicode Code Point number(s) are (all)
+`true`. Finally, images may also be indexed by pairs as coordinates, with the index
+being computed in accordance with the row-oriented storage of the pixels.
+
+_Built-in functions_ for indexing are `pick` for extraction and `poke` for changing, with the
+following specifications:
 ....
 pick <source> <index>
 poke <destination> <index> <value>
@@ -1509,10 +1513,11 @@ poke <destination> <index> <value>
 where `<index>` evaluates to a value of permitted index type given the type
 of `<source>` resp. `<destination>` and `<value>` evaluates to a value for the component
 type of `<destination>`.
-Path expressions may also be used. The correspondence is as follows:
+
+_Path expressions_ may also be used. The correspondence is as follows:
 ....
-pick <source> <index> <=> <source>/<index>
-poke <destination> <index> <value> <=> <destination>/<index>: <value>
+pick <source> <index> <= => <source>/<index>
+poke <destination> <index> <value> <==> <destination>/<index>: <value>
 ....
 Here `<source>` and `<destination>` must be a `<word-literal>` or a `<path-literal>`.
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
@@ -1537,26 +1542,29 @@ The built-in functions `first second third fourth` and `fifth` are defined as `p
 
 ==== Selection by "key"
 
-This is possible both for values that are sequences (with types in `series!`,
+This is possible both for values that are _sequences_ (with types in `series!`,
 but not `bitset!`) and for values of types `object! error!` and `map!`.
-Built-in functions for selection are  `select` for extraction and `put` for changing, with the
+
+_Built-in functions_ for selection are  `select` for extraction and `put` for changing, with the
 following definitions:
 ....
 select <source> <key>
 put <destination> <key> <value>
 ....
 The semantics of selection are different in the two cases (sequences vs. objects/maps).
-For sequences, a `find` action is performed on the components using the key,
+
+* For sequences, a `find` action is performed on the components using the key,
 which should be a single value of the right type, or itself a sequence of such values,
 and the first position where the key is found is marked. The result is then
 the component *after* the found key (single or sequence)._**See issue #2625**_ For the other types,
 which contain key/value pairs, the result is the value corresponding to the given key.
-In the case of `object!` and `error!` it is customary to call the keys _fields_.
+
+* In the case of `object!` and `error!` it is customary to call the keys _fields_.
 Fields of `error!` values cannot be set._**See issue #2554**_
 
 Setting a map component to `none` removes the component and its key from the map.
 
-Path expressions may also be used for selection. The correspondence is as follows:
+_Path expressions_ may also be used for selection. The correspondence is as follows:
 ....
 select <source> <key> <=> <source>/<key>
 put <destination> <key> <value> <=> <destination>/<key>: <value>
@@ -1618,20 +1626,20 @@ be similarly used _**see issue #2883**_
 
 ==== Overview table
 
-[cols="1,1,1,1,2", options="header"]
+[options="header"]
 |===
 
-|type       |indexed components |built-in functions |key values or types   | built-in functions
+|type       |index values |built-in functions |key values or types   | built-in functions
 |time!      |1 2 3        |pick        |hour minute second                  |
 |date!      |1 .. 14      |pick        |date year month day zone time hour minute second weekday yearday julian timezone week isoweek |
 |pair!      |1 2          |pick        |x y                                 |
 |tuple!     |1 .. 12      |pick        |                                    |
-|any-block! |integer! logic!    |pick poke   |any-type!                           |select put
-|vector!    |integer! logic!    |pick poke   |integer! char!                      |select^1^
-|string!    |integer! logic!    |pick poke   |char! any-string! binary!           |select^1^
-|email!     |integer! logic!    |pick poke   |char! any-string! binary! host user |select^1^
-|file! url! |integer! logic!    |pick poke   |char! any-string! binary!           |select^1^
-|binary!    |integer! logic!    |pick poke   |integer! char! any-string! binary!  |select^1^
+|any-block! |integer! logic!^1^ |pick poke   |any-type!                           |select put
+|vector!    |integer! logic!^1^ |pick poke   |integer! char!                      |select^2^
+|string!    |integer! logic!^1^ |pick poke   |char! any-string! binary!           |select^2^
+|email!     |integer! logic!^1^ |pick poke   |char! any-string! binary! host user |select^2^
+|file! url! |integer! logic!^1^ |pick poke   |char! any-string! binary!           |select^2^
+|binary!    |integer! logic!^1^ |pick poke   |integer! char! any-string! binary!  |select^2^
 |image!     |integer! pair! |pick poke |size rgb alpha argb                 |
 |bitset!    |integer! char! string!|pick poke |                                    |
 |map!       |             |            |scalar! any-word! any-string! binary! |select put
@@ -1643,6 +1651,7 @@ be similarly used _**see issue #2883**_
 
 Notes:
 
+. not in path expressions
 . _**See issue #1960**_
 
 === Reflection on values
