@@ -1101,7 +1101,7 @@ i.e. if its complement is what is actually stored.
 **`S129`**::
 ....
 <object> ::= make object! <object-spec> | object <object-spec> | context <object-spec> |
-             make <expression> <object-spec>
+             make <object> <object-spec>
 <object-spec> ::= <block>
 ....
 
@@ -2615,14 +2615,13 @@ modified, but pointing to the same components:
 |function                   |new index
 |head <series>              |1
 |tail <series>              |length + 1
-|at <series> <expression>   |(index calculated from <expression>)
-|skip <series> <expression> |current index + (offset calculated from <expression>)
+|at <series> <integer>      |(index calculated from <expression>)
+|skip <series> <integer>    |current index + (offset calculated from <expression>)
 |next <series>              |current index + 1
 |back <series>              |current index - 1
 |find <series> <expression> |index of first occurrence of (component or sub-series)
 |===
 
-Here the `<expression>` argument of `at` and `skip` should evaluate to an integer.
 For `image!` values, a `pair!` value is also allowed. This will be converted to
 a regular index, taking into acount that image pixels are stored row-wise.
 The `<expression>` argument of `find` may be a single component
@@ -2870,31 +2869,29 @@ no condition is satisfied.
 
 The available constructs are the following:
 ....
-<forever>     ::= forever <body>
-<while>       ::= while <condition> <body>
-<until>       ::= until <condition>
-<loop>        ::= loop <integer> <body>
-<repeat>      ::= repeat <word> <integer> <body>
-<foreach>     ::= foreach <counter> <series> <body>
-<forall>      ::= foreach <word> <body>
+<forever>     ::= forever <body-block>
+<while>       ::= while <condition-block> <body-block>
+<until>       ::= until <condition-block>
+<loop>        ::= loop <integer> <body-block>
+<repeat>      ::= repeat <word> <integer> <body-block>
+<foreach>     ::= foreach <counter> <series> <body-block>
+<forall>      ::= foreach <word> <body-block>
 <remove-each> ::= remove-each <counter> <series> <condition>
-<condition>   ::= <block>
 <counter>     ::= <word> | <block>
-<body>        ::= <block>
 ....
 
 Semantics:
 
-* `forever`: the `<body>` is executed until an exception is encountered
+* `forever`: the `<body-block>` is executed until an exception is encountered
 (see <<exceptions,section 12>>).
-* `while`: the `<condition>` is executed and if does not yield `false` or `none`,
-the `<body>` is executed after which the `<condition>` is again executed etc.
-* `until`: the `<condition>` is executed as long as it does not yield `false` or `none`.
-* `loop`: the `<body>` is executed an integer number of times.
-* `repeat`: the `<body>` is executed repeatedly with the `<word>` assuming values
+* `while`: the `<condition-block>` is executed and if does not yield `false` or `none`,
+the `<body-block>` is executed after which the `<condition-block>` is again executed etc.
+* `until`: the `<condition-block>` is executed as long as it does not yield `false` or `none`.
+* `loop`: the `<body-block>` is executed an integer number of times.
+* `repeat`: the `<body-block>` is executed repeatedly with the `<word>` assuming values
 from 1 to the integer. Note that the `<word>` is _not_ local to the loop,
 i.e. there is no separate context for the `repeat` loop.
-* `foreach`: the `<counter>` may be a word or a block of words. The `<body>` is executed
+* `foreach`: the `<counter>` may be a word or a block of words. The `<body-block>` is executed
 repeatedly with the word(s) being set to subsequent components of the series.
 The word(s) are again not local to the loop.
 
