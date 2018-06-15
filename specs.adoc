@@ -2876,7 +2876,7 @@ The available constructs are the following:
 <repeat>      ::= repeat <word> <integer> <body-block>
 <foreach>     ::= foreach <counter> <series> <body-block>
 <forall>      ::= foreach <word> <body-block>
-<remove-each> ::= remove-each <counter> <series> <condition>
+<remove-each> ::= remove-each <counter> <series> <condition-block>
 <counter>     ::= <word> | <block>
 ....
 
@@ -2899,7 +2899,7 @@ Example:
 ....
 foreach [name phone] ["John" "123-4567" "Mary" "345-6789"] [print [name phone]]
 ....
-* `forall`: the `<body>` is executed repeatedly starting with the word referring
+* `forall`: the `<body-block>` is executed repeatedly starting with the word referring
 to the head of the series; on each subsequent iteration the word will refer to the
 series at the next position (see `next` function in <<series-positioning-and-navigation,section 9.2>>).
 
@@ -2910,9 +2910,9 @@ forall b [if odd? b/1 [prin b/2]]
 ....
 this will print `246`
 
-* `remove-each`: the `<condition>` is executed on each iteration, with the word(s)
+* `remove-each`: the `<condition-block>` is executed on each iteration, with the word(s)
 of the `<counter>` being set as in `foreach`. If the condition is satisfied,
-the components of the series that the word(s) currently refer to, are removed from the series.
+the component(s) of the series currently referred to by the word(s), is/are removed from the series.
 
 The result of `forever` is that of the exception that causes its interruption.
 For the other functions, unless an exception has occurred, the result is the unset value
