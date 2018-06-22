@@ -115,7 +115,8 @@ occur in a Red _program_ which, as stated before, is nothing more or less
 than a sequence of values.
 The users may furthermore use and interpret Red values, when considered as _data_,
 in ways of their own, and thus create _dialects_ or _Domain Specific Languages
-(DSLs)_.
+(DSLs)_. Implementing the interpretation of dialects in Red is greatly facilitated
+by the _parse_ facility (see <<parse,section 13.2>>).
 
 In fact, Red itself contains a number of dialects where blocks of data are
 interpreted in a specific way; this includes the _preprocessor dialect_, 
