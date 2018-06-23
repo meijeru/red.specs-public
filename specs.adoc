@@ -683,6 +683,10 @@ Note that in this case, no decimal point is required.
 
 Examples: `1.23`  `-0.5`  `.5`  `+010.20`  `1E9`
 
+For the special numbers positive and negative infinity, and for the "not a number" value,
+the following literals are used: `1.#INF`, `-1.#INF`, `1.#NaN` and `-1.#NaN`. The latter
+two are equivalent representations for a single value.
+
 ==== `time!`
 
 **`S113`**::
@@ -2449,7 +2453,7 @@ the result type is determined as (in decreasing order of precedence):
 * the type of operand 1
 
 _**See https://github.com/red/red/issues/2776[issue #2776]**_
-[cols="1,1,1,1,1,1,1,1,1,2", options="header"]
+[options="header"]
 |===
 |operand&nbsp;2 -> +
 operand&nbsp;1 |char!    |integer!  |float!    |percent! |time!    |date!    |pair!    |tuple!     |vector!
@@ -2477,6 +2481,12 @@ Notes:
 . only add allowed
 . only subtract allowed; result is number of days, ignoring any time components; for exact difference use built-in function difference
 . with tuples of unequal length, the shortest one is extended with values `0`
+
+The results of division by zero are as follows:
+
+* any integer divided by `0` gives an error
+* any non-zero non-integer number divided by `0` `0.0` or `0%` gives positive or negative infinity
+* `0` `0.0` or `0%` divided by `0.0` or `0%` gives "not a number"
 
 Note that `round` has a number of refinements:
 ....
