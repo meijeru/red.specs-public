@@ -1505,13 +1505,7 @@ Composite values can have their components extracted and changed by various mean
 
 Values that are sequences (with types in `series!` and `bitset!`) admit indexing by integers.
 As explained earlier, components of `series!` values are indexed from `1`, while components
-of `bitset!` values are indexed from `0`. Additionally, for programming convenience,
-values of `series!` types may be indexed by `logic!` values, where `true` yields
-the first component and `false` the second component.
-Also, bitsets admit indexing by characters and strings, with the result being `true`
-if the component(s) with the corresponding Unicode Code Point number(s) are (all)
-`true`. Finally, images may also be indexed by pairs as coordinates, with the index
-being computed in accordance with the row-oriented storage of the pixels.
+of `bitset!` values are indexed from `0`.
 
 _Built-in functions_ for indexing are `pick` for extraction and `poke` for changing, with the
 following specifications:
@@ -1521,7 +1515,19 @@ poke <destination> <index> <value>
 ....
 where `<index>` evaluates to a value of permitted index type given the type
 of `<source>` resp. `<destination>` and `<value>` evaluates to a value for the component
-type of `<destination>`.
+type of `<destination>`. 
+
+Values of type `integer!` are permitted as `<index>` for all sequences.
+Additionally, for programming convenience, values of `series!` types may be indexed
+by `logic!` values, where `true` yields the first component and `false` the second component.
+Also, for `pick`, bitsets admit indexing by characters and strings, with the result being `true`
+if the component(s) with the corresponding Unicode Code Point number(s) is/are all
+`true`. For `poke`, indexing by strings is not allowed.
+Note that, although the components of a value of type `bitset!`
+are of type `logic!`, with `poke` it is allowed to use values of any other type,
+where `0` and `none` set the bit to `false`, and all other values set the bit to `true`.
+Finally, images may also be indexed by pairs as coordinates, with the index
+being computed in accordance with the row-oriented storage of the pixels.
 
 _Path expressions_ may also be used. The correspondence is as follows:
 ....
@@ -1530,7 +1536,7 @@ poke <destination> <index> <value> <==> <destination>/<index>: <value>
 ....
 Here `<source>` and `<destination>` must be a `<word-literal>` or a `<path-literal>`.
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
-in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed.
+in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index.
 
 Note further that path expressions cannot be used to index `file!` and `url!` values,
 as these path expressions will be interpreted as "extending" the file or url path.
