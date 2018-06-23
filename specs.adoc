@@ -1085,6 +1085,8 @@ an `integer!` value produces an "empty" bitset (all bits set to false) of size t
 multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers,
 or ranges of them, that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
 A `string!` value is interpreted as the collection of all its component characters.
+Note that an `integer!` value used as `<bit-position>` should be non-negative, but
+need not be a valid Unicode Codepoint number. _**See https://github.com/red/red/issues/3439[issue #3439]
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
 bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
@@ -4756,6 +4758,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-code-any-string-code">5.4.3</a>, <a href="#conversion-from-to-textual-representation">11.1</a>
 <a href= "https://github.com/red/red/issues/3423">3423</a>   <a href="#indexing">5.6.1</a>
+<a href= "https://github.com/red/red/issues/3439">3439</a>   <a href="#code-bitset-code">5.3.5</a>
 
 REP    spec
 issue  section
