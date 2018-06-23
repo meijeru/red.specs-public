@@ -2428,12 +2428,12 @@ functions are as follows.
 |+ - * / // %        |2       |scalar! vector!     |scalar! vector! |see next table
 |**                  |2       |number!             |integer! float! |integer!^1^ float!
 |NaN?                |1       |number!             |                |logic!
-|sign?               |1       |number! time!       |                |integer!
+|sign?               |1       |number! time!       |                |integer!^2^
 |positive? negative? |1       |number! time!       |                |logic!
 |zero?               |1       |number! char! time! pair! tuple! |   |logic!
 |even? odd?          |1       |number! char! time! |                |logic!
-|negate              |1       |number! time! pair! |                |same as operand^2^
-|absolute round      |1       |number! time! pair! |                |same as operand^2^
+|negate              |1       |number! time! pair! |                |same as operand^3^
+|absolute round      |1       |number! time! pair! |                |same as operand^3^
 |max min             |2       |scalar!             |scalar!         |same as greatest/smallest operand +
 (operand 1 if equal)
 |===
@@ -2442,6 +2442,7 @@ Notes:
 
 . result type is `integer!` only if both operands are integer, and
 the result value fits in 32 bits; otherwise result type is `float!`
+. result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
