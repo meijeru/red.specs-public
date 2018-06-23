@@ -2487,6 +2487,7 @@ The results of division by zero are as follows:
 * any integer divided by `0` gives an error
 * any non-zero non-integer number divided by `0` `0.0` or `0%` gives positive or negative infinity
 * `0` `0.0` or `0%` divided by `0.0` or `0%` gives "not a number"
+* computing modulo and remainder with `0` `0.0` or `0%` as second operand gives an error
 
 Note that `round` has a number of refinements:
 ....
