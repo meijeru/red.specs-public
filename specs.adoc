@@ -1165,7 +1165,7 @@ If the `<error-spec>` is a `block!` value, it should either contain two `word!` 
 which will be used for the `type` and `id` value of the intended `error!` value, or
 it should be an `<object-spec>` containing at least `type:` and `id:` fields,
 and possibly `arg1 arg2 arg3` fields;
-in the former case, the `type` and `id` values will be bound as described in section 12.1;
+in the former case, the `type` and `id` values will be bound as described in <<errors,section 12.1>>;
 in the latter case, the `<block>` will be treated as described under <<code-object-code,rule `S129`>>;
 note that also in this case, the `<block>` will be executed.
 
