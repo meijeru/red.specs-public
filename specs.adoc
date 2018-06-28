@@ -1404,6 +1404,7 @@ the second, if present, an `integer!` value for the minutes; and the third, if p
 The function `to-char` is defined for
 
 * `number!` values: yields the Unicode Code Point with the (truncated) number
+_**See <a href= "https://github.com/red/red/issues/3450">issue #3450</a>**_
 * `binary!` values: assumes UTF-8 encoding; decodes as many bytes as necessary to obtain a Unicode Code Point
 * `any-string!` values: yields the first character
 
@@ -4759,6 +4760,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-code-any-string-code">5.4.3</a>, <a href="#conversion-from-to-textual-representation">11.1</a>
 <a href= "https://github.com/red/red/issues/3423">3423</a>   <a href="#indexing">5.6.1</a>
 <a href= "https://github.com/red/red/issues/3439">3439</a>   <a href="#code-bitset-code">5.3.5</a>
+<a href= "https://github.com/red/red/issues/3450">3450</a>   <a href="#target-type-code-char-code">5.4.7</a>
 
 REP    spec
 issue  section
