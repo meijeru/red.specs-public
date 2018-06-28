@@ -1404,7 +1404,7 @@ the second, if present, an `integer!` value for the minutes; and the third, if p
 The function `to-char` is defined for
 
 * `number!` values: yields the Unicode Code Point with the (truncated) number
-_**See <a href= "https://github.com/red/red/issues/3450">issue #3450</a>**_
+_**See https://github.com/red/red/issues/3450[issue #3450]**_
 * `binary!` values: assumes UTF-8 encoding; decodes as many bytes as necessary to obtain a Unicode Code Point
 * `any-string!` values: yields the first character
 
