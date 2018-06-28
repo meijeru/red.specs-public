@@ -4770,7 +4770,7 @@ issue  section
 REP    spec
 issue  section
 
- <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#formal-grammar">3.2</a>, <a href=""#introduction-1">5.1</a>
+ <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#formal-grammar">3.2</a>, <a href="#introduction-1">5.1</a>
  <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
  <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.7</a>
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
