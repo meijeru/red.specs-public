@@ -1412,7 +1412,7 @@ _**See https://github.com/red/red/issues/3450[issue #3450]**_
 
 The function to-pair is defined for
 
-* `integer!` and `any-float!` values: yields the pair with two components equal to the (truncated) number
+* `number!` values: yields the pair with two components equal to the (truncated) number
 * `any-list!` values: these should contain two `integer!` or `float!` values;
 yields the pair wih the (truncated) numbers as components
 
