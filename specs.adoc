@@ -1296,7 +1296,7 @@ The keys and values are not evaluated.
 
 * Making `integer!` values from `logic!` values: `true -> 1, false -> 0`
 _**See https://github.com/red/red/issues/2644[issue 2644]**_
-* Making `logic!` values from `integer!` and `any-float!` values: `0/0.0/0% -> false, all else -> true`
+* Making `logic!` values from `number!` values: `0/0.0/0% -> false, all else -> true`
 * Making a `url!` value from an `any-list!` value: the components (at least one is required)
 may be of any type; they will be `form` ed; the first component is assumed to be the _protocol_
 (e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
@@ -1441,7 +1441,7 @@ The function `to-binary` is defined for
 * `string!` values: yields the UTF-8 encoded binary value
 * `any-list!` values: these should contain only `integer!` or `float!` values;
 the binary equivalents are concatenated, using as few bytes as needed
-for each `integer!` value and 8 bytes for each `float! value
+for each `integer!` value and 8 bytes for each `float!` value
 * `image!` values: yields a binary value with 4 bytes for each pixel
 
 ==== Target types in `any-word!` `refinement!` and `issue!`
