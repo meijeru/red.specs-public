@@ -544,7 +544,7 @@ any-type!
    |  |  |--char!          
    |  |  |--number!        
    |  |  |  |--integer!     
-   |  |  |  |--any-float!   <---- see issue #2565
+   |  |  |  |--any-float!   <---- see <a href = "https://github.com/red/red/issues/2565">issue #2565</a>
    |  |  |     |--float!     
    |  |  |     |--percent!   
    |  |  |--time!
