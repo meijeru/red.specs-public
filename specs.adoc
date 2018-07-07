@@ -677,7 +677,7 @@ Examples: `123`  `-123`  `+0001`  `1'000`
 
 **`S112`**::
 A `<float-literal>` is written as a signed floating point number in the range of the
-_IEEE 754 binary64 format_, in decimal notation. As an alternative to the decimal point `.`
+_IEEE 754 binary64 format_, in decimal notation. As an alternative to the dot `.` as decimal point, 
 a comma `,` may be used. Leading zeroes are allowed, as well as `'` signs between digits, for separation.
 No zero is needed before the decimal point when the absolute value is smaller than `1.0`.
 The number may be followed by `E` or `e` with a signed integer exponent on base 10.
