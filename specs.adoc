@@ -668,7 +668,7 @@ In the following rules, the sign `°` signifies an optional element.
 
 **`S111`**::
 An `<integer-literal>` is written as a signed integer number from `-2^31^` to `2^31^-1`
-in decimal notation. Leading zeroes are allowed, as well as `'` signs for separation.
+in decimal notation. Leading zeroes are allowed, as well as `'` signs between digits, for separation.
 _**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
 
 Examples: `123`  `-123`  `+0001`  `1'000`
@@ -677,13 +677,13 @@ Examples: `123`  `-123`  `+0001`  `1'000`
 
 **`S112`**::
 A `<float-literal>` is written as a signed floating point number in the range of the
-_IEEE 754 binary64 format_, in decimal notation. Leading zeroes are allowed,
-as well as `'` signs for separation.
+_IEEE 754 binary64 format_, in decimal notation. As an alternative to the decimal point `.`
+a comma `,` may be used. Leading zeroes are allowed, as well as `'` signs between digits, for separation.
 No zero is needed before the decimal point when the absolute value is smaller than `1.0`.
 The number may be followed by `E` or `e` with a signed integer exponent on base 10.
 Note that in this case, no decimal point is required.
 
-Examples: `1.23`  `-0.5`  `.5`  `+010.20`  `1E9`
+Examples: `1.23`  `-0,5`  `.5`  `+010.20`  `1E9` `1E-9`
 
 For the special numbers positive and negative infinity, and for the "not a number" value,
 the following literals are used: `1.#INF`, `-1.#INF`, `1.#NaN` and `-1.#NaN`. The latter
