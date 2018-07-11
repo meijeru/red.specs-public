@@ -1533,7 +1533,8 @@ if the component(s) with the corresponding Unicode Code Point number(s) is/are a
 `true`. For `poke`, indexing by strings is not allowed.
 Note that, although the components of a value of type `bitset!`
 are of type `logic!`, with `poke` it is allowed to use values of any other type,
-where `0` and `none` set the bit to `false`, and all other values set the bit to `true`.
+where `0` and `none` set the bit to `false`, and all other values
+(including `0.0` and `0%`) set the bit to `true`.
 Finally, images may also be indexed by pairs as coordinates, with the index
 being computed in accordance with the row-oriented storage of the pixels.
 
