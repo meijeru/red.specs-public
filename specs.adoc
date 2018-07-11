@@ -1542,7 +1542,7 @@ _Path expressions_ may also be used. The correspondence is as follows:
 pick <source> <index> <==> <source>/<index>
 poke <destination> <index> <value> <==> <destination>/<index>: <value>
 ....
-Here `<source>` and `<destination>` must be a `<word-literal>` or a `<path-literal>`.
+Here `<source>` and `<destination>` must be a `<path-head>`, see <<code-path-code,rule S113>>.
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
 in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index.
 
