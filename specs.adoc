@@ -2500,6 +2500,11 @@ Notes:
 . only subtract allowed; result is number of days, ignoring any time components; for exact difference use built-in function difference
 . with tuples of unequal length, the shortest one is extended with values `0`
 
+The difference between the `modulo` and `remainder` functions is as follows:
+
+* for positive first argument, the result of both is the positive remainder of division by the second argument
+* for negative first argument, the result of `modulo` is the positive remainder, and the result of `remainder` is the negative remainder
+
 The results of division by zero are as follows:
 
 * any integer divided by `0` gives an error
