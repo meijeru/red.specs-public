@@ -1594,7 +1594,9 @@ _Path expressions_ may also be used for selection. The correspondence is as foll
 select <source> <key> <==> <source>/<key>
 put <destination> <key> <value> <==> <destination>/<key>: <value>
 ....
-The same lexical restrictions apply as noted above for indexing.
+The same lexical restrictions apply as noted above for indexing. Also in this case,
+selecting a component which is a value of type `any-function` by means of a
+path expression will evaluate the component, whereas selection by `select` will not.
 
 Values of type `time! date! pair! email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
