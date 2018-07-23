@@ -1546,6 +1546,9 @@ poke <destination> <index> <value> <==> <destination>/<index>: <value>
 Here `<source>` and `<destination>` must be a `<path-head>`, see <<code-path-code,rule S113>>.
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
 in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index.
+Note that selecting a component which is a value of type `any-function` by means of a
+path expression will evaluate the component, whereas selection by `pick` will not.
+_**See https://github.com/red/red/issues/3482[issue #3482]**_
 
 Note further that path expressions cannot be used to index `file!` and `url!` values,
 as these path expressions will be interpreted as "extending" the file or url path.
@@ -1553,7 +1556,7 @@ as these path expressions will be interpreted as "extending" the file or url pat
 Values of the direct types `time! date! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `tuple!` values, this indexing treats the tuple as a sequence.
 In the other cases, the indexes are defined to correspond to named components, which can
-therefore be used in selection by "key"(see next section). The correspondences are as follows:
+therefore be used in selection by "key" (see next section). The correspondences are as follows:
 
 * for `time!` values: `1 ~ hour 2 ~ minute 3 ~ second`
 * for `date!` values: `1 ~ date 2 ~ year 3 ~ month 4 ~ day 5 ~ zone 6 ~ time 7 ~ hour 8 ~ minute
@@ -4772,6 +4775,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-code-any-string-code">5.4.3</a>
 <a href= "https://github.com/red/red/issues/3450">3450</a>   <a href="#target-type-code-char-code">5.4.7</a>
+<a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>
 
 REP    spec
 issue  section
