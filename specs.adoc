@@ -2073,9 +2073,8 @@ as intermediate result and go to step 4.
 and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in step 3.
 .. If the result is of `file!` or `url!` type and there are one or more
-next elements each of which is a `<selector>`, the result is currently
+next elements each of which is a `<selector>`, the result is 
 a new file or url composed as `<path-head>/<selector>/...`
-_**but see https://github.com/red/red/issues/2578[issue #2578]**_
 .. If the result is a value of `any-function!` type, each following
 `<selector>`, if any, should be an actual refinement of the function, i.e a `word!` value,
 corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
@@ -2129,9 +2128,8 @@ as intermediate result and go to step 4.
 and there is a next element which is a `<selector>`, this will yield
 a component of the composite value as described in step 3.
 .. If the result is of `file!` or `url!` type and there are one or more
-next elements each of which is a `<selector>`, the result is currently
+next elements each of which is a `<selector>`, the result is
 a new file or url composed as `<path-head>/<selector>/...`
-_**but see https://github.com/red/red/issues/2578[issue 2578]**_
 .. If the result is a value of `any-function!` type, no following
 `<selector>` is allowed and the result is the function value.
 .. Otherwise, the path is in error.
@@ -4756,7 +4754,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2554">2554</a>   <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/2565">2565</a>   <a href="#type-hierarchy">4.3</a>
 <a href= "https://github.com/red/red/issues/2577">2577</a>   <a href="#code-map-code">5.3.11</a>
-<a href= "https://github.com/red/red/issues/2578">2578</a>   <a href="#code-path-code-type">7.3.5</a>, <a href="#code-get-path-code-type">7.3.6</a>
 <a href= "https://github.com/red/red/issues/2589">2589</a>   <a href="#code-function-code">5.3.8</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#code-bitset-code">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#code-function-code-type">7.4.1</a>
