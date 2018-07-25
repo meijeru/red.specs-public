@@ -1720,7 +1720,7 @@ addition the function `body-of` which yields the function/routine body.
 All functions `<property>-of <expression>` are shorthand for the general function
 `reflect <expression> <property>` e.g. `words-of <expression>` is defined as `reflect <expression> 'words`.
 
-Note that the `help` built-in function is typically making good use of `spec-of`. 
+Note that the `help` built-in function is typically making good use of these reflection facilities. 
 
 === Comparison of values
 
