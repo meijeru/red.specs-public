@@ -1054,6 +1054,7 @@ of `255` (fully opaque).
 If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and with all pixels having color
 `255.255.255` and transparency `255`. If a `<tuple>` is specified, it should have 3 or 4 elements; any more are
 ignored. These elements determine the color and transparency of all pixels, in the manner as stated above.
+An `<integer>` is not allowed _**See https://github.com/red/red/issues/2883[issue #2883]**_
 If a single `<binary>` is specified, this should contain the sequence of colors of all pixels
 (three bytes per pixel, in the order R, G, B, stored by horizontal line). The number of triplets should match
 the image size, more bytes are ignored, fewer bytes are supplemented with bytes `#{00}` for `0`. The transparency for all
@@ -1237,7 +1238,7 @@ found in the body to the list of local arguments.
 For `<docstring>` and `<argument-doc>` see <<code-function-code,rule `S131`>>. Note that routines
 do not have optional arguments, except `/local`. Note also that arguments
 and return spec must have a single type specified. If the argument has no
-type specified, `any-type!` is assumed._**see https://github.com/red/red/issues/2766[issue #2766]**_ The `<type-name>`
+type specified, `any-type!` is assumed. The `<type-name>`
 must be `integer! float!` or `logic!`, or one that has a Red/System `struct!`
 alias defined that describes a value slot of that type._**see https://github.com/red/red/issues/2642[issue #2642]**_
 The `<routine-body>` must contain valid Red/System code.
@@ -2240,7 +2241,7 @@ is a `'<word>`, then if the next value is a `:<word>` or `:<path>` or `<paren>`,
 evaluate this to fetch the value it refers to; else pass the next value as-is.
 If the `<argument-name>` is `:<word>`, do not evaluate the corresponding expression
 but yield its first `<value>` as-is; do not raise an error if this value is unset.
-_**See https://github.com/red/red/issues/2622[issues #2622] and https://github.com/red/red/issues/3174[3174]**_
+_**See https://github.com/red/red/issues/2622[issue #2622]**_
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
 Check the type of each value against the type(set)s specified for the argument.
 .. If actual refinements are present, match each of them with the corresponding `<refinement>`
@@ -4766,10 +4767,8 @@ issue  section
 <a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
 <a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-from-to-textual-representation">11.1</a>
-<a href= "https://github.com/red/red/issues/2766">2766</a>   <a href="#routine">5.3.9</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#selection-by-key">5.6.2</a>
-<a href= "https://github.com/red/red/issues/3174">3174</a>   <a href="#code-function-code-type">7.4.1</a>
+<a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#code-image-code">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#code-function-code">5.3.8</a>
 <a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#code-object-code">5.3.6</a>
 <a href= "https://github.com/red/red/issues/3379">3379</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
