@@ -1700,6 +1700,10 @@ explained in <<gui-system,section 13.3>>.
 
 _**Functions on vector! values have been requested see https://github.com/red/REP/issues/12[REP #12]**_
 
+For values of types `date! email! event! image! pair! time!` which admit component selection
+by "key" (see <<selection-by-key,section 5.6.2>>), the allowed key values are available
+from `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
+
 For values of type `object! error!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
 be obtained as a block by means of the built-in functions `words-of values-of`
@@ -1714,7 +1718,7 @@ the function `words-of` _**not yet implemented**_. For `function!` and `routine!
 addition the function `body-of` which yields the function/routine body.
 
 All functions `<property>-of <expression>` are shorthand for the general function
-`reflect <expression> <property>` e.g. `words-of <expression>` is defined as `reflect <expression> 'words`. 
+`reflect <expression> <property>` e.g. `words-of <expression>` is defined as `reflect <expression> 'words`.
 
 Note that the `help` built-in function is typically making good use of `spec-of`. 
 
