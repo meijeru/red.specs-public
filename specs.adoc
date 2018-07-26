@@ -687,7 +687,9 @@ Examples: `1.23`  `-0,5`  `.5`  `+010.20`  `1E9` `1E-9`
 
 For the special numbers positive and negative infinity, and for the "not a number" value,
 the following literals are used: `1.#INF`, `-1.#INF`, `1.#NaN` and `-1.#NaN`. The latter
-two are equivalent representations for a single value.
+two are equivalent representations for a single value. More information on the handling
+of these special numbers, including negative zero, is to be found in the additional documentation
+(see <<additional-documentation,section 18>>).
 
 ==== `time!`
 
@@ -2518,6 +2520,9 @@ The results of division by zero are as follows:
 * any non-zero non-integer number divided by `0` `0.0` or `0%` gives positive or negative infinity
 * `0` `0.0` or `0%` divided by `0.0` or `0%` gives "not a number"
 * computing modulo and remainder with `0` `0.0` or `0%` as second operand gives an error
+
+More information on the handling of the special numbers positive and negativity infinity and
+"not a number" is to be found in the additional documentation (see <<additional documentation,section 18>>).
 
 Note that `round` has a number of refinements:
 ....
@@ -4537,6 +4542,7 @@ The following is a list of official documents that complement the information gi
   .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
 . https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
 . http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse] (blog article from 2013)
+. https://github.com/red/red/wiki/%5BDOC%5D-The-Handling-of-NaNs,-INFs-and-signed-zeros[The-Handling-of-NaNs,-INFs-and-signed-zeros]
 
 == Glossary
 ++++
