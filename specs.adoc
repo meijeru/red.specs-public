@@ -4532,17 +4532,17 @@ are contained in the object `system/standard/header`.
 
 The following is a list of official documents that complement the information given in this one.
 
-. https://github.com/red/red/blob/master/README.md[README file for the toolchain]
-. https://github.com/red/red/wiki[Red Wiki]
-. http://static.red-lang.org/red-system-specs-light.html[Red/System Language Specification]
+. Usage information for the toolchain: https://github.com/red/red/blob/master/README.md[README]
+. Wiki-style general documentation: https://github.com/red/red/wiki[Red Wiki]
+. Red/System: http://static.red-lang.org/red-system-specs-light.html[Red/System Language Specification]
 . Red Programming Language Documentation (Gitbook), notably:
   .. https://doc.red-lang.org/en/[Red Core Language]
   .. https://doc.red-lang.org/en/gui.html[GUI System]
   .. https://doc.red-lang.org/en/reactivity.html[Reactive Programming]
   .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
-. https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
-. http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse] (blog article from 2013)
-. https://github.com/red/red/wiki[Red Wiki](The Handling of NaNs, INFs, and signed zeros, under Reference)
+. Overview of value conversions: https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
+. Parse documentation (blog article from 2013): http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse]
+. Handling of NaNs, INFs, and signed zeros: in https://github.com/red/red/wiki[Red Wiki] under Reference
 
 == Glossary
 ++++
