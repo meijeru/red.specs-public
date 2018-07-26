@@ -4542,7 +4542,7 @@ The following is a list of official documents that complement the information gi
   .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
 . https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
 . http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse] (blog article from 2013)
-. https://github.com/red/red/wiki/%5BDOC%5D-The-Handling-of-NaNs,-INFs-and-signed-zeros.[The-Handling-of-NaNs,-INFs-and-signed-zeros]
+. https://github.com/red/red/wiki[Red Wiki](The Handling of NaNs, INFs, and signed zeros, under Reference)
 
 == Glossary
 ++++
