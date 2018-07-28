@@ -3798,6 +3798,7 @@ See also <<type-hierarchy,section 4.3>>
 ....
     all-word!
     any-block!
+    any-float!   <---- see <a href = "https://github.com/red/red/issues/2565">issue #2565</a>
     any-function!
     any-list!
     any-object!
@@ -4028,8 +4029,7 @@ N    log-10
 N    log-2
 N    log-e
 N    max
-F    mod
-O    //          F    modulo
+O    //          F    modulo           F mod
 O    *           A    multiply
 N    min
 N    NaN?
@@ -4524,7 +4524,7 @@ are contained in the object `system/standard/header`.
                                    standard *.ico files provided by toolchain
 * Needs:      [word! block!]       module(s) that is/are to be included
   Config:     block!               set-word/value pairs for toolchain options
-                                   for a list of options, see %red/system/compiler.r
+                                   for a list of options, see <a href="https://github.com/red/red/blob/master/system/compiler.r">source file /system/compiler.r</a>
                                    (object system-dialect/options-class)
 ....
 
