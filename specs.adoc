@@ -3795,7 +3795,8 @@ See also <<type-list,section 4.1>>
 ==== Typesets
 
 See also <<type-hierarchy,section 4.3>>
-....
+++++
+<pre>
     all-word!
     any-block!
     any-float!   <---- see <a href = "https://github.com/red/red/issues/2565">issue #2565</a>
@@ -3813,7 +3814,8 @@ See also <<type-hierarchy,section 4.3>>
     number!
     scalar!
     series!
-....
+</pre>
+++++
 === Functions
 
 The functions are classified by functionality: 
@@ -4011,7 +4013,8 @@ N    value?
 ....
 ==== Numerical and logical computation
 see <<numerical-and-logical-computation,section 8>>
-....
+++++
+<pre>
 A    absolute
 O    +           A    add
 O    and         A    and~
@@ -4053,7 +4056,8 @@ O    -           A    subtract
 F    tan         N    tangent
 O    xor         A    xor~
 N    zero?
-....
+</pre>
+++++
 ==== Series manipulation
 see <<operations-on-values-of-indirect-types,section 9>>
 ....
