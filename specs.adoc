@@ -4503,7 +4503,8 @@ the `<value>` as indicated.
 
 The following is a list of suggested and compulsory elements. The ones marked *
 are contained in the object `system/standard/header`.
-....
+++++
+<pre>
   element     type           description
 
 * Title:      string!              application title
@@ -4530,7 +4531,8 @@ are contained in the object `system/standard/header`.
   Config:     block!               set-word/value pairs for toolchain options
                                    for a list of options, see <a href="https://github.com/red/red/blob/master/system/compiler.r">source file /system/compiler.r</a>
                                    (object system-dialect/options-class)
-....
+</pre>
+++++
 
 == Additional documentation
 
