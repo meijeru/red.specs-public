@@ -1381,7 +1381,8 @@ The function `to-integer` is defined for
 of `time!`) towards `0`
 * `char!` values: yields the Unicode Code Point number
 * `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
-if there are fewer than 4 bytes, `#{00}` bytes are prepended
+if there are fewer than 4 bytes, `#{00}` bytes are prepended before conversion
+* `issue!` values: interprets the characters, if possible, as a hexadecimal number  
 * `string!` values: yields the result of `load` or an error
 * `date!` values: yields the Unix epoch time value (see e.g. https://en.wikipedia.org/wiki/Unix_time)
 based on the time component adjusted to UTC; because of the limitations on integer values
