@@ -1382,7 +1382,8 @@ of `time!`) towards `0`
 * `char!` values: yields the Unicode Code Point number
 * `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
 if there are fewer than 4 bytes, `#{00}` bytes are prepended before conversion
-* `issue!` values: interprets up to 8 characters, if possible, as a hexadecimal number; further characters are ignored  
+* `issue!` values: interprets up to 8 characters, if possible, as a hexadecimal number;
+further characters are ignored; if the number of characters is odd and less than 8, the last one is ignored  
 * `string!` values: yields the result of `load` or an error
 * `date!` values: yields the Unix epoch time value (see e.g. https://en.wikipedia.org/wiki/Unix_time)
 based on the time component adjusted to UTC; because of the limitations on integer values
