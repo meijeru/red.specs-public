@@ -2367,7 +2367,7 @@ As stated before, evaluation of a block leaves it unchanged. _Execution of a blo
 is the term used to indicate sequential evaluation of the expressions in the block,
 yielding as a result the result of the last evaluation, if any, and the unset value
 otherwise. Two built-in functions are available to evaluate expressions in a block
-and preserve the results in a block.
+and preserve the results in a block: `reduce` and `compose`.
 
 The built-in function `reduce` applied to a block yields a new block, with
 as components all the results of evaluating the block's constituent expressions,
@@ -2379,9 +2379,8 @@ reduce [1 + 2 3 + 4]        ->  [3 7]   ; reduction
 do [1 + 2 3 + 4]            ->  7       ; compare with execution
 ....
 
-Applied to an argument of any other type, `reduce` yields the result of evaluating
-the argument (compare `do`, <<function-code-do-code,section 7.6>>).
-
+Applied to an argument of type `any-function`, `reduce` yields the argument unevaluated;
+for other types, `reduce` yields the result of evaluating the argument.
 
 It is also possible to selectively evaluate the block's expressions: the built-in function
 `compose` will only evaluate those components that are of type `paren!`. With refinement
@@ -2397,14 +2396,20 @@ compose/only [([1 + 2]) (3 + 4)] ->  [[1 + 2] 7]   ; with /only, a block stays a
 compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens are also evaluated
 ....
 
+Applied to an argument of any other type, `compose` yields the result of evaluating the argument.
+
 The built-in function `collect` will execute the block which is its argument
-and yield a new block as result which contains all values resulting from expressions
+and yield a new block as result which contains as components all values resulting from expressions
 that are argument to the function `keep` invoked inside the argument block.
 
 Example:
 ....
 collect [repeat i 10 [if even? i [keep i ** 2]]] -> [4 16 36 64 100]
 ....
+
+All three functions `reduce compose` and `collect` have a refinement `/into` with
+a block value as argument; if present, the components of the result will be inserted into
+this block.
 
 The _shortcut evaluation_ functions `any` and `all` have a block as argument;
 they will evaluate the expressions one by one; `any` will stop at the first
