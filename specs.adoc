@@ -2398,6 +2398,9 @@ compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens ar
 
 Applied to an argument of any other type, `compose` yields the result of evaluating the argument.
 
+The functions `reduce` and `compose` have a refinement `/into` with an argument of type
+`any-block!`; if present, the components of the result will be inserted into this target.
+
 The built-in function `collect` will execute the block which is its argument
 and yield a new block as result which contains as components all values resulting from expressions
 that are argument to the function `keep` invoked inside the argument block.
@@ -2407,9 +2410,8 @@ Example:
 collect [repeat i 10 [if even? i [keep i ** 2]]] -> [4 16 36 64 100]
 ....
 
-All three functions `reduce compose` and `collect` have a refinement `/into` with
-a block value as argument; if present, the components of the result will be inserted into
-this block.
+The function `collect` also has a refinement `/into`, with a `series!` value as argument;
+if present, the collected components will be inserted into this series.
 
 The _shortcut evaluation_ functions `any` and `all` have a block as argument;
 they will evaluate the expressions one by one; `any` will stop at the first
@@ -2738,6 +2740,12 @@ These functions create a new series value, pointing to new components:
 |split <series> <delimiter>    |a block of sub-strings split at the delimiter(s)
 |===
 
+Note that `copy` make a _shallow_ copy, i.e. inner series are not copied. To also copy
+these inner series, use the refinement`/deep`.
+
+Extract has a refinement `into`, with a `series!` argument; if present, this series
+is the target for the resulting components.
+
 For `split`, the `<series>` must be of type `any-string!`, and the
 `<delimiter>` may be a single character, a string or -- in order
 to represent a choice of characters -- a bitset.
@@ -2745,7 +2753,6 @@ to represent a choice of characters -- a bitset.
 
 The function `copy` is also defined on values of type `bitset!`, `map!`, `object!`
 and `error!`.
-
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series. With the exception of
