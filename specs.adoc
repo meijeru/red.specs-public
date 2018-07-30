@@ -1593,6 +1593,10 @@ Fields of `error!` values cannot be set._**See https://github.com/red/red/issues
 
 Setting a map component to `none` removes the component and its key from the map.
 
+An additional facility, for setting _all_ components of an object is provided by the `set` function with
+an 'object!` first argument, and a block of component values as second argument. If the second
+argument is `none`, all components will be set to `none`.
+
 _Path expressions_ may also be used for selection. The correspondence is as follows:
 ....
 select <source> <key> <==> <source>/<key>
