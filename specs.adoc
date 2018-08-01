@@ -2685,7 +2685,8 @@ modified, but pointing to the same components:
 For `image!` values, a `pair!` value is also allowed. This will be converted to
 a regular index, taking into acount that image pixels are stored row-wise.
 The `<expression>` argument of `find` may be a single component
-value or a sub-series. This function is not defined on `image!` values.
+value or a sub-series, or (in the case of `any-string!` series) a `bitset!` value
+representing a choice of values. This function is not defined on `image!` values.
 
 For all series, if the index becomes smaller than `1` or greater than `length + 1`,
 it will be fixed at `1` or `length + 1`.
