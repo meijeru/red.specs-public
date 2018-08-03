@@ -2850,13 +2850,13 @@ The following built-in functions are also defined on bitsets, with the following
 [cols="1,2", options="header"]
 |===
 |function                            |operation
-|insert <bitset> <bitset-spec>       |set the bits at the indicated positions to true
+|insert <bitset> <bitset-spec>       |set the bit(s) at the indicated position(s) to true
 |append <bitset> <bitset-spec>       |idem
-|remove/part <bitset> <bitset-spec>  |set the bits at the indicated position to false
+|remove/part <bitset> <bitset-spec>  |set the bit(s) at the indicated position(s) to false
 |clear <bitset>                      |set all bits to false
 |negate <bitset>                     |complement 
 |copy <bitset>                       |yield a copy of the bitset
-|find <bitset> <bitset-spec>         |yield true if all indicated bits are set
+|find <bitset> <bitset-spec>         |yield true if the indicated bit(s) is/are all set
 |length? <bitset>                    |yield the number of bits reserved for the bitset
 |===
 
