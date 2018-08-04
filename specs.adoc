@@ -1844,7 +1844,7 @@ therefore be bound to a different context, and refer to a different value.
 Values of types `lit-word! set-word!` and `get-word!` (these types form
 typeset `any-word!` with `word!`) have the same binding as the word
 with the same symbol. Values of types `refinement!` and `issue!`,
-although not bindable, may share the same symbol.
+although not bindable, may share that same symbol.
 
 === Contexts
 
@@ -2005,7 +2005,7 @@ and `quote <path-literal>` is equivalent to `'<path-literal>`.
 ==== `word!` type
 
 **`E103`**:: Evaluating a `word!` value proceeds as follows:
-. Determine the context to which the word is bound._**can it happen that there is no context?**_
+. Determine the context to which the word is bound.
 . Obtain the value that the word refers to in this context.
 . Determine the type of this value.
 .. If the type is `unset!` raise an error.
@@ -2026,7 +2026,7 @@ Moreover, with the refinement `/any` no error occurs if the `word!` value refers
 ==== `get-word!` type
 
 **`E104`**:: Evaluating a `get-word!` value proceeds as follows:
-. Determine the context to which the word is bound._**can it happen that there is no context?**_
+. Determine the context to which the word is bound.
 . Obtain the value that the word refers to in this context and yield this as result.
 
 Note that the difference with evaluating a `word!` value is that no errors are raised
