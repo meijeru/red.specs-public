@@ -2375,16 +2375,21 @@ and preserve the results in a block: `reduce` and `compose`.
 
 The built-in function `reduce` applied to a block yields a new block, with
 as components all the results of evaluating the block's constituent expressions,
-in the same order.
+in the same order; arguments of type `any-function!` are not evaluated though.
 
-Example:
+Examples:
 ....
-reduce [1 + 2 3 + 4]        ->  [3 7]   ; reduction
-do [1 + 2 3 + 4]            ->  7       ; compare with execution
+reduce [1 + 2 3 + 4]        ->  [3 7]             ; reduction
+do [1 + 2 3 + 4]            ->  7                 ; compare with execution
 ....
 
 Applied to an argument of type `any-function`, `reduce` yields the argument unevaluated;
-for other types, `reduce` yields the result of evaluating the argument.
+for other non-block types, `reduce` yields the result of evaluating the argument.
+
+Examples:
+....
+reduce :+                     -> make op! [...]   ; not evaluated, therefore not applied
+a: 1 reduce a                 -> 1
 
 It is also possible to selectively evaluate the block's expressions: the built-in function
 `compose` will only evaluate those components that are of type `paren!`. With refinement
@@ -2400,7 +2405,7 @@ compose/only [([1 + 2]) (3 + 4)] ->  [[1 + 2] 7]   ; with /only, a block stays a
 compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens are also evaluated
 ....
 
-Applied to an argument of any other type, `compose` yields the result of evaluating the argument.
+Applied to an argument of any other type, `compose` yields the same result as `reduce`.
 
 The functions `reduce` and `compose` have a refinement `/into` with an argument of type
 `any-block!`; if present, the components of the result will be inserted into this target.
