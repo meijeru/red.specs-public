@@ -413,10 +413,7 @@ list and the body are stored in the slot.
 Values of certain types have _components_ which may be extracted and/or changed using a variety of
 facilities which will be specified below under evaluation. Such types are called _composite_ 
 and the others are _atomic_. All indirect types are composite, but the converse
-is not true: some direct types are also composite. However, component selection
-in values of direct types cannot be used to change the component, only to extract it.
-Making such a component refer to a new value results in a new instance of the direct value
-being created, having the changed component.
+is not true: some direct types are also composite.
 
 ==== Types that admit reflection
 
