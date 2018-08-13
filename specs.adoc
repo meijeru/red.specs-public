@@ -1546,7 +1546,8 @@ poke <destination> <index> <value> <==> <destination>/<index>: <value>
 ....
 Here `<source>` and `<destination>` must be a `<path-head>`, see <<code-path-code,rule S113>>.
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
-in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index.
+in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index
+in a path expression.
 Note also that selecting a component which is a value of type `any-function` by means of a
 path expression will evaluate the component, whereas selection by `pick` will not.
 _**See https://github.com/red/red/issues/3482[issue #3482]**_
