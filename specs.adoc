@@ -2390,6 +2390,7 @@ Examples:
 ....
 reduce :+                     -> make op! [...]   ; not evaluated, therefore not applied
 a: 1 reduce a                 -> 1
+....
 
 It is also possible to selectively evaluate the block's expressions: the built-in function
 `compose` will only evaluate those components that are of type `paren!`. With refinement
