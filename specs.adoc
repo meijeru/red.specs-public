@@ -1808,11 +1808,6 @@ _**See https://github.com/red/red/issues/2662[issue #2662]**_
 For `vector!` values, the component type (`char! integer! float!` or `percent!`) must also be the same.
 However, as with equality, for some combinations of types this requirement is relaxed.
 
-* `char!` and `integer!`
-* `integer! float!` and `percent!`
-* `any-word!` and `refinement!`
-* `any-string!`
-
 If the combination of types of the two values is not allowed as detailed above, or if no
 comparison is defined, the comparison will raise an error.
 
