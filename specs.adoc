@@ -413,7 +413,8 @@ list and the body are stored in the slot.
 Values of certain types have _components_ which may be extracted and/or changed using a variety of
 facilities which will be specified below under evaluation. Such types are called _composite_ 
 and the others are _atomic_. All indirect types are composite, but the converse
-is not true: some direct types are also composite.
+is not true: some direct types are also composite. In Red, values of atomic types are _immutable_,
+and values of composite types are _mutable_.
 
 ==== Types that admit reflection
 
@@ -4685,6 +4686,7 @@ host computer                           <a href = "#red-toolchain">2.2</a>
 IEEE 754 binary64 format                <a href = "#code-float-code">5.2.2</a>
 image spec dialect                      <a href = "#dialects">2.5</a>, <a href = "#code-image-code">5.3.4</a>
 image color/transparency                <a href = "#code-image-code">5.3.4</a>
+immutable value                         <a href = "#atomic-composite-types>4.2.3</a>
 indentation                             <a href = "#textual-structure">3.1</a>
 indirect type                           <a href = "#direct-indirect-function-types">4.2.2</a>
 infix expression                        <a href = "#expressions-and-evaluation-order">3.3</a>
@@ -4699,6 +4701,7 @@ lexical analysis                        <a href = "#textual-structure">3.1</a>
 line feed ( U+000A)                     <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
 map spec dialect                        <a href = "#dialects">2.5</a>, <a href = "#code-map-code">5.3.11</a>
 metadata                                <a href = "#textual-structure">3.1</a>, <a href = "#metadata-for-the-toolchain">16</a>
+mutable value                           <a href = "#atomic-composite-types>4.2.3</a>
 new-line character                      <a href = "#code-string-code">5.2.7</a>
 next line (U+0085)                      <a href = "#textual-structure">3.1</a>, <a href = "#code-string-code">5.2.7</a>
 non-breaking space                      <a href = "#textual-structure">3.1</a>
