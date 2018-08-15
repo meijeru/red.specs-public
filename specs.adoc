@@ -502,7 +502,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 
 Notes:
 
-. Values of all types may be represented using `make`, except those of `datatype! native! action! routine!` and `event!`
+. Values of all types may be represented using `make`, except those of `datatype! native! action! routine! handle!` and `event!`
 . _**See https://github.com/red/REP/issues/14[REP #14]**_
 . _**See https://github.com/red/REP/issues/12[REP #12]**_
 ....
@@ -967,7 +967,7 @@ latter part of the section.
 Note that `make routine!` is forbidden; values of type `routine!` should be made
 by invoking the built-in function `routine` which raises an error
 if called from the interpreter. As noted before (<<overview-table,section 4.2.7>>)
-values of type `datatype! native! action!` and `event!` may not be made using `make`.
+values of type `datatype! native! action! handle!` and `event!` may not be made using `make`.
 
 In this section, non-terminals like `<integer>` do not stand for
 a literal integer but for a value (to be evaluated) of `integer!` type etc.
