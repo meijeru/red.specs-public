@@ -5,6 +5,10 @@ and semantic rules of the Red programming language.
 The approach is largely complementary to the Red Core Language
 documentation found in https://doc.red-lang.org[this Gitbook].
 
+The document is work in progress, and remarks about its correctness and
+completeness are invited as Issues. Concrete suggestions for improvement
+may be offered in the form of Pull requests (PRs).
+
 In as much as feasible, and in order to avoid duplication, existing pieces 
 of official documentation will be referred to. These are:
 
