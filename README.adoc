@@ -1,0 +1,29 @@
+The purpose of this document is to systematically describe the lexical/syntactic
+ and semantic rules of the Red programming language.
+The approach is largely complementary to the Red Core Language
+documentation found in https://doc.red-lang.org[this Gitbook].
+
+In as much as feasible, and in order to avoid duplication, existing pieces 
+of official documentation will be referred to. These are:
+
+. Usage information for the toolchain: https://github.com/red/red/blob/master/README.md[README]
+. Wiki-style general documentation: https://github.com/red/red/wiki[Red Wiki]
+. Red/System: http://static.red-lang.org/red-system-specs-light.html[Red/System Language Specification]
+. Red Programming Language Documentation (Gitbook), notably:
+  .. https://doc.red-lang.org/en/gui.html[GUI System]
+  .. https://doc.red-lang.org/en/reactivity.html[Reactive Programming]
+  .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
+. Overview of value conversions: https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
+. Parse documentation (blog article from 2013): http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse]
+. Handling of NaNs, INFs, and signed zeros: in https://github.com/red/red/wiki[Red Wiki] under Reference
+
+Because of the wealth of built-in functions that Red makes available, combined
+with the numerous optional facilities ("refinements") that these functions have,
+it is not possible to give an exhaustive treatment of Red's functionality.
+Red allows quite detailed information about a function's operation to be 
+documented within the function specification, and 
+in order to be able to use any function optimally
+this can be consulted interactively (help-facilities).
+
+This document is *not* intended to be used in order to learn the language (tutorial);
+for that purpose sufficient materials can be found using the Red Wiki.
