@@ -1,5 +1,4 @@
-== README
-
+== About this document
 
 The purpose of this document is to systematically describe the lexical/syntactic
 and semantic rules of the Red programming language.
