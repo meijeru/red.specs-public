@@ -1,5 +1,8 @@
+== README
+
+
 The purpose of this document is to systematically describe the lexical/syntactic
- and semantic rules of the Red programming language.
+and semantic rules of the Red programming language.
 The approach is largely complementary to the Red Core Language
 documentation found in https://doc.red-lang.org[this Gitbook].
 
