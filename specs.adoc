@@ -1138,7 +1138,9 @@ The new object is said to be _derived_ from the prototype.
 An additional built-in function `construct <spec>` creates an object,
 but without executing the `<spec>` block. It has a refinement `/with`
 to specify a base object which will be extended with the (unevaluated)
-set-word/value pairs in `<spec>`. The words `true yes on false no off`
+set-word/value pairs in `<spec>`; if any set-word in `<spec>`
+is the same as a field name of the base object, the associated value
+will replace the original field value. The words `true yes on false no off`
 and `none` will be evaluated to their `logic!` or `none!` value, except if
 the refinement `/only` is specified.
 
