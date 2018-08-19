@@ -1892,7 +1892,7 @@ Words are bound to contexts as a result of:
 - or through application of the built-in `load` function
 - or when a string representing some values, including words, is submitted to the REPL
 * applying the built-in `set` function
-* evaluating a `set-word!` value
+* evaluating an expression consisting of a `set-word!` value followed by another expression
 * evaluating a `make object! <spec>` construct
 * making an `error!` value
 * applying a function to its arguments
@@ -1907,10 +1907,9 @@ function `value?` tests if it does.
 ==== Lexical analysis
 
 Every lexeme that is recognized in the source text as representing
-a value of a type in `any-word! refinement!` and `issue!`,
-either by the operation of the toolchain or
+a value of a type in `any-word!`, either by the operation of the toolchain or
 -- at runtime -- by the `load` function, is bound to the global context,
-and will initially not refer to any value in that context.
+and will initially refer to the unset value in that context.
 
 ==== Setting words to values
 
@@ -1948,7 +1947,7 @@ and will treat them at any depth within the block and its sub-blocks
 For each word to be treated it will search for the presence of an equally spelled
 word in the given context, which is supplied in the form of a word
 (whose context will be used), or of an object or error value or a function.
-If an equally spelled word is found, the function will change the context
+If an equally spelled word is found, the function `bind` will change the context
 of the treated word to that given context and will adapt the index of the word;
 otherwise, the word is left untouched.
 
@@ -1966,6 +1965,10 @@ and a word.
 
 It will bind the word to the object or error context, and yield the word thus
 bound as result.
+
+The following equivalence may be observed, where `o` is an object with field `f`:
+
+`:o/f <==> get in o 'f`
 
 == Evaluation rules
 
