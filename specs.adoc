@@ -1750,7 +1750,7 @@ combinations of types and yield an error otherwise. Also this will be noted.
     |=?         |same?
     |<>         |not-equal?
     |<          |lesser?
-    |<=         |lesser-or-equal?
+    |\<=        |lesser-or-equal?
     |>          |greater?
     |>=         |greater-or-equal?
 |===
@@ -1968,7 +1968,9 @@ bound as result.
 
 The following equivalence may be observed, where `o` is an object with field `f`:
 
-`:o/f <==> get in o 'f`
+....
+:o/f <==> get in o 'f`
+....
 
 == Evaluation rules
 
