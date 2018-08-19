@@ -1969,7 +1969,7 @@ bound as result.
 The following equivalence may be observed, where `o` is an object with field `f`:
 
 ....
-:o/f <==> get in o 'f`
+:o/f <==> get in o 'f
 ....
 
 == Evaluation rules
