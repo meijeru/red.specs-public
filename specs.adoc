@@ -1205,13 +1205,17 @@ and the `<return-spec>` any `<typeset-name>` must refer to a pre-defined typeset
 _**See https://github.com/red/red/issues/3285[issue #3285]**_
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
-may be used to document the purpose and usage of the associated  `<argument>`. When present, the type(set)s
-specified for an `<argument>` will be used to check the type of the actual argument supplied.
-Otherwise, `default!` will be assumed. Likewise, when present, the type(set)s of the `<return-spec>`
+may be used to document the purpose and usage of the associated  `<argument>`. In this
+connection, the `<word-literal>` of the `<refinement>` is also considered an <argument>.
+When present, the type(set)s specified for an `<argument>` will be used to check the type
+of the actual argument supplied. Otherwise, `default!` will be assumed.
+Likewise, when present, the type(set)s of the `<return-spec>`
 will be used to check the type of the result.
 The `<word>` s of the `<argument>` s following the `<refinement>`, if any,
 are to be matched with actual arguments, if the function application (see <<code-function-code-type,rule `E110`>>)
 specifies the corresponding `<selector>` (see <<code-path-code,rule `S123`>>).
+In that case, the actual argument corresponding to the selector is `true`, whereas
+otherwise both that argument and the optional arguments are `none`.
 The optional argument `/local` is conventionally used to list the local words of the function.
 It is normally put after any other optional arguments (in fact the built-in `help` function
 expects this to be the case). It is not usual, although not forbidden, to supply actual arguments
@@ -1934,14 +1938,13 @@ This is treated in <<code-function-code-type,rule `E110`>>.
 
 ==== Built-in `bind` function
 
-The built-in function `bind` has two arguments: a word (or block of words)
-and a context.
+The built-in function `bind` has two arguments: a value of type `any-word!`
+or a block containing, amongst others, such values, and a context.
 
-The function will try to change the binding of a single word or
-of all words in a block, and will return the (modified) word or block.
-It operates on values of type `word! lit-word! set-word!` and `get-word!`
-(for brevity, called "words" in the rest of this section),
-and will treat them at any depth within the block and its sub-blocks
+For brevity, values of type `any-word!` will be called "words" in the rest
+of this section. The function will try to change the binding of a single word or
+of all words in the block, and will return the (modified) word or block.
+It will treat words at any depth within the block and its sub-blocks
 (including values of type `paren! path! lit-path! set-path! get-path!` and `hash!`).
 
 For each word to be treated it will search for the presence of an equally spelled
