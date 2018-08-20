@@ -4060,6 +4060,7 @@ F    acos        N    arccosine
 F    asin        N    arcsine
 F    atan        N    arctangent
 F    atan2       N    arctangent2
+F    average
 N    checksum
 A    complement
 F    cos         N    cosine
@@ -4091,6 +4092,7 @@ N    sign?
 F    sin         N    sine
 F    sqrt        N    square-root
 O    -           A    subtract
+F    sum
 F    tan         N    tangent
 O    xor         A    xor~
 N    zero?
