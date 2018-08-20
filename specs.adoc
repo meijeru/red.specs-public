@@ -132,6 +132,7 @@ Programs written in Red/System can be compiled and executed using the toolchain.
 As a dialect of Red its purpose is to provide low-level system programming
 capabilities, and it serves both as a tool to build Red's runtime library
 and as intermediate language for the compiler to generate machine code from.
+The elements of a Red/System program are lexically the same as Red values.
 Red/System is specified in a separate document (see <<additional-documentation,section 18>>).
 
 == Structure of Red programs
