@@ -2468,8 +2468,9 @@ In addition, there are operators and prefix functions for exponentiation (`**` o
 modulo (`//` or `modulo`) and remainder (`%` or `remainder`). Enquiry functions are:
 `sign? positive? negative? zero? even? odd? NaN?`. The unary minus function is only represented
 by a prefix function `negate`, not by an operator, since these have always two arguments.
-Lastly, there are functions for determining the absolute value (`absolute`),
-the maximum and minimum of two numbers (`max min`) and for rounding (`round`).
+Lastly, there are functions for rounding a number (`round`) and for determining
+the absolute value of a number (`absolute`), the maximum and minimum of two numbers (`max min`),
+and the sum and average of a set of numbers (`sum` and `average`).
 
 The arity (number of arguments) and the argument and result types for these
 functions are as follows.
@@ -2487,6 +2488,9 @@ functions are as follows.
 |absolute round      |1       |number! time! pair! |                |same as operand^3^
 |max min             |2       |scalar!             |scalar!         |same as greatest/smallest operand +
 (operand 1 if equal)
+|sum                 |1       |any-list!^4^ vector! |               |same as individual numbers +
+(refer to table below if not all numbers have the same type)
+|average             |1       |any-list!^4^ vector! |               |float!
 |===
 
 Notes:
@@ -2495,6 +2499,7 @@ Notes:
 the result value fits in 32 bits; otherwise result type is `float!`
 . result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
+. components must be of type `number!`
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
