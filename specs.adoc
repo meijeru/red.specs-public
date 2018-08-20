@@ -2490,7 +2490,7 @@ functions are as follows.
 (operand 1 if equal)
 |sum                 |1       |any-list!^4^ vector! |               |same as individual numbers +
 (refer to table below if not all numbers have the same type)
-|average             |1       |any-list!^4^ vector! |               |float!
+|average             |1       |any-list!^4^ vector! |               |float! percent!^5^
 |===
 
 Notes:
@@ -2500,6 +2500,7 @@ the result value fits in 32 bits; otherwise result type is `float!`
 . result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
 . components must be of type `number!`
+. result type is `percent!` if sum is of that type, otherwise `float!`
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
