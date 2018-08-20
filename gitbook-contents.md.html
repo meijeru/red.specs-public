@@ -1,0 +1,203 @@
+**Suggested structure for the Gitbook**
+<center>*Rudolf Meijer (meijeru) 22-Aug-2018*</center>
+
+!!!
+   I understand that the current Gitbook is to evolve into the Red Language Reference document
+   as per the (draft) [Documentation plan](https://github.com/red/REP/blob/master/REPs/rep-0003.adoc).
+   In addition to detailed treatment of individual items such as datatypes,
+   this document should then have, in my opinion, some general sections which put the
+   others in perspective. For most of these, there is material to be found
+   in the current [specs document](https://github.com/meijeru/red.specs-public/blob/master/specs.adoc).
+   In what follows, _specs section xx_ will refer the indicated section of that document.
+
+!!! WARNING
+   An important element that I have difficulty fitting in, is the multi-purpose
+   nature of `path!` values. Their evaluation rule is the most complicated one of all.
+
+!!!
+   General remark: the document should use cross-references in the form of
+   hyperlinks as much as possible.
+
+
+Introduction
+====
+This is the analog of section 1 in the specs document, but should of course
+take the slightly different nature of the Gitbook into account.
+It should perhaps mention who is responsible, and who can contribute, and how.
+
+Purpose
+----
+
+Conventions
+----
+
+Overview
+====
+
+This could be taken over (with suitable improvements) from the similar
+section 2 in the specs document. These short sub-sections are considered essential
+to stress the particular nature of Red, its differences w.r.t. other programming
+languages, and its strong points.
+
+Characterization
+----
+
+Comes straight from the [README](https://github.com/red/red/blob/master/README.md)
+in the toolchain repository.
+
+Red toolchain
+----
+
+Possibly needs some more information about the two consoles (CLI- and GUI-based).
+
+Values and types
+----
+
+Introduction to section 3.
+
+Words, contexts and binding
+----
+
+Introduction to section 5.
+
+Dialects
+----
+
+Could be slightly expanded from specs section 2.5.
+
+Current status and outlook
+====
+
+This is a new section, needed to inform on the one hand about what is not yet
+in, and on the other hand about what is to come in the near future.
+
+Structure of Red programs
+====
+
+This could be adapted from the specs document, and made less formal, while
+conveying the essential characteristics of Red programs as they appear
+to the reader.
+
+
+Lexical matters
+----
+
+See specs section 3.1/2. A reference to the coding style guide (Annex 1) is useful.
+
+Expressions and evaluation order
+----
+
+Important and related to section 5.
+
+Types and values
+====
+
+The current approach of the Gitbook, of having one section per datatype,
+is useful and should be kept. However, the following element should be **uniformly**
+part of each sub-section:
+- a characterization of the type, as per specs section 4.2
+- the typesets that the type belongs to
+- a complete list of actions defined for values of the type
+In addition, an overview of types (shortened from specs section 4.2), a type hierarchy
+(specs section 4.3) and a section on type(set) related functions (specs section 4.4)
+would usefully complete this section.
+
+Operations on values
+====
+
+Even though all actions applicable to values of a particular type would be
+mentioned in section 3, it would be useful to collect them per action in
+this section. That would e.g. permit to show the universality of series actions.
+Also, the triplet `make/to/as` could be treated here (see specs sections 5.4/5.5).
+The structure could be inspired by the one that is used in each source file `<type>.reds`:
+general/scalar/bitwise/series/IO. Sources are spec sections 5.6/5.7/5.8, 8 and 9.
+
+Words, binding and evaluation rules
+====
+
+This is a very important section, whose treatment should be finely balanced
+between tutorial and formality. There is enough material in specs seections 6 and 7,
+but that is not of the right style for the Gitbook. Refer also back to section 2.2.
+
+Control
+====
+The treatment could be largely taken over from specs section 10/12, possibly made
+somewhat less formal.
+
+Control structures
+----
+
+See specs section 10
+
+Exceptions
+----
+
+See specs section 12
+
+Parse
+====
+
+This should be rewritten from current documentation (is there anything more
+than the [blog article from 2013](https://www.red-lang.org/2013/11/041-introducing-parse.html)?).
+
+Input/Output
+====
+
+Could be inspired by specs section 11 and the work already done by others.
+
+Reactivity
+====
+
+Already there.
+
+GUI
+====
+
+Already there.
+
+Additional facilities
+====
+
+Preprocessor
+----
+
+Already there.
+
+Environment and OS-related functions
+----
+
+See specs section 13.5 (to be updated?).
+
+Help facilities
+----
+
+See specs section 13.6.
+
+Metadata for the toolchain
+----
+
+See specs section 17, to be updated/refined.
+
+# Annexes
+
+The proposed Annexes will make the Gitbook so much more useful.
+
+(##) Annex 1. Coding Style Guide
+
+Already there.
+
+(##) Annex 2. Pre-defined words list
+
+See specs section 14. Could be cross-referenced to a greater extent?
+
+(##) Annex 3. System object
+
+See specs section 15, to be updated. This could include the error list, given that
+system/catalog/errors contains them all.
+
+(##) Annex 4. Glossary
+
+Extremely useful given some of the idiosyncracies of Red. Should of course be
+fully cross-referenced. An example is specs section 19.
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
