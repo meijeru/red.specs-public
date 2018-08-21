@@ -1783,7 +1783,8 @@ to the components. For `any-object!` the requirements are identity of field name
 and (strict) equality of field values. If the components or field values are also of
 `any-block!` or `any-object!` type, there is recursion involved, with cycle detection.
 For values of `vector!` type, these tests also apply pairwise to the components. In
-addition, the component type (`char! integer! float!` or `percent!`) must be the same.
+addition, the component type (`char! integer! float!` or `percent!`) must be the same,
+but the component size in bits may be different.
 
 In all cases, for the `equal?` and `not-equal?` test, the requirement of equal type
 is relaxed for several combinations of types of the two values.
