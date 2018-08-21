@@ -151,13 +151,17 @@ and this construct may again be enclosed in grouping tokens etc.
 
 As a rule, lexemes must be separated from each other and from grouping tokens by
 one or more _whitespace characters_. In the Red source text, whitespace characters are
-space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), next line (`U+0085`)
+space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), carriage return (`U+000D`), next line (`U+0085`)
 and non-breaking space (`U+00A0`). Consequently, Red program texts are _free form_,
 i.e. neither their arrangement in separate lines, nor their formatting with indentation
 and the like, has any significance for their interpretation.
 
 _**This is most certainly short of some whitespace values, please correct
 See also https://github.com/red/red/issues/2492[issue #2492]**_
+
+When translating input code points to Red character values, a carriage return character
+when followed by a line feed is ignored, but if it occurs without a following line feed it is
+treated as if it were a line feed.
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
 can be relaxed. For example, it is possible to omit whitespace between two consecutive `block!`
