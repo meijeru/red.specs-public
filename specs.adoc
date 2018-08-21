@@ -4817,7 +4817,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#code-function-code-type">7.4.1</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2633">2633</a>   <a href="#errors">12.1</a>
-<a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
+<a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#code-routine-code">5.3.9</a>
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.12</a>
 <a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#target-type-code-logic-code">5.4.2</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
