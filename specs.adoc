@@ -1578,7 +1578,8 @@ The built-in functions `first second third fourth` and `fifth` are defined as `p
 
 Indexing with values outside the allowed range lead to an error for values of direct type,
 both in case of extraction and changing, and also for values of indirect type in case of changing;
-on component extraction of values of indirect type an index out of range yields a `none` result.   
+on component extraction of values of indirect type an index out of range yields a `none` result.
+_**See issue #3516**_
 
 ==== Selection by "key"
 
@@ -4844,6 +4845,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-code-any-string-code">5.4.3</a>
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
+<a href= "https://github.com/red/red/issues/3516">3516</a>   <a href="#indexing">5.6.1</a>
 
 REP    spec
 issue  section
