@@ -2108,16 +2108,16 @@ use the value obtained as `<selector>` and go to the beginning of step 3.
 or `any-object!`, the intermediate result is the component of the composite value
 at the index given by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
-.. If the `<selector>` is an `<integer>` and the composite type is `map!`
-go to step iv. If the `<selector>` is an
-`<integer>` and the composite type is `any-object!` the path is in error.
-.. If the `<selector>` is a `<word>`, and the composite value is of
-indirect type (except `image!` and `email!`), an intermediate result is obtained by
-applying the built-in function `select`
-with as arguments the composite value and the `<selector>`.
+.. If the composite type is `any-object!` and the `<selector>` is not a
+`<word>` the path is in error.
+..If the composite type is `map!` and the `<selector>` is not of a type in
+`scalar! any-word! any-string!` or `binary!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the composite value is of
 direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
 as explained in <<selection-by-key,section 5.6.2>>.
+.. If the composite value is of indirect type (except `image!` and `email!`),
+an intermediate result is obtained by applying the built-in function `select`
+with as arguments the composite value and the `<selector>`.
 .. Otherwise, the path is in error.
 .. If a further `<selector>` is present, use the intermediate result just obtained
 as evaluated `<path-head>` and go to step 2.
