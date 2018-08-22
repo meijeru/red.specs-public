@@ -2110,7 +2110,7 @@ at the index given by the `integer!` value (0-origin for `bitset!` values,
 1-origin for values of all other composite types).
 .. If the composite type is `any-object!` and the `<selector>` is not a
 `<word>` the path is in error.
-..If the composite type is `map!` and the `<selector>` is not of a type in
+.. If the composite type is `map!` and the `<selector>` is not of a type in
 `scalar! any-word! any-string!` or `binary!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the composite value is of
 direct type, `image!`, `email!` or `event!`, an intermediate result is obtained
