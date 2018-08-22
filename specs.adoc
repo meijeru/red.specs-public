@@ -159,10 +159,6 @@ and the like, has any significance for their interpretation.
 _**This is most certainly short of some whitespace values, please correct
 See also https://github.com/red/red/issues/2492[issue #2492]**_
 
-When translating input code points to Red character values, a carriage return character
-when followed by a line feed is ignored, but if it occurs without a following line feed it is
-treated as if it were a line feed.
-
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
 can be relaxed. For example, it is possible to omit whitespace between two consecutive `block!`
 values and between `word!` values and `block!` values. These examples are all syntactically valid:
@@ -3196,9 +3192,11 @@ The built-in function `read` will read a string from a file on an external
 device which is indicated by a `file!` or `url!` value as its argument. The content
 is assumed to be UTF-8 encoded unless the refinement `/as` is used,
 which has a `word!` argument indicating the character encoding _**What is allowed??**_.
+When translating input code points to Red character values, a carriage return character
+(`U+000D`) when followed by a line feed character (`U+000A`) is ignored,
+but if it occurs without a following line feed it is treated as if it were a line feed.
 If the refinement `/lines` is used, the content will be split into lines
-at the line feed character (`U+000A`); a preceding carriage return (`U+000D`),
-if present, will be accounted for. If the refinement `/binary` is used,
+at the line feed character. If the refinement `/binary` is used,
 the content will be read as a `binary!` value and not be decoded.
 
 The built-in function `load` also accepts a `file!` or `url!` value
