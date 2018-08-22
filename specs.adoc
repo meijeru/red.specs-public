@@ -1576,6 +1576,10 @@ top to bottom).
 
 The built-in functions `first second third fourth` and `fifth` are defined as `pick <expression> 1` etc.
 
+Indexing with values outside the allowed range lead to an error for values of direct type,
+both in case of extraction and changing, and also for values of indirect type in case of changing;
+on component extraction of values of indirect type an index out of range yields a `none` result.   
+
 ==== Selection by "key"
 
 This is possible both for values that are sequences (with types in `series!`,
@@ -1665,6 +1669,11 @@ if the value is longer, the remainder is ignored; a `tuple!` value can also be s
 components will be used for each pixel; if an `integer!` value is supplied, its 4 bytes will
 be similarly used _**see https://github.com/red/red/issues/2883[issue #2883]**_
 * `event!` values: only the `type` component can be set to a `word!` value
+
+Selection by a key of the wrong type or wrong value leads to a `none` result
+on extraction for values of all indirect type except `email!` where an error is produced.
+On changing, an error is produced for values of all types whether direct or indirect,
+except in the case of `map!` values, where a non-existing key will be added to the map. 
 
 ==== Overview table
 
