@@ -2183,7 +2183,7 @@ evaluated `<path-head>` and go to step 2
 The evaluation of a `set-path!` value proceeds as follows:
 
 . Start with the first path component. Evaluate this `<path-head>`, which is a `<word>`,
-as per <code-word-code-type,rule `E103`>>.
+as per <<code-word-code-type,rule `E103`>>.
 . If there is no next element which is a `<selector>`, use the value of the `<path-head>`
 as intermediate result and go to step 4.
 .. Otherwise, determine the type of the evaluated `<path-head>`.
