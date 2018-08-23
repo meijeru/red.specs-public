@@ -3457,7 +3457,7 @@ system/catalog/errors/access is an object! of value:
 ....
 
 The `code` for each individual error is the base number + the ordinal number
-of the error in the sub-object, e.g. for `no-connect` it is `502`.
+of the error in the sub-object (0-origin), e.g. for `no-connect` it is `502`.
 
 ==== Raising and interception
 
