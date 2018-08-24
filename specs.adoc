@@ -730,7 +730,7 @@ A `<symbol-literal>` is written as one or more characters from the entire Unicod
 (notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
 The following punctuation characters from the ASCII subset *are* allowed: `! & ' * + - . < = > ? _ `` `| ~`.
 However, the combination `<>` may only occur on its own, and `<...>` with any characters in
-between the `<` and `>` character is a value of type `tag!` (see <<code-tag-code, section 5.2.11>> 
+between the `<` and `>` character is a value of type `tag!` (see <<code-tag-code, section 5.2.11>>).
 Symbols, i.e. instances of `<symbol-literal>` are _case-insensitive_, i.e. changing any letter
 in the symbol into the corresponding upper- or lower-case variant does not create a different symbol.
 As stated above (<<formal-grammar,section 3.2>>), a symbol is not a value of the
@@ -740,8 +740,9 @@ and `issue!` <<code-issue-code,section 5.2.16>>
 
 A `<word-literal>` is a `<symbol-literal>` that does not begin with `0-9` or `'`.
 
-Examples: `abc`  `Abc`  `ABC`  `+`  `<>`  `integer!`  `last-item?` ; the first three are the same `word!` value. 
-`1a` is not a `<word-literal>`. `<p>` is a `<tag-literal>`. 
+Examples: `abc`  `Abc`  `ABC`  `+`  `<>`  `integer!`  `last-item?` ; the first three are the same `word!` value.
+
+`1a` is not a `<word-literal>`; `<p>` is a `<tag-literal>`. 
 
 
 ==== `char!`
@@ -841,7 +842,7 @@ Escaped characters of the form `%<hex>` are accepted and converted.
 
 **`S121`**::
 
-A `<tag-literal>` value is written as zero or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
+A `<tag-literal>` value is written as one or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
 Characters `"` and `'` are allowed but must each be properly paired and nested.
 
 ==== `binary!`
