@@ -228,9 +228,7 @@ several types, including `<word-literal>` as will be seen in <<code-word-code,se
              | '<path-literal>                          ; lit-path!
              | <path-literal>:                          ; set-path!
              | :<path-literal>                          ; get-path!
-             | <refinement-literal>                     ; refinement!
-             | <issue-literal>                          ; issue!
-
+ 
     <group>    ::= <paren-literal>
              | <block-literal>
              | <map-literal>
@@ -735,7 +733,7 @@ However, the combination `<>` may only occur on its own, and `<...>` with any ch
 between the `<` and `>` character is a value of type `tag!` (see <<code-tag-code, section 5.2.11>> 
 Symbols, i.e. instances of `<symbol-literal>` are _case-insensitive_, i.e. changing any letter
 in the symbol into the corresponding upper- or lower-case variant does not create a different symbol.
-As stated above (<<textual-structure,section 3.1>>), a symbol is not a value of the
+As stated above (<<formal-grammar,section 3.2>>), a symbol is not a value of the
 language. Its use is in explaining the common characteristics of values of
 several types, namely `word!`, `refinement!` <<code-refinement-code,section 5.2.15>>
 and `issue!` <<code-issue-code,section 5.2.16>>
