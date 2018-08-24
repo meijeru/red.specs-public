@@ -4806,6 +4806,7 @@ shape dialect                           <a href = "#dialects">2.5</a>, <a href =
 shortcut evaluation                     <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
 single value                            <a href = "#textual-structure">3.1</a>
 space (U+0020)                          <a href = "#textual-structure">3.1</a>
+symbol                                  <a href = "#formal-grammar">3.2</a>, <a href = "#code-word-code">5.2.5</a>, <a href = "#words">6.1</a>
 syntactic analysis                      <a href = "#textual-structure">3.1</a>
 system dialect                          <a href = "#dialects">2.5</a>, <a href = "#additional-documentation">18</a>
 system object                           <a href = "#system-object">15</a>
