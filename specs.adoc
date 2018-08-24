@@ -209,8 +209,6 @@ in the individual sub-sections of <<values,section 5>>.
              | '<word-literal>                          ; lit-word!
              | <word-literal>:                          ; set-word!
              | :<word-literal>                          ; get-word!
-             | /<word-literal>                          ; refinement!
-             | #<word-literal>                          ; issue!
              | <char-literal>                           ; char!
              | <string-literal>                         ; string!
              | <file-literal>                           ; file!
@@ -222,6 +220,9 @@ in the individual sub-sections of <<values,section 5>>.
              | '<path-literal>                          ; lit-path!
              | <path-literal>:                          ; set-path!
              | :<path-literal>                          ; get-path!
+             | <refinement-literal>                     ; refinement!
+             | <issue-literal>                          ; issue!
+
     <group>    ::= <paren-literal>
              | <block-literal>
              | <map-literal>
@@ -315,8 +316,8 @@ The full list of types of the languages is given below, with an explanation of t
 |`lit-word!`      |quoted (unevaluated) word
 |`set-word!`      |word to be given a value to refer to
 |`get-word!`      |word to be evaluated
-|`refinement!`    |optional argument of function
-|`issue!`         |literal identifier (word that does not refer to a value)
+|`refinement!`    |indicates optional argument of function
+|`issue!`         |literal identifier
 |`handle!`        |opaque integer for communication with operating system
 |`block!`         |ordered collection of values of any type (polymorphic array),
                    may also be used as unordered collection (set)
@@ -453,7 +454,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 [cols="1,1,1,1,1,1,2", options="header"]
 |===
 
-|type |value representation^1^  |storage   |atomic/composite |reflection? |evaluation |parent type
+|type |value representation^1^   |storage   |atomic/composite |reflection? |evaluation |parent type
 |`datatype!`   |using words      |direct    |atomic           |N           |passive    |
 |`typeset!`    |using `make`     |direct    |atomic           |N           |passive    |
 |`none!`       |using words      |direct    |atomic           |N           |passive    |
@@ -955,6 +956,10 @@ since the leap years are computed according to that calendar both for present
 and future, but also for all past years, including before 1582 AD.
 
 Examples: `20170705T175800Z`, `5-Jul-2017/19:58+2:00` ; these values are equal.
+
+==== `refinement!`
+
+==== `issue!`
 
 === Creation of values (`make`)
 
