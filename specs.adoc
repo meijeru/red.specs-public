@@ -980,6 +980,10 @@ Examples: `20170705T175800Z`, `5-Jul-2017/19:58+2:00` ; these values are equal.
 A `<refinement-literal>` is written as a `/` character followed by a `<symbol-literal>`.
 A `<refinement-literal>` *may* contain a digit `0-9` or `'` as first character after the `/`.
 
+Note that one of the main uses of refinement values is in indicating optional arguments
+of functions. As will be seen in <<code-function-code,section 5.3.8>>, these optional
+arguments are of the restricted form `/<word-literal>`. 
+
 Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are the same `refinement!` value.
 
 ==== `issue!`
