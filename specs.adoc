@@ -990,7 +990,7 @@ Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are the same `refinem
 
 **`S137`**::
 An `<issue-literal>` is written as a `\#` character followed by a `<symbol-literal>`.
-An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `\#`.
+An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `#`.
 
 Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are the same `issue!` value.
 
