@@ -959,7 +959,31 @@ Examples: `20170705T175800Z`, `5-Jul-2017/19:58+2:00` ; these values are equal.
 
 ==== `refinement!`
 
+**`S136`**::
+Similar to a `<word-literal>`, a `<refinement-literal>` is written as a `/` character
+followed by one or more characters from the entire Unicode range excluding _control characters_
+(notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
+A `<refinement-literal>` *may* contain a digit `0-9` or `'` as first character after the `/`.
+Refinements are _case-insensitive_, i.e. changing any letter in the refinement into
+the corresponding upper- or lower-case variant does not create a different word.
+
+Examples: `/abc`  `/Abc`  `/ABC`  `1a`  ; the first three are the same `refinement!` value.
+
+Note: punctuation characters from the ASCII subset that *are* allowed in refinements are: `! & ' * + - . < = > ? _ `` `| ~`.
+
 ==== `issue!`
+
+**`S137`**::
+Similar to a `<word-literal>`, an `<issue-literal>` is written as a `#` character
+followed by one or more characters from the entire Unicode range excluding _control characters_
+(notably Unicode sets C0, C1), whitespace characters and the following set: `/ \ ^ , [ ] ( ) { } " # $ % @ : ;`.
+An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `/`.
+Issues are _case-insensitive_, i.e. changing any letter in the refinement into
+the corresponding upper- or lower-case variant does not create a different word.
+
+Examples: `/abc`  `/Abc`  `/ABC`  `1a`  ; the first three are the same `issue!` value.
+
+Note: punctuation characters from the ASCII subset that *are* allowed in issues are: `! & ' * + - . < = > ? _ `` `| ~`.
 
 === Creation of values (`make`)
 
@@ -1200,8 +1224,8 @@ Note that `error!` values all have `class = 0`.
 <argument> ::= <argument-name> <argument-doc>° | <argument-name> [<typeset-element>*] <argument-doc>°
 <argument-name> ::= <word-literal> | '<word-literal> | :<word-literal>
 <argument-doc> ::= <string>
-<optional-arguments> ::= <refinement> <argument-doc>° <argument>*
-<refinement> ::= /<word-literal>
+<optional-arguments> ::= <function-refinement> <argument-doc>° <argument>*
+<function-refinement> ::= /<word-literal>
 <return-spec> ::= return: [<typeset-element>*]
 <function-body> ::= <block>
 ....
@@ -1212,12 +1236,12 @@ _**See https://github.com/red/red/issues/3285[issue #3285]**_
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. In this
-connection, the `<word-literal>` of the `<refinement>` is also considered an <argument>.
+connection, the `<word-literal>` of the `<function-refinement>` is also considered an <argument>.
 When present, the type(set)s specified for an `<argument>` will be used to check the type
 of the actual argument supplied. Otherwise, `default!` will be assumed.
 Likewise, when present, the type(set)s of the `<return-spec>`
 will be used to check the type of the result.
-The `<word>` s of the `<argument>` s following the `<refinement>`, if any,
+The `<word>` s of the `<argument>` s following the `<function-refinement>`, if any,
 are to be matched with actual arguments, if the function application (see <<code-function-code-type,rule `E110`>>)
 specifies the corresponding `<selector>` (see <<code-path-code,rule `S123`>>).
 In that case, the actual argument corresponding to the selector is `true`, whereas
