@@ -673,8 +673,9 @@ In the following rules, the sign `°` signifies an optional element.
 ==== `integer!`
 
 **`S111`**::
-An `<integer-literal>` is written as a signed integer number from `-2^31^` to `2^31^-1`
+An `<integer-literal>` is written as an integer number from `-2^31^` to `2^31^-1`
 in decimal notation. Leading zeroes are allowed, as well as `'` signs between digits, for separation.
+A `+` sign is allowed but not compulsory.
 _**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
 
 Examples: `123`  `-123`  `+0001`  `1'000`
@@ -682,12 +683,14 @@ Examples: `123`  `-123`  `+0001`  `1'000`
 ==== `float!`
 
 **`S112`**::
-A `<float-literal>` is written as a signed floating point number in the range of the
+A `<float-literal>` is written as a floating point number in the range of the
 _IEEE 754 binary64 format_, in decimal notation. As an alternative to the dot `.` as decimal point, 
 a comma `,` may be used. Leading zeroes are allowed, as well as `'` signs between digits, for separation.
+A `+` sign is allowed but not compulsory.
 No zero is needed before the decimal point when the absolute value is smaller than `1.0`.
-The number may be followed by `E` or `e` with a signed integer exponent on base 10.
-Note that in this case, no decimal point is required.
+The number may be followed by `E` or `e` with an integer exponent on base 10.
+Leading zeroes are allowed in the exponent, and a `+` sign is allowed but not compulsory.
+Note that in this case, no decimal point is required, and that `'` signs between digits are not allowed.
 
 Examples: `1.23`  `-0,5`  `.5`  `+010.20`  `1E9` `1E-9`
 
@@ -1822,7 +1825,8 @@ For two values to succeed the `strict-equal?` test, they have to be of the same
 type and also have exactly the same value, i.e. not have the differences allowed
 for the `equal?` test.
 
-The `equal?` test ignores case differences in the spelling of words and strings,
+The `equal?` test ignores case differences in the spelling of words 
+(values of types in `all-word!`) and strings (values of types in `any-string!`),
 and in the case of floating point numbers, a very small difference (1 in 10^16^)
 in actual value._**See also https://github.com/red/red/issues/2658[issue #2658]**_
 
@@ -1862,8 +1866,10 @@ action! native! op! handle! event!` and `unset!`.
 
 As a rule, for ordering comparisons the types of the two values have to be the same.
 _**See https://github.com/red/red/issues/2662[issue #2662]**_
-For `vector!` values, the component type (`char! integer! float!` or `percent!`) must also be the same.
-However, as with equality, for some combinations of types this requirement is relaxed.
+For `vector!` values, the component type (`char! integer! float!` or `percent!`) must also be the same
+(the size in bits of the components may differ).
+
+For some combinations of types this requirement is relaxed, in the same manner as for equality comparisons.
 
 If the combination of types of the two values is not allowed as detailed above, or if no
 comparison is defined, the comparison will raise an error.
