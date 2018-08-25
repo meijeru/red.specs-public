@@ -1635,12 +1635,13 @@ put <destination> <key> <value>
 ....
 The semantics of selection are different in the two cases (sequences vs. objects/maps).
 
-* For sequences, a `find` action is performed on the components using the key,
+* For sequences, a case-insensitive `find` action is performed on the components using the key,
 which should be a single value of allowable type for `find`, or a sequence of such values,
 and the result is the component *after* the first occurrence of the key (single or sequence)
 if found, and `none` otherwise.
 * For the other types, which contain key/value pairs, the result is the value
-corresponding to the given key. In these cases, it is customary to call the keys _fields_.
+corresponding to the given key, or `none` if there is such key in a `map!` value, and an error
+in case of an `object!` or `error!` value.
 Fields of `error!` values cannot be set._**See https://github.com/red/red/issues/2554[issue #2554]**_
 
 Setting a map component to `none` removes the component and its key from the map.
@@ -2764,6 +2765,8 @@ a regular index, taking into acount that image pixels are stored row-wise.
 The `<expression>` argument of `find` may be a single component
 value or a sub-series, or (in the case of `any-string!` series) a `bitset!` value
 representing a choice of values. This function is not defined on `image!` values.
+For testing occurrences it uses an equality test which differs from `strict-equal?`
+only by not being case-sensitive for values of types in `any-string!` and `any-word!`.
 
 For all series, if the index becomes smaller than `1` or greater than `length + 1`,
 it will be fixed at `1` or `length + 1`.
