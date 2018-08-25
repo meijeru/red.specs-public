@@ -1642,7 +1642,7 @@ if found, and `none` otherwise.
 * For the other types, which contain key/value pairs, the result is the value
 corresponding to the given key, or if there is no such key in a `map!` value the result
 is `none`, and in case of an `object!` or `error!` value the result is an error.
-.
+
 Fields of `error!` values cannot be set._**See https://github.com/red/red/issues/2554[issue #2554]**_
 
 Setting a map component to `none` removes the component and its key from the map.
