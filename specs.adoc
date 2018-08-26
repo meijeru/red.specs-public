@@ -1724,9 +1724,7 @@ components will be used for each pixel; if an `integer!` value is supplied, its 
 be similarly used _**see https://github.com/red/red/issues/2883[issue #2883]**_
 * `event!` values: only the `type` component can be set to a `word!` value
 
-Selection by a key of the wrong type or wrong value leads to a `none` result
-on extraction for values of all these type except `email!` where an error is produced.
-On changing, an error is produced for values of all the types. 
+Selection by a key of the wrong type or wrong value leads to an error. 
 
 ==== Overview table
 
