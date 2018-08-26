@@ -1860,6 +1860,10 @@ is relaxed for several combinations of types of the two values.
 If the combination of types of the two values is not allowed as detailed above,
 the `not-equal?` test will yield `true` and the other three equality tests will yield `false`.
 
+Note that the function `find` uses an equality test which differs from `strict-equal?`
+in that it ignores case differences in values of types in `any-word!` and `any-string!`
+(see <<series-positioning-and-navigation,section 9.2>>).
+
 ==== Ordering comparisons
 
 The following cases can be distinguished: 
