@@ -1651,7 +1651,7 @@ _**See https://github.com/red/red/issues/1960[issue #1960]**_
 If the `find` action in unsuccessful, both the key and the corresponding value are appended
 to the destination; otherwise, the value after the found key is replaced.
 * For changing a value in maps, the key should likewise be of a type in `scalar! any-string! any-word!`
-or `binary!. Again, if the `find` action in unsuccessful, both the key and the corresponding value
+or `binary!`. Again, if the `find` action in unsuccessful, both the key and the corresponding value
 are added to the map; otherwise, the value associated with the found key is replaced.
 Setting a map component to `none` removes the component and its key from the map.
 * For changing a value in objects, the key should be a word that is a valid field name,
