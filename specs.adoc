@@ -1602,12 +1602,13 @@ path expression will evaluate the component, whereas selection by `pick` will no
 _**See https://github.com/red/red/issues/3482[issue #3482]**_
 
 Note further that path expressions cannot be used to index `file!` and `url!` values,
-as these path expressions will be interpreted as "extending" the file or url path.
+as these path expressions will be interpreted as "extending" the file or url path,
+as explained in <<code-path-code-type,section 7.3.5>>.
 
 Values of the direct types `time! date! pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `tuple!` values, this indexing treats the tuple as a sequence.
 In the other cases, the indexes are defined to correspond to named components, which can
-therefore be used in selection by "key" (see next section). The correspondences are as follows:
+therefore also be used in selection by "key" (see next section). The correspondences are as follows:
 
 * for `time!` values: `1 ~ hour 2 ~ minute 3 ~ second`
 * for `date!` values: `1 ~ date 2 ~ year 3 ~ month 4 ~ day 5 ~ zone 6 ~ time 7 ~ hour 8 ~ minute
@@ -1622,10 +1623,12 @@ both in case of extraction and changing, and also for values of indirect type in
 on component extraction of values of indirect type an index out of range yields a `none` result.
 _**See https://github.com/red/red/issues/3516[issues #3516] and https://github.com/red/red/issues/3517[#3517]**_
 
-==== Selection by "key"
+==== Selection by "key" 
 
-This is possible both for values that are sequences (with types in `series!`,
-but not `bitset!`) and for values of types `object! error!` and `map!`.
+This is possible for values that are sequences (with types in `series!`,
+but not `bitset!`), and for values of types `object! error!` and `map!`.
+A restricted facility also exists for values of type `time! date! pair! email! image!`
+and `event!`. 
 
 _Built-in functions_ for selection are  `select` for extraction and `put` for changing, with the
 following definitions:
@@ -1633,23 +1636,30 @@ following definitions:
 select <source> <key>
 put <destination> <key> <value>
 ....
-The semantics of selection are different in the two cases (sequences vs. objects/maps).
+The semantics are different in the two main cases (sequences vs. objects/maps).
 
-* For sequences, a case-insensitive `find` action is performed on the components using the key,
-which should be a single value of allowable type for `find`, or a sequence of such values,
-and the result is the component *after* the first occurrence of the key (single or sequence)
-if found, and `none` otherwise.
-* For the other types, which contain key/value pairs, the result is the value
-corresponding to the given key, or if there is no such key in a `map!` value the result
-is `none`, and in case of an `object!` or `error!` value the result is an error.
-
-Fields of `error!` values cannot be set._**See https://github.com/red/red/issues/2554[issue #2554]**_
-
+* For extraction in sequences, a case-insensitive `find` action is performed
+on the components using the key, which should be a single value of a type allowable
+for `find`, or a sequence of such values, and the result is the component *after*
+the first occurrence of the key (single or sequence) if found, and `none` otherwise.
+* For extraction in the other types, which contain key/value pairs, the result is the value
+corresponding to the given key. If there is no such key in a `map!` value the result
+is `none`; in case of an `object!` or `error!` value the result is an error.
+* For changing a value in sequences, the key should be of a type in `scalar! any-string! any-word!`
+or `binary!, and the destination should be of a type in `any-block!`.
+_**See https://github.com/red/red/issues/1960[issue #1960]**_
+If the `find` action in unsuccessful, both the key and the corresponding value are appended
+to the destination; otherwise, the value after the found key is replaced.
+* For changing a value in maps, the key should likewise be of a type in `scalar! any-string! any-word!`
+or `binary!. Again, if the `find` action in unsuccessful, both the key and the corresponding value
+are added to the map; otherwise, the value associated with the found key is replaced.
 Setting a map component to `none` removes the component and its key from the map.
-
+* For changing a value in objects, the key should be a word that is a valid field name,
+and the value of that field is replaced; otherwise, an error is raised.
 An additional facility, for setting _all_ components of an object is provided by the `set` function with
 an `object!` first argument, and a block of component values as second argument. If the second
 argument is `none`, all components will be set to `none`.
+* Fields of `error!` values cannot be set._**See https://github.com/red/red/issues/2554[issue #2554]**_
 
 _Path expressions_ may also be used for selection. The correspondence is as follows:
 ....
@@ -1715,9 +1725,8 @@ be similarly used _**see https://github.com/red/red/issues/2883[issue #2883]**_
 * `event!` values: only the `type` component can be set to a `word!` value
 
 Selection by a key of the wrong type or wrong value leads to a `none` result
-on extraction for values of all indirect type except `email!` where an error is produced.
-On changing, an error is produced for values of all types whether direct or indirect,
-except in the case of `map!` values, where a non-existing key will be added to the map. 
+on extraction for values of all these type except `email!` where an error is produced.
+On changing, an error is produced for values of all the types. 
 
 ==== Overview table
 
