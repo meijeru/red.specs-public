@@ -1786,6 +1786,7 @@ and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
 In addition, for objects there is the property `class-of` which yields
 the unique number that is given to each object that is created from a `<spec>`, and is
 inherited by objects _derived_ from it (see <<code-object-code,rule `S129`>>).
+As per <<code-error-code,rule `S130`>> this property is `0` for `error!` values.
 
 For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
