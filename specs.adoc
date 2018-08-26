@@ -1766,7 +1766,7 @@ This concerns first of all `any-word!` values for which information on their
 binding may be obtained by means of two built-in functions: `context?` and `index?`.
 These are explained in <<contexts,section 6.2>>. _**See https://github.com/red/REP/issues/14[REP #14]**_. 
 
-_**What about `owner`?? see https://github.com/red/red/issues/1975[issue #1957]**_
+_**What about `owner`?? see https://github.com/red/red/issues/1957[issue #1957]**_
 
 The function `complement?` is described in <<code-bitset-code,section 5.3.5>>.
 
