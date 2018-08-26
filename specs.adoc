@@ -1646,7 +1646,7 @@ the first occurrence of the key (single or sequence) if found, and `none` otherw
 corresponding to the given key. If there is no such key in a `map!` value the result
 is `none`; in case of an `object!` or `error!` value the result is an error.
 * For changing a value in sequences, the key should be of a type in `scalar! any-string! any-word!`
-or `binary!, and the destination should be of a type in `any-block!`.
+or `binary!`, and the destination should be of a type in `any-block!`.
 _**See https://github.com/red/red/issues/1960[issue #1960]**_
 If the `find` action in unsuccessful, both the key and the corresponding value are appended
 to the destination; otherwise, the value after the found key is replaced.
