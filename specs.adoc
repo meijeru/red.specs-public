@@ -756,9 +756,9 @@ Examples: `abc`  `Abc`  `ABC`  `+`  `<>`  `integer!`  `last-item?` ; the first t
 <single-character> ::= <viewable-character> | <escaped-character> | <hexadecimal-codepoint>
 <escaped-character> :: =  ^(null) | ^@ | ^(back) | ^(tab) | ^- | ^(line) | ^/ | ^(page) | ^(esc) | 
               ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
-<hexadecimal-codepoint> :: = ^(<hex>) | ^(<hex><hex>) | ^(<hex><hex><hex>)  
+<hexadecimal-codepoint> :: = ^(<hex-number>) 
 ....
-where `<hex>` is two hexadecimal digits `0-9 A-F a-f`, thus `00` - `FF`
+where `<hex-number>` consists of 2 to 6 hexadecimal digits `0-9 A-F a-f`.
 
 A `<char-literal>` must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFF` (hexadecimal notation). 
 
@@ -845,20 +845,21 @@ Escaped characters of the form `%<hex>` are accepted and converted.
 
 **`S121`**::
 
-A `<tag-literal>` value is written as one or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
+A `<tag-literal>` is written as one or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
 Characters `"` and `'` are allowed but must each be properly paired and nested.
 
 ==== `binary!`
 
 **`S122`**::
 ....
-<binary-literal> ::= 2#{<base2-byte>*} | #{<hex>*} | 16#{<hex>*} | 64#{<base64-char>*}
+<binary-literal> ::= 2#{<base2-byte>*} | #{<hex-byte>*} | 16#{<hex-byte>*} | 64#{<base64-char>*}
 ....
 
-where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex>` is defined in <<code-char-code,rule `S116`>>
-and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`; the individual elements within
-the `#{ }` brackets (`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the
-brackets and from each other by whitespace.
+where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex-byte>` is two hexadecimal characters
+as defined in <<code-char-code,rule `S116`>> and `<base64-char>` is a single character
+from the set `A-Z a-z 0-9 + /`; the individual elements within the `#{ }` brackets
+(`<base2-byte>`, `<hex>` or `<base64-char>`) may be separated from the brackets
+and from each other by whitespace.
 
 Examples:
 ....
