@@ -1181,6 +1181,19 @@ Within the expressions making up the values of the fields of an object,
 the word `self` refers to the object as a whole, unless that word has
 been defined as a field of the object.
 
+Two field names have special significance: `on-change*` and `on-deep-change*`.
+These should be defined as functions; `on-change*` will be called whenever any
+field of the object changes its value; `on-deep-change*` will be called
+whenever a component of a series value which is the value of a field, or a
+(sub-)component of that field -- at any level of nesting -- changes its value.
+In order to permit the triggering of the latter function, all series values
+have an `owned` property which may be set using the `modify` function.
+These facilities are used by the toolchain for the purposes of implementing
+the _reactivity_ feature (see <<reactivity,section 13.4>>) and hence for the
+implementation of the GUI system (see <<gui-system,section 13.3>>. Detailed
+information about the implementation details may be found in the documents
+referred to in <<additional-information,section 18>>.
+
 An additional built-in function `construct <spec>` creates an object,
 but without executing the `<spec>` block. It has a refinement `/with`
 to specify a base object which will be extended with the (unevaluated)
@@ -1799,8 +1812,8 @@ All functions `<property>-of <expression>` are shorthand for the general functio
 `reflect <expression> <property>` e.g. `words-of <expression>` is defined as `reflect <expression> 'words`.
 
 For `series!` values, the property `owned` has been defined which is notably used
-by the _reactivity_ facility (see https://doc.red-lang.org/en/reactivity.html[Reactive programming]).
-This can only be obtained by `reflect <expression> 'owned`.
+by the _reactivity_ facility (see <<reactivity,section 13.4>>).
+This property can only be obtained by `reflect <expression> 'owned`.
 _**see https://github.com/red/red/issues/1957[issue #1957]**_
 
 Note that the `help` built-in function is typically making good use of these reflection facilities. 
@@ -2939,6 +2952,11 @@ Also these functions are not defined on `image!` values.
 
 Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
 `clear find length? remove select take`.
+
+The function `modify` is used to change the `owned` property of a series value
+(see <<code-object-code,section 5.3.6>> and <<reflection-on-values,section 5.7>>).
+It has three arguments: the series value, the word `'owned`, and a block of
+the owner object and field name, or the value `none`.
 
 === Operations on bitsets
 
@@ -4203,6 +4221,7 @@ A    index?
 A    insert
 F    last
 A    length?
+A    modify
 A    move
 A    next
 F    offset?
