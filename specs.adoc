@@ -4730,6 +4730,7 @@ context                                 <a href = "#words-contexts-and-binding">
 control character                       <a href = "#code-word-code">5.2.5</a>, <a href = "#code-char-code">5.2.6</a>
 decaying type                           <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
 delete character (U+007F)               <a href = "#code-char-code">5.2.6</a>
+derived object                          <a href = "#code-object-code">5.3.6</a>
 dialect                                 <a href = "#dialects">2.5</a>
   bitset spec dialect                   <a href = "#code-bitset-code">5.3.5</a>
   compose dialect                       <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
