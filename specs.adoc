@@ -1167,7 +1167,6 @@ A new context is created and associated to the object. The words of the new cont
 (first-level) components of the `<object-spec>`. The corresponding values are set
 to the unset value. The `<object-spec>` is bound to this context (see <<built-in-code-bind-code-function,section
 6.3.6>>). The bound block is then _executed_. _**See https://github.com/red/red/issues/3362[issue #3362]**_
-
 The `class` property of the newly created object is set to a unique integer.
 
 If the first argument to `make` is an `object!` value, it serves as _prototype_.
@@ -1177,6 +1176,10 @@ are added to this context if they are not already present in that context.
 The `<object-spec>` is then treated as in the previous case.
 The `class` property of the new object is copied from the prototype.
 The new object is said to be _derived_ from the prototype.
+
+Within the expressions making up the values of the fields of an object,
+the word `self` refers to the object as a whole, unless that word has
+been defined as a field of the object.
 
 An additional built-in function `construct <spec>` creates an object,
 but without executing the `<spec>` block. It has a refinement `/with`
