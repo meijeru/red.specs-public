@@ -2568,20 +2568,20 @@ functions are as follows.
 [cols="1,1,1,1,2", options="header"]
 |===
 |function            |arity   |operand 1 type      |operand 2 type  |result type
-|+ - * / // %        |2       |scalar! vector!     |scalar! vector! |see next table
-|**                  |2       |number!             |integer! float! |integer!^1^ float!
-|NaN?                |1       |number!             |                |logic!
-|sign?               |1       |number! time!       |                |integer!^2^
-|positive? negative? |1       |number! time!       |                |logic!
-|zero?               |1       |number! char! time! pair! tuple! |   |logic!
-|even? odd?          |1       |number! char! time! |                |logic!
-|negate              |1       |number! time! pair! |                |same as operand^3^
-|absolute round      |1       |number! time! pair! |                |same as operand^3^
-|max min             |2       |scalar!             |scalar!         |same as greatest/smallest operand +
+|`+ - * / // %`        |2       |`scalar! vector!`     |`scalar! vector!` |see next table
+|`**`                  |2       |`number!`             |`integer! float!` |`integer!`^1^ `float!`
+|`NaN?`                |1       |`number!`             |                  |`logic!`
+|`sign?`               |1       |`number! time!`       |                  |`integer!`^2^
+|`positive? negative?` |1       |`number! time!`       |                  |`logic!`
+|`zero?`               |1       |`number! char! time! pair! tuple!` |     |`logic!`
+|`even? odd?`          |1       |`number! char! time!` |                |`logic!`
+|`negate`              |1       |`number! time! pair!` |                |same as operand^3^
+|`absolute round`      |1       |`number! time! pair!` |                |same as operand^3^
+|`max min`             |2       |`scalar!`             |`scalar!`         |same as greatest/smallest operand +
 (operand 1 if equal)
-|sum                 |1       |any-list!^4^ vector! |               |same as individual numbers +
+|`sum`                 |1       |`any-list!`^4^ `vector!` |               |same as individual numbers +
 (refer to table below if not all numbers have the same type)
-|average             |1       |any-list!^4^ vector! |               |float! percent!^5^
+|`average`             |1       |`any-list!`^4^ `vector!` |               |`float! percent!`^5^
 |===
 
 Notes:
