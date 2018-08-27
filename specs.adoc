@@ -1549,7 +1549,7 @@ _Unicode 7.0 case folding table_ (only character pairs with status C and S)
 The casting facility applies to most of the `series!` types, and makes use of the fact
 that values of several different but related types have their component values
 stored in identical fashion. Therefore a change of type can be performed without copying
-any component values. Two groups of related types are involved: `block! paren! any-path`
+any component values. Two groups of related types are involved: `block! paren! any-path!`
 on the one hand, and `any-string!` on the other. The type of the second argument should
 be in the same group as the (type of the) first argument. The result is a new value
 of the desired type, pointing to the components of the old value.
