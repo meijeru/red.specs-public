@@ -1190,9 +1190,9 @@ In order to permit the triggering of the latter function, all series values
 have an `owned` property which may be set using the `modify` function.
 These facilities are used by the toolchain for the purposes of implementing
 the _reactivity_ feature (see <<reactivity,section 13.4>>) and hence for the
-implementation of the GUI system (see <<gui-system,section 13.3>>. Detailed
+implementation of the GUI system (see <<gui-system,section 13.3>>). Detailed
 information about the implementation details may be found in the documents
-referred to in <<additional-information,section 18>>.
+referred to in <<additional-documentation,section 18>>.
 
 An additional built-in function `construct <spec>` creates an object,
 but without executing the `<spec>` block. It has a refinement `/with`
