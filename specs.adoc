@@ -1184,9 +1184,9 @@ been defined as a field of the object.
 Two field names have special significance: `on-change*` and `on-deep-change*`.
 These should be defined as functions; `on-change*` will be called whenever any
 field of the object changes its value; `on-deep-change*` will be called
-whenever a component of a series value which is the value of a field, or a
+whenever a component of a series or object value which is the value of a field, or a
 (sub-)component of that field -- at any level of nesting -- changes its value.
-In order to permit the triggering of the latter function, all series values
+In order to permit the triggering of the latter function, all series and object values
 have an `owned` property which may be set using the `modify` function.
 These facilities are used by the toolchain for the purposes of implementing
 the _reactivity_ feature (see <<reactivity,section 13.4>>) and hence for the
