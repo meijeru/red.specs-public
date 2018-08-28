@@ -1550,15 +1550,24 @@ and taken into account.
 
 ==== Additional conversion functions
 
+* `to-hex` takes an integer argument and produces the hexadecimal equivalent
+as a 16 character `issue!` value, with leading zeroes if needed
+* `to-local-date` returns the date with local zone
+* `to-UTC-date` returns the date with UTC zone
 * `as-pair` takes two integer arguments and combines them into a `pair!` value,
 thus `as-pair x y` is equivalent to `to-pair reduce [x y]` 
 * `as-color` takes three integer arguments `0..255` and makes a `tuple!` value
 representing a color (RGB)
 * `as-rgba` does the same with four arguments, with additional transparency (RGBA)
 * `as-ipv4` also has four arguments, and suggests an IPv4 address interpretation of the tuple
+* `hex-to-rg`b converts an `issue!` value representing a color with each component
+as one or two hexadecimal digits, to an equivalent `tuple!` value
 * `uppercase` and `lowercase` will work on values of type `char!` and `any-string!`
 and convert them to upper case or lower case respectively; they use the
 _Unicode 7.0 case folding table_ (only character pairs with status C and S)
+* `to-local-file` converts a Red file path to the local system file path and
+`to-red-file` converts a local system file path to a Red file path (see
+<<file-system-functions,section 11.6>>
 
 === Casting of values (`as`)
 
@@ -4082,6 +4091,7 @@ N    as-pair
 R    as-rgba
 N    debase
 N    enbase
+F    hex-to-rgb
 N    lowercase
 A    to
 F    to-binary
@@ -4095,9 +4105,11 @@ F    to-float
 F    to-get-path
 F    to-get-word
 F    to-hash
+N    to-hex
 F    to-image
 F    to-integer
 F    to-issue
+F    to-local-date
 F    to-lit-path
 F    to-lit-word
 F    to-logic
@@ -4117,6 +4129,7 @@ F    to-tuple
 F    to-typeset
 F    to-unset
 F    to-url
+F    to-UTC-date
 F    to-word
 N    uppercase
 ....
