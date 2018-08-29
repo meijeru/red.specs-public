@@ -983,7 +983,12 @@ Examples: `20170705T175800Z`, `5-Jul-2017/19:58+2:00` ; these values are equal.
 ==== `refinement!`
 
 **`S136`**::
-A `<refinement-literal>` is written as a `/` character followed by a `<symbol-literal>`.
+....
+<refinement-literal> ::= /<symbol-literal>
+....
+
+For `<symbol-literal>` see <<code-word-code,section 5.2.5>>.
+
 A `<refinement-literal>` *may* contain a digit `0-9` or `'` as first character after the `/`.
 
 Note that one of the main uses of refinement values is in indicating optional arguments
@@ -995,7 +1000,12 @@ Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are the same `refinem
 ==== `issue!`
 
 **`S137`**::
-An `<issue-literal>` is written as a `\#` character followed by a `<symbol-literal>`.
+....
+<issue-literal> ::= #<symbol-literal>
+....
+
+For `<symbol-literal>` see <<code-word-code,section 5.2.5>>.
+
 An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `#`.
 
 Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are the same `issue!` value.
