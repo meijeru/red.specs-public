@@ -199,7 +199,7 @@ will also introduce the `<symbol-literal>`, which by itself is not a lexeme,
 and therefore does not generate a value of the
 language. Its use is in explaining the common characteristics of several
 lexemes, namely `<word-literal>`, `<refinement-literal>` and `<issue-literal>`,
-see <<code-word-code,sections 5.2.5>> and <<code-refinement-code,5.2.16/17>>.
+see <<code-word-code,sections 5.2.5>> and <<code-refinement-code,5.2.15/16>>.
 
 **`S100`**:: program structure
 ....
