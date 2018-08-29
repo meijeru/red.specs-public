@@ -2194,7 +2194,7 @@ next elements each of which is a `<selector>`, the result is
 a new file or url composed as `<path-head>/<selector>/...`
 .. If the result is a value of `any-function!` type, each following
 `<selector>`, if any, should be an actual refinement of the function, i.e a `word!` value,
-corresponding to one `<refinement>` present in the `<argument-spec>` of the function.
+corresponding to one `<function-refinement>` present in the `<argument-spec>` of the function.
 Apply the combination of the result and the actual refinements according
 to the rules for values of function types (see <<function-types,section 7.4>>).
 .. Otherwise, the path is in error.
