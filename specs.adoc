@@ -2291,24 +2291,28 @@ and there is a next element which is a `<selector>`, proceed to step 3.
 .. If the `<selector>` is a `<get-word>` or a `<paren>`, evaluate it first,
 use the value obtained as `<selector>` and go to the beginning of step 3.
 .. If the `<selector>` is an `<integer>`, and the composite type is not `map!`
-or `any-object!`, an intermediate result is determined which is the position
-of the component at the index given by the `integer!` value
-(0-origin for `bitset!` values, 1-origin for values of all other composite types).
-.. If the `<selector>` is an `<integer>` and the composite type is `map!`
-the result is obtained as in step iv hereafter. If the `<selector>` is an
-`<integer>` and the composite type is `any-object!` the path is in error.
+or `any-object!`, the intermediate result is composite value at the index
+given by the `integer!` value (0-origin for `bitset!` values,
+1-origin for values of all other composite types).
+.. If the composite type is `any-object!` and the `<selector>` is not a
+`<word>` the path is in error.
+.. If the composite type is `map!` and the `<selector>` is not of a type in
+`scalar! any-word! any-string!` or `binary!` the path is in error.
 .. If the `<selector>` is a `<word>`, and the composite value is of
-indirect type (except `image!` and `email!`), an intermediate result is determined which is
-the position of the first component found by applying the built-in function `find`
+indirect type (except `any-object! map! image!` and `email!`),
+the intermediate result is the composite value at the index
+found by applying the built-in function `find`
 with as arguments the composite value and the `<selector>`.
-.. If the `<selector>` is a `<word>`, and the composite value is of
-type `image!`, an intermediate result is obtained which is the
-position of the component found as as explained in <<selection-by-key,section 5.6.2>>.
+.. If the `<selector>` is a `<word>`, and the composite value is of direct type,
+`image!` or `email!`, an intermediate result is obtained which is the
+component found as as explained in <<selection-by-key,section 5.6.2>>.
+.. If the composite value is of type `object!` or `map!`, the intermediate
+result is the key/value pair whose key is the `<selector>`
 .. Otherwise, the path is in error.
-.. If a further `<selector>` is present, use the component at the position just determined,
-as evaluated `<path-head>` and go to step 2
-. Replace the component at the position determined, by the value obtained
-by evaluating the next expression.
+.. If a further `<selector>` is present, use the component at the index just determined,
+respectively the value of the key/value pair as evaluated `<path-head>` and go to step 2
+. Replace the component at the index determined, respectively the value of the key/value
+pair, by the value obtained by evaluating the next expression.
 An error occurs if no expression is following or if the value obtained is unset.
 The result of the evaluation is the value obtained.
 As a consequence, set-paths may be "chained", also with set-words, thus: `a/b/c: d/e/f: g: 1`
