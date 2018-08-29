@@ -2336,8 +2336,8 @@ some limitations,  for all values of `any-function!` type except `op!` values:
 <argument-spec> ::= <argument>* <optional-argument>*
 <argument> ::= <argument-name> | <argument-name> [<typeset-element>*]
 <argument-name> ::= <word> | '<word> | :<word>
-<optional-argument> ::= <refinement> <argument>*
-<refinement> ::= /<word>
+<optional-argument> ::= <function-refinement> <argument>*
+<function-refinement> ::= /<word>
 ....
 
 _**TBD: apply**_
@@ -2364,16 +2364,16 @@ but yield its first `<value>` as-is; do not raise an error if this value is unse
 _**See https://github.com/red/red/issues/2622[issue #2622]**_
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
 Check the type of each value against the type(set)s specified for the argument.
-.. If actual refinements are present, match each of them with the corresponding `<refinement>`
-in the `<argument-spec>`. Make the `<word>` of the `<refinement>` refer to `true`.
-Furthermore, process each `<argument>` following the `<refinement>`
+.. If actual refinements are present, match each of them with the corresponding `<function-refinement>`
+in the `<argument-spec>`. Make the `<word>` of the `<function-refinement>` refer to `true`.
+Furthermore, process each `<argument>` following the `<function-refinement>`
 as in the previous sub-step, evaluating the necessary expressions and inserting the values obtained in the context.
 .. Bind the body of the function to the context (see <<built-in-code-bind-code-function,section 6.3.6>>).
 .. Execute the body of the function to yield the result of the function.
 Check the type of the resulting value against the type(set)s specified with `return:`, if any.
 
 Note that the order of the expressions to be supplied for the optional arguments is dictated
-by the order of the actual refinements present, *not* by the order of the `<refinement>` s
+by the order of the actual refinements present, *not* by the order of the `<function-refinement>` s
 in the `<argument-spec>`.
 
 ==== `action!` type
@@ -2408,7 +2408,7 @@ its operation on the basis of the (combination of the) argument type(s).
 
 As with `function!` evaluation, the order of the expressions to be supplied
 for the optional arguments is dictated by the order of the actual refinements present,
-*not* by the order of the `<refinement>` s in the `<argument-spec>`.
+*not* by the order of the `<function-refinement>` s in the `<argument-spec>`.
 
 ==== `op!` type
 
@@ -2445,7 +2445,7 @@ of the control functions (`if`, `either`, `repeat` etc.).
 
 As with `function!` evaluation, the order of the expressions to be supplied
 for the optional arguments is dictated by the order of the actual refinements present,
-*not* by the order of the `<refinement>` s in the `<argument-spec>`.
+*not* by the order of the `<function-refinement>` s in the `<argument-spec>`.
 
 ==== `routine!` type
 
