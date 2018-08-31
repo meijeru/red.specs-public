@@ -2581,10 +2581,15 @@ rule of <<evaluation-rules,section 7>>
 
 == Numerical and logical computation
 
+As stated in <<expressions-and-evaluation-order,section 3.3>>, operators
+i.e. values of type `op!` are strictly left associative,
+and there is *no precedence* between any two operators.
+Evaluation order can of course be influenced by the use of parentheses.
+
 === Basic arithmetic operations
 
 Red makes available the usual _arithmetic operations_ through `+ - * /` as operators
-(values of type `op!`) and their prefix counterparts: `add subtract multiply divide`.
+and their prefix counterparts: `add subtract multiply divide`.
 In addition, there are operators and prefix functions for exponentiation (`**` or `power`),
 modulo (`//` or `modulo`) and remainder (`%` or `remainder`). Enquiry functions are:
 `sign? positive? negative? zero? even? odd? NaN?`. The unary minus function is only represented
@@ -2756,13 +2761,17 @@ Three bit-shift operators are defined on integers, with positive integer shift c
 * `>>` for right shift: lowest bits are shifted out, highest bit is duplicated
 * `>>>` for "logical" shift: lowest bits are shifted out, zero bits are added to the left
 
+These operators have their equivalent in three routines: ``shift-left`, `shift-right` and `shift-logical`
+which in their turn call upon a single native function `shift` (default: right shift) with
+refinements `/left` and `/logical`.
+
 The arity (number of arguments) and the argument and result types
 for these functions are as follows.
 
 [cols="1,1,2", options="header"]
 |===
 |function   |arity  |argument type(s)
-|complement   |1    |integer! bitset! typeset! binary !^1^
+|complement   |1    |integer! bitset! typeset! binary!^1^
 |and or xor   |2    |integer! char! pair! tuple! bitset! typeset! binary! vector!
 |<< >> >>>    |2    |integer!
 |===
