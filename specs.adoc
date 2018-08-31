@@ -991,7 +991,7 @@ For `<symbol-literal>` see <<code-word-code,section 5.2.5>>.
 
 A `<refinement-literal>` *may* contain a digit `0-9` or `'` as first character after the `/`.
 However, the combinations `/<>` and `/<...>` with any characters in between the `<` and `>` character
-will be lexically analyzed as `the word `/` followed by the word `<>` resp. a value of type `tag!`
+will be lexically analyzed as the word `/` followed by the word `<>` resp. a value of type `tag!`
 (see <<code-tag-code, section 5.2.11>>).
 
 Note that one of the main uses of refinement values is in indicating optional arguments
@@ -1009,8 +1009,8 @@ Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are the same `refinem
 
 For `<symbol-literal>` see <<code-word-code,section 5.2.5>>.
 
-An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `#`.
-However, the combinations `#<>` and `#<...>` with any characters in
+An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `\#`.
+However, the combinations `\#<>` and `#<...>` with any characters in
 between the `<` and `>` character are not allowed.
 
 Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are the same `issue!` value.
