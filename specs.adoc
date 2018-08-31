@@ -2761,7 +2761,7 @@ Three bit-shift operators are defined on integers, with positive integer shift c
 * `>>` for right shift: lowest bits are shifted out, highest bit is duplicated
 * `>>>` for "logical" shift: lowest bits are shifted out, zero bits are added to the left
 
-These operators have their equivalent in three routines: ``shift-left`, `shift-right` and `shift-logical`
+These operators have their equivalent in three routines: `shift-left`, `shift-right` and `shift-logical`
 which in their turn call upon a single native function `shift` (default: right shift) with
 refinements `/left` and `/logical`.
 
