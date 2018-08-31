@@ -1010,8 +1010,8 @@ Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are the same `refinem
 For `<symbol-literal>` see <<code-word-code,section 5.2.5>>.
 
 An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `\#`.
-However, the combinations `#<>` and `#<...>` with any characters in
-between the `<` and `>` character are not allowed.
+However, the combinations `#<>` and +
+`#<...>` with any characters in between the `<` and `>` character are not allowed.
 
 Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are the same `issue!` value.
 
