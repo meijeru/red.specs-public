@@ -878,10 +878,12 @@ a refinement `/base` with an argument of 2, 16 or 64 (default).
 Examples:
 ....
 enbase #{010203}           -> "AQID"
-enbase "^A^B^C"            -> "AQID"
 enbase/base #{010203} 2    -> "000000010000001000000011"
 debase "AQID"              -> #{010203}
 ....
+
+Note that `enbase` will also take a `string!` value as argument; it will be UTF-8 encoded into
+a `binary!` value before being converted.
 
 ==== `path!`
 
