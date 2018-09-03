@@ -2169,9 +2169,9 @@ if no expression is following or if the value obtained is unset. The result of t
 is the value obtained from the expression. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
 is equivalent to `a: (b: (c: 1))` and thus to `a: 1 b: 1 c: 1`.
 
-As stated before, the alternative to `<word-literal>: <expression>` is `set <word> <expression>`.
-The built-in function `set` has a refinement `/any` which will ensure that
-no error occurs if the expression yields the unset value.
+As stated before, the alternative to `<word-literal>: <expression>` is `set <word-literal> <expression>`
+which is a special case of `set <word> <expression>`. The built-in function `set` has
+a refinement `/any` which will ensure that no error occurs if the expression yields the unset value.
 
 ==== `paren!` type
 
@@ -2338,9 +2338,9 @@ The result of the evaluation is the value obtained.
 As a consequence, set-paths may be "chained", also with set-words, thus: `a/b/c: d/e/f: g: 1`
 is equivalent to `a/b/c: 1 d/e/f: 1 g: 1`.
 
-Moreover, the alternative to `<path-literal>: <expression>` is `set <path> <expression>`.
-The built-in function `set` has a refinement `/any` which will ensure that
-no error occurs if the expression yields the unset value.
+Moreover, the alternative to `<path-literal>: <expression>` is `set <path-literal> <expression>`
+which is a special case of `set <path> <expression>`. The built-in function `set` has
+a refinement `/any` which will ensure that no error occurs if the expression yields the unset value.
 
 === Function types
 
