@@ -187,6 +187,8 @@ Note that, although Red text is in general case-insensitive (barring exceptions 
 A formal grammar corresponding to the above presentation is given below. This
 omits the separation by whitespace, and the presence of end-of-line comments.
 As usual, `*` means zero or more instances of the non-terminal.
+In the grammar fragments of subsequent sections of this document,
+`^o^` will stand for an optional instance.
 Other characters outside non-terminals stand for themselves, with
 the understanding that, if they immediately precede or follow a non-terminal,
 they are part of the produced lexeme.  
