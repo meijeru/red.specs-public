@@ -1199,7 +1199,6 @@ The `<object-spec>` is then treated as in the previous case.
 If there are no new fields, the `class` property of the new object is copied
 from the prototype; the new object is then said to be _derived_ from the prototype.
 Otherwise, the new object receives a new class value. 
-_**See https://github.com/red/red/issues/3531[issue #3531]**_
 
 Within the expressions making up the values of the fields of an object,
 the word `self` refers to the object as a whole, unless that word has
@@ -4988,7 +4987,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3516">3516</a>   <a href="#indexing">5.6.1</a>
 <a href= "https://github.com/red/red/issues/3517">3517</a>   <a href="#indexing">5.6.1</a>
-<a href= "https://github.com/red/red/issues/3531">3531</a>   <a href="#code-object-code">5.3.6</a>
 
 REP    spec
 issue  section
