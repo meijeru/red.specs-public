@@ -2856,6 +2856,10 @@ of type `char!`, `string!`, `integer!` or `block!` of integers),
 and `object!` and `map!` (with `<expression>` evaluating to a _field_  value).
 The result of `find` in these cases is `true` if there is a match, and `false` otherwise.
 
+Furthermore, if the `<series>` argument is of type `any-block!` except `hash!`
+and the `<expression>` is of type `datatype!` the result is the `<series>`
+at the index of the first occurrence of a component of that type.
+
 Note that `find` has a rich set of refinements:
 ....
 /part     => Limit the length of the search
