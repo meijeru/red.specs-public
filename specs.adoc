@@ -2859,6 +2859,7 @@ The result of `find` in these cases is `true` if there is a match, and `false` o
 Furthermore, if the `<series>` argument is of type `any-block!` except `hash!`
 and the `<expression>` is of type `datatype!` the result is the `<series>`
 at the index of the first occurrence of a component of that type.
+_**See https://github.com/red/REP/issues/29[REP #29]**_
 
 Note that `find` has a rich set of refinements:
 ....
@@ -5001,5 +5002,6 @@ issue  section
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#code-vector-code">5.3.3</a>
  <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/29">29</a>    <a href="#series-positioning-and-navigation">9.2</a>
 </pre>
 ++++
