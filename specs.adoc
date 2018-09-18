@@ -3490,7 +3490,7 @@ which arise in the course of evaluation because of inappropriate (combinations
 of) values, and _user exceptions_ that are raised or "thrown" on conditions
 determined by the user. An intermediate case is the _user error_ which is
 also raised on conditions determined by the user but which is treated
-like an error value. To this end, Red defines a dedicated error group "User error",
+like an error value. To this end, Red defines a dedicated error group "User error"
 (see below), but the user may also extend the error repertoire with other
 error groups, specialized for their application.
 
@@ -3630,7 +3630,7 @@ apply `try` and if the result is an error value, it will yield `none`.
 === User exceptions
 
 In contrast to errors, a user exception is not a value of the language,
-but a call of a built-in function, which interrupst program execution
+but a call of a built-in function, which interrupts program execution
 and may cause resumption at another place in the code, or result in
 breaking off the execution like an unintercepted error does.
 
