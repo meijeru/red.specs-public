@@ -3490,7 +3490,9 @@ which arise in the course of evaluation because of inappropriate (combinations
 of) values, and _user exceptions_ that are raised or "thrown" on conditions
 determined by the user. An intermediate case is the _user error_ which is
 also raised on conditions determined by the user but which is treated
-like an error value.
+like an error value. To this end, Red defines a dedicated error group "User error",
+(see below), but the user may also extend the error repertoire with other
+error groups, specialized for their application.
 
 === Errors
 
@@ -3522,7 +3524,7 @@ Any field except `type` and `id` can also be `none`. If `arg1` is `none`
 The `type` field may contain one of the following words: `throw note syntax
 script math access user internal`.
 
-There is a fixed _repertoire_ of errors; identifying information
+There is initially a fixed _repertoire_ of errors; identifying information
 and (parametrized) error messages for each possible error are stored
 in the object `system/catalog/errors`. This has the following sub-objects,
 whose field names correspond to the contents of the `type` field
@@ -3594,10 +3596,29 @@ system/catalog/errors/access is an object! of value:
 The `code` for each individual error is the base number + the ordinal number
 of the error in the sub-object (0-origin), e.g. for `no-connect` it is `502`.
 
+Because the catalog is an object like any other, the user may extend it with their own
+error groups which can then be raised as described below. An example follows:
+....
+; add at end, using the next available code
+last-type: last keys-of system/catalog/errors
+new-code: system/catalog/errors/:last-type/code + 100
+
+system/catalog/errors: make system/catalog/errors [
+    my-exceptions: make object! [
+        code: new-code
+        type: "My Exception"
+        WRONG_DOCUMENT_ERR:            [:arg1]
+        NO_MODIFICATION_ALLOWED_ERR:   ["field" :arg1 "is read-only"]
+    ]
+]
+....
+In this example, care is taken to set the `code` field to a value that is not yet used.
+Of course the name of the sub-object must also be different from an existing one.
+
 ==== Raising and interception
 
 Errors are normally raised by the compiled code or by the interpreter,
-as the case may be, but they can also be raised by the built-in
+as the case may be, but they can also be raised by calling the built-in
 function `cause-error`. The raising of an error will break off program
 execution, unless it is intercepted by `try` or `attempt`.
 
