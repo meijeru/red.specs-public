@@ -2495,6 +2495,7 @@ thus `string!` becomes `red-string!` etc.
 to `any-type!`.
 . The `<routine-body>` (which is a block of Red values) becomes the body of
 this Red/System function, and will be treated as Red/System code.
+. Returned value is converted back using rules as in specification block, but reversed. E.g. a pointer to a `red-block!` struct returned from routine's body will be treated as a Red `block!` in a code which called the routine.
 
 The function thus constructed becomes part of the intermediate Red/System code
 that the toolchain produces internally for compilation into machine code,
