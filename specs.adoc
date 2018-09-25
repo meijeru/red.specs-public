@@ -321,7 +321,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`time!`          |time interval or point in time, stored as a floating point number of seconds
 |`date!`          |date according to the Gregorian calendar, optionally with time of day and timezone
 |`pair!`          |2-dimensional coordinates or size 
-|`tuple!`         |e.g. color in RGB or other scheme, IPv4 adres
+|`tuple!`         |e.g. color in RGB or other scheme, IPv4 address
 |`word!`          |identifier that can be bound
 |`lit-word!`      |quoted (unevaluated) word
 |`set-word!`      |word to be given a value to refer to
@@ -348,13 +348,13 @@ The full list of types of the languages is given below, with an explanation of t
 |`email!`         |email address
 |`binary!`        |sequence of bytes
 |`image!`         |2-dimensional array of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
-|`bitset!`        |sequence of values true or false, used e.g. to model sets of
+|`bitset!`        |sequence of `logic!` values, used e.g. to model sets of
                    non-negative integers, such as Unicode Code Points
 |`map!`           |collection of pairs of values where the first value in each pair functions
                    as key for retrieval of the second; keys are restricted to types in
-                   `scalar! any-word!` and `any-string!`
+                   `scalar!`, `any-word!` and `any-string!`
 |`object!`        |collection of word-value pairs with a context in which the words
-                   (also called fields) are bound, and are referring to the corresponding values;
+                   (also called _fields_) are bound, and are referring to the corresponding values;
                    objects are capable of triggering asynchronous events in response
                    to changes in their components, thus enabling reactive programming;
                    objects have a _class_ property associated with them
@@ -362,7 +362,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`native!`        |pre-defined functions with built-in evaluation according to special rules
 |`action!`        |pre-defined polymorphic functions of one or two arguments with built-in evaluation
 |`op!`            |operators, i.e. infix functions of two arguments, each one is
-                   derived from a `native! action! function!` or `routine!` value
+                   derived from a `native!`, `action!`, `function!` or `routine!` value
 |`function!`      |user-defined functions; as with `native!` and `action!` values,
                     `function!` values may have optional arguments, indicated by refinements
 |`routine!`       |user-defined functions with body in Red/System code
@@ -653,7 +653,7 @@ made of the value of `<spec>`.
 For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
 type names pre-defined (no further datatypes can be defined by the user);
-likewise `native! action!` and `op!` have all the built-in functions
+likewise `native!`, `action!` and `op!` have all the built-in functions
 and operators pre-defined (values of type `action!` and `native!` cannot
 be made by the user, but new infix operators can be).
 Values of types `event!` and `handle!`, that are used to communicate with
@@ -666,7 +666,7 @@ The following sub-sections will specify the lexical structure resp. the `<spec>`
 of the `make`, `to` and `as` function for values of each of the types as appropriate.
 For convenience, the `<target>` argument is specified in evaluated form when it is a `<type>`,
 and the `<spec>` argument is presented as a `<block-literal>` when it is important to
-show the components of the block. It should be remembered, however, that `make to` and `as` do
+show the components of the block. It should be remembered, however, that `make`, `to` and `as` do
 evaluate their arguments, so that any `<expression>`  which evaluates to a type or a block
 is allowed in the relevant argument positions.
 
@@ -1032,7 +1032,7 @@ latter part of the section.
 Note that `make routine!` is forbidden; values of type `routine!` should be made
 by invoking the built-in function `routine` which raises an error
 if called from the interpreter. As noted before (<<overview-table,section 4.2.7>>)
-values of type `datatype! native! action! handle!` and `event!` may not be made using `make`.
+values of type `datatype!`, `native!`, `action!`, `handle!` and `event!` may not be made using `make`.
 
 In this section, non-terminals like `<integer>` do not stand for
 a literal integer but for a value (to be evaluated) of `integer!` type etc.
@@ -1085,7 +1085,7 @@ The contents of the `<block>` are copied (not deeply).
                     integer! 8 | integer! 16 | integer 32! |
                     float! 32 | float! 64 | percent! 32 | percent! 64
 ....
-The components of the `<block>` should all have the same type `char! integer! float!` or `percent!`. 
+The components of the `<block>` should all have the same type `char!`, `integer!`, `float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
 the default size (32 bits for `char!` and `integer!`, 64 bits otherwise). If `<block>` is empty, the assumed type
 is `integer!` of size 32.
@@ -1113,7 +1113,7 @@ An `image!` value stores a sequence of RGBA (color + transparency) values for pi
 each pixel, as follows: B in bits 0..7, G in bits 8..15, R in bits 16..23, A in bits 24..31. When extracting
 a single pixel (see also section 5.6), these values are encoded in a 4-element `tuple!` value as follows:
 the first 3 elements are R, G and B, and the last element is 255 - A. When setting a single pixel, a 3 or 4-element
-tuple has to be specified. Elements beyond the 4th are ignored, if there are 3elements, A has the default value
+tuple has to be specified. Elements beyond the 4th are ignored, if there are 3 elements, A has the default value
 of `255` (fully opaque).
 
 If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and with all pixels having color
@@ -1156,7 +1156,7 @@ A `string!` value is interpreted as the collection of all its component characte
 Note that an `integer!` value used as `<bit-position>` should be non-negative, but
 need not be a valid Unicode Codepoint number.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
-bit number (0-origin). An "empty" bitset created by `[ ]` is 8 bits (one byte) long.
+bit number (0-origin). An "empty" bitset created by `charset [ ]` is 8 bits (one byte) long.
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
 produced by the following bit-position numbers, while actually storing only these bit-positions.
 _**See https://github.com/red/red/issues/2609[issue #2609]**_
@@ -1176,7 +1176,7 @@ i.e. if its complement is what is actually stored.
 **`S129`**::
 ....
 <object> ::= make object! <object-spec> | object <object-spec> | context <object-spec> |
-             make <object> <object-spec>
+             make <expression> <object-spec>
 <object-spec> ::= <block>
 ....
 
@@ -1278,7 +1278,7 @@ Note that `error!` values all have `class = 0`.
 <argument-doc> ::= <string>
 <optional-arguments> ::= <function-refinement> <argument-doc>° <argument>*
 <function-refinement> ::= /<word-literal>
-<return-spec> ::= return: [<typeset-element>*]
+<return-spec> ::= return: [<typeset-element>*] <docstring>°
 <function-body> ::= <block>
 ....
 For `<typeset-element>` see <<code-typeset-code,rule `S124`>>. Note that both in the `<argument-spec>`
@@ -1306,8 +1306,9 @@ for these local words.
 The built-in function `func` is defined as shorthand for `make function!`. The built-in function
 `has` is defined as shorthand for a function without other arguments than local words, thus
 `has [<arguments>] <block>` is equivalent to `func [/local <arguments>] <block>`.
-The built-in function `does` is defined as shorthand for `func [ ]` (no arguments at all).
-The built-in function `function` is similar to `func` but it adds all set-words
+The built-in function `does` is defined as shorthand for `func [ ] <block>` (no arguments at all).
+The built-in function `function` is similar to `func`, but it adds all set-words 
+and words from _iterators_ (e.g. `foreach <word>` and `repeat <word>`)
 found in the body to the list of local arguments.
 
 ==== `routine!`
@@ -1373,12 +1374,12 @@ that do not differ in their symbol are considered identical for this purpose.
 _**See https://github.com/red/red/issues/2577[issue #2577]**_
 
 Note that values of `logic!` and `none!` type are not allowed as keys. Nevertheless
-`true false` and `none` may occur in `<key>` position. Since the constituents
+`true`, `false` and `none` may occur in `<key>` position. Since the constituents
 of `<map-spec>` are not evaluated, these words will be treated as `word!` values.
 The same is true if they occur in `<value>` position.
 
 The built-in function `extend` takes a `map!` value as first argument
-and a set of key-value pairs as second argument of type `block! hash!` or `map!`.
+and a set of key-value pairs as second argument of type `block!`, `hash!` or `map!`.
 It will add the keys that are not present in the map, with their values,
 and replace the values for those keys that are already present.
 The keys and values are not evaluated.
@@ -1386,7 +1387,7 @@ The keys and values are not evaluated.
 ==== Other types 
 
 * Making `integer!` values from `logic!` values: `true -> 1, false -> 0`
-_**See https://github.com/red/red/issues/2644[issue 2644]**_
+_**See https://github.com/red/red/issues/2644[issue #2644]**_
 * Making `logic!` values from `number!` values: `0/0.0/0% -> false, all else -> true`
 * Making a `url!` value from an `any-list!` value: the components (at least one is required)
 may be of any type; they will be `form` ed; the first component is assumed to be the _protocol_
@@ -1425,7 +1426,7 @@ for any argument value.
 
 ==== Target type `logic!`
 
-The function `to-logic` yields `true` for any argument value except `none`. Note that
+The function `to-logic` yields `true` for any argument value except `false` or `none`. Note that
 `to logic! 0` yields `true` whereas `make logic! 0` yields `false`!
 _**See https://github.com/red/red/issues/2645[issue #2645]**_
 
@@ -1441,7 +1442,7 @@ The function `to-string` yields the same result as the built-in function `form` 
 Note that `to-string` and `form` omit the "decoration", i.e. the `:` resp. `'` for `any-word!` and
 `any-path!` values. _**But see https://github.com/red/red/issues/3409[issue #3409]**_
 
-The functions `to-file to-email` and `to-tag` will perform the same conversion and yield
+The functions `to-file`, `to-email` and `to-tag` will perform the same conversion and yield
 a result of the appropriate type. The function `to-url` will operate analogously for `none!` and
 `binary!` values; a `block!` value has the same interpretation as for the `make url!` function.
 
@@ -1505,7 +1506,7 @@ The function `to-char` is defined for
 
 ==== Target type `pair!`
 
-The function to-pair is defined for
+The function `to-pair` is defined for
 
 * `number!` values: yields the pair with two components equal to the (truncated) number
 * `any-list!` values: these should contain two `integer!` or `float!` values;
@@ -1516,7 +1517,7 @@ which creates a pair out of the arguments.
 
 ==== Target type `tuple!`
 
-The function to-tuple is defined for
+The function `to-tuple` is defined for
 
 * `binary!` values: yields the first 12 bytes or fewer as tuple components; if only 1 or 2 bytes are 
 present, components `0` are added
@@ -1539,7 +1540,7 @@ the binary equivalents are concatenated, using as few bytes as needed
 for each `integer!` value and 8 bytes for each `float!` value
 * `image!` values: yields a binary value with 4 bytes for each pixel
 
-==== Target types in `any-word!` `refinement!` and `issue!`
+==== Target types in `any-word!`, `refinement!` and `issue!`
 
 The function `to-word` is defined for:
 
@@ -1597,7 +1598,7 @@ _Unicode 7.0 case folding table_ (only character pairs with status C and S)
 The casting facility applies to most of the `series!` types, and makes use of the fact
 that values of several different but related types have their component values
 stored in identical fashion. Therefore a change of type can be performed without copying
-any component values. Two groups of related types are involved: `block! paren! any-path!`
+any component values. Two groups of related types are involved: `block!`, `paren!`, `any-path!`
 on the one hand, and `any-string!` on the other. The type of the second argument should
 be in the same group as the (type of the) first argument. The result is a new value
 of the desired type, pointing to the components of the old value.
@@ -1646,7 +1647,7 @@ Here `<source>` and `<destination>` must be a `<path-head>`, see <<code-path-cod
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
 in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index
 in a path expression.
-Note also that selecting a component which is a value of type `any-function` by means of a
+Note also that selecting a component which is a value of type `any-function!` by means of a
 path expression will evaluate the component, whereas selection by `pick` will not.
 _**See https://github.com/red/red/issues/3482[issue #3482]**_
 
@@ -1654,7 +1655,7 @@ Note further that path expressions cannot be used to index `file!` and `url!` va
 as these path expressions will be interpreted as "extending" the file or url path,
 as explained in <<code-path-code-type,section 7.3.5>>.
 
-Values of the direct types `time! date! pair!` and `tuple!` also admit component selection
+Values of the direct types `time!`, `date!`, `pair!` and `tuple!` also admit component selection
 by "indexing". In the case of `tuple!` values, this indexing treats the tuple as a sequence.
 In the other cases, the indexes are defined to correspond to named components, which can
 therefore also be used in selection by "key" (see next section). The correspondences are as follows:
@@ -1665,7 +1666,7 @@ therefore also be used in selection by "key" (see next section). The corresponde
 * for `pair!` values: `1 ~ x` (horizontal dimension, left to right) and `2 ~ y` (vertical dimension,
 top to bottom).
 
-The built-in functions `first second third fourth` and `fifth` are defined as `pick <expression> 1` etc.
+The built-in functions `first`, `second`, `third`, `fourth` and `fifth` are defined as `pick <expression> 1` etc.
 
 Indexing with values outside the allowed range lead to an error for values of direct type,
 both in case of extraction and changing, and also for values of indirect type in case of changing;
@@ -1675,11 +1676,11 @@ _**See https://github.com/red/red/issues/3516[issues #3516] and https://github.c
 ==== Selection by "key" 
 
 This is possible for values that are sequences (with types in `series!`,
-but not `bitset!`), and for values of types `object! error!` and `map!`.
-A restricted facility also exists for values of type `time! date! pair! email! image!`
+but not `bitset!`), and for values of types `object!`, `error!` and `map!`.
+A restricted facility also exists for values of type `time!`, `date!`, `pair!`, `email!`, `image!`
 and `event!`. 
 
-_Built-in functions_ for selection are  `select` for extraction and `put` for changing, with the
+_Built-in functions_ for selection are `select` for extraction and `put` for changing, with the
 following definitions:
 ....
 select <source> <key>
@@ -1694,12 +1695,12 @@ the first occurrence of the key (single or sequence) if found, and `none` otherw
 * For extraction in the other types, which contain key/value pairs, the result is the value
 corresponding to the given key. If there is no such key in a `map!` value the result
 is `none`; in case of an `object!` or `error!` value the result is an error.
-* For changing a value in sequences, the key should be of a type in `scalar! any-string! any-word!`
+* For changing a value in sequences, the key should be of a type in `scalar!`, `any-string!`, `any-word!`
 or `binary!`, and the destination should be of a type in `any-block!`.
 _**See https://github.com/red/red/issues/1960[issue #1960]**_
 If the `find` action in unsuccessful, both the key and the corresponding value are appended
 to the destination; otherwise, the value after the found key is replaced.
-* For changing a value in maps, the key should likewise be of a type in `scalar! any-string! any-word!`
+* For changing a value in maps, the key should likewise be of a type in `scalar!`, `any-string!`, `any-word!`
 or `binary!`. Again, if the `find` action in unsuccessful, both the key and the corresponding value
 are added to the map; otherwise, the value associated with the found key is replaced.
 Setting a map component to `none` removes the component and its key from the map.
@@ -1720,13 +1721,13 @@ selecting a component which is a value of type `any-function!` by means of a
 path expression will evaluate the component, whereas selection by `select` will not.
 _**See https://github.com/red/red/issues/3482[issue #3482]**_
 
-Values of type `time! date! pair! email!` and `image!` also admit component selection
+Values of type `time!`, `date!`, `pair!`, `email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
 However, here the selection is only possible by `<path>` and `<path>:` expressions,
 not by `select` and `put`. The allowed values of the keys for each of these types
 are stored in `system/catalog/accessors`.
 
-In case of `time! date! email! image!` and `event!`, the result is obtained by performing
+In case of `time!`, `date!`, `email!`, `image!` and `event!`, the result is obtained by performing
 a certain calculation, as follows.
 
 Extracting a component:
@@ -1753,11 +1754,11 @@ respectively
 
 Setting a component:
 
-* `time!` values: the `hour minute` and `second` components can be individually set
+* `time!` values: the `hour`, `minute` and `second` components can be individually set
 and will replace the values they had before
-* `date!` values: the `date year month day hour minute second` and `zone` components can be set directly;
+* `date!` values: the `date`, `year`, `month`, `day`, `hour`, `minute`, `second` and `zone` components can be set directly;
 the value for the `time` component (which can be negative) is used modulo `24:00` with adjustment
-of the date; the same holds for the resulting time when any of the values of the `hour minute`
+of the date; the same holds for the resulting time when any of the values of the `hour`, `minute`
 and `second` components is changed; setting the `timezone` component results in a `date!`
 value with the corresponding `zone` component and a changed `time` component
 such that the UTC time value is unchanged; setting the `week` or `isoweek` component results in
