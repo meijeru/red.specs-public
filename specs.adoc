@@ -1426,7 +1426,7 @@ for any argument value.
 
 ==== Target type `logic!`
 
-The function `to-logic` yields `true` for any argument value except `false` or `none`. Note that
+The function `to-logic` yields `true` for any argument value except `false` and `none`. Note that
 `to logic! 0` yields `true` whereas `make logic! 0` yields `false`!
 _**See https://github.com/red/red/issues/2645[issue #2645]**_
 
