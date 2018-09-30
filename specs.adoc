@@ -852,7 +852,8 @@ The remarks in <<code-file-code,section 5.2.8>> on escaped characters apply.
 **`S121`**::
 
 A `<tag-literal>` is written as one or more characters, not starting with `<`, `=` or `>`, enclosed in `< >`.
-Characters `"` and `'` are allowed but must each be properly paired and nested.
+Characters `"` and `'` are allowed but must each be properly paired. Within such pair, the other one may occur freely,
+thus `"...'..."` and `'..."...'` are allowed.
 
 ==== `binary!`
 
