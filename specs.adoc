@@ -912,7 +912,7 @@ A `date!` value comprises day, month and year numbers as well as, optionally,
 a time of day stored as a UTC time value with optional timezone information.
 The year number ranges from `-2^14^` to `2^14^-1`, but in literals it must
 lie between `-9999` and `9999`. Other values may be constructed using `make` or `to`
-(see <<other-types,sections 5.3.12>> and <<target-type-code-date-code,5.4.13>>).
+(see <<other-types,sections 5.3.13>> and <<target-type-code-date-code,5.4.13>>).
 The UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
 which varies between `-15:45` and `+15:45` in multiples of `0:15`
 (note that actual timezones vary between `-12:00` and `+14:00`).
@@ -1578,7 +1578,7 @@ the desired date and time. This number can be both positive and
 negative and because of the limitation of integer numbers will yield dates between
 `13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`. Furthermore, it is defined
 for `any-list!` values which have the same interpretation as for `make date!`
-(see <<code-date-code,section 5.3.12>>) except that in this case, over- and under-flow are allowed
+(see <<code-date-code,section 5.2.14>>) except that in this case, over- and under-flow are allowed
 and taken into account.
 
 ==== Additional conversion functions
@@ -5009,7 +5009,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2633">2633</a>   <a href="#errors">12.1</a>
 <a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#code-routine-code">5.3.9</a>
-<a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.12</a>
+<a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.13</a>
 <a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#target-type-code-logic-code">5.4.2</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#equality-comparisons">5.8.1</a>
