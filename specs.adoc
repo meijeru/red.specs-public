@@ -314,51 +314,52 @@ The full list of types of the languages is given below, with an explanation of t
 |`typeset!`       |sets of types
 |`none!`          |single value: `none`, i.e. a value belonging to none of the other types
 |`logic!`         |`true` or `false`
-|`char!`          |character (Unicode Code Point)
+|`char!`          |characters (Unicode Code Points)
 |`integer!`       |integer numbers 
 |`float!`         |floating point (decimal) numbers
 |`percent!`       |floating point numbers expressed as a percentage
-|`time!`          |time interval or point in time, stored as a floating point number of seconds
-|`date!`          |date according to the Gregorian calendar, optionally with time of day and timezone
+|`time!`          |time intervals or points in time, stored as a floating point number of seconds
+|`date!`          |dates according to the Gregorian calendar, optionally with time of day and timezone
 |`pair!`          |2-dimensional coordinates or size 
-|`tuple!`         |e.g. color in RGB or other scheme, IPv4 address
-|`word!`          |identifier that can be bound
-|`lit-word!`      |quoted (unevaluated) word
-|`set-word!`      |word to be given a value to refer to
-|`get-word!`      |word to be evaluated
+|`tuple!`         |e.g. colors in RGB or other scheme, IPv4 addresses
+|`word!`          |identifiers that can be bound
+|`lit-word!`      |quoted (unevaluated) words
+|`set-word!`      |words to be given a value to refer to
+|`get-word!`      |words to be evaluated
 |`refinement!`    |indicates optional argument of function
-|`issue!`         |literal identifier
-|`handle!`        |opaque integer for communication with operating system
-|`block!`         |ordered collection of values of any type (polymorphic array),
-                   may also be used as unordered collection (set)
-|`hash!`          |block with quick access
+|`issue!`         |literal identifiers
+|`handle!`        |opaque integers for communication with operating system
+|`block!`         |ordered collections of values of any type (polymorphic array),
+                   may also be used as unordered collections (sets)
+|`hash!`          |blocks with quick access
 |`paren!`         |differs from block in behaviour under evaluation  
 |`path!`          |specifying optional arguments in function calls,
                    selection of components of composite values
-|`lit-path!`      |quoted (unevaluated) path
+|`lit-path!`      |quoted (unevaluated) paths
 |`set-path!`      |for setting a component of a composite value
-|`get-path!`      |path to be evaluated
+|`get-path!`      |paths to be evaluated
 |`vector!`        |ordered sequences of values of identical type, which can be
                    `char!` or `integer!` (8/16/32 bits), `percent!` or `float!` (32/64 bits);
                    default: 32 bits for `char!` or `integer!` and 64 bits otherwise
-|`string!`        |sequence of characters (Unicode Code Points)
-|`file!`          |file or directory (folder)
-|`url!`           |URL
-|`tag!`           |tag in the sense of HTML, XML etc.
-|`email!`         |email address
-|`binary!`        |sequence of bytes
-|`image!`         |2-dimensional array of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
-|`bitset!`        |sequence of `logic!` values, used e.g. to model sets of
+|`string!`        |sequences of characters (Unicode Code Points)
+|`file!`          |files or directories (folders)
+|`url!`           |URLs
+|`tag!`           |tags in the sense of HTML, XML etc.
+|`email!`         |email addresses
+|`binary!`        |sequences of bytes
+|`image!`         |2-dimensional arrays of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
+|`bitset!`        |sequences of `logic!` values, used e.g. to model sets of
                    non-negative integers, such as Unicode Code Points
-|`map!`           |collection of pairs of values where the first value in each pair functions
+|`map!`           |collections of pairs of values where the first value in each pair functions
                    as key for retrieval of the second; keys are restricted to types in
                    `scalar!`, `any-word!` and `any-string!`
-|`object!`        |collection of word-value pairs with a context in which the words
+|`object!`        |collections of word-value pairs with a context in which the words
                    (also called _fields_) are bound, and are referring to the corresponding values;
                    objects are capable of triggering asynchronous events in response
                    to changes in their components, thus enabling reactive programming;
                    objects have a _class_ property associated with them
 |`error!`         |specialized objects representing error conditions
+|`port!`          |specialized objects for communicating with external resources
 |`native!`        |pre-defined functions with built-in evaluation according to special rules
 |`action!`        |pre-defined polymorphic functions of one or two arguments with built-in evaluation
 |`op!`            |operators, i.e. infix functions of two arguments, each one is
@@ -367,13 +368,12 @@ The full list of types of the languages is given below, with an explanation of t
                     `function!` values may have optional arguments, indicated by refinements
 |`routine!`       |user-defined functions with body in Red/System code
 |`unset!`         |single value indicating the absence of a usable value
-|`event!`         |representation of external activity   
+|`event!`         |representations of external activity   
 |===
 ....
 TBD
 point!
 closure!
-port!
 ref!
 struct!
 library!
@@ -503,6 +503,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`map!`        |syntactic        |indirect  |composite        |Y           |passive    |
 |`object!`     |using `make`     |indirect  |composite        |Y           |passive    |
 |`error!`      |using `make`     |indirect  |composite        |Y           |passive    |`object!`
+|`port!`       |using `make`     |indirect  |composite        |Y           |passive    |`object!`
 |`native!`     |using words      |function  |atomic           |Y           |function   |
 |`action!`     |using words      |function  |atomic           |Y           |function   |`native!`
 |`op!`         |using words      |function  |atomic           |Y           |function   |`native!`
@@ -521,7 +522,6 @@ Notes:
 TBD
 point!
 closure!
-port!
 ref!
 struct!
 library!
@@ -595,7 +595,8 @@ any-type!
    |--map!               
    |--any-object!        
    |  |--object!          
-   |  |--error!           
+   |  |--error!
+   |  |--port!
    |--any-function!      
       |--native!          
       |--action!          
@@ -606,7 +607,6 @@ any-type!
 TBD
 point!
 closure!
-port!
 ref!
 struct!
 library!
@@ -1385,6 +1385,14 @@ It will add the keys that are not present in the map, with their values,
 and replace the values for those keys that are already present.
 The keys and values are not evaluated.
 
+==== `port!`
+
+**`S135`**::
+....
+<port> ::= make port! <port-spec>
+<port-spec> ::= TBD
+....
+
 ==== Other types 
 
 * Making `integer!` values from `logic!` values: `true -> 1, false -> 0`
@@ -1677,7 +1685,7 @@ _**See https://github.com/red/red/issues/3516[issues #3516] and https://github.c
 ==== Selection by "key" 
 
 This is possible for values that are sequences (with types in `series!`,
-but not `bitset!`), and for values of types `object!`, `error!` and `map!`.
+but not `bitset!`), and for values of types `object!`, `error!`, `port!` and `map!`.
 A restricted facility also exists for values of type `time!`, `date!`, `pair!`, `email!`, `image!`
 and `event!`. 
 
@@ -1695,7 +1703,7 @@ for `find`, or a sequence of such values, and the result is the component *after
 the first occurrence of the key (single or sequence) if found, and `none` otherwise.
 * For extraction in the other types, which contain key/value pairs, the result is the value
 corresponding to the given key. If there is no such key in a `map!` value the result
-is `none`; in case of an `object!` or `error!` value the result is an error.
+is `none`; in case of an `object!`, `port!` or `error!` value the result is an error.
 * For changing a value in sequences, the key should be of a type in `scalar!`, `any-string!`, `any-word!`
 or `binary!`, and the destination should be of a type in `any-block!`.
 _**See https://github.com/red/red/issues/1960[issue #1960]**_
@@ -1711,6 +1719,8 @@ An additional facility, for setting _all_ components of an object is provided by
 an `object!` first argument, and a block of component values as second argument. If the second
 argument is `none`, all components will be set to `none`.
 * Fields of `error!` values cannot be set._**See https://github.com/red/red/issues/2554[issue #2554]**_
+* Fields of `port!` values TBD
+
 
 _Path expressions_ may also be used for selection. The correspondence is as follows:
 ....
@@ -1798,6 +1808,7 @@ Selection by a key of the wrong type or wrong value leads to an error.
 |map!       |             |            |scalar! any-word! any-string! binary! |select put
 |object!    |             |            |word!                               |select put
 |error!     |             |            |code type id arg1 arg2 arg3 near where stack |select
+|port!      |             |            |spec scheme actor awake state data         | select put(TBD)
 |event!     |             |            |type face window offset key picked flags away? down? mid-down? alt-down? aux-down? ctrl? shift? |
 
 |===
