@@ -1442,7 +1442,7 @@ _**See https://github.com/red/red/issues/2645[issue #2645]**_
 ==== Target types in `any-string!`
 
 The function `to-string` yields the same result as the built-in function `form` (see
-<<conversion-from-to-textual-representation,section 11.1>>) except for
+<<conversion-from-to-textual-representation,section 11.1.1>>) except for
 
 * `unset!` and `none!` values: conversion is not allowed
 * `binary!` values: these will be decoded as UTF-8
@@ -1460,7 +1460,7 @@ a result of the appropriate type. The function `to-url` will operate analogously
 The function `to-block` yields a block with the argument as single component except
 for
 
-* `string!` values: first applies `load` (see <<conversion-from-to-textual-representation,section 11.1>>)
+* `string!` values: first applies `load` (see <<conversion-from-to-textual-representation,section 11.1.1>>)
 and applies `to-block` to the result
 * `typeset!` values: yields a block with the individual types
 * `any-block!` and `vector!` values: yields a block with the components
@@ -1600,7 +1600,7 @@ and convert them to upper case or lower case respectively; they use the
 _Unicode 7.0 case folding table_ (only character pairs with status C and S)
 * `to-local-file` converts a Red file path to the local system file path and
 `to-red-file` converts a local system file path to a Red file path (see
-<<file-system-functions,section 11.6>>
+<<file-system-functions,section 11.3.2>>
 
 === Casting of values (`as`)
 
@@ -2588,11 +2588,11 @@ type, as follows:
 . if the argument is a `block!` value, the block will be _executed_ as
 described in <<passive-types,section 7.1>>
 . if the argument is a `string!` value, the built-in function `load`
-(see <<conversion-from-to-textual-representation,section 11.1>>)
+(see <<conversion-from-to-textual-representation,section 11.1.1>>)
 will be invoked on the string, and `do` will be invoked on the result
 . if the argument is a `url!` or `file!` value, this should contain a text
 which is a valid Red program (see <<structure-of-red-programs,section 3>>); the text string will be
-obtained by `read` (see <<file-and-url-i-o,section 11.5>>) and the previous step will be taken
+obtained by `read` (see <<file-and-url-i-o,section 11.3.1>>) and the previous step will be taken
 . if the argument is an `error!` value, the error will be raised (see
 <<raising-and-interception,section 12.1.2>>)
 . otherwise, the argument will be evaluated according to the appropriate
@@ -3473,7 +3473,7 @@ is relative, and invoke `dirize` afterwards
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
 * `path-thru` will return the local disk cache path of a remote file
-indicated by its `url!` argument (see <<file-and-url-i-o,section 11.5>>)
+indicated by its `url!` argument (see <<file-and-url-i-o,section 11.3.1>>)
 * `delete` will take a `file!` argument and delete the file or directory indicated;
 the result is `true` if the operation was succesful, and `false` otherwise
 * `request-file` will invoke an interactive file requestor and yield
@@ -4540,7 +4540,7 @@ system/   object!
         last-error     error!       
         trace          integer!     
     modules     block!              
-    codecs      block!              see <a href = "#conversion-from-to-other-representations">section 11.2</a>
+    codecs      block!              see <a href = "#conversion-from-to-other-representations">section 11.1.2</a>
     schemes     object!             TBD
     ports       object!             TBD
     locale/     object!             
@@ -4556,7 +4556,7 @@ system/   object!
         path           file!
         script         
         cache          file!         cache folder used by the Red toolchain
-        thru-cache     file!         see section <a href = "#file-and-url-i-o">11.5</a>
+        thru-cache     file!         see section <a href = "#file-and-url-i-o">11.3.1</a>
         args           
         do-arg         
         debug          logic!
@@ -4579,8 +4579,8 @@ system/   object!
        file-info       object!
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
-        prompt         string!        see <a href = "#console-functions">section 11.7</a>
-        result         string!        see <a href = "#console-functions">section 11.7</a>
+        prompt         string!        see <a href = "#console-functions">section 11.3.3</a>
+        result         string!        see <a href = "#console-functions">section 11.3.3</a>
         history        block!         previous inputs
         ...
     view        object!               see <a href = "#gui-system">section 13.3</a>
@@ -4874,7 +4874,7 @@ dialect                                 <a href = "#dialects">2.5</a>
   vector spec dialect                   <a href = "#code-vector-code">5.3.3</a>
   Visual Interface dialect (VID)        <a href = "#gui-system">13.3</a>
 direct type                             <a href = "#direct-indirect-function-types">4.2.2</a>
-disk-cached remote file access          <a href = "#file-and-url-i-o">11.5</a>
+disk-cached remote file access          <a href = "#file-and-url-i-o">11.3.1</a>
 docstring                               <a href = "#code-function-code">5.3.8</a>, <a href = "#code-routine-code">5.3.9</a>
 Domain Specific Language (DSL)          <a href = "#dialects">2.5</a>
 double quote (U+0022)                   <a href = "#code-char-code">5.2.6</a>
@@ -4950,7 +4950,7 @@ reactivity                              <a href = "#reactivity">13.4</a>
 Read Evaluate Print Loop (REPL)         <a href = "#red-toolchain">2.2</a>
 Red toolchain                           <a href = "#red-toolchain">2.2</a>
 Red/System (dialect)                    <a href = "#dialects">2.5</a>, <a href = "#additional-documentation">18</a>
-remote file access (disk-cached)        <a href = "#file-and-url-i-o">11.5</a>
+remote file access (disk-cached)        <a href = "#file-and-url-i-o">11.3.1</a>
 REPL (Read Evaluate Print Loop)         <a href = "#red-toolchain">2.2</a>
 RGB color scheme                        <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
 RGBA color/transparency scheme          <a href = "#code-image-code">5.3.4</a>
@@ -4982,7 +4982,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
   type hierarchy                        <a href = "#type-hierarchy">4.3</a>
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
 Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.14</a>
-UTF-8 scheme                            <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1</a>, <a href = "#file-and-url-i-o">11.5</a>
+UTF-8 scheme                            <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
   grouped value                         <a href = "#textual-structure">3.1</a>
   single value                          <a href = "#textual-structure">3.1</a>
@@ -5030,7 +5030,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
-<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-from-to-textual-representation">11.1</a>
+<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-from-to-textual-representation">11.1.1</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#code-image-code">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#code-function-code">5.3.8</a>
@@ -5047,7 +5047,7 @@ issue  section
 
  <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#formal-grammar">3.2</a>, <a href="#introduction-1">5.1</a>
  <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
- <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.7</a>
+ <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.3.3</a>
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#code-vector-code">5.3.3</a>
  <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
