@@ -3189,7 +3189,16 @@ other, and yields the result of the first one, using `get/any`.
 
 == Input/output
 
-=== Conversion from/to textual representation
+This section deals with communication between programs and external resources, and 
+with the related conversion of data between various representations. Red can work directly
+with external resources represented as files (values of type `file!`, which includes
+directories or folders as they may be called) and as _Uniform Resource Locators_
+or urls (values of type `url!`). For more general handling of resources, Red has _ports_
+(values of type `port!`).
+
+=== Conversion of data
+
+==== Conversion from/to textual representation
 
 The built-in function `load` will convert textual input (or its binary UTF-8 encoded
 equivalent), specified as its argument, to one or more values by calling upon
@@ -3259,7 +3268,7 @@ gives
 The state of the new-line marker may be tested with the built-in function
 `new-line?` which has an `any-list!` argument, and yields `true` or `false`.
 
-=== Conversion from/to other representations
+==== Conversion from/to other representations
 
 The built-in functions `load` and `save` each have an `/as` refinement
 with a `word!` argument: the value `none` indicates Red code (Red data)
@@ -3282,7 +3291,7 @@ content:
     |decode          |routine!     |routine [data [any-type!]][...]
 |===
 
-=== Full specification of load and save
+==== Full specification of load and save
 
 Because of their importance, the complete specification of the built-in functions
 `load` and `save` is given here.
@@ -3344,7 +3353,9 @@ print [1 + 2 3 + 4]    ; prints "3 7" and yields unset
 probe [1 + 2 3 + 4]    ; prints "[1 + 2 3 + 4]" and yields [1 + 2 3 + 4]
 ....
 
-=== File and URL I/O
+=== Basic I/O
+
+==== File and URL I/O
 
 The built-in function `read` will read a string from a file on an external
 device which is indicated by a `file!` or `url!` value as its argument. The content
@@ -3397,7 +3408,7 @@ A    open?
 A    update
 ....
 
-=== File system functions
+==== File system functions
 
 A `file!` value may indicate either a file or a _directory_ (some
 Operating Systems call this a _folder_). The conventions for
@@ -3474,7 +3485,7 @@ TBD
 A    rename
 ....
 
-=== Console functions
+==== Console functions
 
 The _console prompt_ and the string preceding the result of the user input
 are available as `system/console/prompt` and `system/console/result`. Their
@@ -3489,11 +3500,15 @@ The built-in function `input` is shorthand for `ask ""`. _**See https://github.c
 The built-in function `read-clipboard` will return the clipboard content as a string
 and `write-clipboard` with a string argument will set the clipboard content.
 
-=== Other functions
+==== Other functions
 
 The function `browse` with a `url!` of `file!` argument will open the system default browser
 at the URL that is indicated by its `url!` argument, or invoke the system file manager for
 the file that is indicated by its `file!` argument.
+
+=== Ports
+
+TBD
 
 == Exceptions
 
