@@ -1263,7 +1263,7 @@ cannot be set by `make`. They should be set afterwards.
 If the `<error-spec>` is a `string!` value, this will be used as `arg1` for the error with
 `type: 'user id: 'message`. 
 
-Note that `error!` values all have `class = 0`.
+Note that `error!` values all have `class = 1`.
 
 ==== `function!`
 
@@ -1393,7 +1393,7 @@ The keys and values are not evaluated.
 <port-spec> ::= TBD
 ....
 
-Note that `port!` values all have `class = 0`.
+Note that `port!` values all have `class = 2`.
 
 ==== Other types 
 
