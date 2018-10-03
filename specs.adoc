@@ -3511,9 +3511,9 @@ the file that is indicated by its `file!` argument.
 ==== Port components
 
 Ports are values of type `port!` that can be used to manage communication
-with external resources;0 they are specialized objects with a fixed number of fields,
+with external resources; they are specialized objects with a fixed number of fields,
 that contain the necessary information for handling the communication
-with a wide variety of such resources. A prototype error value is contained in `system/standard/port`.
+with a wide variety of such resources. A prototype port value is contained in `system/standard/port`.
 As also shown in <<components-of-values,section 5.6>> the fields are:
 [cols="1,1,2", options="header"]
 |===
