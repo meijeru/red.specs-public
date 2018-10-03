@@ -1393,6 +1393,8 @@ The keys and values are not evaluated.
 <port-spec> ::= TBD
 ....
 
+Note that `port!` values all have `class = 0`.
+
 ==== Other types 
 
 * Making `integer!` values from `logic!` values: `true -> 1, false -> 0`
