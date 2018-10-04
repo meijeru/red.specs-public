@@ -3192,11 +3192,15 @@ other, and yields the result of the first one, using `get/any`.
 == Input/output
 
 This section deals with communication between programs and external resources, and 
-with the related conversion of data between various representations. Red can work directly
+with the related conversion of data between various representations.
+Red currently has a basic set of functions to work directly
 with external resources represented as files (values of type `file!`, which includes
-directories or folders as they may be called) and as _Uniform Resource Locators_
-or urls (values of type `url!`). For more general handling of resources, Red has _ports_
-(values of type `port!`).
+directories or folders as they may be called) and as network locations
+or urls (values of type `url!`). For more general handling of resources, Red will have _ports_
+(values of type `port!`). This facility will model external resources uniformly as
+_URIs (Uniform Resource Locators)_, which will include files and urls as special cases.
+The basic I/O functions are completely described in <<basic-i-o,section 11.3>> below.
+The port approach is being described, as it evolves, in <<ports,section 11.4>>.
 
 === Conversion of data
 
@@ -3293,6 +3297,10 @@ content:
     |decode          |routine!     |routine [data [any-type!]][...]
 |===
 
+Note that conversion between "raw" binary data (values of type `binary!`) and strings
+is quasi automatic if the binary data uses UTF-8 character encoding: `to-binary <string>`
+and `to-string <binary>` will perform the necessary encoding/decoding.
+
 ==== Full specification of load and save
 
 Because of their importance, the complete specification of the built-in functions
@@ -3357,6 +3365,10 @@ probe [1 + 2 3 + 4]    ; prints "[1 + 2 3 + 4]" and yields [1 + 2 3 + 4]
 
 === Basic I/O
 
+This section describes the current state of implementation of I/O facilities which
+work directly with files and urls. More general facilities will be provided by ports,
+see <<ports,section 11.4>>.
+
 ==== File and URL I/O
 
 The built-in function `read` will read a string from a file on an external
@@ -3399,16 +3411,6 @@ They work in the same way as their normal counterparts,
 except that the retrieved file is cached locally, so on their next access,
 the locally cached copy will be used. The cache folder used by the `*-thru` functions
 is indicated by `system/options/thru-cache`.
-
-TBD
-....
-A    close
-A    create
-A    modify
-A    open
-A    open?
-A    update
-....
 
 ==== File system functions
 
@@ -3482,27 +3484,23 @@ the result is `true` if the operation was succesful, and `false` otherwise
 a `file!` value or a block of `file!` values
 * `request-dir` will do the same for directories
 
-TBD
-....
-A    rename
-....
-
-
 === Ports
 
-NB This describes the current state of implementation, which may evolve.
+_Ports_ represent a generalization of files and urls. They implement
+the concept of _Uniform Resource Identifier (URI)_, as defined in
+https://www.ietf.org/rfc/rfc3986.txt[RFC3986]. The functionality
+offered by ports will be more complete than the basic I/O currently provided.
 
 ==== Port components
 
-Ports are values of type `port!` that can be used to manage communication
-with external resources; they are specialized objects with a fixed number of fields,
+Ports, i.e.values of type `port!`, are specialized objects with a fixed number of fields,
 that contain the necessary information for handling the communication
-with a wide variety of such resources. A prototype port value is contained in `system/standard/port`.
+with a wide variety of external resources. A prototype port value is contained in `system/standard/port`.
 As also shown in <<components-of-values,section 5.6>> the fields are:
 [cols="1,1,2", options="header"]
 |===
 |name      |type           |content
-|spec      |object!        |represents a resource, i.e. a URL
+|spec      |object!        |represents a resource, i.e. a URI
 |scheme    |object!        |contains _actor functions_
 |actor     |               |      
 |awake     |               |
@@ -3512,7 +3510,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 
 Each _actor function_ handles one particular operation on the resource,
 e.g. `open`, `read`, `rename`. These operations are specific to the "type"
-of resource, e.g. they may be different for `http:` than for `ftp:`.
+of resource, e.g. they will be different for `http:` than for `udp:`.
 The word _scheme_ is used both for the resource type, and for the collection
 of actor functions handling this particular resource type.
 
@@ -3520,7 +3518,7 @@ The fields of the `spec` object are:
 [cols="1,1,2", options="header"]
 |===
 |name      |type           |content
-|scheme    |word!          |e.g. http:, ftp:
+|scheme    |word!          |e.g. http:, udp:
 |user-info |               |
 |host      |string!        |e.g "domain.com"
 |port      |integer!       |e.g. 8080
@@ -3532,9 +3530,8 @@ The fields of the `spec` object are:
 
 A prototype object is contained in `system/standard/url-parts`
 
-A function exists to construct the `spec` object for a URL given a Red value
-of type `url!` or `string!`: `decode-url`. It follows https://www.ietf.org/rfc/rfc3986.txt[RFC3986],
-which defines "Uniform Resource Identifiers (URI)", with some simplifications.
+A function exists to construct the `spec` object for a URI given a Red value
+of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
 It will be seen that the field names are identical to those used in RFC3986.
 
 The `scheme` field of the `spec` object names one of the available schemes
@@ -5062,7 +5059,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
   type hierarchy                        <a href = "#type-hierarchy">4.3</a>
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
 Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.14</a>
-Uniform Resource Identifier (URI)       <a href = "#port-components">11.4.1</a>
+Uniform Resource Identifier (URI)       <a href = "#ports">11.4</a>
 UTF-8 scheme                            <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
   grouped value                         <a href = "#textual-structure">3.1</a>
