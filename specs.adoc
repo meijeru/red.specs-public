@@ -2506,14 +2506,20 @@ When compiling, the toolchain will convert the routine into a _Red/System functi
 by changing every Red type mentioned in it, except `integer! logic!` and `float!`
 to the corresponding Red/System `struct!` alias that describes the value slot,
 thus `string!` becomes `red-string!` etc.
-. An argument without a type is given Red/System alias `red-value!` which corresponds
-to `any-type!`.
+. A routine argument or return without a type is given Red/System alias `red-value!`
+which corresponds to `any-type!`.
 . The `<routine-body>` (which is a block of Red values) becomes the body of
 this Red/System function, and will be treated as Red/System code.
 
 The function thus constructed becomes part of the intermediate Red/System code
 that the toolchain produces internally for compilation into machine code,
 and the application of the function will proceed according to the Red/System rules.
+The conversion of the argument types enables the function to correctly deal with the
+Red argument values. Likewise a returned value, if any, will have its correct Red type
+if the function correctly sets the Red/System `struct!` value.
+
+Note that the precise mechanism for argument and return value passing is not
+described here.
 
 === Blocks: reduction and selective evaluation
 
