@@ -3522,7 +3522,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 [cols="1,1,2", options="header"]
 |===
 |name      |type           |content
-|spec      |object!        |represents a resource, e.g. a URL
+|spec      |object!        |represents a resource, i.e. a URL
 |scheme    |object!        |contains _actor functions_
 |actor     |               |      
 |awake     |               |
@@ -3532,7 +3532,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 
 Each _actor function_ handles one particular operation on the resource,
 e.g. `open`, `read`, `rename`. These operations are specific to the "type"
-of resource, e.g. for a URL, they may be different for `http:` then for `ftp:`.
+of resource, they may be different for `http:` than for `ftp:`.
 The word _scheme_ is used both for the resource type, and for the collection
 of actor functions handling this particular resource type.
 
@@ -3549,6 +3549,8 @@ The fields of the `spec` object are:
 |query     |string!        |
 |fragment  |string!        |
 |===
+
+A prototype object is contained in `system/standard/url-parts`
 
 A function exists to construct the `spec` object for a URL given a Red value
 of type `url!` or `string!`: `decode-url`. It follows RFC3986, with some simplifications.
