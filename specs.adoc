@@ -1841,14 +1841,14 @@ For values of types `date! email! event! image! pair! time!` which admit compone
 by "key" (see <<selection-by-key,section 5.6.2>>), the allowed key values are available
 from `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
 
-For values of type `object! error!` and `map!`, which consist of key/value pairs,
+For values of type `object!`, `error!`, `port!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
 be obtained as a block by means of the built-in functions `words-of values-of`
 and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
 In addition, for objects there is the property `class-of` which yields
 the unique number that is given to each object that is created from a `<spec>`, and is
 inherited by objects _derived_ from it (see <<code-object-code,rule `S129`>>).
-As per <<code-error-code,rule `S130`>> this property is `0` for `error!` values.
+This property is `1` for `error!` values, and `2` for `port!` values.
 
 For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
@@ -1942,7 +1942,7 @@ before the `x` component
 * lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`;
 for objects, the numbers of fields are compared first, and if they are unequal,
 the field contents are not tested further
-* no comparison: `datatype! typeset! none! logic! image! map! error! function! routine!
+* no comparison: `datatype! typeset! none! logic! image! map! error! port! function! routine!
 action! native! op! handle! event!` and `unset!`.
 
 As a rule, for ordering comparisons the types of the two values have to be the same.
@@ -2101,10 +2101,10 @@ contains the actual argument values. See evaluation <<code-function-code-type,ru
 
 ==== Built-in `in` function
 
-The built-in function `in` has two arguments: an `object!` or `error!` value
+The built-in function `in` has two arguments: an `object!`,`error!` or `port!` value
 and a word.
 
-It will bind the word to the object or error context, and yield the word thus
+It will bind the word to the object, error or port context, and yield the word thus
 bound as result.
 
 The following equivalence may be observed, where `o` is an object with field `f`:
@@ -2874,7 +2874,7 @@ If `find` on a series does not have a match, its result is `none`.
 The function is also defined on values of type `bitset!` (with `<expression>`
 of type `char!`, `string!`, `integer!` or `block!` of integers),
 `typeset!` (with `<expression>` of type `datatype!`)
-and `object!` and `map!` (with `<expression>` evaluating to a _field_  value).
+and `any-object!` and `map!` (with `<expression>` evaluating to a _field_  value).
 The result of `find` in these cases is `true` if there is a match, and `false` otherwise.
 
 Furthermore, if the `<series>` argument is of type `any-block!` except `hash!`
@@ -2909,6 +2909,8 @@ accept `none` as an argument, yielding `none` as result.
 
 The function `length?` is also defined for values of type `bitset!`, `tuple!` and `map!`.
 
+_**All series operations are defined for port! values??**_
+
 === Series: extraction and modification of components
 
 The following built-in functions have been described in <<components-of-values,section 5.6>>:
@@ -2940,8 +2942,8 @@ For `split`, the `<series>` must be of type `any-string!`, and the
 to represent a choice of characters -- a bitset.
 
 
-The function `copy` is also defined on values of type `bitset!`, `map!`, `object!`
-and `error!`.
+The function `copy` is also defined on values of type `bitset!`, `map!`, `object!`,
+`error!` and `port!`.
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series. With the exception of
@@ -3028,6 +3030,8 @@ The function `modify` is used to change the `owned` property of a series value
 (see <<code-object-code,section 5.3.6>> and <<reflection-on-values,section 5.7>>).
 It has three arguments: the series value, the word `'owned`, and a block of
 the owner object and field name, or the value `none`.
+
+_**All series operations are defined for port! values??**_
 
 === Operations on bitsets
 
@@ -4101,6 +4105,7 @@ See also <<type-list,section 4.1>>
     path!
     percent!
     point!
+    port!
     refinement!
     routine!
     set-path!
@@ -4627,7 +4632,7 @@ system/   object!
         trace          integer!     
     modules     block!              
     codecs      block!              see <a href = "#conversion-from-to-other-representations">section 11.1.2</a>
-    schemes     object!             TBD
+    schemes     block!              see <a href = "#port-components">section 11.4.1</a>
     ports       object!             TBD
     locale/     object!             
         language       
@@ -4662,6 +4667,7 @@ system/   object!
     standard/   object!
        header          object!        see <a href = "#metadata-for-the-toolchain">section 17</a>
        error           object!        see <a href = "#composition">section 12.1.1</a>
+       scheme          object!        see <a href = "#port-components">section 11.4.1</a>
        file-info       object!
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
