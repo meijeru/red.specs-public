@@ -3204,7 +3204,7 @@ with external resources represented as files (values of type `file!`, which incl
 directories or folders as they may be called) and as network locations
 or urls (values of type `url!`). For more general handling of resources, Red will have _ports_
 (values of type `port!`). This facility will model external resources uniformly as
-_URIs (Uniform Resource Locators)_, which will include files and urls as special cases.
+_URIs (Uniform Resource Identifiers)_, which will include files and urls as special cases.
 The basic I/O functions are completely described in <<basic-i-o,section 11.3>> below.
 The port approach is being described, as it evolves, in <<ports,section 11.4>>.
 
