@@ -3532,7 +3532,7 @@ A prototype object is contained in `system/standard/url-parts`
 
 A function exists to construct the `spec` object for a URI given a Red value
 of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
-It will be seen that the field names are identical to those used in RFC3986.
+It will be seen that the field names of the `spec` object are identical to those used in RFC3986.
 
 The `scheme` field of the `spec` object names one of the available schemes
 stored in `system/schemes`, and this one is the content of the `scheme` field of the
@@ -3548,6 +3548,7 @@ The following I/O operations (functions) are defined on ports:
 |function  |description
 |create    |
 |open      |
+|open?     |
 |close     |
 |query     |
 |read      |
