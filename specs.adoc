@@ -3552,10 +3552,10 @@ The following I/O operations (functions) are defined on ports:
 [cols="1,1", options="header"]
 |===
 |function  |description
-|create    |
-|open      |
+|create    |Send port a create request
+|open      |Opens a port
 |open?     |
-|close     |
+|close     |Closes a port
 |query     |
 |read      |
 |write     |
@@ -3566,6 +3566,9 @@ The following I/O operations (functions) are defined on ports:
 |===
 
 These functions are implemented for the various schemes by actors.
+The function`open` also accepts a `file!`, `url!` or `block!` argument;
+the corresponding `port!` value will be constructed from the
+file or url respectively. _**What does a block! argument mean?**_
 
 Also defined for values of `port!` type are all functions that are
 defined for values of `series` types.
