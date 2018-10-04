@@ -3532,7 +3532,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 
 Each _actor function_ handles one particular operation on the resource,
 e.g. `open`, `read`, `rename`. These operations are specific to the "type"
-of resource, they may be different for `http:` than for `ftp:`.
+of resource, e.g. they may be different for `http:` than for `ftp:`.
 The word _scheme_ is used both for the resource type, and for the collection
 of actor functions handling this particular resource type.
 
@@ -3553,12 +3553,38 @@ The fields of the `spec` object are:
 A prototype object is contained in `system/standard/url-parts`
 
 A function exists to construct the `spec` object for a URL given a Red value
-of type `url!` or `string!`: `decode-url`. It follows RFC3986, with some simplifications.
+of type `url!` or `string!`: `decode-url`. It follows https://www.ietf.org/rfc/rfc3986.txt[RFC3986],
+which defines "Uniform Resource Identifiers (URI)", with some simplifications.
+It will be seen that the field names are identical to those used in RFC3986.
 
 The `scheme` field of the `spec` object names one of the available schemes
 stored in `system/schemes`, and this one is the content of the `scheme` field of the
 `port!` value. New schemes may be added to `system/schemes` by calling
 `register-scheme` with as arguments the name of the scheme and its content.
+
+==== Port operations
+
+The following I/O operations (functions) are defined on ports:
+
+[cols="1,1", options="header"]
+|===
+|function  |description
+|create    |
+|open      |
+|close     |
+|query     |
+|read      |
+|write     |
+|update    |
+|modify    |
+|rename    |    
+|delete    |
+|===
+
+These functions are implemented for the various schemes by actors.
+
+Also defined for values of `port!` type are all functions that are
+defined for values of `series` types.
 
 == Exceptions
 
@@ -5002,6 +5028,7 @@ Red toolchain                           <a href = "#red-toolchain">2.2</a>
 Red/System (dialect)                    <a href = "#dialects">2.5</a>, <a href = "#additional-documentation">18</a>
 remote file access (disk-cached)        <a href = "#file-and-url-i-o">11.3.1</a>
 REPL (Read Evaluate Print Loop)         <a href = "#red-toolchain">2.2</a>
+RFC3986 (URI)                           <a href = "#port-components">11.4.1</a>
 RGB color scheme                        <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
 RGBA color/transparency scheme          <a href = "#code-image-code">5.3.4</a>
 routine spec dialect                    <a href = "#dialects">2.5</a>, <a href = "#code-routine-code">5.3.9</a>
@@ -5032,6 +5059,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
   type hierarchy                        <a href = "#type-hierarchy">4.3</a>
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
 Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.14</a>
+Uniform Resource Identifier (URI)       <a href = "#port-components">11.4.1</a>
 UTF-8 scheme                            <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
   grouped value                         <a href = "#textual-structure">3.1</a>
