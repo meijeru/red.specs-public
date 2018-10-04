@@ -3487,26 +3487,6 @@ TBD
 A    rename
 ....
 
-==== Console functions
-
-The _console prompt_ and the string preceding the result of the user input
-are available as `system/console/prompt` and `system/console/result`. Their
-initial values are `">> "` and `"== "` respectively.
-
-The built-in function `ask` will print its argument at the console prompt
-and wait for user input until a line feed (`U+000A`) is received;
-the string before the line feed will be yielded as result.
-
-The built-in function `input` is shorthand for `ask ""`. _**See https://github.com/red/REP/issues/11[REP #11]**_
-
-The built-in function `read-clipboard` will return the clipboard content as a string
-and `write-clipboard` with a string argument will set the clipboard content.
-
-==== Other functions
-
-The function `browse` with a `url!` of `file!` argument will open the system default browser
-at the URL that is indicated by its `url!` argument, or invoke the system file manager for
-the file that is indicated by its `file!` argument.
 
 === Ports
 
@@ -3585,6 +3565,29 @@ These functions are implemented for the various schemes by actors.
 
 Also defined for values of `port!` type are all functions that are
 defined for values of `series` types.
+
+=== Other functions
+
+==== Console functions
+
+The _console prompt_ and the string preceding the result of the user input
+are available as `system/console/prompt` and `system/console/result`. Their
+initial values are `">> "` and `"== "` respectively.
+
+The built-in function `ask` will print its argument at the console prompt
+and wait for user input until a line feed (`U+000A`) is received;
+the string before the line feed will be yielded as result.
+
+The built-in function `input` is shorthand for `ask ""`. _**See https://github.com/red/REP/issues/11[REP #11]**_
+
+The built-in function `read-clipboard` will return the clipboard content as a string
+and `write-clipboard` with a string argument will set the clipboard content.
+
+==== Browse
+
+The function `browse` with a `url!` of `file!` argument will open the system default browser
+at the URL that is indicated by its `url!` argument, or invoke the system file manager for
+the file that is indicated by its `file!` argument.
 
 == Exceptions
 
@@ -4655,8 +4658,8 @@ system/   object!
        file-info       object!
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
-        prompt         string!        see <a href = "#console-functions">section 11.3.3</a>
-        result         string!        see <a href = "#console-functions">section 11.3.3</a>
+        prompt         string!        see <a href = "#console-functions">section 11.5.1</a>
+        result         string!        see <a href = "#console-functions">section 11.5.1</a>
         history        block!         previous inputs
         ...
     view        object!               see <a href = "#gui-system">section 13.3</a>
@@ -5125,7 +5128,7 @@ issue  section
 
  <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#formal-grammar">3.2</a>, <a href="#introduction-1">5.1</a>
  <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
- <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.3.3</a>
+ <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.5.1</a>
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#code-vector-code">5.3.3</a>
  <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
