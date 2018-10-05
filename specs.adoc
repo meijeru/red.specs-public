@@ -3528,7 +3528,7 @@ The fields of the `spec` object are:
 [cols="1,1,2", options="header"]
 |===
 |name      |type           |content
-|scheme    |word!          |e.g. http:, udp:
+|scheme    |word!          |e.g.` http`, `udp`, `file`, `mailto` 
 |user-info |               |
 |host      |string!        |e.g "domain.com"
 |port      |integer!       |e.g. 8080
@@ -3540,14 +3540,17 @@ The fields of the `spec` object are:
 
 A prototype object is contained in `system/standard/url-parts`
 
-A function exists to construct the `spec` object for a URI given a Red value
-of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
-It will be seen that the field names of the `spec` object are identical to those used in RFC3986.
-
 The `scheme` field of the `spec` object names one of the available schemes
 stored in `system/schemes`, and this one is the content of the `scheme` field of the
 `port!` value. New schemes may be added to `system/schemes` by calling
 `register-scheme` with as arguments the name of the scheme and its content.
+
+A function exists to construct the `spec` object for a URI given a Red value
+of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
+It will be seen that the field names of the `spec` object are identical to those used in RFC3986.
+For a `file!` value, the `spec` object will have the field `scheme` set to `file` and
+the fields `path` and `target` to the directory (folder) and file name within the
+directory respectively.
 
 ==== Port operations
 
@@ -3570,9 +3573,11 @@ The following I/O operations (functions) are defined on ports:
 |===
 
 These functions are implemented for the various schemes by actors.
-The function`open` also accepts a `file!`, `url!` or `block!` argument;
+
+A number of these functions also accept a `file!`, `url!` or `block!` argument;
 the corresponding `port!` value will be constructed from the
-file or url respectively. _**What does a block! argument mean?**_
+file or url respectively as indicated above; the `block!` should
+contain key/value pairs as for an object.
 
 Also defined for values of `port!` type are all functions that are
 defined for values of `series` types.
