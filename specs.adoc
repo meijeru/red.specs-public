@@ -3528,10 +3528,10 @@ The fields of the `spec` object are:
 [cols="1,1,2", options="header"]
 |===
 |name        |type        |content
-|`scheme`    |`word!`     |e.g.` http`, `udp`, `file`, `mailto` 
+|`scheme`    |`word!`     |e.g. `http`, `udp`, `file`, `mailto` 
 |`user-info` |            |
-|`host`      |`string!`   |e.g "domain.com"
-|`port`      |`integer!`  |e.g. 8080
+|`host`      |`string!`   |e.g `"domain.com"`
+|`port`      |`integer!`  |e.g. `8080`
 |`path`      |`file!`     |
 |`target`    |`file!`     |
 |`query`     |`string!`   |
