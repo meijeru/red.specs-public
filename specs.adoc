@@ -145,9 +145,10 @@ This may contain any _Unicode Code Points_, encoded using the _UTF-8 scheme_.
 As a first operation of the toolchain, the text file will be subjected to _lexical analysis_
 which will break the text up in a series of _lexemes_, i.e. textual representations of Red
 _single values_, interspersed with _grouping tokens_. The grouping tokens should occur in
-properly nested pairs, and are the following: `( ), [ ], #( ), #[ ]`. A sequence of lexemes
+properly nested pairs, and are the following: `( )`, `[ ]`, `#( )`, `#[ ]`. A sequence of lexemes
 enclosed in matching grouping tokens represents a Red _grouped value_ of a certain type,
-and this construct may again be enclosed in grouping tokens etc. 
+and this construct may again be enclosed in grouping tokens etc. Note that the token pairs
+`" "`, `#" "`, `{ }`, `#{ }` and `< >` each delimit a single value, they are not grouping tokens.
 
 As a rule, lexemes must be separated from each other and from grouping tokens by
 one or more _whitespace characters_. In the Red source text, whitespace characters are
