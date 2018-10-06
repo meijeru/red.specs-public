@@ -148,7 +148,7 @@ _single values_, interspersed with _grouping tokens_. The grouping tokens should
 properly nested pairs, and are the following: `( )`, `[ ]`, `#( )`, `#[ ]`. A sequence of lexemes
 enclosed in matching grouping tokens represents a Red _grouped value_ of a certain type,
 and this construct may again be enclosed in grouping tokens etc. Note that the token pairs
-`" "`, `\#" "`, `{ }`, `\#{ }` and `< >` each delimit a single value, they are not grouping tokens.
+`" "`, `\#" "`, `{ }`, `#{ }` and `< >` each delimit a single value, they are not grouping tokens.
 
 As a rule, lexemes must be separated from each other and from grouping tokens by
 one or more _whitespace characters_. In the Red source text, whitespace characters are
