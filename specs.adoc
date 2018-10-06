@@ -2596,6 +2596,8 @@ type, as follows:
 
 . if the argument is a `block!` value, the block will be _executed_ as
 described in <<passive-types,section 7.1>>
+. if the arument is a `path!` value, the path will be evaluated
+as described in <<code-path-code-type,section 7.3.5>>
 . if the argument is a `string!` value, the built-in function `load`
 (see <<conversion-from-to-textual-representation,section 11.1.1>>)
 will be invoked on the string, and `do` will be invoked on the result
@@ -2604,8 +2606,10 @@ which is a valid Red program (see <<structure-of-red-programs,section 3>>); the 
 obtained by `read` (see <<file-and-url-i-o,section 11.3.1>>) and the previous step will be taken
 . if the argument is an `error!` value, the error will be raised (see
 <<raising-and-interception,section 12.1.2>>)
-. otherwise, the argument will be evaluated according to the appropriate
-rule of <<evaluation-rules,section 7>>
+. for an argument of type `op!`, the application of `do` is not implemented
+. otherwise, the argument will be evaluated _passively_, i.e. according to the appropriate
+rule of <<evaluation-rules,section 7>>, with the exception that resulting values
+of type `any-function!` (excluding `op!`) will not be applied 
 
 == Numerical and logical computation
 
