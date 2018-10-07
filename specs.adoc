@@ -2367,11 +2367,13 @@ Evaluation of a value of `any-function!` type involves _application_ to its
 arguments, if any, and this together with any actual refinements
 (`word!` values that are found as `<selector>` in a `path!`
 value whose `<path-head>` evaluates to the `any-function!` value). 
-Exceptions to this rule are: 
+Exceptions to this rule are:
+
 * if the value is the result of component selection by `pick` or `select`
 (see <<components-of-values,section 5.6>>)
 * if the value is argument to the `do` function
-(<<function-code-do-code,section 7.6>>
+(<<function-code-do-code,section 7.6>>)
+
 In these cases the function will _not_ be applied (passive evaluation).
 
 Recall the basic structure of the `<argument-spec>`, which is valid, with
