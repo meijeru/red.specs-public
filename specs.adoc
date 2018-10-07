@@ -2948,7 +2948,7 @@ These functions create a new series value, pointing to new components:
 Note that `copy` make a _shallow_ copy, i.e. inner series are not copied. To also copy
 these inner series, use the refinement`/deep`.
 
-Extract has a refinement `into`, with a `series!` argument; if present, this series
+The function `extract` has a refinement `/into`, with a `series!` argument; if present, this series
 is the target for the resulting components.
 
 For `split`, the `<series>` must be of type `any-string!`, and the
