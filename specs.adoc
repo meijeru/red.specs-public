@@ -1660,8 +1660,8 @@ Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as ind
 in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index
 in a path expression.
 Note also that selecting a component which is a value of type `any-function!` by means of a
-path expression will evaluate the component, whereas selection by `pick` will not.
-_**See https://github.com/red/red/issues/3482[issue #3482]**_
+path expression will evaluate the component, and thus lead to its application,
+whereas selection by `pick` will not. _**See https://github.com/red/red/issues/3482[issue #3482]**_
 
 Note further that path expressions cannot be used to index `file!` and `url!` values,
 as these path expressions will be interpreted as "extending" the file or url path,
@@ -1732,8 +1732,8 @@ put <destination> <key> <value> <==> <destination>/<key>: <value>
 ....
 The same lexical restrictions apply as noted above for indexing. Also in this case,
 selecting a component which is a value of type `any-function!` by means of a
-path expression will evaluate the component, whereas selection by `select` will not.
-_**See https://github.com/red/red/issues/3482[issue #3482]**_
+path expression will evaluate the component, and thus lead to its application,
+whereas selection by `select` will not. _**See https://github.com/red/red/issues/3482[issue #3482]**_
 
 Values of type `time!`, `date!`, `pair!`, `email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
@@ -2363,9 +2363,16 @@ a refinement `/any` which will ensure that no error occurs if the expression yie
 
 === Function types
 
-Values of `any-function!` type must be applied together with any
-actual refinements (`word!` values that are found as `<selector>` in a `path!`
+Evaluation of a value of `any-function!` type involves _application_ to its
+arguments, if any, and this together with any actual refinements
+(`word!` values that are found as `<selector>` in a `path!`
 value whose `<path-head>` evaluates to the `any-function!` value). 
+Exceptions to this rule are: 
+* if the value is the result of component selection by `pick` or `select`
+(see <<components-of-values,section 5.6>>)
+* if the value is argument to the `do` function
+(<<function-code-do-code,section 7.6>>
+In these cases the function will _not_ be applied (passive evaluation).
 
 Recall the basic structure of the `<argument-spec>`, which is valid, with
 some limitations,  for all values of `any-function!` type except `op!` values:
@@ -2607,9 +2614,9 @@ obtained by `read` (see <<file-and-url-i-o,section 11.3.1>>) and the previous st
 . if the argument is an `error!` value, the error will be raised (see
 <<raising-and-interception,section 12.1.2>>)
 . for an argument of type `op!`, the application of `do` is not implemented
-. otherwise, the argument will be evaluated _passively_, i.e. according to the appropriate
-rule of <<evaluation-rules,section 7>>, with the exception that resulting values
-of type `any-function!` (excluding `op!`) will not be applied 
+. otherwise, the argument will be evaluated according to the appropriate
+rule of <<evaluation-rules,section 7>>; note that resulting values
+of type `function!`, `native!`, `action!` and `routine!` will not be applied.
 
 == Numerical and logical computation
 
