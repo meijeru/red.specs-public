@@ -1657,9 +1657,10 @@ pick <source> <index> <==> <source>/<index>
 poke <destination> <index> <value> <==> <destination>/<index>: <value>
 ....
 Here `<source>` and `<destination>` must be a `<path-head>`, see <<code-path-code,rule S113>>.
+The `<index>` must be a single value or an expression of an allowed type.
 Note that for lexical reasons, a `char!`, `string!` or `pair!` value used as index
-in path expressions must be enclosed in parentheses. Furthermore, `logic!` values are not allowed as index
-in a path expression.
+in path expressions must be enclosed in parentheses. A `block!` value is not allowed
+in this position, not even in parentheses, and neither is a `logic!` value.
 Note also that selecting a component which is a value of type `any-function!` by means of a
 path expression will evaluate the component, and thus lead to its application,
 whereas selection by `pick` will not. _**See https://github.com/red/red/issues/3482[issue #3482]**_
@@ -1808,7 +1809,7 @@ Selection by a key of the wrong type or wrong value leads to an error.
 |file! url! |integer!^1^ logic!^1^ |pick poke   |char! any-string! binary!        |select^3^
 |binary!    |integer! logic!^1^ |pick poke   |integer! char! any-string! binary!  |select^3^
 |image!     |integer! pair! |pick poke |size rgb alpha argb                 |
-|bitset!    |integer! char! string!|pick poke |                                    |
+|bitset!    |integer! char! string! block!|pick poke |                                    |
 |map!       |             |            |scalar! any-word! any-string! binary! |select put
 |object!    |             |            |word!                               |select put
 |error!     |             |            |code type id arg1 arg2 arg3 near where stack |select
