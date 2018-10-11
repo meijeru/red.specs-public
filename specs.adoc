@@ -1640,9 +1640,10 @@ type of `<destination>`.
 Values of type `integer!` are permitted as `<index>` for all sequences.
 Additionally, for programming convenience, values of `series!` types may be indexed
 by `logic!` values, where `true` yields the first component and `false` the second component.
-Also, for `pick`, bitsets admit indexing by characters and strings, with the result being `true`
-if the component(s) with the corresponding Unicode Code Point number(s) is/are all
-`true`. For `poke`, indexing by strings is not allowed.
+Also, for `pick`, bitsets admit indexing by characters, strings and blocks
+(interpreted as in `<bitset-spec>`, see <<code-bitset-code,section 5.3.5>>),
+with the result being `true` if the component(s) with the corresponding
+Unicode Code Point number(s) is/are all `true`. For `poke`, indexing by strings is not allowed.
 Note that, although the components of a value of type `bitset!`
 are of type `logic!`, with `poke` it is allowed to use values of any other type,
 where `0` and `none` set the bit to `false`, and all other values
