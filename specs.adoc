@@ -1643,8 +1643,9 @@ by `logic!` values, where `true` yields the first component and `false` the seco
 Also, for `pick`, bitsets admit indexing by characters, strings and blocks
 (interpreted as in `<bitset-spec>`, see <<code-bitset-code,section 5.3.5>>),
 with the result being `true` if the component(s) with the corresponding
-Unicode Code Point number(s) is/are all `true`. For `poke`, indexing by strings is not allowed.
-Note that, although the components of a value of type `bitset!`
+Unicode Code Point number(s) is/are all `true`. For `poke`, the bitset component(s)
+thus indexed will (all) be set to the given `<value>` (`true` or `false`).
+In this connection if should be noted that, although the components of a value of type `bitset!`
 are of type `logic!`, with `poke` it is allowed to use values of any other type,
 where `0` and `none` set the bit to `false`, and all other values
 (including `0.0` and `0%`) set the bit to `true`.
