@@ -3531,7 +3531,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 |`scheme`    |`object!`      |contains _actor functions_
 |`actor`     |`native!` `object!`|      
 |`awake`     |               |
-|`state`     |               |
+|`state`     |`object!`      |
 |`data`      |               |
 |===
 
@@ -3569,6 +3569,8 @@ It will be seen that the field names of the `spec` object are identical to those
 For a `file!` value, the `spec` object will have the field `scheme` set to `file` and
 the fields `path` and `target` to the directory (folder) and file name within the
 directory respectively.
+
+A prototype `state` object is contained in `system/standard/port-state`
 
 ==== Port operations
 
@@ -4691,6 +4693,7 @@ system/   object!
        header          object!        see <a href = "#metadata-for-the-toolchain">section 17</a>
        error           object!        see <a href = "#composition">section 12.1.1</a>
        scheme          object!        see <a href = "#port-components">section 11.4.1</a>
+       port-state      object!        see <a href = "#port-components">section 11.4.1</a>
        file-info       object!
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
