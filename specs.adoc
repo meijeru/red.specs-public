@@ -3515,57 +3515,66 @@ a `file!` value or a block of `file!` values
 
 _Ports_ represent a generalization of files and urls. They implement
 the concept of _Uniform Resource Identifier (URI)_, as defined in
-https://www.ietf.org/rfc/rfc3986.txt[RFC3986]. The functionality
-offered by ports will be more complete than the basic I/O currently provided.
+https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
+on the resources represented by URIs; the functionality offered by ports
+will be more complete than the basic I/O currently provided.
 
 ==== Port components
 
 Ports, i.e.values of type `port!`, are specialized objects with a fixed number of fields,
 that contain the necessary information for handling the communication
-with a wide variety of external resources. A prototype port value is contained in `system/standard/port`.
+with a wide variety of external resources.
+
 As also shown in <<components-of-values,section 5.6>> the fields are:
-[cols="1,1,2", options="header"]
+[cols="1,1", options="header"]
 |===
-|name        |type           |content
-|`spec`      |`object!`      |represents a resource, i.e. a URI
-|`scheme`    |`object!`      |contains _actor functions_
-|`actor`     |`native!` `object!`|      
-|`awake`     |               |
-|`state`     |`object!`      |
-|`data`      |               |
+|name        |type
+|`spec`      |`object!`
+|`scheme`    |`word!` `object!`
+|`actor`     |`native!` `object!`      
+|`awake`     |
+|`state`     |`object!`
+|`data`      |
 |===
 
-Each _actor function_ handles one particular operation on the resource,
-e.g. `open`, `read`, `rename`. These operations are specific to the "type"
-of resource, e.g. they will be different for `http:` than for `udp:`.
-The word _scheme_ is used both for the resource type, and for the collection
-of actor functions handling this particular resource type.
+A prototype port value is contained in `system/standard/port`.
+The significance of the fields is as follows:
+
+* The `spec` field is an object representing a resource. The fields of this object
+correspond to the components of an URI as detailed in RFC3986. The _type_ of resource,
+which RFC3986 calls its _scheme_, is represented by the `scheme` field of the `spec` object.
+* The `scheme` field of the port is initially a `word!` value equal to the
+`scheme` field of the `spec` object`; during operation it is replaced by an object
+whose keys are the names of the various _actor functions_ like  `open`, `read`, `rename` etc.,
+and whose field values are these actor functions that operate on resources with this particular scheme.
+* The `actor` field TBD
+* The `awake` field TBD
+* The `state` field is an object containing state information
+* The `data` field TBD
+
+The various objects containing the actor functions for the different schemes are stored in
+`system/schemes`, a block of word/object pairs. New schemes may be added to `system/schemes`
+by calling `register-scheme` with as arguments the name of the scheme and its content.
 
 The fields of the `spec` object are:
 [cols="1,1,2", options="header"]
 |===
-|name        |type           |content
-|`scheme`    |`word!`        |e.g. `http`, `udp`, `file`, `mailto` 
-|`user-info` |               |
-|`host`      |`string!`      |e.g `"domain.com"`
-|`port`      |`integer!`     |e.g. `8080`
-|`path`      |`file!`        |
-|`target`    |`file!`        |
-|`query`     |`string!`      |
-|`fragment`  |`string!`      |
-|`ref`       |`url! string!` |the source of the above fields
+|name        |type             |content
+|`scheme`    |`word!`          |e.g. `http`, `udp`, `file`, `mailto` 
+|`user-info` |                 |
+|`host`      |`string!`        |e.g `"domain.com"`
+|`port`      |`integer!`       |e.g. `8080`
+|`path`      |`file!`          |
+|`target`    |`file!`          |
+|`query`     |`string!`        |
+|`fragment`  |`string!`        |
+|`ref`       |`url!` `string!` |the source of the above fields
 |===
 
 All fields except `scheme` may be `none`. A prototype object is contained in `system/standard/url-parts`
 
-The `scheme` field of the `spec` object names one of the available schemes
-stored in `system/schemes`, and this one is the content of the `scheme` field of the
-`port!` value. New schemes may be added to `system/schemes` by calling
-`register-scheme` with as arguments the name of the scheme and its content.
-
 A function exists to construct the `spec` object for a URI given a Red value
 of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
-It will be seen that the field names of the `spec` object are identical to those used in RFC3986.
 For a `file!` value, the `spec` object will have the field `scheme` set to `file` and
 the fields `path` and `target` to the directory (folder) and file name within the
 directory respectively.
@@ -3592,7 +3601,7 @@ The following I/O operations (functions) are defined on ports:
 |delete    |
 |===
 
-These functions are implemented for the various schemes by actors.
+As stated above, these functions are implemented for the various schemes by actors.
 
 A number of these functions also accept a `file!`, `url!` or `block!` argument;
 the corresponding `port!` value will be constructed from the
