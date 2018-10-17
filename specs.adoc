@@ -3235,7 +3235,7 @@ Overview-table of current facilities:
 |resource type     |implemented by
 |`file!`           |basic I/O
 |`url!`, `http(s)` schemes  |basic I/O
-|`url!` other schemes |ports
+|`url!`, other schemes |ports
 |`port!`           |ports
 |===
 
@@ -3544,7 +3544,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 |`actor`     |`native!` `object!`      
 |`awake`     |
 |`state`     |`object!`
-|`data`      |`string!` `binary!`
+|`data`      |`block!` `string!` `binary!`
 |===
 
 A prototype port value is contained in `system/standard/port`.
@@ -3560,7 +3560,7 @@ and whose field values are these actor functions that operate on resources with 
 * The `actor` field TBD
 * The `awake` field TBD
 * The `state` field is an object containing state information
-* The `data` field contains the information read from or to be written to the resource
+* The `data` field contains the information read from or to be written to the resource.
 
 The various objects containing the actor functions for the different schemes are stored in
 `system/schemes`, a block of word/object pairs. New schemes may be added to `system/schemes`
