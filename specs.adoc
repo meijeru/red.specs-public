@@ -3220,7 +3220,7 @@ other, and yields the result of the first one, using `get/any`.
 
 This section deals with communication between programs and external resources, and 
 with the related conversion of data between various representations.
-Red currently has a basic set of functions to work directly
+Red currently has an initial set of basic I/O functions to work directly
 with external resources represented as files (values of type `file!`, which includes
 directories or folders as they may be called) and as network locations
 or urls (values of type `url!`). For more general handling of resources, Red will have _ports_
@@ -3228,6 +3228,16 @@ or urls (values of type `url!`). For more general handling of resources, Red wil
 _URIs (Uniform Resource Identifiers)_, which will include files and urls as special cases.
 The basic I/O functions are completely described in <<basic-i-o,section 11.3>> below.
 The port approach is being described, as it evolves, in <<ports,section 11.4>>.
+
+Overview-table of current facilities:
+[options="header"]
+|===
+|resource type     |implemented by
+|`file!`           |basic I/O
+|`url!`, `http(s)` schemes  |basic I/O
+|`url!` other schemes |ports
+|`port!`           |ports
+|===
 
 === Conversion of data
 
@@ -3534,7 +3544,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 |`actor`     |`native!` `object!`      
 |`awake`     |
 |`state`     |`object!`
-|`data`      |
+|`data`      |`string!` `binary!`
 |===
 
 A prototype port value is contained in `system/standard/port`.
@@ -3550,7 +3560,7 @@ and whose field values are these actor functions that operate on resources with 
 * The `actor` field TBD
 * The `awake` field TBD
 * The `state` field is an object containing state information
-* The `data` field TBD
+* The `data` field contains the information read from or to be written to the resource
 
 The various objects containing the actor functions for the different schemes are stored in
 `system/schemes`, a block of word/object pairs. New schemes may be added to `system/schemes`
