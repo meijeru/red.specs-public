@@ -1402,7 +1402,7 @@ Note that `port!` values all have `class = 2`.
 _**See https://github.com/red/red/issues/2644[issue #2644]**_
 * Making `logic!` values from `number!` values: `0/0.0/0% -> false, all else -> true`
 * Making a `url!` value from an `any-list!` value: the components (at least one is required)
-may be of any type; they will be `form` ed; the first component is assumed to be the _protocol_
+may be of any type; they will be `form` ed; the first component is assumed to be the _scheme_
 (e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
 if the third one is an `integer!` value, this is assumed to be the _port number_ (e.g. `80`),
 otherwise the third and any following components are assumed to constitute the file path
@@ -3556,7 +3556,7 @@ The significance of the fields is as follows:
 correspond to the components of an URI as detailed in RFC3986. The _type_ of resource,
 which RFC3986 calls its _scheme_, is represented by the `scheme` field of the `spec` object.
 * The `scheme` field of the port is initially a `word!` value equal to the
-`scheme` field of the `spec` object`; during operation it is replaced by an object
+`scheme` field of the `spec` object; during operation it is replaced by an object
 whose keys are the names of the various _actor functions_ like  `open`, `read`, `rename` etc.,
 and whose field values are these actor functions that operate on resources with this particular scheme.
 * The `actor` field TBD
@@ -5096,6 +5096,7 @@ RFC3986 (URI)                           <a href = "#port-components">11.4.1</a>
 RGB color scheme                        <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
 RGBA color/transparency scheme          <a href = "#code-image-code">5.3.4</a>
 routine spec dialect                    <a href = "#dialects">2.5</a>, <a href = "#code-routine-code">5.3.9</a>
+scheme                                  <a href = "#other-types">5.3.13</a>, <a href = "#port-components">11.4.1</a>
 shape dialect                           <a href = "#dialects">2.5</a>, <a href = "#gui-system">13.3</a>
 shortcut evaluation                     <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
 single value                            <a href = "#textual-structure">3.1</a>
