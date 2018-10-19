@@ -1024,7 +1024,7 @@ Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are equal `issue!
 
 === Creation of values (`make`)
 
-For some types, the values can *only* be introduced in a program as a
+For some types, the values can _only_ be introduced in a program as a
 result of the `make` function. This section deals first of all with the types
 for which that is the case, and with `map!` which has a "parallel"
 syntactic form of its own. The `make` function can also be used
@@ -1047,7 +1047,8 @@ an `object!` value as second argument has a different interpretation.
 Furthermore, non-terminals like `<typeset-name>` stand for a bound `<word-literal>`
 referring to a `typeset!` value etc.
 
-For all types in `series!` except `image!`, and for `map!`, `make` is defined
+In addition to the following rules, it should be noted that for all types
+in `series!` except `image!`, and for `map!`, `make` is also defined
 with a `<spec>` which is an `integer!` or `float!` value: the `float!` value
 is truncated; the integer or truncated number is used to create an empty `series!`
 or `map!` value with storage for the given number of components reserved.
