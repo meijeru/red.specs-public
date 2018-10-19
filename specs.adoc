@@ -1391,8 +1391,13 @@ The keys and values are not evaluated.
 **`S135`**::
 ....
 <port> ::= make port! <port-spec>
-<port-spec> ::= TBD
+<port-spec> ::= <object> | <block>
 ....
+
+If the `<port-spec>` is an object, this should contain one or more relevant fields (see
+<<port-components,section 11.4.1>> for their names and significance) for the port.
+If the `<port-spec>` is a block, this is treated in the same way as an `<object-spec>`
+(see <<code-object-code,section 5.3.6>>).
 
 Note that `port!` values all have `class = 2`.
 
