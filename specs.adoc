@@ -139,8 +139,7 @@ Red/System is specified in a separate document (see <<additional-documentation,s
 
 === Textual structure
 
-For submission to the Red toolchain, a Red program must be prepared as a text file.
-This may contain any _Unicode Code Points_, encoded using the _UTF-8 scheme_. 
+For submission to the Red toolchain, a Red program must be prepared as a haahracter encoding scheme. 
 
 As a first operation of the toolchain, the text file will be subjected to _lexical analysis_
 which will break the text up in a series of _lexemes_, i.e. textual representations of Red
@@ -322,7 +321,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`time!`          |time intervals or points in time, stored as a floating point number of seconds
 |`date!`          |dates according to the Gregorian calendar, optionally with time of day and timezone
 |`pair!`          |2-dimensional coordinates or size 
-|`tuple!`         |e.g. colors in RGB or other scheme, IPv4 addresses
+|`tuple!`         |e.g. colors in RGB or other model, IPv4 addresses
 |`word!`          |identifiers that can be bound
 |`lit-word!`      |quoted (unevaluated) words
 |`set-word!`      |words to be given a value to refer to
@@ -4716,6 +4715,7 @@ system/   object!
        error           object!        see <a href = "#composition">section 12.1.1</a>
        scheme          object!        see <a href = "#port-components">section 11.4.1</a>
        port-state      object!        see <a href = "#port-components">section 11.4.1</a>
+       url-parts       object!        see <a href = "#port-components">section 11.4.1</a>
        file-info       object!
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
@@ -5093,10 +5093,10 @@ Red/System (dialect)                    <a href = "#dialects">2.5</a>, <a href =
 remote file access (disk-cached)        <a href = "#file-and-url-i-o">11.3.1</a>
 REPL (Read Evaluate Print Loop)         <a href = "#red-toolchain">2.2</a>
 RFC3986 (URI)                           <a href = "#port-components">11.4.1</a>
-RGB color scheme                        <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
-RGBA color/transparency scheme          <a href = "#code-image-code">5.3.4</a>
+RGB color model                         <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
+RGBA color/transparency model           <a href = "#code-image-code">5.3.4</a>
 routine spec dialect                    <a href = "#dialects">2.5</a>, <a href = "#code-routine-code">5.3.9</a>
-scheme                                  <a href = "#other-types">5.3.13</a>, <a href = "#port-components">11.4.1</a>
+scheme (URI component)                  <a href = "#other-types">5.3.13</a>, <a href = "#port-components">11.4.1</a>
 shape dialect                           <a href = "#dialects">2.5</a>, <a href = "#gui-system">13.3</a>
 shortcut evaluation                     <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
 single value                            <a href = "#textual-structure">3.1</a>
@@ -5125,7 +5125,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
 Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.14</a>
 Uniform Resource Identifier (URI)       <a href = "#ports">11.4</a>
-UTF-8 scheme                            <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
+UTF-8 encoding                          <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
   grouped value                         <a href = "#textual-structure">3.1</a>
   single value                          <a href = "#textual-structure">3.1</a>
