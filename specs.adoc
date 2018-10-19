@@ -3580,7 +3580,7 @@ The fields of the `spec` object are:
 |===
 |name        |type             |content
 |`scheme`    |`word!`          |e.g. `http`, `udp`, `file`, `mailto` 
-|`user-info` |                 |
+|`user-info` |`string!`        |
 |`host`      |`string!`        |e.g `"domain.com"`
 |`port`      |`integer!`       |e.g. `8080`
 |`path`      |`file!`          |
