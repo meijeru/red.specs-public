@@ -139,7 +139,8 @@ Red/System is specified in a separate document (see <<additional-documentation,s
 
 === Textual structure
 
-For submission to the Red toolchain, a Red program must be prepared as a haahracter encoding scheme. 
+For submission to the Red toolchain, a Red program must be prepared as a text file.
+This may contain any _Unicode Code Points_, encoded using the _UTF-8_ character encoding scheme. 
 
 As a first operation of the toolchain, the text file will be subjected to _lexical analysis_
 which will break the text up in a series of _lexemes_, i.e. textual representations of Red
