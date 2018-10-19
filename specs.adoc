@@ -1623,6 +1623,8 @@ of the desired type, pointing to the components of the old value.
 Note the absence of `hash!` from the first group, explained by the fact that `hash!`
 values are stored differently from other `any-block!` values.
 
+_**See also https://github.com/red/REP/issues/30[REP #30]**_
+
 === Components of values
 
 Composite values can have their components extracted and changed by various means.
@@ -5203,5 +5205,6 @@ issue  section
  <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#code-vector-code">5.3.3</a>
  <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/29">29</a>    <a href="#series-positioning-and-navigation">9.2</a>
+ <a href="https://github.com/red/REP/issues/30">30</a>    <a href="#casting-of-values-code-as-code">5.5</a>
 </pre>
 ++++
