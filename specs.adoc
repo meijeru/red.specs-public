@@ -3580,17 +3580,20 @@ The fields of the `spec` object are:
 |===
 |name        |type             |content
 |`scheme`    |`word!`          |e.g. `http`, `udp`, `file`, `mailto` 
-|`user-info` |`string!`        |
+|`user-info` |`string!`        |e.g. `"username:passwd"`
 |`host`      |`string!`        |e.g `"domain.com"`
 |`port`      |`integer!`       |e.g. `8080`
-|`path`      |`file!`          |
-|`target`    |`file!`          |
+|`path`      |`file!`          |e.g. `%my-dir/`
+|`target`    |`file!`          |e.g. `%index.html`
 |`query`     |`string!`        |
 |`fragment`  |`string!`        |
 |`ref`       |`url!` `string!` |the source of the above fields
 |===
 
-All fields except `scheme` may be `none`. A prototype object is contained in `system/standard/url-parts`
+All fields except `scheme` may be `none`. A prototype object is contained in `system/standard/url-parts`.
+The field names correspond to the RFC3986 nomenclature, with the exception that the _path_ determined
+according to RFC3986 is split (using `split-path`, see <<file-system-functions,section 11.3.2>>)
+into `path` and `target`.
 
 A function exists to construct the `spec` object for a URI given a Red value
 of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
@@ -3598,7 +3601,7 @@ For a `file!` value, the `spec` object will have the field `scheme` set to `file
 the fields `path` and `target` to the directory (folder) and file name within the
 directory respectively.
 
-A prototype `state` object is contained in `system/standard/port-state`
+A prototype `state` object is contained in `system/standard/port-state`.
 
 ==== Port operations
 
