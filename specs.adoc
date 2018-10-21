@@ -4699,12 +4699,12 @@ system/   object!
         months         block!       see section <a href = "#code-date-code">5.2.14</a>
         days           block!       names of days
     options/    object!             
-        boot           string!      
+        boot           file!        location of Red (console) executable
         home           
-        path           file!
+        path           file!        current working directory, see section <a href = "#file-system-functions">11.3.2</a>
         script         
-        cache          file!         cache folder used by the Red toolchain
-        thru-cache     file!         see section <a href = "#file-and-url-i-o">11.3.1</a>
+        cache          file!        cache folder used by the Red toolchain
+        thru-cache     file!        see section <a href = "#file-and-url-i-o">11.3.1</a>
         args           
         do-arg         
         debug          logic!
