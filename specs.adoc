@@ -373,6 +373,8 @@ The full list of types of the languages is given below, with an explanation of t
 |===
 ....
 TBD
+hex!
+bigint!
 point!
 closure!
 ref!
@@ -521,6 +523,8 @@ Notes:
 . _**See https://github.com/red/REP/issues/12[REP #12]**_
 ....
 TBD
+hex!
+bigint!
 point!
 closure!
 ref!
@@ -606,6 +610,8 @@ any-type!
       |--routine!         
    
 TBD
+hex!
+bigint!
 point!
 closure!
 ref!
