@@ -1555,7 +1555,7 @@ present, components `0` are added
 The function `to-binary` is defined for
 
 * `integer!` and `any-float!` values: yields the corresponding 4 resp. 8 byte binary value
-* `char!` values: yields the 1 to 4 byte binary value corresponding to the Unicode Code Point number
+* `char!` values: yields the UTF-8 encoded binary value
 * `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
 * `bitset!` values: yields the corresponding binary value
 * `string!` values: yields the UTF-8 encoded binary value
