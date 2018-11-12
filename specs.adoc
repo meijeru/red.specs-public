@@ -518,7 +518,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 
 Notes:
 
-. Values of all types may be represented using `make`, except those of `datatype! native! action! routine! handle!` and `event!`
+. Values of all types may be represented using `make`, except those of `datatype!`, `native!`, `action!`, `routine!`, `handle!` and `event!`
 . _**See https://github.com/red/REP/issues/14[REP #14]**_
 . _**See https://github.com/red/REP/issues/12[REP #12]**_
 ....
@@ -630,9 +630,9 @@ type and typeset there is a built-in function which will test if a value is of t
 
 Examples:
 ....
-type? 1        -> integer!
-integer? 1     -> true
-number? 1.0    -> true
+type? 1        ; integer!
+integer? 1     ; true
+number? 1.0    ; true
 ....
 
 == Values
@@ -887,9 +887,9 @@ a refinement `/base` with an argument of 2, 16 or 64 (default).
 
 Examples:
 ....
-enbase #{010203}           -> "AQID"
-enbase/base #{010203} 2    -> "000000010000001000000011"
-debase "AQID"              -> #{010203}
+enbase #{010203}           ; "AQID"
+enbase/base #{010203} 2    ; "000000010000001000000011"
+debase "AQID"              ; #{010203}
 ....
 
 Note that `enbase` will also take a `string!` value as argument; it will be UTF-8 encoded into
@@ -1410,9 +1410,9 @@ Note that `port!` values all have `class = 2`.
 
 ==== Other types 
 
-* Making `integer!` values from `logic!` values: `true -> 1, false -> 0`
+* Making `integer!` values from `logic!` values: `true` gives `1`, `false` gives `0`
 _**See https://github.com/red/red/issues/2644[issue #2644]**_
-* Making `logic!` values from `number!` values: `0/0.0/0% -> false, all else -> true`
+* Making `logic!` values from `number!` values: `0/0.0/0%` give `false`, all else -> `true`
 * Making a `url!` value from an `any-list!` value: the components (at least one is required)
 may be of any type; they will be `form` ed; the first component is assumed to be the _scheme_
 (e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
@@ -1428,11 +1428,11 @@ If there are 4 or 5 components, the 4th should be a `time!` value for the time o
 a 5th component should be an `integer!` or `time!` value for the timezone. If there are 6 or 7 components,
 the 4th, 5th and 6th components should be hours (`integer!`), minutes (`integer!`), seconds  (`integer!` or `float!`)
 for the time of day; a 7th component should be an `integer!` or `time!` value for the timezone.
-All values are checked for validity, and over- and under-flow in the date and time (e.g. `32 1 2017 => 1-Feb-2017`
-and `3 -10 0 => 02:50:00`) is not allowed. The timezone value is treated as in `<date-literal>`
+All values are checked for validity, and over- and under-flow in the date and time (e.g. `32 1 2017` would give `1-Feb-2017`
+and `3 -10 0` would give `02:50:00`) are not allowed. The timezone value is treated as in `<date-literal>`
 (see <<code-date-code,section 5.2.14>>).
-* For the following types, `make` operates in the same way as `to` (see next section): `none! char!
-float! percent! time! pair! any-word! refinement! issue! unset!`.
+* For the following types, `make` operates in the same way as `to` (see next section): `none!`, `char!`,
+`float!`, `percent!`, `time!`, `pair!`, `any-word!`, `refinement!`, `issue!` and `unset!`.
 
 === Conversion of values (`to`)
 
@@ -2562,8 +2562,8 @@ in the same order; arguments of type `any-function!` are not evaluated though.
 
 Examples:
 ....
-reduce [1 + 2 3 + 4]        ->  [3 7]             ; reduction
-do [1 + 2 3 + 4]            ->  7                 ; compare with execution
+reduce [1 + 2 3 + 4]        ; [3 7]            reduction
+do [1 + 2 3 + 4]            ; 7               compare with execution
 ....
 
 Applied to an argument of type `any-function`, `reduce` yields the argument unevaluated;
@@ -2571,8 +2571,8 @@ for other non-block types, `reduce` yields the result of evaluating the argument
 
 Examples:
 ....
-reduce :+                     -> make op! [...]   ; not evaluated, therefore not applied
-a: 1 reduce a                 -> 1
+reduce :+                   ; make op! [...]   not evaluated, therefore not applied
+a: 1 reduce a               ; 1
 ....
 
 It is also possible to selectively evaluate the block's expressions: the built-in function
@@ -2582,11 +2582,11 @@ evaluate a block as a block, instead of yielding its constituent expressions sep
 
 Example:
 ....
-compose [1 + 2 (3 + 4)]          ->  [1 + 2 7]     ; evaluation only within parens
-compose [[(1 + 2)] (3 + 4)]      ->  [[(1 + 2)] 7] ; inner blocks are untouched
-compose [([1 + 2]) (3 + 4)]      ->  [1 + 2 7]     ; evaluation of a block yields the components 
-compose/only [([1 + 2]) (3 + 4)] ->  [[1 + 2] 7]   ; with /only, a block stays a block
-compose/deep [[(1 + 2)] (3 + 4)] ->  [[3] 7]       ; with /deep, inner parens are also evaluated
+compose [1 + 2 (3 + 4)]          ;  [1 + 2 7]      evaluation only within parens
+compose [[(1 + 2)] (3 + 4)]      ;  [[(1 + 2)] 7]  inner blocks are untouched
+compose [([1 + 2]) (3 + 4)]      ;  [1 + 2 7]      evaluation of a block yields the components 
+compose/only [([1 + 2]) (3 + 4)] ;  [[1 + 2] 7]    with /only, a block stays a block
+compose/deep [[(1 + 2)] (3 + 4)] ;  [[3] 7]        with /deep, inner parens are also evaluated
 ....
 
 Applied to an argument of any other type, `compose` yields the same result as `reduce`.
@@ -2600,7 +2600,7 @@ that are argument to the function `keep` invoked inside the argument block.
 
 Example:
 ....
-collect [repeat i 10 [if even? i [keep i ** 2]]] -> [4 16 36 64 100]
+collect [repeat i 10 [if even? i [keep i ** 2]]] ; [4 16 36 64 100]
 ....
 
 The function `collect` also has a refinement `/into`, with a `series!` value as argument;
@@ -3489,8 +3489,8 @@ not do normalization.
 
 Examples: 
 ....
-to-local-file %/C/Projects/Red/programs/ -> "C:\Projects\Red\programs\"
-to-red-file "C:\Projects\Red\programs\"  -> %/C/Projects/Red/programs/
+to-local-file %/C/Projects/Red/programs/ ; "C:\Projects\Red\programs\"
+to-red-file "C:\Projects\Red\programs\"  ; %/C/Projects/Red/programs/
 ....
 
 The current working directory is stored in `system/options/path`.
