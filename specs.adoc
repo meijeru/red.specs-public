@@ -1609,7 +1609,8 @@ representing a color (RGB)
 * `as-rgba` does the same with four arguments, with additional transparency (RGBA)
 * `as-ipv4` also has four arguments, and suggests an IPv4 address interpretation of the tuple
 * `hex-to-rgb` converts an `issue!` value representing a color with each component
-as one or two hexadecimal digits, to an equivalent `tuple!` value
+as one or two hexadecimal digits, to an equivalent `tuple!` value; single digit values
+are scaled by 16, thus `hex-to-rgb #123` -> `16.32.48`
 * `uppercase` and `lowercase` will work on values of type `char!` and `any-string!`
 and convert them to upper case or lower case respectively; they use the
 _Unicode 7.0 case folding table_ (only character pairs with status C and S)
