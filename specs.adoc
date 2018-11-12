@@ -3017,7 +3017,7 @@ The functions `append` and `insert` are also defined on values of type `bitset!`
 The effect of both is to set the bits corresponding to the argument (a value
 of type `char!`, `string!`, `integer!` or `block!` of integers).
 
-The function `sort` is only defined on values of type `string! binary! vector! block! hash! paren!`.
+The function `sort` is only defined on values of type `string!`, `binary!`, `vector!`, `block!`, `hash!` and `paren!`.
 Since it has quite a number of options, here is the full specification:
 ....
 DESCRIPTION: 
@@ -3098,7 +3098,7 @@ with the following semantics:
 |extend <map> <items>     |add key-value pairs from <items> (a block, hash or map) +
                          replacing the value if the corresponding key is already present
 |find <map> <value>       |yield true if key indicated by <value> exists, else none +
-                         <value> must be of type scalar!, any-word! or any-string!
+                         <value> must be of type scalar!, any-word!, any-string! or binary!
 |length? <map>            |yield the number of key-value pairs
 |===
 
