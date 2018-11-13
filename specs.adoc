@@ -3144,15 +3144,16 @@ The `<condition>` is evaluated and is satisfied unless it yields `false` or `non
 except for `unless`, where the condition _should_ yield `false` or `none`.
 
 With refinement `/all`, all conditions of the `<case>` are tested; otherwise testing
-stops after the first one that is satisfied, if any.
+stops after the first one that is satisfied, if any. If none of the conditions is satisfied,
+an error is raised.
 
 The `<label>` values of the `<switch>` are _not_ evaluated. The selection condition
 is satisfied at the first alternative where the value of the `<expression>` is equal to a `<label>`.
 With refinement `/default`, the `<default-block>` will be executed if none
 of the conditions is satisfied.
 
-The functions `if` `unless` `case` and `switch` without `/default` yield `none` if
-no condition is satisfied.
+The functions `if`, `unless` and `switch` without `/default` yield `none` if
+none of the conditions is satisfied.
 
 
 === Repeated execution (loops)
