@@ -1747,7 +1747,9 @@ _Path expressions_ may also be used for selection. The correspondence is as foll
 select <source> <key> <==> <source>/<key>
 put <destination> <key> <value> <==> <destination>/<key>: <value>
 ....
-The same lexical restrictions apply as noted above for indexing. Also in this case,
+The same lexical restrictions for the path expression apply as noted above for indexing.
+Moreover, if the `<destination>` is of a type in `any-block!`, and the `<key>` is not present,
+the path expression will not add the key/value pair, but an error is raised. Analogous to the case of indexing,
 selecting a component which is a value of type `any-function!` by means of a
 path expression will evaluate the component, and thus lead to its application,
 whereas selection by `select` will not. _**See https://github.com/red/red/issues/3482[issue #3482]**_
