@@ -25,7 +25,7 @@ with the numerous optional facilities ("refinements") that these functions have,
 it is not possible to give an exhaustive treatment of Red's functionality.
 Red allows quite detailed information about a function's operation to be
 documented within the function specification, and this should be consulted
-in order to be able to use any function optimally. See <<help-facilities,section 13.6.>>
+in order to be able to use any function optimally. See <<help-facilities,section 13.7.>>
 
 This document is *not* intended to be used in order to learn the language (tutorial);
 for that purpose sufficient materials can be found using the Red Wiki at
