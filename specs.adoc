@@ -4634,6 +4634,7 @@ A    update
 F    what-dir
 A    write
 R    write-clipboard
+R    write-stdout
 ....
 ==== Exception handling
 see <<exceptions,section 12>>
@@ -4681,10 +4682,13 @@ F    overlap?
 F    remove-event-func
 F    request-font
 F    rtd-layout
+F    set-flag
 F    set-focus
 F    show
 F    size-text
+F    stop-reactor
 F    unview
+F    update
 F    view
 F    within?
 ....
