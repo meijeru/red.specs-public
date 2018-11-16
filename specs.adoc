@@ -4688,7 +4688,7 @@ F    show
 F    size-text
 F    stop-reactor
 F    unview
-F    update
+F    update-font-faces
 F    view
 F    within?
 ....
