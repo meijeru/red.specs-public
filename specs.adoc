@@ -3309,6 +3309,9 @@ mold make hash! [1 2 3]   ; "make hash! [1 2 3]"    hash property conserved
 mold make vector! [1 2 3] ; "make vector! [1 2 3]"  vector property conserved
 ....
 
+Since `form` and `mold` may produce long strings for complex values, the function
+`ellipsize-at` may be used to truncate and add ellipsis (`...`) to a string.
+
 The built-in function `save` will apply `mold` to the expression which is its
 second argument. If the destination specified as its first argument is a string,
 it will append the result of `mold` to that string. If the destination
@@ -4587,6 +4590,7 @@ A    delete
 F    dir
 F    dir?
 F    dirize
+F    ellipsize-at
 R    exists?
 F    exists-thru?
 A    form
