@@ -4650,17 +4650,25 @@ F    parse-trace
 ==== GUI system
 see <<gui-system,section 13.3>>
 ....
+F    care-to-offset
 F    center-face
 F    clear-reactions
 F    distance?
 F    do-actor
 F    do-events
 F    do-file
+F    dump-face
+F    dump-reactions
 F    draw
 R    find-flag?
+F    foreach-face
 F    get-scroller
 F    insert-event-func
 F    layout
+F    make-face
+F    metrics?
+F    offset-to-caret
+F    offset-to-char
 F    overlap?
 F    remove-event-func
 F    request-font
@@ -4701,8 +4709,11 @@ see <<help-facilities,section 13.7>>
 ....
 F    ?
 F    ??
+F    a-an
 F    about
+F    fetch-help
 F    help
+F    help-string
 F    source
 F    what
 ....
