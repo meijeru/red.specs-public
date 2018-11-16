@@ -4012,6 +4012,13 @@ an executable file.
 The function `os-info` will return an `object!` value with the following fields:
 OS name, architecture, version and build.
 
+=== Garbage collection
+
+Garbage-collection, i.e. freeing up of memory space that is no longer used by the program,
+is normally automatic. It may also be triggered by the program, through a call to the function `recycle`.
+Calling `recyle/off` will disable garbage collection, and calling `recycle/on` will enable it again.
+
+
 === Help facilities
 
 These facilities owe much to the homoiconicity of Red, and to the systematic
@@ -4246,6 +4253,7 @@ The functions are classified by functionality:
 * <<gui-system-1,GUI System>>
 * <<reactivity-1,reactivity>>
 * <<environment-and-os-related,environment and OS-related>>
+* <<garbage-collection-1,garbage collection>>
 * <<help-facilities-1,help facilities>>
 
 The letter in front of each word gives the type: `A` for `action!`, `N` for `native!`,
@@ -4683,8 +4691,13 @@ N    set-env
 N    stats
 N    wait
 ....
+==== Garbage collection
+(see <<garbage-collection,section 13.6>>)
+....
+N    recycle
+....
 ==== Help facilities
-see <<help-facilities,section 13.6>>
+see <<help-facilities,section 13.7>>
 ....
 F    ?
 F    ??
