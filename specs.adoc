@@ -3645,7 +3645,7 @@ operate on the `data` field of the port._**correct?**_
 
 === Other functions
 
-==== Console functions
+==== User interaction functions
 
 The _console prompt_ and the string preceding the result of the user input
 are available as `system/console/prompt` and `system/console/result`. Their
@@ -3656,6 +3656,9 @@ and wait for user input until a line feed (`U+000A`) is received;
 the string before the line feed will be yielded as result.
 
 The built-in function `input` is shorthand for `ask ""`. _**See https://github.com/red/REP/issues/11[REP #11]**_
+
+The built-in function `alert` will show a _modal_ (pop-up) window displaying a message
+(supplied as string or block argument) and wait for the user to click the "OK" button.
 
 The built-in function `read-clipboard` will return the clipboard content as a string
 and `write-clipboard` with a string argument will set the clipboard content.
@@ -4544,6 +4547,7 @@ N    while
 ==== Input/Output
 see <<input-output,section 11>>
 ....
+F    alert
 R    ask
 N    browse
 F    cd
