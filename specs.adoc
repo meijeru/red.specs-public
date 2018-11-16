@@ -2640,6 +2640,9 @@ obtained by `read` (see <<file-and-url-i-o,section 11.3.1>>) and the previous st
 rule of <<evaluation-rules,section 7>>; note that resulting values
 of type `function!`, `native!`, `action!` and `routine!` will not be applied.
 
+The functionality mentioned in point 4 also exists with disk-caching of remote files:
+`do-thru` will invoke `read-thru` (see <<file-and-url-i-o,section 11.3.1>>).
+
 == Numerical and logical computation
 
 As stated in <<expressions-and-evaluation-order,section 3.3>>, operators
@@ -4429,6 +4432,7 @@ N    apply
 N    bind
 N    context?
 N    do
+F    do-thru
 N    get
 N    in
 A    index?
