@@ -4707,6 +4707,30 @@ F    source
 F    what
 ....
 
+=== Objects/contexts
+
+This includes, besides the _system object_, a number of _contexts_ encapsulating facilities
+mentioned in <<additional-facilities,section 13>>, as well as "model objects"
+that are used by both the reactivity facility and the GUI system.
+++++
+<pre>
+     system                         see <a href = "#system-object">section 15</a>
+
+     preprocessor                   see <a href = "#preprocessor">section 13.1</a>
+     help-ctx                       see <a href = "#help-facilities">section 13.7</a>
+     gui-console-ctx                see <a href = "#gui-system">section 13.3</a>, <a href = "#user-interaction-functions">section 11.5.1</a>
+     rich-text                      see <a href = "#gui-system">section 13.3</a>
+
+     reactor!                       see <a href = "#reactivity">section 13.4</a>
+     deep-reactor!                  idem
+     face!                          see <a href = "#gui-system">section 13.3</a>
+     font!                          idem
+     para!                          idem
+     tips!                          idem
+     scroller!                      idem
+</pre>
+++++
+
 == System object
 
 The _system object_ is used by the run-time system to store both fixed data
