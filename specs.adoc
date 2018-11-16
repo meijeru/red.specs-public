@@ -1617,6 +1617,7 @@ _Unicode 7.0 case folding table_ (only character pairs with status C and S)
 * `to-local-file` converts a Red file path to the local system file path and
 `to-red-file` converts a local system file path to a Red file path (see
 <<file-system-functions,section 11.3.2>>
+* `dehex` converts a string containing hex-encoded characters (`%<hex-byte>`, see <<code-file-code,section 5.2.8>>)
 
 === Casting of values (`as`)
 
@@ -4342,6 +4343,7 @@ R    as-ipv4
 N    as-pair
 R    as-rgba
 N    debase
+N    dehex
 N    enbase
 F    hex-to-rgb
 N    lowercase
