@@ -3021,6 +3021,7 @@ or `none` from block or hash value                                           |at
 |pad <series>                  |string padded on right side with spaces      |at head
 |===
 
+The function `remove-each <counter> <series> <condition-block>` is described in <<repeated-execution-loops,section 10.2>>.
 
 The function `reverse` is also defined on values of type `pair!` and `tuple!`, but in these cases
 it does not modify the value in place, yielding instead a new value._**See https://github.com/red/red/issues/3379[issue #3379]**_
@@ -4532,6 +4533,7 @@ A    put
 A    random
 F    rejoin
 A    remove
+N    remove-each
 F    repend
 F    replace
 A    reverse
@@ -4678,6 +4680,7 @@ F    offset-to-char
 F    overlap?
 F    remove-event-func
 F    request-font
+F    rtd-layout
 F    set-focus
 F    show
 F    size-text
