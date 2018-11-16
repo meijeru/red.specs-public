@@ -4241,6 +4241,7 @@ used one is written first.
 see <<type-and-typeset-related-functions,sections 4.4>> and <<reflection-on-values,5.7>>
 ....
 F    action?
+F    all-word?
 F    any-block?
 F    any-function?
 F    any-list?
@@ -4257,6 +4258,7 @@ F    class-of
 N    complement?
 N    context?
 F    datatype?
+F    date?
 F    email?
 F    error?
 R    event?
@@ -4426,8 +4428,11 @@ N    checksum
 A    complement
 F    cos         N    cosine
 O    /           A    divide
+N    difference
 A    even?
+N    exclude
 N    exp
+N    intersect
 N    log-10
 N    log-2
 N    log-e
@@ -4455,6 +4460,8 @@ F    sqrt        N    square-root
 O    -           A    subtract
 F    sum
 F    tan         N    tangent
+N    union
+N    unique
 O    xor         A    xor~
 N    zero?
 </pre>
