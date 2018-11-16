@@ -4009,6 +4009,9 @@ The function `call` will execute an OS shell command to run another process. Its
 is a `string!` value representing a shell command or a `file!` value representing
 an executable file.
 
+The function `os-info` will return an `object!` value with the following fields:
+OS name, architecture, version and build.
+
 === Help facilities
 
 These facilities owe much to the homoiconicity of Red, and to the systematic
@@ -4675,6 +4678,7 @@ N    call
 N    get-env
 N    list-env
 N    now
+R    os-info
 N    set-env
 N    stats
 N    wait
