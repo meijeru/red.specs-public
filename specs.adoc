@@ -1477,7 +1477,7 @@ for
 
 * `string!` values: first applies `load` (see <<conversion-from-to-textual-representation,section 11.1.1>>)
 and applies `to-block` to the result
-* `typeset!` values: yields a block with the individual types
+* `typeset!` values: yields a block with the individual typenames as `word!` values
 * `any-block!` and `vector!` values: yields a block with the components
 * `any-object!` and `map!` values: yields the same as `body-of`
 
