@@ -1196,8 +1196,8 @@ If the first argument to `make` is `object!` this creates a new object as follow
 A new context is created and associated to the object. The words of the new context
 (i.e. the _fields_ of the object) are the words of all the `set-word!` values that are
 (first-level) components of the `<object-spec>`. The corresponding values are set
-to the unset value. The `<object-spec>` is bound to this context (see <<built-in-code-bind-code-function,section
-6.3.6>>). The bound block is then _executed_. _**See https://github.com/red/red/issues/3362[issue #3362]**_
+to the unset value. The `<object-spec>` is _bound_ to this context (see <<built-in-code-bind-code-function,section
+6.3.7>>). The bound block is then _executed_. _**See https://github.com/red/red/issues/3362[issue #3362]**_
 The `class` property of the newly created object is set to a unique integer.
 
 If the first argument to `make` is an `object!` value, it serves as _prototype_.
@@ -3130,7 +3130,7 @@ with the following semantics:
 The following operations on objects have already been described:
 `put select` (<<components-of-values,section 5.6>>),
 `object context construct extend` (<<code-object-code,section 5.3.7>>) and
-`in` (<<built-in-code-bid-code-function,section 6.3.7>>). Of these,
+`in` (<<built-in-code-in-code-function,section 6.3.8>>). Of these,
 `in` and `select` are also defined on errors.
 
 The following built-in functions are also defined on objects and errors,
