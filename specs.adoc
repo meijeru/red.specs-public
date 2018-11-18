@@ -2059,6 +2059,7 @@ Words are bound to contexts as a result of:
 * evaluating an expression consisting of a `set-word!` value followed by another expression
 * evaluating a `make object! <spec>` construct
 * making an `error!` value
+* making a `port!` value
 * applying a function to its arguments
 * applying the built-in `bind` function
 * applying the built-in `in` function
@@ -2091,6 +2092,10 @@ This is treated in <<code-object-code,rule `S129`>>.
 ==== Making an `error!` value
 
 This is treated in <<code-error-code,rule `S130`>> and in section <<errors,12.1>>.
+
+==== Making a `port!` value
+
+This is treated in <<code-port-code,rule `S135`>> and in section <<ports,11.4>>.
 
 ==== Function application
 
