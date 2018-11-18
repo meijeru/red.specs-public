@@ -2027,7 +2027,8 @@ In addition to the global context, any number of contexts may exist during
 program execution. Every _object_ (value of type `object!`) gives rise to a
 context, containing the field-name/value pairs of the object. From an
 implementation viewpoint, an object is just a combination of a context
-and a class. Every _error_ (value of type `error!`) is a specialized object,
+and a class. Every _error_ (value of type `error!`) and _port_ (value
+of type `port!`) is a specialized object,
 and therefore also has a context associated with it. Every function 
 (value of type `function!`) also gives rise to a context, which contains
 the pairs of formal argument name and actual argument value to be used by 
