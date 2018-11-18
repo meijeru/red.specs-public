@@ -123,7 +123,7 @@ interpreted in a specific way; this includes the _preprocessor dialect_,
 the _parse dialect_, the _visual interface dialect (VID)_, which also uses
 the _draw dialect_ and its _shape sub-dialect_, the various _spec dialects_
 involved in defining vectors, images, bitsets, objects, errors, ports, maps,
-functions and routines, furthermore the _compose dialect_
+functions and routines, furthermore the _compose and construct dialects_
 and the _system dialect_ (Red/System).
 
 Red/System is on the one hand a language of its own: it is a C-level language
