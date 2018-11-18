@@ -2880,7 +2880,7 @@ See <<blocks-reduction-and-selective-evaluation,section 7.5>>.
 
 === Introduction
 
-This concerns series, bitsets, maps, objects and errors.
+This concerns series, bitsets, maps, objects, errors and ports.
 
 As explained earlier, series in Red, as values of indirect types, have their
 components stored contiguously, but separately from the value slot that
@@ -2891,7 +2891,7 @@ i.e. the index of the last component.
 
 Bitsets are stored similarly to series, but have a restricted number of operations.
 
-Maps, objects and errors all have _fields_, and share a number of operations, although
+Maps, objects, errors and ports all have _fields_, and share a number of operations, although
 there are also differences to be taken into account.
 
 === Series: positioning and navigation
@@ -3125,20 +3125,20 @@ with the following semantics:
 |length? <map>            |yield the number of key-value pairs
 |===
 
-=== Operations on objects and errors
+=== Operations on objects, errors and ports
 
 The following operations on objects have already been described:
 `put select` (<<components-of-values,section 5.6>>),
 `object context construct extend` (<<code-object-code,section 5.3.7>>) and
 `in` (<<built-in-code-in-code-function,section 6.3.8>>). Of these,
-`in` and `select` are also defined on errors.
+`in` and `select` are also defined on errors and ports.
 
-The following built-in functions are also defined on objects and errors,
+The following built-in functions are also defined on objects, errors and ports,
 with the following semantics:
 [cols="1,2", options="header"]
 |===
 |function                  |operation
-|copy <any-object>         |yield a copy of the object or error
+|copy <any-object>         |yield a copy of the object, error or port
 |find <any-object> <word>  |yield true if key indicated by <word> exists, else none
 |===
 
