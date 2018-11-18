@@ -121,7 +121,7 @@ by the _parse_ facility (see <<parse,section 13.2>>).
 In fact, Red itself contains a number of dialects where blocks of data are
 interpreted in a specific way; this includes the _preprocessor dialect_, 
 the _parse dialect_, the _visual interface dialect (VID)_, which also uses
-the _draw dialect_ and the _shape dialect_, the various _spec dialects_
+the _draw dialect_ and its _shape sub-dialect_, the various _spec dialects_
 involved in defining vectors, images, bitsets, objects, errors, maps,
 functions and routines, furthermore the _compose dialect_
 and the _system dialect_ (Red/System).
