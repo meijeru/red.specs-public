@@ -1266,7 +1266,7 @@ in the latter case, the `<block>` will be treated as described under <<code-obje
 note that also in this case, the `<block>` will be executed.
 
 Except in the case where an `<object-spec>` is provided, any fields other than `type` and `id`
-cannot be set by `make`. They should be set afterwards.
+cannot be set by `make`, and are `none` initially. They should be set afterwards.
 
 If the `<error-spec>` is a `string!` value, this will be used as `arg1` for the error with
 `type: 'user id: 'message`. 
