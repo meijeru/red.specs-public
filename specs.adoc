@@ -3974,9 +3974,9 @@ The virtual tree is built using _face objects_, i.e. objects derived from the st
 object `face!`. Each face object maps to a graphic component on the display in a two-way
 binding. The built-in function `view` takes a face object as argument and displays it
 together with all face objects depending on it. Face objects can be made directly
-by the user (`make <object> ...`) or created by using the Visual Interface Dialect (VID)
-which allows to specify each graphic element to display. VID code is processed by
-the `layout` function.
+by the user (`make <object> ...`, or `make-face ...`) or created by using the
+Visual Interface Dialect (VID) which allows to specify each graphic element to display.
+VID code is processed by the `layout` function.
 
 Draw is a dialect (DSL) that provides a simple declarative way to specify 2D drawing operations.
 Such operations are expressed as lists of ordered commands (using blocks of values),
