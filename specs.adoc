@@ -318,7 +318,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`logic!`         |`true` or `false`
 |`char!`          |characters (Unicode Code Points)
 |`integer!`       |integer numbers 
-|`hex!`           |strings of hexadecimal characters, to be used for identification purposes or as hexadecimal encoding of a large positive number
+|`hex!`           |sequences of hexadecimal characters, to be used for identification purposes or as hexadecimal encoding of a large positive number
 |`bigint!`        |integers of arbitrary size
 |`float!`         |floating point (decimal) numbers
 |`percent!`       |floating point numbers expressed as a percentage
@@ -1036,7 +1036,7 @@ Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are equal `issue!
 **`S138`**::
 
 A `<hex-literal>` consists of `0x` followed by 11 or more hexadecimal characters `0-9 A-F a-f`. There is no
-upper limit to the number of such characters. The value of the `<hex-literal>` is the string of hexadecimal
+upper limit to the number of such characters. The value of the `<hex-literal>` is the sequence of hexadecimal
 characters.
 
 Example: 	`0x76960dccd5a1fe799f7c29be9f19ceb4627aeb2f` ; the contract number for the Red Community Token (RED)
