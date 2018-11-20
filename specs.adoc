@@ -210,6 +210,7 @@ see <<code-word-code,sections 5.2.5>> and <<code-refinement-code,5.2.15/16>>.
 <prologue> ::= Red [ <value>* ]
 <value>    ::= <lexeme> | <group>
 <lexeme>   ::= <integer-literal>                        ; integer!
+             | <hex-literal>                            ; hex!
              | <float-literal>                          ; float!
              | <integer-literal>% | <float-literal>%    ; percent!
              | <integer-literal>x<integer-literal>      ; pair!
@@ -317,6 +318,8 @@ The full list of types of the languages is given below, with an explanation of t
 |`logic!`         |`true` or `false`
 |`char!`          |characters (Unicode Code Points)
 |`integer!`       |integer numbers 
+|`hex!`           |numbers in hexadecimal notation
+|`bigint!`        |integers of arbitrary size
 |`float!`         |floating point (decimal) numbers
 |`percent!`       |floating point numbers expressed as a percentage
 |`time!`          |time intervals or points in time, stored as a floating point number of seconds
@@ -373,8 +376,6 @@ The full list of types of the languages is given below, with an explanation of t
 |===
 ....
 TBD
-hex!
-bigint!
 point!
 closure!
 ref!
@@ -474,6 +475,8 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`logic!`      |using words      |direct    |atomic           |N           |passive    |
 |`char!`       |lexical          |direct    |atomic           |N           |passive    |`integer!`
 |`integer!`    |lexical          |direct    |atomic           |N           |passive    |
+|`hex!`        |lexical          |indirect  |atomic           |N           |passive    |`bigint!`
+|`bigint!`     |using `make`     |indirect  |atomic           |N           |passive    |
 |`float!`      |lexical          |direct    |atomic           |N           |passive    |
 |`percent!`    |lexical          |direct    |atomic           |N           |passive    |`float!`
 |`time!`       |lexical          |direct    |composite        |N           |passive    |`float!`
@@ -523,8 +526,6 @@ Notes:
 . _**See https://github.com/red/REP/issues/12[REP #12]**_
 ....
 TBD
-hex!
-bigint!
 point!
 closure!
 ref!
@@ -559,7 +560,9 @@ any-type!
    |  |--scalar!          
    |  |  |--char!          
    |  |  |--number!        
-   |  |  |  |--integer!     
+   |  |  |  |--integer!
+   |  |  |  |--hex!
+   |  |  |  |--bigint!
    |  |  |  |--any-float!   <---- see <a href = "https://github.com/red/red/issues/2565">issue #2565</a>
    |  |  |     |--float!     
    |  |  |     |--percent!   
@@ -610,8 +613,6 @@ any-type!
       |--routine!         
    
 TBD
-hex!
-bigint!
 point!
 closure!
 ref!
@@ -687,7 +688,9 @@ In the following rules, the sign `°` signifies an optional element.
 An `<integer-literal>` is written as an integer number from `-2^31^` to `2^31^-1`
 in decimal notation. Leading zeroes are allowed, as well as `'` signs between digits, for separation.
 A `+` sign is allowed but not compulsory.
-_**Hexadecimal notation, eg FFh, is omitted as this is under discussion**_
+_**Hexadecimal notation, eg FFh, is omitted as this is to be replaced by the `hex!` datatype**_
+Note: A separate datatype `bigint!` (see <<code-bigint-code,section 5.3.13>> is available for
+operations on integers of arbitrary size.
 
 Examples: `123`  `-123`  `+0001`  `1'000`
 
@@ -919,7 +922,7 @@ A `date!` value comprises day, month and year numbers as well as, optionally,
 a time of day stored as a UTC time value with optional timezone information.
 The year number ranges from `-2^14^` to `2^14^-1`, but in literals it must
 lie between `-9999` and `9999`. Other values may be constructed using `make` or `to`
-(see <<other-types,sections 5.3.13>> and <<target-type-code-date-code,5.4.13>>).
+(see <<other-types,sections 5.3.14>> and <<target-type-code-date-code,5.4.13>>).
 The UTC time is a non-negative `time!` value and the timezone is a signed `time!` value
 which varies between `-15:45` and `+15:45` in multiples of `0:15`
 (note that actual timezones vary between `-12:00` and `+14:00`).
@@ -1027,6 +1030,12 @@ However, the combinations `#<>` and +
 `#<...>` with any characters in between the `<` and `>` character are not allowed.
 
 Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are equal `issue!` values.
+
+==== `hex!`
+
+**`S138`**::
+
+TBD
 
 === Creation of values (`make`)
 
@@ -1409,6 +1418,14 @@ If the `<port-spec>` is a block, this is treated in the same way as an `<object-
 (see <<code-object-code,section 5.3.6>>).
 
 Note that `port!` values all have `class = 2`.
+
+==== `bigint!`
+
+**`S139`**::
+....
+<bigint> ::= make bigint! <bigint-spec>
+<bigint-spec> ::= <integer> | <binary> | <hex>
+....
 
 ==== Other types 
 
@@ -5216,7 +5233,7 @@ RFC3986 (URI)                           <a href = "#port-components">11.4.1</a>
 RGB color model                         <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
 RGBA color/transparency model           <a href = "#code-image-code">5.3.4</a>
 routine spec dialect                    <a href = "#dialects">2.5</a>, <a href = "#code-routine-code">5.3.9</a>
-scheme (URI component)                  <a href = "#other-types">5.3.13</a>, <a href = "#port-components">11.4.1</a>
+scheme (URI component)                  <a href = "#other-types">5.3.14</a>, <a href = "#port-components">11.4.1</a>
 shape dialect                           <a href = "#dialects">2.5</a>, <a href = "#gui-system">13.3</a>
 shortcut evaluation                     <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
 single value                            <a href = "#textual-structure">3.1</a>
@@ -5287,7 +5304,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2633">2633</a>   <a href="#errors">12.1</a>
 <a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#code-routine-code">5.3.9</a>
-<a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.13</a>
+<a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
 <a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#target-type-code-logic-code">5.4.2</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#equality-comparisons">5.8.1</a>
