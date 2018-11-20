@@ -325,7 +325,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`time!`          |time intervals or points in time, stored as a floating point number of seconds
 |`date!`          |dates according to the Gregorian calendar, optionally with time of day and timezone
 |`pair!`          |2-dimensional coordinates or size 
-|`tuple!`         |e.g. colors in RGB or other model, IPv4 addresses
+|`tuple!`         |sequences of numbers 0-255, e.g. colors in RGB or other model, IPv4 addresses
 |`word!`          |identifiers that can be bound
 |`lit-word!`      |quoted (unevaluated) words
 |`set-word!`      |words to be given a value to refer to
@@ -343,8 +343,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`set-path!`      |for setting a component of a composite value
 |`get-path!`      |paths to be evaluated
 |`vector!`        |ordered sequences of values of identical type, which can be
-                   `char!` or `integer!` (8/16/32 bits), `percent!` or `float!` (32/64 bits);
-                   default: 32 bits for `char!` or `integer!` and 64 bits otherwise
+                   `char!`, `integer!`, `percent!` or `float!`
 |`string!`        |sequences of characters (Unicode Code Points)
 |`file!`          |files or directories (folders)
 |`url!`           |URLs
