@@ -318,7 +318,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`logic!`         |`true` or `false`
 |`char!`          |characters (Unicode Code Points)
 |`integer!`       |integer numbers 
-|`hex!`           |numbers in hexadecimal notation
+|`hex!`           |strings of hexadecimal characters, to be used for identification purposes or as hexadecimal encoding of a large positive number
 |`bigint!`        |integers of arbitrary size
 |`float!`         |floating point (decimal) numbers
 |`percent!`       |floating point numbers expressed as a percentage
@@ -350,7 +350,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`url!`           |URLs
 |`tag!`           |tags in the sense of HTML, XML etc.
 |`email!`         |email addresses
-|`binary!`        |sequences of bytes
+|`binary!`        |sequences of bytes (numbers 0-255)
 |`image!`         |2-dimensional arrays of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
 |`bitset!`        |sequences of `logic!` values, used e.g. to model sets of
                    non-negative integers, such as Unicode Code Points
@@ -1035,7 +1035,11 @@ Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are equal `issue!
 
 **`S138`**::
 
-TBD
+A `<hex-literal>` consists of `0x` followed by 11 or more hexadecimal characters `0-9 A-F a-f`. There is no
+upper limit to the number of such characters. The value of the `<hex-literal>` is the string of hexadecimal
+characters.
+
+Example: 	`0x76960dccd5a1fe799f7c29be9f19ceb4627aeb2f` ; the contract number for the Red Community Token (RED)
 
 === Creation of values (`make`)
 
@@ -1387,6 +1391,7 @@ is the same in both cases.
 <key-value-pair> ::= <key><value>
 ....
 
+The constituents of `<map-spec>` are not evaluated.
 Each `<key>` should be a value of a type in `scalar!, any-word!`, `any-string!` or `binary!`.
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `any-word!`
@@ -1424,8 +1429,12 @@ Note that `port!` values all have `class = 2`.
 **`S139`**::
 ....
 <bigint> ::= make bigint! <bigint-spec>
-<bigint-spec> ::= <integer> | <binary> | <hex>
-....
+<bigint-spec> ::= <integer> | <hex> | <binary>
+.... 
+
+An `<integer>` produces a `bigint!` value equal to the integer value. A `<hex>` produces
+a `bigint!` value computed by considering the `<hex>` as a (positive) integer in hexadecimal notation.
+The same holds for a `<binary>`.
 
 ==== Other types 
 
