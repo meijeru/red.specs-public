@@ -1304,9 +1304,10 @@ Note that `error!` values all have `class = 1`.
 <return-doc> ::= <string>
 <function-body> ::= <block>
 ....
-For `<typeset-element>` see <<code-typeset-code,rule `S124`>>. Note that both in the `<argument-spec>`
-and the `<return-spec>` any `<typeset-name>` must refer to a pre-defined typeset value (see
-<<type-hierarchy,section 4.3>>). User-defined typesets may not be mentioned.
+For `<typeset-element>` see <<code-typeset-code,rule `S124`>>. Note that for a program to be compiled,
+both in the `<argument-spec>` and the `<return-spec>` any `<typeset-name>` must refer to a pre-defined
+typeset value (see <<type-hierarchy,section 4.3>>). User-defined typesets may not be mentioned.
+For interpreted programs this restriction does not apply.
 _**See https://github.com/red/red/issues/3285[issue #3285]**_
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
