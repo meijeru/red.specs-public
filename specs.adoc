@@ -364,7 +364,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`error!`         |specialized objects representing error conditions
 |`port!`          |specialized objects for communicating with external resources
 |`native!`        |pre-defined functions with built-in evaluation according to special rules
-|`action!`        |pre-defined polymorphic functions of one or two arguments with built-in evaluation
+|`action!`        |pre-defined polymorphic functions of one or more arguments with built-in evaluation
 |`op!`            |operators, i.e. infix functions of two arguments, each one is
                    derived from a `native!`, `action!`, `function!` or `routine!` value
 |`function!`      |user-defined functions; as with `native!` and `action!` values,
