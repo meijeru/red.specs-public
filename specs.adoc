@@ -1249,7 +1249,7 @@ the refinement `/only` is specified.
 
 The built-in function `extend` takes an `object!` value as first argument
 and a set of key-value pairs as second argument of type `block! hash!` or `map!`.
-It will add the keys that are not present in the map, with their values,
+It will add the keys that are not present in the object, with their values,
 and replace the values for those keys that are
 already present. The keys and values are not evaluated.
 _**It is not yet implemented**_
