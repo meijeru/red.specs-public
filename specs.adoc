@@ -4695,7 +4695,7 @@ F    parse-trace
 ==== GUI system
 see <<gui-system,section 13.3>>
 ....
-F    care-to-offset
+F    caret-to-offset
 F    center-face
 F    clear-reactions
 F    distance?
