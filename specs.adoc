@@ -1331,8 +1331,9 @@ The built-in function `func` is defined as shorthand for `make function!`. The b
 `has [<arguments>] <block>` is equivalent to `func [/local <arguments>] <block>`.
 The built-in function `does` is defined as shorthand for `func [ ] <block>` (no arguments at all).
 The built-in function `function` is similar to `func`, but it adds all set-words 
-and words from _iterators_ (e.g. `foreach <word>` and `repeat <word>`)
-found in the body to the list of local arguments.
+and words from _iterators_ (e.g. `foreach <word>` and `repeat <word>`) found in the body
+to the list of local arguments _except_  the ones that occur in a block following the `/extern` refinement
+_**see https://github.com/red/red/issues/324[issue #324]**_.
 
 ==== `routine!`
 
@@ -5299,6 +5300,7 @@ respectively.
 Red    spec
 issue  section
 
+<a href= "https://github.com/red/red/issues/324">324</a>   <a href="#code-function-code">5.3.8</a>
 <a href= "https://github.com/red/red/issues/1957">1957</a>   <a href="#reflection-on-values">5.7</a>
 <a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
