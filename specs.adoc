@@ -1127,7 +1127,7 @@ make vector! [#"a" #"b" #"c"]`
 **`S127`**::
 ....
 <image> ::= make image! <image-spec>
-<image-spec> ::= <pair> | [<pair> <tuple> <binary>°] | [<pair> <binary> <binary>°] 
+<image-spec> ::= <pair> | [<pair>] | [<pair> <tuple>] | [<pair> <binary> <binary>°] 
 ....
 
 An `image!` value stores a sequence of RGBA (color + transparency) values for pixels, using 4 bytes in 1 word for
@@ -1137,17 +1137,16 @@ the first 3 elements are R, G and B, and the last element is 255 - A. When setti
 tuple has to be specified. Elements beyond the 4th are ignored, if there are 3 elements, A has the default value
 of `255` (fully opaque).
 
-If `<image-spec>` is `<pair>`, the image is created with the given dimensions, and with all pixels having color
+If `<image-spec>` is `<pair>` or `[<pair>]`, the image is created with the given dimensions, and with all pixels having color
 `255.255.255` and transparency `255`. If a `<tuple>` is specified, it should have 3 or 4 elements; any more are
 ignored. These elements determine the color and transparency of all pixels, in the manner as stated above.
-An `<integer>` is not allowed _**See https://github.com/red/red/issues/2883[issue #2883]**_
+Note: an `<integer>` is not allowed in place of the `<tuple>`._**See https://github.com/red/red/issues/2883[issue #2883]**_
 If a single `<binary>` is specified, this should contain the sequence of colors of all pixels
 (three bytes per pixel, in the order R, G, B, stored by horizontal line). The number of triplets should match
 the image size, more bytes are ignored, fewer bytes are supplemented with bytes `#{00}` for `0`. The transparency for all
 pixels is set to `255`. The second `<binary>`, if present, contains the transparency values (one byte per pixel,
 in the same ordering). Again, the number of bytes should match the image size. More are ignored, fewer are
-supplemented with bytes `#{FF}` for `255`. If the previous item in the specification was a 4-element tuple,
-this `<binary>` is ignored.
+supplemented with bytes `#{FF}` for `255`.
 
 Examples:
 ....
