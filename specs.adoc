@@ -1591,6 +1591,8 @@ The function `to-binary` is defined for
 * `integer!` and `any-float!` values: yields the corresponding 4 resp. 8 byte binary value
 * `char!` values: yields the UTF-8 encoded binary value
 * `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
+* `issue!` values: interprets the characters following the `#`, if possible, as base16 representation
+of a binary value; if the number of characters is odd, the last one is ignored
 * `bitset!` values: yields the corresponding binary value
 * `string!` values: yields the UTF-8 encoded binary value
 * `any-list!` values: these should contain only `integer!` or `float!` values;
