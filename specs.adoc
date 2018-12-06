@@ -891,7 +891,8 @@ Examples:
 
 In order to help convert between the 3 representations (base2, base16 and base64),
 the built-in functions `debase` and `enbase` have been defined. They each have
-a refinement `/base` with an argument of 2, 16 or 64 (default).
+a refinement `/base` with an argument of 2, 16 or 64 (default). An argument value
+of 58 is also allowed, for applications related to cryptocurrencies.
 
 Examples:
 ....
