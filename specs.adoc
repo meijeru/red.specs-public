@@ -2128,6 +2128,9 @@ Equivalent to this is the application of the built-in function `set`:
 The counterpart to `set` is `unset`: this will make the word argument
 refer to the unset value.
 
+Both `set` and `unset` may have a `block!` argument instead of a `word!` one. The set/unset
+action is applied to all the words in the block.
+
 ==== Object creation
 
 This is treated in <<code-object-code,rule `S129`>>.
