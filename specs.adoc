@@ -1657,6 +1657,8 @@ _Unicode 7.0 case folding table_ (only character pairs with status C and S)
 * `dehex` converts a `string!`, `file!`, `url!` or `email!` value containing hex-encoded characters
 (`%<hex-byte>`, see sections <<code-file-code,5.2.8/9/10 and 12>>) into a `string!` value
 in which the characters have been decoded
+* `debase`and `enbase` have been described in <<code-binary-code,section 5.2.12>>
+* `decompress` TBD
 
 === Casting of values (`as`)
 
