@@ -1654,7 +1654,9 @@ _Unicode 7.0 case folding table_ (only character pairs with status C and S)
 * `to-local-file` converts a Red file path to the local system file path and
 `to-red-file` converts a local system file path to a Red file path (see
 <<file-system-functions,section 11.3.2>>
-* `dehex` converts a string containing hex-encoded characters (`%<hex-byte>`, see <<code-file-code,section 5.2.8>>)
+* `dehex` converts a `string!`, `file!`, `url!` or `email!` value containing hex-encoded characters
+(`%<hex-byte>`, see sections <<code-file-code,5.2.8/9/10 and 12>>) into a `string!` value
+in which the characters have been decoded
 
 === Casting of values (`as`)
 
@@ -2146,7 +2148,7 @@ The built-in function `bind` has two arguments: a value of type `any-word!`
 or a block containing, amongst others, such values, and a context.
 
 For brevity, values of type `any-word!` will be called "words" in the rest
-of this section. The function will try to change the binding of a single word or
+of this section and the next. The function will try to change the binding of a single word or
 of all words in the block, and will return the (modified) word or block.
 It will treat words at any depth within the block and its sub-blocks
 (including values of type `paren! path! lit-path! set-path! get-path!` and `hash!`).
@@ -2168,7 +2170,7 @@ contains the actual argument values. See evaluation <<code-function-code-type,ru
 ==== Built-in `in` function
 
 The built-in function `in` has two arguments: an `object!`,`error!` or `port!` value
-and a word.
+and an `any-word!` value, again called "word" in the rest of this section.
 
 It will bind the word to the object, error or port context, and yield the word thus
 bound as result.
