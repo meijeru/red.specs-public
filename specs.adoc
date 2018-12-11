@@ -1639,8 +1639,8 @@ and taken into account.
 as a 16 character `issue!` value, with leading zeroes if needed
 * `to-local-date` returns the date with local zone
 * `to-UTC-date` returns the date with UTC zone
-* `as-pair` takes two integer arguments and combines them into a `pair!` value,
-thus `as-pair x y` is equivalent to `to-pair reduce [x y]` 
+* `as-pair` takes two integer or float arguments and combines them into a `pair!` value,
+thus `as-pair x y` is equivalent to `to-pair reduce [x y]`
 * `as-color` takes three integer arguments `0..255` and makes a `tuple!` value
 representing a color (RGB)
 * `as-rgba` does the same with four arguments, with additional transparency (RGBA)
