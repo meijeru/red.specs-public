@@ -1735,6 +1735,8 @@ therefore also be used in selection by "key" (see next section). The corresponde
 top to bottom).
 
 The built-in functions `first`, `second`, `third`, `fourth` and `fifth` are defined as `pick <expression> 1` etc.
+The built-in function `last` is defined as `pick <expression> length? <expression>` for values with types in
+`series!` and `tuple!`. For `length?` see <<series-positioning-and-navigation,section 9.2>>. 
 
 Indexing with values outside the allowed range lead to an error for values of direct type,
 both in case of extraction and changing, and also for values of indirect type in case of changing;
@@ -3003,13 +3005,11 @@ _**All series operations are defined for port! values??**_
 === Series: extraction and modification of components
 
 The following built-in functions have been described in <<components-of-values,section 5.6>>:
-`pick poke select put first second third fourth fifth`.
+`pick poke select put first second third fourth fifth last`.
 
 The function `select` has the same set of refinements as `find`
 (see <<series-positioning-and-navigation,previous section>>)
 with the exception of `/tail` and `/match`.
-
-The function `last <series>` is defined as `pick back tail <series> 1`.
 
 These functions create a new series value, pointing to new components:
 [cols="1,2", options="header"]
