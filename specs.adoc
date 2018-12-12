@@ -2741,7 +2741,7 @@ Notes:
 the result value fits in 32 bits; otherwise result type is `float!`
 . result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
-. components must be of type `number!`
+. components must be of type `number!` or `char!`
 . result type is `percent!` if sum is of that type, otherwise `float!`
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
@@ -2844,7 +2844,7 @@ if different from argument types.
 |sin cos tan asin acos atan     |1   |float!                              |
 |atan2                          |2   |float!                              |
 |random                         |1   |logic! scalar!                      |
-|checksum                       |2   |binary! string! file! word!         |binary!
+|checksum                       |2   |binary! string! file!, word!         |binary!
 |===
 
 Notes: all trigonometric functions take an argument in radians, except `atan2`
@@ -3121,7 +3121,7 @@ insert it before current component of second one      |first series, before next
 Also these functions are not defined on `image!` values.
 
 Note: for programming convenience, the following functions take `none` as argument, yielding `none` as result:
-`clear find length? remove select take`.
+`clear find remove select take`.
 
 The function `modify` is used to change the `owned` property of a series value
 (see <<code-object-code,section 5.3.6>> and <<reflection-on-values,section 5.7>>).
