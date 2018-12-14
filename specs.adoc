@@ -3069,8 +3069,8 @@ it is removed, else appended                                                 |(a
 before current component                                                     |before current component
 |append <series> <expression>  |value of expression inserted at tail         |at head
 |repend <series> <expression>  |reduced value of expression inserted at tail |at head
-|trim <series>                 |spaces removed from string +
-or `none` from block or hash value                                           |at head
+|trim <series>                 |spaces removed from string, +
+null bytes from binary, or `none` from block or hash value                                           |at head
 |pad <series>                  |string padded on right side with spaces      |at head
 |===
 
