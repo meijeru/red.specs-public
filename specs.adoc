@@ -1377,7 +1377,7 @@ and the representation and storage of argument and result values.
 <op> ::= make op! <prefix-function>
 ....
 
-For `<prefix-function>` see <<expressions,rule `S101`>>.
+For `<prefix-function>` see <<expressions-and-evaluation-order,rule `S101`>>.
 
 In contrast to `action!` and `native!` values which cannot be made by means of
 `make`, the user may create new infix functions of two arguments (operators),
