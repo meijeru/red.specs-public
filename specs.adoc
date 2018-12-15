@@ -281,7 +281,7 @@ expressions (arguments) following a prefix function is strictly dependent on the
 and is known as the _arity_ of the function value. Binding is expressed by a `<word-literal>:`
 (`set-word!` value) followed by an `<expression>`. See further the evaluation rules given
 in <<evaluation-rules,section 7>>. Evaluation of the operands of operators has _precedence_ over function
-application and binding; also, as suggested in <<expressions,rule `S101`>>, operators are strictly _left associative_,
+application and binding; also, as suggested in rule `S101`, operators are strictly _left associative_,
 there is no precedence between any two operators. The fact that the arguments of a function simply follow
 the function itself (they are not enclosed in parentheses) means that, for the reader to understand
 a program, knowledge of the arity of functions is necessary. Evaluation order can of course
