@@ -1116,7 +1116,8 @@ The contents of the `<block>` are copied (not deeply).
 The components of the `<block>` should all have the same type `char!`, `integer!`, `float!` or `percent!`. 
 If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`, and size is
 the default size (32 bits for `char!` and `integer!`, 64 bits otherwise). If `<block>` is empty, the assumed type
-is `integer!` of size 32.
+is `integer!` of size 32. If `<block>` is not empty, and some of its values cannot be represented
+by the number of bits specified by `<type-and-size>`, these values are truncated to that number of bits.
 
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
 initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>`
@@ -1126,7 +1127,7 @@ Examples:
 ....
 make vector! []
 make vector! [integer! 16 [1 2 3]]
-make vector! [#"a" #"b" #"c"]`
+make vector! [#"a" #"b" #"c"]
 ....
 
 ==== `image!`
