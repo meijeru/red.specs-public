@@ -663,6 +663,9 @@ Both `make` and `to` are trivially defined if the type of their `<spec>` argumen
 is the same as (the type of) their `<target>` argument; for indirect types, a copy is
 made of the value of `<spec>`.
 
+An alternative syntax will exist for making values of various types: the general _typed value
+constructor_ `#[ <type> <spec> ]`._**See https://github.com/red/REP/issues/9[REP #9]**_
+
 For several types, the available values are referred to by words at program start: `none!` has `none`,
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
 type names pre-defined (no further datatypes can be defined by the user);
@@ -673,7 +676,13 @@ Values of types `event!` and `handle!`, that are used to communicate with
 the operating system, can only be represented by words that are arguments
 to functions handling this communication.
 
-_**Mention general typed value constructor #[ <type> <value>* ] See also https://github.com/red/REP/issues/9[REP #9]**_
+Because the `save` and `load` functions will treat the predefined words, referred to
+in the previous paragraph, as `word!` values, the typed value constructor is used
+to denote the values referred to by these words: `#[none] #[true] #[false] #[none!] #[logic!]
+#[char!] #[integer!] #[word!] #[lit-word!] #[set-word!] #[get-word!] #[refinement!] #[issue!]
+#[block!] #[paren!] #[path!] #[lit-path!] #[set-path!] #[get-path!] #[string!] #[bitset!]
+#[native!] #[action!] #[op!] #[function!] #[routine!]`. More such applications of the 
+value constructor may follow._**See again https://github.com/red/REP/issues/9[REP #9]**_
 
 The following sub-sections will specify the lexical structure resp. the `<spec>` argument
 of the `make`, `to` and `as` function for values of each of the types as appropriate.
