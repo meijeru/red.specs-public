@@ -1568,7 +1568,7 @@ The function `to-char` is defined for
 The function `to-pair` is defined for
 
 * `number!` values: yields the pair with two components equal to the (truncated) number
-* `any-list!` values: these should contain two `integer!` or `float!` values;
+* `block!` values: these should contain two `integer!` or `float!` values;
 yields the pair wih the (truncated) numbers as components
 
 Note that a similar built-in function `as-pair` of two arguments is defined,
