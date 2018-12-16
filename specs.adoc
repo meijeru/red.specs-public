@@ -676,13 +676,17 @@ Values of types `event!` and `handle!`, that are used to communicate with
 the operating system, can only be represented by words that are arguments
 to functions handling this communication.
 
-Because the `save` and `load` functions will treat the predefined words, referred to
-in the previous paragraph, as `word!` values, the typed value constructor is used
-to denote the values referred to by these words: `#[none] #[true] #[false] #[none!] #[logic!]
-#[char!] #[integer!] #[word!] #[lit-word!] #[set-word!] #[get-word!] #[refinement!] #[issue!]
-#[block!] #[paren!] #[path!] #[lit-path!] #[set-path!] #[get-path!] #[string!] #[bitset!]
-#[native!] #[action!] #[op!] #[function!] #[routine!]`. More such applications of the 
-value constructor may follow._**See again https://github.com/red/REP/issues/9[REP #9]**_
+Because the `save` and `load` functions (see <<full-specification-of-load-and-save,section 11.1.3>>
+will treat the predefined words, referred to in the previous paragraph, as `word!` values,
+the typed value constructor is used to denote the values referred to by these words:
+....
+#[none] #[true] #[false] #[none!] #[logic!] #[char!] #[integer!] #[word!] #[lit-word!] #[set-word!] #[get-word!]
+#[refinement!] #[issue!] #[block!] #[paren!] #[path!] #[lit-path!] #[set-path!] #[get-path!] #[string!] #[bitset!]
+#[native!] #[action!] #[op!] #[function!] #[routine!]
+....
+
+More such applications of the value constructor may follow.
+ _**See again https://github.com/red/REP/issues/9[REP #9]**_
 
 The following sub-sections will specify the lexical structure resp. the `<spec>` argument
 of the `make`, `to` and `as` function for values of each of the types as appropriate.
@@ -3374,16 +3378,17 @@ form object [a: 1]        ; "a: 1"                  object property not shown
 mold [1 2 3]              ; "[1 2 3]"               load is guaranteed to recognize this
 mold make hash! [1 2 3]   ; "make hash! [1 2 3]"    hash property conserved
 mold make vector! [1 2 3] ; "make vector! [1 2 3]"  vector property conserved
+mold/all true             ; "#[true]"               will be loaded as logic! value, not word!
 ....
 
 Since `form` and `mold` may produce long strings for complex values, the function
 `ellipsize-at` may be used to truncate and add ellipsis (`...`) to a string.
 
-The built-in function `save` will apply `mold` to the expression which is its
+The built-in function `save` will apply `mold/all` to the expression which is its
 second argument. If the destination specified as its first argument is a string,
-it will append the result of `mold` to that string. If the destination
+it will append the result of `mold/all` to that string. If the destination
 is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
-out of the result of `mold` and append that value to the destination .
+out of the result of `mold/all` and append that value to the destination .
 _**See https://github.com/red/red/issues/2668[issue #2668]**_
 
 For `any-list!` values the user can control the way they are presented by `mold`,
