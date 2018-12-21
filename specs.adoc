@@ -310,6 +310,10 @@ decorated non-terminals like `<true-block>` will stand for `<block>` etc.
 
 == Types
 
+Note: the official Red Programming Language Documentation will contain a systematic description
+of all Red types and values in its https://doc.red-lang.org/en/[Red Core Language] section,
+currently under development.
+
 === Type list
  
 The full list of types of the languages is given below, with an explanation of the usage of their values.
@@ -642,6 +646,10 @@ number? 1.0    ; true
 ....
 
 == Values
+
+Note: the official Red Programming Language Documentation will contain a systematic description
+of all Red types and values in its https://doc.red-lang.org/en/[Red Core Language] section,
+currently under development.
 
 === Introduction
 
