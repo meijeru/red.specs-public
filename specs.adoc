@@ -3099,7 +3099,7 @@ null bytes from binary, or `none` from block or hash value                      
 The function `remove-each <counter> <series> <condition-block>` is described in <<repeated-execution-loops,section 10.2>>.
 
 The function `reverse` is also defined on values of type `pair!` and `tuple!`, but in these cases
-it does not modify the value in place, yielding instead a new value._**See https://github.com/red/red/issues/3379[issue #3379]**_
+it does not modify the value in place, yielding instead a new value.
 
 The function `clear` is also defined on values of type `bitset!` and `map!`.
 In the first case it yields a bitset of the same size with all bits cleared,
@@ -5375,7 +5375,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#code-image-code">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#code-function-code">5.3.8</a>
 <a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#code-object-code">5.3.6</a>
-<a href= "https://github.com/red/red/issues/3379">3379</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-code-any-string-code">5.4.3</a>
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
