@@ -2972,16 +2972,17 @@ modified, but pointing to the same components:
 |function                   |new index
 |head <series>              |1
 |tail <series>              |length + 1
-|at <series> <integer>      |(index calculated from <expression>)
-|skip <series> <integer>    |current index + (offset calculated from <expression>)
+|at <series> <expression>   |(index calculated from <expression>)
+|skip <series> <expression> | current index + (offset calculated from <expression>)
 |next <series>              |current index + 1
 |back <series>              |current index - 1
 |find <series> <expression> |index of first occurrence of (component or sub-series)
 |===
 
-For `image!` values, a `pair!` value is also allowed. This will be converted to
-a regular index, taking into acount that image pixels are stored row-wise.
-The `<expression>` argument of `find` may be a single component
+For `at` and `skip`, the `<expression>` should evaluate to an `integer!` value, except for
+`<series>` which are `image!` values, where a `pair!` value is also allowed;
+this will be converted to a regular index, taking into acount that image pixels
+are stored row-wise. The `<expression>` argument of `find` may be a single component
 value or a sub-series, or (in the case of `any-string!` series) a `bitset!` value
 representing a choice of values. This function is not defined on `image!` values.
 For testing occurrences it uses an equality test which differs from `strict-equal?`
