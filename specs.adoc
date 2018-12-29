@@ -2987,6 +2987,8 @@ value or a sub-series, or (in the case of `any-string!` series) a `bitset!` valu
 representing a choice of values. This function is not defined on `image!` values.
 For testing occurrences it uses an equality test which differs from `strict-equal?`
 only by not being case-sensitive for values of types in `any-string!` and `any-word!`.
+If the `<expression>` is a `bitset!` value, the equality test _is_ case-sensitive,
+i.e. only the Unicode Code Points indicated are found, not their other case counterparts.
 
 The functions `foreach <counter> <series> <body-block>` and `forall <word> <body-block>`
 are described in <<repeated-execution-loops,section 10.2>>.
