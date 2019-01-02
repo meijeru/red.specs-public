@@ -2666,8 +2666,6 @@ compose/only [([1 + 2]) (3 + 4)] ;  [[1 + 2] 7]    with /only, a block stays a b
 compose/deep [[(1 + 2)] (3 + 4)] ;  [[3] 7]        with /deep, inner parens are also evaluated
 ....
 
-Applied to an argument of any other type, `compose` yields the same result as `reduce`.
-
 The functions `reduce` and `compose` have a refinement `/into` with an argument of type
 `any-block!`; if present, the components of the result will be inserted into this target.
 
