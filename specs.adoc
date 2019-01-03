@@ -1568,7 +1568,7 @@ The function `to-float` is defined for
 if there are fewer than 8 bytes, `#{00}` bytes are prepended
 * `string!` values: yields the result of `load` or an error
 * `any-list!` values: these should contain two components of type `integer!` or `float!`
-the result is the first number times 10 to the power of the truncated second number
+the result is the first number, multiplied by 10 to the power of the truncated second number
 
 The function `to-percent` will perform the same conversions and yield a value of type `percent!`.
 
