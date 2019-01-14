@@ -1749,9 +1749,10 @@ as these path expressions will be interpreted as "extending" the file or url pat
 as explained in <<code-path-code-type,section 7.3.5>>.
 
 Values of the direct types `time!`, `date!`, `pair!` and `tuple!` also admit component selection
-by "indexing". In the case of `tuple!` values, this indexing treats the tuple as a sequence.
-In the other cases, the indexes are defined to correspond to named components, which can
-therefore also be used in selection by "key" (see next section). The correspondences are as follows:
+by "indexing", using both path expressions and `pick` (but not `poke`). In the case of `tuple!` values,
+this indexing treats the tuple as a sequence. In the other cases, the indexes are defined
+to correspond to named components, which can therefore also be used in selection by "key"
+(see next section). The correspondences are as follows:
 
 * for `time!` values: `1 ~ hour 2 ~ minute 3 ~ second`
 * for `date!` values: `1 ~ date 2 ~ year 3 ~ month 4 ~ day 5 ~ zone 6 ~ time 7 ~ hour 8 ~ minute
