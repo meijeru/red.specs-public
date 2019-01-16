@@ -1654,6 +1654,11 @@ for `any-list!` values which have the same interpretation as for `make date!`
 (see <<code-date-code,section 5.2.14>>) except that in this case, over- and under-flow are allowed
 and taken into account.
 
+==== Target type `bitset!`
+
+The function `to-bitset` operates in the same way as `charset` (i.e. `make bitset!`),
+except that an integer argument is not allowed.
+
 ==== Additional conversion functions
 
 * `to-hex` takes an integer argument and produces the hexadecimal equivalent
@@ -5320,7 +5325,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
   pseudo-type                           <a href = "#parent-types">4.2.6</a>, <a href = "#overview-table">4.2.7</a>
   type hierarchy                        <a href = "#type-hierarchy">4.3</a>
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
-Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.14</a>
+Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.15</a>
 Uniform Resource Identifier (URI)       <a href = "#ports">11.4</a>
 UTF-8 encoding                          <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
