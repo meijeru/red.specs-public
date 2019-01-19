@@ -1556,7 +1556,7 @@ further characters are ignored; if the number of characters is odd and less than
 based on the time component adjusted to UTC; because of the limitations on integer values
 the date should be between `13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`; see also `to-date` below 
 
-==== Target types in `any-float!` and `time!`
+==== Target types in `any-float!`
 
 The function `to-float` is defined for
 
@@ -1653,6 +1653,17 @@ negative and because of the limitation of integer numbers will yield dates betwe
 for `any-list!` values which have the same interpretation as for `make date!`
 (see <<code-date-code,section 5.2.14>>) except that in this case, over- and under-flow are allowed
 and taken into account.
+
+==== Target types `time!`
+
+The function `to-time` is defined for
+
+* `number!` values: yields the corresponding number of seconds
+* `string!` values: yields the result of `load` or an error
+* `any-list!` values: these should contain one to three values;
+the first an `integer!` value for the hours; the second, if present,
+an `integer!` value for the minutes; and the third, if present,
+an `integer!` or `float!` value for the seconds. 
 
 ==== Target type `bitset!`
 
@@ -5325,7 +5336,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
   pseudo-type                           <a href = "#parent-types">4.2.6</a>, <a href = "#overview-table">4.2.7</a>
   type hierarchy                        <a href = "#type-hierarchy">4.3</a>
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
-Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.15</a>
+Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.16</a>
 Uniform Resource Identifier (URI)       <a href = "#ports">11.4</a>
 UTF-8 encoding                          <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
