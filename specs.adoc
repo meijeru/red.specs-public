@@ -1571,11 +1571,6 @@ the result is the first number, multiplied by 10 to the power of the truncated s
 
 The function `to-percent` will perform the same conversions and yield a value of type `percent!`.
 
-The function `to-time` will do the same and yield a `time!` value; in this case,
-the `any-list!` argument should contain one to three values; the first an `integer!` value for the hours;
-the second, if present, an `integer!` value for the minutes; and the third, if present, an `integer!` or
-`float!` value for the seconds. 
-
 ==== Target type `char!`
 
 The function `to-char` is defined for
@@ -1654,7 +1649,7 @@ for `any-list!` values which have the same interpretation as for `make date!`
 (see <<code-date-code,section 5.2.14>>) except that in this case, over- and under-flow are allowed
 and taken into account.
 
-==== Target types `time!`
+==== Target type `time!`
 
 The function `to-time` is defined for
 
