@@ -1142,7 +1142,7 @@ If `< block>` is omitted, the vector components are initialized to "zero" (`0` f
 `0%` for `percent!` and `#"^(null)"` for `char!`).
 
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
-initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>` _**See https://github.com/red/REP/issues/13[REP #13]**_
+initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>`
 
 Examples:
 ....
@@ -5401,7 +5401,6 @@ issue  section
  <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
  <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.5.1</a>
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/13">13</a>    <a href="#code-vector-code">5.3.3</a>
  <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/29">29</a>    <a href="#series-positioning-and-navigation">9.2</a>
  <a href="https://github.com/red/REP/issues/30">30</a>    <a href="#casting-of-values-code-as-code">5.5</a>
