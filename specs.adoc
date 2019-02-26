@@ -3041,7 +3041,7 @@ The following enquiry functions are available: `head? tail? length? index?`. The
 of the `index?` values of its two `series!` arguments. 
 
 Note: for programming convenience, the functions `length?` and `empty?` (but not `tail?`)
-accept `none` as an argument, yielding `none` as result.
+accept `none` as an argument, yielding `none` respectively `true` as result.
 
 The function `length?` is also defined for values of type `bitset!`, `tuple!` and `map!`.
 
@@ -3208,6 +3208,7 @@ with the following semantics:
 |find <map> <value>       |yield true if key indicated by <value> exists, else none +
                          <value> must be of type scalar!, any-word!, any-string! or binary!
 |length? <map>            |yield the number of key-value pairs
+|empty? <map>             |yield true on #( ), false otherwise
 |===
 
 === Operations on objects, errors and ports
