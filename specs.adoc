@@ -1187,19 +1187,18 @@ make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{FFFFFFFF}]
 
 **`S128`**::
 ....
-<bitset> ::= make bitset! <binary> | make bitset! <bitset-spec> | charset <bitset-spec>
-<bitset-spec> ::= <integer> | <char> | <string> | [<bit-position>*] | [not <bit-position>*]
+<bitset> ::= make bitset! <bitset-spec> | charset <bitset-spec>
+<bitset-spec> ::= <binary> | <integer> | <char> | <string> | [<bit-position>*] | [not <bit-position>*]
 <bit-position> ::= <integer> | <char> | <string> | <char> - <char> | <integer> - <integer>
 ....
 
-A `<binary>` produces a `bitset!` value that is bit-by-bit equal to the `binary!` value.
-The difference between `binary!` and `bitset!` is that `binary!` values have components
-that are integers `0..255`, with 1-origin index, while `bitset!` values have components
-that are `logic!` values (`true = 1, false = 0`), with 0-origin index.
-The built-in function `charset` is defined as shorthand for `make bitset!`,
-except that `<binary>` is not allowed as its argument. The `<bitset-spec>` that is
-an `integer!` value produces an "empty" bitset (all bits set to false) of size the nearest
-multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers,
+The built-in function `charset` is defined as shorthand for `make bitset!`.
+The `<bitset-spec>` that is a `<binary>` produces a `bitset!` value that is bit-by-bit equal
+to the `binary!` value. The difference between `binary!` and `bitset!` is that `binary!` values
+have components that are integers `0..255`, with 1-origin index, while `bitset!` values
+have components that are `logic!` values (`true = 1, false = 0`), with 0-origin index.
+The `<bitset-spec>` that is an `integer!` value produces an "empty" bitset (all bits set to false)
+of size the nearest multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers,
 or ranges of them, that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
 A `string!` value is interpreted as the collection of all its component characters.
 Note that an `integer!` value used as `<bit-position>` should be non-negative, but
