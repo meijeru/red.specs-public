@@ -281,7 +281,8 @@ expressions (arguments) following a prefix function is strictly dependent on the
 and is known as the _arity_ of the function value. Binding is expressed by a `<word-literal>:`
 (`set-word!` value) followed by an `<expression>`. See further the evaluation rules given
 in <<evaluation-rules,section 7>>. Evaluation of the operands of operators has _precedence_ over function
-application and binding; also, as suggested in rule `S101`, operators are strictly _left associative_,
+application and binding (with a minor exception, see for details <<op-type,section 7.4.3>>); 
+also, as suggested in rule `S101`, operators are strictly _left associative_,
 there is no precedence between any two operators. The fact that the arguments of a function simply follow
 the function itself (they are not enclosed in parentheses) means that, for the reader to understand
 a program, knowledge of the arity of functions is necessary. Evaluation order can of course
@@ -2571,7 +2572,9 @@ A value of `op!` type is always derived from a value of another `any-function!` 
 two arguments and no refinements. Therefore, the application proceeds as for the
 function etc. it is derived from, with the expression that precedes the `op!` value
 corresponding to the first argument and the expression following the `op!` value
-corresponding to the second one.
+corresponding to the second one. The precedence rule stated in <<expressions-and-evaluation-order, section 3.3>>
+applies, _except_ if the first argument is a function call with a literal first argument,
+and there is no second argument provided.
 
 ==== `native!` type
 
