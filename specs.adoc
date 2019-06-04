@@ -1809,9 +1809,9 @@ _**See https://github.com/red/red/issues/1960[issue #1960]**_
 If the `find` action in unsuccessful, both the key and the corresponding value are appended
 to the destination; otherwise, the value after the found key is replaced.
 * For changing a value in maps, the key should likewise be of a type in `scalar!`, `any-string!`, `any-word!`
-or `binary!`. Again, if the `find` action in unsuccessful, both the key and the corresponding value
+or `binary!`. If there is no such key in the map, both the key and the corresponding value
 are added to the map; otherwise, the value associated with the found key is replaced.
-Setting a map component to `none` removes the component and its key from the map.
+To remove a key and its value from a map, use `remove/key` (see <<operations-on-maps,section 9.5>>).
 * For changing a value in objects, the key should be a word that is a valid field name,
 and the value of that field is replaced; otherwise, an error is raised.
 An additional facility, for setting _all_ components of an object is provided by the `set` function with
@@ -3208,8 +3208,10 @@ with the following semantics:
 |copy <map>               |yield a copy of the map
 |extend <map> <items>     |add key-value pairs from <items> (a block, hash or map) +
                          replacing the value if the corresponding key is already present
-|find <map> <value>       |yield true if key indicated by <value> exists, else none +
-                         <value> must be of type scalar!, any-word!, any-string! or binary!
+|find <map> <key>       |yield true if key indicated by <key> exists, else none +
+                         <key> must be of type scalar!, any-word!, any-string! or binary!
+|remove/key <map><key>  |removes the key indicated by <key> if it exists +
+                         together with the associated value, otherwise nothing happens
 |length? <map>            |yield the number of key-value pairs
 |empty? <map>             |yield true on #( ), false otherwise
 |===
@@ -3276,6 +3278,7 @@ The available constructs are the following:
 <loop>        ::= loop <integer> <body-block>
 <repeat>      ::= repeat <word> <integer> <body-block>
 <foreach>     ::= foreach <counter> <series> <body-block>
+                | foreach <counter> <map> <body-block>
 <forall>      ::= forall <word> <body-block>
 <remove-each> ::= remove-each <counter> <series> <condition-block>
 <counter>     ::= <word> | <block>
@@ -3292,9 +3295,10 @@ the `<body-block>` is executed after which the `<condition-block>` is again exec
 * `repeat`: the `<body-block>` is executed repeatedly with the `<word>` assuming values
 from 1 to the integer. Note that the `<word>` is _not_ local to the loop,
 i.e. there is no separate context for the `repeat` loop.
-* `foreach`: the `<counter>` may be a word or a block of words. The `<body-block>` is executed
-repeatedly with the word(s) being set to subsequent components of the series.
-The word(s) are again not local to the loop.
+* `foreach`: for series, the `<counter>` may be a word or a block of words; the `<body-block>` is executed
+repeatedly with the word(s) being set to subsequent components of the series. For maps, the `<counter>`
+must be a block with 2 words; the `<body-block>` is executed repeatedly with the words being set to
+a key and its associated value, respectively, visiting all keys in some order. The word(s) are again not local to the loop.
 
 Example:
 ....
