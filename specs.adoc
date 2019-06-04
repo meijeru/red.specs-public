@@ -1426,7 +1426,7 @@ Each `<key>` should be a value of a type in `scalar!, any-word!`, `any-string!` 
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `any-word!`
 that do not differ in their symbol are considered identical for this purpose.
-_**See https://github.com/red/red/issues/2577[issue #2577]**_
+_**See https://github.com/red/red/issues/2572[issue #2572]**_
 
 Note that values of `logic!` and `none!` type are not allowed as keys. Nevertheless
 `true`, `false` and `none` may occur in `<key>` position. Since the constituents
@@ -5375,7 +5375,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2492">2492</a>   <a href="#textual-structure">3.1</a>
 <a href= "https://github.com/red/red/issues/2554">2554</a>   <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/2565">2565</a>   <a href="#type-hierarchy">4.3</a>, <a href="#typesets">14.2.2</a>
-<a href= "https://github.com/red/red/issues/2577">2577</a>   <a href="#code-map-code">5.3.11</a>
+<a href= "https://github.com/red/red/issues/2572">2577</a>   <a href="#code-map-code">5.3.11</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#code-bitset-code">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#code-function-code-type">7.4.1</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
