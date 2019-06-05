@@ -3304,9 +3304,10 @@ Example:
 ....
 foreach [name phone] ["John" "123-4567" "Mary" "345-6789"] [print [name phone]]
 ....
-* `forall`: the `<body-block>` is executed repeatedly starting with the word referring
-to the head of the series; on each subsequent iteration the word will refer to the
-series at the next position (see `next` function in <<series-positioning-and-navigation,section 9.2>>).
+* `forall`: the `<body-block>` is executed repeatedly; the `<word>` should initially refer to a series value;
+on each subsequent iteration the occurrence of the `<word>` will refer to the
+series at the next position (see `next` function in <<series-positioning-and-navigation,section 9.2>>);
+after the last iteration, the `<word>` will again refer to the original series value.
 
 Example:
 ....
