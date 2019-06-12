@@ -5181,6 +5181,7 @@ base64 character                        <a href = "#code-binary-code">5.2.12</a>
 binding                                 <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#expressions-and-evaluation-order">3.3</a>, <a href = "#binding">6.3</a>
 bitset spec dialect                     <a href = "#dialects">2.5</a>, <a href = "#code-bitset-code">5.3.5</a>
 blockchain technologies                 <a href = "#dialects">2.5</a>
+BMP                                     <a href = "#conversion-fromto-other-representations">11.1.2</a>
 bound word                              <a href = "#words-contexts-and-binding">2.4</a>
 built-in constant                       <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#constants">14.1</a>
 built-in function                       <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#functions">14.3</a>
@@ -5270,6 +5271,7 @@ function                                <a href = "#expressions-and-evaluation-o
   prefix function                       <a href = "#expressions-and-evaluation-order">3.3</a>
 function spec dialect                   <a href = "#dialects">2.5</a>, <a href = "#code-function-code">5.3.8</a>
 function type                           <a href = "#direct-indirect-function-types">4.2.2</a>
+GIF                                     <a href = "#conversion-fromto-other-representations">11.1.2</a>
 global context                          <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#contexts">6.2</a>
 graphical user interface (GUI)          <a href = "#gui-system">13.3</a>
 grouped value                           <a href = "#textual-structure">3.1</a>
@@ -5291,6 +5293,8 @@ interactive console                     <a href = "#red-toolchain">2.2</a>
 interpretation                          <a href = "#red-toolchain">2.2</a>
 ipv4                                    <a href = "#code-tuple-code">5.2.4</a>
 ISO 8601 date and time standard         <a href = "#code-date-code">5.2.14</a>, <a href = "#selection-by-key">5.6.2</a>
+JPEG                                    <a href = "#conversion-fromto-other-representations">11.1.2</a>
+JSON                                    <a href = "#conversion-fromto-other-representations">11.1.2</a>
 left associative operator               <a href = "#expressions-and-evaluation-order">3.3</a>
 lexeme                                  <a href = "#textual-structure">3.1</a>
 lexical analysis                        <a href = "#textual-structure">3.1</a>
@@ -5310,6 +5314,7 @@ ordering comparison                     <a href = "#ordering-comparisons">5.8.2<
 parent type                             <a href = "#parent-types">4.2.6</a>
 parse dialect                           <a href = "#dialects">2.5</a>, <a href = "#parse">13.2</a>
 passive type                            <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
+PNG                                     <a href = "#conversion-fromto-other-representations">11.1.2</a>
 polymorphic function                    <a href = "#parent-types">4.2.6</a>
 pre-defined word                        <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#pre-defined-words-list">14</a>
 precedence rules                        <a href = "#expressions-and-evaluation-order">3.3</a>
