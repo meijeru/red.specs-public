@@ -3453,7 +3453,7 @@ The state of the new-line marker may be tested with the built-in function
 The built-in functions `load` and `save` each have an `/as` refinement
 with a `word!` argument: the value `none` indicates Red code (Red data)
 and makes `load` and `save` operate as already described;
-other values implemented are `png jpeg bmp gif`; for each of these values
+other values implemented are first of all `png jpeg bmp gif`; for each of these values
 `load` will accept binary data in the indicated format and yield an `image!`
 value, and `save` will take an `image!` value and produce the encoded binary
 value. The necessary decoding and encoding routines are stored in `system/codecs`.
@@ -3469,6 +3469,19 @@ content:
     |suffixes        |block!       |[%.jpg %.jpeg %.jpe %.jfif]
     |encode          |routine!     |routine [img [image!] where [any-type!]][...]
     |decode          |routine!     |routine [data [any-type!]][...]
+|===
+
+An additional "codec" is provided for JSON data (see https://www.json.org/):
+the argument to `/as` is `json`. The correpsonding object in `system/codecs` is
+[cols="1,1,2", options="header"]
+|===
+    |key             |value type   |content
+    |title           |string!      |"JSON codec"
+    |name            |word!        |'JSON
+    |mime-type       |block!       |[application/json]
+    |suffixes        |block!       |[%.json]
+    |encode          |func!        |func [data [any-type!] where [file! url! none!]][...]
+    |decode          |func!        |func [data [any-type!]][...]
 |===
 
 Note that conversion between "raw" binary data (values of type `binary!`) and strings
@@ -4887,7 +4900,7 @@ system/   object!
         last-error     error!       
         trace          integer!     
     modules     block!              
-    codecs      block!              see <a href = "#conversion-from-to-other-representations">section 11.1.2</a>
+    codecs      block!              see <a href = "#conversion-fromto-other-representations">section 11.1.2</a>
     schemes     block!              see <a href = "#port-components">section 11.4.1</a>
     ports       object!             TBD
     locale/     object!             
