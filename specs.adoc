@@ -3472,7 +3472,7 @@ content:
 |===
 
 An additional "codec" is provided for JSON data (see https://www.json.org/):
-the argument to `/as` is `json`. The correpsonding object in `system/codecs` is
+the argument to `/as` is `json`. The corresponding object in `system/codecs` is
 [cols="1,1,2", options="header"]
 |===
     |key             |value type   |content
@@ -3480,8 +3480,8 @@ the argument to `/as` is `json`. The correpsonding object in `system/codecs` is
     |name            |word!        |'JSON
     |mime-type       |block!       |[application/json]
     |suffixes        |block!       |[%.json]
-    |encode          |func!        |func [data [any-type!] where [file! url! none!]][...]
-    |decode          |func!        |func [data [any-type!]][...]
+    |encode          |function!    |func [data [any-type!] where [file! url! none!]][...]
+    |decode          |function!    |func [data [any-type!]][...]
 |===
 
 Note that conversion between "raw" binary data (values of type `binary!`) and strings
