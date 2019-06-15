@@ -5391,7 +5391,7 @@ respectively.
 Red    spec
 issue  section
 
-<a href= "https://github.com/red/red/issues/324">324</a>     <a href="#code-function-code">5.3.8</a>
+<a href= "https://github.com/red/red/issues/324">324</a>   <a href="#code-function-code">5.3.8</a>
 <a href= "https://github.com/red/red/issues/1957">1957</a>   <a href="#reflection-on-values">5.7</a>
 <a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
@@ -5419,7 +5419,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-code-any-string-code">5.4.3</a>
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
-<a href= "https://github.com/red/red/issues/3570">3570</a>   <a href="#input-output">11</a>
+<a href= "https://github.com/red/red/issues/3570">3570</a>   <a href="#inputoutput">11</a>
 <a href= "https://github.com/red/red/issues/3595">3595</a>   <a href="#function">5.3.8</a>
 
 REP    spec
