@@ -1515,7 +1515,7 @@ _**See https://github.com/red/red/issues/2645[issue #2645]**_
 ==== Target types in `any-string!`
 
 The function `to-string` yields the same result as the built-in function `form` (see
-<<conversion-from-to-textual-representation,section 11.1.1>>) except for
+<<conversion-fromto-textual-representation,section 11.1.1>>) except for
 
 * `unset!` and `none!` values: conversion is not allowed
 * `binary!` values: these will be decoded as UTF-8
@@ -1533,7 +1533,7 @@ a result of the appropriate type. The function `to-url` will operate analogously
 The function `to-block` yields a block with the argument as single component except
 for
 
-* `string!` values: first applies `load` (see <<conversion-from-to-textual-representation,section 11.1.1>>)
+* `string!` values: first applies `load` (see <<conversion-fromto-textual-representation,section 11.1.1>>)
 and applies `to-block` to the result
 * `typeset!` values: yields a block with the individual typenames as `word!` values
 * `any-block!` and `vector!` values: yields a block with the components
@@ -1991,7 +1991,7 @@ combinations of types and yield an error otherwise. Also this will be noted.
 ==== Equality comparisons
 
 The strictest equality test is `same?` which yields `true` only if the two values
-are of the same type and the two _value slots_ (see <<direct-indirect-function-types,section 4.2.2>>)
+are of the same type and the two _value slots_ (see <<directindirectfunction-types,section 4.2.2>>)
 have identical content. For values of direct types this comes down to simple equality,
 but for values of other types it is quite possible to be equal but not the same
 (e.g. two strings of identical content, but one a string literal and the
@@ -2715,11 +2715,11 @@ described in <<passive-types,section 7.1>>
 . if the arument is a `path!` value, the path will be evaluated
 as described in <<code-path-code-type,section 7.3.5>>
 . if the argument is a `string!` value, the built-in function `load`
-(see <<conversion-from-to-textual-representation,section 11.1.1>>)
+(see <<conversion-fromto-textual-representation,section 11.1.1>>)
 will be invoked on the string, and `do` will be invoked on the result
 . if the argument is a `url!` or `file!` value, this should contain a text
 which is a valid Red program (see <<structure-of-red-programs,section 3>>); the text string will be
-obtained by `read` (see <<file-and-url-i-o,section 11.3.1>>) and the previous step will be taken
+obtained by `read` (see <<file-and-url-io,section 11.3.1>>) and the previous step will be taken
 . if the argument is an `error!` value, the error will be raised (see
 <<raising-and-interception,section 12.1.2>>)
 . for an argument of type `op!`, the application of `do` is not implemented
@@ -2728,7 +2728,7 @@ rule of <<evaluation-rules,section 7>>; note that resulting values
 of type `function!`, `native!`, `action!` and `routine!` will not be applied.
 
 The functionality mentioned in point 4 also exists with disk-caching of remote files:
-`do-thru` will invoke `read-thru` (see <<file-and-url-i-o,section 11.3.1>>).
+`do-thru` will invoke `read-thru` (see <<file-and-url-io,section 11.3.1>>).
 
 == Numerical and logical computation
 
@@ -3357,7 +3357,7 @@ directories or folders as they may be called) and as network locations
 or urls (values of type `url!`). For more general handling of resources, Red will have _ports_
 (values of type `port!`). This facility will model external resources uniformly as
 _URIs (Uniform Resource Identifiers)_, which will include files and urls as special cases.
-The basic I/O functions are completely described in <<basic-i-o,section 11.3>> below.
+The basic I/O functions are completely described in <<basic-io,section 11.3>> below.
 The port approach is being described, as it evolves, in <<ports,section 11.4>>.
 
 Overview-table of current and planned facilities:
@@ -3633,7 +3633,7 @@ The following built-in functions deal with the file system:
 
 * `exists?` will yield `true` if the file indicated by its `file!` argument
 exists in the file system, and `false` otherwise
-* `exists-thru?` operates the same with respect to the _thru-cache_ (see <<file-and-url-i-o,section 11.5>>)  
+* `exists-thru?` operates the same with respect to the _thru-cache_ (see <<file-and-url-io,section 11.3.1>>)  
 * `suffix?` yields the suffix (extension) of a file, or `none` if there is no suffix
 * `size?` will yield the size of the file in bytes
 * `dir?` will yield `true` if the file indicated by its`file!` argument is a directory
@@ -3664,7 +3664,7 @@ is relative, and invoke `dirize` afterwards
 directory containing that file or directory (or `%./` if the argument
 was a single file or directory)
 * `path-thru` will return the local disk cache path of a remote file
-indicated by its `url!` argument (see <<file-and-url-i-o,section 11.3.1>>)
+indicated by its `url!` argument (see <<file-and-url-io,section 11.3.1>>)
 * `delete` will take a `file!` argument and delete the file or directory indicated;
 the result is `true` if the operation was succesful, and `false` otherwise
 * `request-file` will invoke an interactive file requestor and yield
@@ -4368,7 +4368,7 @@ The functions are classified by functionality:
 * <<numerical-and-logical-computation-1,numerical and logical computation>>
 * <<series-manipulation,series manipulation>>
 * <<control-1,control>>
-* <<input-output-1,input/output>>
+* <<inputoutput-1,input/output>>
 * <<exception-handling,exception handling>>
 * <<preprocessor-1,preprocessor>>
 * <<parser,parser>>
@@ -4692,7 +4692,7 @@ N    until
 N    while
 ....
 ==== Input/Output
-see <<input-output,section 11>>
+see <<inputoutput,section 11>>
 ....
 F    alert
 R    ask
@@ -4916,7 +4916,7 @@ system/   object!
         path           file!        current working directory, see section <a href = "#file-system-functions">11.3.2</a>
         script         
         cache          file!        cache folder used by the Red toolchain
-        thru-cache     file!        see section <a href = "#file-and-url-i-o">11.3.1</a>
+        thru-cache     file!        see section <a href = "#file-and-url-io">11.3.1</a>
         args           
         do-arg         
         debug          logic!
@@ -5175,7 +5175,7 @@ action                                  <a href = "#parent-types">4.2.6</a>, <a 
 active type                             <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
 application of a function               <a href = "#expressions-and-evaluation-order">3.3</a>
 arity of a function                     <a href = "#expressions-and-evaluation-order">3.3</a>
-atomic type                             <a href = "#atomic-composite-types">4.2.3</a>
+atomic type                             <a href = "#atomiccomposite-types">4.2.3</a>
 backspace (U+0008)                      <a href = "#code-char-code">5.2.6</a>
 base64 character                        <a href = "#code-binary-code">5.2.12</a>
 binding                                 <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#expressions-and-evaluation-order">3.3</a>, <a href = "#binding">6.3</a>
@@ -5218,7 +5218,7 @@ comment                                 <a href = "#textual-structure">3.1</a>
 compilation                             <a href = "#red-toolchain">2.2</a>
 compiler                                <a href = "#red-toolchain">2.2</a>
 compose dialect                         <a href = "#dialects">2.5</a>, <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
-composite type                          <a href = "#atomic-composite-types">4.2.3</a>
+composite type                          <a href = "#atomiccomposite-types">4.2.3</a>
 console                                 <a href = "#red-toolchain">2.2</a>
 context                                 <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#contexts">6.2</a>
   global context                        <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#contexts">6.2</a>
@@ -5244,8 +5244,8 @@ dialect                                 <a href = "#dialects">2.5</a>
   system dialect                        <a href = "#additional-documentation">18</a>
   vector spec dialect                   <a href = "#code-vector-code">5.3.3</a>
   Visual Interface dialect (VID)        <a href = "#gui-system">13.3</a>
-direct type                             <a href = "#direct-indirect-function-types">4.2.2</a>
-disk-cached remote file access          <a href = "#file-and-url-i-o">11.3.1</a>
+direct type                             <a href = "#directindirectfunction-types">4.2.2</a>
+disk-cached remote file access          <a href = "#file-and-url-io">11.3.1</a>
 docstring                               <a href = "#code-function-code">5.3.8</a>, <a href = "#code-routine-code">5.3.9</a>
 Domain Specific Language (DSL)          <a href = "#dialects">2.5</a>
 double quote (U+0022)                   <a href = "#code-char-code">5.2.6</a>
@@ -5270,7 +5270,7 @@ function                                <a href = "#expressions-and-evaluation-o
   infix function                        <a href = "#expressions-and-evaluation-order">3.3</a>
   prefix function                       <a href = "#expressions-and-evaluation-order">3.3</a>
 function spec dialect                   <a href = "#dialects">2.5</a>, <a href = "#code-function-code">5.3.8</a>
-function type                           <a href = "#direct-indirect-function-types">4.2.2</a>
+function type                           <a href = "#directindirectfunction-types">4.2.2</a>
 GIF                                     <a href = "#conversion-fromto-other-representations">11.1.2</a>
 global context                          <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#contexts">6.2</a>
 graphical user interface (GUI)          <a href = "#gui-system">13.3</a>
@@ -5286,7 +5286,7 @@ image spec dialect                      <a href = "#dialects">2.5</a>, <a href =
 image color/transparency                <a href = "#code-image-code">5.3.4</a>
 immutable value                         <a href = "#atomic-composite-types">4.2.3</a>
 indentation                             <a href = "#textual-structure">3.1</a>
-indirect type                           <a href = "#direct-indirect-function-types">4.2.2</a>
+indirect type                           <a href = "#directindirectfunction-types">4.2.2</a>
 infix expression                        <a href = "#expressions-and-evaluation-order">3.3</a>
 inherited action                        <a href = "#parent-types">4.2.6</a>
 interactive console                     <a href = "#red-toolchain">2.2</a>
@@ -5301,7 +5301,7 @@ lexical analysis                        <a href = "#textual-structure">3.1</a>
 line feed ( U+000A)                     <a href = "#textual-structure">3.1</a>, <a href = "#code-char-code">5.2.6</a>
 map spec dialect                        <a href = "#dialects">2.5</a>, <a href = "#code-map-code">5.3.11</a>
 metadata                                <a href = "#textual-structure">3.1</a>, <a href = "#metadata-for-the-toolchain">16</a>
-mutable value                           <a href = "#atomic-composite-types">4.2.3</a>
+mutable value                           <a href = "#atomiccomposite-types">4.2.3</a>
 new-line character                      <a href = "#code-string-code">5.2.7</a>
 next line (U+0085)                      <a href = "#textual-structure">3.1</a>, <a href = "#code-string-code">5.2.7</a>
 non-breaking space                      <a href = "#textual-structure">3.1</a>
@@ -5327,7 +5327,7 @@ Read Evaluate Print Loop (REPL)         <a href = "#red-toolchain">2.2</a>
 Red toolchain                           <a href = "#red-toolchain">2.2</a>
 Red/C3 (dialect)                        <a href = "#dialects">2.5</a>
 Red/System (dialect)                    <a href = "#dialects">2.5</a>, <a href = "#additional-documentation">18</a>
-remote file access (disk-cached)        <a href = "#file-and-url-i-o">11.3.1</a>
+remote file access (disk-cached)        <a href = "#file-and-url-io">11.3.1</a>
 REPL (Read Evaluate Print Loop)         <a href = "#red-toolchain">2.2</a>
 RFC3986 (URI)                           <a href = "#port-components">11.4.1</a>
 RGB color model                         <a href = "#code-tuple-code">5.2.4</a>, <a href = "#code-image-code">5.3.4</a>, <a href = "#tuples">14.1.5</a>
@@ -5349,12 +5349,12 @@ toolchain                               <a href = "#red-toolchain">2.2</a>
 transparency (of image)                 <a href = "#code-image-code">5.3.4</a>
 type                                    <a href = "#values-and-types">2.3</a>, <a href = "#types">4</a>
   active type                           <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
-  atomic type                           <a href = "#atomic-composite-types">4.2.3</a>
-  composite type                        <a href = "#atomic-composite-types">4.2.3</a>
+  atomic type                           <a href = "#atomiccompositetypes">4.2.3</a>
+  composite type                        <a href = "#atomiccompositetypes">4.2.3</a>
   decaying type                         <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
-  direct type                           <a href = "#direct-indirect-function-types">4.2.2</a>
-  function type                         <a href = "#direct-indirect-function-types">4.2.2</a>
-  indirect type                         <a href = "#direct-indirect-function-types">4.2.2</a>
+  direct type                           <a href = "#directindirectfunction-types">4.2.2</a>
+  function type                         <a href = "#directindirectfunction-types">4.2.2</a>
+  indirect type                         <a href = "#directindirectfunction-types">4.2.2</a>
   parent type                           <a href = "#parent-types">4.2.6</a>
   passive type                          <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
   pseudo-type                           <a href = "#parent-types">4.2.6</a>, <a href = "#overview-table">4.2.7</a>
@@ -5362,14 +5362,14 @@ type                                    <a href = "#values-and-types">2.3</a>, <
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
 Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.16</a>
 Uniform Resource Identifier (URI)       <a href = "#ports">11.4</a>
-UTF-8 encoding                          <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-from-to-textual-representation">11.1.1</a>, <a href = "#file-and-url-i-o">11.3.1</a>
+UTF-8 encoding                          <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-code-any-string-code">5.4.3</a>, <a href = "#target-type-code-char-code">5.4.7</a>, <a href = "#target-type-code-binary-code">5.4.10</a>, <a href = "#conversion-fromto-textual-representation">11.1.1</a>, <a href = "#file-and-url-io">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
   grouped value                         <a href = "#textual-structure">3.1</a>
   single value                          <a href = "#textual-structure">3.1</a>
   value casting                         <a href = "#casting-of-values-code-type-code">5.5</a>
   value conversion                      <a href = "#conversion-of-values-code-to-code">5.4</a>
   value creation                        <a href = "#creation-of-values-code-make-code">5.3</a>
-  value slot                            <a href = "#direct-indirect-function-types">4.2.2</a>
+  value slot                            <a href = "#directindirectfunction-types">4.2.2</a>
 vector spec dialect                     <a href = "#dialects">2.5</a>, <a href = "#code-vector-code">5.3.3</a>
 Visual Interface dialect (VID)          <a href = "#dialects">2.5</a>, <a href = "#gui-system">13.3</a>
 whitespace                              <a href = "#textual-structure">3.1</a>
@@ -5391,7 +5391,7 @@ respectively.
 Red    spec
 issue  section
 
-<a href= "https://github.com/red/red/issues/324">324</a>   <a href="#code-function-code">5.3.8</a>
+<a href= "https://github.com/red/red/issues/324">324</a>     <a href="#code-function-code">5.3.8</a>
 <a href= "https://github.com/red/red/issues/1957">1957</a>   <a href="#reflection-on-values">5.7</a>
 <a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
@@ -5411,7 +5411,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
-<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-from-to-textual-representation">11.1.1</a>
+<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-fromto-textual-representation">11.1.1</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#code-image-code">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#code-function-code">5.3.8</a>
