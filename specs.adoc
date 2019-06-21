@@ -2525,7 +2525,8 @@ Furthermore, process each `<argument>` following the `<function-refinement>`
 as in the previous sub-step, evaluating the necessary expressions and inserting the values obtained in the context.
 .. Bind the body of the function to the context (see <<built-in-code-bind-code-function,section 6.3.6>>).
 .. Execute the body of the function to yield the result of the function.
-Check the type of the resulting value against the type(set)s specified with `return:`, if any.
+Check the type of the resulting value against the type(set)s specified with `return:`, if any
+_**not implemented yet**_.
 
 Note that the order of the expressions to be supplied for the optional arguments is dictated
 by the order of the actual refinements present, *not* by the order of the `<function-refinement>` s
