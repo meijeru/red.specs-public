@@ -3679,6 +3679,8 @@ the concept of _Uniform Resource Identifier (URI)_, as defined in
 https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
 on the resources represented by URIs; the functionality offered by ports
 will be more complete than the basic I/O currently provided.
+In addition to the I/O actions described in <<port-operations,section 11.4.2>>,
+all series actions are allowed on ports.
 
 ==== Port components
 
@@ -3734,10 +3736,23 @@ The fields of the `spec` object are:
 |`ref`       |`url!` `string!` |the source of the above fields
 |===
 
-All fields except `scheme` may be `none`. A prototype object is contained in `system/standard/url-parts`.
+All fields except `scheme` may be `none`. A prototype `spec` object is contained in `system/standard/url-parts`.
 The field names correspond to the RFC3986 nomenclature, with the exception that the _path_ determined
 according to RFC3986 is split (using `split-path`, see <<file-system-functions,section 11.3.2>>)
 into `path` and `target`.
+
+The fields of a `scheme` object are:
+[cols="1,1,2", options="header"]
+|===
+|name        |type             |content
+|`name`      |`word!`          |e.g. `http`, `udp`, `file`, `mailto` 
+|`title`     |`string!`        |
+|`info`      |                 |
+|`actor `    |                 |
+|`awake`     |                 |
+|===
+
+A prototype `scheme` object is contained in `system/standard/scheme`.
 
 A function exists to construct the `spec` object for a URI given a Red value
 of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
