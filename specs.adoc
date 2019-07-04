@@ -3719,7 +3719,8 @@ implementing these actions
 
 The various objects containing the actor functions for the different schemes are stored in
 `system/schemes`, a block of word/object pairs. New schemes may be added to `system/schemes`
-by calling `register-scheme` with as arguments the name of the scheme and its content.
+by calling `register-scheme` with as arguments the name of the scheme and its content
+as a `scheme` object.
 
 The fields of the `spec` object are:
 [cols="1,1,2", options="header"]
@@ -3744,12 +3745,12 @@ into `path` and `target`.
 The fields of a `scheme` object are:
 [cols="1,1,2", options="header"]
 |===
-|name        |type             |content
-|`name`      |`word!`          |e.g. `http`, `udp`, `file`, `mailto` 
-|`title`     |`string!`        |
-|`info`      |                 |
-|`actor `    |                 |
-|`awake`     |                 |
+|name        |type                |content
+|`name`      |`word!`             |e.g. `http`, `udp`, `file`, `mailto` 
+|`title`     |`string!`           |
+|`info`      |                    |
+|`actor`     |`handle!` `object!` |see `port!` field of same name
+|`awake`     |                    |
 |===
 
 A prototype `scheme` object is contained in `system/standard/scheme`.
@@ -3782,7 +3783,9 @@ The following I/O operations (functions) are defined on ports:
 |delete    |
 |===
 
-As stated above, these functions are implemented for the various schemes by actors.
+As stated above, these functions are implemented for the various schemes by actors,
+which are either _native_  (Red/System) functions found in an action table or Red functions
+supplied through an object.
 
 A number of these functions also accept a `file!`, `url!` or `block!` argument;
 the corresponding `port!` value will be constructed from the
