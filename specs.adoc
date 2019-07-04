@@ -3692,7 +3692,7 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 |name        |type
 |`spec`      |`object!`
 |`scheme`    |`word!` `object!`
-|`actor`     |`native!` `object!`      
+|`actor`     |`handle!` `object!`      
 |`awake`     |
 |`state`     |`object!`
 |`data`      |`block!` `string!` `binary!`
@@ -3704,11 +3704,13 @@ The significance of the fields is as follows:
 * The `spec` field is an object representing a resource. The fields of this object
 correspond to the components of an URI as detailed in RFC3986. The _type_ of resource,
 which RFC3986 calls its _scheme_, is represented by the `scheme` field of the `spec` object.
-* The `scheme` field of the port is initially a `word!` value equal to the
-`scheme` field of the `spec` object; during operation it is replaced by an object
-whose keys are the names of the various _actor functions_ like  `open`, `read`, `rename` etc.,
-and whose field values are these actor functions that operate on resources with this particular scheme.
-* The `actor` field TBD
+* The `scheme` field of the port is initially a `word!` value equal to the value of the
+`scheme` field of the `spec` object; during operation it is replaced by a `scheme` object
+whose fields are described below.
+* The `actor` field is either a `handle!` value (opaque integer pointing to an action table
+containing Red/System functions for all possible actions allowed on ports) or an object whose
+field names are the allowable action names and whose field values are the functions
+implementing these actions
 * The `awake` field TBD
 * The `state` field is an object containing state information
 * The `data` field contains the information read from or to be written to the resource.
