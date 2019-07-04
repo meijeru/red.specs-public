@@ -3789,10 +3789,6 @@ the corresponding `port!` value will be constructed from the
 file or url respectively as indicated above; the `block!` is treated in
 the same way as an `<object-spec>` (see <<code-object-code,section 5.3.6>>).
 
-Also defined for values of `port!` type are all functions that are
-defined for values of `series` types. These, however, are for internal use only and
-operate on the `data` field of the port._**correct?**_
-
 === Other functions
 
 ==== User interaction functions
