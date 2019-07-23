@@ -3680,7 +3680,7 @@ https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
 on the resources represented by URIs; the functionality offered by ports
 will be more complete than the basic I/O currently provided.
 In addition to the I/O actions described in <<port-operations,section 11.4.2>>,
-all series actions are allowed on ports.
+all series actions <<operations-on-values-of-indirect-types,see sections 9.2/3>> are allowed on ports.
 
 ==== Port components
 
@@ -3696,8 +3696,9 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 |`scheme`    |`word!` `object!`
 |`actor`     |`handle!` `object!`      
 |`awake`     |
-|`state`     |`object!`
+|`state`     |
 |`data`      |`block!` `string!` `binary!`
+|`extra`     |
 |===
 
 A prototype port value is contained in `system/standard/port`.
@@ -3714,8 +3715,9 @@ containing Red/System functions for all possible actions allowed on ports) or an
 field names are the allowable action names and whose field values are the functions
 implementing these actions
 * The `awake` field TBD
-* The `state` field is an object containing state information
-* The `data` field contains the information read from or to be written to the resource.
+* The `state` field contains state information
+* The `data` field contains the information read from or to be written to the resource
+* The `extra` field is available for the user
 
 The various objects containing the actor functions for the different schemes are stored in
 `system/schemes`, a block of word/object pairs. New schemes may be added to `system/schemes`
@@ -3760,8 +3762,6 @@ of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifi
 For a `file!` value, the `spec` object will have the field `scheme` set to `file` and
 the fields `path` and `target` to the directory (folder) and file name within the
 directory respectively.
-
-A prototype `state` object is contained in `system/standard/port-state`.
 
 ==== Port operations
 
