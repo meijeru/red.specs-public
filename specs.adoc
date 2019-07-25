@@ -2975,7 +2975,7 @@ Bitsets are stored similarly to series, but have a restricted number of operatio
 
 Maps, objects, errors and ports all have _fields_, and share a number of operations, although
 there are also differences to be taken into account. For ports, operations on series
-may be implemented using the `actors` field of the port's _scheme_ object (see
+may be implemented using the `actor` field of the port's _scheme_ object (see
 <<port-components, section 11.4.1>>. This is not further indicated in the next sub-sections.
 
 === Series: positioning and navigation
