@@ -2974,7 +2974,9 @@ i.e. the index of the last component.
 Bitsets are stored similarly to series, but have a restricted number of operations.
 
 Maps, objects, errors and ports all have _fields_, and share a number of operations, although
-there are also differences to be taken into account.
+there are also differences to be taken into account. For ports, operations on series
+may be implemented using the `actors` field of the port's _scheme_ object (see
+<<port-components, section 11.4.1>>. This is not further indicated in the next sub-sections.
 
 === Series: positioning and navigation
 
@@ -3049,8 +3051,6 @@ accept `none` as an argument, yielding `none` respectively `true` as result.
 
 The function `length?` is also defined for values of type `bitset!`, `tuple!` and `map!`.
 
-_**All series operations are defined for port! values??**_
-
 === Series: extraction and modification of components
 
 The following built-in functions have been described in <<components-of-values,section 5.6>>:
@@ -3080,8 +3080,7 @@ For `split`, the `<series>` must be of type `any-string!`, and the
 to represent a choice of characters -- a bitset.
 
 
-The function `copy` is also defined on values of type `bitset!`, `map!`, `object!`,
-`error!` and `port!`.
+The function `copy` is also defined on values of type `bitset!`, `map!`, `object!`, and `error!`.
 
 The following functions modify the series _in place_, i.e. they modify
 the series value slot to point to the changed series. With the exception of
@@ -3680,7 +3679,9 @@ https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
 on the resources represented by URIs; the functionality offered by ports
 will be more complete than the basic I/O currently provided.
 In addition to the I/O actions described in <<port-operations,section 11.4.2>>,
-all series actions <<operations-on-values-of-indirect-types,see sections 9.2/3>> are allowed on ports.
+all series actions (<<operations-on-values-of-indirect-types,see sections 9.2/3>>)
+are allowed on ports; their implementation on ports is specific to the
+port's _scheme_ (see next section).
 
 ==== Port components
 
@@ -3791,6 +3792,9 @@ A number of these functions also accept a `file!`, `url!` or `block!` argument;
 the corresponding `port!` value will be constructed from the
 file or url respectively as indicated above; the `block!` is treated in
 the same way as an `<object-spec>` (see <<code-object-code,section 5.3.6>>).
+
+In addition, each of the series actions (<<operations-on-values-of-indirect-types,see sections 9.2/3>>)
+may be implemented on ports using appropriate actors.
 
 === Other functions
 
