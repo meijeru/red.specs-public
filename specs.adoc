@@ -2039,7 +2039,7 @@ The following cases can be distinguished:
 vector! any-string! binary!` and `bitset!`; with pairs, the `y` component is tested
 before the `x` component
 * lexicographic ordering (with recursion and cycle detection): `any-block!` and `any-object!`;
-for objects, errors and ports the numbers of fields are compared first, and if they are unequal,
+for objects, the numbers of fields are compared first, and if they are unequal,
 the field contents are not tested further
 * no comparison: `datatype! typeset! none! logic! image! map! error! port! function! routine!
 action! native! op! handle! event!` and `unset!`.
