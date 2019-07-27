@@ -705,7 +705,7 @@ show the components of the block. It should be remembered, however, that `make`,
 evaluate their arguments, so that any `<expression>`  which evaluates to a type or a block
 is allowed in the relevant argument positions.
 
-In the following rules, the sign `°` signifies an optional element.
+In the following rules, the sign `Â°` signifies an optional element.
 
 === Lexical structure of values
 
@@ -804,10 +804,10 @@ where `<hex-number>` consists of 2 to 6 hexadecimal digits `0-9 A-F a-f`.
 
 A `<char-literal>` must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFF` (hexadecimal notation). 
 
-A `<viewable character>` is, in most cases, simply a displayable character. For example, `e`, `é`, `€` or `??`.
+A `<viewable character>` is, in most cases, simply a displayable character. For example, `e`, `Ã©`, `Â€` or `??`.
 When a displayable character requires two or more graphemes to display it, each grapheme requires a separate Red character.
-For example, when `é` is encoded in its two character decomposed form `e` (`U+0065`) followed by
-the combining `´` (`U+0301`) they cannot be considered a single `char!` value, and programs must
+For example, when `Ã©` is encoded in its two character decomposed form `e` (`U+0065`) followed by
+the combining `Â´` (`U+0301`) they cannot be considered a single `char!` value, and programs must
 explicitly handle their interpretation. 
 
 The correspondence between the escaped characters and Unicode Code Points is given in the table below.
@@ -970,7 +970,7 @@ defined by the _ISO 8601 date and time standard_.
                 <day><sep><month><sep><short-year>
 <sep> ::= / | -
 <ISO-date> ::= <yyyy><mm><dd> | <yyyy>-W<ww> | <yyyy>-W<ww>-<d> | <yyyy>-<ddd>
-<time> ::= <Red-time><zone>° | <ISO-time><zone>°
+<time> ::= <Red-time><zone>Â° | <ISO-time><zone>Â°
 <ISO-time> ::= <hh><mm> | <hh><mm><ss> | <hh><mm><ss>.<decimals>
 <zone> ::= Z | <sign><hours> | <sign><hours>:<minutes> | <sign><hh><mm>
 <sign> ::= + | -
@@ -1158,7 +1158,7 @@ make vector! [#"a" #"b" #"c"]
 **`S127`**::
 ....
 <image> ::= make image! <image-spec>
-<image-spec> ::= <pair> | [<pair>] | [<pair> <tuple>] | [<pair> <binary> <binary>°] 
+<image-spec> ::= <pair> | [<pair>] | [<pair> <tuple>] | [<pair> <binary> <binary>Â°] 
 ....
 
 An `image!` value stores a sequence of RGBA (color + transparency) values for pixels, using 4 bytes in 1 word for
@@ -1320,15 +1320,15 @@ Note that `error!` values all have `class = 1`.
 ....
 <function> ::= make function! [<function-spec> <function-body>] | func <function-spec> <function-body> |
                has [<argument>*] <function-body> | does <function-body> | function <function-spec> <function-body>
-<function-spec> ::= [<docstring>° <argument-spec> <return-spec>°]
+<function-spec> ::= [<docstring>Â° <argument-spec> <return-spec>Â°]
 <docstring> ::= <string>
 <argument-spec> ::= <argument>* <optional-arguments>*
-<argument> ::= <argument-name> <argument-doc>° | <argument-name> [<typeset-element>*] <argument-doc>°
+<argument> ::= <argument-name> <argument-doc>Â° | <argument-name> [<typeset-element>*] <argument-doc>Â°
 <argument-name> ::= <word-literal> | '<word-literal> | :<word-literal>
 <argument-doc> ::= <string>
-<optional-arguments> ::= <function-refinement> <argument-doc>° <argument>*
+<optional-arguments> ::= <function-refinement> <argument-doc>Â° <argument>*
 <function-refinement> ::= /<word-literal>
-<return-spec> ::= return: [<typeset-element>*] <return-doc>°
+<return-spec> ::= return: [<typeset-element>*] <return-doc>Â°
 <return-doc> ::= <string>
 <function-body> ::= <block>
 ....
@@ -1371,8 +1371,8 @@ _**see https://github.com/red/red/issues/324[issue #324]**_.
 
 ....
 <routine> ::= routine <routine-spec> <routine-body>
-<routine-spec> ::= [<docstring>° <routine-argument>* <locals>° <routine-return>°]
-<routine-argument> ::= <word> <argument doc>° | <word> [<type-literal>] <argument-doc>°
+<routine-spec> ::= [<docstring>Â° <routine-argument>* <locals>Â° <routine-return>Â°]
+<routine-argument> ::= <word> <argument doc>Â° | <word> [<type-literal>] <argument-doc>Â°
 <locals> ::= /local <routine-argument>*
 <routine-return> ::= return: [<type-literal>]
 <type-literal> ::= any-type! | <type-name>
@@ -2038,8 +2038,8 @@ The following cases can be distinguished:
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`; with pairs, the `y` component is tested
 before the `x` component
-* lexicographic ordering (with recursion and cycle detection): `any-block!` and `object!`;
-for objects, the numbers of fields are compared first, and if they are unequal,
+* lexicographic ordering (with recursion and cycle detection): `any-block!` and `any-object!`;
+for objects, errors and ports the numbers of fields are compared first, and if they are unequal,
 the field contents are not tested further
 * no comparison: `datatype! typeset! none! logic! image! map! error! port! function! routine!
 action! native! op! handle! event!` and `unset!`.
@@ -2611,7 +2611,7 @@ Recall the basic structure of `<routine-spec>`:
 
 **`(S132)`**::
 ....
-<routine-spec> ::= [<routine-argument>* <locals>° <routine-return>°]
+<routine-spec> ::= [<routine-argument>* <locals>Â° <routine-return>Â°]
 <routine-argument> ::= <word> | <word> [<type-literal>]
 <locals> ::= /local <routine-argument>*
 <routine-return> ::= return: [<type-literal>]
