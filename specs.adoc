@@ -1960,7 +1960,6 @@ All functions `<property>-of <expression>` are shorthand for the general functio
 For `series!` values, the property `owned` has been defined which is notably used
 by the _reactivity_ facility (see <<reactivity,section 13.4>>).
 This property can only be obtained by `reflect <expression> 'owned`.
-_**see https://github.com/red/red/issues/1957[issue #1957]**_
 
 Note that the `help` built-in function is typically making good use of these reflection facilities. 
 
@@ -5410,8 +5409,7 @@ respectively.
 Red    spec
 issue  section
 
-<a href= "https://github.com/red/red/issues/324">324</a>   <a href="#function">5.3.8</a>
-<a href= "https://github.com/red/red/issues/1957">1957</a>   <a href="#reflection-on-values">5.7</a>
+<a href= "https://github.com/red/red/issues/324">324</a>    <a href="#function">5.3.8</a>
 <a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
