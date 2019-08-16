@@ -3412,12 +3412,12 @@ mold/all true             ; "#[true]"               will be loaded as logic! val
 Since `form` and `mold` may produce long strings for complex values, the function
 `ellipsize-at` may be used to truncate and add ellipsis (`...`) to a string.
 
-The built-in function `save` will apply `mold/all` to the expression which is its
-second argument. If the destination specified as its first argument is a string,
-it will append the result of `mold/all` to that string. If the destination
-is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
-out of the result of `mold/all` and append that value to the destination .
-_**See https://github.com/red/red/issues/2668[issue #2668]**_
+The built-in function `save` with a first argument (destination) of type `string!`,
+`binary!` or `none!` will apply `mold` to the expression which is its
+second argument. If the destination is a string, it will append the result of `mold`
+to that string. If the destination is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
+out of the result of `mold` and append that value to the destination.
+If the destination is `none`, the result is a UTF-8 encoded binary molded value.
 
 For `any-list!` values the user can control the way they are presented by `mold`,
 by instructing it to insert line feed characters (`U+000A`) before selected components.
@@ -5425,7 +5425,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
-<a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-fromto-textual-representation">11.1.1</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#image">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#function">5.3.8</a>
