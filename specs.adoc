@@ -2014,13 +2014,12 @@ addition, the component type (`char! integer! float!` or `percent!`) must be the
 but the component size in bits may be different.
 
 In all cases, for the `equal?` and `not-equal?` test, the requirement of equal type
-is relaxed for several combinations of types of the two values.
+is relaxed for several combinations of types of the two values:
 
 * `char!` and `integer!` _**See https://github.com/red/red/issues/2650[issue #2650]**_
-* `integer! float!` and `percent!`
-* `any-word!` and `refinement!` (note the absence of `issue!`)
-* `any-string!`
-* `any-object!` _**See https://github.com/red/red/issues/2657[issue #2657]**_
+* `integer!`,  `float!` and `percent!`
+* types in `any-word!` and `refinement!` (note the absence of `issue!`)
+* types in `any-string!`
 
 If the combination of types of the two values is not allowed as detailed above,
 the `not-equal?` test will yield `true` and the other three equality tests will yield `false`.
@@ -5424,7 +5423,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
 <a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#target-type-logic">5.4.2</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
-<a href= "https://github.com/red/red/issues/2657">2657</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
 <a href= "https://github.com/red/red/issues/2668">2668</a>   <a href="#conversion-fromto-textual-representation">11.1.1</a>
