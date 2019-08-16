@@ -5414,7 +5414,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2492">2492</a>   <a href="#textual-structure">3.1</a>
 <a href= "https://github.com/red/red/issues/2565">2565</a>   <a href="#type-hierarchy">4.3</a>, <a href="#typesets">14.2.2</a>
-<a href= "https://github.com/red/red/issues/2572">2577</a>   <a href="#map">5.3.11</a>
+<a href= "https://github.com/red/red/issues/2572">2572</a>   <a href="#map">5.3.11</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#bitset">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#function-type">7.4.1</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
