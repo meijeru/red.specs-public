@@ -2003,7 +2003,7 @@ for the `equal?` test.
 The `equal?` test ignores case differences in the spelling of words 
 (values of types in `all-word!`) and strings (values of types in `any-string!`),
 and in the case of floating point numbers, a very small difference (1 in 10^16^)
-in actual value._**See also https://github.com/red/red/issues/2658[issue #2658]**_
+in actual value.
 
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
@@ -5423,7 +5423,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
 <a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#target-type-logic">5.4.2</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
-<a href= "https://github.com/red/red/issues/2658">2658</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#image">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
