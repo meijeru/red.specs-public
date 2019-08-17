@@ -2017,7 +2017,7 @@ In all cases, for the `equal?` and `not-equal?` test, the requirement of equal t
 is relaxed for several combinations of types of the two values:
 
 * `char!` and `integer!` _**See https://github.com/red/red/issues/2650[issue #2650]**_
-* `integer!`,  `float!` and `percent!`
+* `integer!`,  `float!`, `percent!` and `time!`
 * types in `any-word!` and `refinement!` (note the absence of `issue!`)
 * types in `any-string!`
 
@@ -2043,7 +2043,6 @@ the field contents are not tested further
 action! native! op! handle! event!` and `unset!`.
 
 As a rule, for ordering comparisons the types of the two values have to be the same.
-_**See https://github.com/red/red/issues/2662[issue #2662]**_
 For `vector!` values, the component type (`char! integer! float!` or `percent!`) must also be the same
 (the size in bits of the components may differ).
 
@@ -5423,7 +5422,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
 <a href= "https://github.com/red/red/issues/2645">2645</a>   <a href="#target-type-logic">5.4.2</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
-<a href= "https://github.com/red/red/issues/2662">2662</a>   <a href="#ordering-comparisons">5.8.2</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#image">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#function">5.3.8</a>
