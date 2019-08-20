@@ -1542,7 +1542,7 @@ a result of the appropriate type.
 
 The function `to-integer` is defined for
 
-* `any-float!` and `time!` values: truncates the floating point value (seconds in the case
+* `float!`, `percent!` and `time!` values: truncates the floating point value (seconds in the case
 of `time!`) towards `0`
 * `char!` values: yields the Unicode Code Point number
 * `binary!` values: interprets the first 4 bytes as an integer (two's complement notation)
@@ -1554,7 +1554,7 @@ further characters are ignored; if the number of characters is odd and less than
 based on the time component adjusted to UTC; because of the limitations on integer values
 the date should be between `13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`; see also `to-date` below 
 
-==== Target types in `any-float!`
+==== Target types `float!` and `percent!`
 
 The function `to-float` is defined for
 
@@ -1603,7 +1603,7 @@ present, components `0` are added
 
 The function `to-binary` is defined for
 
-* `integer!` and `any-float!` values: yields the corresponding 4 resp. 8 byte binary value
+* `integer!`, `float!` and `percent!` values: yields the corresponding 4 resp. 8 byte binary value
 * `char!` values: yields the UTF-8 encoded binary value
 * `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
 * `issue!` values: interprets the characters following the `#`, if possible, as base16 representation
@@ -2030,8 +2030,7 @@ The following cases can be distinguished:
 
 * straightforward numerical ordering: `char! integer! float! percent! time!` and `date!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
-vector! any-string! binary!` and `bitset!`; with pairs, the `y` component is tested
-before the `x` component
+vector! any-string! binary!` and `bitset!`
 * lexicographic ordering (with recursion and cycle detection): `any-block!` and `any-object!`;
 for objects, the numbers of fields are compared first, and if they are unequal,
 the field contents are not tested further
