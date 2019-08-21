@@ -2840,9 +2840,8 @@ Note that `round` has a number of refinements:
 ....
 
 The functions `max min` on arguments of type `pair!` and `tuple!` are applied on a component-by-component basis
-(tuples must be of equal length). _**See https://github.com/red/red/issues/3395[issue #3395]**_
-These functions are also defined for `series!` arguments.
-See <<series-extraction-and-modification-of-components,section 9.3>>.
+(tuples must be of equal length). These functions are also defined for `series!` arguments;
+see <<series-extraction-and-modification-of-components,section 9.3>>.
 
 The function `math` takes a block containing expressions involving multiplication and division,
 and executes it using normal mathematical precendece rules. Example:
@@ -5421,7 +5420,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2883">2883</a>   <a href="#image">5.3.4</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#function">5.3.8</a>
 <a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#object">5.3.6</a>
-<a href= "https://github.com/red/red/issues/3395">3395</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-any-string">5.4.3</a>
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3570">3570</a>   <a href="#inputoutput">11</a>
