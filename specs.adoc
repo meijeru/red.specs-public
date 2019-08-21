@@ -681,8 +681,7 @@ For several types, the available values are referred to by words at program star
 `logic!` has `true = yes = on` and `false = no = off`, and `datatype!` has all the valid
 type names pre-defined (no further datatypes can be defined by the user);
 likewise `native!`, `action!` and `op!` have all the built-in functions
-and operators pre-defined (values of type `action!` and `native!` cannot
-be made by the user, but new infix operators can be).
+and operators pre-defined (new infix operators can be made by the user).
 Values of types `event!` and `handle!`, that are used to communicate with
 the operating system, can only be represented by words that are arguments
 to functions handling this communication.
