@@ -531,7 +531,10 @@ A further pseudo-type `context!` provides implementation of context-related func
 
 Notes:
 
-. Values of all types may be represented using `make`, except those of `datatype!`, `native!`, `action!`, `routine!`, `handle!` and `event!`
+. Values of all types may be represented using `make`, except those of `datatype!`, `routine!`,
+`handle!` and `event!`; the pre-defined values of type `action!` and `native!` are produced
+during initialization of the toolchain using `make`, and the expressions used are allowed
+also in user programs, but it is not recommended to do so
 . _**See https://github.com/red/REP/issues/14[REP #14]**_
 . _**See https://github.com/red/REP/issues/12[REP #12]**_
 ....
