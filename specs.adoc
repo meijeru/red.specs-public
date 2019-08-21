@@ -688,7 +688,7 @@ the operating system, can only be represented by words that are arguments
 to functions handling this communication.
 
 Because the `save` and `load` functions (see <<full-specification-of-load-and-save,section 11.1.3>>)
-will treat the predefined words, referred to in the previous paragraph, as `word!` values,
+will treat the pre-defined words, referred to in the previous paragraph, as `word!` values,
 the typed value constructor is used to denote the values referred to by these words:
 ....
 #[none] #[true] #[false] #[none!] #[logic!] #[char!] #[integer!] #[word!] #[lit-word!] #[set-word!] #[get-word!]
@@ -1083,7 +1083,9 @@ latter part of the section.
 Note that `make routine!` is forbidden; values of type `routine!` should be made
 by invoking the built-in function `routine` which raises an error
 if called from the interpreter. As noted before (<<overview-table,section 4.2.7>>)
-values of type `datatype!`, `native!`, `action!`, `handle!` and `event!` may not be made using `make`.
+values of type `datatype!`, `handle!` and `event!` may not be made using `make`,
+and using `make` to create values of types `action!` and `native!` is possible
+but not recommended, and will not be documented here.
 
 In this section, non-terminals like `<integer>` do not stand for
 a literal integer but for a value (to be evaluated) of `integer!` type etc.
@@ -2263,7 +2265,7 @@ and `quote <path-literal>` is equivalent to `'<path-literal>`.
 
 Note: there are cases in which a `<word>` is not to be evaluated, e.g. when it occurs as
 `<key>` or `<value>` in a `<map-spec>`, or when it is an actual argument to a function
-where the formal argument is a `lit-word!`. In these cases, all predefined words,
+where the formal argument is a `lit-word!`. In these cases, all pre-defined words,
 in particular `true false` and `none` will be interpreted as `word!` values rather than as
 `logic!` or `none!` values. To represent values of the desired type in such cases one may use
 the generalized value construction syntax: `#[true], #[false], #[none]`.
