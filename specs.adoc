@@ -406,7 +406,7 @@ of their values, it is useful to make a number of distinctions into different ca
 * evaluation: _passive types_, _decaying types_, _active types_, _function types_
 * implementation of built-in functions: _parent types_
 
-==== Types according to their textual representation
+==== Types according to the representation of their values
 
 Not all types listed have lexically or syntactically determined values. Those that have not
 may have their values generally be represented in programs by
