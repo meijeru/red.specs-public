@@ -157,14 +157,14 @@ and this construct may again be enclosed in grouping tokens etc. Note that the t
 `" "`, `\#" "`, `{ }`, `#{ }` and `< >` each delimit a single value, they are not grouping tokens.
 
 As a rule, lexemes must be separated from each other and from grouping tokens by
-one or more _whitespace characters_. In the Red source text, whitespace characters are
-space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), carriage return (`U+000D`), next line (`U+0085`)
+one or more _whitespace characters_. In the Red source text, whitespace characters include
+at least space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), carriage return (`U+000D`)
 and non-breaking space (`U+00A0`). Consequently, Red program texts are _free form_,
 i.e. neither their arrangement in separate lines, nor their formatting with indentation
-and the like, has any significance for their interpretation.
+and the like, has any significance for their interpretation. 
 
-_**This is most certainly short of some whitespace values, please correct
-See also https://github.com/red/red/issues/2492[issue #2492]**_
+Note that the set of whitespace characters may be extended in future to include some more
+(or even all) of the ones defined as such in the Unicode standard.
 
 In certain cases, where there can be no ambiguity, the requirement for whitespace between values
 can be relaxed. For example, it is possible to omit whitespace between two consecutive `block!`
@@ -5411,7 +5411,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/2492">2492</a>   <a href="#textual-structure">3.1</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#bitset">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#function-type">7.4.1</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
