@@ -1427,7 +1427,6 @@ Each `<key>` should be a value of a type in `scalar!, any-word!`, `any-string!` 
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `any-word!`
 that do not differ in their symbol are considered identical for this purpose.
-_**See https://github.com/red/red/issues/2572[issue #2572]**_
 
 Note that values of `logic!` and `none!` type are not allowed as keys. Nevertheless
 `true`, `false` and `none` may occur in `<key>` position. Since the constituents
@@ -5413,7 +5412,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2492">2492</a>   <a href="#textual-structure">3.1</a>
-<a href= "https://github.com/red/red/issues/2572">2572</a>   <a href="#map">5.3.11</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#bitset">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#function-type">7.4.1</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
