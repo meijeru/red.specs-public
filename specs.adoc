@@ -2504,7 +2504,8 @@ the body of the function to yield the result of the function.
 . If the function has any arguments (optional or not), create a context specific
 to this function value, with all the words (including values of type
 `lit-word! get-word!` and `refinement!`) occurring in the `<argument-spec>`.
-Make all these words initially refer to `none`.
+Make these words initially refer to `none`, except for the refinements
+which are initialized to `false`.
 .. Evaluate as many subsequent expressions as needed to obtain values corresponding
 to the non-optional arguments, except: When the `<argument-name>`
 is a `'<word>`, then if the next value is a `:<word>` or `:<path>` or `<paren>`,
