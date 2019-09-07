@@ -1956,9 +1956,10 @@ addition the function `body-of` which yields the function/routine body.
 All functions `<property>-of <expression>` are shorthand for the general function
 `reflect <expression> <property>` e.g. `words-of <expression>` is defined as `reflect <expression> 'words`.
 
-For `series!` values, the property `owned` has been defined which is notably used
+For `series!` values, the properties `owner` and `owned` have been defined which are notably used
 by the _reactivity_ facility (see <<reactivity,section 13.4>>).
-This property can only be obtained by `reflect <expression> 'owned`.
+These property can only be obtained by `reflect <expression> `'owner` resp. 'owned`. Likewise
+for the `owned` property of `object!` values.
 
 Note that the `help` built-in function is typically making good use of these reflection facilities. 
 
