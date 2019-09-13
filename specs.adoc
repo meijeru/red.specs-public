@@ -3011,9 +3011,9 @@ it will be fixed at `1` or `length + 1`.
 If `find` on a series does not have a match, its result is `none`.
 The function is also defined on values of type `bitset!` (with `<expression>`
 of type `char!`, `string!`, `integer!` or `block!` of integers),
-`typeset!` (with `<expression>` of type `datatype!`)
-and `any-object!` and `map!` (with `<expression>` evaluating to a _field_  value).
+`typeset!` (with `<expression>` of type `datatype!`).
 The result of `find` in these cases is `true` if there is a match, and `false` otherwise.
+It is defined in addition on values of type `map!` (see <<operations-on-maps,section 9-5>>).
 
 Furthermore, if the `<series>` argument is of type `any-block!` except `hash!`
 and the `<expression>` is of type `datatype!` the result is the `<series>`
@@ -3219,14 +3219,8 @@ The following operations on objects have already been described:
 `in` (<<built-in-in-function,section 6.3.8>>). Of these, `bind`, 
 `in` and `select` are also defined on errors and ports.
 
-The following built-in functions are also defined on objects, errors and ports,
-with the following semantics:
-[cols="1,2", options="header"]
-|===
-|function                  |operation
-|copy <any-object>         |yield a copy of the object, error or port
-|find <any-object> <word>  |yield true if key indicated by <word> exists, else none
-|===
+The function `copy` is also defined on objects, errors and ports,
+and yields a copy of the object, error or port.
 
 == Control
 
