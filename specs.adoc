@@ -3202,7 +3202,7 @@ with the following semantics:
 |copy <map>               |yield a copy of the map
 |extend <map> <items>     |add key-value pairs from <items> (a block, hash or map) +
                          replacing the value if the corresponding key is already present
-|find <map> <key>       |yield true if key indicated by <key> exists, else none +
+|find <map> <key>       |yields key value if key indicated by <key> exists, else none +
                          <key> must be of type scalar!, any-word!, any-string! or binary!
 |remove/key <map><key>  |removes the key indicated by <key> if it exists +
                          together with the associated value, otherwise nothing happens
