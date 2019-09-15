@@ -1341,12 +1341,12 @@ _**See https://github.com/red/red/issues/3285[issue #3285]**_
 
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. In this
-connection, the `<word-literal>` of the `<function-refinement>` is also considered an <argument>.
+connection, the `<word-literal>` of the `<function-refinement>` is also considered an `<argument>`.
 Likewise for the `<return-doc>`._**See https://github.com/red/red/issues/3595[issue #3595]**_
 When present, the type(set)s specified for an `<argument>` will be used to check the type
 of the actual argument supplied. Otherwise, `default!` will be assumed.
 Likewise, when present, the type(set)s of the `<return-spec>`
-will be used to check the type of the result._**Not implemented yet**_
+will be used to check the type of the result _**not implemented yet**_.
 The `<word>` s of the `<argument>` s following the `<function-refinement>`, if any,
 are to be matched with actual arguments, if the function application (see <<function-type,rule `E110`>>)
 specifies the corresponding `<selector>` (see <<path,rule `S123`>>).
