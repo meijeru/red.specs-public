@@ -5,7 +5,7 @@ and semantic rules of the Red programming language.
 In its present form, the approach is largely complementary to the Red Core Language
 documentation found in https://doc.red-lang.org[this Gitbook]. It may eventually
 be subsumed in other documentation in the framework of Red Foundation's policy on this matter
-(See [REP 3](https://github.com/red/REP/blob/master/REPs/rep-0003.adoc).
+(See https://github.com/red/REP/blob/master/REPs/rep-0003.adoc[REP 3]).
 
 The document is work in progress, and remarks about its correctness and
 completeness are invited as Issues. Concrete suggestions for improvement
