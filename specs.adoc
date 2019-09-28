@@ -2570,7 +2570,8 @@ function etc. it is derived from, with the value that precedes the `op!` value
 corresponding to the first argument and the expression following the `op!` value
 corresponding to the second one. The precedence rule stated in <<expressions-and-evaluation-order, section 3.3>>
 applies, _except_ if the first argument evaluates to a function having a literal first argument,
-and there is no second argument provided.
+and there is no second argument provided, in which case the `op!` value is not applied, but yielded as
+argument to that function.
 
 ==== `native!` type
 
