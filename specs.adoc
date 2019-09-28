@@ -2511,7 +2511,6 @@ is a `'<word>`, then if the next value is a `:<word>` or `:<path>` or `<paren>`,
 evaluate this to fetch the value it refers to; else pass the next value as-is.
 If the `<argument-name>` is `:<word>`, do not evaluate the corresponding expression
 but yield its first `<value>` as-is; do not raise an error if this value is unset.
-_**See https://github.com/red/red/issues/2622[issue #2622]**_
 Make the `<word>` of each `<argument name>` refer to the corresponding value.
 Check the type of each value against the type(set)s specified for the argument.
 .. If actual refinements are present, match each of them with the corresponding `<function-refinement>`
@@ -2567,10 +2566,10 @@ for the optional arguments is dictated by the order of the actual refinements pr
 A value of `op!` type is always derived from a value of another `any-function!` type:
 `function! action! native!` or `routine!`. Moreover, an `op!` value always has exactly
 two arguments and no refinements. Therefore, the application proceeds as for the
-function etc. it is derived from, with the expression that precedes the `op!` value
+function etc. it is derived from, with the value that precedes the `op!` value
 corresponding to the first argument and the expression following the `op!` value
 corresponding to the second one. The precedence rule stated in <<expressions-and-evaluation-order, section 3.3>>
-applies, _except_ if the first argument is a function call with a literal first argument,
+applies, _except_ if the first argument evaluates to a function having a literal first argument,
 and there is no second argument provided.
 
 ==== `native!` type
@@ -5406,7 +5405,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#bitset">5.3.5</a>
-<a href= "https://github.com/red/red/issues/2622">2622</a>   <a href="#function-type">7.4.1</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
