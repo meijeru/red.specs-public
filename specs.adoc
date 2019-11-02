@@ -272,7 +272,7 @@ being construed as the largest sequence of values conforming to the following de
                | <word-literal>: <expression>
 ....
 
-Here `<op>` is an expression which evaluates to an operator, i.e. an `op!` value representing
+Here `<op>` is an `op!` value representing
 an infix function of two arguments, and `<prefix-function>` is an expression which evaluates
 to a prefix function (value of type `action! native! function!` or `routine!`). The number of
 expressions (arguments) following a prefix function is strictly dependent on the function value
