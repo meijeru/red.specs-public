@@ -266,12 +266,10 @@ being construed as the largest sequence of values conforming to the following de
 
 **`S101`**:: expressions
 ....
-<expression>      ::= <operand>
-                    | <operand> <op> <expression>
-<operand>         ::= <value>
-                    | <prefix-function> <argument>*
-                    | <word-literal>: <expression>
-<argument>        ::= <expression>
+<expression> ::= <value>
+               | <value> <op> <expression>
+               | <prefix-function> <expression>*
+               | <word-literal>: <expression>
 ....
 
 Here `<op>` is an expression which evaluates to an operator, i.e. an `op!` value representing
