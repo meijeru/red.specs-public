@@ -438,7 +438,9 @@ Values of certain types have _components_ which may be extracted and/or changed 
 facilities which will be specified below under evaluation. Such types are called _composite_ 
 and the others are _atomic_. All indirect types are composite, but the converse
 is not true: some direct types are also composite. In Red, values of atomic types are _immutable_,
-and values of composite types are _mutable_.
+and values of composite types are _mutable_. Many composite types (notably types in `series!` and `bitset!`)
+have their components arranged as a (ordered) _sequence_ of values, i.e. their is the notion of
+a component's ordinal number (index) and of next/previous component.
 
 ==== Types that admit reflection
 
@@ -1706,11 +1708,11 @@ _**See also https://github.com/red/REP/issues/30[REP #30]**_
 
 === Components of values
 
-Composite values can have their components extracted and changed by various means.
+Composite values can have their components extracted and changed by various means. 
 
 ==== Indexing
 
-Values that are sequences (with types in `series!` and `bitset!`) admit indexing by integers.
+Values that are _sequences_ (with types in `series!` and `bitset!`) admit indexing by integers.
 As explained earlier, components of `series!` values are indexed from `1`, while components
 of `bitset!` values are indexed from `0`.
 
@@ -5342,6 +5344,7 @@ RGB color model                         <a href = "#tuple">5.2.4</a>, <a href = 
 RGBA color/transparency model           <a href = "#image">5.3.4</a>
 routine spec dialect                    <a href = "#dialects">2.5</a>, <a href = "#routine">5.3.9</a>
 scheme (URI component)                  <a href = "#other-types">5.3.14</a>, <a href = "#port-components">11.4.1</a>
+sequence                                <a href = "#atomiccomposite-types">4.2.3</a>, <a href = "#components-of-values">5.6</a>
 shape dialect                           <a href = "#dialects">2.5</a>, <a href = "#gui-system">13.3</a>
 shortcut evaluation                     <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
 single value                            <a href = "#textual-structure">3.1</a>
