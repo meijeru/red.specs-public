@@ -439,7 +439,7 @@ facilities which will be specified below under evaluation. Such types are called
 and the others are _atomic_. All indirect types are composite, but the converse
 is not true: some direct types are also composite. In Red, values of atomic types are _immutable_,
 and values of composite types are _mutable_. Many composite types (notably types in `series!` and `bitset!`)
-have their components arranged as a (ordered) _sequence_ of values, i.e. their is the notion of
+have their components arranged as a (ordered) _sequence_ of values, i.e. there is the notion of
 a component's ordinal number (index) and of next/previous component.
 
 ==== Types that admit reflection
