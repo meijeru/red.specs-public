@@ -1240,7 +1240,7 @@ A new context is created and associated to the object. The words of the new cont
 (i.e. the _fields_ of the object) are the words of all the `set-word!` values that are
 (first-level) components of the `<object-spec>`. The corresponding values are set
 to the unset value. The `<object-spec>` is _bound_ to this context (see <<built-in-bind-function,section
-6.3.7>>). The bound block is then _executed_. _**See https://github.com/red/red/issues/3362[issue #3362]**_
+6.3.7>>). The bound block is then _executed_.
 The `class` property of the newly created object is set to a unique integer.
 
 If the first argument to `make` is an `object!` value, it serves as _prototype_.
@@ -5413,7 +5413,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#function">5.3.8</a>
-<a href= "https://github.com/red/red/issues/3362">3362</a>   <a href="#object">5.3.6</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-any-string">5.4.3</a>
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3570">3570</a>   <a href="#inputoutput">11</a>
