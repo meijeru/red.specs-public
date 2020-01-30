@@ -1612,10 +1612,10 @@ The function `to-binary` is defined for
 of a binary value; if the number of characters is odd, the last one is ignored
 * `bitset!` values: yields the corresponding binary value
 * `string!` values: yields the UTF-8 encoded binary value
-* `any-list!` values: these should contain only `integer!` or `float!` values;
-the binary equivalents are concatenated, using as few bytes as needed
-for each `integer!` value and 8 bytes for each `float!` value
 * `image!` values: yields a binary value with 4 bytes for each pixel
+* `any-list!` values: these should contain only values of the types indicated above, or other `any-list!` values;
+the results for the components are concatenated; `any-list!` components are treated recursively
+_**see issues https://github.com/red/red/issues/4272[4272] and https://github.com/red/red/issues/3409[4273]**_
 
 ==== Target types in `any-word!`, `refinement!` and `issue!`
 
