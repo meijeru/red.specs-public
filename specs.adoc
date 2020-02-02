@@ -248,7 +248,8 @@ see <<word,sections 5.2.5>> and <<refinement,5.2.15/16>>.
     <paren-literal> ::= ( <value>* )                    ; paren!
     <block-literal> ::= [ <value>* ]                    ; block!
     <map-literal> ::=   #( <value>* )                   ; map! (even number of values only)
-    <constructor> ::=   #[ <value>* ]                   ; reserved for general typed value constructor
+    <constructor> ::=   #[ <value> <value>* ]           ; reserved for general typed value constructor
+                                                        ; ("construction syntax")
 ....
 
 === Expressions and evaluation order
@@ -5232,6 +5233,7 @@ composite type                          <a href = "#atomiccomposite-types">4.2.3
 console                                 <a href = "#red-toolchain">2.2</a>
 context                                 <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#contexts">6.2</a>
   global context                        <a href = "#words-contexts-and-binding">2.4</a>, <a href = "#contexts">6.2</a>
+construction syntax                     <a href = "#formal-grammar">3.2</a>, <a href = "#types-according-to-the-representation of their-values">4.2.1</a>, <a href = "#word-type">7.3.1</a>
 control character                       <a href = "#word">5.2.5</a>, <a href = "#char">5.2.6</a>
 decaying type                           <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
 delete character (U+007F)               <a href = "#char">5.2.6</a>
