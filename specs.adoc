@@ -5383,6 +5383,7 @@ value                                   <a href = "#values-and-types">2.3</a>, <
   value conversion                      <a href = "#conversion-of-values-to">5.4</a>
   value creation                        <a href = "#creation-of-values-make">5.3</a>
   value slot                            <a href = "#directindirectfunction-types">4.2.2</a>
+  value constructor                     <a href = "#formal-grammar">3.2</a>, <a href = "#types-according-to-the-representation of their-values">4.2.1</a>, <a href = "#introduction">5.1</a>, <a href = "#word-type">7.3.1</a> 
 vector spec dialect                     <a href = "#dialects">2.5</a>, <a href = "#vector">5.3.3</a>
 Visual Interface dialect (VID)          <a href = "#dialects">2.5</a>, <a href = "#gui-system">13.3</a>
 whitespace                              <a href = "#textual-structure">3.1</a>
