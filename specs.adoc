@@ -5169,10 +5169,10 @@ The following is a list of official documents that complement the information gi
 . Red Programming Language Documentation (Gitbook), notably:
   .. https://doc.red-lang.org/en/[Red Core Language]
   .. https://doc.red-lang.org/en/gui.html[GUI System]
+  .. https://doc.red-lang.org/en/parse.html[Parse]
   .. https://doc.red-lang.org/en/reactivity.html[Reactive Programming]
   .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
 . Overview of value conversions: https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
-. Parse documentation (blog article from 2013): http://www.red-lang.org/2013/11/041-introducing-parse.html[Introducing Parse]
 . Ownership documentation (in blog article from 2016): https://www.red-lang.org/2016/03/060-red-gui-system.html[Red GUI system]
 . Handling of NaNs, INFs, and signed zeros: in https://github.com/red/red/wiki[Red Wiki] under Reference
 
