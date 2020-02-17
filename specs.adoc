@@ -3447,12 +3447,12 @@ value, and `save` will take an `image!` value and produce the encoded binary
 value. The necessary decoding and encoding routines are stored in `system/codecs`.
 This is a block of pairs: `<word><object>`, where the `<word>` indicates
 the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
-content:
+content for the `jpeg` case:
 [cols="1,1,2", options="header"]
 |===
     |key             |value type   |content
     |title           |string!      |(not filled in) 
-    |name            |word!        |'JPEG
+    |name            |word!        |JPEG
     |mime-type       |block!       |[image/jpeg]
     |suffixes        |block!       |[%.jpg %.jpeg %.jpe %.jfif]
     |encode          |routine!     |routine [img [image!] where [any-type!]][...]
@@ -3465,11 +3465,11 @@ the argument to `/as` is `json`. The corresponding object in `system/codecs` is
 |===
     |key             |value type   |content
     |title           |string!      |"JSON codec"
-    |name            |word!        |'JSON
+    |name            |word!        |JSON
     |mime-type       |block!       |[application/json]
     |suffixes        |block!       |[%.json]
     |encode          |function!    |func [data [any-type!] where [file! url! none!]][...]
-    |decode          |function!    |func [data [any-type!]][...]
+    |decode          |function!    |func [text [string! binary! file!]][...]
 |===
 
 Note that conversion between "raw" binary data (values of type `binary!`) and strings
