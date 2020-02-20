@@ -1144,7 +1144,7 @@ If `<type-and-size>` are omitted, type is deduced from the contents of `<block>`
 the default size (32 bits for `char!` and `integer!`, 64 bits otherwise). If `<block>` is empty, the assumed type
 is `integer!` of size 32. If `<block>` is not empty, and some of its values cannot be represented
 by the number of bits specified by `<type-and-size>`, these values are truncated to that number of bits.
-If an <integer> is specified, it indicates the number of components, which will be initialized to "zero"
+If an `<integer>` is specified, it indicates the number of components, which will be initialized to "zero"
 (`0` for `integer!`, `0.0` for `float!`, `0%` for `percent!` and `#"^(null)"` for `char!`).
 
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
