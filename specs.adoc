@@ -2881,7 +2881,8 @@ if different from argument types.
 Notes: all trigonometric functions take an argument in radians, except `atan2`
 which takes two `float!` arguments representing `y` and `x` coordinates.
 The function `random` yields a random value between zero and its argument
-value or one of `false` and `true` for `logic!`; for `pair!` and `tuple!` values
+value; if called with argument `true` it yields one of `false` and `true`;
+for `integer!` arguments the lowest value is `1`; for `pair!` and `tuple!` values
 it operates per component; it is also defined for `series!` arguments
 (see <<series-extraction-and-modification-of-components,section 9.3>>).
 The `word!` argument to `checksum` indicates the method; allowed are
