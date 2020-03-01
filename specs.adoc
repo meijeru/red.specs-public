@@ -1517,6 +1517,7 @@ The function `to-string` yields the same result as the built-in function `form` 
 <<conversion-fromto-textual-representation,section 11.1.1>>) except for
 
 * `unset!` and `none!` values: conversion is not allowed
+* `tag!` values: the brackets `< >` are omitted by `to-string` but not by `form` 
 * `binary!` values: these will be decoded as UTF-8
 * `any-list!` values: the function will apply `form` to each component and concatenate the results
 
@@ -3377,7 +3378,7 @@ the built-in function `mold` will produce a representation that mirrors the sour
 of the value, while its variant `mold/all` will produce a representation that can be read
 back by `load` to yield the original value. As stated in <<target-types-in-any-string,section 5.4.3>> the
 operation of `form` is the same as that of `to-string` with the exception of
-argument types `unset! none! binary!` and `any-list!`. Especially values of the
+argument types `unset! none! tag! binary!` and `any-list!`. Especially values of the
 last group of types, as well as values of types `vector!` and `object!`
 merit special attention since the are converted to strings showing
 the essentials without conserving type information.
