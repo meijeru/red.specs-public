@@ -2003,7 +2003,8 @@ for the `equal?` test.
 The `equal?` test ignores case differences in the spelling of words 
 (values of types in `all-word!`) and strings (values of types in `any-string!`),
 and in the case of floating point numbers, a very small difference (1 in 10^16^)
-in actual value.
+in actual value. For characters (values of type `char!`) the `equal?` test is
+case-sensitive, but _**see https://github.com/red/REP/issues/67[REP #67]**_
 
 For values of `any-block!` type, the `strict-equal?` and `equal?` tests apply pairwise
 to the components. For `any-object!` the requirements are identity of field names
@@ -5436,5 +5437,6 @@ issue  section
  <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/29">29</a>    <a href="#series-positioning-and-navigation">9.2</a>
  <a href="https://github.com/red/REP/issues/30">30</a>    <a href="#casting-of-values-as">5.5</a>
+ <a href="https://github.com/red/REP/issues/67">67</a>    <a href="#equality-comparisons">5.8.1</a>
 </pre>
 ++++
