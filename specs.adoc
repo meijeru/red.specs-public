@@ -2115,8 +2115,8 @@ context the word is bound to. Since contexts themselves are not values
 of a type of the language, they are yielded in the form of an object or function
 as the case may be. If the word is an argument or refinement of a function
 (value of type `function!`), the context is yielded as that function.
-The context of a word which is a field name of an error value
-is yielded as an object having the same field names and values as the error.
+The context of a word which is a field name of an error or port value
+is yielded as an object having the same field names and values as the error or port.
 The context of a word which is not a field name of an object is the global context,
 and is thus yielded as the object `system/words`. Otherwise, the context is
 yielded as the object of which the word is a field name. The index of a word
