@@ -3002,6 +3002,7 @@ value or a sub-series, or (in the case of `any-string!` series) a `bitset!` valu
 representing a choice of values. This function is not defined on `image!` values.
 For testing occurrences it uses an equality test which differs from `strict-equal?`
 only by not being case-sensitive for values of types in `any-string!` and `any-word!`.
+_**See https://github.com/red/red/issues/4327[issue #4327]**_
 If the `<expression>` is a `bitset!` value, the equality test _is_ case-sensitive,
 i.e. only the Unicode Code Points indicated are found, not their other case counterparts.
 
@@ -5426,6 +5427,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3595">3595</a>   <a href="#function">5.3.8</a>
 <a href= "https://github.com/red/red/issues/4272">4272</a>   <a href="#target-type-binary">5.4.10</a>
 <a href= "https://github.com/red/red/issues/4273">4273</a>   <a href="#target-type-binary">5.4.10</a>
+<a href= "https://github.com/red/red/issues/4327">4327</a>   <a href="#series-positioning-and-navigation">9.2</a>
 
 REP    spec
 issue  section
