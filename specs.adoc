@@ -1165,7 +1165,8 @@ make vector! [#"a" #"b" #"c"]
 <image-spec> ::= <pair> | [<pair>] | [<pair> <tuple>] | [<pair> <binary> <binary>°] 
 ....
 
-An `image!` value stores a sequence of RGBA (color + transparency) values for pixels, using 4 bytes in 1 word for
+An `image!` value stores a sequence of RGBA (color + transparency) values for pixels, representing a rectangular
+array (width x height, left to right then top to bottom), and using 4 bytes in 1 word for
 each pixel, as follows: B in bits 0..7, G in bits 8..15, R in bits 16..23, A in bits 24..31. When extracting
 a single pixel (see also <<components-of-values,section 5.6>>), these values are encoded in a 4-element `tuple!` value as follows:
 the first 3 elements are R, G and B, and the last element is 255 - A. When setting a single pixel, a 3 or 4-element
