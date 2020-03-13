@@ -1740,8 +1740,8 @@ In this connection if should be noted that, although the components of a value o
 are of type `logic!`, with `poke` it is allowed to use values of any other type,
 where `0` and `none` set the bit to `false`, and all other values
 (including `0.0` and `0%`) set the bit to `true`.
-Finally, images may also be indexed by pairs as coordinates, with the index
-being computed in accordance with the row-oriented storage of the pixels.
+Finally, images may also be indexed by pairs as coordinates (row-first, 1-origin), with the 
+resulting linear index being computed in accordance with the row-oriented storage of the pixels.
 
 _Path expressions_ may also be used. The correspondence is as follows:
 ....
