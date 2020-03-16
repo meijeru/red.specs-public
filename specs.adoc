@@ -219,9 +219,10 @@ see <<word,sections 5.2.5>> and <<refinement,5.2.15/16>>.
              | <hex-literal>                            ; hex!
              | <float-literal>                          ; float!
              | <integer-literal>% | <float-literal>%    ; percent!
-             | <integer-literal>x<integer-literal>      ; pair!
+             | <money-literal>                          ; money!
              | <time-literal>                           ; time!
              | <date-literal>                           ; date!
+             | <integer-literal>x<integer-literal>      ; pair!
              | <tuple-literal>                          ; tuple!
              | <word-literal>                           ; word!
              | '<word-literal>                          ; lit-word!
@@ -330,8 +331,9 @@ The full list of types of the languages is given below, with an explanation of t
 |`integer!`       |integer numbers 
 |`hex!`           |sequences of hexadecimal characters, for identification purposes or as hexadecimal encoding of a positive number
 |`bigint!`        |integers of arbitrary size
-|`float!`         |floating point (decimal) numbers
+|`float!`         |floating point (decimal) numbers, binary encoding
 |`percent!`       |floating point numbers expressed as a percentage
+|`money!`         |monetary amounts, 11-digit decimal encoding
 |`time!`          |time intervals or points in time, stored as a floating point number of seconds
 |`date!`          |dates according to the Gregorian calendar, optionally with time of day and timezone
 |`pair!`          |2-dimensional coordinates or size 
@@ -490,6 +492,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`bigint!`     |using `make`     |indirect  |atomic           |N           |passive    |
 |`float!`      |lexical          |direct    |atomic           |N           |passive    |
 |`percent!`    |lexical          |direct    |atomic           |N           |passive    |`float!`
+|`money!`      |lexical          |direct    |atomic           |N           |passive    |
 |`time!`       |lexical          |direct    |composite        |N           |passive    |`float!`
 |`date!`       |lexical          |direct    |composite        |N           |passive    |
 |`pair!`       |lexical          |direct    |composite        |N           |passive    |
@@ -578,7 +581,8 @@ any-type!
    |  |  |  |--hex!
    |  |  |  |--bigint!
    |  |  |  |--float!     
-   |  |  |  |--percent!   
+   |  |  |  |--percent!
+   |  |  |--money!
    |  |  |--time!
    |  |  |--date!
    |  |  |--pair!          
@@ -1070,6 +1074,13 @@ upper limit to the number of such characters. The value of the `<hex-literal>` i
 characters.
 
 Example: 	`0x76960dccd5a1fe799f7c29be9f19ceb4627aeb2f` ; the contract number for the Red Community Token (RED)
+
+==== `money!`
+
+**`S139`**::
+
+A `<money-literal>` consists of
+
 
 === Creation of values (`make`)
 
