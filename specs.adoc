@@ -1080,7 +1080,8 @@ Example: 	`0x76960dccd5a1fe799f7c29be9f19ceb4627aeb2f` ; the contract number for
 **`S139`**::
 
 A `<money-literal>` consists of an optional sign (`+` or `-`) followed by `$` and an unsigned integer
-(<<integer,5.2.1>>) or float (<<float,5.2.2>>) literal.
+(<<integer,5.2.1>>) or float (<<float,5.2.2>>) literal. Float literals may not use the exponent notation,
+must have at most 5 decimal digits and at least one digit before the decimal point.
 
 === Creation of values (`make`)
 
