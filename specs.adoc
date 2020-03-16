@@ -1079,8 +1079,8 @@ Example: 	`0x76960dccd5a1fe799f7c29be9f19ceb4627aeb2f` ; the contract number for
 
 **`S139`**::
 
-A `<money-literal>` consists of
-
+A `<money-literal>` consists of an optional sign (`+` or `-`) followed by `$` and an unsigned integer
+(<<integer,5.2.1>>) or float (<<float,5.2.2) literal.
 
 === Creation of values (`make`)
 
@@ -1468,7 +1468,7 @@ Note that `port!` values all have `class = 2`.
 
 ==== `bigint!`
 
-**`S139`**::
+**`S140`**::
 ....
 <bigint> ::= make bigint! <bigint-spec>
 <bigint-spec> ::= <integer> | <hex> | <binary>
