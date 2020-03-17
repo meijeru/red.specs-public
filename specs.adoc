@@ -2793,7 +2793,7 @@ the result value fits in 32 bits; otherwise result type is `float!`
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
-mentioned through notes 1 to 10. The operations on values of type `pair! tuple!` and `vector!`
+mentioned through notes 1 to 11. The operations on values of type `pair! tuple!` and `vector!`
 take place component-by-component. When the two operand types are different,
 the result type is determined as (in decreasing order of precedence):
 
@@ -2863,7 +2863,7 @@ The functions `max min` on arguments of type `pair!` and `tuple!` are applied on
 see <<series-extraction-and-modification-of-components,section 9.3>>.
 
 The function `math` takes a block containing expressions involving multiplication and division,
-and executes it using normal mathematical precendece rules. Example:
+and executes it using normal mathematical precedence rules. Example:
 ....
 1 + 2 * 3          ; 9
 math [1 + 2 * 3]   ; 7
