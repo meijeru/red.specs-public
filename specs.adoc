@@ -1488,12 +1488,14 @@ The same holds for a `<binary>`.
 * Making `integer!` values from `logic!` values: `true` gives `1`, `false` gives `0`
 _**See https://github.com/red/red/issues/2644[issue #2644]**_
 * Making `logic!` values from `number!` values: `0/0.0/0%` give `false`, all else -> `true`
-* Making a `url!` value from an `any-list!` value: the components (at least one is required)
-may be of any type; they will be `form` ed; the first component is assumed to be the _scheme_
-(e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
-if the third one is an `integer!` value, this is assumed to be the _port number_ (e.g. `80`),
-otherwise the third and any following components are assumed to constitute the file path
-including -- if the last one is an `issue!` value -- a _fragment_.
+* Making `money!` values from `block!` values: at most three elements are allowed in the block;
+an optional `word!` value for a valid currency code; a signed `integer!` or `float!` value
+for the numerical value (`float!` values are truncated to 5 decimals),
+and an optional unsigned integer of maximum 5 digits which is added to the decimal fraction,
+after being padded to the left with zeroes if necessary 
+* Making `money!` values from `binary!` values: the binary string must contain at most 11 bytes;
+each byte is interpreted as two "nibbles" (half bytes), each of which must be a digit `0` - `9`;
+if fewer than 11 bytes are present, they are padded to the right with `00` bytes
 * Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components; if any of them is a `word!`
 value, the value it refers to will be retrieved.
 The first 3 components should be of `integer!` type and are interpreted
@@ -1506,6 +1508,12 @@ for the time of day; a 7th component should be an `integer!` or `time!` value fo
 All values are checked for validity, and over- and under-flow in the date and time (e.g. `32 1 2017` would give `1-Feb-2017`
 and `3 -10 0` would give `02:50:00`) are not allowed. The timezone value is treated as in `<date-literal>`
 (see <<date,section 5.2.14>>).
+* Making a `url!` value from an `any-list!` value: the components (at least one is required)
+may be of any type; they will be `form` ed; the first component is assumed to be the _scheme_
+(e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
+if the third one is an `integer!` value, this is assumed to be the _port number_ (e.g. `80`),
+otherwise the third and any following components are assumed to constitute the file path
+including -- if the last one is an `issue!` value -- a _fragment_.
 * For the following types, `make` operates in the same way as `to` (see next section): `none!`, `char!`,
 `float!`, `percent!`, `time!`, `pair!`, `any-word!`, `refinement!`, `issue!` and `unset!`.
 
@@ -1589,6 +1597,13 @@ if there are fewer than 8 bytes, `#{00}` bytes are prepended
 the result is the first number, multiplied by 10 to the power of the truncated second number
 
 The function `to-percent` will perform the same conversions and yield a value of type `percent!`.
+
+==== Target type money!`
+
+* `integer!` and `float!` values: they yield the corresponding `money!` value;
+`float!` values are truncated to 5 decimals
+* `any-string!` values: these should contain an optional sign, followed by any number of digits
+and possibly one decimal point; only 5 digits after the decimal point are taken into account
 
 ==== Target type `char!`
 
