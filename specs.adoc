@@ -1598,7 +1598,7 @@ the result is the first number, multiplied by 10 to the power of the truncated s
 
 The function `to-percent` will perform the same conversions and yield a value of type `percent!`.
 
-==== Target type money!`
+==== Target type `money!`
 
 * `integer!` and `float!` values: they yield the corresponding `money!` value;
 `float!` values are truncated to 5 decimals
