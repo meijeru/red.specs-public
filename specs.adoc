@@ -2827,10 +2827,10 @@ _**See https://github.com/red/red/issues/2776[issue #2776]**_
 |operand&nbsp;2 -> +
 operand&nbsp;1 |char!       |number!     |money!  |time!    |date!    |pair!    |tuple!     |vector!
 |char!         |char!^1^    |char!^1,12^ |        |         |         |         |           |vector!^1,6^
-|integer!      |integer!^1^ |float!^13^  |        |time!    |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|float!        |float!^1^   |float!      |        |time!    |         |pair!    |tuple!     |vector!
+|integer!      |integer!^1^ |float!^13^  |money!^1^ |time!  |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
+|float!        |float!^1^   |float!      | money^1^ |time!  |         |pair!    |tuple!     |vector!
 |percent!      |            |percent!    |        |time!    |         |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|money!        |            |            |        |         |         |           |              | 
+|money!        |            |money!^1,14^ |money!^1,4,15^ | |         |           |              | 
 |time!         |            |time!       |        |time!^4,5^ |date!^9^ |         |              |
 |date!         |            |date!^8^    |        |date!^8^ |integer!^10^ |       |              |
 |pair!         |            |pair!^1^    |        |         |         |pair!^1^   |              |
