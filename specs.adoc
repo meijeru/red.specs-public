@@ -2813,7 +2813,7 @@ the result value fits in 32 bits; otherwise result type is `float!`
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
-mentioned through notes 1 to 11. The operations on values of type `pair! tuple!` and `vector!`
+mentioned through notes 1 to 13. The operations on values of type `pair! tuple!` and `vector!`
 take place component-by-component. When the two operand types are different,
 the result type is determined as (in decreasing order of precedence):
 
@@ -2830,7 +2830,7 @@ operand&nbsp;1 |char!       |number!     |money!  |time!    |date!    |pair!    
 |integer!      |integer!^1^ |float!^13^  |money!^1^ |time!  |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
 |float!        |float!^1^   |float!      |money!^1^ |time!  |         |pair!    |tuple!     |vector!
 |percent!      |            |percent!    |        |time!    |         |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|money!        |            |money!^1,14^ |money!^1,4,15^ | |         |           |              | 
+|money!        |            |money!^1,12^ |money!^1,4,5^ | |         |           |              | 
 |time!         |            |time!       |        |time!^4,5^ |date!^9^ |         |              |
 |date!         |            |date!^8^    |        |date!^8^ |integer!^10^ |       |              |
 |pair!         |            |pair!^1^    |        |         |         |pair!^1^   |              |
@@ -2851,10 +2851,8 @@ Notes:
 . only add allowed
 . only subtract allowed; result is number of days, ignoring any time components; for exact difference use built-in function difference
 . with tuples of unequal length, the shortest one is extended with values `0`
-. percent! not allowed
-. result is integer if both operands are integer
 . percent operand not allowed
-. multiplication not allowed
+. result is integer if both operands are integer
 
 The difference between the `modulo` and `remainder` functions is as follows:
 
