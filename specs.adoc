@@ -2785,7 +2785,7 @@ functions are as follows.
 [cols="1,1,1,1,2", options="header"]
 |===
 |function            |arity   |operand 1 type      |operand 2 type  |result type
-|`+ - * / // %`        |2       |`scalar! vector!`     |`scalar! vector!` |see next table
+|`+ - * / // %`        |2       |`scalar! vector!`     |`scalar! vector!` |see next table^6^
 |`**`                  |2       |`number!`             |`integer! float!` |`integer!`^1^ `float!`
 |`NaN?`                |1       |`number!`             |                  |`logic!`
 |`sign?`               |1       |`number! time!`       |                  |`integer!`^2^
@@ -2809,6 +2809,7 @@ the result value fits in 32 bits; otherwise result type is `float!`
 . see https://github.com/red/REP/issues/10[REP #10]
 . components must be of type `number!` or `char!`
 . result type is `percent!` if sum is of that type, otherwise `float!`
+. for the result type of `//` _**see also https://github.com/red/red/issues/2708[issue #2708]**_
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
 When no result type is mentioned, all 6 operations are forbidden. Individual restrictions are
@@ -5451,6 +5452,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2708">2708</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#function">5.3.8</a>
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-any-string">5.4.3</a>
