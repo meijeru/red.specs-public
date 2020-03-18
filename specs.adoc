@@ -2825,16 +2825,16 @@ _**See https://github.com/red/red/issues/2776[issue #2776]**_
 [options="header"]
 |===
 |operand&nbsp;2 -> +
-operand&nbsp;1 |char!    |integer!  |float!    |percent! |time!    |date!    |pair!    |tuple!     |vector!
-|char!        |char!^1^  |char!^1^  |char!^1^  |         |         |         |         |           |vector!^1,6^
-|integer!     |integer!^1^ |integer! |float!   |float!   |time!    |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|float!       |float!^1^ |float!    |float!    |float!   |time!    |         |pair!    |tuple!     |vector!
-|percent!     |          |percent!  |percent!  |percent! |time!    |         |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|time!        |          |time!     |time!     |time!    |time!^4,5^ |date!^9^ |         |           |
-|date!        |          |date!^8^  |          |         |date!^8^ |integer!^10^ |    |          |
-|pair!        |          |pair!^1^  |pair!^1^  |pair!^1^ |         |         |pair!^1^  |          |
-|tuple!       |          |tuple!^1^ |tuple!^1^ |tuple!^1^|         |         |          |tuple!^1,11^ |
-|vector!      |          |vector!^1,6^|vector!^1,6^|vector!^1,6^ | |         |          |          |vector!^1,7^
+operand&nbsp;1 |char!    |number!  |time!    |date!    |pair!    |tuple!     |vector!
+|char!        |char!^1^  |char!^1,12^  |         |         |         |           |vector!^1,6^
+|integer!     |integer!^1^ |float!^13^   |time!    |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
+|float!       |float!^1^ |float!    |time!    |         |pair!    |tuple!     |vector!
+|percent!     |          |percent!  |time!    |         |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
+|time!        |          |time!     |time!^4,5^ |date!^9^ |         |           |
+|date!        |          |date!^8^  |date!^8^ |integer!^10^ |    |          |
+|pair!        |          |pair!^1^  |         |         |pair!^1^  |          |
+|tuple!       |          |tuple!^1^ |         |         |          |tuple!^1,11^ |
+|vector!      |          |vector!^1,6^| |         |          |          |vector!^1,7^
 |===
 
 Notes: 
@@ -2842,14 +2842,16 @@ Notes:
 . modulo not allowed
 . divide not allowed
 . subtract not allowed
-. divide has float! result
+. divide has float result
 . multiply not allowed
 . result has element type of vector operand _**see also https://github.com/red/red/issues/2216[issue #2216]**_
 . operand 1 and 2 must have same element type
-. only add/subtract allowed
+. only add/subtract allowed, with integer
 . only add allowed
 . only subtract allowed; result is number of days, ignoring any time components; for exact difference use built-in function difference
 . with tuples of unequal length, the shortest one is extended with values `0`
+. percent! not allowed
+. result is integer if both operands are integer
 
 The difference between the `modulo` and `remainder` functions is as follows:
 
