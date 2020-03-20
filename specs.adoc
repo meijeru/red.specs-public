@@ -1607,8 +1607,7 @@ The function `to-percent` will perform the same conversions and yield a value of
 
 * `integer!` and `float!` values: they yield the corresponding `money!` value;
 `float!` values are truncated to 5 decimals
-* `any-string!` values: these should contain an optional sign, followed by any number of digits
-and possibly one decimal point; only 5 digits after the decimal point are taken into account
+* `any-string!` values: these should conform to the `<money-literal>` format (see <<money,section 5.2.18>>)
 
 ==== Target type `char!`
 
