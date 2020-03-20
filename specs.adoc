@@ -1500,7 +1500,7 @@ each byte is interpreted as two "nibbles" (half bytes), each of which must be a 
 the first 17 of the resulting 22 digits are interpreted as the integer part of the money value
 and the last 5 as the fractional part
 * Making `money!` values from `integer!` `float!` and `any-string!` values: this follows the
-rules for conversion by `to`; refer to the <<conversion-of-values-to,next section>>
+rules for conversion by `to`; refer to the <<target-type-money,next section>>
 * Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components;
 if any of them is a `word!` value, the value it refers to will be retrieved.
 The first 3 components should be of `integer!` type and are interpreted
