@@ -1495,10 +1495,14 @@ for the numerical value (`float!` values are truncated to 5 decimals),
 and an optional unsigned integer of maximum 5 digits which is added to the decimal fraction,
 after being padded to the left with zeroes if necessary 
 * Making `money!` values from `binary!` values: the binary string must contain at most 11 bytes;
+if fewer than 11 bytes are present, they are padded to the left with `00` bytes;
 each byte is interpreted as two "nibbles" (half bytes), each of which must be a digit `0` - `9`;
-if fewer than 11 bytes are present, they are padded to the right with `00` bytes
-* Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components; if any of them is a `word!`
-value, the value it refers to will be retrieved.
+the first 17 of the resulting 22 digits are interpreted as the integer part of the money value
+and the last 5 as the fractional part
+* Making `money!` values from `integer!` `float!` and `any-string!` values: this follows the
+rules for conversion by `to`; refer to the <<conversion-of-values-to,next section>>
+* Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components;
+if any of them is a `word!` value, the value it refers to will be retrieved.
 The first 3 components should be of `integer!` type and are interpreted
 as year, month, day, or day, month, year if the first value is smaller than 100.
 Negative years may only occur in third position.
