@@ -1962,6 +1962,7 @@ Notes:
 
 Values of some types have (internal) properties of interest to the user which may
 usefully be exposed. Red makes these available through various means:
+
 * _enquiry_ functions, yielding a yes or no answer (`logic!` value)
 * _reflection_ functions, notably the `reflect` built-in function,
 and its shorthand forms `<property>-of`, as well as various other built-in functions
@@ -1971,7 +1972,7 @@ that select properties rather than components
 All enquiry functions end in `?`. Some reflection functions that do not yield a `logic!` value
 also end in `?`.
 
-Note that the `help` built-in function is typically making good use of thesefacilities. 
+Note that the `help` built-in function is typically making good use of these facilities. 
 
 ==== Enquiry functions
 
@@ -1980,6 +1981,7 @@ and typeset there is a built-in function which will test if a value is of that t
 (or a type in that typeset). These functions have the name of the type(set) with the `!` replaced by `?`.
 
 Other enquiry functions are:
+
 * `value?` which tests if a word has a value (see <<binding,section 6.3>>)
 * those testing arithmetic properties (see <<basic-arithmetic-operations,section 8.1>>):
 `NaN? positive? negative? zero? even? odd?`
@@ -1992,15 +1994,9 @@ and ports: `open?` (see <<port-operations,section 11.4.2>>)
 
 ==== Reflection functions
 
-This concerns first of all `any-word!` values for which information on their
-binding may be obtained by means of two built-in functions: `context?` and `index?`.
-These are explained in <<contexts,section 6.2>>. _**See https://github.com/red/REP/issues/14[REP #14]**_. 
-
-_**Functions on vector! values have been requested see https://github.com/red/REP/issues/12[REP #12]**_
-
 For values of type `object!`, `error!`, `port!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
-be obtained as a block by means of the built-in functions `words-of values-of`
+be obtained as a block by means of the built-in functions `words-of` `values-of`
 and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
 In addition, for objects there is the property `class-of` which yields
 the unique number that is given to each object that is created from a `<spec>`, and is
@@ -2020,11 +2016,27 @@ by the _reactivity_ facility (see <<reactivity,section 13.4>>).
 These property can only be obtained by `reflect <expression> `'owner` resp. 'owned`. Likewise
 for the `owned` property of `object!` values.
 
+For `series!` values, one has furthermore `length?` and `offset?` as defined
+in <<series-positioning-and-navigation,section 9.2>>.
+
+The function `sign?` yields the sign of a `number!` value as `+1`, `0` or `-1`.
+
+The functions `size?` and `suffix?` are defined on `file!` values (see <<file-system-functions,section 11.3.2>>).
+
+For `any-word!` values, information on their binding may be obtained by means of
+two built-in functions: `context?` and `index?`. These are explained in <<contexts,section 6.2>>.
+
+_**Functions on `vector!` and `money!` values have been requested see https://github.com/red/REP/issues/12[REP #12]
+and https://github.com/red/REP/issues/69[REP #69]**_
+
 ==== Accessors
-TBD
-For values of types `date! email! event! image! pair! time!` which admit component selection
+
+For values of types `date! email! event! image! pair! time!` which admit (pseudo-) component selection
 by "key" (see <<selection-by-key,section 5.6.2>>), the allowed key values are available
 from `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
+
+For `email!`, `image!` and `event!` values, the keys may be considered reflectors since
+their results do not directly correspond to an addressable component of the value.
 
 === Comparison of values
 
@@ -3110,7 +3122,7 @@ Note that `find` has a rich set of refinements:
 /match    => Match at current index only and return tail of match
 ....
 
-The following enquiry functions are available: `head? tail? length? index?`. The function
+The following enquiry and reflection functions are available: `head? tail? length? index?`. The function
 `empty?` is a synonym for `tail?`. The built-in function `offset?` yields the difference
 of the `index?` values of its two `series!` arguments. 
 
@@ -4483,11 +4495,8 @@ F    any-word?
 F    binary?
 F    bitset?
 F    block?
-F    body-of
 F    char?
-F    class-of
 N    complement?
-N    context?
 F    datatype?
 F    date?
 F    email?
@@ -4503,10 +4512,8 @@ F    handle?
 F    hash?
 F    image?
 F    immediate?
-A    index?
 F    integer?
 F    issue?
-F    keys-of
 F    lit-path?
 F    lit-word?
 F    logic?
@@ -4521,13 +4528,11 @@ F    paren?
 F    path?
 F    percent?
 F    refinement?
-A    reflect
 F    routine?
 F    scalar?
 F    series?
 F    set-path?
 F    set-word?
-F    spec-of
 F    string?
 F    tag?
 F    time?
@@ -4536,9 +4541,17 @@ N    type?
 F    typeset?
 F    unset?
 F    url?
-F    values-of
 F    vector?
 F    word?
+
+F    body-of
+F    class-of
+N    context?
+F    keys-of
+A    index?
+A    reflect
+F    spec-of
+F    values-of
 F    words-of
 ....
 ==== Making values
@@ -5506,7 +5519,6 @@ issue  section
  <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
  <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.5.1</a>
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/29">29</a>    <a href="#series-positioning-and-navigation">9.2</a>
  <a href="https://github.com/red/REP/issues/30">30</a>    <a href="#casting-of-values-as">5.5</a>
  <a href="https://github.com/red/REP/issues/67">67</a>    <a href="#equality-comparisons">5.8.1</a>
