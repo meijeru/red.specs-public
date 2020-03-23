@@ -1956,25 +1956,47 @@ Notes:
 . _**See https://github.com/red/red/issues/2625[issue #2625]**_
 . _**See https://github.com/red/red/issues/1960[issue #1960]**_
 
-=== Reflection on values
+=== Enquiry and reflection on values
+
+==== Overview
 
 Values of some types have (internal) properties of interest to the user which may
-usefully be exposed.
+usefully be exposed. Red makes these available through various means:
+* _enquiry_ functions, yielding a yes or no answer (`logic!` value)
+* _reflection_ functions, notably the `reflect` built-in function,
+and its shorthand forms `<property>-of`, as well as various other built-in functions
+* accessors, which have the form of selection keys (see <<selection-by-key,section 5.6.2>>)
+that select properties rather than components
+
+All enquiry functions end in `?`. Some reflection functions that do not yield a `logic!` value
+also end in `?`.
+
+Note that the `help` built-in function is typically making good use of thesefacilities. 
+
+==== Enquiry functions
+
+As already stated in <<type-and-typeset-related-functions,section 4.4>>, for every pre-defined type
+and typeset there is a built-in function which will test if a value is of that type
+(or a type in that typeset). These functions have the name of the type(set) with the `!` replaced by `?`.
+
+Other enquiry functions are:
+* `value?` which tests if a word has a value (see <<binding,section 6.3>>)
+* those testing arithmetic properties (see <<basic-arithmetic-operations,section 8.1>>):
+`NaN? positive? negative? zero? even? odd?`
+* those testing properties of series: `empty? single? head? tail? last?` (see
+<<series-positioning-and-navigation,section 9.2>> and `new-line?` (see
+<<conversion-fromto-textual-representation,section 11.1.1>>)
+* `complement?` which applies to `bitset!` values (see <<bitset,section 5.3.5>>)
+* those testing properties of files: `exists? dir?` (see <<file-system-functions,section 11.3.2>>)
+and ports: `open?` (see <<port-operations,section 11.4.2>>)
+
+==== Reflection functions
 
 This concerns first of all `any-word!` values for which information on their
 binding may be obtained by means of two built-in functions: `context?` and `index?`.
 These are explained in <<contexts,section 6.2>>. _**See https://github.com/red/REP/issues/14[REP #14]**_. 
 
-The function `complement?` is described in <<bitset,section 5.3.5>>.
-
-The function `face?` tests if an object is derived of the `face!` object which is
-explained in <<gui-system,section 13.3>>.
-
 _**Functions on vector! values have been requested see https://github.com/red/REP/issues/12[REP #12]**_
-
-For values of types `date! email! event! image! pair! time!` which admit component selection
-by "key" (see <<selection-by-key,section 5.6.2>>), the allowed key values are available
-from `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
 
 For values of type `object!`, `error!`, `port!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
@@ -1998,7 +2020,11 @@ by the _reactivity_ facility (see <<reactivity,section 13.4>>).
 These property can only be obtained by `reflect <expression> `'owner` resp. 'owned`. Likewise
 for the `owned` property of `object!` values.
 
-Note that the `help` built-in function is typically making good use of these reflection facilities. 
+==== Accessors
+TBD
+For values of types `date! email! event! image! pair! time!` which admit component selection
+by "key" (see <<selection-by-key,section 5.6.2>>), the allowed key values are available
+from `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
 
 === Comparison of values
 
@@ -3210,7 +3236,7 @@ Note: for programming convenience, the following functions take `none` as argume
 `clear find remove select take`.
 
 The function `modify` is used to change the `owned` property of a series value
-(see <<object,section 5.3.6>> and <<reflection-on-values,section 5.7>>).
+(see <<object,section 5.3.6>> and <<enquiry-and-reflection-on-values,section 5.7>>).
 It has three arguments: the series value, the word `'owned`, and a block of
 the owner object and field name, or the value `none`.
 
@@ -4419,7 +4445,7 @@ See also <<type-hierarchy,section 4.3>>
 
 The functions are classified by functionality: 
 
-* <<enquiry,enquiry>>, i.e. properties of types and values
+* <<enquiry-and-reflection,enquiry-and-reflection>>, i.e. properties of types and values
 * <<making-values,making values>>
 * <<converting-values,converting values>>
 * <<comparison,comparison>>
@@ -4442,8 +4468,8 @@ The letter in front of each word gives the type: `A` for `action!`, `N` for `nat
 derived from another one, the two are written on one line, and the most frequently
 used one is written first.
 
-==== Enquiry
-see <<type-and-typeset-related-functions,sections 4.4>> and <<reflection-on-values,5.7>>
+==== Enquiry and reflection
+see <<enquiry-and-reflection-on-values,5.7>>
 ....
 F    action?
 F    all-word?
@@ -5479,10 +5505,12 @@ issue  section
  <a href="https://github.com/red/REP/issues/9"> 9</a>    <a href="#formal-grammar">3.2</a>, <a href="#introduction-1">5.1</a>
  <a href="https://github.com/red/REP/issues/10">10</a>    <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
  <a href="https://github.com/red/REP/issues/11">11</a>    <a href="#console-functions">11.5.1</a>
- <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/14">14</a>    <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/29">29</a>    <a href="#series-positioning-and-navigation">9.2</a>
  <a href="https://github.com/red/REP/issues/30">30</a>    <a href="#casting-of-values-as">5.5</a>
  <a href="https://github.com/red/REP/issues/67">67</a>    <a href="#equality-comparisons">5.8.1</a>
+ <a href="https://github.com/red/REP/issues/68">68</a>    <a href="#enquiry-and-reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/69">69</a>    <a href="#enquiry-and-reflection-on-values">5.7</a>
 </pre>
 ++++
