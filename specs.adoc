@@ -1984,9 +1984,9 @@ Other enquiry functions are:
 
 * `value?` which tests if a word has a value (see <<binding,section 6.3>>)
 * `NaN? positive? negative? zero? even? odd?` which test arithmetic properties
-(see <<basic-arithmetic-operations,section 8.1>>):
+(see <<basic-arithmetic-operations,section 8.1>>)
 * `empty? single? head? tail? last?` which test properties of series
-(see <<series-positioning-and-navigation,section 9.2>>
+(see <<series-positioning-and-navigation,section 9.2>>)
 * `new-line?` which tests for the new-line marker
 (see <<conversion-fromto-textual-representation,section 11.1.1>>)
 * `complement?` which applies to `bitset!` values (see <<bitset,section 5.3.5>>)
@@ -2033,9 +2033,13 @@ and https://github.com/red/REP/issues/69[REP #69]**_
 
 ==== Accessors
 
-Values of types `email!`, `image!` and `event!` admit (pseudo-)component selection
+Values of types `email!` and `image!` admit (pseudo-)component selection
 by "key" (see <<selection-by-key,section 5.6.2>>). These keys may be considered reflectors since
-their results do not directly correspond to an addressable component of the value.
+their results do not correspond to a single component of the series value.
+
+The components of `time!`, `date!`, `pair!` and `event!` values that are selected by keys (or
+their equivalent indexes in the case of `time!`, `date!` and `pair!`) are not considered the
+result of reflection, since they are true components. 
 
 _**The reflection facilities requested on `vector!` and `money!` values might
 also be implemented by accessors**_
