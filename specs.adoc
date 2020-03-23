@@ -1874,7 +1874,7 @@ Values of type `time!`, `date!`, `pair!`, `email!` and `image!` also admit compo
 by specific words, and values of type `event!` have this as the only way of selection.
 However, here the selection is only possible by `<path>` and `<path>:` expressions,
 not by `select` and `put`. The allowed values of the keys for each of these types
-are stored in `system/catalog/accessors`.
+are stored in `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
 
 In case of `time!`, `date!`, `email!`, `image!` and `event!`, the result is obtained by performing
 a certain calculation, as follows.
@@ -1977,53 +1977,55 @@ Note that the `help` built-in function is typically making good use of these fac
 ==== Enquiry functions
 
 As already stated in <<type-and-typeset-related-functions,section 4.4>>, for every pre-defined type
-and typeset there is a built-in function which will test if a value is of that type
-(or a type in that typeset). These functions have the name of the type(set) with the `!` replaced by `?`.
+and typeset there is a built-in function which will test if a value is of that type,
+or a type in that typeset. These functions have the name of the type(set) with the `!` replaced by `?`.
 
 Other enquiry functions are:
 
 * `value?` which tests if a word has a value (see <<binding,section 6.3>>)
-* those testing arithmetic properties (see <<basic-arithmetic-operations,section 8.1>>):
-`NaN? positive? negative? zero? even? odd?`
-* those testing properties of series: `empty? single? head? tail? last?` (see
-<<series-positioning-and-navigation,section 9.2>> and `new-line?` (see
-<<conversion-fromto-textual-representation,section 11.1.1>>)
+* `NaN? positive? negative? zero? even? odd?` which test arithmetic properties
+(see <<basic-arithmetic-operations,section 8.1>>):
+* `empty? single? head? tail? last?` which test properties of series
+(see <<series-positioning-and-navigation,section 9.2>>
+* `new-line?` which tests for the new-line marker
+(see <<conversion-fromto-textual-representation,section 11.1.1>>)
 * `complement?` which applies to `bitset!` values (see <<bitset,section 5.3.5>>)
-* those testing properties of files: `exists? dir?` (see <<file-system-functions,section 11.3.2>>)
-and ports: `open?` (see <<port-operations,section 11.4.2>>)
+* `exists? dir?` which test properties of files
+(see <<file-system-functions,section 11.3.2>>)
+* `open?` (see <<port-operations,section 11.4.2>>)
 
 ==== Reflection functions
 
-For values of type `object!`, `error!`, `port!` and `map!`, which consist of key/value pairs,
+The general function is `reflect <expression> <property>`, where the `<property>`
+is expressed as a `word!` value. Shorthand functions `<property>-of <expression>`
+exist in almost all cases: e.g. `words-of <expression>` is defined as `reflect <expression> 'words`.
+
+* For values of type `object!`, `error!`, `port!` and `map!`, which consist of key/value pairs,
 the collection of keys, that of values, and the set of key/value pairs may each
 be obtained as a block by means of the built-in functions `words-of` `values-of`
 and `body-of`. For convenience, `keys-of` is defined as synonym for `words-of`.
-In addition, for objects there is the property `class-of` which yields
+* In addition, for objects there is the property `class-of` which yields
 the unique number that is given to each object that is created from a `<spec>`, and is
 inherited by objects _derived_ from it (see <<object,rule `S129`>>).
 This property is `1` for `error!` values, and `2` for `port!` values.
-
-For `any-function!` values, one can obtain the full `<argument-spec>` through
+* For `any-function!` values, one can obtain the full `<argument-spec>` through
 the built-in function `spec-of` and the list of formal argument names through
 the function `words-of` _**not yet implemented**_. For `function!` and `routine!` values, there is in
 addition the function `body-of` which yields the function/routine body.
-
-All functions `<property>-of <expression>` are shorthand for the general function
-`reflect <expression> <property>` e.g. `words-of <expression>` is defined as `reflect <expression> 'words`.
-
-For `series!` values, the properties `owner` and `owned` have been defined which are notably used
-by the _reactivity_ facility (see <<reactivity,section 13.4>>).
-These property can only be obtained by `reflect <expression> `'owner` resp. 'owned`. Likewise
+* For `series!` values, the properties `owner` and `owned` have been defined which are notably used
+by the _reactivity_ facility (see <<reactivity,section 13.4>>). Note that these properties
+can only be obtained by `reflect <expression> `'owner` resp. 'owned`. Likewise
 for the `owned` property of `object!` values.
 
-For `series!` values, one has furthermore `length?` and `offset?` as defined
+Other functions:
+
+* For `series!` values, one has furthermore `length?` and `offset?` as defined
 in <<series-positioning-and-navigation,section 9.2>>.
-
-The function `sign?` yields the sign of a `number!` value as `+1`, `0` or `-1`.
-
-The functions `size?` and `suffix?` are defined on `file!` values (see <<file-system-functions,section 11.3.2>>).
-
-For `any-word!` values, information on their binding may be obtained by means of
+* The function `sign?` yields the sign of a `number!` value
+(see <<basic-arithmetic-operations,section 8.1>>).
+* The functions `size?` and `suffix?` are defined on `file!` values
+(see <<file-system-functions,section 11.3.2>>).
+* For `any-word!` values, information on their binding may be obtained by means of
 two built-in functions: `context?` and `index?`. These are explained in <<contexts,section 6.2>>.
 
 _**Functions on `vector!` and `money!` values have been requested see https://github.com/red/REP/issues/12[REP #12]
@@ -2031,12 +2033,12 @@ and https://github.com/red/REP/issues/69[REP #69]**_
 
 ==== Accessors
 
-For values of types `date! email! event! image! pair! time!` which admit (pseudo-) component selection
-by "key" (see <<selection-by-key,section 5.6.2>>), the allowed key values are available
-from `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
-
-For `email!`, `image!` and `event!` values, the keys may be considered reflectors since
+Values of types `email!`, `image!` and `event!` admit (pseudo-)component selection
+by "key" (see <<selection-by-key,section 5.6.2>>). These keys may be considered reflectors since
 their results do not directly correspond to an addressable component of the value.
+
+_**The reflection facilities requested on `vector!` and `money!` values might
+also be implemented by accessors**_
 
 === Comparison of values
 
