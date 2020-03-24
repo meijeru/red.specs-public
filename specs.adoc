@@ -1730,7 +1730,9 @@ in which the characters have been decoded
 * `debase` and `enbase` have been described in <<binary,section 5.2.12>>
 * `load-csv` converts a CSV text (`string!` value) to a block of rows, where each row is a block of fields
 * `to-csv` converts data in the form of a block of fixed size records, a block of block records, a map of columns
-or an object, into CSV text 
+or an object, into CSV text (`string!` value)
+* `load-json` converts a JSON text (`string!` value) to a Red value
+* `to-json` converts a Red value into JSON text (`string!` value)
 * `compress` takes a `binary!` or `any-string!` argument and compresses it according to GZIP (default),
 ZLIB or DEFLATE format; the `any-string!` argument is first converted to `binary!` using UTF-8 encoding
 * `decompress` takes a `binary!` argument and decompresses it according to GZIP (default),
