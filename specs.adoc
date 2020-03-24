@@ -2019,9 +2019,11 @@ for the `owned` property of `object!` values.
 
 Other functions:
 
-* For `series!` values, one has furthermore `length?` and `offset?` as defined
-in <<series-positioning-and-navigation,section 9.2>>.
-* The function `sign?` yields the sign of a `number!` value
+* For any value, `type?` will yield its type as a `datatype!` value. It has a refinement
+`/word` which will yield the type as a `word!` value.
+* The functions `length?` and `offset?` are defined for `series!` values, 
+(see <<series-positioning-and-navigation,section 9.2>>).
+* The function `sign?` yields the sign of a `number!` or `money!` value
 (see <<basic-arithmetic-operations,section 8.1>>).
 * The functions `size?` and `suffix?` are defined on `file!` values
 (see <<file-system-functions,section 11.3.2>>).
@@ -4463,7 +4465,7 @@ See also <<type-hierarchy,section 4.3>>
 
 The functions are classified by functionality: 
 
-* <<enquiry-and-reflection,enquiry-and-reflection>>, i.e. properties of types and values
+* <<enquiry-and-reflection,enquiry-and-reflection>>
 * <<making-values,making values>>
 * <<converting-values,converting values>>
 * <<comparison,comparison>>
@@ -4489,6 +4491,8 @@ used one is written first.
 ==== Enquiry and reflection
 see <<enquiry-and-reflection-on-values,5.7>>
 ....
+
+1.   Enquiry
 F    action?
 F    all-word?
 F    any-block?
@@ -4543,22 +4547,30 @@ F    string?
 F    tag?
 F    time?
 F    tuple?
-N    type?
 F    typeset?
 F    unset?
 F    url?
 F    vector?
 F    word?
 
+2.   Reflection
+A    reflect
 F    body-of
 F    class-of
-N    context?
 F    keys-of
-A    index?
-A    reflect
 F    spec-of
 F    values-of
 F    words-of
+
+N    context?
+A    length?
+A    index?
+F    offset?
+N    sign?
+N    size?
+F    suffix?
+N    type?
+N    value?
 ....
 ==== Making values
 see <<creation-of-values-make,sections 5.3>>
@@ -5276,6 +5288,7 @@ term                                    section
 
 action                                  <a href = "#parent-types">4.2.6</a>, <a href = "#action-type">7.4.2</a>
   inherited action                      <a href = "#parent-types">4.2.6</a>
+accessors                               <a href = "#components-of-values">5.6</a>, <a href = "#enquiry-and-reflection-on-values">5.7</a>
 active type                             <a href = "#types-according-to-the-evaluation-of-their-values">4.2.5</a>
 application of a function               <a href = "#expressions-and-evaluation-order">3.3</a>
 arity of a function                     <a href = "#expressions-and-evaluation-order">3.3</a>
@@ -5357,10 +5370,11 @@ double quote (U+0022)                   <a href = "#char">5.2.6</a>
 draw dialect                            <a href = "#dialects">2.5</a>, <a href = "#gui-system">13.3</a>
 DSL (Domain Specific Language)          <a href = "#dialects">2.5</a>
 end-of-line comment                     <a href = "#textual-structure">3.1</a>, <a href = "#formal-grammar">3.2</a>
+enquiry                                 <a href = "#enquiry-and-reflection-on-values">5.7</a>
 equality comparison                     <a href = "#equality-comparisons">5.8.1</a>
 error spec dialect                      <a href = "#dialects">2.5</a>, <a href = "#error">5.3.7</a>
 escape (U+001B)                         <a href = "#char">5.2.6</a>
-escaped character                       <a href = "#char">5.2.6</a>, <a href = "#">5.2.8-10</a>
+escaped character                       <a href = "#char">5.2.6</a>, <a href = "#file">5.2.8-10</a>
 Ethereum Virtual Machine (EVM)          <a href = "#dialects">2.5</a>
 evaluation                              <a href = "#evaluation-rules">7</a>
   shortcut evaluation                   <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
@@ -5432,6 +5446,7 @@ Read Evaluate Print Loop (REPL)         <a href = "#red-toolchain">2.2</a>
 Red toolchain                           <a href = "#red-toolchain">2.2</a>
 Red/C3 (dialect)                        <a href = "#dialects">2.5</a>
 Red/System (dialect)                    <a href = "#dialects">2.5</a>, <a href = "#additional-documentation">18</a>
+reflection                              <a href = "#enquiry-and-reflection-on-values">5.7</a>
 remote file access (disk-cached)        <a href = "#file-and-url-io">11.3.1</a>
 REPL (Read Evaluate Print Loop)         <a href = "#red-toolchain">2.2</a>
 RFC3986 (URI)                           <a href = "#port-components">11.4.1</a>
