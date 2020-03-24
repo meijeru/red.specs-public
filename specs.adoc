@@ -5044,15 +5044,16 @@ system/   object!
         language*      
         locale         
         locale*        
-        months         block!       see section <a href = "#date">5.2.14</a>
+        months         block!       see <a href = "#date">section 5.2.14</a>
         days           block!       names of days
+        currencies     object!      names of currencies, see <a href = "#money">section 5.2.18</a>
     options/    object!             
         boot           file!        location of Red (console) executable
         home           
-        path           file!        current working directory, see section <a href = "#file-system-functions">11.3.2</a>
+        path           file!        current working directory, see <a href = "#file-system-functions">section 11.3.2</a>
         script         
         cache          file!        cache folder used by the Red toolchain
-        thru-cache     file!        see section <a href = "#file-and-url-io">11.3.1</a>
+        thru-cache     file!        see <a href = "#file-and-url-io">section 11.3.1</a>
         args           
         do-arg         
         debug          logic!
@@ -5071,10 +5072,11 @@ system/   object!
         args           
     standard/   object!
        header          object!        see <a href = "#metadata-for-the-toolchain">section 17</a>
+       port            object!        see <a href = "#ports>section 11.4</a>
        error           object!        see <a href = "#composition">section 12.1.1</a>
-       scheme          object!        see <a href = "#port-components">section 11.4.1</a>
        url-parts       object!        see <a href = "#port-components">section 11.4.1</a>
        file-info       object!
+       scheme          object!        see <a href = "#port-components">section 11.4.1</a>
     lexer       object!               run-time lexer program + data
     console/    object!               console program + data
         prompt         string!        see <a href = "#console-functions">section 11.5.1</a>
