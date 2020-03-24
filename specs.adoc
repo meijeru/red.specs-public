@@ -1653,7 +1653,7 @@ of a binary value; if the number of characters is odd, the last one is ignored
 * `image!` values: yields a binary value with 4 bytes for each pixel
 * `any-list!` values: these should contain only values of the types indicated above, or other `any-list!` values;
 the results for the components are concatenated; `any-list!` components are treated recursively
-_**see issues https://github.com/red/red/issues/4272[#4272] and https://github.com/red/red/issues/4273[#4273]**_
+_**see issue https://github.com/red/red/issues/4273[#4273]**_
 
 ==== Target types in `any-word!`, `refinement!` and `issue!`
 
@@ -5529,7 +5529,6 @@ issue  section
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3570">3570</a>   <a href="#inputoutput">11</a>
 <a href= "https://github.com/red/red/issues/3595">3595</a>   <a href="#function">5.3.8</a>
-<a href= "https://github.com/red/red/issues/4272">4272</a>   <a href="#target-type-binary">5.4.10</a>
 <a href= "https://github.com/red/red/issues/4273">4273</a>   <a href="#target-type-binary">5.4.10</a>
 <a href= "https://github.com/red/red/issues/4327">4327</a>   <a href="#series-positioning-and-navigation">9.2</a>
 
