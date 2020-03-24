@@ -1728,7 +1728,9 @@ _Unicode 7.0 case folding table_ (only character pairs with status C and S)
 (`%<hex-byte>`, see sections <<file,5.2.8/9/10 and 12>>) into a `string!` value
 in which the characters have been decoded
 * `debase` and `enbase` have been described in <<binary,section 5.2.12>>
-* `decompress` takes a binary argument and decompresss it according to GZIP (default),
+* `compress` takes a `binary!` or `any-string!` argument and compresses it according to GZIP (default),
+ZLIB or DEFLATE format; the `any-string!` arguemtn is first converted to `binary!` using UTF-8 encoding
+* `decompress` takes a `binary!` argument and decompresses it according to GZIP (default),
 ZLIB or DEFLATE format
 
 === Casting of values (`as`)
