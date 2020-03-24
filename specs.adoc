@@ -3845,7 +3845,8 @@ A function exists to construct the `spec` object for a URI given a Red value
 of type `url!` or `string!`: `decode-url`. It follows RFC3986 with some simplifications.
 For a `file!` value, the `spec` object will have the field `scheme` set to `file` and
 the fields `path` and `target` to the directory (folder) and file name within the
-directory respectively.
+directory respectively. The counterpart to this function also exists: `encode-url`,
+which takes a `spec` object and produces the URI as a `url!` value.
 
 ==== Port operations
 
