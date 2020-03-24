@@ -5182,6 +5182,7 @@ script ( 300 )
     too-long -> "Content too long"
     invalid-char -> ["Invalid char! value:" :arg1]
     bad-loop-series -> ["Loop series changed to invalid value:" :arg1]
+    invalid-obj-evt -> ["invalid object event handler:" :arg1]
     parse-rule -> ["PARSE - invalid rule or usage of rule:" :arg1]
     parse-end -> ["PARSE - unexpected end of rule after:" :arg1]
     parse-invalid-ref -> ["PARSE - get-word refers to a different series!" :arg1]
@@ -5208,6 +5209,7 @@ script ( 300 )
     react-bad-obj -> "REACT - target can only contain object values"
     react-gctx -> ["REACT - word" :arg1 "is not a reactor's field"]
     lib-invalid-arg -> ["LIBRED - invalid argument for" :arg1]
+    buffer-not-enough -> ["Buffer size too small, should be:" :arg1]
 ....
 === Math Errors
 ....
@@ -5220,8 +5222,16 @@ math ( 400 )
 ....
 access ( 500 )
     cannot-open -> ["cannot open:" :arg1]
+    cannot-close -> ["cannot close:" :arg1]
     invalid-utf8 -> ["invalid UTF-8 encoding:" :arg1]
+    not-open -> ["port is not open:" :arg1]
     no-connect -> ["cannot connect:" :arg1 "reason: timeout"]
+    no-scheme -> ["missing port scheme:" :arg1]
+    unknown-scheme -> ["scheme is unknown:" :arg1]
+    invalid-spec -> ["invalid spec or options:" :arg1]
+    invalid-port -> ["invalid port object (invalid field values)"]
+    invalid-actor -> ["invalid port actor (must be handle or object)"]
+    no-port-action -> "port action not supported"
 ....
 === User Errors
 ....
@@ -5237,6 +5247,7 @@ internal ( 900 )
     wrong-mem -> "failed to release memory"
     stack-overflow -> "stack overflow"
     too-deep -> "block or paren series is too deep to display"
+    no-cycle -> "circular reference not allowed"
     feature-na -> "feature not available"
     not-done -> "reserved for future use (or not yet implemented)"
     invalid-error -> "error object or fields were not valid"
