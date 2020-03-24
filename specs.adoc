@@ -4600,17 +4600,22 @@ R    as-color
 R    as-ipv4
 N    as-pair
 R    as-rgba
+N    compress
 N    debase
 N    dehex
 N    decompress
 N    enbase
 F    hex-to-rgb
+F    load-csv
+F    load-json
 N    lowercase
 A    to
 F    to-binary
 F    to-bitset
 F    to-block
 F    to-char
+F    to-csv
+F    to-json
 F    to-date
 F    to-email
 F    to-file
@@ -4664,7 +4669,7 @@ and <<evaluation-rules,7>>
 ....
 N    all
 N    any
-N    apply
+N    apply (TBD)
 N    bind
 N    context?
 N    do
@@ -4820,11 +4825,13 @@ F    clean-path
 A    close
 A    create
 R    create-dir
+F    decode-url
 A    delete
 F    dir
 F    dir?
 F    dirize
 F    ellipsize-at
+F    encode-url
 R    exists?
 F    exists-thru?
 A    form
@@ -4852,6 +4859,7 @@ A    query
 A    read
 R    read-clipboard
 F    read-thru
+F    register-scheme
 A    rename
 F    request-dir
 F    request-file
@@ -4918,6 +4926,7 @@ F    set-flag
 F    set-focus
 F    show
 F    size-text
+F    stop-events
 F    stop-reactor
 F    unview
 F    update-font-faces
@@ -4927,9 +4936,11 @@ F    within?
 ==== Reactivity
 see <<reactivity,section 13.4>>
 ....
+F    deep-reactor
 O    is       F is~ (hidden)
 F    react
 F    react?
+F    reactor
 R    set-quiet
 ....
 ==== Environment and OS-related
