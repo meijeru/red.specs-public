@@ -3212,6 +3212,9 @@ null bytes from binary, or `none` from block or hash value                      
 |pad <series>                  |string padded on right side with spaces      |at head
 |===
 
+The functions `change`, `replace`, `alter`, `insert`, `append` and `repend` take an `<expression>` argument
+that evaluates to either a single component of the series, or to a sub-series.
+
 The function `remove-each <counter> <series> <condition-block>` is described in <<repeated-execution-loops,section 10.2>>.
 
 The function `reverse` is also defined on values of type `pair!` and `tuple!`, but in these cases
@@ -3225,7 +3228,7 @@ The functions `append` and `insert` are also defined on values of type `bitset!`
 The effect of both is to set the bits corresponding to the argument (a value
 of type `char!`, `string!`, `integer!` or `block!` of integers).
 
-The function `pad` in fact accepts an argument of any type, which will be `form`ed into a `string!` value
+The function `pad` in fact accepts an argument of any type, which will be `form` ed into a `string!` value
 if needed.
 
 The function `sort` is only defined on values of type `string!`, `binary!`, `vector!`, `block!`, `hash!` and `paren!`.
