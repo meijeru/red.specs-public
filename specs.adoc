@@ -3214,11 +3214,10 @@ null bytes from binary, or `none` from block or hash value                      
 
 The functions `change`, `replace`, `alter`, `insert`, `append` and `repend` take an `<expression>` argument
 that evaluates to either a single component of the series or to a sub-series. For `binary!` series,
-this argument may be an `integer!` value as well, whose binary equivalent is truncated to 8 bits,
-or a `char!` or `string!` value, which is converted to `binary!` according to UTF-8; an `any-list!
-value will have its components concatenated. For `any-string!` series, the `<expression>` argument,
-if not a `char!` or `any-string!` value, is first `form`ed; `any-list!` values will have their
-components concatenated after being `form`ed.
+this argument may be of any type for which `to binary!` is defined (see <<target-type-binary,section 5.4.11>>_);
+note that for `integer!` values the binary equivalent is truncated to 8 bits.
+For `any-string!` series, the `<expression>` argument, if not a `char!` or `any-string!` value,
+is first `form`ed; `any-list!` values will have their components concatenated after being `form`ed.
 
 The function `remove-each <counter> <series> <condition-block>` is described in <<repeated-execution-loops,section 10.2>>.
 
