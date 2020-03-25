@@ -1827,8 +1827,8 @@ both in case of extraction and changing, and also for values of indirect type in
 on component extraction of values of indirect type an index out of range yields a `none` result.
 
 Finally, note that the components of a `binary!` value are yielded as (unsigned) integers `0..255`,
-on extraction; on changing, any `integer!` value is allowed, but its binary representation is truncated
-to the lowest 8 bits.
+on extraction; on changing, any `integer!` or `char!` value is allowed, but its binary representation
+is truncated to the lowest 8 bits.
 
 ==== Selection by "key" 
 
