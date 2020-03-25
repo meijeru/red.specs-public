@@ -3213,7 +3213,8 @@ null bytes from binary, or `none` from block or hash value                      
 |===
 
 The functions `change`, `replace`, `alter`, `insert`, `append` and `repend` take an `<expression>` argument
-that evaluates to either a single component of the series, or to a sub-series.
+that evaluates to either a single component of the series, or to a sub-series. For `binary!` series,
+this argument may be an `integer!` value as well.
 
 The function `remove-each <counter> <series> <condition-block>` is described in <<repeated-execution-loops,section 10.2>>.
 
