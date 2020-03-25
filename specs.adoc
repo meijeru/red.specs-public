@@ -908,7 +908,8 @@ where `<base2-byte>` is a group of 8 digits `0` or `1`, `<hex-byte>` is two hexa
 `0-9 A-F a-f` and `<base64-char>` is a single character from the set `A-Z a-z 0-9 + /`;
 the individual elements within the `#{ }` brackets: `<hex-byte>` or `<base64-char>`
 may be separated from the brackets and from each other by whitespace. The same goes for the
-individual `0` and `1` digits making up each `<base2-byte>`.
+individual `0` and `1` digits making up each `<base2-byte>`. For computational purposes,
+`binary!` values have components that are (unsigned) integers `0..255`.
 
 Examples:
 ....
@@ -1825,6 +1826,10 @@ Indexing with values outside the allowed range lead to an error for values of di
 both in case of extraction and changing, and also for values of indirect type in case of changing;
 on component extraction of values of indirect type an index out of range yields a `none` result.
 
+Finally, note that the components of a `binary!` value are yielded as (unsigned) integers `0..255`,
+on extraction; on changing, any `integer!` value is allowed, but its binary representation is truncated
+to the lowest 8 bits.
+
 ==== Selection by "key" 
 
 This is possible for values that are sequences (with types in `series!`,
@@ -1973,7 +1978,7 @@ usefully be exposed. Red makes these available through various means:
 * _enquiry_ functions, yielding a yes or no answer (`logic!` value)
 * _reflection_ functions, notably the `reflect` built-in function,
 and its shorthand forms `<property>-of`, as well as various other built-in functions
-* accessors, which have the form of selection keys (see <<selection-by-key,section 5.6.2>>)
+* _accessors_, which have the form of selection keys (see <<selection-by-key,section 5.6.2>>)
 that select properties rather than components
 
 All enquiry functions end in `?`. Some reflection functions that do not yield a `logic!` value
