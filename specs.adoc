@@ -333,7 +333,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`bigint!`        |integers of arbitrary size
 |`float!`         |floating point (decimal) numbers, binary encoding
 |`percent!`       |floating point numbers expressed as a percentage
-|`money!`         |monetary amounts, 11-digit decimal encoding
+|`money!`         |monetary amounts, 11-digit decimal encoding, with currency code
 |`time!`          |time intervals or points in time, stored as a floating point number of seconds
 |`date!`          |dates according to the Gregorian calendar, optionally with time of day and timezone
 |`pair!`          |2-dimensional coordinates or size 
@@ -492,7 +492,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`bigint!`     |using `make`     |indirect  |atomic           |N           |passive    |
 |`float!`      |lexical          |direct    |atomic           |N           |passive    |
 |`percent!`    |lexical          |direct    |atomic           |N           |passive    |`float!`
-|`money!`      |lexical          |direct    |atomic           |N           |passive    |
+|`money!`      |lexical          |direct    |composite        |N           |passive    |
 |`time!`       |lexical          |direct    |composite        |N           |passive    |`float!`
 |`date!`       |lexical          |direct    |composite        |N           |passive    |
 |`pair!`       |lexical          |direct    |composite        |N           |passive    |
@@ -1502,6 +1502,8 @@ the first 17 of the resulting 22 digits are interpreted as the integer part of t
 and the last 5 as the fractional part
 * Making `money!` values from `integer!` `float!` and `any-string!` values: this follows the
 rules for conversion by `to`; refer to the <<target-type-money,next section>>
+* Making `money!` values from `word!` values: the word should be a valid currency code;
+the result is a `money!` value of `$0.0000` with the given currency
 * Making a `date!` value from an `any-list!` value: the block should have 3 to 7 components;
 if any of them is a `word!` value, the value it refers to will be retrieved.
 The first 3 components should be of `integer!` type and are interpreted
@@ -1716,6 +1718,8 @@ except that an integer argument is not allowed.
 as a 16 character `issue!` value, with leading zeroes if needed
 * `to-local-date` returns the date with local zone
 * `to-UTC-date` returns the date with UTC zone
+* `as-money` takes a word argument and an integer or float argument and combines
+them into a `money!` value; thus `as-money w a` is equivalent to `make money! reduce [w a]`
 * `as-pair` takes two integer or float arguments and combines them into a `pair!` value,
 thus `as-pair x y` is equivalent to `to-pair reduce [x y]`
 * `as-color` takes three integer arguments `0..255` and makes a `tuple!` value
@@ -1812,12 +1816,13 @@ Note further that path expressions cannot be used to index `file!` and `url!` va
 as these path expressions will be interpreted as "extending" the file or url path,
 as explained in <<path-type,section 7.3.5>>.
 
-Values of the direct types `time!`, `date!`, `pair!` and `tuple!` also admit component selection
+Values of the direct types `money!`, `time!`, `date!`, `pair!` and `tuple!` also admit component selection
 by "indexing", using both path expressions and `pick` (but not `poke`). In the case of `tuple!` values,
 this indexing treats the tuple as a sequence. In the other cases, the indexes are defined
 to correspond to named components, which can therefore also be used in selection by "key"
 (see next section). The correspondences are as follows:
 
+* for `money!` values: `1 ~ code 2 ~ amount`
 * for `time!` values: `1 ~ hour 2 ~ minute 3 ~ second`
 * for `date!` values: `1 ~ date 2 ~ year 3 ~ month 4 ~ day 5 ~ zone 6 ~ time 7 ~ hour 8 ~ minute
 9 ~ second 10 ~ weekday 11 ~ yearday = julian 12 ~ timezone 13 ~ week 14 ~ isoweek`
@@ -1888,17 +1893,19 @@ selecting a component which is a value of type `any-function!` by means of a
 path expression will evaluate the component, and thus lead to its application,
 whereas selection by `select` will not. _**See https://github.com/red/red/issues/3482[issue #3482]**_
 
-Values of type `time!`, `date!`, `pair!`, `email!` and `image!` also admit component selection
+Values of type `money!`, `time!`, `date!`, `pair!`, `email!` and `image!` also admit component selection
 by specific words, and values of type `event!` have this as the only way of selection.
 However, here the selection is only possible by `<path>` and `<path>:` expressions,
 not by `select` and `put`. The allowed values of the keys for each of these types
 are stored in `system/catalog/accessors` which is a block of pairs `<type-name><block of key words>`.
 
-In case of `time!`, `date!`, `email!`, `image!` and `event!`, the result is obtained by performing
-a certain calculation, as follows.
+In case of `money!`, `time!`, `date!`, `email!`, `image!` and `event!`, the result is obtained as follows.
 
 Extracting a component:
 
+* `money!` values: the `code` component is retrieved as a `word!` value, using a stored index,
+from the list of allowed currencies, or it is `none`; the `amount` component is retrieved as
+a `money!` value without the currency indicated
 * `time!` values: given the stored number of seconds, the `hour` and `minute` components
 are the result of finding the whole number of `3600` seconds in the total, and then the
 whole number of `60` seconds in the remainder; the `second` component is what remains after that
@@ -1948,6 +1955,7 @@ Selection by a key of the wrong type or wrong value leads to an error.
 |===
 
 |type       |index values |built-in functions |key values or types   | built-in functions
+|money!     |1 2          |pick        |code amount
 |time!      |1 2 3        |pick        |hour minute second                  |
 |date!      |1 .. 14      |pick        |date year month day zone time hour minute second weekday yearday julian timezone week isoweek |
 |pair!      |1 2          |pick        |x y                                 |
@@ -2048,21 +2056,19 @@ Other functions:
 * For `any-word!` values, information on their binding may be obtained by means of
 two built-in functions: `context?` and `index?`. These are explained in <<contexts,section 6.2>>.
 
-_**Functions on `vector!` and `money!` values have been requested see https://github.com/red/REP/issues/12[REP #12]
-and https://github.com/red/REP/issues/69[REP #69]**_
+_**Functions on `vector!` values have been requested see https://github.com/red/REP/issues/12[REP #12]**_
 
 ==== Accessors
 
 Values of types `email!` and `image!` admit (pseudo-)component selection
 by "key" (see <<selection-by-key,section 5.6.2>>). These keys may be considered reflectors since
-their results do not correspond to a single component of the series value.
+their results do not correspond to a single (indexable) component of the series value.
 
-The components of `time!`, `date!`, `pair!` and `event!` values that are selected by keys (or
-their equivalent indexes in the case of `time!`, `date!` and `pair!`) are not considered the
+The components of `money!`, `time!`, `date!`, `pair!` and `event!` values that are selected by keys (or
+their equivalent indexes in the case of `money!`, `time!`, `date!` and `pair!`) are not considered the
 result of reflection, since they are true components. 
 
-_**The reflection facilities requested on `vector!` and `money!` values might
-also be implemented by accessors**_
+_**The reflection facilities requested on `vector!` values might also be implemented by accessors**_
 
 === Comparison of values
 
