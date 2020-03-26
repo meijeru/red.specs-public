@@ -1637,8 +1637,9 @@ The function `to-tuple` is defined for
 * `binary!` values: yields the first 12 bytes or fewer as tuple components; if only 1 or 2 bytes are 
 present, components `0` are added
 * `string!` values: yields the result of `load` or an error
-* `issue!` values: interprets up to 24 characters, if possible, as a sequence of hexadecimal numbers `0..255`;
-further characters are ignored; if the number of characters is odd and less than 24, the last one is ignored
+* `issue!` values: interprets up to 24 characters, if possible, as tuple components, taking each two
+as a hexadecimal number `0..255`; further characters are ignored; if only 1 or 2 numbers are  present,
+components `0` are added; if the number of characters is odd and less than 24, the last one is ignored
 _**See https://github.com/red/red/issues/2329[issue #2329]**_
 * `any-list!` values: these should contain only `integer!` or `float!` values in the range `0..255`;
 yields the first 12 components or fewer as tuple components;  if only 1 or 2 values are 
