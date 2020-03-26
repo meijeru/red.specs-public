@@ -3757,8 +3757,8 @@ note that `read <directory>` will yield a block with the content of the director
 * `make-dir` will create the directory that is indicated by its `file!` argument;
 if this contains more than one directory level, and the `/deep` refinement
 is specified, the intermediate directory or directories will also be created
-* `clean-path` will normalize its `file!` argument to an absolute path
-where `.` and `..` are eliminated
+* `clean-path` will normalize its `file!` or `url!` argument to an absolute path
+where `.` and `..` are eliminated _**See https://github.com/red/red/issues/3571[issue #3571]**_
 * `normalize-dir` will invoke `clean-path` and prefix the current working directory
 if the file path indicated by its argument (`word! path!` or `file!`)
 is relative, and invoke `dirize` afterwards
@@ -5575,6 +5575,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-any-string">5.4.3</a>
 <a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/3570">3570</a>   <a href="#inputoutput">11</a>
+<a href= "https://github.com/red/red/issues/3571">3571</a>   <a href="#file-system-functions">11.3.2</a>
 <a href= "https://github.com/red/red/issues/3595">3595</a>   <a href="#function">5.3.8</a>
 <a href= "https://github.com/red/red/issues/4068">4068</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/4273">4273</a>   <a href="#target-type-binary">5.4.10</a>
