@@ -2873,7 +2873,7 @@ functions are as follows.
 (operand 1 if equal)
 |`sum`                 |1       |`any-list!`^4^ `vector!` |               |same as individual numbers +
 (refer to table below if not all numbers have the same type)
-|`average`             |1       |`any-list!`^4^ `vector!` |               |`float! percent!`^5^
+|`average`             |1       |`any-list!`^4^ `vector!` |               |see note^5^
 |===
 
 Notes:
@@ -2882,8 +2882,8 @@ Notes:
 the result value fits in 32 bits; otherwise result type is `float!`
 . result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
-. components must be of type `number!` or `char!`
-. result type is `percent!` if sum is of that type, otherwise `float!`
+. components must be of type `money!`, `number!`, `char!`, `time!` or `pair!` 
+. result has type of `<sum> / to-float length? <argument>`
 . for the result type of `//` _**see also https://github.com/red/red/issues/2708[issue #2708]**_
 
 The result types for the 6 arithmetic operations `+ - * / // %` are detailed in the following table.
