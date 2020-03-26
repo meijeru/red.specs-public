@@ -5577,6 +5577,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3595">3595</a>   <a href="#function">5.3.8</a>
 <a href= "https://github.com/red/red/issues/4273">4273</a>   <a href="#target-type-binary">5.4.10</a>
 <a href= "https://github.com/red/red/issues/4327">4327</a>   <a href="#series-positioning-and-navigation">9.2</a>
+<a href= "https://github.com/red/red/issues/4367">4367</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 
 REP    spec
 issue  section
