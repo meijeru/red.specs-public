@@ -2882,7 +2882,7 @@ Notes:
 the result value fits in 32 bits; otherwise result type is `float!`
 . result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
-. components must be of type `money!`, `number!`, `char!`, `time!`, `pair!` or `tuple!`
+. components must be of type `money!` or `scalar!`
 -**See https://github.com/red/red/issues/4372[issue #4372]**_
 . result has type of `<sum> / to-float length? <argument>`
 . for the result type of `//` _**see also https://github.com/red/red/issues/2708[issue #2708]**_
