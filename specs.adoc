@@ -1584,6 +1584,7 @@ of `time!`) towards `0`
 if there are fewer than 4 bytes, `#{00}` bytes are prepended before conversion
 * `issue!` values: interprets up to 8 characters, if possible, as a hexadecimal number;
 further characters are ignored; if the number of characters is odd and less than 8, the last one is ignored  
+_**See https://github.com/red/red/issues/2329[issue #2329]**_
 * `string!` values: yields the result of `load` or an error
 * `date!` values: yields the Unix epoch time value (see e.g. https://en.wikipedia.org/wiki/Unix_time)
 based on the time component adjusted to UTC; because of the limitations on integer values
@@ -1636,6 +1637,9 @@ The function `to-tuple` is defined for
 * `binary!` values: yields the first 12 bytes or fewer as tuple components; if only 1 or 2 bytes are 
 present, components `0` are added
 * `string!` values: yields the result of `load` or an error
+* `issue!` values: interprets up to 24 characters, if possible, as a sequence of hexadecimal numbers `0..255`;
+further characters are ignored; if the number of characters is odd and less than 24, the last one is ignored
+_**See https://github.com/red/red/issues/2329[issue #2329]**_
 * `any-list!` values: these should contain only `integer!` or `float!` values in the range `0..255`;
 yields the first 12 components or fewer as tuple components;  if only 1 or 2 values are 
 present, components `0` are added
@@ -1649,6 +1653,7 @@ The function `to-binary` is defined for
 * `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
 * `issue!` values: interprets the characters following the `#`, if possible, as base16 representation
 of a binary value; if the number of characters is odd, the last one is ignored
+_**See https://github.com/red/red/issues/2329[issue #2329]**_
 * `bitset!` values: yields the corresponding binary value
 * `string!` values: yields the UTF-8 encoded binary value
 * `image!` values: yields a binary value with 4 bytes for each pixel
@@ -5564,6 +5569,9 @@ issue  section
 <a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-integer">5.4.5</a>
+<a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-tuple">5.4.10</a>
+<a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-binary">5.4.11</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#bitset">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
