@@ -2882,7 +2882,8 @@ Notes:
 the result value fits in 32 bits; otherwise result type is `float!`
 . result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
-. components must be of type `money!`, `number!`, `char!`, `time!` or `pair!` 
+. components must be of type `money!`, `number!`, `char!`, `time!`, `pair!` or `tuple!`
+-**See https://github.com/red/red/issues/4372[issue #4372]**_
 . result has type of `<sum> / to-float length? <argument>`
 . for the result type of `//` _**see also https://github.com/red/red/issues/2708[issue #2708]**_
 
@@ -5597,6 +5598,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/4327">4327</a>   <a href="#series-positioning-and-navigation">9.2</a>
 <a href= "https://github.com/red/red/issues/4352">4352</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/4367">4367</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/4372">4372</a>   <a href="#basic-arithmetic-operations">8.1</a>
 
 REP    spec
 issue  section
