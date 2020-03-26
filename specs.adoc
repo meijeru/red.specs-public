@@ -1845,7 +1845,7 @@ is truncated to the lowest 8 bits.
 
 This is possible for values that are sequences (with types in `series!`,
 but not `bitset!`), and for values of types `object!`, `error!`, `port!` and `map!`.
-A restricted facility also exists for values of type `time!`, `date!`, `pair!`, `email!`, `image!`
+A restricted facility also exists for values of type `money!`, `time!`, `date!`, `pair!`, `email!`, `image!`
 and `event!`. 
 
 _Built-in functions_ for selection are `select` for extraction and `put` for changing, with the
@@ -1955,7 +1955,7 @@ Selection by a key of the wrong type or wrong value leads to an error.
 |===
 
 |type       |index values |built-in functions |key values or types   | built-in functions
-|money!     |1 2          |pick        |code amount
+|money!     |1 2          |pick        |code amount                  |
 |time!      |1 2 3        |pick        |hour minute second                  |
 |date!      |1 .. 14      |pick        |date year month day zone time hour minute second weekday yearday julian timezone week isoweek |
 |pair!      |1 2          |pick        |x y                                 |
