@@ -2856,7 +2856,7 @@ the absolute value of a number (`absolute`), the maximum and minimum of two numb
 and the sum and average of a set of numbers (`sum` and `average`).
 
 The arity (number of arguments) and the argument and result types for these
-functions are as follows.  If an artihmetic operator is not mentioned, it is not allowed
+functions are as follows.  If an arithmetic operator is not mentioned, it is not allowed
 for the combination of operand types. For the result type of `//` 
 _**see also https://github.com/red/red/issues/2708[issue #2708]**_
 _**See further https://github.com/red/red/issues/2776[issue #2776]**_
@@ -2868,12 +2868,12 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`+ - * / // %`        |2     |`char!`               |`integer! float!!` |`char!`
 |`+ - * / // %`        |2     |`integer! float!`     |`char!`            |same as operand 1
 |`+ - * / // %`        |2     |`number!`             |`number!`          |see note ^1^
-|`+ - * /    %`        |2     |`vector!`             |`number!`          |`vector!`^2^
-|`+ - * / // %`        |2     |`number`              |`vector!`          |`vector!`^2^
-|`+ - * / // %`        |2     |`vector!`             |`vector!`          |`vector!`^3^
+|`+ - * /    %`        |2     |`vector!`             |`number!`          |`vector!` ^2^
+|`+ - * /    %`        |2     |`number`              |`vector!`          |`vector!` ^2^
+|`+ - * /    %`        |2     |`vector!`             |`vector!`          |`vector!` ^3^
 |`+ - * / // %`        |2     |`money!`              |`integer! float!`  |`money!`
 |`+ - *       `        |2     |`integer! float!`     |`money!`           |`money!`
-|`+ -   / // %`        |2     |`money! `             |`money!`           |`money!`^4,5^
+|`+ -   / // %`        |2     |`money!`              |`money!`           |`money!` ^4,5^
 |`+ - * / // %`        |2     |`time!`               |`number!`          |`time!`
 |`+ - * / // %`        |2     |`number!`             |`time!`            |`time!`
 |`+ - * /    %`        |2     |`pair! tuple!`        |`number!`          |same as operand 1
@@ -2886,7 +2886,7 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`+ -   / // %`        |2     |`time!`               |`time!`            |see note ^5^
 |`+ - * / // %`        |2     |`pair!`               |`pair!`            |`pair!`
 |`+ - * / // %`        |2     |`tuple!`              |`tuple!`           |`tuple!`
-|`**`                  |2     |`number!`             |`integer! float!`  |`integer!`6^ `float!`
+|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^6^ `float!`
 |`max min`             |2     |`scalar!`             |`scalar!`          |same as greatest/smallest operand +
 (operand 1 if equal)
 |===
@@ -2899,11 +2899,11 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`positive? negative?` |1     |`money! number! time!`                   |`logic!`
 |`zero?`               |1     |`money! number! char! time! pair! tuple!`|`logic!`
 |`even? odd?`          |1     |`money! number! char! time!`             |`logic!`
-|`negate`              |1     |`money! number! time! pair!`             |same as operand^8^
-|`absolute round`      |1     |`money! number! time! pair!`             |same as operand^8^
-|`sum`                 |1     |`any-list!`^9 `vector!`                 |same as individual numbers +
+|`negate`              |1     |`money! number! time! pair!`             |same as operand ^8^
+|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^8^
+|`sum`                 |1     |`any-list!` ^9^ `vector!`                |same as individual numbers +
 (refer to table below if not all numbers have the same type)
-|`average`             |1       |`any-list!`^9^ `vector!`               |see note^10^
+|`average`             |1       |`any-list!` ^9^ `vector!`              |see note ^10^
 |===
 
 Notes:
