@@ -2880,13 +2880,13 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`+ - * / // %`        |2     |`number!`             |`pair! tuple!`     |same as operand 2
 |`+ -`                 |2     |`date!`               |`integer!`         |`date!`
 |`+`                   |2     |`integer!`            |`date!`            |`date!`
-|`-`                   |2     |`date!`               |`date!`            |`integer!`
+|`-`                   |2     |`date!`               |`date!`            |`integer!` ^6
 |`+ -`                 |2     |`date!`               |`time!`            |`date!`
 |`+`                   |2     |`time!`               |`date!`            |`date!`
 |`+ -   / // %`        |2     |`time!`               |`time!`            |see note ^5^
 |`+ - * / // %`        |2     |`pair!`               |`pair!`            |`pair!`
 |`+ - * / // %`        |2     |`tuple!`              |`tuple!`           |`tuple!`
-|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^6^ `float!`
+|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^^7^ `float!`
 |`max min`             |2     |`scalar!`             |`scalar!`          |same as greatest/smallest operand +
 (operand 1 if equal)
 |===
@@ -2895,15 +2895,15 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |===
 |function              |arity |operand type                             |result type
 |`NaN?`                |1     |`number!`                                |`logic!`
-|`sign?`               |1     |`money! number! time!`                   |`integer!`^7^
+|`sign?`               |1     |`money! number! time!`                   |`integer!`^8^
 |`positive? negative?` |1     |`money! number! time!`                   |`logic!`
 |`zero?`               |1     |`money! number! char! time! pair! tuple!`|`logic!`
 |`even? odd?`          |1     |`money! number! char! time!`             |`logic!`
-|`negate`              |1     |`money! number! time! pair!`             |same as operand ^8^
-|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^8^
-|`sum`                 |1     |`any-list!` ^9^ `vector!`                |same as individual numbers +
+|`negate`              |1     |`money! number! time! pair!`             |same as operand ^9^
+|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^98^
+|`sum`                 |1     |`any-list!` ^10^ `vector!`                |same as individual numbers +
 (refer to table below if not all numbers have the same type)
-|`average`             |1       |`any-list!` ^9^ `vector!`              |see note ^10^
+|`average`             |1       |`any-list!` ^10^ `vector!`              |see note ^11^
 |===
 
 Notes:
@@ -2915,6 +2915,8 @@ https://github.com/red/red/issues/4068[#4068] and https://github.com/red/red/iss
 . operand 1 and 2 must have same element type
 . if both operand 1 and 2 have the currency indicated, these must be the same
 . divide has `float!` result
+. result is difference in days, disregarding time; for difference as a `time!` value
+use `difference`
 . result type is `integer!` only if both operands are integer, and
 the result value fits in 32 bits; otherwise result type is `float!`
 . result is `-1` `0` or `1`
@@ -2922,8 +2924,6 @@ the result value fits in 32 bits; otherwise result type is `float!`
 . components must be of type `money!` or `scalar!`
 -**See https://github.com/red/red/issues/4372[issue #4372]**_
 . result has type of `<sum> / to-float length? <argument>`
-
-
 
 The difference between the `modulo` and `remainder` functions is as follows:
 
