@@ -2900,7 +2900,7 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`zero?`               |1     |`money! number! char! time! pair! tuple!`|`logic!`
 |`even? odd?`          |1     |`money! number! char! time!`             |`logic!`
 |`negate`              |1     |`money! number! time! pair!`             |same as operand ^9^
-|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^98^
+|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^9^
 |`sum`                 |1     |`any-list!` ^10^ `vector!`                |same as individual numbers +
 (refer to table below if not all numbers have the same type)
 |`average`             |1       |`any-list!` ^10^ `vector!`              |see note ^11^
