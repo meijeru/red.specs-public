@@ -2872,7 +2872,7 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`+ - * /    %`        |2     |`number`              |`vector!`          |`vector!` ^2^
 |`+ - * /    %`        |2     |`vector!`             |`vector!`          |`vector!` ^3^
 |`+ - * / // %`        |2     |`money!`              |`integer! float!`  |`money!`
-|`+ - *       `        |2     |`integer! float!`     |`money!`           |`money!`
+|`+ - \*       `        |2     |`integer! float!`     |`money!`           |`money!`
 |`+ -   / // %`        |2     |`money!`              |`money!`           |`money!` ^4,5^
 |`+ - * / // %`        |2     |`time!`               |`number!`          |`time!`
 |`+ - * / // %`        |2     |`number!`             |`time!`            |`time!`
