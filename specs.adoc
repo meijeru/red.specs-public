@@ -3232,8 +3232,11 @@ this argument will be converted to `binary!` if needed, and thus may be of any t
 for which `to binary!` is defined (see <<target-type-binary,section 5.4.11>>_);
 note that for `integer!` values the binary equivalent is truncated to 8 bits.
 _**See https://github.com/red/red/issues/4367[issue #4367]**_
-For `any-string!` series, the `<expression>` argument, if not a `char!` or `any-string!` value,
-is first `form`ed; `any-list!` values will have their components concatenated after being `form`ed.
+For `any-string!` series, the `<expression>` argument may be of any type;
+if it is not a `char!` or `any-string!` value, is first `form` ed;
+`any-list!` values will have their components concatenated after being `form` ed.
+For `vector!` series, the (components of the) `<expression>` argument will be truncated
+to the bit-size of the vector, if needed.
 
 The function `remove-each <counter> <series> <condition-block>` is described in <<repeated-execution-loops,section 10.2>>.
 
