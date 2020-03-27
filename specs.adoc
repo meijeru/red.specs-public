@@ -2880,7 +2880,7 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`+ - * / // %`        |2     |`number!`             |`pair! tuple!`     |same as operand 2
 |`+ -`                 |2     |`date!`               |`integer!`         |`date!`
 |`+`                   |2     |`integer!`            |`date!`            |`date!`
-|`-`                   |2     |`date!`               |`date!`            |`integer!` ^6
+|`-`                   |2     |`date!`               |`date!`            |`integer!` ^6^
 |`+ -`                 |2     |`date!`               |`time!`            |`date!`
 |`+`                   |2     |`time!`               |`date!`            |`date!`
 |`+ -   / // %`        |2     |`time!`               |`time!`            |see note ^5^
