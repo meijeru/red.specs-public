@@ -2856,51 +2856,64 @@ the absolute value of a number (`absolute`), the maximum and minimum of two numb
 and the sum and average of a set of numbers (`sum` and `average`).
 
 The arity (number of arguments) and the argument and result types for these
-functions are as follows.
+functions are as follows.  If an artihmetic operator is not mentioned, it is not allowed
+for the combination of operand types. For the result type of `//` 
+_**see also https://github.com/red/red/issues/2708[issue #2708]**_
+_**See further https://github.com/red/red/issues/2776[issue #2776]**_
+
 [cols="1,1,1,1,2", options="header"]
 |===
-|function              |arity |operand 1 type        |operand 2 type    |result type
-|`+ - * / // %`        |2     |`char!`               |`char!`           |`char!`
-|`+ - * / // %`        |2     |`char!`               |`integer! float!!`  |`char!`
-|`+ - * / // %`        |2     |`integer! float!`     |`char!`           |`char!`
-|`+ - * / // %`        |2     |`number!`             |`number!`         |see table below
-|`+ - * / // %`        |2     |`vector!`             |`number!`         |`vector!`^1^
-|`+ - * / // %`        |2     |`number`              |`vector!`         |`vector!`^1^
-|`+ - * / // %`        |2     |`vector!`             |`vector!`         |`vector!`^2^
-|`+ - * / // %`        |2     |`money!`              |`integer! float!` |`money!`
-|`+ - * / // %`        |2     |`integer! float!`     |`money!`          |`money!`
-|`+ - * / // %`        |2     |`money! `             |`money!`          |`money!`^3^
-|`+ - * / // %`        |2     |`number!`             |`time! pair! tuple!` |same as operand 2
-|`+ - * / // %`        |2     |`time! pair! tuple!`  |`number!`         |same as operand 1
-|`+ - * / // %`        |2     |`integer!`            |`date!`           |`date!`
-|`+ - * / // %`        |2     |`date!`               |`integer!`        |`date!`
-|`+ - * / // %`        |2     |`date!`               |`date!`           |`integer!`
-|`+ - * / // %`        |2     |`time!`               |`time!`           |see note ^4^
-|`+ - * / // %`        |2     |`date!`               |`time!`           |`date!`
-|`+ - * / // %`        |2     |`time!`               |`date!!`          |`date!`
-|`+ - * / // %`        |2     |`pair!`               |`pair!`           |`pair!`
-|`+ - * / // %`        |2     |`tuple!`              |`tuple!`          |`tuple!`
-|`**`                  |2     |`number!`             |`integer! float!` |`integer!`^5^ `float!`
-|`NaN?`                |1     |`number!`             |                  |`logic!`
-|`sign?`               |1     |`money! number! time!`|                  |`integer!`^6^
-|`positive? negative?` |1     |`money! number! time!`|                  |`logic!`
-|`zero?`               |1     |`money! number! char! time! pair! tuple!`|     |`logic!`
-|`even? odd?`          |1     |`money! number! char! time!`|            |`logic!`
-|`negate`              |1     |`money! number! time! pair!`|            |same as operand^7^
-|`absolute round`      |1     |`money! number! time! pair!`|            |same as operand^7^
-|`max min`             |2     |`scalar!`             |`scalar!`         |same as greatest/smallest operand +
+|function              |arity |operand 1 type        |operand 2 type     |result type
+|`+ - * / // %`        |2     |`char!`               |`char!`            |`char!`
+|`+ - * / // %`        |2     |`char!`               |`integer! float!!` |`char!`
+|`+ - * / // %`        |2     |`integer! float!`     |`char!`            |same as operand 1
+|`+ - * / // %`        |2     |`number!`             |`number!`          |see note ^1^
+|`+ - * /    %`        |2     |`vector!`             |`number!`          |`vector!`^2^
+|`+ - * / // %`        |2     |`number`              |`vector!`          |`vector!`^2^
+|`+ - * / // %`        |2     |`vector!`             |`vector!`          |`vector!`^3^
+|`+ - * / // %`        |2     |`money!`              |`integer! float!`  |`money!`
+|`+ - *       `        |2     |`integer! float!`     |`money!`           |`money!`
+|`+ -   / // %`        |2     |`money! `             |`money!`           |`money!`^4,5^
+|`+ - * / // %`        |2     |`time!`               |`number!`          |`time!`
+|`+ - * / // %`        |2     |`number!`             |`time!`            |`time!`
+|`+ - * /    %`        |2     |`pair! tuple!`        |`number!`          |same as operand 1
+|`+ - * / // %`        |2     |`number!`             |`pair! tuple!`     |same as operand 2
+|`+ -         `        |2     |`date!`               |`integer!`         |`date!`
+|`+           `        |2     |`integer!`            |`date!`            |`date!`
+|`  -         `        |2     |`date!`               |`date!`            |`integer!`
+|`+ -         `        |2     |`date!`               |`time!`            |`date!`
+|`+           `        |2     |`time!`               |`date!`            |`date!`
+|`+ -   / // %`        |2     |`time!`               |`time!`            |see note ^5^
+|`+ - * / // %`        |2     |`pair!`               |`pair!`            |`pair!`
+|`+ - * / // %`        |2     |`tuple!`              |`tuple!`           |`tuple!`
+|`**`                  |2     |`number!`             |`integer! float!`  |`integer!`6^ `float!`
+|`max min`             |2     |`scalar!`             |`scalar!`          |same as greatest/smallest operand +
 (operand 1 if equal)
-|`sum`                 |1     |`any-list!`^8^ `vector!` |               |same as individual numbers +
+|===
+
+[cols="1,1,1,2", options="header"]
+|===
+|function              |arity |operand type                             |result type
+|`NaN?`                |1     |`number!`                                |`logic!`
+|`sign?`               |1     |`money! number! time!`                   |`integer!`^7^
+|`positive? negative?` |1     |`money! number! time!`                   |`logic!`
+|`zero?`               |1     |`money! number! char! time! pair! tuple!`|`logic!`
+|`even? odd?`          |1     |`money! number! char! time!`             |`logic!`
+|`negate`              |1     |`money! number! time! pair!`             |same as operand^8^
+|`absolute round`      |1     |`money! number! time! pair!`             |same as operand^8^
+|`sum`                 |1     |`any-list!`^9 `vector!`                 |same as individual numbers +
 (refer to table below if not all numbers have the same type)
-|`average`             |1       |`any-list!`^8^ `vector!` |               |see note^9^
+|`average`             |1       |`any-list!`^9^ `vector!`               |see note^10^
 |===
 
 Notes:
 
+. if both operand types are `integer!`, the result type is `integer!`; otherwise it is `float!`
+unless the first operand type is `percent!` in which case it is `percent!` 
 . result has element type of vector operand _**see also https://github.com/red/red/issues/2216[issues #2216],
 https://github.com/red/red/issues/4068[#4068] and https://github.com/red/red/issues/4352[#4352]**_
 . operand 1 and 2 must have same element type
-. if both operand 1 and 2 have the currency indicated, they must be the same
+. if both operand 1 and 2 have the currency indicated, these must be the same
 . divide has `float!` result
 . result type is `integer!` only if both operands are integer, and
 the result value fits in 32 bits; otherwise result type is `float!`
@@ -2909,41 +2922,8 @@ the result value fits in 32 bits; otherwise result type is `float!`
 . components must be of type `money!` or `scalar!`
 -**See https://github.com/red/red/issues/4372[issue #4372]**_
 . result has type of `<sum> / to-float length? <argument>`
-. for the result type of `//` _**see also https://github.com/red/red/issues/2708[issue #2708]**_
 
-_**See https://github.com/red/red/issues/2776[issue #2776]**_
-[options="header"]
-|===
-|operand&nbsp;2 -> +
-operand&nbsp;1 |number!     |money!  |time!    |date!    |pair!    |tuple!     |vector!
-|integer!      |float!^13^  |money!^1^ |time!  |date!^9^ |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|float!        |float!      |money!^1^ |time!  |         |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|percent!      |percent!    |        |time!    |         |pair!^1,2^ |tuple!^1,2,3^ |vector!^1,6^
-|money!       |money!^1,12^ |money!^1,4,5,14^ ||        |           |              | 
-|time!         |time!       |        |time!^4,5^ |date!^9^ |         |              |
-|date!         |date!^8^    |        |date!^8^ |integer!^10^ |       |              |
-|pair!         |pair!^1^    |        |         |         |pair!^1^   |              |
-|tuple!        |tuple!^1^   |        |         |         |           |tuple!^1,11^  |
-|vector!       |vector!^1,6^|        |         |         |           |              |vector!^1,7^
-|===
 
-Notes: 
-
-. modulo not allowed
-. divide not allowed
-. subtract not allowed
-. divide has float result
-. multiply not allowed
-. result has element type of vector operand _**see also https://github.com/red/red/issues/2216[issues #2216],
-https://github.com/red/red/issues/4068[#4068] and https://github.com/red/red/issues/4352[#4352]**_
-. operand 1 and 2 must have same element type
-. only add/subtract allowed, with integer
-. only add allowed
-. only subtract allowed; result is number of days, ignoring any time components; for exact difference use built-in function difference
-. with tuples of unequal length, the shortest one is extended with values `0`
-. percent operand not allowed
-. result is integer if both operands are integer
-. if both operands have a currency indicator, these must be equal
 
 The difference between the `modulo` and `remainder` functions is as follows:
 
