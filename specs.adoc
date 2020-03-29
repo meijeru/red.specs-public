@@ -4529,6 +4529,7 @@ see <<enquiry-and-reflection-on-values,5.7>>
 ....
 
 1.   Enquiry
+--   -------
 F    action?
 F    all-word?
 F    any-block?
@@ -4591,6 +4592,7 @@ F    vector?
 F    word?
 
 2.   Reflection
+--   ----------
 A    reflect
 F    body-of
 F    class-of
@@ -4635,6 +4637,7 @@ and <<casting-of-values-as,5.5>>
 N    as
 R    as-color
 R    as-ipv4
+N    as-money
 N    as-pair
 R    as-rgba
 N    compress
