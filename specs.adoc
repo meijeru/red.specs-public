@@ -2128,6 +2128,7 @@ is relaxed for several combinations of types of the two values:
 
 * `char!` and `integer!` _**See https://github.com/red/red/issues/2650[issue #2650]**_
 * `integer!`,  `float!`, `percent!` and `time!`
+* `money!`, `integer!` and `float!`
 * types in `any-word!` and `refinement!` (note the absence of `issue!`)
 * types in `any-string!`
 
@@ -2142,7 +2143,7 @@ in that it ignores case differences in values of types in `any-word!` and `any-s
 
 The following cases can be distinguished: 
 
-* straightforward numerical ordering: `char! integer! float! percent! time!` and `date!`
+* straightforward numerical ordering: `char! integer! float! percent! money! time!` and `date!`
 * lexicographic ordering (case sensitive): `pair! tuple! any-word! refinement! issue!
 vector! any-string! binary!` and `bitset!`
 * lexicographic ordering (with recursion and cycle detection): `any-block!` and `any-object!`;
@@ -4447,6 +4448,7 @@ See also <<type-list,section 4.1>>
     lit-word!
     logic!
     map!
+    money!
     native!
     none!
     object!
@@ -4499,7 +4501,7 @@ See also <<type-hierarchy,section 4.3>>
 
 The functions are classified by functionality: 
 
-* <<enquiry-and-reflection,enquiry-and-reflection>>
+* <<enquiry-and-reflection,enquiry and reflection>>
 * <<making-values,making values>>
 * <<converting-values,converting values>>
 * <<comparison,comparison>>
@@ -4562,6 +4564,7 @@ F    lit-path?
 F    lit-word?
 F    logic?
 F    map?
+F    money?
 F    native?
 F    none?
 F    number?
