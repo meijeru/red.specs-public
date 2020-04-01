@@ -1500,8 +1500,8 @@ _**See https://github.com/red/red/issues/2644[issue #2644]**_
 * Making `money!` values from `block!` values: at most three elements are allowed in the block;
 an optional `word!` value for a valid currency code; a signed `integer!` or `float!` value
 for the numerical value (`float!` values are truncated to 5 decimals),
-and an optional unsigned integer of maximum 5 digits which is added to the decimal fraction,
-after being padded to the left with zeroes if necessary 
+and an optional unsigned integer of maximum 5 digits which istaken as decimal fraction,
+after being padded to the left with zeroes if necessary (only if the preceding value is integer) 
 * Making `money!` values from `binary!` values: the binary string must contain at most 11 bytes;
 if fewer than 11 bytes are present, they are padded to the left with `00` bytes;
 each byte is interpreted as two "nibbles" (half bytes), each of which must be a digit `0` - `9`;
