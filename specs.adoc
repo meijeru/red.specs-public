@@ -2976,7 +2976,7 @@ Note that `math` only deals with `*` and `/` and not with other basic arithmetic
 === Higher mathematical functions
 
 This concerns first of all the familiar functions `exp` for raising
-`e = 2.718281828459045` to a power, the logarithms `log-e log-2 log-10`,
+`e = 2.718281828459045235360287471` to a power, the logarithms `log-e log-2 log-10`,
 and the square root `sqrt`. Furthermore the trigonometric functions
 `sin cos tan asin acos atan atan2`, and the functions `random` and
 `checksum`.
