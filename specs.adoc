@@ -103,9 +103,10 @@ to values in the course of program execution.
 
 A large number of words are _pre-defined_ to refer to certain values
 in the _global context_, notably to _built-in functions_, _types_
-(type names conventionally end in `!`) and _constants_ such as
+(type names conventionally end in `!`) and _symbolic constants_ such as
 the truth values: `true` and `false`, as well as `none` ("nil"
-or "null" in other languages). See <<pre-defined-words-list,section 14>> for the complete list.
+or "null" in other languages). Th complete list, which is considerably
+larger, is given in <<pre-defined-words-list,section 14>>.
 
 === Dialects
 
@@ -526,7 +527,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`port!`       |using `make`     |indirect  |composite        |Y           |passive    |`object!`
 |`native!`     |using words      |function  |atomic           |Y           |function   |
 |`action!`     |using words      |function  |atomic           |Y           |function   |`native!`
-|`op!`         |using words      |function  |atomic           |Y           |function   |`native!`
+|`op!`         |using words, `make`|function|atomic           |Y           |function   |`native!`
 |`function!`   |using `make`     |function  |atomic           |Y           |function   |
 |`routine!`    |using `routine`  |function  |atomic           |Y           |function   |`function!`
 |`unset!`      |using `make`     |direct    |atomic           |N           |passive    |
@@ -746,6 +747,8 @@ the following literals are used: `1.#INF`, `-1.#INF`, `1.#NaN` and `-1.#NaN`. Th
 two are equivalent representations for a single value. More information on the handling
 of these special numbers, including negative zero, is to be found in the additional documentation
 (see <<additional-documentation,section 18>>).
+
+For mathematical computations, the word `pi` is pre-defined to represent &x3C0; to 15 decimals.
 
 ==== `time!`
 
@@ -1132,6 +1135,8 @@ For `vector!`, the components are initialized (see <<vector,section 5.3.3>>).
 <typeset> ::= make typeset! [<typeset-element>*]
 <typeset-element> ::= <typeset-name> | <datatype-name>
 ....
+
+A number of typesets are pre-defined, see <<type-hierarchy,section 4.3>>.
 
 Examples:
 ....
@@ -3056,13 +3061,14 @@ the same result as `intersect union` and `difference`
 
 === Logical functions
 
-The bitwise functions `complement and or xor` are also applicable to
+The bitwise functions `complement`, `and`,  `or` and  `xor` are also applicable to
 `logic!` values; on these values, `not` is equivalent to `complement`.
 On values of other types, `not` will always yield `false` except on
 `none`, where it will yield `true`.
 
-Note that `and or xor` evaluate both their arguments. In many programming
-situations, it is preferable to use the _shortcut evaluation_ functions
+Note that `and` and `or` evaluate both their arguments. In many programming
+situations where several conditions are to be tested,
+it is preferable to use the _shortcut evaluation_ functions
 `any` and `all`, which only evaluate subsequent arguments if an earlier one
 is `false` or `none` for `any` or `not none` (i.e.`true`) for `all`.
 See <<blocks-reduction-and-selective-evaluation,section 7.5>>.
