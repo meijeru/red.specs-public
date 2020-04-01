@@ -2810,6 +2810,9 @@ collect [repeat i 10 [if even? i [keep i ** 2]]] ; [4 16 36 64 100]
 The function `collect` also has a refinement `/into`, with a `series!` value as argument;
 if present, the collected components will be inserted into this series.
 
+The function `rejoin` will `reduce` and then `form` all elements of its `block!` argument
+and concatenate them into a `string!` result.
+
 The _shortcut evaluation_ functions `any` and `all` have a block as argument;
 they will evaluate the expressions one by one; `any` will stop at the first
 one whose value is not `false` or `none` and yield that as result;
@@ -3664,6 +3667,9 @@ a line feed afterwards.
 The built-in function `probe` will call `mold` and then `print`, and
 yield its argument as a result. This is useful for debugging intermediate
 results; note that `print` itself will yield the unset value.
+
+The function `ellipsize-at` will truncate a string and add ellipsis `...`,
+if the string is longer than a given length.
 
 Examples:
 ....
@@ -4887,7 +4893,6 @@ F    change-dir
 F    clean-path
 A    close
 A    create
-R    create-dir
 F    decode-url
 A    delete
 F    dir
@@ -4898,7 +4903,6 @@ F    encode-url
 R    exists?
 F    exists-thru?
 A    form
-R    get-current-dir
 F    input
 F    list-dir
 F    ll
@@ -4927,7 +4931,6 @@ A    rename
 F    request-dir
 F    request-file
 F    save
-R    set-current-dir
 N    size?
 F    split-path
 F    suffix?
@@ -4937,7 +4940,6 @@ A    update
 F    what-dir
 A    write
 R    write-clipboard
-R    write-stdout
 ....
 ==== Exception handling
 see <<exceptions,section 12>>
