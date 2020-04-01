@@ -748,7 +748,7 @@ two are equivalent representations for a single value. More information on the h
 of these special numbers, including negative zero, is to be found in the additional documentation
 (see <<additional-documentation,section 18>>).
 
-For mathematical computations, the word `pi` is pre-defined to represent &x3C0; to 15 decimals.
+For mathematical computations, the word `pi` is pre-defined to represent π to 15 decimals.
 
 ==== `time!`
 
