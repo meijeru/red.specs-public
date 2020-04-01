@@ -4597,6 +4597,24 @@ F    url?
 F    vector?
 F    word?
 
+N    complement?
+F    dir?
+A    empty?
+A    even?
+R    exists?
+A    head?
+F    last?
+N    NaN?
+N    negative?
+N    new-line?
+A    odd?
+A    open?
+N    positive?
+F    single?
+A    tail?
+N    value?
+N    zero?
+
 2.   Reflection
 --   ----------
 A    reflect
@@ -4615,7 +4633,6 @@ N    sign?
 N    size?
 F    suffix?
 N    type?
-N    value?
 ....
 ==== Making values
 see <<creation-of-values-make,sections 5.3>>
