@@ -5077,7 +5077,7 @@ by the user at runtime.
 (sub-)component & type              significance/value
 
 system/   object!
-    version/    tuple!              current version
+    version     tuple!              current version
     build/      object!
         date           date!        build date
         git            object!      detailed build information
@@ -5107,7 +5107,7 @@ system/   object!
         days           block!       names of days
         currencies     object!      names of currencies, see <a href = "#money">section 5.2.18</a>
     options/    object!             
-        boot           file!        location of Red (console) executable
+        boot           string!      location of Red (console) executable (local file)
         home           
         path           file!        current working directory, see <a href = "#file-system-functions">section 11.3.2</a>
         script         
