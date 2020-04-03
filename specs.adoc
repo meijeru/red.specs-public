@@ -528,7 +528,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`native!`     |using words      |function  |atomic           |Y           |function   |
 |`action!`     |using words      |function  |atomic           |Y           |function   |`native!`
 |`op!`         |using words, `make`|function|atomic           |Y           |function   |`native!`
-|`function!`   |using `make`     |function  |atomic           |Y           |function   |
+|`function!`   |using `make`     |function  |atomic           |Y           |function   |`context!`
 |`routine!`    |using `routine`  |function  |atomic           |Y           |function   |`function!`
 |`unset!`      |using `make`     |direct    |atomic           |N           |passive    |
 |`event!`      |using words      |direct    |composite        |N           |passive    |
@@ -1539,7 +1539,9 @@ The list given below is meant to be exhaustive. A summary table is available
 elsewhere (see <<additional-documentation,section 18>>).
 
 Note that for each type that may occur as target type, there is a built-in function
-defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc.
+defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc. The following types
+may not occur as target type: `datatype!` `native!` `action!` `op!` `function!` `routine!`
+`object!` `error!` `vector!` `handle!` `port!` `event!`.
 
 ==== Target types `none!` and `unset!`
 
