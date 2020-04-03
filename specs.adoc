@@ -2895,10 +2895,10 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`-`                   |2     |`date!`               |`date!`            |`integer!` ^6^
 |`+ -`                 |2     |`date!`               |`time!`            |`date!`
 |`+`                   |2     |`time!`               |`date!`            |`date!`
-|`+ -   / // %`        |2     |`time!`               |`time!`            |see note ^5^
+|`+ -   / // %`        |2     |`time!`               |`time!`            |`time!` ^5^
 |`+ - * / // %`        |2     |`pair!`               |`pair!`            |`pair!`
 |`+ - * / // %`        |2     |`tuple!`              |`tuple!`           |`tuple!`
-|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^^7^ `float!`
+|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^7^ `float!`
 |`max min`             |2     |`scalar!`             |`scalar!`          |same as greatest/smallest operand +
 (operand 1 if equal)
 |===
