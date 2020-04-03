@@ -1541,7 +1541,9 @@ elsewhere (see <<additional-documentation,section 18>>).
 Note that for each type that may occur as target type, there is a built-in function
 defined as shorthand: `to-integer <spec>` for `to integer! <spec>` etc. The following types
 may not occur as target type: `datatype!` `native!` `action!` `op!` `function!` `routine!`
-`object!` `error!` `vector!` `handle!` `port!` `event!`.
+`object!` `error!` `vector!` `handle!` `port!` `event!`. For `typeset!` `bitset!` and `map!`,
+`to` is identical to `make`, except that for `bitset!` and `map!`, `to` does not allow an `integer!`
+or `float!` argument.
 
 ==== Target types `none!` and `unset!`
 
@@ -1717,11 +1719,6 @@ The function `to-time` is defined for
 the first an `integer!` value for the hours; the second, if present,
 an `integer!` value for the minutes; and the third, if present,
 an `integer!` or `float!` value for the seconds. 
-
-==== Target type `bitset!`
-
-The function `to-bitset` operates in the same way as `charset` (i.e. `make bitset!`),
-except that an integer argument is not allowed.
 
 ==== Additional conversion functions
 
@@ -5575,7 +5572,7 @@ type                                    <a href = "#values-and-types">2.3</a>, <
   pseudo-type                           <a href = "#parent-types">4.2.6</a>, <a href = "#overview-table">4.2.7</a>
   type hierarchy                        <a href = "#type-hierarchy">4.3</a>
 Unicode Code Point                      <a href = "#textual-structure">3.1</a>
-Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.16</a>
+Unicode 7.0 case folding table          <a href = "#additional-conversion-functions">5.4.17</a>
 Uniform Resource Identifier (URI)       <a href = "#ports">11.4</a>
 UTF-8 encoding                          <a href = "#textual-structure">3.1</a>, <a href = "#target-types-in-any-string">5.4.3</a>, <a href = "#target-type-char">5.4.7</a>, <a href = "#target-type-binary">5.4.10</a>, <a href = "#conversion-fromto-textual-representation">11.1.1</a>, <a href = "#file-and-url-io">11.3.1</a>
 value                                   <a href = "#values-and-types">2.3</a>, <a href = "#values">5</a>
