@@ -1545,6 +1545,11 @@ may not occur as target type: `datatype!` `native!` `action!` `op!` `function!` 
 `to` is identical to `make`, except that for `bitset!` and `map!`, `to` does not allow an `integer!`
 or `float!` argument.
 
+Note also, that conversion with `to` may lead to values being created, that would not
+be allowed in a Red program, or even be interpreted differently. Such values may still
+be useful in dialects. Example: `to-path [1 2 3]` gives `1/2/3`, and `1/2/3` in a Red program
+is the `date!` value ` 1-Feb-2003`.
+
 ==== Target types `none!` and `unset!`
 
 The functions `to-none` and `to-unset` yield a `none!` resp. `unset!` value
@@ -2811,8 +2816,13 @@ collect [repeat i 10 [if even? i [keep i ** 2]]] ; [4 16 36 64 100]
 The function `collect` also has a refinement `/into`, with a `series!` value as argument;
 if present, the collected components will be inserted into this series.
 
-The function `rejoin` will `reduce` and then `form` all elements of its `block!` argument
-and concatenate them into a `string!` result.
+The function `rejoin` will `reduce` all elements of its `block!` argument, `form`
+each of them if not of `any-string!` type, and concatenate them into a result
+of the type of the first element. Thus:
+....
+rejoin ["abc" %.def]      ; "abc.def"
+rejoin [%abc ".def"]      ; %abc.def
+....
 
 The _shortcut evaluation_ functions `any` and `all` have a block as argument;
 they will evaluate the expressions one by one; `any` will stop at the first
