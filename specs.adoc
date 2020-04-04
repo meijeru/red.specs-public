@@ -1577,7 +1577,7 @@ The functions `to-file`, `to-email` and `to-tag` will perform the same conversio
 a result of the appropriate type. The function `to-url` will operate analogously for `none!` and
 `binary!` values; a `block!` value has the same interpretation as for the `make url!` function.
 
-==== Target types in `any-list!` 
+==== Target types in `any-block!` 
 
 The function `to-block` yields a block with the argument as single component except
 for
@@ -1588,8 +1588,9 @@ and applies `to-block` to the result
 * `any-block!` and `vector!` values: yields a block with the components
 * `any-object!` and `map!` values: yields the same as `body-of`
 
-The functions `to-paren` etc. will perform the same conversion and yield
-a result of the appropriate type.
+The functions `to-paren` and `to-hash` will perform the same conversion and yield a result
+of the appropriate type. The functions `to-path` etc. will do the same, but only with values
+of `string!` and `any-block!` type.
 
 ==== Target type `integer!`
 
