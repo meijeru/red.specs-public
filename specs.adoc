@@ -1122,11 +1122,16 @@ Furthermore, non-terminals like `<typeset-name>` stand for a bound `<word-litera
 referring to a `typeset!` value etc.
 
 In addition to the following rules, it should be noted that for all types
-in `series!` except `image!`, and for `map!`, `make` is also defined
+in `series!` except `image!`, for `bitset!` and for `map!`, `make` is also defined
 with a `<spec>` which is an `integer!` or `float!` value: the `float!` value
-is truncated; the integer or truncated number is used to create an empty `series!`
-or `map!` value with storage for the given number of components reserved.
-For `vector!`, the components are initialized (see <<vector,section 5.3.3>>).
+is truncated; the integer or truncated number is used to create an (empty) `series!`,
+`map!` or `bitset!` value with storage for the given number of components reserved;
+for maps, the number of components refers to key-value pairs;
+for bitsets, the number of components is rounded up to the nearest multiple of 8,
+and they are initialized to `false`
+_**See https://github.com/red/red/issues/4378[issues #4378]
+and https://github.com/red/red/issues/2609[#2609]**_;
+for `vector!`, the components are initialized to `0` (see <<vector,section 5.3.3>>).
 
 ==== `typeset!`
 
@@ -1219,7 +1224,7 @@ make image! [2x2 #{FFFFFFCCCCCCBFBFBF0C0C0C} #{FFFFFFFF}]
 **`S128`**::
 ....
 <bitset> ::= make bitset! <bitset-spec> | charset <bitset-spec>
-<bitset-spec> ::= <binary> | <integer> | <char> | <string> | [<bit-position>*] | [not <bit-position>*]
+<bitset-spec> ::= <binary> | <char> | <string> | [<bit-position>*] | [not <bit-position>*]
 <bit-position> ::= <integer> | <char> | <string> | <char> - <char> | <integer> - <integer>
 ....
 
@@ -1228,14 +1233,13 @@ The `<bitset-spec>` that is a `<binary>` produces a `bitset!` value that is bit-
 to the `binary!` value. The difference between `binary!` and `bitset!` is that `binary!` values
 have components that are integers `0..255`, with 1-origin index, while `bitset!` values
 have components that are `logic!` values (`true = 1, false = 0`), with 0-origin index.
-The `<bitset-spec>` that is an `integer!` value produces an "empty" bitset (all bits set to false)
-of size the nearest multiple of 8. In all other cases the `<bitset-spec>` provides a list of bit-position numbers,
-or ranges of them, that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
+The `<bitset-spec>` provides a list of bit-position numbers, or ranges of them,
+that are to be set to `true`. The `<char>` is interpreted as the Unicode Codepoint number.
 A `string!` value is interpreted as the collection of all its component characters.
 Note that an `integer!` value used as `<bit-position>` should be non-negative, but
 need not be a valid Unicode Codepoint number.
 The length of the bitset is computed as the smallest multiple of 8 needed to fit the highest
-bit number (0-origin). An "empty" bitset created by `charset [ ]` is 8 bits (one byte) long.
+bit number (0-origin). A bitset of length 0 is created by a `<bitset-spec>` of `[ ]`, `""` or `#{ }`.
 A `<bitset-spec>` that is a block starting with `not` produces the bit-by-bit complement of the bitset
 produced by the following bit-position numbers, while actually storing only these bit-positions.
 _**See https://github.com/red/red/issues/2609[issue #2609]**_
@@ -5624,7 +5628,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-integer">5.4.5</a>
 <a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-tuple">5.4.10</a>
 <a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-binary">5.4.11</a>
-<a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#bitset">5.3.5</a>
+<a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#creation-of-values-make">5.3</a>, <a href="#bitset">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
@@ -5656,7 +5660,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/4352">4352</a>   <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/4367">4367</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/4372">4372</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/4378">4378</a>
+<a href= "https://github.com/red/red/issues/4378">4378</a>   <a href="#creation-of-values-make">5.3</a>
 
 REP    spec
 issue  section
