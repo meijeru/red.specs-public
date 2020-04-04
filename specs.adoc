@@ -1524,7 +1524,8 @@ All values are checked for validity, and over- and under-flow in the date and ti
 and `3 -10 0` would give `02:50:00`) are not allowed. The timezone value is treated as in `<date-literal>`
 (see <<date,section 5.2.14>>).
 * Making a `url!` value from an `any-list!` value: the components (at least one is required)
-may be of any type; they will be `form` ed; the first component is assumed to be the _scheme_
+may be of any type; they will be `form` ed (see <<conversion-fromto-textual-representation,section 11.1.1>>);
+the first component is assumed to be the _scheme_
 (e.g. `http`) and the second one, if any, to be the server address (e.g. `www.red-lang.org`);
 if the third one is an `integer!` value, this is assumed to be the _port number_ (e.g. `80`),
 otherwise the third and any following components are assumed to constitute the file path
@@ -2818,8 +2819,8 @@ The function `collect` also has a refinement `/into`, with a `series!` value as 
 if present, the collected components will be inserted into this series.
 
 The function `rejoin` will `reduce` all elements of its `block!` argument, `form`
-each of them if not of `any-string!` type, and concatenate them into a result
-of the type of the first element. Thus:
+each of them if not of `any-string!` type (see <<conversion-fromto-textual-representation,section 11.1.1>>),
+and concatenate them into a result of the type of the first element. Thus:
 ....
 rejoin ["abc" %.def]      ; "abc.def"
 rejoin [%abc ".def"]      ; %abc.def
@@ -3250,7 +3251,8 @@ for which `to binary!` is defined (see <<target-type-binary,section 5.4.11>>_);
 note that for `integer!` values the binary equivalent is truncated to 8 bits.
 _**See https://github.com/red/red/issues/4367[issue #4367]**_
 For `any-string!` series, the `<expression>` argument may be of any type;
-if it is not a `char!` or `any-string!` value, is first `form` ed;
+if it is not a `char!` or `any-string!` value, is first `form` ed
+(see <<conversion-fromto-textual-representation,section 11.1.1>>);
 `any-list!` values will have their components concatenated after being `form` ed.
 For `vector!` series, the (components of the) `<expression>` argument will be truncated
 to the bit-size of the vector, if needed.
