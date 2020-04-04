@@ -1548,7 +1548,7 @@ or `float!` argument.
 Note also, that conversion with `to` may lead to values being created, that would not
 be allowed in a Red program, or even be interpreted differently. Such values may still
 be useful in dialects. Example: `to-path [1 2 3]` gives `1/2/3`, and `1/2/3` in a Red program
-is the `date!` value ` 1-Feb-2003`.
+is the `date!` value `1-Feb-2003`.
 
 ==== Target types `none!` and `unset!`
 
