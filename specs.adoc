@@ -2926,7 +2926,7 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |`negate`              |1     |`money! number! time! pair!`             |same as operand ^9^
 |`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^9^
 |`sum`                 |1     |`any-list!` ^10^ `vector!`                |same as individual numbers +
-(refer to table below if not all numbers have the same type)
+(refer to table above if not all numbers have the same type)
 |`average`             |1       |`any-list!` ^10^ `vector!`              |see note ^11^
 |===
 
@@ -3915,14 +3915,14 @@ The following I/O operations (functions) are defined on ports:
 |function  |description
 |create    |Send port a create request
 |open      |Opens a port
-|open?     |Tests if port is open
+|open?     |TBD
 |close     |Closes a port
 |query     |
 |read      |
 |write     |
 |update    |
 |modify    |
-|rename    |    
+|rename    |
 |delete    |
 |===
 
