@@ -3487,7 +3487,7 @@ the component(s) of the series currently referred to by the word(s), is/are remo
 The result of `forever` is that of the exception that causes its interruption.
 For the other functions, unless an exception has occurred, the result is the unset value
 for `while` and `remove-each`, and the result of the execution of the body
-for the remaining ones.
+for the remaining ones. -**See https://github.com/red/red/issues/1706[issue #1706]
 
 === Interrupting execution
 
