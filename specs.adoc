@@ -1965,7 +1965,7 @@ will not be displayed, and that for computations they have the value `0:00`
 * `image!` values: the `size` component cannot be set; the other components can be set
 to a `binary!` value of the required length; if the value is shorter, bytes `#{00}` are appended;
 if the value is longer, the remainder is ignored; a `tuple!` value can also be supplied, its
-components will be used for each pixel.
+components will be used for each pixel _**See https://github.com/red/red/issues/4047[issue #4047]**_.
 * `event!` values: only the `type` component can be set to a `word!` value
 
 Selection by a key of the wrong type or wrong value leads to an error. 
