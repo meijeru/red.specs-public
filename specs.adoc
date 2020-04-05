@@ -1864,6 +1864,8 @@ Finally, note that the components of a `binary!` value are yielded as (unsigned)
 on extraction; on changing, any `integer!` or `char!` value is allowed, but its binary representation
 is truncated to the lowest 8 bits.
 
+_**See also https://github.com/red/red/issues/3729[issue #3729]**_
+
 ==== Selection by "key" 
 
 This is possible for values that are sequences (with types in `series!`,
