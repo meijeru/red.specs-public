@@ -3219,7 +3219,9 @@ These functions create a new series value, pointing to new components:
 |===
 
 Note that `copy` make a _shallow_ copy, i.e. inner series are not copied. To also copy
-these inner series, use the refinement`/deep`.
+these inner series, use the refinement`/deep`. With the refinement `/type` one can specify
+more precisely which type of components need to be copied in this way.
+_** See https://github.com/red/red/issues/2167[issues #2167] and https://github.com/red/red/issues/2254[#2254]**_
 
 The function `extract` has a refinement `/into`, with a `series!` argument; if present, this series
 is the target for the resulting components.
