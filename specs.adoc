@@ -2067,9 +2067,12 @@ the built-in function `spec-of` and the list of formal argument names through
 the function `words-of` _**not yet implemented**_. For `function!` and `routine!` values, there is in
 addition the function `body-of` which yields the function/routine body.
 _**See also https://github.com/red/red/issues/3552[issue #3552]**_
+For `native!` and `action!` values, `body-of` could give the native resp. action number
+(see sections <<action-type,7.4.2>> and <<native-type,7.4.4>>, as well as
+_**https://github.com/red/REP/issues/51[REP #51]**_).
 * For `series!` values, the properties `owner` and `owned` have been defined which are notably used
 by the _reactivity_ facility (see <<reactivity,section 13.4>>). Note that these properties
-can only be obtained by `reflect <expression> `'owner` resp. 'owned`. Likewise
+can only be obtained by `reflect <expression> `'owner` resp. `owned`. Likewise
 for the `owned` property of `object!` values.
 
 Other functions:
@@ -3293,6 +3296,8 @@ in the second case an empty map.
 The functions `append` and `insert` are also defined on values of type `bitset!`.
 The effect of both is to set the bits corresponding to the argument (a value
 of type `char!`, `string!`, `integer!` or `block!` of integers).
+
+In connection with `trim`, _**see https://github.com/red/red/issues/3663[issue #3663]**_
 
 The function `pad` in fact accepts an argument of any type, which will be `form` ed into a `string!` value
 if needed.
@@ -5669,6 +5674,7 @@ issue  section
 <a href= "https://github.com/red/red/issues/3571">3571</a>   <a href="#file-system-functions">11.3.2</a>
 <a href= "https://github.com/red/red/issues/3585">3585</a>   <a href="#function-type">7.4.1</a>
 <a href= "https://github.com/red/red/issues/3595">3595</a>   <a href="#function">5.3.8</a>
+<a href= "https://github.com/red/red/issues/3663">3663</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/3711">3711</a>   <a href="#set-theoretical-functions">8.3</a>
 <a href= "https://github.com/red/red/issues/3729">3729</a>   <a href="#indexing">5.6.1</a>
 <a href= "https://github.com/red/red/issues/3734">3734</a>   <a href="#vector">5.3.3</a>
@@ -5693,7 +5699,8 @@ issue  section
  <a href="https://github.com/red/REP/issues/12">12</a>    <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/29">29</a>    <a href="#series-positioning-and-navigation">9.2</a>
  <a href="https://github.com/red/REP/issues/30">30</a>    <a href="#casting-of-values-as">5.5</a>
- <a href="https://github.com/red/REP/issues/67">67</a>    <a href="#equality-comparisons">5.8.1</a>
+ <a href="https://github.com/red/REP/issues/51">51</a>    <a href="#casting-of-values-as">5.5</a> 
+ <a href="https://github.com/red/REP/issues/67">67</a>    <a href="#reflection-functions">5.7.3</a>
  <a href="https://github.com/red/REP/issues/68">68</a>    <a href="#enquiry-and-reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/69">69</a>    <a href="#enquiry-and-reflection-on-values">5.7</a>
 </pre>
