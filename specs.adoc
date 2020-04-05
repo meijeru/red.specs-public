@@ -809,7 +809,8 @@ Examples: `abc`  `Abc`  `ABC`  `+`  `<>`  `integer!`  `last-item?` ; the first t
               ^" | ^^ |  ^(del) | ^~ | ^A | ^B | ... | ^Z | ^[ | ^\ | ^] | ^_
 <hexadecimal-codepoint> :: = ^(<hex-number>) 
 ....
-where `<hex-number>` consists of 2 to 6 hexadecimal digits `0-9 A-F a-f`.
+where `<hex-number>` consists of 1 to 6 hexadecimal digits `0-9 A-F a-f`.
+_**See https://github.com/red/red/issues/2671[issue #2671]**_
 
 A `<char-literal>` must be a valid single Unicode code point, i.e. an integer in the range `0` to `10FFFF` (hexadecimal notation). 
 
