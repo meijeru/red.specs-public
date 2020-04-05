@@ -5641,21 +5641,18 @@ Red    spec
 issue  section
 
 <a href= "https://github.com/red/red/issues/324">324</a>    <a href="#function">5.3.8</a>
-<a href= "https://github.com/red/red/issues/1267">1267</a>
-<a href= "https://github.com/red/red/issues/1706">1706</a>
-<a href= "https://github.com/red/red/issues/1956">1956</a>
+<a href= "https://github.com/red/red/issues/1706">1706</a>   <a href="#repeated-execution-loops">10.2</a>
 <a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/2167">2167</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/2254">2254</a>
+<a href= "https://github.com/red/red/issues/2254">2254</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-integer">5.4.5</a>, <a href="#target-type-tuple">5.4.10</a>, <a href="#target-type-binary">5.4.11</a>
-<a href= "https://github.com/red/red/issues/2498">2498</a>
-<a href= "https://github.com/red/red/issues/2586">2586</a>
+<a href= "https://github.com/red/red/issues/2498">2498</a>   <a href="#vector">5.3.3</a>
 <a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#creation-of-values-make">5.3</a>, <a href="#bitset">5.3.5</a>
 <a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
 <a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
-<a href= "https://github.com/red/red/issues/2647">2647</a>
 <a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2671">2671</a>   <a href="#char">5.2.6</a>
 <a href= "https://github.com/red/red/issues/2699">2699</a>   <a href="#higher-mathematical-functions">8.2</a>
