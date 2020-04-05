@@ -2662,6 +2662,8 @@ Note that the order of the expressions to be supplied for the optional arguments
 by the order of the actual refinements present, *not* by the order of the `<function-refinement>` s
 in the `<argument-spec>`.
 
+_**See also https://github.com/red/red/issues/3585[issue #3585]**_
+
 ==== `action!` type
 
 **`E111`**::
