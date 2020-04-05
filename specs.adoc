@@ -3446,7 +3446,8 @@ from 1 to the integer. Note that the `<word>` is _not_ local to the loop,
 i.e. there is no separate context for the `repeat` loop.
 * `foreach`: for series, the `<counter>` may be a word or a block of words; the `<body-block>` is executed
 repeatedly with the word(s) being set to subsequent components of the series. For maps, the `<counter>`
-must be a block with 2 words; the `<body-block>` is executed repeatedly with the words being set to
+must be a block with 2 words _**See https://github.com/red/red/issues/3910[issue #3910]**_; 
+the `<body-block>` is executed repeatedly with the words being set to
 a key and its associated value, respectively, visiting all keys in some order. The word(s) are again not local to the loop.
 
 Example:
