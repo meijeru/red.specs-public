@@ -3008,7 +3008,8 @@ Note that `math` only deals with `*` and `/` and not with other basic arithmetic
 
 This concerns first of all the familiar functions `exp` for raising
 `e = 2.718281828459045235360287471` to a power, the logarithms `log-e log-2 log-10`,
-and the square root `sqrt`. Furthermore the trigonometric functions
+and the square root `sqrt`. _**See https://github.com/red/red/issues/2699[issue #2699]**_
+Furthermore the trigonometric functions
 `sin cos tan asin acos atan atan2`, and the functions `random` and
 `checksum`.
 
@@ -3019,7 +3020,7 @@ if different from argument types.
 [cols="1,1,1,2", options="header"]
 |===
 |function                     |arity |argument type(s)                    |result type
-|exp log-e log-2 log-10 sqrt    |1   |number!                             |float!
+|exp log-e log-2 log-10 sqrt    |1   |integer! float!                     |float!
 |sin cos tan asin acos atan     |1   |float!                              |
 |atan2                          |2   |float!                              |
 |random                         |1   |logic! scalar!                      |
