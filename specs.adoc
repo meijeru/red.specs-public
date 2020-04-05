@@ -1177,6 +1177,8 @@ by the number of bits specified by `<type-and-size>`, these values are truncated
 If an `<integer>` is specified, it indicates the number of components, which will be initialized to "zero"
 (`0` for `integer!`, `0.0` for `float!`, `0%` for `percent!` and `#"^(null)"` for `char!`).
 
+_**See https://github.com/red/red/issues/3734[issue #3734]**_
+
 Note that `make vector! <integer>` and `make vector! <float>` produce a vector of integers of size 32,
 initialized to `0`, in contrast to the general behaviour of `make series! <integer>` and `make series! <float>`
 
