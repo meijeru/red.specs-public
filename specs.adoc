@@ -1440,6 +1440,8 @@ In contrast to `action!` and `native!` values which cannot be made by means of
 using `make op!`. The `<prefix-function>` should have exactly two arguments
 and no optional arguments, except possibly `/local`.
 
+_**See https://github.com/red/red/issues/3344[issue #3344]**_
+
 Example: `&&: make op! func [a b][all [a b]]`.
 
 ==== `map!`
