@@ -2063,6 +2063,7 @@ This property is `1` for `error!` values, and `2` for `port!` values.
 the built-in function `spec-of` and the list of formal argument names through
 the function `words-of` _**not yet implemented**_. For `function!` and `routine!` values, there is in
 addition the function `body-of` which yields the function/routine body.
+_**See also https://github.com/red/red/issues/3552[issue #3552]**_
 * For `series!` values, the properties `owner` and `owned` have been defined which are notably used
 by the _reactivity_ facility (see <<reactivity,section 13.4>>). Note that these properties
 can only be obtained by `reflect <expression> `'owner` resp. 'owned`. Likewise
