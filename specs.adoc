@@ -3036,7 +3036,7 @@ The `word!` argument to `checksum` indicates the method; allowed are
 
 The following functions operate on values that can be conceived as representing
 _sets_ of other values; this concerns some series types: `block! hash! string!`,
-as well as `bitset!` and `typeset!`.
+as well as `bitset!` and `typeset!`. _**See https://github.com/red/red/issues/3711[issue #3711]**_
 
 The functions `intersect union difference` and `exclude` have two arguments
 of one of the types mentioned, and yield a result of the same type. The function
