@@ -3251,8 +3251,13 @@ null bytes from binary, or `none` from block or hash value                      
 |===
 
 The functions `change`, `replace`, `alter`, `insert`, `append` and `repend` take an `<expression>` argument
-that evaluates to either a single component of the series or to a sub-series. For `binary!` series,
-this argument will be converted to `binary!` if needed, and thus may be of any type
+that evaluates to either a single component of the series or to a sub-series.
+For `any-list!` series, the argument may be of any type; if it is of `any-block!` or `vector!` type,
+the components are treated one by one, except if the refinement `/only` is used.
+For `any-path` series, the argument may be of `any-block!` type, with the same comment.
+For `vector!` series, the argument may be of `vector!` or `block!` type.
+_**See https://github.com/red/red/issues/4080[issue #4080]**_
+For `binary!` series, the argument will be converted to `binary!` if needed, and thus may be of any type
 for which `to binary!` is defined (see <<target-type-binary,section 5.4.11>>_);
 note that for `integer!` values the binary equivalent is truncated to 8 bits.
 _**See https://github.com/red/red/issues/4367[issue #4367]**_
