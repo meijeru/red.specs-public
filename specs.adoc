@@ -5643,6 +5643,7 @@ and suggestions for enhancement ("wishes") that are reported separately in the R
 (Red Enhancement Proposals) repository. The numbered issues can be found at
 https://github.com/red/red/issues/ and https://github.com/red/REP/issues/
 respectively. The column `S` gives the status of the issue, as follows:
+
 * `N` submitted, not classified (yet)
 * `D` deferred, i.e. recognized but not scheduled (yet) for review and/or resolution
 * `R` reviewed by the Red team
@@ -5652,64 +5653,64 @@ respectively. The column `S` gives the status of the issue, as follows:
 ++++
 <pre>
 Red     S spec
-issue   S section
+issue     section
 
-<a href= "https://github.com/red/red/issues/324">324</a>    <a href="#function">5.3.8</a>
-<a href= "https://github.com/red/red/issues/1706">1706</a>   <a href="#repeated-execution-loops">10.2</a>
-<a href= "https://github.com/red/red/issues/1960">1960</a>   <a href="#overview-table-1">5.6.3</a>
-<a href= "https://github.com/red/red/issues/1961">1961</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
-<a href= "https://github.com/red/red/issues/2167">2167</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
-<a href= "https://github.com/red/red/issues/2216">2216</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/2254">2254</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
-<a href= "https://github.com/red/red/issues/2329">2329</a>   <a href="#target-type-integer">5.4.5</a>, <a href="#target-type-tuple">5.4.10</a>, <a href="#target-type-binary">5.4.11</a>
-<a href= "https://github.com/red/red/issues/2498">2498</a>   <a href="#vector">5.3.3</a>
-<a href= "https://github.com/red/red/issues/2609">2609</a>   <a href="#creation-of-values-make">5.3</a>, <a href="#bitset">5.3.5</a>
-<a href= "https://github.com/red/red/issues/2625">2625</a>   <a href="#overview-table-1">5.6.3</a>
-<a href= "https://github.com/red/red/issues/2642">2642</a>   <a href="#routine">5.3.9</a>
-<a href= "https://github.com/red/red/issues/2644">2644</a>   <a href="#other-types">5.3.14</a>
-<a href= "https://github.com/red/red/issues/2650">2650</a>   <a href="#equality-comparisons">5.8.1</a>
-<a href= "https://github.com/red/red/issues/2671">2671</a>   <a href="#char">5.2.6</a>
-<a href= "https://github.com/red/red/issues/2699">2699</a>   <a href="#higher-mathematical-functions">8.2</a>
-<a href= "https://github.com/red/red/issues/2708">2708</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/2776">2776</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/3285">3285</a>   <a href="#function">5.3.8</a>
-<a href= "https://github.com/red/red/issues/3344">3344</a>   <a href="#op">5.3.10</a>
-<a href= "https://github.com/red/red/issues/3409">3409</a>   <a href="#target-types-in-any-string">5.4.3</a>
-<a href= "https://github.com/red/red/issues/3482">3482</a>   <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
-<a href= "https://github.com/red/red/issues/3552">3552</a>   <a href="#reflection-functions">5.7.3</a>
-<a href= "https://github.com/red/red/issues/3570">3570</a>   <a href="#inputoutput">11</a>
-<a href= "https://github.com/red/red/issues/3571">3571</a>   <a href="#file-system-functions">11.3.2</a>
-<a href= "https://github.com/red/red/issues/3585">3585</a>   <a href="#function-type">7.4.1</a>
-<a href= "https://github.com/red/red/issues/3595">3595</a>   <a href="#function">5.3.8</a>
-<a href= "https://github.com/red/red/issues/3663">3663</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
-<a href= "https://github.com/red/red/issues/3711">3711</a>   <a href="#set-theoretical-functions">8.3</a>
-<a href= "https://github.com/red/red/issues/3729">3729</a>   <a href="#indexing">5.6.1</a>
-<a href= "https://github.com/red/red/issues/3734">3734</a>   <a href="#vector">5.3.3</a>
-<a href= "https://github.com/red/red/issues/3910">3910</a>   <a href="#repeated-execution-loops">10.2</a>
-<a href= "https://github.com/red/red/issues/4047">4047</a>   <a href="#selection-by-key">5.6.2</a>
-<a href= "https://github.com/red/red/issues/4068">4068</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/4080">4080</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
-<a href= "https://github.com/red/red/issues/4131">4131</a>   <a href="#casting-of-values-as">5.5</a>
-<a href= "https://github.com/red/red/issues/4273">4273</a>   <a href="#target-type-binary">5.4.10</a>
-<a href= "https://github.com/red/red/issues/4327">4327</a>   <a href="#series-positioning-and-navigation">9.2</a>
-<a href= "https://github.com/red/red/issues/4352">4352</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/4367">4367</a>   <a href="#series-extraction-and-modification-of-components">9.3</a>
-<a href= "https://github.com/red/red/issues/4372">4372</a>   <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/4378">4378</a>   <a href="#creation-of-values-make">5.3</a>
+<a href= "https://github.com/red/red/issues/324">324</a>    R  <a href="#function">5.3.8</a>
+<a href= "https://github.com/red/red/issues/1706">1706</a>    R <a href="#repeated-execution-loops">10.2</a>
+<a href= "https://github.com/red/red/issues/1960">1960</a>    A <a href="#overview-table-1">5.6.3</a>
+<a href= "https://github.com/red/red/issues/1961">1961</a>    A <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/2167">2167</a>    A <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/2216">2216</a>    R <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/2254">2254</a>    A <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/2329">2329</a>    A <a href="#target-type-integer">5.4.5</a>, <a href="#target-type-tuple">5.4.10</a>, <a href="#target-type-binary">5.4.11</a>
+<a href= "https://github.com/red/red/issues/2498">2498</a>    A <a href="#vector">5.3.3</a>
+<a href= "https://github.com/red/red/issues/2609">2609</a>    N <a href="#creation-of-values-make">5.3</a>, <a href="#bitset">5.3.5</a>
+<a href= "https://github.com/red/red/issues/2625">2625</a>    R <a href="#overview-table-1">5.6.3</a>
+<a href= "https://github.com/red/red/issues/2642">2642</a>    N <a href="#routine">5.3.9</a>
+<a href= "https://github.com/red/red/issues/2644">2644</a>    A <a href="#other-types">5.3.14</a>
+<a href= "https://github.com/red/red/issues/2650">2650</a>    A <a href="#equality-comparisons">5.8.1</a>
+<a href= "https://github.com/red/red/issues/2671">2671</a>    F <a href="#char">5.2.6</a>
+<a href= "https://github.com/red/red/issues/2699">2699</a>    N <a href="#higher-mathematical-functions">8.2</a>
+<a href= "https://github.com/red/red/issues/2708">2708</a>    N <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/2776">2776</a>    N <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/3285">3285</a>    A <a href="#function">5.3.8</a>
+<a href= "https://github.com/red/red/issues/3344">3344</a>    A <a href="#op">5.3.10</a>
+<a href= "https://github.com/red/red/issues/3409">3409</a>    N <a href="#target-types-in-any-string">5.4.3</a>
+<a href= "https://github.com/red/red/issues/3482">3482</a>    N <a href="#indexing">5.6.1</a>, <a href="#selection-by-key">5.6.2</a>
+<a href= "https://github.com/red/red/issues/3552">3552</a>    N <a href="#reflection-functions">5.7.3</a>
+<a href= "https://github.com/red/red/issues/3570">3570</a>    D <a href="#inputoutput">11</a>
+<a href= "https://github.com/red/red/issues/3571">3571</a>    R <a href="#file-system-functions">11.3.2</a>
+<a href= "https://github.com/red/red/issues/3585">3585</a>    N <a href="#function-type">7.4.1</a>
+<a href= "https://github.com/red/red/issues/3595">3595</a>    F <a href="#function">5.3.8</a>
+<a href= "https://github.com/red/red/issues/3663">3663</a>    N <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/3711">3711</a>    N <a href="#set-theoretical-functions">8.3</a>
+<a href= "https://github.com/red/red/issues/3729">3729</a>    N <a href="#indexing">5.6.1</a>
+<a href= "https://github.com/red/red/issues/3734">3734</a>    N <a href="#vector">5.3.3</a>
+<a href= "https://github.com/red/red/issues/3910">3910</a>    N <a href="#repeated-execution-loops">10.2</a>
+<a href= "https://github.com/red/red/issues/4047">4047</a>    N <a href="#selection-by-key">5.6.2</a>
+<a href= "https://github.com/red/red/issues/4068">4068</a>    N <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/4080">4080</a>    N <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/4131">4131</a>    F <a href="#casting-of-values-as">5.5</a>
+<a href= "https://github.com/red/red/issues/4273">4273</a>    N <a href="#target-type-binary">5.4.10</a>
+<a href= "https://github.com/red/red/issues/4327">4327</a>    N <a href="#series-positioning-and-navigation">9.2</a>
+<a href= "https://github.com/red/red/issues/4352">4352</a>    N <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/4367">4367</a>    N <a href="#series-extraction-and-modification-of-components">9.3</a>
+<a href= "https://github.com/red/red/issues/4372">4372</a>    N <a href="#basic-arithmetic-operations">8.1</a>
+<a href= "https://github.com/red/red/issues/4378">4378</a>    N <a href="#creation-of-values-make">5.3</a>
 
-REP     S spec
-issue   S section
+REP   S spec
+issue   section
 
- <a href="https://github.com/red/REP/issues/9"> 9</a>     N <a href="#formal-grammar">3.2</a>, <a href="#introduction-1">5.1</a>
- <a href="https://github.com/red/REP/issues/10">10</a>     N <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
- <a href="https://github.com/red/REP/issues/11">11</a>     N <a href="#console-functions">11.5.1</a>
- <a href="https://github.com/red/REP/issues/12">12</a>     N <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/29">29</a>     N <a href="#series-positioning-and-navigation">9.2</a>
- <a href="https://github.com/red/REP/issues/30">30</a>     N <a href="#casting-of-values-as">5.5</a>
- <a href="https://github.com/red/REP/issues/51">51</a>     F <a href="#reflection-functions">5.7.3</a>
- <a href="https://github.com/red/REP/issues/67">67</a>     N <a href="#comparison-of-values">5.8</a> 
- <a href="https://github.com/red/REP/issues/68">68</a>     N <a href="#enquiry-and-reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/69">69</a>     N <a href="#enquiry-and-reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/71">71</a>     N <a href="#conversion-of-values-to">5.4</a>
+ <a href="https://github.com/red/REP/issues/9"> 9</a>   N <a href="#formal-grammar">3.2</a>, <a href="#introduction-1">5.1</a>
+ <a href="https://github.com/red/REP/issues/10">10</a>   N <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
+ <a href="https://github.com/red/REP/issues/11">11</a>   N <a href="#console-functions">11.5.1</a>
+ <a href="https://github.com/red/REP/issues/12">12</a>   N <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/29">29</a>   N <a href="#series-positioning-and-navigation">9.2</a>
+ <a href="https://github.com/red/REP/issues/30">30</a>   N <a href="#casting-of-values-as">5.5</a>
+ <a href="https://github.com/red/REP/issues/51">51</a>   F <a href="#reflection-functions">5.7.3</a>
+ <a href="https://github.com/red/REP/issues/67">67</a>   N <a href="#comparison-of-values">5.8</a> 
+ <a href="https://github.com/red/REP/issues/68">68</a>   N <a href="#enquiry-and-reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/69">69</a>   N <a href="#enquiry-and-reflection-on-values">5.7</a>
+ <a href="https://github.com/red/REP/issues/71">71</a>   N <a href="#conversion-of-values-to">5.4</a>
 </pre>
 ++++
