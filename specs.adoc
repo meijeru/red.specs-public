@@ -3206,7 +3206,8 @@ The function `length?` is also defined for values of type `bitset!`, `tuple!` an
 === Series: extraction and modification of components
 
 The following built-in functions have been described in <<components-of-values,section 5.6>>:
-`pick poke select put first second third fourth fifth last`.
+`pick poke select put first second third fourth fifth last`. As stated there, `select` and `put`
+are not defined on `image!` values.
 
 The function `select` has the same set of refinements as `find`
 (see <<series-positioning-and-navigation,previous section>>)
