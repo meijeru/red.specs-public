@@ -5637,12 +5637,16 @@ word                                    <a href = "#words-contexts-and-binding">
 
 == List of outstanding issues
 
-There are two types of issues: Red issues that represent a bug or other observed imperfection
+This list summarizes the known -- and reported -- issues flagged in the preceding sections,
+which relate to the syntax and semantics described therein. Thus they do not concern the
+details of what is described in the additional documentation referred to in
+<<additional-documentation,section 18>>. There are two types of issues:
+Red issues that represent a bug or other observed imperfection
 of the current toolchain, which are reported in the issue section of the toolchain repository
 and suggestions for enhancement ("wishes") that are reported separately in the REP
 (Red Enhancement Proposals) repository. The numbered issues can be found at
 https://github.com/red/red/issues/ and https://github.com/red/REP/issues/
-respectively. The column `S` gives the status of the issue, as follows:
+respectively. In the list below, the column `S` gives the status of each issue, as follows:
 
 * `N` submitted, not classified (yet)
 * `D` deferred, i.e. recognized but not scheduled (yet) for review and/or resolution
