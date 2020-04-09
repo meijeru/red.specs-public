@@ -334,7 +334,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`bigint!`        |integers of arbitrary size
 |`float!`         |floating point (decimal) numbers, binary encoding
 |`percent!`       |floating point numbers expressed as a percentage
-|`money!`         |monetary amounts, 11-digit decimal encoding, with currency code
+|`money!`         |monetary amounts, 22-digit decimal encoding, with currency code
 |`time!`          |time intervals or points in time, stored as a floating point number of seconds
 |`date!`          |dates according to the Gregorian calendar, optionally with time of day and timezone
 |`pair!`          |2-dimensional coordinates or size 
