@@ -2889,8 +2889,8 @@ Evaluation order can of course be influenced by the use of parentheses.
 
 === Basic arithmetic operations
 
-Red makes available the usual _arithmetic operations_ through `+ - * /` as operators
-and their prefix counterparts: `add subtract multiply divide`.
+Red makes available the usual _arithmetic operations_ through `+`, `-`,  `*` and `/` as operators
+and their prefix counterparts: `add`, `subtract`, `multiply`and `divide`.
 In addition, there are operators and prefix functions for exponentiation (`**` or `power`),
 truncated integer division (`//` or `divide-strict`), remainder (`%` or `remainder`)
 and modulo (`%%` or `modulo`). Enquiry functions are: `sign?`, `positive?`, `negative?`,
@@ -2956,9 +2956,9 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 Notes:
 
 . the result is of type `float!`, unless both operands are integer -- and in case of division
-there is no decimal fraction -- then it is of type ìnteger!`;
-also, if the first operand type is of type `percent!`, the result is of type `percent!` 
-. the result is truncated to the nearest integer
+only if there is no decimal fraction -- then it is of type `integer!`;
+furthermore, if the first operand type is of type `percent!`, the result is of type `percent!` 
+. the result is truncated to an integer by removing the decimal fraction
 . the result has the element type of the vector operand
 _**see also https://github.com/red/red/issues/2216[issues #2216],
 https://github.com/red/red/issues/4068[#4068] and https://github.com/red/red/issues/4352[#4352]**_
