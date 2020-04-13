@@ -2892,8 +2892,10 @@ Evaluation order can of course be influenced by the use of parentheses.
 Red makes available the usual _arithmetic operations_ through `+ - * /` as operators
 and their prefix counterparts: `add subtract multiply divide`.
 In addition, there are operators and prefix functions for exponentiation (`**` or `power`),
-modulo (`//` or `modulo`) and remainder (`%` or `remainder`). Enquiry functions are:
-`sign? positive? negative? zero? even? odd? NaN?`. The unary minus function is only represented
+truncated integer division (`//` or `divide-strict`), remainder (`%` or `remainder`)
+and modulo (`%%` or `modulo`). Enquiry functions are: `sign?`, `positive?`, `negative?`,
+`zero?`, `even?`, `odd?` and `NaN?` ("not a number", see <<float,section 5.2.2>>).
+The unary minus function is only represented
 by a prefix function `negate`, not by an operator, since these have always two arguments.
 Lastly, there are functions for rounding a number (`round`) and for determining
 the absolute value of a number (`absolute`), the maximum and minimum of two numbers (`max min`),
@@ -2901,36 +2903,37 @@ and the sum and average of a set of numbers (`sum` and `average`).
 
 The arity (number of arguments) and the argument and result types for these
 functions are as follows.  If an arithmetic operator is not mentioned, it is not allowed
-for the combination of operand types. For the result type of `//` 
+for the combination of operand types. For the result type of `%%` 
 _**see also https://github.com/red/red/issues/2708[issue #2708]**_
 _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 
 [cols="1,1,1,1,2", options="header"]
 |===
 |function              |arity |operand 1 type        |operand 2 type     |result type
-|`+ - * / // %`        |2     |`char!`               |`char!`            |`char!`
-|`+ - * / // %`        |2     |`char!`               |`integer! float!!` |`char!`
-|`+ - * / // %`        |2     |`integer! float!`     |`char!`            |same as operand 1
-|`+ - * / // %`        |2     |`number!`             |`number!`          |see note ^1^
-|`+ - * / %`           |2     |`vector!`             |`number!`          |`vector!` ^2^
-|`+ - * / %`           |2     |`number`              |`vector!`          |`vector!` ^2^
-|`+ - * / %`           |2     |`vector!`             |`vector!`          |`vector!` ^3^
-|`+ - * / // %`        |2     |`money!`              |`integer! float!`  |`money!`
+|`+ - * / % %%`        |2     |`char!`               |`char!`            |`char!`
+|`+ - * / % %%`        |2     |`char!`               |`integer! float!!` |`char!`
+|`+ - * / % %%`        |2     |`integer! float!`     |`char!`            |same as operand 1
+|`+ - * / % %%`        |2     |`number!`             |`number!`          |see note ^1^
+|`//`                  |2     |`integer!`            |`integer!`         |`integer!` ^2^
+|`+ - * / %`           |2     |`vector!`             |`number!`          |`vector!` ^3^
+|`+ - * / %`           |2     |`number`              |`vector!`          |`vector!` ^3^
+|`+ - * / %`           |2     |`vector!`             |`vector!`          |`vector!` ^4^
+|`+ - * / % %%`        |2     |`money!`              |`integer! float!`  |`money!`
 |`+ - *`               |2     |`integer! float!`     |`money!`           |`money!`
-|`+ - / // %`          |2     |`money!`              |`money!`           |`money!` ^4,5^
-|`+ - * / // %`        |2     |`time!`               |`number!`          |`time!`
-|`+ - * / // %`        |2     |`number!`             |`time!`            |`time!`
+|`+ - / % %%`          |2     |`money!`              |`money!`           |`money!` ^5,6^
+|`+ - * / % %%`        |2     |`time!`               |`number!`          |`time!`
+|`+ - * / % %%`        |2     |`number!`             |`time!`            |`time!`
 |`+ - * / %`           |2     |`pair! tuple!`        |`number!`          |same as operand 1
-|`+ - * / // %`        |2     |`number!`             |`pair! tuple!`     |same as operand 2
+|`+ - * / % %%`        |2     |`number!`             |`pair! tuple!`     |same as operand 2
 |`+ -`                 |2     |`date!`               |`integer!`         |`date!`
 |`+`                   |2     |`integer!`            |`date!`            |`date!`
-|`-`                   |2     |`date!`               |`date!`            |`integer!` ^6^
+|`-`                   |2     |`date!`               |`date!`            |`integer!` ^7^
 |`+ -`                 |2     |`date!`               |`time!`            |`date!`
 |`+`                   |2     |`time!`               |`date!`            |`date!`
-|`+ -   / // %`        |2     |`time!`               |`time!`            |`time!` ^5^
-|`+ - * / // %`        |2     |`pair!`               |`pair!`            |`pair!`
-|`+ - * / // %`        |2     |`tuple!`              |`tuple!`           |`tuple!`
-|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^7^ `float!`
+|`+ - * / % %%`        |2     |`time!`               |`time!`            |`time!` ^6^
+|`+ - * / % %%`        |2     |`pair!`               |`pair!`            |`pair!`
+|`+ - * / % %%`        |2     |`tuple!`              |`tuple!`           |`tuple!`
+|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^8^ `float!`
 |`max min`             |2     |`scalar!`             |`scalar!`          |same as greatest/smallest operand +
 (operand 1 if equal)
 |===
@@ -2939,47 +2942,49 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |===
 |function              |arity |operand type                             |result type
 |`NaN?`                |1     |`number!`                                |`logic!`
-|`sign?`               |1     |`money! number! time!`                   |`integer!`^8^
+|`sign?`               |1     |`money! number! time!`                   |`integer!`^9^
 |`positive? negative?` |1     |`money! number! time!`                   |`logic!`
 |`zero?`               |1     |`money! number! char! time! pair! tuple!`|`logic!`
 |`even? odd?`          |1     |`money! number! char! time!`             |`logic!`
-|`negate`              |1     |`money! number! time! pair!`             |same as operand ^9^
-|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^9^
-|`sum`                 |1     |`any-list!` ^10^ `vector!`                |same as individual numbers +
+|`negate`              |1     |`money! number! time! pair!`             |same as operand ^10^
+|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^10^
+|`sum`                 |1     |`any-list!` ^11^ `vector!`               |same as individual numbers +
 (refer to table above if not all numbers have the same type)
-|`average`             |1       |`any-list!` ^10^ `vector!`              |see note ^11^
+|`average`             |1       |`any-list!` ^11^ `vector!`             |see note ^12^
 |===
 
 Notes:
 
-. if both operand types are `integer!`, the result type is `integer!`; otherwise it is `float!`
-unless the first operand type is `percent!` in which case it is `percent!` 
-. result has element type of vector operand _**see also https://github.com/red/red/issues/2216[issues #2216],
+. the result is of type `float!`, unless both operands are integer -- and in case of division
+there is no decimal fraction -- then it is of type ìnteger!`;
+also, if the first operand type is of type `percent!`, the result is of type `percent!` 
+. the result is truncated to the nearest integer
+. the result has the element type of the vector operand
+_**see also https://github.com/red/red/issues/2216[issues #2216],
 https://github.com/red/red/issues/4068[#4068] and https://github.com/red/red/issues/4352[#4352]**_
-. operand 1 and 2 must have same element type
+. operand 1 and 2 must have the same element type
 . if both operand 1 and 2 have the currency indicated, these must be the same
-. divide has `float!` result
-. result is difference in days, disregarding time; for difference as a `time!` value
+. divide has a result of type `float!`
+. the result is the difference in days, disregarding time; for difference as a `time!` value
 use `difference`
-. result type is `integer!` only if both operands are integer, and
-the result value fits in 32 bits; otherwise result type is `float!`
-. result is `-1` `0` or `1`
+. the result type is `integer!` only if both operands are integer, and
+the result value fits in 32 bits; otherwise the result type is `float!`
+. the result is `-1` `0` or `1`
 . see https://github.com/red/REP/issues/10[REP #10]
-. components must be of type `money!` or `scalar!`
--**See https://github.com/red/red/issues/4372[issue #4372]**_
-. result has type of `<sum> / to-float length? <argument>`
+. the components must be of type `money!` or `scalar!`
+. the result has the type of `<sum> / to-float length? <argument>`
 
-The difference between the `modulo` and `remainder` functions is as follows:
+The difference between the `remainder` and `modulo` functions is as follows:
 
 * for positive first argument, the result of both is the positive remainder of division by the second argument
-* for negative first argument, the result of `modulo` is the positive remainder, and the result of `remainder` is the negative remainder
+* for negative first argument, the result of `remainder` is the negative remainder, and the result of `modulo` is the positive remainder
 
 The results of division by zero are as follows:
 
 * any integer divided by `0` gives an error
 * any non-zero non-integer number divided by `0` `0.0` or `0%` gives positive or negative infinity
 * `0` `0.0` or `0%` divided by `0.0` or `0%` gives "not a number"
-* computing modulo and remainder with `0` `0.0` or `0%` as second operand gives an error
+* computing remainder and modulo with `0` `0.0` or `0%` as second operand gives an error
 
 More information on the handling of the special numbers positive and negativity infinity and
 "not a number" is to be found in the additional documentation (see <<additional-documentation,section 18>>).
@@ -4813,6 +4818,7 @@ N    checksum
 A    complement
 F    cos         N    cosine
 O    /           A    divide
+O    //          F    divide-strict
 N    difference
 A    even?
 N    exclude
@@ -4823,7 +4829,7 @@ N    log-2
 N    log-e
 F    math
 N    max
-O    //          F    modulo           F mod
+O    %%          F    modulo           F mod
 O    *           A    multiply
 N    min
 N    NaN?
@@ -5542,6 +5548,7 @@ image color/transparency                <a href = "#image">5.3.4</a>
 immutable value                         <a href = "#atomic-composite-types">4.2.3</a>
 indentation                             <a href = "#textual-structure">3.1</a>
 indirect type                           <a href = "#directindirectfunction-types">4.2.2</a>
+infinity                                <a href = "#float">5.2.2</a>
 infix expression                        <a href = "#expressions-and-evaluation-order">3.3</a>
 inherited action                        <a href = "#parent-types">4.2.6</a>
 interactive console                     <a href = "#red-toolchain">2.2</a>
@@ -5557,6 +5564,7 @@ line feed ( U+000A)                     <a href = "#textual-structure">3.1</a>, 
 map spec dialect                        <a href = "#dialects">2.5</a>, <a href = "#map">5.3.11</a>
 metadata                                <a href = "#textual-structure">3.1</a>, <a href = "#metadata-for-the-toolchain">16</a>
 mutable value                           <a href = "#atomiccomposite-types">4.2.3</a>
+NaN (not a number)                      <a href = "#float">5.2.2</a>
 new-line character                      <a href = "#string">5.2.7</a>
 next line (U+0085)                      <a href = "#textual-structure">3.1</a>, <a href = "#string">5.2.7</a>
 non-breaking space                      <a href = "#textual-structure">3.1</a>
