@@ -1087,11 +1087,11 @@ Example: 	`0x76960dccd5a1fe799f7c29be9f19ceb4627aeb2f` ; the contract number for
 A `<money-literal>` consists of an optional sign (`+` or `-`), followed by an optional 3 letter
 currency indicator, followed by `$` and 1 to 17 significant digits (not counting leading zeroes)
 optionally followed by a decimal point and 1 to 5 digits of fraction. Digits may be separated
-by `'` signs. The allowable currency indicators are to be found in `system/locale/currencies/base`
-which contains the internationally standardized ones (ISO 4217) in addition to some crypto ones;
-user-defined indicators may be appended to `system/locale/currencies/extra`; these must be words of
-3 letters, different from already existing ones, and not making the total number of indicators greater
-than 255.
+by `'` signs. The allowable currency indicators are to be found in `system/locale/currencies/list`
+which initially contains the internationally standardized ones (ISO 4217) in addition to
+some crypto ones; user-defined indicators may be appended to it; these must be words of
+3 letters, different from already existing ones, and not making the total number of indicators
+greater than 255.
 
 Examples: `$123.45`  `$12'345'678'901'234'567.12345` `USD$1.07` `EUR$0002.50`
 
