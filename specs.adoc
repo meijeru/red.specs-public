@@ -235,6 +235,7 @@ see <<word,sections 5.2.5>> and <<refinement,5.2.15/16>>.
              | <string-literal>                         ; string!
              | <file-literal>                           ; file!
              | <url-literal>                            ; url!
+             | <ref-literal>                            ; ref!
              | <email-literal>                          ; email!
              | <tag-literal>                            ; tag!
              | <binary-literal>                         ; binary!
@@ -361,6 +362,7 @@ The full list of types of the languages is given below, with an explanation of t
 |`file!`          |files or directories (folders)
 |`url!`           |URLs
 |`tag!`           |tags in the sense of HTML, XML etc.
+|`ref!`           |references, e.g. user-ids in social media
 |`email!`         |email addresses
 |`binary!`        |sequences of bytes (numbers 0-255)
 |`image!`         |2-dimensional arrays of pixels (RGBA values stored in 4 bytes for each pixel, row first) 
@@ -390,7 +392,6 @@ The full list of types of the languages is given below, with an explanation of t
 TBD
 point!
 closure!
-ref!
 struct!
 library!
 ....
@@ -517,6 +518,7 @@ A further pseudo-type `context!` provides implementation of context-related func
 |`file!`       |lexical          |indirect  |composite        |N           |passive    |`url!`
 |`url!`        |lexical          |indirect  |composite        |N           |passive    |`string!`
 |`tag!`        |lexical          |indirect  |composite        |N           |passive    |`string!`
+|`ref!`        |lexical          |indirect  |composite        |N           |passive    |`string!`
 |`email!`      |lexical          |indirect  |composite        |N           |passive    |`string!`
 |`binary!`     |lexical          |indirect  |composite        |N           |passive    |`string!`
 |`image!`      |using `make`     |indirect  |composite        |N           |passive    |`series!`
@@ -546,7 +548,6 @@ also in user programs, but it is not recommended to do so
 TBD
 point!
 closure!
-ref!
 struct!
 library!
 ....
@@ -614,6 +615,7 @@ any-type!
    |  |  |--file!          
    |  |  |--url!           
    |  |  |--tag!           
+   |  |  |--ref!         
    |  |  |--email!         
    |  |--binary!          
    |  |--image!           
@@ -633,7 +635,6 @@ any-type!
 TBD
 point!
 closure!
-ref!
 struct!
 library!
 </pre>
@@ -1094,6 +1095,12 @@ some crypto ones; user-defined indicators may be appended to it; these must be w
 greater than 255.
 
 Examples: `$123.45`  `$12'345'678'901'234'567.12345` `USD$1.07` `EUR$0002.50`
+
+==== `ref!`
+
+**`S141`**::
+
+A `<ref-literal>` consists of a `@` sign followed by any(?) number of characters other than (??).
 
 === Creation of values (`make`)
 
