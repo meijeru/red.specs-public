@@ -3088,7 +3088,7 @@ for these functions are as follows.
 [cols="1,1,2", options="header"]
 |===
 |function   |arity  |argument type(s)
-|complement   |1    |integer! bitset! typeset! binary!^1^
+|complement   |1    |integer! tuple! bitset! typeset! binary!^1^
 |and or xor   |2    |integer! char! pair! tuple! bitset! typeset! binary! vector!
 |<< >> >>>    |2    |integer!
 |===
