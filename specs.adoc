@@ -1100,7 +1100,9 @@ Examples: `$123.45`  `$12'345'678'901'234'567.12345` `USD$1.07` `EUR$0002.50`
 
 **`S141`**::
 
-A `<ref-literal>` consists of a `@` sign followed by any(?) number of characters other than (??).
+A `<ref-literal>` consists of a `@` sign followed by any number of characters other than
+` # ' : > = , @ $ |` and it is terminated by any of the following `[ ] ( ) { } " ; <`,
+and whitespace of course.
 
 === Creation of values (`make`)
 
