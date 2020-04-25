@@ -1101,7 +1101,7 @@ Examples: `$123.45`  `$12'345'678'901'234'567.12345` `USD$1.07` `EUR$0002.50`
 **`S141`**::
 
 A `<ref-literal>` consists of a `@` sign followed by any number of characters other than
-`# ' > = , @ $ |` and it is terminated by any of the following `[ ] ( ) { } " ; <`,
+`# ' > = , @ $ ^` and it is terminated by any of the following `[ ] ( ) { } " ; <`,
 and whitespace of course.
 
 === Creation of values (`make`)
@@ -1549,7 +1549,7 @@ if the third one is an `integer!` value, this is assumed to be the _port number_
 otherwise the third and any following components are assumed to constitute the file path
 including -- if the last one is an `issue!` value -- a _fragment_.
 * For the following types, `make` operates in the same way as `to` (see next section): `none!`, `char!`,
-`float!`, `percent!`, `time!`, `pair!`, `any-word!`, `refinement!`, `issue!` and `unset!`.
+`ref!`, `float!`, `percent!`, `time!`, `pair!`, `any-word!`, `refinement!`, `issue!` and `unset!`.
 
 === Conversion of values (`to`)
 
@@ -1588,13 +1588,13 @@ The function `to-string` yields the same result as the built-in function `form` 
 * `unset!` and `none!` values: conversion is not allowed
 * `tag!` values: the brackets `< >` are omitted by `to-string` but not by `form` 
 * `binary!` values: these will be decoded as UTF-8; incorrect encodings will lead to an error, but trailing incomplete
-encodings will be ignored
+encodings will be ignored _**see https://github.com/red/red/issues/4412[issue # 4412]**_
 * `any-list!` values: the function will apply `form` to each component and concatenate the results
 
 Note that `to-string` and `form` omit the "decoration", i.e. the `:` resp. `'` for `any-word!` and
 `any-path!` values. _**But see https://github.com/red/red/issues/3409[issue #3409]**_
 
-The functions `to-file`, `to-email` and `to-tag` will perform the same conversion and yield
+The functions `to-file`, `to-email`, `to-tag` and `to-ref` will perform the same conversion and yield
 a result of the appropriate type. The function `to-url` will operate analogously for `none!` and
 `binary!` values; a `block!` value has the same interpretation as for the `make url!` function.
 
@@ -5720,6 +5720,7 @@ issue   section
 <a href= "https://github.com/red/red/issues/4372">4372</a>  N <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/4378">4378</a>  N <a href="#creation-of-values-make">5.3</a>
 <a href= "https://github.com/red/red/issues/4389">4389</a>  N <a href="#creation-of-values-make">5.3</a>
+<a href= "https://github.com/red/red/issues/4412">4412</a>  A <a href="#target-types-in-any-string">5.4.3</a>
 
 REP   S spec
 issue   section
