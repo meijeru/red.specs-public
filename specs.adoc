@@ -2083,7 +2083,10 @@ _**https://github.com/red/REP/issues/51[REP #51]**_).
 * For `series!` values, the properties `owner` and `owned` have been defined which are notably used
 by the _reactivity_ facility (see <<reactivity,section 13.4>>). Note that these properties
 can only be obtained by `reflect <expression> `'owner` resp. `owned`. Likewise
-for the `owned` property of `object!` values.
+for the `owned` property of `object!` values. The property `'changed` for `object!` values
+may be obtained by `reflect <expression> 'changed` and will yield a block of
+keys (`word!` values) indicating the fields whose value has been changed;
+this property can be cleared by `modify <expression> 'changed none`.
 
 Other functions:
 
