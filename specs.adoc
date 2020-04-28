@@ -1086,12 +1086,12 @@ Example: 	`0x76960dccd5a1fe799f7c29be9f19ceb4627aeb2f` ; the contract number for
 **`S139`**::
 
 A `<money-literal>` consists of an optional sign (`+` or `-`), followed by an optional 3 letter
-currency indicator, followed by `$` and 1 to 17 significant digits (not counting leading zeroes)
+currency code, followed by `$` and 1 to 17 significant digits (not counting leading zeroes)
 optionally followed by a decimal point and 1 to 5 digits of fraction. Digits may be separated
-by `'` signs. The allowable currency indicators are to be found in `system/locale/currencies/list`
+by `'` signs. The allowable currency codes are to be found in `system/locale/currencies/list`
 which initially contains the internationally standardized ones (ISO 4217) in addition to
-some crypto ones; user-defined indicators may be appended to it; these must be words of
-3 letters, different from already existing ones, and not making the total number of indicators
+some crypto ones; user-defined codes may be appended to it; these must be words of
+3 letters, different from already existing ones, and not making the total number of codes
 greater than 255.
 
 Examples: `$123.45`  `$12'345'678'901'234'567.12345` `USD$1.07` `EUR$0002.50`
@@ -1690,7 +1690,7 @@ The function `to-binary` is defined for
 
 * `integer!`, `float!` and `percent!` values: yields the corresponding 4 resp. 8 byte binary value
 * `money!` values: yields an 11 byte `binary!` value of 17 + 5 half-bytes corresponding to the digits
-of the `money!` value, disregarding the sign and the currency indicator, if any
+of the `money!` value, disregarding the sign and the currency code, if any
 * `char!` values: yields the UTF-8 encoded binary value
 * `tuple!` values: yields the 3 to 12 bytes binary value corresponding to the tuple components
 * `issue!` values: interprets the characters following the `#`, if possible, as base16 representation
