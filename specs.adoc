@@ -1587,8 +1587,7 @@ The function `to-string` yields the same result as the built-in function `form` 
 
 * `unset!` and `none!` values: conversion is not allowed
 * `tag!` values: the brackets `< >` are omitted by `to-string` but not by `form` 
-* `binary!` values: these will be decoded as UTF-8; incorrect encodings will lead to an error, but trailing incomplete
-encodings will be ignored _**see https://github.com/red/red/issues/4412[issue # 4412]**_
+* `binary!` values: these will be decoded as UTF-8; incorrect encodings will lead to an error
 * `any-list!` values: the function will apply `form` to each component and concatenate the results
 
 Note that `to-string` and `form` omit the "decoration", i.e. the `:` resp. `'` for `any-word!` and
@@ -5720,7 +5719,6 @@ issue   section
 <a href= "https://github.com/red/red/issues/4372">4372</a>  N <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/4378">4378</a>  N <a href="#creation-of-values-make">5.3</a>
 <a href= "https://github.com/red/red/issues/4389">4389</a>  N <a href="#creation-of-values-make">5.3</a>
-<a href= "https://github.com/red/red/issues/4412">4412</a>  A <a href="#target-types-in-any-string">5.4.3</a>
 
 REP   S spec
 issue   section
