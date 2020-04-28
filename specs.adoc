@@ -1732,7 +1732,7 @@ the desired date and time. This number can be both positive and
 negative and because of the limitation of integer numbers will yield dates between
 `13-Dec-1901/20:45:52` and `19-Jan-2038/3:14:07`. Furthermore, it is defined
 for `any-list!` values which have the same interpretation as for `make date!`
-(see <<date,section 5.2.14>>) except that in this case, over- and under-flow are allowed
+(see <<other-types,section 5.3.14>>) except that in this case, over- and under-flow are allowed
 and taken into account.
 
 ==== Target type `time!`
