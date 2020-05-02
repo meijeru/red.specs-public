@@ -5733,8 +5733,6 @@ issue   section
  <a href="https://github.com/red/REP/issues/30">30</a>   N <a href="#casting-of-values-as">5.5</a>
  <a href="https://github.com/red/REP/issues/51">51</a>   F <a href="#reflection-functions">5.7.3</a>
  <a href="https://github.com/red/REP/issues/67">67</a>   N <a href="#comparison-of-values">5.8</a> 
- <a href="https://github.com/red/REP/issues/68">68</a>   N <a href="#enquiry-and-reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/69">69</a>   N <a href="#enquiry-and-reflection-on-values">5.7</a>
  <a href="https://github.com/red/REP/issues/71">71</a>   N <a href="#conversion-of-values-to">5.4</a>
 </pre>
 ++++
