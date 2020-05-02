@@ -3190,10 +3190,9 @@ of type `char!`, `string!`, `integer!` or `block!` of integers),
 The result of `find` in these cases is `true` if there is a match, and `false` otherwise.
 It is defined in addition on values of type `map!` (see <<operations-on-maps,section 9-5>>).
 
-Furthermore, if the `<series>` argument is of type `any-block!` except `hash!`
-and the `<expression>` is of type `datatype!` the result is the `<series>`
-at the index of the first occurrence of a component of that type.
-_**See https://github.com/red/REP/issues/29[REP #29]**_
+Furthermore, if the `<series>` argument is of type `any-block!`
+and the `<expression>` is of type `datatype!` or `typeset!` the result is the `<series>`
+at the index of the first occurrence of a component of that type or one of those types.
 
 Note that `find` has a rich set of refinements:
 ....
@@ -5731,7 +5730,6 @@ issue   section
  <a href="https://github.com/red/REP/issues/10">10</a>   N <a href="#basic-arithmetic-operations">8.1</a>, <a href="#bitwise-functions">8.4</a>
  <a href="https://github.com/red/REP/issues/11">11</a>   N <a href="#console-functions">11.5.1</a>
  <a href="https://github.com/red/REP/issues/12">12</a>   N <a href="#overview-table">4.2.7</a>, <a href="#enquiry-and-reflection-on-values">5.7</a>
- <a href="https://github.com/red/REP/issues/29">29</a>   N <a href="#series-positioning-and-navigation">9.2</a>
  <a href="https://github.com/red/REP/issues/30">30</a>   N <a href="#casting-of-values-as">5.5</a>
  <a href="https://github.com/red/REP/issues/51">51</a>   F <a href="#reflection-functions">5.7.3</a>
  <a href="https://github.com/red/REP/issues/67">67</a>   N <a href="#comparison-of-values">5.8</a> 
