@@ -3192,7 +3192,8 @@ It is defined in addition on values of type `map!` (see <<operations-on-maps,sec
 
 Furthermore, if the `<series>` argument is of type `any-block!`
 and the `<expression>` is of type `datatype!` or `typeset!` the result is the `<series>`
-at the index of the first occurrence of a component of that type or one of those types.
+at the index of the first occurrence of a component of that type or of one of the types
+in that typeset.
 
 Note that `find` has a rich set of refinements:
 ....
