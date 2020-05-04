@@ -3519,9 +3519,12 @@ for the remaining ones. _**See https://github.com/red/red/issues/1706[issue #170
 The built-in functions `break continue exit return` are described
 in <<exceptions,section 12>>.
 
-The built-in functions `halt` and `quit` or `q` stop the execution
-of the program. _**Difference??_** The built-in function `quit-return`
-delivers its integer argument as status code back to the Operating System.
+The built-in function `quit-return` stops evaluation and returns back to
+the Operating System, delivering its integer argument as status code.
+The built-in function `quit` or `q` performs a `quit-return`, after
+saving the console configuration if it was called from the console.
+The built-in function `halt`, when called from the console, stops
+evaluation and returns to the input prompt.
 
 === Special execution cases
 
