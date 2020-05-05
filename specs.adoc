@@ -876,17 +876,16 @@ def}
 **`S118`**::
 
 A `<file-literal>` is written as `%` followed by one or more non whitespace characters, or by zero or more
-characters enclosed in `"  "` in which case whitespace characters except line feed and next line may be
-included. The interpretation of this value is operating system dependent, but escaped characters of the
-form `%<hex-byte>` (see <<binary,section 5.2.12>>) are accepted, except when `"  "`  are used.
-The `%` character itself needs to be escaped as `%25`.
+characters enclosed in `"  "` in which case whitespace characters except _new-line characters_ may be
+included. The interpretation of this value is operating system dependent.
 
 ==== `url!`
 
 **`S119`**::
 
 A `<url-literal>` is written as three or more non whitespace characters, of which at least one `:` which must not
-be the first or last character. The remarks in the <<file,previous section>> on escaped characters apply.
+be the first or last character. Escaped characters of the form `%<hex-byte>` (see <<binary,section 5.2.12>>)
+are accepted; the `%` character itself needs to be escaped as `%25`.
 
 ==== `email!`
 
