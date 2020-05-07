@@ -1383,7 +1383,7 @@ _**See https://github.com/red/red/issues/3285[issue #3285]**_
 The `<docstring>` may be used to document the purpose and working of the function. Each `<argument-doc>`
 may be used to document the purpose and usage of the associated  `<argument>`. In this
 connection, the `<word-literal>` of the `<function-refinement>` is also considered an `<argument>`.
-Likewise for the `<return-doc>`._**See https://github.com/red/red/issues/3595[issue #3595]**_
+Likewise for the `<return-doc>`.
 When present, the type(set)s specified for an `<argument>` will be used to check the type
 of the actual argument supplied. Otherwise, `default!` will be assumed.
 Likewise, when present, the type(set)s of the `<return-spec>`
@@ -3483,7 +3483,7 @@ from 1 to the integer. Note that the `<word>` is _not_ local to the loop,
 i.e. there is no separate context for the `repeat` loop.
 * `foreach`: for series, the `<counter>` may be a word or a block of words; the `<body-block>` is executed
 repeatedly with the word(s) being set to subsequent components of the series. For maps, the `<counter>`
-must be a block with 2 words _**See https://github.com/red/red/issues/3910[issue #3910]**_; 
+must be a block with 2 words; 
 the `<body-block>` is executed repeatedly with the words being set to
 a key and its associated value, respectively, visiting all keys in some order. The word(s) are again not local to the loop.
 
@@ -5708,12 +5708,10 @@ issue   section
 <a href= "https://github.com/red/red/issues/3570">3570</a>  D <a href="#inputoutput">11</a>
 <a href= "https://github.com/red/red/issues/3571">3571</a>  R <a href="#file-system-functions">11.3.2</a>
 <a href= "https://github.com/red/red/issues/3585">3585</a>  N <a href="#function-type">7.4.1</a>
-<a href= "https://github.com/red/red/issues/3595">3595</a>  F <a href="#function">5.3.8</a>
 <a href= "https://github.com/red/red/issues/3663">3663</a>  N <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/3711">3711</a>  N <a href="#set-theoretical-functions">8.3</a>
 <a href= "https://github.com/red/red/issues/3729">3729</a>  N <a href="#indexing">5.6.1</a>
 <a href= "https://github.com/red/red/issues/3734">3734</a>  N <a href="#vector">5.3.3</a>
-<a href= "https://github.com/red/red/issues/3910">3910</a>  F <a href="#repeated-execution-loops">10.2</a>
 <a href= "https://github.com/red/red/issues/4047">4047</a>  N <a href="#selection-by-key">5.6.2</a>
 <a href= "https://github.com/red/red/issues/4068">4068</a>  N <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/4080">4080</a>  N <a href="#series-extraction-and-modification-of-components">9.3</a>
