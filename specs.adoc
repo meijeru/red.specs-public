@@ -4537,6 +4537,7 @@ See also <<type-list,section 4.1>>
     percent!
     point!
     port!
+    ref!
     refinement!
     routine!
     set-path!
@@ -4653,6 +4654,7 @@ F    pair?
 F    paren?
 F    path?
 F    percent?
+F    ref?
 F    refinement?
 F    routine?
 F    scalar?
