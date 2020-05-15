@@ -3566,12 +3566,16 @@ Note that `modify` is defined but not yet implemented. _**See https://github.com
 
 ==== Conversion from/to textual representation
 
-The built-in function `load` will convert textual input (or its binary UTF-8 encoded
-equivalent), specified as its argument, to one or more values by calling upon
-the lexical/syntactic analysis facilities of the toolchain. The result is either one
-value or a block of values.
+The built-in function `load` will convert textual input (a `string!` value or its binary
+UTF-8 encoded equivalent), specified as its argument, to one or more Red values
+by calling upon the lexical/syntactic analysis facilities of the toolchain.
+The result is either one value or a block of values. If called with an argument (source)
+that is a `file!` or `url!` value, `load` will read the content of the source
+and -- if the representation cannot be otherwise determined
+(see <<conversion-fromto-other-representations,next section>>) -- will treat it
+as described above.
 
-There are three mechanisms for converting values to readable strings:
+There are three mechanisms for converting Red values to readable strings:
 the built-in function `form` will produce a basic representation intended for human readers,
 the built-in function `mold` will produce a representation that mirrors the source code
 of the value, while its variant `mold/all` will produce a representation that can be read
@@ -3610,7 +3614,11 @@ The built-in function `save` with a first argument (destination) of type `string
 second argument. If the destination is a string, it will append the result of `mold`
 to that string. If the destination is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
 out of the result of `mold` and append that value to the destination.
-If the destination is `none`, the result is a UTF-8 encoded binary molded value.
+If the destination is `none`, the result is the molded value, as a UTF-8 encoded `binary!` value.
+If `save` is called with a destination that is a `file!` or `url!` value
+and there is no specific representation indicated
+(see <<conversion-fromto-other-representations,next section>>) the result will
+be written to the destination as a UTF-8 encoded `binary!` value.
 
 For `any-list!` values the user can control the way they are presented by `mold`,
 by instructing it to insert line feed characters (`U+000A`) before selected components.
@@ -3641,10 +3649,10 @@ The state of the new-line marker may be tested with the built-in function
 ==== Conversion from/to other representations
 
 The built-in functions `load` and `save` each have an `/as` refinement
-with a `word!` argument: the value `none` indicates Red code (Red data)
-and makes `load` and `save` operate as already described;
+with a `word!` argument: the value `none` indicates Red code (molded Red values)
+and makes `load` and `save` operate as already described.
 other values implemented are first of all `png jpeg bmp gif`; for each of these values
-`load` will accept binary data in the indicated format and yield an `image!`
+`load` will accept binary data in the indicated format and decode it to yield an `image!`
 value, and `save` will take an `image!` value and produce the encoded binary
 value. The necessary decoding and encoding routines are stored in `system/codecs`.
 This is a block of pairs: `<word><object>`, where the `<word>` indicates
@@ -3676,6 +3684,12 @@ the argument to `/as` is `json`. The corresponding object in `system/codecs` is
 
 A similar facility is offered for comma separated values; the argument to `/as` is `csv`,
 the MIME type is ``text/csv` and the extension is `%.csv`.
+
+If the `/as` refinement is not present or its argument is `none`, and the source or destination
+is a `file!` or `url!` value, an attempt is made to determine the required representation
+for encoding/decoding, namely for `file!` values through the suffix, and for `url!` values
+through the MIME type in case of decoding, and through the suffix in case of encoding.
+If this yields no result, the operation is as described in the preceding section.
 
 Note that conversion between "raw" binary data (values of type `binary!`) and strings
 is quasi automatic if the binary data uses UTF-8 character encoding: `to-binary <string>`
