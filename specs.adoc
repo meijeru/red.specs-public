@@ -3674,6 +3674,9 @@ the argument to `/as` is `json`. The corresponding object in `system/codecs` is
     |decode          |function!    |func [text [string! binary! file!]][...]
 |===
 
+A similar facility is offered for comma separated values; the argument to `/as` is `csv`,
+the MIME type is ``text/csv` and the extension is `%.csv`.
+
 Note that conversion between "raw" binary data (values of type `binary!`) and strings
 is quasi automatic if the binary data uses UTF-8 character encoding: `to-binary <string>`
 and `to-string <binary>` will perform the necessary encoding/decoding.
