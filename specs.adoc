@@ -3609,17 +3609,6 @@ mold/all true             ; "#[true]"               will be loaded as logic! val
 Since `form` and `mold` may produce long strings for complex values, the function
 `ellipsize-at` may be used to truncate and add ellipsis (`...`) to a string.
 
-The built-in function `save` with a first argument (destination) of type `string!`,
-`binary!` or `none!` will apply `mold` to the expression which is its
-second argument. If the destination is a string, it will append the result of `mold`
-to that string. If the destination is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
-out of the result of `mold` and append that value to the destination.
-If the destination is `none`, the result is the molded value, as a UTF-8 encoded `binary!` value.
-If `save` is called with a destination that is a `file!` or `url!` value
-and there is no specific representation indicated
-(see <<conversion-fromto-other-representations,next section>>) the result will
-be written to the destination as a UTF-8 encoded `binary!` value.
-
 For `any-list!` values the user can control the way they are presented by `mold`,
 by instructing it to insert line feed characters (`U+000A`) before selected components.
 The built-in function `new-line` with an `any-list!` first argument will
@@ -3646,18 +3635,32 @@ gives
 The state of the new-line marker may be tested with the built-in function
 `new-line?` which has an `any-list!` argument, and yields `true` or `false`.
 
+The built-in function `save` with a first argument (destination) of type `string!`,
+`binary!` or `none!` will apply `mold` to the expression which is its
+second argument. If the destination is a string, it will append the result of `mold`
+to that string. If the destination is a `binary!` value, it will first create a UTF-8 encoded `binary!` value
+out of the result of `mold` and append that value to the destination.
+If the destination is `none`, the result is the molded value, as a UTF-8 encoded `binary!` value.
+If `save` is called with a destination that is a `file!` or `url!` value
+and there is no specific representation indicated
+(see <<conversion-fromto-other-representations,next section>>) the result will
+be written to the destination as a UTF-8 encoded `binary!` value.
+
 ==== Conversion from/to other representations
 
 The built-in functions `load` and `save` each have an `/as` refinement
 with a `word!` argument: the value `none` indicates Red code (molded Red values)
 and makes `load` and `save` operate as already described.
-other values implemented are first of all `png jpeg bmp gif`; for each of these values
-`load` will accept binary data in the indicated format and decode it to yield an `image!`
-value, and `save` will take an `image!` value and produce the encoded binary
-value. The necessary decoding and encoding routines are stored in `system/codecs`.
-This is a block of pairs: `<word><object>`, where the `<word>` indicates
-the encoding e.g. `jpeg`, and the corresponding `<object>` has the following
-content for the `jpeg` case:
+Encoding/decoding functions have been implemented for various representations
+or data formats, notably for images (arguments `png`, `jpeg`, `bmp` and `gif`)
+and for JSON and CSV (arguments `json` and `csv`).
+
+For each of the image formats `load` will accept binary data in the indicated
+format and decode it to yield an `image!` value, and `save` will take an `image!`
+value and produce the encoded binary value. The necessary decoding and encoding
+routines are stored in `system/codecs`. This is a block of pairs: `<word><object>`,
+where the `<word>` indicates the encoding e.g. `jpeg`, and the corresponding `<object>`
+has the following content (example for the `jpeg` case):
 [cols="1,1,2", options="header"]
 |===
     |key             |value type   |content
@@ -3669,8 +3672,8 @@ content for the `jpeg` case:
     |decode          |routine!     |routine [data [any-type!]][...]
 |===
 
-An additional "codec" is provided for JSON data (see https://www.json.org/):
-the argument to `/as` is `json`. The corresponding object in `system/codecs` is
+The codec for JSON data (see https://www.json.org/) has the following
+object in `system/codecs`:
 [cols="1,1,2", options="header"]
 |===
     |key             |value type   |content
@@ -3682,8 +3685,7 @@ the argument to `/as` is `json`. The corresponding object in `system/codecs` is
     |decode          |function!    |func [text [string! binary! file!]][...]
 |===
 
-A similar facility is offered for comma separated values; the argument to `/as` is `csv`,
-the MIME type is ``text/csv` and the extension is `%.csv`.
+For comma separated values (CSV) the MIME type is `text/csv` and the extension is `%.csv`.
 
 If the `/as` refinement is not present or its argument is `none`, and the source or destination
 is a `file!` or `url!` value, an attempt is made to determine the required representation
