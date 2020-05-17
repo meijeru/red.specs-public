@@ -2306,15 +2306,20 @@ and will initially refer to the unset value in that context.
 
 ==== Setting words to values
 
-The evaluation of `<word-literal>: <expression>` is treated in <<set-word-type,rule `E105`>>.
-Equivalent to this is the application of the built-in function `set`:
-`<word-literal>: <expression>` ~ `set '<word-literal> <expression>`.
+The evaluation of `<word-literal>: <expression>` is treated in <<set-word-type,rule `E105`>>;
+see also <<set-path-type,rule E109>>. Equivalent to this is the application of the built-in
+function `set`: `<word-literal>: <expression>` ~ `set '<word-literal> <expression>`;
+likewise for `<path-literal>`.
 
 The counterpart to `set` is `unset`: this will make the word argument
 refer to the unset value.
 
-Both `set` and `unset` may have a `block!` argument instead of a `word!` one. The set/unset
-action is applied to all the words in the block.
+Both `set` and `unset` may have a `block!` argument instead of a `word!` or `path!` one.
+The set/unset action is applied to all the words in the block. In addition, `set` may
+have an `object!` argument and an `<expression>` which evaluates to a `block!` value.
+This results in the fields of the object being set to the values in the block.
+If there are too few values, the rest of the fields will be set to `none`. If there are
+too many, these will be ignored.
 
 ==== Object creation
 
@@ -2438,16 +2443,19 @@ and that a function value is not applied but is itself yielded as result.
 
 ==== `set-word!` type
 
-**`E105`**:: Evaluating a `set-word!` value outside an `<object-spec>` or a `<map-spec>`
-has the effect that the `<word>` in its context
+**`E105`**:: Evaluating a `set-word!` value outside an `<object-spec>` (see <<object,section 5.3.6>>)
+or a `<map-spec>` (see <<map,section 5.3.11>>) has the effect that the `<word>` in its context
 is made to refer to the value obtained by evaluating the next expression. An error occurs
 if no expression is following or if the value obtained is unset. The result of the evaluation
 is the value obtained from the expression. As a consequence, set-words may be "chained", thus: `a: b: c: 1`
 is equivalent to `a: (b: (c: 1))` and thus to `a: 1 b: 1 c: 1`.
 
-As stated before, the alternative to `<word-literal>: <expression>` is `set <word-literal> <expression>`
-which is a special case of `set <word> <expression>`. The built-in function `set` has
+As stated before, the alternative to `<word-literal>: <expression>` is `set '<word-literal> <expression>`
+which is a special case of `set <lit-word> <expression>`. The built-in function `set` has
 a refinement `/any` which will ensure that no error occurs if the expression yields the unset value.
+Note that evaluating `set '<word-literal><expression>` within an `<object-spec>` has the result that
+the `<word-literal>` is made to refer to the `<expression>` _within_ the context in which the object
+is being made, thus _outside_ the context which is the object itself.
 
 ==== `paren!` type
 
