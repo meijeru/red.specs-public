@@ -2912,10 +2912,9 @@ Evaluation order can of course be influenced by the use of parentheses.
 Red makes available the usual _arithmetic operations_ through `+`, `-`,  `*` and `/` as operators
 and their prefix counterparts: `add`, `subtract`, `multiply`and `divide`.
 In addition, there are operators and prefix functions for exponentiation (`**` or `power`),
-truncated integer division (`//` or `divide-strict`), remainder (`%` or `remainder`)
-and modulo (`%%` or `modulo`). Enquiry functions are: `sign?`, `positive?`, `negative?`,
-`zero?`, `even?`, `odd?` and `NaN?` ("not a number", see <<float,section 5.2.2>>).
-The unary minus function is only represented
+remainder (`%` or `remainder`) and modulo (`//` or `modulo`). Enquiry functions are:
+`sign?`, `positive?`, `negative?`, `zero?`, `even?`, `odd?` and `NaN?`
+("not a number", see <<float,section 5.2.2>>). The unary minus function is only represented
 by a prefix function `negate`, not by an operator, since these have always two arguments.
 Lastly, there are functions for rounding a number (`round`) and for determining
 the absolute value of a number (`absolute`), the maximum and minimum of two numbers (`max min`),
@@ -2930,30 +2929,29 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 [cols="1,1,1,1,2", options="header"]
 |===
 |function              |arity |operand 1 type        |operand 2 type     |result type
-|`+ - * / % %%`        |2     |`char!`               |`char!`            |`char!`
-|`+ - * / % %%`        |2     |`char!`               |`integer! float!!` |`char!`
-|`+ - * / % %%`        |2     |`integer! float!`     |`char!`            |same as operand 1
-|`+ - * / % %%`        |2     |`number!`             |`number!`          |see note ^1^
-|`//`                  |2     |`integer!`            |`integer!`         |`integer!` ^2^
-|`+ - * / %`           |2     |`vector!`             |`number!`          |`vector!` ^3^
-|`+ - * / %`           |2     |`number`              |`vector!`          |`vector!` ^3^
-|`+ - * / %`           |2     |`vector!`             |`vector!`          |`vector!` ^4^
-|`+ - * / % %%`        |2     |`money!`              |`integer! float!`  |`money!`
+|`+ - * / % //`        |2     |`char!`               |`char!`            |`char!`
+|`+ - * / % //`        |2     |`char!`               |`integer! float!!` |`char!`
+|`+ - * / % //`        |2     |`integer! float!`     |`char!`            |same as operand 1
+|`+ - * / % //`        |2     |`number!`             |`number!`          |see note ^1^
+|`+ - * / %`           |2     |`vector!`             |`number!`          |`vector!` ^2^
+|`+ - * / %`           |2     |`number`              |`vector!`          |`vector!` ^2^
+|`+ - * / %`           |2     |`vector!`             |`vector!`          |`vector!` ^3^
+|`+ - * / % //`        |2     |`money!`              |`integer! float!`  |`money!`
 |`+ - *`               |2     |`integer! float!`     |`money!`           |`money!`
-|`+ - / % %%`          |2     |`money!`              |`money!`           |`money!` ^5,6^
-|`+ - * / % %%`        |2     |`time!`               |`number!`          |`time!`
-|`+ - * / % %%`        |2     |`number!`             |`time!`            |`time!`
+|`+ - / % //`          |2     |`money!`              |`money!`           |`money!` ^4,5^
+|`+ - * / % //`        |2     |`time!`               |`number!`          |`time!`
+|`+ - * / % //`        |2     |`number!`             |`time!`            |`time!`
 |`+ - * / %`           |2     |`pair! tuple!`        |`number!`          |same as operand 1
-|`+ - * / % %%`        |2     |`number!`             |`pair! tuple!`     |same as operand 2
+|`+ - * / % //`        |2     |`number!`             |`pair! tuple!`     |same as operand 2
 |`+ -`                 |2     |`date!`               |`integer!`         |`date!`
 |`+`                   |2     |`integer!`            |`date!`            |`date!`
-|`-`                   |2     |`date!`               |`date!`            |`integer!` ^7^
+|`-`                   |2     |`date!`               |`date!`            |`integer!` ^6^
 |`+ -`                 |2     |`date!`               |`time!`            |`date!`
 |`+`                   |2     |`time!`               |`date!`            |`date!`
-|`+ - * / % %%`        |2     |`time!`               |`time!`            |`time!` ^6^
-|`+ - * / % %%`        |2     |`pair!`               |`pair!`            |`pair!`
-|`+ - * / % %%`        |2     |`tuple!`              |`tuple!`           |`tuple!`
-|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^8^ `float!`
+|`+ - * / % //`        |2     |`time!`               |`time!`            |`time!` ^5^
+|`+ - * / % //`        |2     |`pair!`               |`pair!`            |`pair!`
+|`+ - * / % //`        |2     |`tuple!`              |`tuple!`           |`tuple!`
+|`**`                  |2     |`number!`             |`integer! float!`  |`integer!` ^7^ `float!`
 |`max min`             |2     |`scalar!`             |`scalar!`          |same as greatest/smallest operand +
 (operand 1 if equal)
 |===
@@ -2962,15 +2960,15 @@ _**See further https://github.com/red/red/issues/2776[issue #2776]**_
 |===
 |function              |arity |operand type                             |result type
 |`NaN?`                |1     |`number!`                                |`logic!`
-|`sign?`               |1     |`money! number! time!`                   |`integer!`^9^
+|`sign?`               |1     |`money! number! time!`                   |`integer!`^8^
 |`positive? negative?` |1     |`money! number! time!`                   |`logic!`
 |`zero?`               |1     |`money! number! char! time! pair! tuple!`|`logic!`
 |`even? odd?`          |1     |`money! number! char! time!`             |`logic!`
-|`negate`              |1     |`money! number! time! pair!`             |same as operand ^10^
-|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^10^
-|`sum`                 |1     |`any-list!` ^11^ `vector!`               |same as individual numbers +
+|`negate`              |1     |`money! number! time! pair!`             |same as operand ^9^
+|`absolute round`      |1     |`money! number! time! pair!`             |same as operand ^9^
+|`sum`                 |1     |`any-list!` ^10^ `vector!`               |same as individual numbers +
 (refer to table above if not all numbers have the same type)
-|`average`             |1       |`any-list!` ^11^ `vector!`             |see note ^12^
+|`average`             |1       |`any-list!` ^10^ `vector!`             |see note ^11^
 |===
 
 Notes:
@@ -2978,7 +2976,6 @@ Notes:
 . the result is of type `float!`, unless both operands are integer -- and in case of division
 only if there is no decimal fraction -- then it is of type `integer!`;
 furthermore, if the first operand type is of type `percent!`, the result is of type `percent!` 
-. the result is truncated to an integer by removing the decimal fraction
 . the result has the element type of the vector operand
 _**see also https://github.com/red/red/issues/2216[issues #2216],
 https://github.com/red/red/issues/4068[#4068] and https://github.com/red/red/issues/4352[#4352]**_
@@ -3469,13 +3466,14 @@ The available constructs are the following:
 <forever>     ::= forever <body-block>
 <while>       ::= while <condition-block> <body-block>
 <until>       ::= until <condition-block>
-<loop>        ::= loop <integer> <body-block>
-<repeat>      ::= repeat <word> <integer> <body-block>
+<loop>        ::= loop <times> <body-block>
+<repeat>      ::= repeat <word> <times> <body-block>
 <foreach>     ::= foreach <counter> <series> <body-block>
                 | foreach <counter> <map> <body-block>
 <forall>      ::= forall <word> <body-block>
 <remove-each> ::= remove-each <counter> <series> <condition-block>
 <counter>     ::= <word> | <block>
+<times>       ::= <integer> | <float>
 ....
 
 Semantics:
@@ -3485,9 +3483,10 @@ Semantics:
 * `while`: the `<condition-block>` is executed and if does not yield `false` or `none`,
 the `<body-block>` is executed after which the `<condition-block>` is again executed etc.
 * `until`: the `<condition-block>` is executed as long as it does not yield `false` or `none`.
-* `loop`: the `<body-block>` is executed an integer number of times.
+* `loop`: the `<body-block>` is executed an integer number of times;
+if a float is provided it will be truncated to an integer.
 * `repeat`: the `<body-block>` is executed repeatedly with the `<word>` assuming values
-from 1 to the integer. Note that the `<word>` is _not_ local to the loop,
+from 1 to the integer (or truncated float). Note that the `<word>` is _not_ local to the loop,
 i.e. there is no separate context for the `repeat` loop.
 * `foreach`: for series, the `<counter>` may be a word or a block of words; the `<body-block>` is executed
 repeatedly with the word(s) being set to subsequent components of the series. For maps, the `<counter>`
