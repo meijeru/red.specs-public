@@ -2911,7 +2911,7 @@ Evaluation order can of course be influenced by the use of parentheses.
 
 Red makes available the usual _arithmetic operations_ through `+`, `-`, `\*` and `/` as operators
 and their prefix counterparts: `add`, `subtract`, `multiply`and `divide`.
-In addition, there are operators and prefix functions for exponentiation (`\**` or `power`),
+In addition, there are operators and prefix functions for exponentiation (`**` or `power`),
 remainder (`%` or `remainder`) and modulo (`//` or `modulo`). Enquiry functions are:
 `sign?`, `positive?`, `negative?`, `zero?`, `even?`, `odd?` and `NaN?`
 ("not a number", see <<float,section 5.2.2>>). The unary minus function is only represented
