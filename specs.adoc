@@ -864,9 +864,9 @@ unescaped new-line characters and any `"` as well as nested `{ }` pairs, but any
 character that is part of the `<string-literal>` must be escaped by preceding it with `^`.
 
 A `<raw-string>` provides a way to input a literal string without any special treatment of its content
-such as indicated in the preceding pragraph. It is delimited by `%{ }%` or `%%{ }%%` or `%%%{ }%%%` etc. 
-Any number of % characters can be used in order to make the ending sequence not collide with string's content.
-The leading count of % must match the trailing count.
+such as indicated in the preceding paragraph. It is delimited by `%{ }%` or `%%{ }%%` or `%%%{ }%%%` etc. 
+Any number of `%` characters can be used in order to make the ending sequence not collide with string's content.
+The leading count of `%` must match the trailing count.
 
 Within a `<string-literal>` that is not a `<raw-string>`, the same remark holds for `^`
 as noted above for a `<char-literal>`.
@@ -876,6 +876,7 @@ Examples:
 "abc^/def"
 {abc +
 def}
+%{^ is used for escaping }}%
 ....
 
 ==== `file!`
@@ -3580,14 +3581,18 @@ Note that `modify` is defined but not yet implemented. _**See https://github.com
 
 ==== Conversion from/to textual representation
 
-The built-in function `load` will convert textual input (a `string!` value or its binary
-UTF-8 encoded equivalent), specified as its argument, to one or more Red values
-by calling upon the lexical/syntactic analysis facilities of the toolchain.
-The result is either one value or a block of values. If called with an argument (source)
-that is a `file!` or `url!` value, `load` will read the content of the source
-and -- if the representation cannot be otherwise determined
-(see <<conversion-fromto-other-representations,next section>>) -- will treat it
-as described above.
+The lexical/syntactic analysis facilities of the toolchain (see <<textual-structure,section 3.1>>)
+are made available to the user in the form of the built-in function `transcode`
+which takes textual input as a `string!` value, or its binary UTF-8 encoded equivalent,
+and will produce either one value or a block of values. A separate function `scan` will
+take the same input and yield the _type_ of the (first) value or `error!`, without
+producing the analyzed _value(s)_.
+
+The built-in function `load`, when presented with textual input, will invoke
+`transcode`. If called with an argument (source) that is a `file!` or `url!` value,
+`load` will read the content of the source and -- if the representation
+cannot be otherwise determined (see <<conversion-fromto-other-representations,next section>>)
+-- will invoke `transcode` on that content.
 
 There are three mechanisms for converting Red values to readable strings:
 the built-in function `form` will produce a basic representation intended for human readers,
