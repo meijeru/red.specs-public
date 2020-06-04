@@ -5038,11 +5038,13 @@ A    rename
 F    request-dir
 F    request-file
 F    save
+F    scan
 N    size?
 F    split-path
 F    suffix?
 N    to-local-file
 F    to-red-file
+N    transcode
 A    update
 F    what-dir
 A    write
