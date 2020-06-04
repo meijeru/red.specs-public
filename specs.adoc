@@ -853,7 +853,7 @@ Examples: `#"A"  #"^/"  #"^(0A)"`
 
 **`S117`**::
 ....
-<string-literal> ::= "<single-character>*" | {<single-character>*}
+<string-literal> ::= "<single-character>*" | {<single-character>*} | <raw-string>
 ....
 
 where `<single-character>` is defined in <<char,rule `S116`>>
@@ -862,7 +862,14 @@ When the `<string-literal>` is delimited by `" "` it must not contain unescaped 
 `U+000A`, `U+0085`, `U+2028` and `U+2029`. When the `<string-literal>` is delimited by `{ }` it may contain
 unescaped new-line characters and any `"` as well as nested `{ }` pairs, but any unpaired `{` or `}`
 character that is part of the `<string-literal>` must be escaped by preceding it with `^`.
-Within a `<string-literal>`, the same remark holds for `^` as noted above for a `<char-literal>`. 
+
+A `<raw-string>` provides a way to input a literal string without any special treatment of its content
+such as indicated in the preceding pragraph. It is delimited by `%{ }%` or `%%{ }%%` or `%%%{ }%%%` etc. 
+Any number of % characters can be used in order to make the ending sequence not collide with string's content.
+The leading count of % must match the trailing count.
+
+Within a `<string-literal>` that is not a `<raw-string>`, the same remark holds for `^`
+as noted above for a `<char-literal>`.
 
 Examples:
 ....
@@ -5628,6 +5635,7 @@ prefix function                         <a href = "#expressions-and-evaluation-o
 preprocessor dialect                    <a href = "#dialects">2.5</a>, <a href = "#preprocessor">13.1</a>
 prologue                                <a href = "#textual-structure">3.1</a>
 pseudo-type                             <a href = "#parent-types">4.2.6</a>, <a href = "#overview-table">4.2.7</a>
+rawstring                               <a href = "#string">5.2.7</a>
 reactivity                              <a href = "#reactivity">13.4</a>
 Read Evaluate Print Loop (REPL)         <a href = "#red-toolchain">2.2</a>
 Red toolchain                           <a href = "#red-toolchain">2.2</a>
