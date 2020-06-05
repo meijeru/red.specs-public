@@ -3909,10 +3909,13 @@ the concept of _Uniform Resource Identifier (URI)_, as defined in
 https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
 on the resources represented by URIs; the functionality offered by ports
 will be more complete than the basic I/O currently provided.
-In addition to the I/O actions described in <<port-operations,section 11.4.2>>,
-all series actions (<<operations-on-values-of-indirect-types,see sections 9.2/3>>)
-are allowed on ports; their implementation on ports is specific to the
-port's _scheme_ (see next section).
+The actions applicable to ports are described in <<port-operations,section 11.4.2>>;
+besides I/O actions proper, these comprise most of the series actions as already
+described in <<operations-on-values-of-indirect-types,see sections 9.2/3>>.
+These actions differ according to the _type_ of resource, which RFC3986 calls its _scheme_.
+For certain schemes, Red provides built-in implementation of the actions. For other
+schemes, the user can provide the implementation in the form of Red functions.
+
 
 ==== Port components
 
@@ -3942,19 +3945,20 @@ which RFC3986 calls its _scheme_, is represented by the `scheme` field of the `s
 * The `scheme` field of the port is initially a `word!` value equal to the value of the
 `scheme` field of the `spec` object; during operation it is replaced by a `scheme` object
 whose fields are described below.
-* The `actor` field is either a `handle!` value (opaque integer pointing to an action table
-containing Red/System functions for all possible actions allowed on ports) or an object whose
-field names are the allowable action names and whose field values are the functions
-implementing these actions
+* The `actor` field is either a `handle!` value if the scheme has a built-in implementation
+(this is an opaque integer pointing to an action table containing Red/System functions
+for all actions allowed on ports of this scheme) or an object whose field names
+comprise the allowable action names, with the corresponding field values being
+the functions implementing these actions, as provided by the user for this scheme.
 * The `awake` field TBD
-* The `state` field contains state information
-* The `data` field contains the information read from or to be written to the resource
-* The `extra` field is available for the user
+* The `state` field contains state information.
+* The `data` field contains the information read from or to be written to the resource.
+* The `extra` field is available for the user.
 
-The various objects containing the actor functions for the different schemes are stored in
-`system/schemes`, a block of word/object pairs. New schemes may be added to `system/schemes`
-by calling `register-scheme` with as arguments the name of the scheme and its content
-as a `scheme` object.
+The various scheme objects providing implementation information for the different schemes
+are stored in `system/schemes`, a block of word/object pairs. New schemes may be added
+to `system/schemes` by calling `register-scheme` with as arguments the name of the scheme
+and the corresponding `scheme` object.
 
 The fields of the `spec` object are:
 [cols="1,1,2", options="header"]
@@ -3980,8 +3984,8 @@ The fields of a `scheme` object are:
 [cols="1,1,2", options="header"]
 |===
 |name        |type                |content
-|`name`      |`word!`             |e.g. `http`, `udp`, `file`, `mailto` 
-|`title`     |`string!`           |
+|`name`      |`word!`             |e.g. `HTTP`, `TCP`, `TLS`, `UDP`, `FILE`, `MAILTO` 
+|`title`     |`string!`           |e.g. `"HTTP scheme implementation"`
 |`info`      |                    |
 |`actor`     |`handle!` `object!` |see `port!` field of same name
 |`awake`     |                    |
