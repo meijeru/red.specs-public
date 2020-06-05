@@ -3904,24 +3904,30 @@ a `file!` value or a block of `file!` values
 
 === Ports
 
-_Ports_ represent a generalization of files and urls. They implement
+_Ports_ represent external resources in the most general sense. In particular,
+they are a generalization of files and urls. In this, they implement
 the concept of _Uniform Resource Identifier (URI)_, as defined in
 https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
 on the resources represented by URIs; the functionality offered by ports
-will be more complete than the basic I/O currently provided.
-The actions applicable to ports are described in <<port-operations,section 11.4.2>>;
-besides I/O actions proper, these comprise most of the series actions as already
-described in <<operations-on-values-of-indirect-types,see sections 9.2/3>>.
-These actions differ according to the _type_ of resource, which RFC3986 calls its _scheme_.
-For certain schemes, Red provides built-in implementation of the actions. For other
-schemes, the user can provide the implementation in the form of Red functions.
+will be more complete than the basic file and url I/O currently provided.
+In addition, they may represent all other external resources such as serial ports,
+database servers, audio and video devices, timers etc.
+
+The operations applicable to ports are described in <<port-operations,section 11.4.2>>;
+besides I/O operations proper, these comprise most of the series operations as already
+described in <<operations-on-values-of-indirect-types,sections 9.2/3>>.
+These operations differ according to the _type_ of resource, which RFC3986 calls its _scheme_.
+The ports facility of Red extends this notion to all external resources, not only
+those considered by RFC3986. For certain schemes, Red provides a _built-in implementation_
+of the operations, in the form of Red actions (`action!` values). For other schemes,
+the user can provide the implementation in the form of Red functions (`function!` values).
 
 
 ==== Port components
 
 Ports, i.e.values of type `port!`, are specialized objects with a fixed number of fields,
-that contain the necessary information for handling the communication
-with a wide variety of external resources.
+that contain the necessary information for handling the communication with a wide variety
+of external resources.
 
 As also shown in <<components-of-values,section 5.6>> the fields are:
 [cols="1,1", options="header"]
@@ -3939,9 +3945,11 @@ As also shown in <<components-of-values,section 5.6>> the fields are:
 A prototype port value is contained in `system/standard/port`.
 The significance of the fields is as follows:
 
-* The `spec` field is an object representing a resource. The fields of this object
-correspond to the components of an URI as detailed in RFC3986. The _type_ of resource,
-which RFC3986 calls its _scheme_, is represented by the `scheme` field of the `spec` object.
+* The `spec` field is an object representing a resource. If the resource has a URI,
+the fields of this object correspond to the components of an URI as detailed in RFC3986.
+In particular, the _type_ of resource, which RFC3986 calls its _scheme_, is represented
+by the `scheme` field of the `spec` object. For other types of resources, the `spec`
+object contains at least a `scheme` field.
 * The `scheme` field of the port is initially a `word!` value equal to the value of the
 `scheme` field of the `spec` object; during operation it is replaced by a `scheme` object
 whose fields are described below.
@@ -3960,11 +3968,11 @@ are stored in `system/schemes`, a block of word/object pairs. New schemes may be
 to `system/schemes` by calling `register-scheme` with as arguments the name of the scheme
 and the corresponding `scheme` object.
 
-The fields of the `spec` object are:
+The fields of the `spec` object for URIs are:
 [cols="1,1,2", options="header"]
 |===
 |name        |type             |content
-|`scheme`    |`word!`          |e.g. `http`, `udp`, `file`, `mailto` 
+|`scheme`    |`word!`          |e.g. `http`, `udp`, `file`, `mailto`, `gpio`
 |`user-info` |`string!`        |e.g. `"username:passwd"`
 |`host`      |`string!`        |e.g `"domain.com"`
 |`port`      |`integer!`       |e.g. `8080`
@@ -3975,10 +3983,10 @@ The fields of the `spec` object are:
 |`ref`       |`url!` `string!` |the source of the above fields
 |===
 
-All fields except `scheme` may be `none`. A prototype `spec` object is contained in `system/standard/url-parts`.
-The field names correspond to the RFC3986 nomenclature, with the exception that the _path_ determined
-according to RFC3986 is split (using `split-path`, see <<file-system-functions,section 11.3.2>>)
-into `path` and `target`.
+All fields except `scheme` may be `none`. A prototypefor this `spec` object is contained
+in `system/standard/url-parts`. Its field names correspond to the RFC3986 nomenclature,
+with the exception that the _path_ determined according to RFC3986 is split
+(using `split-path`, see <<file-system-functions,section 11.3.2>>) into `path` and `target`.
 
 The fields of a `scheme` object are:
 [cols="1,1,2", options="header"]
