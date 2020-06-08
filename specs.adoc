@@ -3668,7 +3668,7 @@ be written to the destination as a UTF-8 encoded `binary!` value.
 ==== Conversion from/to other representations
 
 The built-in functions `load` and `save` each have an `/as` refinement
-with a `word!` argument: the value `none` indicates Red code (molded Red values)
+with a `word!` or `none!` argument: the value `none` indicates Red code (molded Red values)
 and makes `load` and `save` operate as already described.
 Encoding/decoding functions have been implemented for various representations
 or data formats, notably for images (arguments `png`, `jpeg`, `bmp` and `gif`)
@@ -3676,35 +3676,15 @@ and for JSON and CSV (arguments `json` and `csv`).
 
 For each of the image formats `load` will accept binary data in the indicated
 format and decode it to yield an `image!` value, and `save` will take an `image!`
-value and produce the encoded binary value. The necessary decoding and encoding
-routines are stored in `system/codecs`. This is a block of pairs: `<word><object>`,
-where the `<word>` indicates the encoding e.g. `jpeg`, and the corresponding `<object>`
-has the following content (example for the `jpeg` case):
-[cols="1,1,2", options="header"]
-|===
-    |key             |value type   |content
-    |title           |string!      |(not filled in) 
-    |name            |word!        |JPEG
-    |mime-type       |block!       |[image/jpeg]
-    |suffixes        |block!       |[%.jpg %.jpeg %.jpe %.jfif]
-    |encode          |routine!     |routine [img [image!] where [any-type!]][...]
-    |decode          |routine!     |routine [data [any-type!]][...]
-|===
-
-The codec for JSON data (see https://www.json.org/) has the following
-object in `system/codecs`:
-[cols="1,1,2", options="header"]
-|===
-    |key             |value type   |content
-    |title           |string!      |"JSON codec"
-    |name            |word!        |JSON
-    |mime-type       |block!       |[application/json]
-    |suffixes        |block!       |[%.json]
-    |encode          |function!    |func [data [any-type!] where [file! url! none!]][...]
-    |decode          |function!    |func [text [string! binary! file!]][...]
-|===
-
-For comma separated values (CSV) the MIME type is `text/csv` and the extension is `%.csv`.
+value and produce the encoded binary value. For the JSON and CSV formats,
+`load` will accept a `file!` argument and read the content as a `string!` value,
+or a `binary!` or `string!` argument where the `binary!` value is converted to string
+according to UTF-8; `save` will accept a data argument of any type and a `file!`,
+`url!` or `none!` argument as destination, where `none` results in a `string!` value.
+For each format, the necessary decoding and encoding routines or functions
+are stored in `system/codecs`. This is a block of pairs: `<word><object>`,
+where the `<word>` indicates the format, and the corresponding `<object>`
+has the following fields: `name`, `mime-type`, `suffixes`, `encode` and `decode`.
 
 If the `/as` refinement is not present or its argument is `none`, and the source or destination
 is a `file!` or `url!` value, an attempt is made to determine the required representation
