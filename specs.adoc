@@ -3675,16 +3675,19 @@ or data formats, notably for images (arguments `png`, `jpeg`, `bmp` and `gif`)
 and for JSON and CSV (arguments `json` and `csv`).
 
 For each of the image formats `load` will accept binary data in the indicated
-format and decode it to yield an `image!` value, and `save` will take an `image!`
-value and produce the encoded binary value. For the JSON and CSV formats,
+format, either directly as a `binary!` value or from a `file!` or `url!`source,
+and decode it to yield an `image!` value; `save` will take an `image!`
+value and produce the encoded binary value, either directly (`none!` destination)
+or written to a `file!` or `url!` destination. For the JSON and CSV formats,
 `load` will accept a `file!` argument and read the content as a `string!` value,
 or a `binary!` or `string!` argument where the `binary!` value is converted to string
-according to UTF-8; `save` will accept a data argument of any type and a `file!`,
-`url!` or `none!` argument as destination, where `none` results in a `string!` value.
+according to UTF-8; `save` will accept a data argument of any type and produce
+the encoded string value, either directly (`none!` destination) or again written
+to a `file!` or `url!` destination. .
 For each format, the necessary decoding and encoding routines or functions
 are stored in `system/codecs`. This is a block of pairs: `<word><object>`,
 where the `<word>` indicates the format, and the corresponding `<object>`
-has the following fields: `name`, `mime-type`, `suffixes`, `encode` and `decode`.
+has the following fields: `title`, `name`, `mime-type`, `suffixes`, `encode` and `decode`.
 
 If the `/as` refinement is not present or its argument is `none`, and the source or destination
 is a `file!` or `url!` value, an attempt is made to determine the required representation
