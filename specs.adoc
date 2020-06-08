@@ -3675,7 +3675,7 @@ or data formats, notably for images (arguments `png`, `jpeg`, `bmp` and `gif`)
 and for JSON and CSV (arguments `json` and `csv`).
 
 For each of the image formats `load` will accept binary data in the indicated
-format, either directly as a `binary!` value or from a `file!` or `url!`source,
+format, either directly as a `binary!` value or from a `file!` or `url!` source,
 and decode it to yield an `image!` value; `save` will take an `image!`
 value and produce the encoded binary value, either directly (`none!` destination)
 or written to a `file!` or `url!` destination. For the JSON and CSV formats,
