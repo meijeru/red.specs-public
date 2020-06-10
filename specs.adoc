@@ -3887,10 +3887,10 @@ a `file!` value or a block of `file!` values
 
 === Ports
 
-_Ports_ represent persistent resources in the most general sense, both external
-(including, but not restricted, to files and urls) and internal (e.g. in-process
-channels and aggregators). As a generalization of files and urls, they implement
-the concept of _Uniform Resource Identifier (URI)_, as defined in
+_Ports_ represent (connections to) persistent resources in the most general sense,
+both _external_ (including, but not restricted, to files and urls) and _internal_
+(e.g. in-process channels and aggregators). As a generalization of files and urls,
+they implement the concept of _Uniform Resource Identifier (URI)_, as defined in
 https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
 on the resources represented by URIs; the functionality offered by ports
 will be more complete than the basic file and url I/O currently provided.
@@ -5575,7 +5575,7 @@ evaluation                              <a href = "#evaluation-rules">7</a>
 execution                               <a href = "#red-toolchain">2.2</a>
   of a block                            <a href = "#passive-types">7.1</a>, <a href = "#blocks-reduction-and-selective-evaluation">7.5</a>
 expression                              <a href = "#expressions-and-evaluation-order">3.3</a>
-  infix expression                      <a href = "#expressions-and-evaluation-order">3.3</a>
+external resources                      <a href = "#ports">11.4</a>
 form feed (U+000C)                      <a href = "#char">5.2.6</a>
 free-form text                          <a href = "#textual-structure">3.1</a>
 function                                <a href = "#expressions-and-evaluation-order">3.3</a>, <a href = "#function">5.3.8</a>, <a href = "#">7.4.1</a>
@@ -5604,6 +5604,7 @@ infinity                                <a href = "#float">5.2.2</a>
 infix expression                        <a href = "#expressions-and-evaluation-order">3.3</a>
 inherited action                        <a href = "#parent-types">4.2.6</a>
 interactive console                     <a href = "#red-toolchain">2.2</a>
+internal resources                      <a href = "#ports">11.4</a>
 interpretation                          <a href = "#red-toolchain">2.2</a>
 ipv4                                    <a href = "#tuple">5.2.4</a>
 ISO 8601 date and time standard         <a href = "#date">5.2.14</a>, <a href = "#selection-by-key">5.6.2</a>
@@ -5646,6 +5647,7 @@ Red/System (dialect)                    <a href = "#dialects">2.5</a>, <a href =
 reflection                              <a href = "#enquiry-and-reflection-on-values">5.7</a>
 remote file access (disk-cached)        <a href = "#file-and-url-io">11.3.1</a>
 REPL (Read Evaluate Print Loop)         <a href = "#red-toolchain">2.2</a>
+resources                               <a href = "#ports">11.4</a>
 RFC3986 (URI)                           <a href = "#port-components">11.4.1</a>
 RGB color model                         <a href = "#tuple">5.2.4</a>, <a href = "#image">5.3.4</a>, <a href = "#tuples">14.1.5</a>
 RGBA color/transparency model           <a href = "#image">5.3.4</a>
