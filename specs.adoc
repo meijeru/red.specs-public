@@ -3887,14 +3887,14 @@ a `file!` value or a block of `file!` values
 
 === Ports
 
-_Ports_ represent external resources in the most general sense. In particular,
-they are a generalization of files and urls. In this, they implement
+_Ports_ represent persistent resources in the most general sense, both external
+(including, but not restricted, to files and urls) and internal (e.g. in-process
+channels and aggregators). As a generalization of files and urls, they implement
 the concept of _Uniform Resource Identifier (URI)_, as defined in
 https://www.ietf.org/rfc/rfc3986.txt[RFC3986], and the various operations
 on the resources represented by URIs; the functionality offered by ports
 will be more complete than the basic file and url I/O currently provided.
-In addition, they may represent all other external resources such as serial ports,
-database servers, audio and video devices, timers etc.
+For representing all other external and internal resources they use similar conventions.
 
 The operations applicable to ports are described in <<port-operations,section 11.4.2>>;
 besides I/O operations proper, these comprise most of the series operations as already
