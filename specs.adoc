@@ -3900,10 +3900,11 @@ The operations applicable to ports are described in <<port-operations,section 11
 besides I/O operations proper, these comprise most of the series operations as already
 described in <<operations-on-values-of-indirect-types,sections 9.2/3>>.
 These operations differ according to the _type_ of resource, which RFC3986 calls its _scheme_.
-The ports facility of Red extends this notion to all external resources, not only
-those considered by RFC3986. For certain schemes, Red provides a _built-in implementation_
-of the operations, in the form of Red actions (`action!` values). For other schemes,
-the user can provide the implementation in the form of Red functions (`function!` values).
+The ports facility of Red extends this notion to all external and certain internal resources,
+not only those considered by RFC3986. For certain schemes, Red provides a
+_built-in implementation_ of the operations, in the form of Red actions (`action!` values).
+For other schemes, the user can provide the implementation in the form of Red functions
+(`function!` values).
 
 
 ==== Port components
@@ -3970,6 +3971,8 @@ All fields except `scheme` may be `none`. A prototypefor this `spec` object is c
 in `system/standard/url-parts`. Its field names correspond to the RFC3986 nomenclature,
 with the exception that the _path_ determined according to RFC3986 is split
 (using `split-path`, see <<file-system-functions,section 11.3.2>>) into `path` and `target`.
+For other tpes of resources, the `spec` object may be differently laid out,
+but as stated above, it will contain a `scheme` field.
 
 The fields of a `scheme` object are:
 [cols="1,1,2", options="header"]
