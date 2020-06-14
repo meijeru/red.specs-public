@@ -1130,11 +1130,11 @@ but not recommended, and will not be documented here.
 
 In this section, non-terminals like `<integer>` do not stand for
 a literal integer but for a value (to be evaluated) of `integer!` type etc.
-Note also that, as stated above, the first argument of `make` does not
+Note also that, as stated earlier, the first argument of `make` does not
 have to be a `datatype!` value; if it is a value of another type,
 that type is taken to be the desired type. This is not made explicit
 in the following rules, except in the case of `make object!` where
-an `object!` value as second argument has a different interpretation.
+an `object!` value as first argument has a different interpretation.
 
 Furthermore, non-terminals like `<typeset-name>` stand for a bound `<word-literal>`
 referring to a `typeset!` value etc.
