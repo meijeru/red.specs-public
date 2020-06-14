@@ -1096,7 +1096,8 @@ A `<money-literal>` consists of an optional sign (`+` or `-`), followed by an op
 currency code, followed by `$` and 1 to 17 significant digits (not counting leading zeroes)
 optionally followed by a decimal point and 1 to 5 digits of fraction. Digits may be separated
 by `'` signs. The allowable currency codes are to be found in `system/locale/currencies/list`
-which initially contains the internationally standardized ones (ISO 4217) in addition to
+which initially contains the internationally standardized ones
+(https://www.iso.org/iso-4217-currency-codes.html[ISO 4217]) in addition to
 some crypto ones; user-defined codes may be appended to it; these must be words of
 3 letters, different from already existing ones, and not making the total number of codes
 greater than 255.
@@ -5610,6 +5611,7 @@ interactive console                     <a href = "#red-toolchain">2.2</a>
 internal resources                      <a href = "#ports">11.4</a>
 interpretation                          <a href = "#red-toolchain">2.2</a>
 ipv4                                    <a href = "#tuple">5.2.4</a>
+ISO 4217 currency codes                 <a href = "#money">5.2.18</a>
 ISO 8601 date and time standard         <a href = "#date">5.2.14</a>, <a href = "#selection-by-key">5.6.2</a>
 JPEG                                    <a href = "#conversion-fromto-other-representations">11.1.2</a>
 JSON                                    <a href = "#conversion-fromto-other-representations">11.1.2</a>
