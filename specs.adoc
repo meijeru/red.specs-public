@@ -3585,7 +3585,7 @@ Note that `modify` is defined but not yet implemented. _**See https://github.com
 The lexical/syntactic analysis facilities of the toolchain (see <<textual-structure,section 3.1>>)
 are made available to the user in the form of the built-in function `transcode`
 which takes textual input as a `string!` value, or its binary UTF-8 encoded equivalent,
-and will produce either one value or a block of values. A separate function `scan` will
+and will produce a block of one or more values. A separate function `scan` will
 take the same input and yield the _type_ of the (first) value or `error!`, without
 producing the analyzed _value(s)_.
 
