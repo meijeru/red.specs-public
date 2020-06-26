@@ -3587,7 +3587,7 @@ are made available to the user in the form of the built-in function `transcode`
 which takes textual input as a `string!` value, or its binary UTF-8 encoded equivalent,
 and will produce a block of one or more values. A separate function `scan` will
 take the same input and yield the _type_ of the (first) value or `error!`, without
-producing the analyzed _value(s)_.
+producing the analyzed _value(s)_. See also the chapter "Lexer" in the <<additional-documentation,Additional documentation>>
 
 The built-in function `load`, when presented with textual input, will invoke
 `transcode`. If called with an argument (source) that is a `file!` or `url!` value,
@@ -5473,6 +5473,7 @@ The following is a list of official documents that complement the information gi
   .. https://doc.red-lang.org/en/[Red Core Language]
   .. https://doc.red-lang.org/en/gui.html[GUI System]
   .. https://doc.red-lang.org/en/parse.html[Parse]
+  .. https://doc.red-lang.org/en/lexer.html[Lexer]
   .. https://doc.red-lang.org/en/reactivity.html[Reactive Programming]
   .. https://doc.red-lang.org/en/preprocessor.html[Preprocessor]
 . Overview of value conversions: https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
