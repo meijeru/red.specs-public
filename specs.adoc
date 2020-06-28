@@ -1475,10 +1475,16 @@ is the same in both cases.
 ....
 
 The constituents of `<map-spec>` are not evaluated.
-Each `<key>` should be a value of a type in `scalar!, any-word!`, `any-string!` or `binary!`.
+Each `<key>` should be a value of a type in `scalar!`, `any-word!`, `any-string!` or `binary!`.
 All keys should be unique. If identical keys are encountered in the `<map-spec>` the value
 corresponding to the last one encountered is taken. Keys of any type within `any-word!`
 that do not differ in their symbol are considered identical for this purpose.
+
+If the key is of `any-word!` type, the key type is converted to `set-word!` in the map.
+Nevertheless, in order to access `any-word!` keys, there is no requirement to provide
+a `set-word!` value; for practical reasons (easier construction, especially in paths),
+`word!` values can be used. Similarly, the `keys-of` reflector (see <<reflection-functions,section 5.7.3>>),
+will return words instead of set-words, as it simplifies further processing.
 
 Note that values of `logic!` and `none!` type are not allowed as keys. Nevertheless
 `true`, `false` and `none` may occur in `<key>` position. Since the constituents
