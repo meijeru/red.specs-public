@@ -900,7 +900,6 @@ are accepted; the `%` character itself needs to be escaped as `%25`.
 **`S120`**::
 
 An `<email-literal>` is written as two or more characters containing one `@` but not beginning with it.
-The remarks in <<file,section 5.2.8>> on escaped characters apply.
 
 ==== `tag!`
 
