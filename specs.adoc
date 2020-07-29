@@ -791,9 +791,10 @@ language. Its use is in explaining the common characteristics of values of
 several types, namely `word!`, `refinement!` <<refinement,section 5.2.15>>
 and `issue!` <<issue,section 5.2.16>>
 
-A `<word-literal>` is a `<symbol-literal>` that does not begin with `0-9` or `'` and does not contain `\`. 
-However, the combination `<>` may only occur on its own, and `<...>` with any characters in
-between the `<` and `>` character is a value of type `tag!` (see <<tag, section 5.2.11>>).
+A `<word-literal>` is a `<symbol-literal>` that does not begin with `0-9` or `'` or an unmatched `<`
+and does not contain `\` or '<`. Furthermore, the combination `<>` may only occur on its own,
+while `<...>` with any characters in between the `<` and `>` character is a value of type `tag!`
+(see <<tag, section 5.2.11>>).
 
 Examples: `abc`  `Abc`  `ABC`  `+`  `<>`  `integer!`  `last-item?` ; the first three are equal `word!` values.
 
