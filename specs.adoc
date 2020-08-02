@@ -792,7 +792,7 @@ several types, namely `word!`, `refinement!` <<refinement,section 5.2.15>>
 and `issue!` <<issue,section 5.2.16>>
 
 A `<word-literal>` is a `<symbol-literal>` that does not begin with `0-9` or `'`, and does not contain `\`.
-A `<` sign cannot be part of a `word-literal` if it follows anything but other `<` signs.
+A `<` character cannot be part of a `<word-literal>` if it follows anything but other `<` character.
 Furthermore, `<...>` with any characters in between the `<` and `>` character is a `<tag-literal>`.
 (see <<tag, section 5.2.11>>).
 
