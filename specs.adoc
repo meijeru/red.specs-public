@@ -791,8 +791,9 @@ language. Its use is in explaining the common characteristics of values of
 several types, namely `word!`, `refinement!` <<refinement,section 5.2.15>>
 and `issue!` <<issue,section 5.2.16>>
 
-A `<word-literal>` is a `<symbol-literal>` that does not begin with `0-9` or `'`.
-Furthermore, `<...>` with any characters in between the `<` and `>` character is a value of type `tag!`
+A `<word-literal>` is a `<symbol-literal>` that does not begin with `0-9` or `'`, and does not contain `\`.
+A `<` sign cannot be part of a `word-literal` if it follows anything but other `<` signs.
+Furthermore, `<...>` with any characters in between the `<` and `>` character is a `<tag-literal>`.
 (see <<tag, section 5.2.11>>).
 
 Examples: `abc`  `Abc`  `ABC`  `+`  `<>`  `integer!`  `last-item?` ; the first three are equal `word!` values.
@@ -1071,8 +1072,7 @@ Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are equal `refinement
 For `<symbol-literal>` see <<word,section 5.2.5>>.
 
 An `<issue-literal>` *may* contain a digit `0-9` or `'` as first character after the `\#`.
-However, the combinations `#<>` and +
-`#<...>` with any characters in between the `<` and `>` character are not allowed.
+However, the combinations `#<>` and `#<...>` with any characters in between the `<` and `>` character are not allowed.
 
 Examples: `#abc`  `#Abc`  `#ABC`  `#10FFFF`  ; the first three are equal `issue!` values.
 
