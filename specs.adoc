@@ -467,7 +467,7 @@ Detailed rules for the evaluation in these various cases are given in <<evaluati
 ==== Parent types
 
 The notion of _parent type_ arises in the implementation of _actions_, i.e. pre-defined polymorphic
-functions of up to two arguments with built-in evaluation, e.g. `add`, `subtract`, `copy`, `find`, etc.
+functions of one or more arguments with built-in evaluation, e.g. `add`, `subtract`, `copy`, `find`, etc.
 The implementation uses a _dispatch table_ which contains a pointer to a specific run-time
 function for each allowed combination of action and type of first argument. These functions
 are grouped by the type to which they apply. Now for any action/type combination,
@@ -2725,7 +2725,7 @@ of the given type (_inheritance_).
 The application of an `action!` value then proceeds as follows:
 
 . From the action number, determine the `<argument-spec>` of the action.
-. Evaluate one or two expressions corresponding to the non-optional arguments.
+. Evaluate one or more expressions corresponding to the non-optional arguments.
 Evaluate expressions as needed for the optional arguments corresponding to
 the refinements specified, if any, and determine default values for the others.
 . Call the primary Red/System function that handles the action 
