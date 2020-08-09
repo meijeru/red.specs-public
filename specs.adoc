@@ -2732,7 +2732,7 @@ the refinements specified, if any, and determine default values for the others.
 with all the arguments in standard order. This will do the following:
 .. Determine the type of the first argument and look up the appropriate entry in the dispatch table.
 .. Call the Red/System function that the entry refers to, with all the arguments
-.. This Red/System function will check the type of the second argument, if any, and determine
+.. This Red/System function will check the type of the other argument(s), if any, and determine
 its operation on the basis of the (combination of the) argument type(s).
 
 As with `function!` evaluation, the order of the expressions to be supplied
