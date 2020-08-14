@@ -158,7 +158,9 @@ and this construct may again be enclosed in grouping tokens etc. Note that the t
 `" "`, `\#" "`, `{ }`, `#{ }` and `< >` each delimit a single value, they are not grouping tokens.
 
 As a rule, lexemes must be separated from each other and from grouping tokens by
-one or more _whitespace characters_. In the Red source text, whitespace characters include
+one or more _whitespace characters_ (see e.g.
+https://en.wikipedia.org/wiki/Whitespace_character[this Wikipedia article]).
+In the Red source text, whitespace characters include
 at least space (`U+0020`), tab (`U+0009`), line feed (`U+000A`), carriage return (`U+000D`)
 and non-breaking space (`U+00A0`). Consequently, Red program texts are _free form_,
 i.e. neither their arrangement in separate lines, nor their formatting with indentation
