@@ -1147,8 +1147,7 @@ is truncated; the integer or truncated number is used to create an (empty) `seri
 for maps, the number of components refers to key-value pairs;
 for bitsets, the number of components is rounded up to the nearest multiple of 8,
 and they are initialized to `false`
-_**See https://github.com/red/red/issues/4378[issues #4378], https://github.com/red/red/issues/4389[#4389]
-and https://github.com/red/red/issues/2609[#2609]**_;
+_**See https://github.com/red/red/issues/2609[#2609]**_;
 for `vector!`, the components are initialized to `0` (see <<vector,section 5.3.3>>).
 
 ==== `typeset!`
@@ -2184,7 +2183,7 @@ but the component size in bits may be different.
 In all cases, for the `equal?` and `not-equal?` test, the requirement of equal type
 is relaxed for several combinations of types of the two values:
 
-* `char!` and `integer!` _**See https://github.com/red/red/issues/2650[issue #2650]**_
+* `char!` and `integer!`
 * `integer!`,  `float!`, `percent!` and `time!`
 * `money!`, `integer!` and `float!`
 * types in `any-word!` and `refinement!` (note the absence of `issue!`)
@@ -5747,7 +5746,6 @@ issue   section
 <a href= "https://github.com/red/red/issues/2625">2625</a>  R <a href="#overview-table-1">5.6.3</a>
 <a href= "https://github.com/red/red/issues/2642">2642</a>  N <a href="#routine">5.3.9</a>
 <a href= "https://github.com/red/red/issues/2644">2644</a>  A <a href="#other-types">5.3.14</a>
-<a href= "https://github.com/red/red/issues/2650">2650</a>  A <a href="#equality-comparisons">5.8.1</a>
 <a href= "https://github.com/red/red/issues/2699">2699</a>  N <a href="#higher-mathematical-functions">8.2</a>
 <a href= "https://github.com/red/red/issues/2708">2708</a>  N <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/2776">2776</a>  N <a href="#basic-arithmetic-operations">8.1</a>
@@ -5772,8 +5770,6 @@ issue   section
 <a href= "https://github.com/red/red/issues/4352">4352</a>  N <a href="#basic-arithmetic-operations">8.1</a>
 <a href= "https://github.com/red/red/issues/4367">4367</a>  N <a href="#series-extraction-and-modification-of-components">9.3</a>
 <a href= "https://github.com/red/red/issues/4372">4372</a>  N <a href="#basic-arithmetic-operations">8.1</a>
-<a href= "https://github.com/red/red/issues/4378">4378</a>  N <a href="#creation-of-values-make">5.3</a>
-<a href= "https://github.com/red/red/issues/4389">4389</a>  N <a href="#creation-of-values-make">5.3</a>
 
 REP   S spec
 issue   section
