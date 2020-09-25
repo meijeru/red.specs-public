@@ -1147,7 +1147,7 @@ is truncated; the integer or truncated number is used to create an (empty) `seri
 for maps, the number of components refers to key-value pairs;
 for bitsets, the number of components is rounded up to the nearest multiple of 8,
 and they are initialized to `false`
-_**See https://github.com/red/red/issues/2609[#2609]**_;
+_**See issue https://github.com/red/red/issues/2609[#2609]**_;
 for `vector!`, the components are initialized to `0` (see <<vector,section 5.3.3>>).
 
 ==== `typeset!`
