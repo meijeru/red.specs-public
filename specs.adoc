@@ -3875,7 +3875,7 @@ note that `read <directory>` will yield a block with the content of the director
 if this contains more than one directory level, and the `/deep` refinement
 is specified, the intermediate directory or directories will also be created
 * `clean-path` will normalize its `file!` or `url!` argument to an absolute path
-where `.` and `..` are eliminated _**See https://github.com/red/red/issues/3571[issue #3571]**_
+where `.` and `..` are eliminated
 * `normalize-dir` will invoke `clean-path` and prefix the current working directory
 if the file path indicated by its argument (`word! path!` or `file!`)
 is relative, and invoke `dirize` afterwards
