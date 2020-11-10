@@ -1100,7 +1100,7 @@ which initially contains the internationally standardized ones
 (https://www.iso.org/iso-4217-currency-codes.html[ISO 4217]) in addition to
 some crypto ones; user-defined codes may be appended to it; these must be words of
 3 letters, different from already existing ones, and not making the total number of codes
-greater than 255. If the metadata (see <<<section 17,metadata-for-the-toolchain>>>) contains a
+greater than 255. If the metadata (see <<metadata-for-the-toolchain,section 17>>) contains a
 `Currencies:` field with a block of appropriate words, these will be added to the list
 by the toolchain.
 
