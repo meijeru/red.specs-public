@@ -1100,7 +1100,9 @@ which initially contains the internationally standardized ones
 (https://www.iso.org/iso-4217-currency-codes.html[ISO 4217]) in addition to
 some crypto ones; user-defined codes may be appended to it; these must be words of
 3 letters, different from already existing ones, and not making the total number of codes
-greater than 255.
+greater than 255. If the metadata (see <<<section 17,metadata-for-the-toolchain>>>) contains a
+`Currencies:` field with a block of appropriate words, these will be added to the list
+by the toolchain.
 
 Examples: `$123.45`  `$12'345'678'901'234'567.12345` `USD$1.07` `EUR$0002.50`
 
@@ -5431,10 +5433,10 @@ internal ( 900 )
 It is recommended to organize the metadata as `<word>: <value>` pairs. This
 will facilitate storage and retrieval of these data by the toolchain as well
 as the user. Certain elements of metadata, that are used by the toolchain,
-*must* be in this format: `Icon: Needs:` and `Config:`, with prescribed types for
-the `<value>` as indicated.
+*must* be in this format: `Icon:`, `Needs:`, `Config:` and `Currencies:`.
+If present, they must have prescribed types for the `<value>` as indicated.
 
-The following is a list of suggested and compulsory elements. The ones marked *
+The following is a list of recommended elements. The ones marked *
 are contained in the object `system/standard/header`.
 ++++
 <pre>
@@ -5464,6 +5466,7 @@ are contained in the object `system/standard/header`.
   Config:     block!               set-word/value pairs for toolchain options
                                    for a list of options, see <a href="https://github.com/red/red/blob/master/system/compiler.r">source file /system/compiler.r</a>
                                    (object system-dialect/options-class)
+  Currencies: block!               additional currency identifiers, must be three-letter words
 </pre>
 ++++
 
