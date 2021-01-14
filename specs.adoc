@@ -1058,7 +1058,7 @@ Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are equal `refinement
 
 An `<issue-literal>` consists of `\#` followed by a sequence of one or more characters.
 It is delimited by end-of-text, whitespace, semicolon, or any character from the set `[ ] ( ) { } " < @` .
-Note that any of `[ ( { "` preceded by `\#` introduces a (grouped) value of another type than `issue!`.
+Note that any of `#[ #( #{ #"` introduces a (grouped) value of another type than `issue!`.
 
 Restrictions: `/` is only allowed as first character of the sequence, while `<` `>` and `,`
 are only allowed if they are *not* the first character.
