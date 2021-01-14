@@ -774,7 +774,7 @@ For a list of pre-defined words referring to RGB values see <<tuples,section 14.
 
 ==== `word!`
 
-**`S115`**::
+**`S115`**
 
 A `<word-literal>` is written as one or more characters from the entire Unicode range
 excluding _control characters_ (notably Unicode sets C0, C1), whitespace characters
@@ -1036,7 +1036,7 @@ Examples: `20170705T175800Z`, `5-Jul-2017/19:58+2:00` ; these values are equal.
 
 ==== `refinement!`
 
-**`S136`**::
+**`S136`**:
 
 A `<refinement-literal>` consists of a `/` followed by a sequence of one or more characters,
 It is delimited by end-of-text, whitespace, semicolon,
@@ -1054,7 +1054,7 @@ Examples: `/abc`  `/Abc`  `/ABC`  `/1a`  ; the first three are equal `refinement
 
 ==== `issue!`
 
-**`S137`**::
+**`S137`**
 
 An `<issue-literal>` consists of `#` followed by a sequence of one or more characters.
 It is delimited by end-of-text, whitespace, semicolon, or any character from the set `[ ] ( ) { } " < @` .
