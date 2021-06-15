@@ -1128,7 +1128,7 @@ referring to a `typeset!` value etc.
 
 In addition to the following rules, it should be noted that for all types
 in `series!` except `image!`, for `bitset!` and for `map!`, `make` is also defined
-with a `<spec>` which is an `integer!` or `float!` value: the `float!` value
+with a `<spec>` which is a non-negative `integer!` or `float!` value: the `float!` value
 is truncated; the integer or truncated number is used to create an (empty) `series!`,
 `map!` or `bitset!` value with storage for the given number of components reserved;
 for maps, the number of components refers to key-value pairs;
