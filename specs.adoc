@@ -3562,7 +3562,7 @@ Overview-table of current and planned facilities:
 [options="header"]
 |===
 |resource type     |implemented by       |functions
-|`file!`           |basic I/O            |`read` `write` `query` `delete` `modify`
+|`file!`           |basic I/O            |`read` `write` `query` `delete` `modify` `rename`
 |`url!`, `http(s)` schemes  |basic I/O   |`read` `write` `modify` `open`
 |`url!`, other schemes |ports |`read` `write` `modify` `open`
 |`port!`           |ports (planned) |`create` `close` `delete` `modify` `open` `open?` `query` `read` `rename` `update` `write`
