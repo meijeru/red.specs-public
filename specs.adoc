@@ -5468,7 +5468,7 @@ The following is a list of official documents that complement the information gi
   .. https://github.com/red/docs/blob/master/en/parse.adoc[Parse]
   .. https://github.com/red/docs/blob/master/en/lexer.adoc[Lexer]
   .. https://github.com/red/docs/blob/master/en/reactivity.adoc[Reactive Programming]
-  .. https://github.com/red/docs/blob/master/en/preprocessor.adocl[Preprocessor]
+  .. https://github.com/red/docs/blob/master/en/preprocessor.adoc[Preprocessor]
 . Overview of value conversions: https://github.com/red/red/blob/master/docs/conversion-matrix.xlsx[Conversion matrix]
 . Ownership documentation (in blog article from 2016): https://www.red-lang.org/2016/03/060-red-gui-system.html[Red GUI system]
 . Handling of NaNs, INFs, and signed zeros: in https://github.com/red/red/wiki[Red Wiki] under Reference
